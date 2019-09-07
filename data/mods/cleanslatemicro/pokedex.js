@@ -74,7 +74,7 @@ exports.BattlePokedex = {
 	},
 	farfetchd: {
 		inherit: true,
-		species: "Farfetched",
+		species: "Farfetch'd",
 		types: ["Fighting", "Flying"],
 		baseStats: {hp: 75, atk: 115, def: 85, spa: 45, spd: 55, spe: 95},
 		abilities: {0: "Defiant", 1: "Sniper", H: "Sap Sipper"},
