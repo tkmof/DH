@@ -29,6 +29,8 @@ let BattleAliases = {
 	"e4e": "[Gen 7] Evos for Everyone",
 	"spookdex": "[Gen 7] The Pokedex According to Spook",
 	"cs": "[Gen 7] Clean Slate",
+	"csm": "[Gen 7] Clean Slate: Micro",
+	"futu": "[Gen 7] From Untiered to Ubers",
 	"mnm": "[Gen 7] Mix and Mega",
 	"aaa": "[Gen 7] Almost Any Ability",
 	"pic": "[Gen 7] Partners in Crime",
