@@ -31,5 +31,42 @@ exports.BattleItems = {
         zMoveUser: ["SiIvaGunner"],
         desc: "If held by SiIvaGunner with Snow Halation, he can use Stone Halation.",
     },
-		 
+	 "chaosemeralds": { 
+		  id: "chaosemeralds",
+		  name: "Chaos Emeralds",
+		  megaStone: "Sonic-Super",
+		  megaEvolves: "Sonic",
+		  onTakeItem(item, source) {
+			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  return true;
+		  },
+		 desc: "If held by Sonic, this item allows him to become Super Sonic in battle."
+	 },
+    "zeromiumz": {
+        id: "zeromiumz",
+        name: "Zeromium Z",
+        onTakeItem: false,
+        zMove: "Big Bang",
+        zMoveFrom: "Thunder",
+        zMoveUser: ["True Zeromus"],
+        desc: "If held by True Zeromus with Thunder, he can use Big Bang.",
+    },
+    "galeemiumz": {
+        id: "galeemiumz",
+        name: "Galeemium Z",
+        onTakeItem: false,
+        zMove: "Spear of Light",
+        zMoveFrom: "Angelic Flare",
+        zMoveUser: ["Galeem"],
+        desc: "If held by Galeem with Angelic Flare, it can use Spear of Light.",
+    },
+    "dharkoniumz": {
+        id: "dharkoniumz",
+        name: "Dharkonium Z",
+        onTakeItem: false,
+        zMove: "Hammer of Darkness",
+        zMoveFrom: "Demonic Rend",
+        zMoveUser: ["Dharkon"],
+        desc: "If held by Dharkon with Demonic Rend, it can use Hammer of Darkness.",
+    },
 };

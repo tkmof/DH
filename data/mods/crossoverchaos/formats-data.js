@@ -853,11 +853,3 @@ exports.BattleFormatsData = { //
 		  tier: "EX",
 	 },
 };
-
-
-
-
-
-
-
-

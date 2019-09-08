@@ -7,6 +7,7 @@ exports.BattlePokedex = {
 		types: ["Normal", "Steel"],
 		baseStats: {hp: 70, atk: 120, def: 80, spa: 70, spd: 60, spe: 85},
 		abilities: {0: "Battle Armor", 1: "Tinted Lens"},
+    evos: null,
 	},
 	crobat: {
 		inherit: true,
