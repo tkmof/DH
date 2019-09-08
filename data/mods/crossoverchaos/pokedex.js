@@ -2079,6 +2079,36 @@ dharkon: {
 	 heightm: 8,
     weightkg: 666,
 },
+deliciousfruit: {
+    num: 6000119,
+    species: "Delicious Fruit", /* I Wanna Be The Guy */
+    types: ["Grass", "Poison"],
+	 gender: "N",
+    baseStats: {hp: 30, atk: 150, def: 30, spa: 30, spd: 30, spe: 135},
+    abilities: {0: "Levitate", H: "Flash Fire"},
+	 heightm: 0.5,
+    weightkg: 1,
+},
+ratsplatman: {
+    num: 6000120,
+    species: "Rat Splat Man", /* Rat Splat (Oric-1)*/
+    types: ["Fighting", "Poison"],
+	 gender: "M",
+    baseStats: {hp: 72, atk: 125, def: 90, spa: 65, spd: 70, spe: 125},
+    abilities: {0: "Stench", H: "Guts"},
+	 heightm: 1.7,
+    weightkg: 65,
+},
+enderman: {
+    num: 6000121,
+    species: "Enderman", /* Minecraft */
+    types: ["Psychic"],
+	 gender: "N",
+    baseStats: {hp: 113, atk: 127, def: 71, spa: 61, spd: 71, spe: 127},
+    abilities: {0: "Hydrophobic", H: "Beast Boost"},
+	 heightm: 3,
+    weightkg: 100,
+},
 walle: {
     num: 7000001,
     species: "WALL-E", /* WALL-E */
