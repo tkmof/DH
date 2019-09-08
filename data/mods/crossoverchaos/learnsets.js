@@ -5744,6 +5744,7 @@ kyoko: {learnset: {
 	irondefense: ["7L1"],
 	iciclespear: ["7L1"],
 	barrier: ["7L1"],
+	safeguard: ["7L1"],
 }},
 steve: {learnset: {
 	explosion: ["7L1"],
