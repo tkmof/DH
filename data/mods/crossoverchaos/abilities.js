@@ -414,7 +414,7 @@ exports.BattleAbilities = {
 	"noncorporeal": {
 		shortDesc: "This Pokemon can only be damaged by supereffective or Rock-type moves and indirect damage.",
 		onTryHit(target, source, move) {
-			if (target === source || move.category === 'Status' || move.type === '???' ||| move.type === 'Rock' || move.id === 'struggle') return;
+			if (target === source || move.category === 'Status' || move.type === '???' || move.type === 'Rock' || move.id === 'struggle') return;
 			this.debug('Wonder Guard immunity: ' + move.id);
 			if (target.runEffectiveness(move) <= 0) {
 				this.add('-immune', target, '[from] ability: Noncorporeal');
