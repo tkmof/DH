@@ -458,6 +458,7 @@ stardream: {
     abilities: {0: "Levitate", H: "Soul-Heart"},
 	 heightm: 20,
     weightkg: 250,
+		color: "Gray",
 	 otherFormes: ["stardreamaccessark", "stardreamclockworkstar", "stardreamsoulos", "stardreamsoulosaccessark", "stardreamsoulosclockworkstar", "stardreamsoulosheart"],
 },
 stardreamaccessark: {
@@ -468,10 +469,11 @@ stardreamaccessark: {
 	 formeLetter: "A",
     types: ["Steel", "Psychic"],
 	 gender: "N",
-    baseStats: {hp: 120, atk: 130, def: 140, spa: 130, spd: 110, spe: 70},
+    baseStats: {hp: 120, atk: 130, def: 140, spa: 110, spd: 110, spe: 70},
     abilities: {0: "Levitate", H: "Soul-Heart"},
 	 heightm: 12700000,
     weightkg: 999.9,
+		color: "Gray",
 },
 stardreamclockworkstar: {
     num: 6000015,
@@ -481,10 +483,11 @@ stardreamclockworkstar: {
 	 formeLetter: "C",
     types: ["Steel", "Psychic"],
 	 gender: "N",
-    baseStats: {hp: 120, atk: 120, def: 120, spa: 160, spd: 110, spe: 90},
+    baseStats: {hp: 120, atk: 120, def: 100, spa: 160, spd: 110, spe: 70},
     abilities: {0: "Levitate", H: "Soul-Heart"},
 	 heightm: 12700000,
     weightkg: 999.9,
+		color: "Gray",
 },
 stardreamsoulos: {
     num: 6000015,
@@ -498,6 +501,7 @@ stardreamsoulos: {
     abilities: {0: "Soul 0 System"},
 	 heightm: 20,
     weightkg: 250,
+		color: "Black",
 },
 stardreamsoulosaccessark: {
     num: 6000015,
@@ -507,10 +511,11 @@ stardreamsoulosaccessark: {
 	 formeLetter: "S",
     types: ["Steel", "Ghost"],
 	 gender: "N",
-    baseStats: {hp: 120, atk: 160, def: 160, spa: 160, spd: 130, spe: 70},
+    baseStats: {hp: 120, atk: 160, def: 160, spa: 140, spd: 130, spe: 70},
     abilities: {0: "Soul 0 System"},
 	 heightm: 12700000,
     weightkg: 999.9,
+		color: "Gray",
 },
 stardreamsoulosclockworkstar: {
     num: 6000015,
@@ -520,10 +525,11 @@ stardreamsoulosclockworkstar: {
 	 formeLetter: "S",
     types: ["Steel", "Ghost"],
 	 gender: "N",
-    baseStats: {hp: 120, atk: 140, def: 140, spa: 200, spd: 130, spe: 90},
+    baseStats: {hp: 120, atk: 140, def: 120, spa: 200, spd: 130, spe: 70},
     abilities: {0: "Soul 0 System"},
 	 heightm: 12700000,
     weightkg: 999.9,
+		color: "Yellow",
 },
 stardreamsoulosheart: {
     num: 6000015,
@@ -537,6 +543,7 @@ stardreamsoulosheart: {
     abilities: {0: "Soul 0 System"},
 	 heightm: 0.5,
     weightkg: 25,
+		color: "Pink",
 },
 daroach: {
     num: 6000016,
@@ -841,7 +848,7 @@ theknight: {
 	 gender: "N",
     baseStats: {hp: 60, atk: 115, def: 95, spa: 115, spd: 95, spe: 120},
     abilities: {0: "Shade Soul"},
-    weightkg: 0.4,
+    weightkg: 4,
 	 otherFormes: ["theknightshade"],
 },
 theknightshade: {
@@ -863,7 +870,7 @@ falseknight: {
 	 gender: "M",
     baseStats: {hp: 50, atk: 150, def: 140, spa: 50, spd: 90, spe: 80},
     abilities: {0: "Stolen Armour"},
-    weightkg: 20,
+    weightkg: 200,
 	 otherFormes: ["falseknightunarmored"],
 },
 falseknightunarmored: {
@@ -876,8 +883,8 @@ falseknightunarmored: {
 	 gender: "M",
     baseStats: {hp: 50, atk: 75, def: 70, spa: 25, spd: 45, spe: 40},
     abilities: {0: "Stolen Armour"},
-	 heightm: 0.1,
-    weightkg: 0.5,
+	 heightm: 1,
+    weightkg: 5,
 },
 sans: {
     num: 6000039,
@@ -1072,7 +1079,7 @@ zerokirby: {
     abilities: {0: "Last-Ditch Effort", H: "Levitate"},
 	 heightm: 1.3,
     weightkg: 400,
-	 otherFormes: ["iris0"],
+	 otherFormes: ["zeroiris", "zero2"],
 },
 zeroiris: { //Writing it as "0iris" would've done problems.
     num: 6000048,
@@ -1090,6 +1097,9 @@ zeroiris: { //Writing it as "0iris" would've done problems.
 zero2: {
     num: 6000048,
     species: "Zero^2",
+    baseSpecies: "Zero (Kirby)",
+    forme: "2",
+    formeLetter: "2",
     types: ["Dark", "Poison"],
 	 gender: "N",
     baseStats: {hp: 120, atk: 90, def: 150, spa: 140, spd: 110, spe: 70},
@@ -1288,8 +1298,8 @@ galeem: {
 	 gender: "N",
     baseStats: {hp: 100, atk: 40, def: 40, spa: 160, spd: 160, spe: 100},
     abilities: {0: "Bane of Darkness"},
-	 heightm: 5,
-    weightkg: 20,
+	 heightm: 8,
+    weightkg: 66.6,
 },
 isabelle: {
     num: 6000063,
@@ -1308,7 +1318,7 @@ joker: {
     baseStats: {hp: 70, atk: 120, def: 70, spa: 120, spd: 70, spe: 140},
     abilities: {0: "Moxie", 1: "Mold Breaker", H: "Persona Change"},
 	 heightm: 1.76,
-    weightkg: 50,
+    weightkg: 55,
 },
 riki: {
     num: 6000065,
@@ -1659,8 +1669,8 @@ cirno: {
 	 gender: "F",
     baseStats: {hp: 99, atk: 99, def: 99, spa: 99, spd: 99, spe: 99},
     abilities: {0: "Snow Warning", 1: "Levitate", H: "Freeze Atmosphere"},
-	 heightm: 1.3,
-    weightkg: 30,
+	 heightm: 1.4,
+    weightkg: 38,
 	 otherFormes: ["cirnotanned"],
 },
 cirnotanned: {
@@ -1673,8 +1683,8 @@ cirnotanned: {
 	 gender: "F",
     baseStats: {hp: 99, atk: 99, def: 99, spa: 99, spd: 99, spe: 99},
     abilities: {0: "Power of Summer"},
-	 heightm: 1.3,
-    weightkg: 30,
+	 heightm: 1.4,
+    weightkg: 38,
 },
 monokuma: {
     num: 6000094,
@@ -1757,7 +1767,7 @@ kyoko: {
 	 gender: "F",
     baseStats: {hp: 90, atk: 50, def: 60, spa: 60, spd: 60, spe: 50},
     abilities: {0: "Crystal Barrier"},
-	 heightm: 1.8,
+	 heightm: 1.7,
     weightkg: 55,
 },
 steve: {
@@ -1767,8 +1777,8 @@ steve: {
 	 gender: "M",
     baseStats: {hp: 95, atk: 95, def: 95, spa: 95, spd: 95, spe: 95},
     abilities: {0: "Battle Armor", 1: "Hunger", H: "Miner"},
-	 heightm: 1.8,
-    weightkg: 55,
+	 heightm: 1.85,
+    weightkg: 80,
 },
 dimentio: {
     num: 6000101,
@@ -1777,7 +1787,7 @@ dimentio: {
 	 gender: "M",
     baseStats: {hp: 80, atk: 64, def: 64, spa: 144, spd: 112, spe: 96},
     abilities: {0: "Dimensional Mastery", H: "Levitate"},
-	 heightm: 1.5,
+	 heightm: 1.7,
     weightkg: 55,
 },
 dimentiosuper: {
@@ -1810,8 +1820,8 @@ archer: {
 	 gender: "M",
     baseStats: {hp: 80, atk: 100, def: 80, spa: 50, spd: 80, spe: 90},
     abilities: {0: "Justified", 1: "Protean", H: "Trace"},
-	 heightm: 1.8,
-    weightkg: 55,
+	 heightm: 1.7,
+    weightkg: 60,
 },
 magus: {
     num: 6000104,
@@ -1821,7 +1831,7 @@ magus: {
     baseStats: {hp: 110, atk: 96, def: 90, spa: 140, spd: 120, spe: 110},
     abilities: {0: "Dark Aura", H: "Barrier Change"},
 	 heightm: 1.8,
-    weightkg: 55,
+    weightkg: 70,
 },
 silver: {
     num: 6000105,
@@ -1884,13 +1894,13 @@ tamamonomaeninetails: {
 },
 knuckles: {
     num: 6000107,
-    species: "Knuckles", /* Fate/EXTRA */
+    species: "Knuckles", /* Sonic the Hedgehog series */
     types: ["Ground", "Fighting"],
 	 gender: "M",
     baseStats: {hp: 85, atk: 135, def: 105, spa: 70, spd: 85, spe: 110},
     abilities: {0: "Iron Fist", H: "Scrappy"},
-	 heightm: 1,
-    weightkg: 35,
+	 heightm: 1.1,
+    weightkg: 40,
 },
 hrh: {
     num: 6000108,
@@ -1939,8 +1949,8 @@ sectonia: {
 	 gender: "F",
     baseStats: {hp: 80, atk: 125, def: 75, spa: 115, spd: 85, spe: 120},
     abilities: {0: "Queenly Majesty", 1: "Pressure", H: "Levitate"},
-	 heightm: 2,
-    weightkg: 69,
+	 heightm: 0.9,
+    weightkg: 20,
 },
 sectoniadreamstalk: {
     num: 6000112,
@@ -1968,7 +1978,7 @@ sectoniasoul: {
 	 heightm: 2700,
     weightkg: 999.9,
 },
-sectoniasoul: {
+sectoniasoulunrooted: {
     num: 6000112,
     species: "Sectonia-Soul-Unrooted", 
 	 baseSpecies: "Sectonia",
@@ -1978,16 +1988,17 @@ sectoniasoul: {
 	 gender: "F",
     baseStats: {hp: 75, atk: 160, def: 115, spa: 170, spd: 120, spe: 140},
     abilities: {0: "Eternal Beauty"},
-	 heightm: 0.2,
+	 heightm: 0.4,
     weightkg: 5,
 },
 creeper: {
     num: 6000113,
     species: "Creeper", /* Minecraft */
     types: ["Grass"],
+	 gender: "N",
     baseStats: {hp: 95, atk: 120, def: 50, spa: 55, spd: 50, spe: 50},
     abilities: {0: "Supercharge"},
-	 heightm: 1.8,
+	 heightm: 1.625,
     weightkg: 55,
 },
 creepercharged: {
@@ -1997,15 +2008,17 @@ creepercharged: {
 	 forme: "Charged",
 	 formeLetter: "C",
     types: ["Grass"],
+	 gender: "N",
     baseStats: {hp: 95, atk: 180, def: 50, spa: 55, spd: 50, spe: 50},
     abilities: {0: "Supercharge"},
-	 heightm: 1.8,
+	 heightm: 1.625,
     weightkg: 55,
 },
 darkmind: {
     num: 6000114,
     species: "Dark Mind", /* Kirby and the Amazing Mirror */
     types: ["Rock", "Fire"],
+	 gender: "N",
     baseStats: {hp: 60, atk: 60, def: 110, spa: 130, spd: 110, spe: 110},
     abilities: {0: "Levitate", H: "Emergency Exit"},
 	 heightm: 1.8,
@@ -2018,10 +2031,53 @@ darkmindtrue: {
 	 forme: "True",
 	 formeLetter: "T",
     types: ["Rock", "Fire"],
+	 gender: "N",
     baseStats: {hp: 120, atk: 60, def: 100, spa: 140, spd: 100, spe: 80},
     abilities: {0: "Levitate", H: "Emergency Exit"},
 	 heightm: 2,
     weightkg: 50,
+},
+flandrescarlet: {
+    num: 6000115,
+    species: "Flandre Scarlet", /* Touhou */
+    types: ["Fire", "Dark"],
+	 gender: "F",
+    baseStats: {hp: 90, atk: 150, def: 50, spa: 150, spd: 50, spe: 130},
+    abilities: {0: "Four of a Kind", H: "Ability to Destroy Anything"},
+	 heightm: 1.4,
+    weightkg: 35,
+},
+zeromus: {
+    num: 6000116,
+    species: "Zeromus", /* Final Fantasy IV / XII */
+    types: ["Ghost"],
+	 gender: "M",
+    baseStats: {hp: 40, atk: 40, def: 40, spa: 100, spd: 40, spe: 40},
+    abilities: {0: "Noncorporeal"},
+	 heightm: 5,
+    weightkg: 100,
+	 evos: ["truezeromus"]
+},
+truezeromus: {
+    num: 6000117,
+    species: "True Zeromus",
+    types: ["Ghost", "Dark"],
+	 gender: "M",
+    baseStats: {hp: 150, atk: 158, def: 148, spa: 101, spd: 52, spe: 59},
+    abilities: {0: "Flash Fire"},
+	 heightm: 6.5,
+    weightkg: 500,
+	 prevo: "zeromus"
+},
+dharkon: {
+    num: 6000118,
+    species: "Dharkon", /* Super Smash Bros. */
+    types: ["Dark", "Poison"],
+	 gender: "N",
+    baseStats: {hp: 97, atk: 142, def: 101, spa: 65, spd: 88, spe: 100},
+    abilities: {0: "Bane of Light"},
+	 heightm: 8,
+    weightkg: 666,
 },
 walle: {
     num: 7000001,
@@ -2063,7 +2119,7 @@ oktaviavonseckendorff: {
     abilities: {0: "Regenerator", H: "Unaware"},
 	 heightm: 10,
     weightkg: 480,
-	 prevo: ["sayakamiki"]
+	 prevo: "sayakamiki"
 },
 skipper: {
     num: 7000005,
@@ -2377,7 +2433,7 @@ sakinikaido: {
 majinbuu: {
     num: 7000025,
     species: "Majin Buu", /* Dragon Ball */
-    types: ["Dark", "Ghost"],
+    types: ["Fairy", "Fighting"],
 	 gender: "M",
     baseStats: {hp: 160, atk: 105, def: 50, spa: 115, spd: 100, spe: 100},
     abilities: {0: "Regenerator", 1: "Magic Bounce", H: "Gluttony"},
