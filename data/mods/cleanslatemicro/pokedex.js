@@ -128,7 +128,7 @@ exports.BattlePokedex = {
 		types: ["Steel", "Psychic"],
 		baseStats: {hp: 86, atk: 60, def: 78, spa: 100, spd: 75, spe: 73},
 		abilities: {0: "Clear Body"},
-	}
+	},
 	rotommow: {
 		inherit: true,
 		species: "Rotom-Mow",
