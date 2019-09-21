@@ -127,13 +127,13 @@ exports.BattlePokedex = {
 		species: "Malamar",
 		types: ["Steel", "Psychic"],
 		baseStats: {hp: 86, atk: 60, def: 78, spa: 100, spd: 75, spe: 73},
-		abilities: {0: "Clear Body"},
+		abilities: {0: "Contrary", 1: "Suction Cups", H: "Analytic"},
 	},
 	rotommow: {
 		inherit: true,
 		species: "Rotom-Mow",
 		types: ["Grass", "Psychic"],
 		baseStats: {hp: 50, atk: 50, def: 107, spa: 105, spd: 107, spe: 86},
-		abilities: {0: "Clear Body"},
+		abilities: {0: "Rough Skin", 1: "Chlorophyll", H: "Steelworker"},
 	}
 };
