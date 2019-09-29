@@ -5142,6 +5142,15 @@ exports.Formats = [
 		mod: 'roulettemons',
 	},
 	{
+  		name: "[Gen 7] Super Smash Mods",
+  		desc: ["None Yet!",
+		      ],
+  		ruleset: ['Gen 7 [Ubers]'],
+		mod: 'smashmods',
+		//banlist: ['Illegal'],
+	},
+
+	{
 		name: "[Gen 7] Sylvemons",
 		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/.3612509/>SylveMons</a>",
 				 "&bullet; <a href=https://docs.google.com/spreadsheets/d/18DiYjbZXv1Nm7tU-W0OMgPow0ZO7J2ETJF-hWapwM-o/edit>Sylvemons Archive</a>",

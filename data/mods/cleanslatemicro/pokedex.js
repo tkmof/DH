@@ -133,7 +133,7 @@ exports.BattlePokedex = {
 		inherit: true,
 		species: "Rotom-Mow",
 		types: ["Grass", "Psychic"],
-		baseStats: {hp: 50, atk: 50, def: 107, spa: 105, spd: 107, spe: 86},
+		baseStats: {hp: 50, atk: 105, def: 107, spa: 50, spd: 107, spe: 86},
 		abilities: {0: "Rough Skin", 1: "Chlorophyll", H: "Steelworker"},
 	}
 };
