@@ -5149,7 +5149,6 @@ exports.Formats = [
 		mod: 'smashmods',
 		//banlist: ['Illegal'],
 	},
-
 	{
 		name: "[Gen 7] Sylvemons",
 		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/.3612509/>SylveMons</a>",
