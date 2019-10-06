@@ -136,4 +136,11 @@ exports.BattlePokedex = {
 		baseStats: {hp: 50, atk: 105, def: 107, spa: 50, spd: 107, spe: 86},
 		abilities: {0: "Rough Skin", 1: "Chlorophyll", H: "Steelworker"},
 	}
+	wailord: {
+		inherit: true,
+		species: "Wailord",
+		types: ["Water", "Flying"],
+		baseStats: {hp: 140, atk: 65, def: 70, spa: 88, spd: 82, spe: 55},
+		abilities: {0: "Oblivious", H: "Pressure"},
+	}
 };
