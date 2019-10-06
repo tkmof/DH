@@ -13,7 +13,7 @@ let BattlePokedex = {
 		eggGroups: ["Undiscovered"],
 	},
 	gengaralola: {
-		num: 1025,
+		num: 94,
 		species: "Gengar-Alola",
 		types: ["Dark", "Water"],
 		baseStats: {hp: 70, atk: 45, def: 70, spa: 120, spd: 100, spe: 95},
@@ -25,7 +25,7 @@ let BattlePokedex = {
 		otherFormes: ["gengaralolamega"],
 	},
 	gengaralolamega: {
-		num: 1025,
+		num: 94,
 		species: "Gengar-Alola-Mega",
 		baseSpecies: "Gengar",
 		forme: "Mega",
@@ -39,19 +39,17 @@ let BattlePokedex = {
 		eggGroups: ["Amorphous"],
 	},
 	nihilego: {
-		num: 1024,
 		inherit: true,
 		baseStats: {hp: 101, atk: 82, def: 67, spa: 89, spd: 121, spe: 101},
 		abilities: {0: "Levitate", H: "Unaware"},
 	},
 	flygon: {
-		num: 1023,
 		inherit: true,
 		types: ["Ground", "Bug"],
 		abilities: {0: "Levitate", 1: "Tinted Lens", H: "Sand Stream"},
 	},
 	lopunny: {
-		num: 1022,
+		inherit: true,
 		species: "Lopunny",
 		types: ["Fairy"],
 		baseStats: {hp: 65, atk: 76, def: 84, spa: 54, spd: 96, spe: 105},
@@ -65,7 +63,7 @@ let BattlePokedex = {
 		otherFormes: ["lopunnymega"],
 	},
 	lopunnymega: {
-		num: 1021,
+		inherit: true,
 		species: "Lopunny-Mega",
 		baseSpecies: "Lopunny",
 		forme: "Mega",
@@ -79,7 +77,7 @@ let BattlePokedex = {
 		eggGroups: ["Field", "Human-Like"],
 	},
 	doubladealola: {
-		num: 1020,
+		num: 680,
 		species: "Doublade-Alola",
 		forme: "Alola",
 		formeLetter: "A",
@@ -93,7 +91,7 @@ let BattlePokedex = {
 		eggGroups: ["Mineral"],
 	},
 	banette: {
-		num: 1019,
+		inherit: true,
 		species: "Banette",
 		types: ["Ghost"],
 		baseStats: {hp: 64, atk: 115, def: 65, spa: 83, spd: 63, spe: 65},
@@ -107,7 +105,7 @@ let BattlePokedex = {
 		otherFormes: ["banettemegax", "banettemegay"],
 	},
 	banettemegax: {
-		num: 1019,
+		inherit: true,
 		species: "Banette-Mega-X",
 		baseSpecies: "Banette",
 		forme: "Mega",
@@ -121,7 +119,7 @@ let BattlePokedex = {
 		eggGroups: ["Amorphous"],
 	},
 	banettemegay: {
-		num: 1019,
+		inherit: true,
 		species: "Banette-Mega-Y",
 		baseSpecies: "Banette",
 		forme: "Mega",
@@ -135,14 +133,13 @@ let BattlePokedex = {
 		eggGroups: ["Amorphous"],
 	},
 	trapinch: {
-		num: 1018,
 		inherit: true,
 		types: ["Ground", "Dark"],
 		baseStats: {hp: 65, atk: 100, def: 65, spa: 45, spd: 65, spe: 50},
 		abilities: {0: "Hyper Cutter", 1: "Arena Trap", H: "Mold Breaker"},
 	},
 	camerupt: {
-		num: 1017,
+		inherit: true,
 		species: "Camerupt",
 		types: ["Fire", "Ground"],
 		baseStats: {hp: 70, atk: 100, def: 70, spa: 105, spd: 75, spe: 40},
@@ -155,7 +152,7 @@ let BattlePokedex = {
 		otherFormes: ["cameruptmega"],
 	},
 	cameruptmegay: {
-		num: 1017,
+		inherit: true,
 		species: "Camerupt-Mega-y",
 		baseSpecies: "Camerupt",
 		forme: "Mega",
@@ -169,7 +166,7 @@ let BattlePokedex = {
 		eggGroups: ["Field"],
 	},
 	cameruptmegax: {
-		num: 1017,
+		inherit: true,
 		species: "Camerupt-Mega-X",
 		baseSpecies: "Camerupt",
 		forme: "Mega",
@@ -206,7 +203,7 @@ let BattlePokedex = {
 		eggGroups: ["Undiscovered"],
 	},
 	porygon2: {
-		num: 1014,
+		inherit: true,
 		species: "Porygon2",
 		types: ["Normal", "Electric"],
 		gender: "N",
@@ -220,7 +217,7 @@ let BattlePokedex = {
 		eggGroups: ["Mineral"],
 	},
 	lileepeternal: {
-		num: 1013,
+		num: 345,
 		species: "Lileep-Eternal",
 		baseSpecies: "Lileep",
 		forme: "Eternal",
@@ -234,7 +231,7 @@ let BattlePokedex = {
 		eggGroups: ["Undiscovered"],
 	},
 	florges: {
-		num: 1012,
+		inherit: true,
 		species: "Florges",
 		types: ["Grass"],
 		gender: "F",
@@ -248,7 +245,7 @@ let BattlePokedex = {
 		eggGroups: ["Fairy"],
 	},
 	goodra: {
-		num: 1011,
+		inherit: true,
 		species: "Goodra",
 		types: ["Dragon", "Poison"],
 		baseStats: {hp: 90, atk: 100, def: 70, spa: 110, spd: 150, spe: 80},
@@ -261,7 +258,7 @@ let BattlePokedex = {
 		eggGroups: ["Dragon"],
 	},
 	wishiwashi: {
-		num: 1010,
+		inherit: true,
 		species: "Wishiwashi",
 		baseForme: "Solo",
 		types: ["Water"],
@@ -274,7 +271,7 @@ let BattlePokedex = {
 		otherFormes: ["wishiwashischool"],
 	},
 	wishiwashischool: {
-		num: 1010,
+		inherit: true,
 		species: "Wishiwashi-School",
 		baseSpecies: "Wishiwashi",
 		forme: "School",
@@ -288,7 +285,7 @@ let BattlePokedex = {
 		eggGroups: ["Water 2"],
 	},
 	deoxys: {
-		num: 1009,
+		inherit: true,
 		species: "Deoxys",
 		types: ["Psychic"],
 		gender: "N",
@@ -364,7 +361,7 @@ let BattlePokedex = {
 		eggGroups: ["Undiscovered"],
 	},
 	abomasnow: {
-		num: 1004,
+		inherit: true,
 		species: "Abomasnow",
 		types: ["Grass", "Ice"],
 		baseStats: {hp: 90, atk: 92, def: 75, spa: 92, spd: 85, spe: 60},
@@ -378,7 +375,7 @@ let BattlePokedex = {
 		otherFormes: ["abomasnowmegax", "abomasnowmegay"],
 	},
 	abomasnowmegax: {
-		num: 1004,
+		inherit: true,
 		species: "Abomasnow-Mega-X",
 		baseSpecies: "Abomasnow",
 		forme: "Mega-X",
@@ -392,7 +389,7 @@ let BattlePokedex = {
 		eggGroups: ["Monster", "Grass"],
 	},
 	abomasnowmegay: {
-		num: 1004,
+		inherit: true,
 		species: "Abomasnow-Mega-Y",
 		baseSpecies: "Abomasnow",
 		forme: "Mega-Y",
@@ -406,7 +403,7 @@ let BattlePokedex = {
 		eggGroups: ["Monster", "Grass"],
 	},
 	decidueyealola: {
-		num: 1003,
+		num: 724,
 		species: "Decidueye-Alola",
 		types: ["Ice", "Ghost"],
 		genderRatio: {M: 0.875, F: 0.125},
@@ -420,7 +417,7 @@ let BattlePokedex = {
 		eggGroups: ["Flying"],
 	},
 	aurorus: {
-		num: 1002,
+		inherit: true,
 		species: "Aurorus",
 		types: ["Rock", "Ice"],
 		genderRatio: {M: 0.875, F: 0.125},
