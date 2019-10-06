@@ -135,7 +135,7 @@ exports.BattlePokedex = {
 		types: ["Grass", "Psychic"],
 		baseStats: {hp: 50, atk: 105, def: 107, spa: 50, spd: 107, spe: 86},
 		abilities: {0: "Rough Skin", 1: "Chlorophyll", H: "Steelworker"},
-	}
+	},
 	wailord: {
 		inherit: true,
 		species: "Wailord",
