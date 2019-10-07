@@ -327,15 +327,6 @@ exports.BattleAbilities = {
     "fourheads": {
         desc: "This Pokemon's damaging moves become multi-hit moves that hit four times. Does not affect moves that have multiple targets or moves that use the target's attacking stats instead of the user's.",
         shortDesc: "This Pokemon's damaging moves hit four times, but have x0.3 power and halved secondary chances.",
-			onModifyMovePriority: -2,
-			onModifyMove(move) {
-				if (move.secondaries && move.multihitType === 'fourheads') {
-					this.debug('halving secondary chance');
-					for (const secondary of move.secondaries) {
-						if (secondary.chance) secondary.chance /= 2;
-					}
-				}
-			},
         onPrepareHit(source, target, move) {
             if (['iceball', 'rollout'].includes(move.id)) return;
             if (move.category !== 'Status' && !move.selfdestruct && !move.multihit && !move.flags['charge'] && !move.spreadHit && !move.isZ) {
@@ -550,7 +541,7 @@ exports.BattleAbilities = {
 		name: "Last-Ditch Effort",
 	},
 	"eternalbeauty": {
-		desc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Grass- or Fairy-type attack. If this Pokemon is Soul of Sectonia, she changes forme and unroots herself if she has 1/2 or less of her maximum HP, and changes to Meteor Form if it has more than 1/2 its maximum HP. This check is done on switch-in and at the end of each turn. While in its Meteor Form, it cannot become affected by major status conditions. Moongeist Beam, Sunsteel Strike, and the Mold Breaker, Teravolt, and Turboblaze Abilities cannot ignore this Ability.",
+		desc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Grass- or Fairy-type attack. If this Pokemon is Soul of Sectonia, she changes forme and unroots herself if she has 1/2 or less of her maximum HP. This check is done on switch-in and at the end of each turn. While in its Meteor Form, it cannot become affected by major status conditions. Moongeist Beam, Sunsteel Strike, and the Mold Breaker, Teravolt, and Turboblaze Abilities cannot ignore this Ability.",
 		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Grass- or Fairy-type attack. If Sectonia-Soul, end of turn changes to Soul-Unrooted at 1/2 max HP or less.",
 		onResidualOrder: 27,
 		onResidual(pokemon) {
@@ -684,6 +675,455 @@ exports.BattleAbilities = {
 		id: "saberclass",
 		name: "Saber Class",
 	},
+	"littlepests": {
+		shortDesc: "This Pokemon's Attack is halved and its evasion is 1.25x.",
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk) {
+			return this.chainModify(0.5);
+		},
+		onModifyAccuracy(accuracy) {
+			if (typeof accuracy === 'number') return accuracy * 0.8;
+		},
+		id: "littlepests",
+		name: "Little Pests",
+	},
+	"inkysurge": {
+		shortDesc: "On switch-in, this Pokemon summons Inky Terrain.",
+		onStart(source) {
+			this.field.setTerrain('inkyterrain');
+		},
+		id: "inkysurge",
+		name: "Inky Surge",
+	},
+	"chemicalburn": {
+		shortDesc: "User's Poison-type moves have halved secondary chances, but have a 30+% chance of inflicting burn. The more secondaries, the stronger the chance for burns",
+		onModifyMovePriority: -2,
+		onModifyMove(move) {
+			if (!move || move.type !== 'Poison') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			this.debug('converting secondary chance');
+			let burnchance = 30;
+			for (const secondary of move.secondaries) {
+			  // This skips if there were no secondaries to begin with.
+				if (secondary.chance){
+					secondary.chance /= 2;
+					burnchance += secondary.chance;
+				}
+			}
+			move.secondaries.push({
+				chance: burnchance,
+				status: 'brn',
+				ability: this.getAbility('chemicalburn'),
+			});
+		},
+		id: "chemicalburn",
+		name: "Chemical Burn",
+	},
+	"titanweaponry": {
+		desc: "This Pokemon's Fire-, Water-, Electric-, and Poison-type attacks have their power multiplied by 1.3.",
+		shortDesc: "This Pokemon's Fire/Electric/Water/Poison attacks have 1.3x power.",
+		onBasePowerPriority: 8,
+		onBasePower(basePower, attacker, defender, move) {
+			if (['Fire', 'Water', 'Electric', 'Poison'].includes(move.type)) {
+				this.debug('Titan Weaponry boost');
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
+		id: "titanweaponry",
+		name: "Titan Weaponry",
+	},
+	"variability": {
+		desc: "This Pokemon's moves that don't get STAB have their power multiplied by 1.3.",
+		shortDesc: "This Pokemon's non-STAB attacks have 1.3x power.",
+		onBasePowerPriority: 8,
+		onBasePower(basePower, attacker, defender, move) {
+			if (!attacker.hasType(move.type)) {
+				this.debug('Variability boost');
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
+		id: "variability",
+		name: "Variability",
+	},
+	"soulofmadness": {
+		desc: "This Pokemon's Normal-type moves become Ghost-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects. Upon fainting, this Pokemon resets all adjacent opponents' positive stat boosts and inflicts -2 Def/SpD on them. Pokemon with Soundproof are immune to this effect.",
+		shortDesc: "User's Normal-type moves become Ghost-type with 1.2x power. Upon fainting, opponents' positive boosts are negated, -2 Def/SpD",
+		onModifyMovePriority: -1,
+		onModifyMove(move, pokemon) {
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Ghost';
+				move.soulOfMadnessBoosted = true;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.soulOfMadnessBoosted) return this.chainModify([0x1333, 0x1000]);
+		},
+		onFaint(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.hasAbility('soundproof')) continue;
+			  let activated = false;
+			  for (const statName in target.boosts) {
+				  // @ts-ignore
+				  const stage = target.boosts[statName];
+				  if (stage > 0) {
+				  	target.boosts[statName] = 0;
+            activated = true;
+				  }
+			  }
+				if (activated) this.add('-clearpositiveboost', target);
+				this.boost({def: -2, spd: -2}, target, pokemon);
+			}
+		},
+		id: "soulofmadness",
+		name: "Soul of Madness",
+	},
+	"avalon": {
+		shortDesc: "At the end of every turn, this Pokemon restores 1/10 of its max HP.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual(pokemon) {
+			if (this.field.isTerrain('grassyterrain')) return;
+			this.heal(pokemon.maxhp / 10);
+		},
+		onTerrain(pokemon) {
+			if (!this.field.isTerrain('grassyterrain')) return;
+			this.heal(pokemon.maxhp / 10);
+		},
+		id: "avalon",
+		name: "Avalon",
+	},
+	"hydrophobia": {
+		desc: "This Pokemon is weak to Water-type moves. Resisting Water without this ability makes the Pokemon either take neutral damage from that type or, if doubly resisted, still resist it but take double damage. At the end of each turn, this Pokemon loses 1/8 of its maximum HP, rounded down, if the weather is Rain Dance.",
+		shortDesc: "This Pokemon has an added weakness to Water; is hurt 1/8 by Rain.",
+		onEffectiveness(typeMod, target, type, move) {
+			return ((move && move.type === 'Water' && target.types[0] === type) ? typeMod + 1 : typeMod);
+		},
+		onWeather(target, source, effect) {
+			if (effect.id === 'raindance' || effect.id === 'primordialsea') {
+				this.damage(target.maxhp / 8, target, target);
+			}
+		},
+    isUnbreakable: true,
+		id: "hydrophobia",
+		name: "Hydrophobia",
+	},
+	"sougenmu": {
+		desc: "This Pokemon's damaging moves become multi-hit moves that hit twice. The second hit has its damage quartered, but no longer makes contact. Does not affect multi-hit moves or moves that have multiple targets.",
+		shortDesc: "This Pokemon's damaging moves hit twice. The second hit has its damage quartered and does not make contact.",
+		onPrepareHit(source, target, move) {
+			if (['iceball', 'rollout'].includes(move.id)) return;
+			if (move.category !== 'Status' && !move.selfdestruct && !move.multihit && !move.flags['charge'] && !move.spreadHit && !move.isZ) {
+				move.multihit = 2;
+				move.multihitType = 'parentalbond';
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.multihitType === 'parentalbond' && move.hit > 1) return this.chainModify(0.25);
+		},
+		onModifyMove(move, pokemon) {
+			if (move.multihitType === 'parentalbond' &&  move.hit > 1) delete move.flags['contact'];
+		},
+		onSourceModifySecondaries(secondaries, target, source, move) {
+			if (move.multihitType === 'parentalbond' && move.id === 'secretpower' && move.hit < 2) {
+				// hack to prevent accidentally suppressing King's Rock/Razor Fang
+				return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+			}
+		},
+		id: "sougenmu",
+		name: "Sougenmu",
+	},
+	"fairyswarm": {
+    desc: "This Pokemon is immune to the harmful effects of weather. Its damaging moves hit 6 times each with a base power of [BP/6 + 5] at above 50% of Max HP, ten times with BP of [BP/10 + 5] at <=25% of HP, and eight times with BP of [BP/8 + 5] otherwise. The latter effect does not affect multi-hit moves or moves that have multiple targets.",
+		shortDesc: "This Pokemon is immune to harmful effects from weather. This Pokemon's damaging moves hit more for less damage each hit the lower its health is.",
+		onPrepareHit(source, target, move) {
+			if (['iceball', 'rollout'].includes(move.id)) return;
+			if (move.category !== 'Status' && !move.selfdestruct && !move.multihit && !move.flags['charge'] && !move.spreadHit && !move.isZ) {
+        if (source.hp * 2 > source.maxhp){
+				  move.multihit = 6;
+				  move.multihitType = 'fairyswarm6';
+        } else if (source.hp * 4 > source.maxhp){
+				  move.multihit = 8;
+				  move.multihitType = 'fairyswarm8';
+        } else {
+				  move.multihit = 10;
+				  move.multihitType = 'fairyswarm10';
+        }
+			}
+		},
+		onSourceModifySecondaries(secondaries, target, source, move) {
+			if (['fairyswarm6', 'fairyswarm8', 'fairyswarm10'].includes(move.multihitType) && move.id === 'secretpower' && move.hit < 2) {
+				// hack to prevent accidentally suppressing King's Rock/Razor Fang
+				return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'sandstorm' || type === 'hail') return false;
+		},
+		onBasePowerPriority: 8,
+		onBasePower(basePower, attacker, defender, move) {
+      //Case 1 is use of a Fire-type move in Rain or a Water-type move in Sun.
+      //Case 2 is using Solar Blade in non-Sun weather.
+			if ((this.field.isWeather('raindance') && move.type === 'Fire' || this.field.isWeather('sunnyday') && move.type === 'Water') || 
+          (['solarblade', 'solarbeam'].includes(move.id) && this.field.isWeather(['sandstorm', 'hail', 'raindance', 'primordialsea']))) {
+				basePower *= 2;
+			}
+      if (!move.multihit) return basePower;
+      if (move.multihitType === 'fairyswarm6') return basePower / 6 + 5;
+      if (move.multihitType === 'fairyswarm8') return basePower / 8 + 5;
+      return (move.multihitType === 'fairyswarm10' ? (basePower / 10 + 5) : basePower);
+		},
+    //Synthesis/Morning Sun/Moonlight restore HP as if it's no weather out.
+		onTryHeal(damage, target, source, effect) {
+			this.debug("Heal is occurring: " + target + " <- " + source + " :: " + effect.id);
+			if (['morningsun', 'synthesis', 'moonlight'].includes(effect.id) && this.field.isWeather(['raindance', 'primordialsea', 'hail', 'sandstorm'])) {
+				return damage*2;
+			}
+		},
+    //Restore Thunder and Hurricane's accuracy in sun.
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (!this.field.isWeather(['sunnyday', 'desolateland']) || typeof accuracy !== 'number' || !['thunder', 'hurricane'].includes(move.id)) return;
+			this.debug('fairy swarm - fixing accuracy');
+			return accuracy * 1.4;
+		},
+		id: "fairyswarm",
+		name: "Fairy Swarm",
+	},
+  
+	"scarlettemperament": {
+    desc: "This Pokemon and its allies are immune to the harmful effects of weather, whereas any beneficial effects of weather for the opponents are negated. This Pokemon also has x1.5 Attack under Sunny Day, x1.5 SpD under Rain Dance, x1.5 Defense under Sandstorm, x1.5 Speed under Hail, and x2 to all stats under Delta Stream.",
+		shortDesc: "This Pokemon and active teammates are immune to harmful effects from weather. Opponents' beneficial effects are negated. Powers up this Pokemon under weather.",
+    //scripts.js/field implements how it basically becomes Air Lock once one on each side with this ability is in play.
+    onFoeTryMove(target, source, effect) {
+			if (target.side !== this.effectData.target.side && effect.id === 'auroraveil' && this.field.isWeather('hail') && effect.target !== 'foeSide') {
+				this.attrLastMove('[still]');
+				this.add('cant', this.effectData.target, 'ability: Scarlet Temperament', effect, '[of] ' + target);
+				return false;
+			}
+		},
+		onAllyImmunity(type, pokemon) {
+			if (type === 'sandstorm' || type === 'hail') return false;
+		},
+		onBasePowerPriority: 8,
+		onAnyBasePower(basePower, attacker, defender, move) {
+      //Case 1 is use of a Fire-type move in Rain or a Water-type move in Sun.
+      //Case 2 is using Solar Blade in non-Sun weather.
+      if (attacker.side === this.effectData.target.side){
+  			if ((this.field.isWeather('raindance') && move.type === 'Fire' || this.field.isWeather('sunnyday') && move.type === 'Water') || 
+            (['solarblade', 'solarbeam'].includes(move.id) && this.field.isWeather(['sandstorm', 'hail', 'raindance', 'primordialsea']))) {
+	  			basePower *= 2;
+	  		}
+      } else {
+  			if (this.field.isWeather(['raindance', 'primordialsea']) && move.type === 'Water' || this.field.isWeather(['sunnyday', 'desolateland']) && move.type === 'Fire') {
+	  			basePower = (basePower * 2) / 3;
+	  		} else if (this.field.isWeather('sandstorm') && ['Rock', 'Steel', 'Ground'].includes(move.type) && attacker.hasAbility('sandforce')) {
+          //Negate Sand Force.
+	  			basePower = (basePower * 10) / 13;
+	  		}
+        if (move.id === 'weatherball' && this.field.isWeather(['sunnyday', 'desolateland', 'raindance', 'primordialsea', 'sandstorm', 'hail'])) basePower /= 2;
+      }
+      return basePower;
+		},
+		onModifyAtkPriority: 5,
+		onAnyModifyAtk(atk, pokemon) {
+			if (pokemon === this.effectData.target && this.field.isWeather(['sunnyday', 'desolateland', 'deltastream'])) {
+				return this.chainModify(this.field.isWeather('deltastream') ? 2 : 1.5);
+			}
+      let enemyHasActiveFlowerGift = false;
+			for (const target of this.effectData.target.side.foe.active) {
+			  if (!target) continue;
+			  if (target.hasAbility('flowergift') && target.template.speciesid === 'cherrimsunshine') {
+			  	 enemyHasActiveFlowerGift = true;
+           break;
+			  }
+			}
+      if (this.field.isWeather(['sunnyday', 'desolateland']) && this.effectData.target.side !== pokemon.side && (enemyHasActiveFlowerGift || pokemon.hasAbility('powerofsummer'))) {
+        return this.chainModify([0x0AAB, 0x1000]);
+      }
+		},
+		onModifyMovePriority: -1,
+		onAnyModifyMove(move, attacker, defender) {
+			if (defender.side !== this.effectData.target.side && defender.hasAbility('leafguard')) {
+				move.ignoreAbility = true;
+			}
+      if (attacker.side !== this.effectData.target.side && move.id === 'weatherball' && move.type !== 'Normal'){
+        move.type = "Normal";
+      }
+		},
+		onModifyDefPriority: 5,
+		onAnyModifyDef(spd, pokemon) {
+      if (this.field.isWeather(['sandstorm', 'deltastream']) && this.effectData.target === pokemon){
+        return this.chainModify(this.field.isWeather('sandstorm') ? 1.5 : 2);
+      }
+      if (this.field.isWeather(['sunnyday', 'desolateland']) && this.effectData.target.side !== pokemon.side && pokemon.hasAbility('powerofsummer')) {
+        return this.chainModify([0x0AAB, 0x1000]);
+      }
+		},
+		onModifySpAPriority: 5,
+		onAnyModifySpA(spa, pokemon) {
+      if (this.field.isWeather('deltastream') && this.effectData.target === pokemon){
+        return this.chainModify(2);
+      }
+      if (this.field.isWeather(['sunnyday', 'desolateland']) && this.effectData.target.side !== pokemon.side && pokemon.hasAbility('powerofsummer')) {
+        return this.chainModify([0x0AAB, 0x1000]);
+      }
+		},
+		onModifySpDPriority: 4,
+		onAnyModifySpD(spd, pokemon) {
+			if (this.effectData.target !== pokemon && this.effectData.target.side === pokemon.side) return;
+			if (this.field.isWeather('sandstorm') && this.effectData.target.side !== pokemon.side) {
+				return this.chainModify([0x0AAB, 0x1000]);
+			}
+      if (this.field.isWeather(['raindance', 'primordialsea', 'deltastream']) && this.effectData.target === pokemon){
+        return this.chainModify(this.field.isWeather('deltastream') ? 2 : 1.5);
+      }
+      let enemyHasActiveFlowerGift = false;
+			for (const target of this.effectData.target.side.foe.active) {
+			    if (!target) continue;
+			    if (target.hasAbility('flowergift') && target.template.speciesid === 'cherrimsunshine') {
+			  	enemyHasActiveFlowerGift = true;
+          break;
+			  }
+			}
+      if (this.field.isWeather(['sunnyday', 'desolateland']) && this.effectData.target.side !== pokemon.side && (enemyHasActiveFlowerGift || pokemon.hasAbility('powerofsummer'))) {
+        return this.chainModify([0x0AAB, 0x1000]);
+      }
+		},
+    //Synthesis/Morning Sun/Moonlight restore HP as if it's no weather out.
+		onAnyTryHeal(damage, target, source, effect) {
+			this.debug("Heal is occurring: " + target + " <- " + source + " :: " + effect.id);
+			if (['morningsun', 'synthesis', 'moonlight'].includes(effect.id)){
+        if (target.side === this.effectData.target.side && this.field.isWeather(['raindance', 'primordialsea', 'hail', 'sandstorm'])) {
+				  return damage*2;
+        } else if (target.side !== this.effectData.target.side && this.field.isWeather(['sunnyday', 'desolateland'])) {
+				  return (damage*2)/3;
+        }
+			} else if (target.side !== this.effectData.target.side && this.field.isWeather('sandstorm') && effect.id === 'shoreup'){
+				  return (damage*2)/3;
+       }
+      if (this.effectData.target.side !== target.side && ['icebody', 'hydration', 'dryskin'].includes(effect)) return 0;
+		},
+		onAnyModifySpe(spe, pokemon) {
+			if (pokemon === this.effectData.target && this.field.isWeather(['hail', 'deltastream'])) {
+				return this.chainModify(this.field.isWeather('hail') ? 1.5 : 2);
+			}
+      if (pokemon.side !== this.effectData.target.side){
+        if ((pokemon.hasAbility('chlorophyll') && this.field.isWeather(['sunnyday', 'desolateland'])) || 
+          (pokemon.hasAbility('swiftswim') && this.field.isWeather(['raindance', 'primordialsea'])) || 
+          (pokemon.hasAbility('sandrush') && this.field.isWeather('sandstorm')) || (pokemon.hasAbility('slushrush') && this.field.isWeather('hail')) 
+          || (pokemon.hasAbility('scarlettemperament') && this.field.isWeather('deltastream'))){
+          
+          return this.chainModify(0.5)
+        }
+        if (pokemon.hasAbility('powerofsummer') && this.field.isWeather(['sunnyday', 'desolateland'])) return this.chainModify([0x0AAB, 0x1000]);
+      }
+		},
+		onAnyModifyAccuracy(accuracy, target, source, move) {
+      if (source.side === this.effectData.target.side){
+        //Restore Thunder and Hurricane's accuracy in sun.
+			  if (!this.field.isWeather(['sunnyday', 'desolateland']) || typeof accuracy !== 'number' || !['thunder', 'hurricane'].includes(move.id)) return;
+			  this.debug('fixing ' + move.id + ' accuracy');
+			  return accuracy * 1.4;
+      }
+      if (target.side !== this.effectData.target.side){
+        if ((target.hasAbility('sandveil') && this.field.isWeather('sandstorm')) || 
+            (target.hasAbility('snowcloak') && this.field.isWeather('hail'))) return accuracy * 0.8;
+      }
+		},
+		onAllyDamage(damage, target, source, effect) {
+			if (['solarpower', 'dryskin', 'hydrophobia'].includes(effect.id)) {
+				return false;
+			}
+		},
+		onFoeEffectiveness(typeMod, target, type, move) {
+			if (type === 'Flying' && this.battle.getEffectiveness(move, type) > 0 && this.field.isWeather('deltastream')) return 1;
+			return typeMod;
+		},
+    isUnbreakable: true,
+		id: "scarlettemperament",
+		name: "Scarlet Temperament",
+	},
+  "temperaturemanipulation": {
+		desc: "Dewy's type changes to the current weather condition's type, excluding Sandstorm. In Sunny Day, Thunder and Hurricane ignore accuracy checks to hit the target.",
+		shortDesc: "Dewy's type changes to the current weather condition's type, except Sandstorm. (Default Dew) Sun: Thunder and Hurricane have perfect accuracy.",
+		onBeforeMovePriority: 0.5,
+		onBeforeMove(attacker, defender, move) {
+			if (attacker.template.baseSpecies !== 'Dewy' || attacker.transformed) return;
+			switch (move.type){
+				case 'Water':
+				this.field.setWeather('raindance');
+					break;
+				case 'Ice':
+					this.field.setWeather('hail');
+					break;
+				case 'Electric':
+					this.field.setWeather('sunnyday');
+					break;
+			}
+		},
+		onUpdate(pokemon) {
+			if (pokemon.baseTemplate.baseSpecies !== 'Dewy' || pokemon.transformed) return;
+			let forme = null;
+			switch (this.field.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				if (pokemon.template.speciesid !== 'dewymist') forme = 'Dewy-Mist';
+				break;
+			case 'hail':
+				if (pokemon.template.speciesid !== 'dewyice') forme = 'Dewy-Ice';
+				break;
+			default:
+				if (pokemon.template.speciesid !== 'dewy') forme = 'Dewy';
+				break;
+			}
+			if (pokemon.isActive && forme) {
+				pokemon.formeChange(forme, this.effect, false, '[msg]');
+			}
+		},
+		onModifyAccuracyPriority: 10,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (['thunder', 'hurricane'].includes(move.id) && this.field.isWeather(['sunnyday', 'desolateland']) && source.baseTemplate.baseSpecies === 'Dewy' && !source.transformed) {
+				return true;
+			}
+		},
+		id: "temperaturemanipulation",
+		name: "Temperature Manipulation",
+	},
+	"barrierchange": {
+		shortDesc: "Immune to Special Fire/Water+Ice/Electric/Dark moves with an exception specified in battle. Being hit by such a Special move re-randomizes the exception. Using a Special Fire/Water+Ice/Electric/Dark move changes the barrier to block its original weakspot but leave this Pokemon vulnerable to the Special Move's type",
+		onStart(pokemon) {
+			let possibleBlockedTypes = ['Fire', 'Water', 'Electric', 'Dark'];
+			this.effectData.vulnerableType = this.sample(possibleBlockedTypes);
+			this.add('-ability', pokemon, 'Barrier Change (' + this.effectData.vulnerableType + ')');
+		},
+		onHit(target, source, move) {
+			if (!target.hp) return;
+			if (move && move.effectType === 'Move' && move.category === 'Special' && move.type === this.effectData.vulnerableType) {
+				let possibleVulnerableTypes = ['Fire', 'Water', 'Electric', 'Dark'];
+				let newPossibleVulnerableTypes = [];
+				for (let i in possibleVulnerableTypes){
+					if (this.effectData.vulnerableType != i) newPossibleVulnerableTypes.push(i);
+				}
+				this.effectData.vulnerableType = this.sample(newPossibleVulnerableTypes);
+				this.add('-ability', target, 'Barrier Change (' + this.effectData.vulnerableType + ')');
+			}
+		},
+		onTryHit(target, source, move) {
+			if (target === source || move.category !== 'Special' || move.id === 'struggle') return;
+			let possibleBlockedTypes = ['Fire', 'Water', 'Ice', 'Electric', 'Dark'];
+			if (possibleBlockedTypes.includes(move.type) && (this.effectData.vulnerableType !== move.type || (this.effectData.vulnerableType !== 'Water' && move.type === 'Ice'))) {
+				this.debug('Barrier Change immunity: ' + move.id + ' (Vulnerable type should be ' + this.effectData.vulnerableType + ')');
+				this.add('-immune', target, '[from] ability: Barrier Change');
+				return null;
+			}
+		},
+    isUnbreakable: true,
+		id: "barrierchange",
+		name: "Barrier Change",
+	},
 	
 	//These vanilla abilities are overridden, though mostly just to account for custom elements (For instance, Damp blocking Creeper Blast, etc.)
 	
@@ -703,6 +1143,9 @@ exports.BattleAbilities = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.multihitType === 'parentalbond' && move.hit > 1) return this.chainModify(0.25);
 			if (move.multihitType === 'fourheads' && move.hit > 1) return this.chainModify(0.3);
+      if (move.multihitType === 'fairyswarm6' && move.hit > 1) return basePower / 6 + 5;
+      if (move.multihitType === 'fairyswarm8' && move.hit > 1) return basePower / 8 + 5;
+      if (move.multihitType === 'fairyswarm10' && move.hit > 1) return basePower / 10 + 5;
 		},
 		rating: 2.5,
 		num: 152,
@@ -712,7 +1155,7 @@ exports.BattleAbilities = {
 		shortDesc: "Prevents Explosion/Mind Blown/Self-Destruct/Creeper Blast/Aftermath while this Pokemon is active.",
 		id: "damp",
 		onAnyTryMove(target, source, effect) {
-			if (['explosion', 'mindblown', 'selfdestruct', 'creeperblast'].includes(effect.id)) {
+			if (['explosion', 'mindblown', 'selfdestruct', 'creeperblast', 'crash'].includes(effect.id)) {
 				this.attrLastMove('[still]');
 				this.add('cant', this.effectData.target, 'ability: Damp', effect, '[of] ' + target);
 				return false;
@@ -773,5 +1216,26 @@ exports.BattleAbilities = {
 		},
 		id: "voiceless",
 		name: "voiceless",
+	},
+	"aimforthehead": {
+		desc: "If this Pokemon is at full HP, it survives one hit with at least 1 HP. OHKO moves fail when used against this Pokemon.",
+		shortDesc: "If this Pokemon is at full HP, it survives one hit with at least 1 HP. Perfect evasion against OHKO.",
+		onTryHit(pokemon, target, move) {
+			if (move.ohko) {
+				this.add('-immune', pokemon, '[from] ability: Aim For The Head');
+				return null;
+			}
+		},
+		onDamagePriority: -100,
+		onDamage(damage, target, source, effect) {
+			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+				this.add('-ability', target, 'Aim For The Head');
+				return target.hp - 1;
+			}
+		},
+		id: "aimforthehead",
+		name: "Aim For The Head",
+		rating: 3,
+		num: 5,
 	},
 };
