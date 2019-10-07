@@ -69,4 +69,22 @@ exports.BattleItems = {
         zMoveUser: ["Dharkon"],
         desc: "If held by Dharkon with Demonic Rend, it can use Hammer of Darkness.",
     },
+    "puyoniumz": {
+        id: "puyoniumz",
+        name: "Puyonium Z",
+        onTakeItem: false,
+        zMove: "Permutation",
+        zMoveFrom: "Thunder",
+        zMoveUser: ["Ringo Ando"],
+        desc: "If held by Ringo Ando with Thunder, she can use Permutation.",
+    },
+    "makiniumz": {
+        id: "makiniumz",
+        name: "Makinium Z",
+        onTakeItem: false,
+        zMove: "Strike-9 Shot",
+        zMoveFrom: "Assassinate",
+        zMoveUser: ["Maki Harukawa"],
+        desc: "If held by Maki Harukawa with Assassinate, she can use Strike-9 Shot.",
+    },
 };
