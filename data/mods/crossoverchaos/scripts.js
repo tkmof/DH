@@ -166,6 +166,78 @@ exports.BattleScripts = {
 // 		  }
 // 		  return {side: this.side.id, secret, shared};
 // 	  };  
+    
+
+	setStatus(status,	source,	sourceEffect,	ignoreImmunities) {
+		if (!this.hp) return false;
+		status = this.battle.getEffect(status);
+		if (this.battle.event) {
+			if (!source) source = this.battle.event.source;
+			if (!sourceEffect) sourceEffect = this.battle.effect;
+		}
+		if (!source) source = this;
+
+		if (this.status === status.id) {
+			if (sourceEffect && sourceEffect.status === this.status) {
+				this.battle.add('-fail', this, this.status);
+			} else if (sourceEffect && sourceEffect.status) {
+				this.battle.add('-fail', source);
+				this.battle.attrLastMove('[still]');
+			}
+			return false;
+		}
+
+		if (!ignoreImmunities && status.id &&
+				!(source && (source.hasAbility('corrosion') || (sourceEffect && sourceEffect.effectType === 'Move' && sourceEffect.id === 'strike9shot')) && ['tox', 'psn'].includes(status.id))) {
+			// the game currently never ignores immunities
+			if (!this.runStatusImmunity(status.id === 'tox' ? 'psn' : status.id)) {
+				this.battle.debug('immune to status');
+				if (sourceEffect && sourceEffect.status) this.battle.add('-immune', this);
+				return false;
+			}
+		}
+		const prevStatus = this.status;
+		const prevStatusData = this.statusData;
+		if (status.id) {
+			const result = !!this.battle.runEvent('SetStatus', this, source, sourceEffect, status);
+			if (!result) {
+				this.battle.debug('set status [' + status.id + '] interrupted');
+				return result;
+			}
+		}
+
+		this.status = status.id;
+		this.statusData = {id: status.id, target: this};
+		if (source) this.statusData.source = source;
+		if (status.duration) this.statusData.duration = status.duration;
+		if (status.durationCallback) {
+			this.statusData.duration = status.durationCallback.call(this.battle, this, source, sourceEffect);
+		}
+
+		if (status.id && !this.battle.singleEvent('Start', status, this.statusData, this, source, sourceEffect)) {
+			this.battle.debug('status start [' + status.id + '] interrupted');
+			// cancel the setstatus
+			this.status = prevStatus;
+			this.statusData = prevStatusData;
+			return false;
+		}
+		if (status.id && !this.battle.runEvent('AfterSetStatus', this, source, sourceEffect, status)) {
+			return false;
+		}
+		return true;
+	},
+	runEffectiveness(move) {
+		let totalTypeMod = 0;
+		for (const type of this.getTypes()) {
+			let typeMod = this.battle.getEffectiveness(move, type);
+			typeMod = this.battle.singleEvent('Effectiveness', move, null, this, type, move, typeMod);
+			totalTypeMod += this.battle.runEvent('Effectiveness', this, type, move, typeMod);
+		}
+  		if (totalTypeMod >= 0 && this.hasAbility('powerofsummer') && move.type === 'Fire'){
+			totalTypeMod = -1;
+		}
+		return totalTypeMod;
+	},
   
 	  isGrounded(negateImmunity = false) {
 		  if ('gravity' in this.battle.field.pseudoWeather) return true;
@@ -181,6 +253,26 @@ exports.BattleScripts = {
 		  if ('telekinesis' in this.volatiles) return false;
 		  return item !== 'airballoon';
 	  },
+  },
+  
+  field: {
+    //Completely negate weather if both sides have an active Scarlet Temperament.
+	  suppressingWeather() {
+      let scarlettemperaments = 0;
+		  for (const side of this.battle.sides) {
+        let hasScarletTemperament = false;
+			  for (const pokemon of side.active) {
+				  if (pokemon && !pokemon.ignoringAbility() && pokemon.getAbility().suppressWeather) {
+					  return true;
+				  }
+          if (pokemon && !pokemon.ignoringAbility() && pokemon.hasAbility('scarlettemperament')){
+            hasScarletTemperament = true;
+          }
+			  }
+        if (hasScarletTemperament) scarlettemperaments++;
+		  }
+		  return (scarlettemperaments == 2);
+	  }
   },
 
 };
