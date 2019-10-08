@@ -19,6 +19,7 @@ pulse: Power is multiplied by 1.5 when used by a Pokemon with the Ability Mega L
 punch: Power is multiplied by 1.2 when used by a Pokemon with the Ability Iron Fist.
 recharge: If this move is successful, the user must recharge on the following turn and cannot make a move.
 reflectable: Bounced back to the original user by Magic Coat or the Ability Magic Bounce.
+slash: Boosted by Knightmare, Sword of Swords...
 snatch: Can be stolen from the original user and instead used by another Pokemon using Snatch.
 sound: Has no effect on Pokemon with the Ability Soundproof.
 */
