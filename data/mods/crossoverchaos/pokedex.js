@@ -334,7 +334,7 @@ exports.BattlePokedex = {
 		abilities: {0: "Thick Fat", 1: "Gluttony", H: "Hammer Royale"},
 		otherFormes: ["dededemasked"],
 		heightm: 0.4,
-      weightkg: 5,
+      weightkg: 10,
 	},
 	
 	dededemasked: {
@@ -348,7 +348,7 @@ exports.BattlePokedex = {
 		baseStats: {hp: 130, atk: 180, def: 130, spa: 80, spd: 80, spe: 100}, 
 		abilities: {0: "Thick Fat", 1: "Gluttony", H: "Hammer Royale"},
 		heightm: 0.4,
-      weightkg: 5,
+      weightkg: 12,
 	},
 	
 plagueknight: {
@@ -358,6 +358,7 @@ plagueknight: {
 		gender: "M",
     baseStats: {hp: 60, atk: 70, def: 75, spa: 130, spd: 115, spe: 115},
     abilities: {0: "Prankster", H: "Chemical Burn"},
+    heightm: 1.7,
     weightkg: 50,
 },
 chihirofujisaki: {
@@ -394,9 +395,9 @@ iceclimbers: {
     num: 6000009,
     species: "Ice Climbers",
     types: ["Ice", "Normal"],
-	 gender: "N",
     baseStats: {hp: 90, atk: 140, def: 70, spa: 75, spd: 70, spe: 120},
     abilities: {0: "Cold Combo", H: "Oblivious"},
+   heightm: 1.3,
     weightkg: 50,
 },
 bandanadee: {
@@ -437,7 +438,7 @@ titandweevil: {
     baseStats: {hp: 120, atk: 80, def: 120, spa: 150, spd: 120, spe: 80},
     abilities: {0: "Titan Weaponry"},
 	 heightm: 0.3,
-    weightkg: 1,
+    weightkg: 1.1,
 },
 lordfredrik: {
     num: 6000014,
@@ -451,21 +452,21 @@ lordfredrik: {
 },
 stardream: {
     num: 6000015,
-    species: "Star Dream", /* Kirby */
+    species: "Star Dream", /* Kirby: Planet Robobot */
     types: ["Steel", "Psychic"],
 	 gender: "N",
     baseStats: {hp: 120, atk: 100, def: 120, spa: 150, spd: 90, spe: 100},
     abilities: {0: "Levitate", H: "Soul-Heart"},
-	 heightm: 20,
-    weightkg: 250,
-		color: "Gray",
-	 otherFormes: ["stardreamaccessark", "stardreamclockworkstar", "stardreamsoulos", "stardreamsoulosaccessark", "stardreamsoulosclockworkstar", "stardreamsoulosheart"],
+	 heightm: 5,
+    weightkg: 460,
+		color: "White",
+	 otherFormes: ["stardreamark", "stardreamstar", "stardreamsoulos", "stardreamsoulosark", "stardreamsoulosstar", "stardreamsoulosheart"],
 },
-stardreamaccessark: {
+stardreamark: {
     num: 6000015,
-    species: "Star Dream-Access Ark",
+    species: "Star Dream-Ark",
 	 baseSpecies: "Star Dream",
-	 forme: "Access Ark",
+	 forme: "Ark",
 	 formeLetter: "A",
     types: ["Steel", "Psychic"],
 	 gender: "N",
@@ -475,12 +476,12 @@ stardreamaccessark: {
     weightkg: 999.9,
 		color: "Gray",
 },
-stardreamclockworkstar: {
+stardreamstar: {
     num: 6000015,
-    species: "Star Dream-Clockwork Star",
+    species: "Star Dream-Star",
 	 baseSpecies: "Star Dream",
-	 forme: "Clockwork Star",
-	 formeLetter: "C",
+	 forme: "Star",
+	 formeLetter: "S",
     types: ["Steel", "Psychic"],
 	 gender: "N",
     baseStats: {hp: 120, atk: 120, def: 100, spa: 160, spd: 110, spe: 70},
@@ -499,15 +500,15 @@ stardreamsoulos: {
 	 gender: "N",
     baseStats: {hp: 120, atk: 130, def: 140, spa: 180, spd: 90, spe: 120},
     abilities: {0: "Soul 0 System"},
-	 heightm: 20,
-    weightkg: 250,
+	 heightm: 5,
+    weightkg: 460,
 		color: "Black",
 },
-stardreamsoulosaccessark: {
+stardreamsoulosark: {
     num: 6000015,
-    species: "Star Dream-Soul OS-Access Ark",
+    species: "Star Dream-Soul OS-Ark",
 	 baseSpecies: "Star Dream",
-	 forme: "Soul OS-Access Ark",
+	 forme: "Soul OS-Ark",
 	 formeLetter: "S",
     types: ["Steel", "Ghost"],
 	 gender: "N",
@@ -517,11 +518,11 @@ stardreamsoulosaccessark: {
     weightkg: 999.9,
 		color: "Gray",
 },
-stardreamsoulosclockworkstar: {
+stardreamsoulosstar: {
     num: 6000015,
-    species: "Star Dream-Soul OS-Clockwork Star",
+    species: "Star Dream-Soul OS-Star",
 	 baseSpecies: "Star Dream",
-	 forme: "Soul OS-Clockwork Star",
+	 forme: "Soul OS-Star",
 	 formeLetter: "S",
     types: ["Steel", "Ghost"],
 	 gender: "N",
@@ -596,7 +597,7 @@ bowser: {
     baseStats: {hp: 120, atk: 130, def: 130, spa: 100, spd: 70, spe: 50},
     abilities: {0: "Intimidate", H: "Regenerator"},
 	 heightm: 2.5,
-    weightkg: 500,
+    weightkg: 400,
 },
 shulk: {
     num: 6000020,
@@ -620,7 +621,7 @@ lloydirving: {
 },
 marx: {
     num: 6000022,
-    species: "Marx", /* Kirby */
+    species: "Marx", /* Kirby Super Star */
     types: ["Dark"],
 	 gender: "M",
     baseStats: {hp: 100, atk: 150, def: 90, spa: 120, spd: 90, spe: 130},
@@ -659,6 +660,7 @@ primrose: {
 	 gender: "F",
     baseStats: {hp: 60, atk: 100, def: 70, spa: 110, spd: 80, spe: 120},
     abilities: {0: "Dancer"},
+   heightm: 1.6,
     weightkg: 50,
 },
 chibiterasu: {
@@ -717,7 +719,7 @@ floweyomega: {
 },
 zanpartizanne: {
     num: 6000028,
-    species: "Zan Partizanne", /* Kirby */
+    species: "Zan Partizanne", /* Kirby: Star Allies */
     types: ["Electric", "Dark"],
 	 gender: "F",
     baseStats: {hp: 70, atk: 120, def: 70, spa: 120, spd: 70, spe: 130},
@@ -922,7 +924,7 @@ sandstonetalus: {
     types: ["Rock", "Ground"],
 	 gender: "N",
     baseStats: {hp: 100, atk: 130, def: 130, spa: 50, spd: 120, spe: 25},
-    abilities: {0: "Sand Force"},
+    abilities: {0: "Sand Force", 1: "Pressure", H: "Solid Rock"},
 	 heightm: 3.8,
     weightkg: 800,
 },
@@ -932,7 +934,7 @@ igneotalus: {
     types: ["Rock", "Fire"],
 	 gender: "N",
     baseStats: {hp: 100, atk: 130, def: 180, spa: 50, spd: 90, spe: 25},
-    abilities: {0: "Flame Body"},
+    abilities: {0: "Flame Body", 1: "Pressure", H: "Solid Rock"},
 	 heightm: 3.8,
     weightkg: 800,
 },
@@ -942,7 +944,7 @@ frosttalus: {
     types: ["Rock", "Ice"],
 	 gender: "N",
     baseStats: {hp: 100, atk: 170, def: 150, spa: 50, spd: 80, spe: 25},
-    abilities: {0: "Ice Body", 1: "Rock Head"},
+    abilities: {0: "Ice Body", 1: "Rock Head", H: "Solid Rock"},
 	 heightm: 3.8,
     weightkg: 800,
 },
@@ -1139,7 +1141,7 @@ captainfalcon: {
     baseStats: {hp: 100, atk: 125, def: 75, spa: 75, spd: 75, spe: 120},
     abilities: {0: "Raptor Boost", H: "Reckless"},
 	 heightm: 1.9,
-    weightkg: 80,
+    weightkg: 90,
 },
 waluigi: {
     num: 6000051,
@@ -1160,15 +1162,15 @@ nailsagesly: {
     abilities: {0: "Steelworker"},
     weightkg: 0.2,
 },
-presidenthaltmann: {
+haltmann: {
     num: 6000053,
-    species: "President Haltmann", /* Kirby */
+    species: "Haltmann", /* Kirby: Planet Robobot */
     types: ["Steel", "Electric"],
 	 gender: "M",
     baseStats: {hp: 100, atk: 130, def: 130, spa: 80, spd: 70, spe: 90},
     abilities: {0: "Galvanize", H: "Unaware"},
-	 heightm: 0.9,
-    weightkg: 150,
+	 heightm: 0.8,
+    weightkg: 100,
 },
 wario: {
     num: 6000054,
@@ -1228,7 +1230,7 @@ dewymist: {
 },
 hyness: {
     num: 6000057,
-    species: "Hyness", /* Kirby */
+    species: "Hyness", /* Kirby: Star Allies */
 	 baseForme: "Hooded",
     types: ["Dark", "Psychic"],
 	 gender: "M",
@@ -1258,6 +1260,7 @@ waterwraith: {
 	 gender: "N",
     baseStats: {hp: 90, atk: 130, def: 80, spa: 70, spd: 150, spe: 80},
     abilities: {0: "Ethereal Body"},
+  color: "Green",
 	 heightm: 0.1,
     weightkg: 0.3,
 },
@@ -1273,7 +1276,7 @@ samus: {
 },
 taranza: {
     num: 6000060,
-    species: "Taranza", /* Kirby */
+    species: "Taranza", /* Kirby: Triple Deluxe */
     types: ["Bug", "Psychic"],
 	 gender: "M",
     baseStats: {hp: 90, atk: 90, def: 80, spa: 140, spd: 90, spe: 110},
@@ -1288,18 +1291,20 @@ donkeykong: {
 	 gender: "M",
     baseStats: {hp: 130, atk: 140, def: 80, spa: 50, spd: 70, spe: 70},
     abilities: {0: "Sap Sipper", H: "Iron Fist"},
+  color: "Brown",
 	 heightm: 2.6,
     weightkg: 363,
 },
 galeem: {
     num: 6000062,
-    species: "Galeem", /* Super Smash Bros. */
-    types: ["Psychic", "Fairy"],
+    species: "Galeem", /* Super Smash Bros. Ultimate */
+    types: ["Fairy", "Psychic"],
 	 gender: "N",
     baseStats: {hp: 100, atk: 40, def: 40, spa: 160, spd: 160, spe: 100},
     abilities: {0: "Bane of Darkness"},
-	 heightm: 8,
-    weightkg: 66.6,
+  color: "White",
+	 heightm: 10,
+    weightkg: 70,
 },
 isabelle: {
     num: 6000063,
@@ -1390,7 +1395,7 @@ spy: {
 },
 magolor: {
     num: 6000072,
-    species: "Magolor", /* Kirby */
+    species: "Magolor", /* Kirby Returns to Dream Land */
     types: ["Psychic"],
 	 gender: "M",
     baseStats: {hp: 90, atk: 100, def: 85, spa: 130, spd: 85, spe: 110},
@@ -1422,8 +1427,8 @@ magolorsoul: {
 	 gender: "N",
     baseStats: {hp: 100, atk: 150, def: 120, spa: 180, spd: 120, spe: 110},
     abilities: {0: "Levitate"},
-	 heightm: 0.8,
-    weightkg: 75,
+	 heightm: 0.6,
+    weightkg: 50,
 },
 galleom: {
     num: 6000073,
@@ -1435,9 +1440,9 @@ galleom: {
 	 heightm: 5.6,
     weightkg: 950,
 },
-tenshi: {
+tenshihinanawi: {
     num: 6000074,
-    species: "Tenshi", /* Touhou */
+    species: "Tenshi Hinanawi", /* Touhou */
     types: ["Ground", "Rock"],
 	 gender: "F",
     baseStats: {hp: 120, atk: 110, def: 120, spa: 50, spd: 100, spe: 60},
@@ -1481,7 +1486,7 @@ makiharukawa: {
     types: ["Dark", "Fighting"],
 	 gender: "F",
     baseStats: {hp: 130, atk: 125, def: 75, spa: 50, spd: 50, spe: 101},
-    abilities: {0: "Friend Guard", 1: "Merciless", H: "Infiltrator"},
+    abilities: {0: "Infiltrator", 1: "Merciless", H: "Friend Guard"},
 	 heightm: 1.62,
     weightkg: 44,
 },
@@ -1548,14 +1553,29 @@ somacruzawakened: {
     abilities: {0: "Soul Dominance"},
     weightkg: 65,
 },
-mokou: {
+fujiwaranomokou: {
     num: 6000084,
-    species: "Mokou", /* Touhou */
+    species: "Fujiwara no Mokou", /* Touhou */
     types: ["Fire", "Fighting"],
 	 gender: "F",
     baseStats: {hp: 180, atk: 120, def: 100, spa: 80, spd: 120, spe: 80},
     abilities: {0: "Flash Fire", 1: "Reckless", H: "Person of Hourai"},
-    weightkg: 65,
+    heightm: 1.5,
+    weightkg: 50,
+	 otherFormes: ["fujiwaranomokoureborn"],
+},
+fujiwaranomokoureborn: {
+    num: 6000084,
+    species: "Fujiwara no Mokou-Reborn",
+    baseSpecies: "Fujiwara no Mokou",
+    forme: "Reborn",
+    formeLetter: "R",
+    types: ["Fire", "Fighting"],
+	 gender: "F",
+    baseStats: {hp: 180, atk: 120, def: 100, spa: 80, spd: 120, spe: 80},
+    abilities: {0: "Flash Fire", 1: "Reckless", H: "Person of Hourai"},
+    heightm: 1.5,
+    weightkg: 50,
 },
 link: {
     num: 6000085,
@@ -1627,9 +1647,9 @@ morphoknightex: {
 	 heightm: 0.2,
     weightkg: 2,
 },
-katamariprince: {
+theprince: {
     num: 6000091,
-    species: "Katamari Prince", /* Katamari Damacy */
+    species: "The Prince", /* Katamari Damacy */
     types: ["Psychic"],
 	 gender: "M",
     baseStats: {hp: 50, atk: 90, def: 70, spa: 60, spd: 70, spe: 100},
@@ -1641,7 +1661,7 @@ landia: {
     num: 6000092,
     species: "Landia", /* Kirby Returns to Dream Land */
     types: ["Dragon", "Flying"],
-	 gender: "N",
+	 gender: "M",
 	 baseForme: "Four",
     baseStats: {hp: 130, atk: 130, def: 90, spa: 150, spd: 90, spe: 90},
     abilities: {0: "Four Heads", H: "Stakeout"},
@@ -1656,7 +1676,7 @@ landiaone: {
     forme: "One",
     formeLetter: "O",
     types: ["Dragon", "Flying"],
-    genderRatio: {M: 0.75, F: 0.25},
+	 gender: "M",
     baseStats: {hp: 70, atk: 110, def: 70, spa: 130, spd: 70, spe: 110},
     abilities: {0: "Pressure", H: "Stakeout"},
 	 heightm: 0.4,
@@ -1701,14 +1721,14 @@ princesspeach: {
     species: "Princess Peach", /* Super Mario */
     types: ["Normal", "Fairy"],
 	 gender: "F",
-    baseStats: {hp: 100, atk: 90, def: 85, spa: 105, spd: 125, spe: 95},
+    baseStats: {hp: 100, atk: 90, def: 75, spa: 105, spd: 125, spe: 95},
     abilities: {0: "Serene Grace", 1: "Triage", H: "Sweet Veil"},
 	 heightm: 1.8,
     weightkg: 60,
 },
 banjokazooie: {
     num: 6000096,
-    species: "Banjo-Kazooie",
+    species: "Banjo & Kazooie",
     types: ["Normal", "Flying"],
     baseStats: {hp: 90, atk: 120, def: 90, spa: 60, spd: 90, spe: 100},
     abilities: {0: "Honey Gather", 1: "Big Pecks", H: "Thick Fat"},
@@ -1718,8 +1738,8 @@ banjokazooie: {
 },
 banjokazooiewashingmachine: {
     num: 6000096,
-    species: "Banjo-Kazooie-Washing Machine",
-    baseSpecies: "Banjo-Kazooie",
+    species: "Banjo & Kazooie-Washing Machine",
+    baseSpecies: "Banjo & Kazooie",
     forme: "Washing Machine",
     formeLetter: "W",
     types: ["Water", "Steel"],
@@ -1730,8 +1750,8 @@ banjokazooiewashingmachine: {
 },
 banjokazooiedragonkazooie: {
     num: 6000096,
-    species: "Banjo-Kazooie-Dragon Kazooie",
-    baseSpecies: "Banjo-Kazooie",
+    species: "Banjo & Kazooie-Dragon Kazooie",
+    baseSpecies: "Banjo & Kazooie",
     forme: "Dragon Kazooie",
     formeLetter: "D",
     types: ["Normal", "Dragon"],
@@ -1789,6 +1809,7 @@ dimentio: {
     abilities: {0: "Dimensional Mastery", H: "Levitate"},
 	 heightm: 1.7,
     weightkg: 55,
+	 otherFormes: ["dimentiosuper"],
 },
 dimentiosuper: {
     num: 6000101,
@@ -1842,6 +1863,7 @@ silver: {
     abilities: {0: "Levitate", H: "Sheer Force"},
 	 heightm: 1,
     weightkg: 35,
+	 otherFormes: ["silversuper"],
 },
 silversuper: {
     num: 6000105,
@@ -1865,6 +1887,7 @@ tamamonomae: {
     abilities: {0: "Fluffy", H: "Boundless Sunlight"},
 	 heightm: 1.5,
     weightkg: 55,
+	 otherFormes: ["tamamonomaesummer", "tamamonomaeninetails"],
 },
 tamamonomaesummer: {
     num: 6000106,
@@ -1920,7 +1943,7 @@ uumuu: {
     baseStats: {hp: 70, atk: 50, def: 140, spa: 100, spd: 140, spe: 30},
     abilities: {0: "Levitate"},
 	 heightm: 2,
-    weightkg: 60,
+    weightkg: 120,
 },
 ringoando: {
     num: 6000110,
@@ -1939,6 +1962,7 @@ highpriest: {
 	 gender: "N",
     baseStats: {hp: 73, atk: 77, def: 76, spa: 122, spd: 114, spe: 108},
     abilities: {0: "No Guard", H: "Kaliber's Fury"},
+  color: "Red",
 	 heightm: 2,
     weightkg: 69,
 },
@@ -1951,6 +1975,7 @@ sectonia: {
     abilities: {0: "Queenly Majesty", 1: "Pressure", H: "Levitate"},
 	 heightm: 0.9,
     weightkg: 20,
+	 otherFormes: ["sectoniadreamstalk", "sectoniasoul", "sectoniasoulunrooted"],
 },
 sectoniadreamstalk: {
     num: 6000112,
@@ -1998,8 +2023,10 @@ creeper: {
 	 gender: "N",
     baseStats: {hp: 95, atk: 120, def: 50, spa: 55, spd: 50, spe: 50},
     abilities: {0: "Supercharge"},
-	 heightm: 1.625,
+  color: "Green",
+	 heightm: 1.7,
     weightkg: 55,
+	 otherFormes: ["creepercharged"],
 },
 creepercharged: {
     num: 6000113,
@@ -2011,7 +2038,8 @@ creepercharged: {
 	 gender: "N",
     baseStats: {hp: 95, atk: 180, def: 50, spa: 55, spd: 50, spe: 50},
     abilities: {0: "Supercharge"},
-	 heightm: 1.625,
+  color: "Green",
+	 heightm: 1.7,
     weightkg: 55,
 },
 darkmind: {
@@ -2034,6 +2062,7 @@ darkmindtrue: {
 	 gender: "N",
     baseStats: {hp: 120, atk: 60, def: 100, spa: 140, spd: 100, spe: 80},
     abilities: {0: "Levitate", H: "Emergency Exit"},
+  color: "Red",
 	 heightm: 2,
     weightkg: 50,
 },
@@ -2071,13 +2100,14 @@ truezeromus: {
 },
 dharkon: {
     num: 6000118,
-    species: "Dharkon", /* Super Smash Bros. */
+    species: "Dharkon", /* Super Smash Bros. Ultimate */
     types: ["Dark", "Poison"],
 	 gender: "N",
     baseStats: {hp: 97, atk: 142, def: 101, spa: 65, spd: 88, spe: 100},
     abilities: {0: "Bane of Light"},
-	 heightm: 8,
-    weightkg: 666,
+  color: "Black",
+	 heightm: 10.3,
+    weightkg: 666.6,
 },
 deliciousfruit: {
     num: 6000119,
@@ -2086,6 +2116,7 @@ deliciousfruit: {
 	 gender: "N",
     baseStats: {hp: 30, atk: 150, def: 30, spa: 30, spd: 30, spe: 135},
     abilities: {0: "Levitate", H: "Flash Fire"},
+  color: "Red",
 	 heightm: 0.5,
     weightkg: 1,
 },
@@ -2106,8 +2137,378 @@ enderman: {
 	 gender: "N",
     baseStats: {hp: 113, atk: 127, def: 71, spa: 61, spd: 71, spe: 127},
     abilities: {0: "Hydrophobic", H: "Beast Boost"},
-	 heightm: 3,
+  color: "Black",
+	 heightm: 2.9,
     weightkg: 100,
+},
+gargantuar: {
+    num: 6000122,
+    species: "Gargantuar", /* Plants vs. Zombies */
+    types: ["Ghost", "Fighting"],
+	 gender: "M",
+    baseStats: {hp: 200, atk: 150, def: 105, spa: 15, spd: 105, spe: 25},
+    abilities: {0: "Imp"},
+	 heightm: 3,
+    weightkg: 300,
+},
+imp: {
+    num: 5999987,
+    species: "Imp", /* Plants vs. Zombies (NOTE: THIS CANNOT BE USED IN COMBAT.) */
+    types: ["Ghost"],
+	 gender: "M",
+    baseStats: {hp: 40, atk: 50, def: 20, spa: 20, spd: 20, spe: 100},
+    abilities: {0: "Run Away"},
+	 heightm: 1,
+    weightkg: 30,
+},
+smallfry: {
+    num: 6000123,
+    species: "Smallfry", /* Splatoon 2 */
+    types: ["Poison", "Water"],
+    baseStats: {hp: 45, atk: 35, def: 30, spa: 25, spd: 30, spe: 85},
+    abilities: {0: "Little Pests", H: "Rattled"},
+	 evos: ["chum"]
+},
+chum: {
+    num: 6000124,
+    species: "Chum",
+    types: ["Poison", "Water"],
+    baseStats: {hp: 80, atk: 90, def: 85, spa: 50, spd: 75, spe: 90},
+    abilities: {0: "Restless", H: "Hustle"},
+	 prevo: "smallfry",
+	 evos: ["cohock"],
+	 otherFormes: ["chumrestless"],
+},
+chumrestless: {
+    num: 6000124,
+    species: "Chum-Restless",
+	 baseSpecies: "Chum",
+	 forme: "Restless",
+	 formeLetter: "R",
+    types: ["Poison", "Water"],
+    baseStats: {hp: 40, atk: 90, def: 85, spa: 50, spd: 75, spe: 130},
+    abilities: {0: "Restless"},
+	 prevo: "smallfry",
+	 evos: ["cohock"],
+},
+cohock: {
+    num: 6000125,
+    species: "Cohock",
+    types: ["Poison", "Water"],
+    baseStats: {hp: 130, atk: 110, def: 105, spa: 50, spd: 85, spe: 60},
+    abilities: {0: "Thick Fat", H: "Sturdy"},
+	 prevo: "chum",
+},
+	fairies: {
+		num: 6000126,
+		species: "Fairies", /* Touhou */
+		types: ["Fairy"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+		otherFormes: ["fairiesbug", "fairiesdark", "fairiesdragon", "fairieselectric", "fairiesflying", "fairiesfighting", "fairiesfire", "fairiesnormal", "fairiesghost", "fairiesgrass", "fairiesground", "fairiesice", "fairiespoison", "fairiespsychic", "fairiesrock", "fairiessteel", "fairieswater"],
+	},
+	
+	fairiesbug: {
+		num: 6000126,
+		species: "Fairies-Bug",
+		baseSpecies: "Fairies",
+		forme: "Bug",
+		formeLetter: "B",
+		types: ["Fairy", "Bug"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesdark: {
+		num: 6000126,
+		species: "Fairies-Dark",
+		baseSpecies: "Fairies",
+		forme: "Dark",
+		formeLetter: "D",
+		types: ["Fairy", "Dark"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesdragon: {
+		num: 6000126,
+		species: "Fairies-Dragon",
+		baseSpecies: "Fairies",
+		forme: "Dragon",
+		formeLetter: "D",
+		types: ["Fairy", "Dragon"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairieselectric: {
+		num: 6000126,
+		species: "Fairies-Electric",
+		baseSpecies: "Fairies",
+		forme: "Electric",
+		formeLetter: "E",
+		types: ["Fairy", "Electric"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesflying: {
+		num: 6000126,
+		species: "Fairies-Flying",
+		baseSpecies: "Fairies",
+		forme: "Flying",
+		formeLetter: "F",
+		types: ["Fairy", "Flying"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesfighting: {
+		num: 6000126,
+		species: "Fairies-Fighting",
+		baseSpecies: "Fairies",
+		forme: "Fighting",
+		formeLetter: "F",
+		types: ["Fairy", "Fighting"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesfire: {
+		num: 6000126,
+		species: "Fairies-Fire",
+		baseSpecies: "Fairies",
+		forme: "Fire",
+		formeLetter: "F",
+		types: ["Fairy", "Fire"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesghost: {
+		num: 6000126,
+		species: "Fairies-Ghost",
+		baseSpecies: "Fairies",
+		forme: "Ghost",
+		formeLetter: "G",
+		types: ["Fairy", "Ghost"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	weightkg: 0.1,
+		
+	},
+	
+	fairiesgrass: {
+		num: 6000126,
+		species: "Fairies-Grass",
+		baseSpecies: "Fairies",
+		forme: "Grass",
+		formeLetter: "G",
+		types: ["Fairy", "Grass"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesground: {
+		num: 6000126,
+		species: "Fairies-Ground",
+		baseSpecies: "Fairies",
+		forme: "Ground",
+		formeLetter: "G",
+		types: ["Fairy", "Ground"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesice: {
+		num: 6000126,
+		species: "Fairies-Ice",
+		baseSpecies: "Fairies",
+		forme: "Ice",
+		formeLetter: "I",
+		types: ["Fairy", "Ice"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesnormal: {
+		num: 6000126,
+		species: "Fairies-Normal",
+		baseSpecies: "Fairies",
+		forme: "Normal",
+		formeLetter: "N",
+		types: ["Fairy", "Normal"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiespoison: {
+		num: 6000126,
+		species: "Fairies-Poison",
+		baseSpecies: "Fairies",
+		forme: "Poison",
+		formeLetter: "P",
+		types: ["Fairy", "Poison"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiespsychic: {
+		num: 6000126,
+		species: "Fairies-Psychic",
+		baseSpecies: "Fairies",
+		forme: "Psychic",
+		formeLetter: "P",
+		types: ["Fairy", "Psychic"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiesrock: {
+		num: 6000126,
+		species: "Fairies-Rock",
+		baseSpecies: "Fairies",
+		forme: "Rock",
+		formeLetter: "R",
+		types: ["Fairy", "Rock"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairiessteel: {
+		num: 6000126,
+		species: "Fairies-Steel",
+		baseSpecies: "Fairies",
+		forme: "Steel",
+		formeLetter: "S",
+		types: ["Fairy", "Steel"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+	
+	fairieswater: {
+		num: 6000126,
+		species: "Fairies-Water",
+		baseSpecies: "Fairies",
+		forme: "Water",
+		formeLetter: "W",
+		types: ["Fairy", "Water"],
+		gender: "F",
+		baseStats: {hp: 60, atk: 70, def: 50, spa: 70, spd: 50, spe: 100},
+		abilities: {0: "Fairy Swarm"},	
+		heightm: 1.2,
+   	 weightkg: 30,
+		
+	},
+nightmarespowerorb: {
+    num: 6000127,
+    species: "Nightmare's Power Orb", /* Kirby's Adventure */
+    types: ["Flying", "Ghost"],
+    baseStats: {hp: 50, atk: 50, def: 110, spa: 100, spd: 110, spe: 100},
+    abilities: {0: "Bad Dreams"},
+  color: "Blue",
+  heightm: 0.4,
+  weightkg: 10,
+	 evos: ["nightmarewizard"]
+},
+nightmarewizard: {
+    num: 6000128,
+    species: "Nightmare Wizard",
+    types: ["Flying", "Ghost"],
+    baseStats: {hp: 70, atk: 60, def: 120, spa: 120, spd: 120, spe: 110},
+    abilities: {0: "Bad Dreams"},
+  color: "Purple",
+  heightm: 1.5,
+  weightkg: 10,
+	 prevo: "nightmarespowerorb",
+},
+woodman: {
+    num: 6000129,
+    species: "Wood Man", /* Mega Man 2 */
+    types: ["Grass"],
+	 gender: "M",
+    baseStats: {hp: 90, atk: 125, def: 140, spa: 55, spd: 105, spe: 55},
+    abilities: {0: "Leaf Guard", H: "Filter"},
+  color: "Brown",
+	 heightm: 2,
+    weightkg: 100,
+},
+soulelizabethravenous: {
+    num: 6000130,
+    species: "Soul Elizabeth Ravenous", /* Dreamshatter Rondo */
+    types: ["Dark", "Steel"],
+	 gender: "F",
+    baseStats: {hp: 125, atk: 135, def: 90, spa: 130, spd: 90, spe: 80},
+    abilities: {0: "Magic Guard", 1: "Multiscale", H: "Mold Breaker"},
+  color: "Gray",
+	 heightm: 1.5,
+    weightkg: 45,
 },
 walle: {
     num: 7000001,
@@ -2394,8 +2795,8 @@ kars: {
 	 gender: "M",
     baseStats: {hp: 80, atk: 130, def: 80, spa: 90, spd: 90, spe: 130},
     abilities: {0: "Tough Claws", 1: "Regenerator", H: "Corrosive Skin"},
-	 heightm: 2.1,
-    weightkg: 80,
+	 heightm: 2,
+    weightkg: 100,
 },
 karsultimate: {
     num: 7000019,
@@ -2407,8 +2808,8 @@ karsultimate: {
 	 gender: "M",
     baseStats: {hp: 80, atk: 150, def: 100, spa: 120, spd: 110, spe: 140},
     abilities: {0: "Color Change", 1: "Regenerator", H: "Protean"},
-	 heightm: 2.1,
-    weightkg: 80,
+	 heightm: 2,
+    weightkg: 100,
 },
 shelob: {
     num: 7000020,
@@ -2549,7 +2950,7 @@ jonathanjoestar: {
 	 gender: "M",
     baseStats: {hp: 130, atk: 150, def: 110, spa: 70, spd: 70, spe: 70},
     abilities: {0: "Hamon Master"},
-	 heightm: 2,
+	 heightm: 1.95,
     weightkg: 105,
 },
 orga: {
@@ -2803,179 +3204,163 @@ siren: {
 	 heightm: 2.2,
 	 weightkg: 180,
 },
-     
-//    /* mario: {
-// 		num: 6000001,
-// 		species: "Salandit",
-// 		types: [],
-// 		baseStats: {hp: 48, atk: 44, def: 40, spa: 71, spd: 40, spe: 77},
-// 		abilities: {0: "Corrosion", H: "Oblivious"},
-// 	}, First three*/
-	
-// kirby: {
-// 		num: 6000004,
-// 		species: "Kirby",
-// 		types: ["Fairy"],
-// 		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
-// 		abilities: {0: "Run Away"}, /* Copy Ability - This Pokemon copies the ability of the Pokemon that lands a move on it and gains a secondary typing that matches  */
-// 	},
-// 	shadowmewtwo: {
-// 		num: 6000028,
-// 		species: "Shadow Mewtwo", /* Pokken Tournament */
-// 		types: ["Psychic"],
-// 		gender: "N",
-// 		baseStats: {hp: 86, atk: 130, def: 85, spa: 164, spd: 85, spe: 130},
-// 		abilities: {0: "Burst Mode"},
-// 		otherFormes: ["shadowmewtwoburst"],
-// 	},
-// 	shadowmewtwoburst: {
-// 		num: 6000028,
-// 		species: "Shadow Mewtwo-Burst",
-// 		baseSpecies: "Shadow Mewtwo",
-// 		forme: "Burst",
-// 		formeLetter: "B",
-// 		types: ["Psychic", "Fighting"],
-// 		gender: "N",
-// 		baseStats: {hp: 86, atk: 210, def: 85, spa: 174, spd: 85, spe: 140},
-// 		abilities: {0: "Burst Mode"},
-// 	},
-// 	marisakirisame: {
-// 		num: 6000029,
-// 		species: "Marisa Kirisame", /* Touhou */
-// 		types: ["Electric", "Psychic"],
-// 		gender: "F",
-// 		baseStats: {hp: 70, atk: 120, def: 60, spa: 150, spd: 80, spe: 120},
-// 		abilities: {0: "Magician", 1: "Levitate", H: "Drizzle"},
-// 	},
-// 	deathwing: {
-// 		num: 6000030,
-// 		species: "Deathwing", /* World of Warcraft */
-// 		types: ["Dragon", "Fire"],
-// 		gender: "M",
-// 		baseStats: {hp: 120, atk: 150, def: 100, spa: 140, spd: 100, spe: 90},
-// 		abilities: {0: "Magma Armor"},
-// 	},
-// 	niko: {
-// 		num: 6000031,
-// 		species: "Niko", /* OneShot */
-// 		types: ["Normal", "Ground"],
-// 		gender: "N",
-// 		baseStats: {hp: 82, atk: 95, def: 100, spa: 65, spd: 110, spe: 68},
-// 		abilities: {0: "Sun Carrier", 1: "Technician", H: "Telepathy"},
-// 	},
-// 	waluigi: {
-// 		num: 6000032,
-// 		species: "Waluigi", /* Mario */
-// 		types: ["Dark"],
-// 		gender: "M",
-// 		baseStats: {hp: 89, atk: 105, def: 85, spa: 101, spd: 91, spe: 122},
-// 		abilities: {0: "Prankster", H: "Showoff"},
-// 	},
-// 	sayori: {
-// 		num: 6000033,
-// 		species: "Sayori", /* Doki Doki Literature Club */
-// 		types: ["Normal", "Fairy"],
-// 		gender: "F",
-// 		baseStats: {hp: 115, atk: 85, def: 85, spa: 95, spd: 85, spe: 95},
-// 		abilities: {0: "Natural Cure", H: "Depression"},
-// 		otherFormes: ["sayorihanged"],
-// 	},
-// 	sayorihanged: {
-// 		num: 6000033,
-// 		species: "Sayori-Hanged",
-// 		baseSpecies: "Sayori",
-// 		forme: "Hanged",
-// 		formeLetter: "H",
-// 		types: ["Normal", "Fairy"],
-// 		gender: "F",
-// 		baseStats: {hp: 115, atk: 85, def: 85, spa: 95, spd: 85, spe: 95},
-// 		abilities: {0: "Natural Cure", H: "Depression"},
-// 	},
-// 	samus: {
-// 		num: 6000034,
-// 		species: "Samus", /* Metroid */
-// 		types: ["Electric", "Fighting"],
-// 		gender: "F",
-// 		baseStats: {hp: 105, atk: 80, def: 95, spa: 145, spd: 95, spe: 85},
-// 		abilities: {0: "Mega Launcher", H: "Tinted Lens"},
-// 	},
-// 	demigodofrock: {
-// 		num: 6000035,
-// 		species: "Demigod of Rock", /* Guitar Hero: Warriors of Rock */
-// 		types: ["Rock", "Ghost"],
-// 		gender: "M",
-// 		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
-// 		abilities: {0: "Solid Rock"},
-// 	},
-// 	sora: {
-// 		num: 6000036,
-// 		species: "Sora", /* Sora and 100% Orange Juice */
-// 		types: ["Fighting", "Flying"],
-// 		gender: "F",
-// 		baseStats: {hp: 75, atk: 120, def: 85, spa: 100, spd: 85, spe: 120},
-// 		abilities: {0: "Motor Drive"},
-// 	},
-// 	bigrig: {
-// 		num: 6000037,
-// 		species: "Big Rig", /* Big Rigs: Over the Road Racing */
-// 		baseForme: "Reversed",
-// 		types: ["Ghost", "Fire"],
-// 		gender: "N",
-// 		baseStats: {hp: 85, atk: 70, def: 70, spa: 70, spd: 50, spe: 255},
-// 		abilities: {0: "Champion"},
-// 		otherFormes: ["bigrigforwards"],
-// 	},
-// 	bigrigforwards: {
-// 		num: 6000037,
-// 		species: "Big Rig-Forwards",
-// 		baseSpecies: "Big Rig",
-// 		forme: "Forwards",
-// 		formeLetter: "F",
-// 		types: ["Ghost", "Fire"],
-// 		gender: "N",
-// 		baseStats: {hp: 85, atk: 70, def: 70, spa: 70, spd: 50, spe: 55},
-// 		abilities: {0: "Heavy Metal"},
-// 	},
-// 	norn: {
-// 		num: 6000038,
-// 		species: "Norn", /* Katamari Series */
-// 		types: ["Ice", "Fairy"],
-// 		gender: "M",
-// 		baseStats: {hp: 100, atk: 117, def: 56, spa: 87, spd: 125, spe: 115},
-// 		abilities: {0: "Refrigerate", H: "Pixilate"},
-// 	},
-// 	pepsiman: {
-// 		num: 6000039,
-// 		species: "Pepsiman", /* Pepsiman */
-// 		types: ["Water", "Steel"],
-// 		gender: "M",
-// 		baseStats: {hp: 110, atk: 90, def: 115, spa: 80, spd: 50, spe: 155},
-// 		abilities: {0: "Bulletproof", 1: "Speed Boost", H: "Refreshing Pepsi"},
-// 	},
-// 	heavy: {
-// 		num: 6000040,
-// 		species: "Heavy", /* Team Fortress 2 */
-// 		types: ["Normal"],
-// 		gender: "M",
-// 		baseStats: {hp: 150, atk: 80, def: 99, spa: 80, spd: 99, spe: 77},
-// 		abilities: {0: "Thick Fat"},
-// 	},
-// 	reimuhakurei: {
-// 		num: 6000041,
-// 		species: "Reimu Hakurei", /* Touhou */
-// 		types: ["Flying", "Psychic"],
-// 		gender: "F",
-// 		baseStats: {hp: 110, atk: 80, def: 110, spa: 100, spd: 140, spe: 60},
-// 		abilities: {0: "Super Luck", H: "Sacred Barrier"},
-// 	},
-// 	crow: {
-// 		num: 6000042,
-// 		species: "Crow", /* Brawl Stars */
-// 		types: ["Poison", "Flying"],
-// 		gender: "N",
-// 		baseStats: {hp: 60, atk: 87, def: 53, spa: 117, spd: 53, spe: 130},
-// 		abilities: {0: "Merciless", 1: "Early Bird", H: "Extra Toxic"},
-// 	},
+  // V1 AG winners.
+  
+	mewtwo: {
+		inherit: true,
+		otherFormes: ["mewtwomegax", "mewtwomegay", "mewtwoshadow", "mewtwoshadowburst"],
+	},
+	mewtwoshadow: {
+		num: 150,
+		species: "Mewtwo-Shadow", /* Pokken Tournament */
+		baseSpecies: "Mewtwo",
+		forme: "Shadow",
+		formeLetter: "S",
+		types: ["Psychic"],
+		gender: "N",
+		baseStats: {hp: 86, atk: 130, def: 85, spa: 164, spd: 85, spe: 130},
+		abilities: {0: "Burst Mode"},
+    hieghtm: 2,
+    weightkg: 120,
+		eggGroups: ["Undiscovered"],
+	},
+	mewtwoshadowburst: {
+		num: 150,
+		species: "Mewtwo-Shadow",
+		baseSpecies: "Mewtwo",
+		forme: "Burst",
+		formeLetter: "B",
+		types: ["Psychic", "Fighting"],
+		gender: "N",
+		baseStats: {hp: 86, atk: 210, def: 85, spa: 174, spd: 85, spe: 140},
+		abilities: {0: "Burst Mode"},
+    hieghtm: 2,
+    weightkg: 120,
+		eggGroups: ["Undiscovered"],
+	},
+	marisakirisame: {
+		num: 5999988,
+		species: "Marisa Kirisame", /* Touhou */
+		types: ["Electric", "Psychic"],
+		gender: "F",
+		baseStats: {hp: 70, atk: 120, def: 60, spa: 150, spd: 80, spe: 120},
+		abilities: {0: "Magician", 1: "Levitate", H: "Drizzle"},
+	},
+	deathwing: {
+		num: 5999989,
+		species: "Deathwing", /* World of Warcraft */
+		types: ["Dragon", "Fire"],
+		gender: "M",
+		baseStats: {hp: 120, atk: 150, def: 100, spa: 140, spd: 100, spe: 90},
+		abilities: {0: "Magma Armor"},
+	},
+	niko: {
+		num: 5999990,
+		species: "Niko", /* OneShot */
+		types: ["Normal", "Ground"],
+		gender: "N",
+		baseStats: {hp: 82, atk: 95, def: 100, spa: 65, spd: 110, spe: 68},
+		abilities: {0: "Sun Carrier", 1: "Technician", H: "Telepathy"},
+	},
+	sayori: {
+		num: 5999991,
+		species: "Sayori", /* Doki Doki Literature Club */
+		types: ["Normal", "Fairy"],
+		gender: "F",
+		baseStats: {hp: 115, atk: 85, def: 85, spa: 95, spd: 85, spe: 95},
+		abilities: {0: "Natural Cure", H: "Depression"},
+		otherFormes: ["sayorihanged"],
+	},
+	sayorihanged: {
+		num: 5999991,
+		species: "Sayori-Hanged",
+		baseSpecies: "Sayori",
+		forme: "Hanged",
+		formeLetter: "H",
+		types: ["Normal", "Fairy"],
+		gender: "F",
+		baseStats: {hp: 115, atk: 85, def: 85, spa: 95, spd: 85, spe: 95},
+		abilities: {0: "Natural Cure", H: "Depression"},
+	},
+	demigodofrock: {
+		num: 5999992,
+		species: "Demigod of Rock", /* Guitar Hero: Warriors of Rock */
+		types: ["Rock", "Ghost"],
+		gender: "M",
+		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
+		abilities: {0: "Solid Rock"},
+	},
+	sora: {
+		num: 5999993,
+		species: "Sora", /* Sora and 100% Orange Juice */
+		types: ["Fighting", "Flying"],
+		gender: "F",
+		baseStats: {hp: 75, atk: 120, def: 85, spa: 100, spd: 85, spe: 120},
+		abilities: {0: "Motor Drive"},
+    heightm: 1.55,
+    weightkg: 48,
+	},
+	bigrig: {
+		num: 5999994,
+		species: "Big Rig", /* Big Rigs: Over the Road Racing */
+		baseForme: "Reversed",
+		types: ["Ghost", "Fire"],
+		gender: "N",
+		baseStats: {hp: 85, atk: 70, def: 70, spa: 70, spd: 50, spe: 255},
+		abilities: {0: "Champion"},
+		otherFormes: ["bigrigforwards"],
+	},
+	bigrigforwards: {
+		num: 5999994,
+		species: "Big Rig-Forwards",
+		baseSpecies: "Big Rig",
+		forme: "Forwards",
+		formeLetter: "F",
+		types: ["Ghost", "Fire"],
+		gender: "N",
+		baseStats: {hp: 85, atk: 70, def: 70, spa: 70, spd: 50, spe: 55},
+		abilities: {0: "Heavy Metal"},
+	},
+	norn: {
+		num: 5999995,
+		species: "Norn", /* Katamari Series */
+		types: ["Ice", "Fairy"],
+		gender: "M",
+		baseStats: {hp: 100, atk: 117, def: 56, spa: 87, spd: 125, spe: 115},
+		abilities: {0: "Refrigerate", H: "Pixilate"},
+	},
+	pepsiman: {
+		num: 5999996,
+		species: "Pepsiman", /* Pepsiman */
+		types: ["Water", "Steel"],
+		gender: "M",
+		baseStats: {hp: 110, atk: 90, def: 115, spa: 80, spd: 50, spe: 155},
+		abilities: {0: "Bulletproof", 1: "Speed Boost", H: "Refreshing Pepsi"},
+	},
+	heavy: {
+		num: 5999997,
+		species: "Heavy", /* Team Fortress 2 */
+		types: ["Normal"],
+		gender: "M",
+		baseStats: {hp: 150, atk: 80, def: 99, spa: 80, spd: 99, spe: 77},
+		abilities: {0: "Thick Fat"},
+	},
+	reimuhakurei: {
+		num: 5999998,
+		species: "Reimu Hakurei", /* Touhou */
+		types: ["Flying", "Psychic"],
+		gender: "F",
+		baseStats: {hp: 110, atk: 80, def: 110, spa: 100, spd: 140, spe: 60},
+		abilities: {0: "Super Luck", H: "Sacred Barrier"},
+	},
+	crow: {
+		num: 5999999,
+		species: "Crow", /* Brawl Stars */
+		types: ["Poison", "Flying"],
+		gender: "N",
+		baseStats: {hp: 60, atk: 87, def: 53, spa: 117, spd: 53, spe: 130},
+		abilities: {0: "Merciless", 1: "Early Bird", H: "Extra Toxic"},
+	},
 // 	shovelknight: {
 //     num: 6000043,
 //     species: "Shovel Knight", /* Shovel Knight */
