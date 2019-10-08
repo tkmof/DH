@@ -2771,7 +2771,7 @@ mammon: {
 	 forme: "Mammon",
 	 formeLetter: "M",
     types: ["Dark", "Dragon"],
-    baseStats: {hp: 101, atk: 111, def: 101, spa: 111, spd: 101, spe: 151},
+    baseStats: {hp: 91, atk: 111, def: 101, spa: 111, spd: 101, spe: 151},
     abilities: {0: "Devil's Disguise"},
 	 heightm: 1.9,
     weightkg: 69,
@@ -2796,7 +2796,7 @@ kars: {
     baseStats: {hp: 80, atk: 130, def: 80, spa: 90, spd: 90, spe: 130},
     abilities: {0: "Tough Claws", 1: "Regenerator", H: "Corrosive Skin"},
 	 heightm: 2,
-    weightkg: 100,
+    weightkg: 90,
 },
 karsultimate: {
     num: 7000019,
