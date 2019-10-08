@@ -2699,7 +2699,7 @@ devil: {
     num: 7000018,
     species: "Devil", /* Lanterne of Light */
     types: ["Dark"],
-    baseStats: {hp: 101, atk: 101, def: 101, spa: 101, spd: 101, spe: 91},
+    baseStats: {hp: 91, atk: 101, def: 101, spa: 101, spd: 101, spe: 91},
     abilities: {0: "Devil's Disguise"},
 	 heightm: 1.9,
     weightkg: 69,
