@@ -303,7 +303,7 @@ exports.BattlePokedex = {
 		num: 6000003, 
 		species: "Corrin", /* Fire Emblem: Fates */
 		baseForme: "Human",
-		types:["Dragon", "Fighting"],
+		types:["Dragon", "Water"],
 		baseStats: {hp: 90, atk: 125, def: 95, spa: 85, spd: 65, spe: 115}, 
 		abilities: {0: "Dragon's Blood"},
 		otherFormes: ["corrindragon"],
