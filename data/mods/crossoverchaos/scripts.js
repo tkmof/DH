@@ -255,6 +255,7 @@ exports.BattleScripts = {
 	  },
   },
   
+  
   field: {
     //Completely negate weather if both sides have an active Scarlet Temperament.
 	  suppressingWeather() {
@@ -262,10 +263,9 @@ exports.BattleScripts = {
 		  for (const side of this.battle.sides) {
         let hasScarletTemperament = false;
 			  for (const pokemon of side.active) {
-				  if (pokemon && !pokemon.ignoringAbility() && pokemon.getAbility().suppressWeather) {
-					  return true;
-				  }
-          if (pokemon && !pokemon.ignoringAbility() && pokemon.hasAbility('scarlettemperament')){
+          if (!pokemon || pokemon.ignoringAbility()) continue;
+				  if (pokemon.getAbility().suppressWeather) return true;
+          if (pokemon.hasAbility('scarlettemperament')){
             hasScarletTemperament = true;
           }
 			  }
