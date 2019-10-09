@@ -597,7 +597,8 @@ bowser: {
     baseStats: {hp: 120, atk: 130, def: 130, spa: 100, spd: 70, spe: 50},
     abilities: {0: "Intimidate", H: "Regenerator"},
 	 heightm: 2.5,
-    weightkg: 400,
+    weightkg: 375,
+		color: "Green",
 },
 shulk: {
     num: 6000020,
