@@ -3033,7 +3033,7 @@ thanostime: {
 	 formeLetter: "T",
     types: ["Dark", "Steel"],
 	 gender: "M",
-    baseStats: {hp: 120, atk: 130, def: 120, spa: 90, spd: 80, spe: 130},
+    baseStats: {hp: 120, atk: 130, def: 120, spa: 80, spd: 80, spe: 130},
     abilities: {0: "Infinity Gauntlet"},
 	 heightm: 2,
     weightkg: 105,
