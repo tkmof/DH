@@ -3117,7 +3117,7 @@ gregheffley: {
 },
 aimizuno: {
 	 num: 7000036,
-	 species: "Ai Mizuno",
+	 species: "Ai Mizuno", /* Zombie Land SAGA */
 	 types: ["Ghost", "Electric"],
 	 gender: "F",
 	 baseStats: {hp: 150, atk: 80, def: 60, spa: 120, spd: 60, spe: 100},
@@ -3127,7 +3127,7 @@ aimizuno: {
 },
 rapunzel: {
 	 num: 7000037,
-	 species: "Rapunzel",
+	 species: "Rapunzel", /* Tangled */
 	 types: ["Grass", "Fairy"],
 	 gender: "F",
 	 baseStats: {hp: 100, atk: 105, def: 40, spa: 80, spd: 130, spe: 65},
@@ -3137,7 +3137,7 @@ rapunzel: {
 },
 elphaba: {
 	 num: 7000038,
-	 species: "Elphaba",
+	 species: "Elphaba", /* Wicked */
 	 types: ["Dark", "Flying"],
 	 gender: "F",
 	 baseStats: {hp: 80, atk: 60, def: 80, spa: 130, spd: 95, spe: 120},
@@ -3152,12 +3152,12 @@ trashman: {
 	 gender: "M",
 	 baseStats: {hp: 4, atk: 107, def: 57, spa: 86, spd: 45, spe: 30},
 	 abilities: {0: "Kill Em All"},
-	 heightm: 1.7,
-	 weightkg: 48,
+	 heightm: 1.9,
+	 weightkg: 89,
 },
 pelones: {
 	 num: 7000040,
-	 species: "Pelones",
+	 species: "Pelones", /* Sr Pelo */
 	 types: ["Normal", "Fighting"],
 	 gender: "M",
 	 baseStats: {hp: 90, atk: 77, def: 74, spa: 77, spd: 83, spe: 90},
@@ -3167,7 +3167,7 @@ pelones: {
 },
 tamatoa: {
 	 num: 7000041,
-	 species: "Tamatoa",
+	 species: "Tamatoa", /* Moana */
 	 types: ["Water", "Steel"],
 	 gender: "M",
 	 baseStats: {hp: 100, atk: 130, def: 150, spa: 50, spd: 70, spe: 80},
@@ -3177,7 +3177,7 @@ tamatoa: {
 },
 milesmorales: {
 	 num: 7000042,
-	 species: "Miles Morales",
+	 species: "Miles Morales", /* Spider Man: Into the Spiderverse */
 	 types: ["Bug", "Electric"],
 	 gender: "M",
 	 baseStats: {hp: 75, atk: 110, def: 100, spa: 75, spd: 85, spe: 115},
@@ -3197,13 +3197,73 @@ shrek: {
 },
 siren: {
 	 num: 7000044,
-	 species: "Siren",
+	 species: "Siren", /* Divine Bestiary */
 	 types: ["Water", "Fairy"],
-	 gender: "M",
+	 gender: "F",
 	 baseStats: {hp: 80, atk: 80, def: 80, spa: 115, spd: 95, spe: 105},
 	 abilities: {0: "Siren's Call"},
 	 heightm: 2.2,
-	 weightkg: 180,
+	 weightkg: 90,
+},
+calcifer: {
+	 num: 7000045,
+	 species: "Calcifer", /* Howl's Moving Castle */
+	 types: ["Fire"],
+	 gender: "M",
+	 baseStats: {hp: 56, atk: 46, def: 66, spa: 146, spd: 96, spe: 106},
+	 abilities: {0: "Flame Body", H: "Soul Heart"},
+	 heightm: 0.3,
+	 weightkg: 0.5,
+},
+petshop: {
+	 num: 7000046,
+	 species: "Pet Shop", /* JoJo's Bizarre Adventure */
+	 types: ["Flying", "Dark"],
+	 gender: "M",
+	 baseStats: {hp: 70, atk: 125, def: 60, spa: 60, spd: 110, spe: 125},
+	 abilities: {0: "Horus"},
+	 heightm: 0.3,
+	 weightkg: 4,
+},
+tama: {
+	 num: 7000047,
+	 species: "Tama", /* JoJo's Bizarre Adventure */
+	 types: ["Grass"],
+	 gender: "M",
+	 baseStats: {hp: 110, atk: 70, def: 90, spa: 110, spd: 110, spe: 10},
+	 abilities: {0: "Stray Cat"},
+	 heightm: 0.1,
+	 weightkg: 0.1,
+},
+theasset: {
+	 num: 7000048,
+	 species: "The Asset", /* Shape of Water */
+	 types: ["Water"],
+	 gender: "M",
+	 baseStats: {hp: 85, atk: 128, def: 73, spa: 67, spd: 96, spe: 92},
+	 abilities: {0: "Swift Swim", 1: "Poison Touch", H: "Regenerator"},
+	 heightm: 1.9,
+	 weightkg: 70,
+},
+motoko: {
+	 num: 7000049,
+	 species: "Motoko", /* Love Hina */
+	 types: ["Fighting"],
+	 gender: "F",
+	 baseStats: {hp: 95, atk: 125, def: 47, spa: 125, spd: 47, spe: 100},
+	 abilities: {0: "Justified", 1: "Moxie", H: "Competitive"},
+	 heightm: 1.6,
+	 weightkg: 55,
+},
+normanbates: {
+	 num: 7000050,
+	 species: "Norman Bates", /* Psycho */
+	 types: ["Normal", "Dark"],
+	 gender: "M",
+	 baseStats: {hp: 60, atk: 105, def: 70, spa: 105, spd: 75, spe: 110},
+	 abilities: {0: "Parental Bond"},
+	 heightm: 1.8,
+	 weightkg: 65,
 },
   // V1 AG winners.
   
