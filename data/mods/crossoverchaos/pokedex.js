@@ -2539,7 +2539,7 @@ lucina: {
     types: ["Fighting", "Psychic"],
 	 gender: "F",
     baseStats: {hp: 85, atk: 105, def: 80, spa: 55, spd: 80, spe: 125},
-    abilities: {0: "Imperial Privelege", 1: "Clear Body", H: "Illusion"},
+    abilities: {0: "Foreseer", 1: "Brand of the Exalt", H: "Illusion"},
   color: "Blue",
 	 heightm: 1.65,
     weightkg: 50,
