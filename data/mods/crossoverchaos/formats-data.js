@@ -811,6 +811,15 @@ exports.BattleFormatsData = { //
 	 soulelizabethravenous: {
 		  tier: "Uber",
 	 },
+	 camilla: {
+		  tier: "V2",
+	 },
+	 romulus: {
+		  tier: "V2",
+	 },
+	 lucina: {
+		  tier: "V2",
+	 },
 	 mewtwoshadow: {
 		  tier: "V1",
 	 },
