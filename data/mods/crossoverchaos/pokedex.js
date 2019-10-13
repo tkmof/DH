@@ -1590,7 +1590,7 @@ link: {
 saber: {
     num: 6000086,
     species: "Saber", /* Fate Series */
-    types: ["Steel"],
+    types: ["Steel", "Dragon"],
 	 gender: "F",
     baseStats: {hp: 110, atk: 130, def: 100, spa: 40, spd: 110, spe: 120},
     abilities: {0: "Justified", 1: "Saber Class", H: "Avalon"},
@@ -2510,6 +2510,39 @@ soulelizabethravenous: {
   color: "Gray",
 	 heightm: 1.5,
     weightkg: 45,
+},
+camilla: {
+    num: 6000131,
+    species: "Camilla", /* Fire Emblem: Fates */
+    types: ["Flying", "Dragon"],
+	 gender: "F",
+    baseStats: {hp: 60, atk: 130, def: 90, spa: 80, spd: 120, spe: 120},
+    abilities: {0: "Savage Blow", 1: "Rose's Thorns", H: "Sheer Force"},
+  color: "Black",
+	 heightm: 1.73,
+    weightkg: 70,
+},
+romulus: {
+    num: 6000132,
+    species: "Romulus", /* Fate: Grand Order */
+    types: ["Grass"],
+	 gender: "M",
+    baseStats: {hp: 110, atk: 130, def: 120, spa: 40, spd: 110, spe: 100},
+    abilities: {0: "Imperial Privelege", 1: "Clear Body", H: "Sturdy"},
+  color: "Brown",
+	 heightm: 2,
+    weightkg: 100,
+},
+lucina: {
+    num: 6000133,
+    species: "Lucina", /* Fire Emblem: Awakening */
+    types: ["Fighting", "Psychic"],
+	 gender: "F",
+    baseStats: {hp: 85, atk: 105, def: 80, spa: 55, spd: 80, spe: 125},
+    abilities: {0: "Imperial Privelege", 1: "Clear Body", H: "Illusion"},
+  color: "Blue",
+	 heightm: 1.65,
+    weightkg: 50,
 },
 walle: {
     num: 7000001,
