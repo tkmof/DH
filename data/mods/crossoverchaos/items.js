@@ -87,4 +87,27 @@ exports.BattleItems = {
         zMoveUser: ["Maki Harukawa"],
         desc: "If held by Maki Harukawa with Assassinate, she can use Strike-9 Shot.",
     },
+	"falchion": {
+		id: "falchion",
+		name: "Falchion",
+		onTakeItem(item, source) {
+			return !(source.baseTemplate.baseSpecies === 'Lucina');
+		},
+		onSourceEffectiveness(typeMod, target, type, move) {
+			if (type === 'Dragon' && move.type === 'Fighting') return 1;
+		},
+		desc: "If held by Lucina, her Fighting-type moves turn super effective against the Dragon type.",
+	},
+	"darkcrown": {
+		id: "darkcrown",
+		name: "Dark Crown",
+		onTakeItem(item, source) {
+			return !(source.baseTemplate.baseSpecies === 'King Boo');
+		},
+		onSourceModifyDamage(damage, source, target, move) {
+			if (target.baseTemplate.baseSpecies !== 'King Boo') return;
+			if (['dazzlinggleam', 'flashcannon', 'lightofruin', 'seedflare', 'aurorabeam', 'lusterpurge', 'mirrorshot', 'prismaticlaser', 'photongeyser', 'lightthatburnsthesky', 'sunsteelstrike', 'moongeistbeam', 'searingsunrazesmash', 'menacingmoonrazemaelstrom', 'doomdesire', 'flashlightpulse', 'technoblast', 'powergem', 'signalbeam'].includes(move.id)) return this.chainModify(0.5);
+		},
+		desc: "If holder is King Boo, he takes halved damage from light-based moves.",
+	},
 };
