@@ -1166,6 +1166,47 @@ exports.BattleAbilities = {
 		id: "rosesthorns",
 		name: "Rose's Thorns",
 	},
+	"underworldknight": {
+		desc: "This Pokemon is immune to Ghost-type moves. The first time it is hit by a Ghost-type move, its attacking stat is multiplied by 1.5 while using a Ghost-type attack as long as it remains active and has this Ability.",
+		shortDesc: "This Pokemon's Ghost attacks do 1.5x damage if hit by one Ghost move; Ghost immunity.",
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ghost') {
+				move.accuracy = true;
+				if (!target.addVolatile('underworldknight')) {
+					this.add('-immune', target, '[from] ability: Underworld Knight');
+				}
+				return null;
+			}
+		},
+		onEnd(pokemon) {
+			pokemon.removeVolatile('underworldknight');
+		},
+		effect: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(target) {
+				this.add('-start', target, 'ability: Underworld Knight');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, attacker, defender, move) {
+				if (move.type === 'Ghost') {
+					this.debug('Underworld Knight boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(atk, attacker, defender, move) {
+				if (move.type === 'Ghost') {
+					this.debug('Underworld Knight boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onEnd(target) {
+				this.add('-end', target, 'ability: Underworld Knight', '[silent]');
+			},
+		},
+		id: "underworldknight",
+		name: "Underworld Knight",
+	},
 	
 	//These vanilla abilities are overridden, though mostly just to account for custom elements (For instance, Damp blocking Creeper Blast, etc.)
 	
