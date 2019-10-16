@@ -71,7 +71,7 @@ exports.BattleScripts = {
 
 		const {targets, pressureTargets} = pokemon.getMoveTargets(move, target);
 
-		if (!sourceEffect || sourceEffect.id === 'pursuit') {
+		if (!sourceEffect || sourceEffect.id === 'pursuit' || sourceEffect.id === 'grapplebeam') {
 			let extraPP = 0;
 			for (const source of pressureTargets) {
 				let ppDrop = this.runEvent('DeductPP', source, pokemon, move);
@@ -233,9 +233,9 @@ exports.BattleScripts = {
 			typeMod = this.battle.singleEvent('Effectiveness', move, null, this, type, move, typeMod);
 			totalTypeMod += this.battle.runEvent('Effectiveness', this, type, move, typeMod);
 		}
-  		if (totalTypeMod >= 0 && this.hasAbility('powerofsummer') && move.type === 'Fire'){
-			totalTypeMod = -1;
-		}
+    if (totalTypeMod >= 0 && this.hasAbility('powerofsummer') && move.type === 'Fire'){
+      totalTypeMod = -1;
+    }
 		return totalTypeMod;
 	},
   
@@ -254,7 +254,7 @@ exports.BattleScripts = {
 		  return item !== 'airballoon';
 	  },
   },
-	
+  
   field: {
     //Completely negate weather if both sides have an active Scarlet Temperament.
 	  suppressingWeather() {
