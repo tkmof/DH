@@ -1907,6 +1907,31 @@ let BattleMovedex = {
 		zMovePower: 175,
 		contestType: "Tough",
 	},
+	"potionthrow": {
+		num: 40064,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		desc: "Has a 10% chance to poison the target. This move's type effectiveness against Rock is changed to be super effective no matter what this move's type is.",
+		shortDesc: "10% chance to poison. Super effective on Rock.",
+		id: "potionthrow",
+		isViable: true,
+		name: "Potion Throw",
+		pp: 10,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Rock') return 1;
+		},
+		secondary: {
+			chance: 10,
+			status: 'psn',
+		},
+		target: "normal",
+		type: "Poison",
+		zMovePower: 160,
+		contestType: "Clever",
+	},
 	"suicideride": {
 		num: 50001,
 		accuracy: 100,
