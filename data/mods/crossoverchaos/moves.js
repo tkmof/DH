@@ -105,45 +105,60 @@ let BattleMovedex = {
 		contestType: "Tough",
 	},
 	"nightslash": {
-		num: 400,
-		accuracy: 100,
-		basePower: 70,
-		category: "Physical",
-		desc: "Has a higher chance for a critical hit.",
-		shortDesc: "High critical hit ratio.",
-		id: "nightslash",
-		isViable: true,
-		name: "Night Slash",
-		pp: 15,
-		priority: 0,
+		inherit: true,
 		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
-		critRatio: 2,
-		secondary: null,
-		target: "normal",
-		type: "Dark",
-		zMovePower: 140,
-		contestType: "Cool",
 	},
 	"sacredsword": {
-		num: 533,
-		accuracy: 100,
-		basePower: 90,
-		category: "Physical",
-		desc: "Ignores the target's stat stage changes, including evasiveness.",
-		shortDesc: "Ignores the target's stat stage changes.",
-		id: "sacredsword",
-		isViable: true,
-		name: "Sacred Sword",
-		pp: 15,
-		priority: 0,
+		inherit: true,
 		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
-		ignoreEvasion: true,
-		ignoreDefensive: true,
-		secondary: null,
-		target: "normal",
-		type: "Fighting",
-		zMovePower: 175,
-		contestType: "Cool",
+	},
+	"crosspoison": {
+		inherit: true,
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"xscissor": {
+		inherit: true,
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"furycutter": {
+		inherit: true,
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"leafblade": {
+		inherit: true,
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"falseswipe": {
+		inherit: true,
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"solarblade": {
+		inherit: true,
+		flags: {charge: 1, contact: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"cut": {
+		inherit: true,
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"slash": {
+		inherit: true,
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"razorwind": {
+		inherit: true,
+		flags: {charge: 1, protect: 1, mirror: 1, slash: 1},
+	},
+	"secretsword": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, slash: 1},
+	},
+	"airslash": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, distance: 1, slash: 1},
+	},
+	"psychocut": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, slash: 1},
 	},
 	
     "fireball": {
@@ -265,7 +280,7 @@ let BattleMovedex = {
 			name: "Monado Buster",
 			pp: 1,
 			priority: 0,
-			flags: {contact: 1},
+			flags: {contact: 1, slash: 1},
 			onModifyMove(move, pokemon, target) {
 				if (target.getStat('def', false, true) > target.getStat('spd', false, true)) move.category = 'Special';	
 			},
@@ -358,7 +373,7 @@ let BattleMovedex = {
 		name: "Devilsknife",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
 		self: {
 			volatileStatus: 'lockedmove',
 		},
@@ -385,7 +400,7 @@ let BattleMovedex = {
 		name: "Dash Slash",
 		pp: 20,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
 		selfSwitch: true,
 		secondary: null,
 		target: "normal",
@@ -577,7 +592,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onHit(pokemon) {
-			if (['', 'slp', 'frz'].includes(pokemon.status) && pokemon.hp >= pokemon.maxhp) return false;
+			if (pokemon.hp >= pokemon.maxhp && ['', 'slp', 'frz'].includes(pokemon.status)) return false;
 			pokemon.cureStatus();
 		},
 		heal: [1, 2],
@@ -599,7 +614,7 @@ let BattleMovedex = {
 		name: "Great Slash",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
 		selfBoost: {
 			boosts: {
 				def: -1,
@@ -624,7 +639,7 @@ let BattleMovedex = {
 		name: "Fujiwara Volcano",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1},
 		recoil: [1, 2],
 		secondary: {
 			chance: 30,
@@ -853,7 +868,7 @@ let BattleMovedex = {
 		name: "Cyclone Slash",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
 		multihit: [2, 5],
 		volatileStatus: 'cycloneslash',
 		effect: {
@@ -1148,7 +1163,7 @@ let BattleMovedex = {
 		name: "Rising Phoenix",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
 		secondary: {
 			chance: 30,
 			status: 'brn',
@@ -1278,8 +1293,8 @@ let BattleMovedex = {
 			} else if (this.field.isTerrain('psychicterrain')) {
 				move = 'psychic';
 			} else if (this.field.isTerrain('inkyterrain')){
-        move = 'sludgewave'
-      }
+        			move = 'sludgewave';
+     			}
 			this.useMove(move, pokemon, target);
 			return null;
 		},
@@ -1472,7 +1487,7 @@ let BattleMovedex = {
 		name: "Sword Rain Beta",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, slash: 1},
 		multihit: 5,
 		secondary: null,
 		target: "normal",
@@ -1837,7 +1852,7 @@ let BattleMovedex = {
 		name: "Axe Strike",
 		pp: 5,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, slash: 1},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch',
