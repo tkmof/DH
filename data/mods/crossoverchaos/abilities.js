@@ -1124,6 +1124,48 @@ exports.BattleAbilities = {
 		id: "barrierchange",
 		name: "Barrier Change",
 	},
+	"brandoftheexalt": {
+		shortDesc: "This Pokemon's critical hit ratio is raised by 2 stages.",
+		onModifyCritRatio(critRatio) {
+			return critRatio + 2;
+		},
+		id: "brandoftheexalt",
+		name: "Brand of the Exalt",
+	},
+	
+	"foreseer": {
+		desc: "This Pokemon's Normal-type moves become Psychic-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Psychic type and have 1.3x power.",
+		onModifyMovePriority: -1,
+		onModifyMove(move, pokemon) {
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Psychic';
+				move.foreseerBoosted = true;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.foreseerBoosted) return this.chainModify([0x14CD, 0x1000]);
+		},
+		id: "foreseer",
+		name: "Foreseer",
+	},
+	"rosesthorns": {
+		shortDesc: "This Pokemon's allies have the power of their attacks x1.5 and receive x0.8 damage from attacks.",
+		onAnyBasePowerPriority: 8,
+		onAnyBasePower(basePower, attacker, defender, move) {
+      if (defender === this.effectData.target) return;
+      if (attacker.side === this.effectData.target.side && attacker !== this.effectData.target){
+        return this.chainModify([defender.side === this.effectData.target.side ? 0x1333 : 0x1800, 0x1000]);
+      }
+			else if (defender.side === this.effectData.target.side) {
+				this.debug('Rose\'s Thorns reduction');
+				return this.chainModify([0x0CCD, 0x1000]);
+			}
+		},
+		id: "rosesthorns",
+		name: "Rose's Thorns",
+	},
 	
 	//These vanilla abilities are overridden, though mostly just to account for custom elements (For instance, Damp blocking Creeper Blast, etc.)
 	
