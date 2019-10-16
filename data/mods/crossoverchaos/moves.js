@@ -1880,6 +1880,33 @@ let BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Beautiful",
 	},
+	"magnavoluissemagnum": {
+		num: 40063,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		desc: "Fails unless it is the user's first turn on the field.",
+		shortDesc: "Hits first. First turn out only.",
+		id: "magnavoluissemagnum",
+		isViable: true,
+		name: "Magna Voluisse Magnum",
+		pp: 10,
+		priority: 2,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTry(pokemon, target) {
+			if (pokemon.activeTurns > 1) {
+				this.add('-fail', pokemon);
+				this.attrLastMove('[still]');
+				this.hint("Magna Voluisse Magnum only works on your first turn out.");
+				return null;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		zMovePower: 175,
+		contestType: "Tough",
+	},
 	"suicideride": {
 		num: 50001,
 		accuracy: 100,
