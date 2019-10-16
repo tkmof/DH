@@ -254,8 +254,7 @@ exports.BattleScripts = {
 		  return item !== 'airballoon';
 	  },
   },
-  
-  
+	
   field: {
     //Completely negate weather if both sides have an active Scarlet Temperament.
 	  suppressingWeather() {
@@ -266,10 +265,10 @@ exports.BattleScripts = {
           if (!pokemon || pokemon.ignoringAbility()) continue;
 				  if (pokemon.getAbility().suppressWeather) return true;
           if (pokemon.hasAbility('scarlettemperament')){
-            hasScarletTemperament = true;
+            scarlettemperaments++;
+            break;
           }
 			  }
-        if (hasScarletTemperament) scarlettemperaments++;
 		  }
 		  return (scarlettemperaments == 2);
 	  }
