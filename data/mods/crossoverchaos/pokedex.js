@@ -358,7 +358,7 @@ plagueknight: {
 		gender: "M",
     baseStats: {hp: 60, atk: 70, def: 75, spa: 130, spd: 115, spe: 115},
     abilities: {0: "Prankster", H: "Chemical Burn"},
-    heightm: 1.7,
+    heightm: 1.6,
     weightkg: 50,
 },
 chihirofujisaki: {
