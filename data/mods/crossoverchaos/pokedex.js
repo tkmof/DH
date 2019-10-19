@@ -3288,7 +3288,7 @@ motoko: {
 	 baseStats: {hp: 95, atk: 125, def: 47, spa: 125, spd: 47, spe: 100},
 	 abilities: {0: "Justified", 1: "Moxie", H: "Competitive"},
 	 heightm: 1.6,
-	 weightkg: 55,
+	 weightkg: 50,
 },
 normanbates: {
 	 num: 7000050,
