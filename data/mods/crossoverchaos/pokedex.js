@@ -1594,7 +1594,8 @@ saber: {
 	 gender: "F",
     baseStats: {hp: 110, atk: 130, def: 100, spa: 40, spd: 110, spe: 120},
     abilities: {0: "Justified", 1: "Saber Class", H: "Avalon"},
-    weightkg: 45,
+    heightm: 1.54,
+    weightkg: 42,
 },
 shieldknight: {
     num: 6000087,
@@ -1613,7 +1614,8 @@ neroclaudius: {
 	 gender: "F",
     baseStats: {hp: 70, atk: 120, def: 80, spa: 40, spd: 80, spe: 160},
     abilities: {0: "Saber Class", H: "Imperial Privelege"},
-    weightkg: 45,
+    heightm: 1.5,
+    weightkg: 42,
 },
 zelda: {
     num: 6000089,
@@ -1690,8 +1692,8 @@ cirno: {
 	 gender: "F",
     baseStats: {hp: 99, atk: 99, def: 99, spa: 99, spd: 99, spe: 99},
     abilities: {0: "Snow Warning", 1: "Levitate", H: "Freeze Atmosphere"},
-	 heightm: 1.4,
-    weightkg: 38,
+	 heightm: 1.3,
+    weightkg: 30,
 	 otherFormes: ["cirnotanned"],
 },
 cirnotanned: {
@@ -1704,8 +1706,8 @@ cirnotanned: {
 	 gender: "F",
     baseStats: {hp: 99, atk: 99, def: 99, spa: 99, spd: 99, spe: 99},
     abilities: {0: "Power of Summer"},
-	 heightm: 1.4,
-    weightkg: 38,
+	 heightm: 1.3,
+    weightkg: 30,
 },
 monokuma: {
     num: 6000094,
@@ -1886,8 +1888,8 @@ tamamonomae: {
 	 gender: "F",
     baseStats: {hp: 108, atk: 27, def: 63, spa: 99, spd: 99, spe: 99},
     abilities: {0: "Fluffy", H: "Boundless Sunlight"},
-	 heightm: 1.5,
-    weightkg: 55,
+	 heightm: 1.6,
+    weightkg: 49,
 	 otherFormes: ["tamamonomaesummer", "tamamonomaeninetails"],
 },
 tamamonomaesummer: {
@@ -1900,8 +1902,8 @@ tamamonomaesummer: {
 	 gender: "F",
     baseStats: {hp: 108, atk: 99, def: 81, spa: 45, spd: 81, spe: 108},
     abilities: {0: "Fluffy", H: "Boundless Sunlight"},
-	 heightm: 1.5,
-    weightkg: 55,
+	 heightm: 1.6,
+    weightkg: 49,
 },
 tamamonomaeninetails: {
     num: 6000106,
@@ -2520,7 +2522,7 @@ camilla: {
     abilities: {0: "Savage Blow", 1: "Rose's Thorns", H: "Sheer Force"},
   color: "Black",
 	 heightm: 1.73,
-    weightkg: 70,
+    weightkg: 60,
 },
 romulus: {
     num: 6000132,
@@ -2530,8 +2532,8 @@ romulus: {
     baseStats: {hp: 110, atk: 130, def: 120, spa: 40, spd: 110, spe: 100},
     abilities: {0: "Imperial Privelege", 1: "Clear Body", H: "Sturdy"},
   color: "Brown",
-	 heightm: 2,
-    weightkg: 100,
+	 heightm: 1.9,
+    weightkg: 140,
 },
 lucina: {
     num: 6000133,
@@ -2542,7 +2544,7 @@ lucina: {
     abilities: {0: "Foreseer", 1: "Brand of the Exalt", H: "Illusion"},
   color: "Blue",
 	 heightm: 1.65,
-    weightkg: 50,
+    weightkg: 45,
 },
 walle: {
     num: 7000001,
@@ -3392,7 +3394,7 @@ normanbates: {
 		baseStats: {hp: 75, atk: 120, def: 85, spa: 100, spd: 85, spe: 120},
 		abilities: {0: "Motor Drive"},
     heightm: 1.55,
-    weightkg: 48,
+    weightkg: 43,
 	},
 	bigrig: {
 		num: 5999994,
