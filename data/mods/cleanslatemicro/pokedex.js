@@ -34,15 +34,15 @@ exports.BattlePokedex = {
 		inherit: true,
 		species: "Ludicolo",
 		types: ["Water", "Grass"],
-		baseStats: {hp: 85, atk: 60, def: 80, spa: 100, spd: 100, spe: 75},
-		abilities: {0: "Swift Swim", 1: "Rain Dish", H: "Unaware"},
+		baseStats: {hp: 80, atk: 60, def: 70, spa: 100, spd: 100, spe: 75},
+		abilities: {0: "Swift Swim", 1: "Rain Dish", H: "Thick Fat"},
 	},
 	rotom: {
 		inherit: true,
 		species: "Rotom",
 		types: ["Electric", "Ghost"],
 		baseStats: {hp: 50, atk: 50, def: 77, spa: 95, spd: 77, spe: 91},
-		abilities: {0: "Prankster"},
+		abilities: {0: "Prankster", 1: "Levitate", H: "Speed Boost"},
 		evos: ["typenull", "crobat", "galvantula", "dugtrioalola", "ludicolo", "torterra", "dragalge", "ninetales", "pupitar", "farfetchd", "purugly", "kyurem", "rotomwash", "umbreon", "heracross", "magearna", ],
 	},
 	torterra: {
@@ -71,7 +71,7 @@ exports.BattlePokedex = {
 		species: "Pupitar",
 		types: ["Rock", "Ground"],
 		baseStats: {hp: 90, atk: 110, def: 100, spa: 50, spd: 60, spe: 60},
-		abilities: {0: "Shed Skin", 1: "Guts"},
+		abilities: {0: "Shed Skin", 1: "Battle Armor"},
 	},
 	farfetchd: {
 		inherit: true,
@@ -84,7 +84,7 @@ exports.BattlePokedex = {
 		inherit: true,
 		species: "Purugly",
 		types: ["Dark", "Fairy"],
-		baseStats: {hp: 84, atk: 90, def: 84, spa: 59, spd: 84, spe: 119},
+		baseStats: {hp: 74, atk: 80, def: 84, spa: 59, spd: 84, spe: 119},
 		abilities: {0: "Cute Charm", 1: "Regenerator"},
 	},
 	kyurem: {
@@ -120,7 +120,7 @@ exports.BattlePokedex = {
 		species: "Magearna",
 		types: ["Steel", "Fairy"],
 		baseStats: {hp: 80, atk: 60, def: 90, spa: 85, spd: 100, spe: 50},
-		abilities: {0: "Clear Body"},
+		abilities: {0: "Clear Body", 1: "Triage", H: "Pure Power"},
 	},
 	malamar: {
 		inherit: true,

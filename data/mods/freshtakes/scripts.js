@@ -97,6 +97,28 @@ let BattleScripts = {
 
 		this.modData('Learnsets', 'jynx').learnset.revelationdance = ['7L1'];
 		this.modData('Learnsets', 'jynx').learnset.thunderbolt = ['7L1'];
+		
+		this.modData('Learnsets', 'rampardos').learnset.accelerock = ['7L1'];
+		this.modData('Learnsets', 'rampardos').learnset.bonemerang = ['7L1'];
+		
+		this.modData('Learnsets', 'vikavolt').learnset.defog = ['7L1'];
+		this.modData('Learnsets', 'vikavolt').learnset.tailglow = ['7L1'];
+		
+		this.modData('Learnsets', 'ninjask').learnset.darkpulse = ['7L1'];
+		this.modData('Learnsets', 'ninjask').learnset.knockoff = ['7L1'];
+		
+		this.modData('Learnsets', 'darkrai').learnset.fireblast = ['7L1'];
+		this.modData('Learnsets', 'darkrai').learnset.flamethrower = ['7L1'];
+		this.modData('Learnsets', 'darkrai').learnset.earthpower = ['7L1'];
+		this.modData('Learnsets', 'darkrai').learnset.nightdaze = ['7L1'];
+		
+		this.modData('Learnsets', 'landorus').learnset.hurricane = ['7L1'];
+		this.modData('Learnsets', 'landorus').learnset.bravebird = ['7L1'];
+		this.modData('Learnsets', 'landorus').learnset.shoreup = ['7L1'];
+		
+		this.modData('Learnsets', 'genesect').learnset.wildcharge = ['7L1'];
+		this.modData('Learnsets', 'genesect').learnset.volttackle = ['7L1'];
+		this.modData('Learnsets', 'genesect').learnset.xscissor = ['7L1'];
 	}
 };
 
