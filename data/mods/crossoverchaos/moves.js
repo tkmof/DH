@@ -2067,7 +2067,7 @@ let BattleMovedex = {
 		secondary: null,
 		target: "normal",
 		type: "Steel",
-		zMovePower: 160,
+		zMovePower: 175,
 		contestType: "Beautiful",
 	},
 	"magnavoluissemagnum": {
