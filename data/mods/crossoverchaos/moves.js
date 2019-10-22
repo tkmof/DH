@@ -105,6 +105,7 @@ let BattleMovedex = {
 		zMovePower: 185,
 		contestType: "Tough",
 	},
+  //AND NOW, HOO BOY... We're repurposing the "mystery" flag.
 	"nightslash": {
 		inherit: true,
 		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
@@ -160,6 +161,194 @@ let BattleMovedex = {
 	"psychocut": {
 		inherit: true,
 		flags: {protect: 1, mirror: 1, mystery: 1},
+	},
+	"afteryou": {
+		inherit: true,
+		flags: {authentic: 1},
+	},
+	"babydolleyes": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1,},
+	},
+	"beatup": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1},
+	},
+	"bestow": {
+		inherit: true,
+		flags: {authentic: 1, mirror: 1},
+	},
+	"charm": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"electrify": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1},
+	},
+	"entrainment": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"faketears": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"featherdance": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1, dance: 1},
+	},
+	"flatter": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"fling": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1},
+	},
+	"floralhealing": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, heal: 1},
+	},
+	"forestscurse": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"gastroacid": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"guardsplit": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1},
+	},
+	"guardswap": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, authentic: 1},
+	},
+	"healpulse": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, heal: 1, distance: 1, pulse: 1},
+	},
+	"heartswap": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, authentic: 1},
+	},
+	"instruct": {
+		inherit: true,
+		flags: {protect: 1, authentic: 1},
+	},
+	"metalsound": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1, sound: 1},
+	},
+	"mimic": {
+		inherit: true,
+		flags: {protect: 1, authentic: 1},
+	},
+	"odorsleuth": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+	},
+	"painsplit": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1},
+	},
+	"powersplit": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1},
+	},
+	"powerswap": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, authentic: 1},
+	},
+	"psychup": {
+		inherit: true,
+		flags: {authentic: 1},
+	},
+	"reflecttype": {
+		inherit: true,
+		flags: {protect: 1, authentic: 1},
+	},
+	"roar": {
+		inherit: true,
+		flags: {reflectable: 1, mirror: 1, authentic: 1, sound: 1},
+	},
+	"roleplay": {
+		inherit: true,
+		flags: {authentic: 1},
+	},
+	"scaryface": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"screech": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1, sound: 1},
+	},
+	"simplebeam": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"sketch": {
+		inherit: true,
+		flags: {authentic: 1},
+	},
+	"skillswap": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, authentic: 1},
+	},
+	"speedswap": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, authentic: 1},
+	},
+	"soak": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"spotlight": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1},
+	},
+	"swagger": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"switcheroo": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1},
+	},
+	"telekinesis": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1, gravity: 1},
+	},
+	"tickle": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"topsyturvy": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"transform": {
+		inherit: true,
+		flags: {},
+	},
+	"trick": {
+		inherit: true,
+		flags: {protect: 1, mirror: 1},
+	},
+	"trickortreat": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+	},
+	"whirlwind": {
+		inherit: true,
+		flags: {reflectable: 1, mirror: 1, authentic: 1},
+	},
+	"worryseed": {
+		inherit: true,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
 	},
 	
     "fireball": {
