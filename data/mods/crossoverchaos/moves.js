@@ -1,3 +1,4 @@
+  
 /*
 List of flags and their descriptions:
 authentic: Ignores a target's substitute.
@@ -11,7 +12,8 @@ distance: Can target a Pokemon positioned anywhere in a Triple Battle.
 gravity: Prevented from being executed or selected during Gravity's effect.
 heal: Prevented from being executed or selected during Heal Block's effect.
 mirror: Can be copied by Mirror Move.
-mystery: Unknown effect.
+mystery: NOW USED FOR SLASH MOVES! Seriously. There's so many of them and each individual flag is hardcoded in. 
+    I legit don't know how to override stuff defined in sim/dex-data.ts, so...
 nonsky: Prevented from being executed or selected in a Sky Battle.
 powder: Has no effect on Grass-type Pokemon, Pokemon with the Ability Overcoat, and Pokemon holding Safety Goggles.
 protect: Blocked by Detect, Protect, Spiky Shield, and if not a Status move, King's Shield.
@@ -19,7 +21,6 @@ pulse: Power is multiplied by 1.5 when used by a Pokemon with the Ability Mega L
 punch: Power is multiplied by 1.2 when used by a Pokemon with the Ability Iron Fist.
 recharge: If this move is successful, the user must recharge on the following turn and cannot make a move.
 reflectable: Bounced back to the original user by Magic Coat or the Ability Magic Bounce.
-slash: Boosted by Knightmare, Sword of Swords...
 snatch: Can be stolen from the original user and instead used by another Pokemon using Snatch.
 sound: Has no effect on Pokemon with the Ability Soundproof.
 */
@@ -106,59 +107,59 @@ let BattleMovedex = {
 	},
 	"nightslash": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"sacredsword": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"crosspoison": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"xscissor": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"furycutter": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"leafblade": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"falseswipe": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"solarblade": {
 		inherit: true,
-		flags: {charge: 1, contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {charge: 1, contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"cut": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"slash": {
 		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"razorwind": {
 		inherit: true,
-		flags: {charge: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {charge: 1, protect: 1, mirror: 1, mystery: 1},
 	},
 	"secretsword": {
 		inherit: true,
-		flags: {protect: 1, mirror: 1, slash: 1},
+		flags: {protect: 1, mirror: 1, mystery: 1},
 	},
 	"airslash": {
 		inherit: true,
-		flags: {protect: 1, mirror: 1, distance: 1, slash: 1},
+		flags: {protect: 1, mirror: 1, distance: 1, mystery: 1},
 	},
 	"psychocut": {
 		inherit: true,
-		flags: {protect: 1, mirror: 1, slash: 1},
+		flags: {protect: 1, mirror: 1, mystery: 1},
 	},
 	
     "fireball": {
@@ -280,7 +281,7 @@ let BattleMovedex = {
 			name: "Monado Buster",
 			pp: 1,
 			priority: 0,
-			flags: {contact: 1, slash: 1},
+			flags: {contact: 1, mystery: 1},
 			onModifyMove(move, pokemon, target) {
 				if (target.getStat('def', false, true) > target.getStat('spd', false, true)) move.category = 'Special';	
 			},
@@ -373,7 +374,7 @@ let BattleMovedex = {
 		name: "Devilsknife",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 		self: {
 			volatileStatus: 'lockedmove',
 		},
@@ -400,7 +401,7 @@ let BattleMovedex = {
 		name: "Dash Slash",
 		pp: 20,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 		selfSwitch: true,
 		secondary: null,
 		target: "normal",
@@ -614,7 +615,7 @@ let BattleMovedex = {
 		name: "Great Slash",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 		selfBoost: {
 			boosts: {
 				def: -1,
@@ -868,7 +869,7 @@ let BattleMovedex = {
 		name: "Cyclone Slash",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 		multihit: [2, 5],
 		volatileStatus: 'cycloneslash',
 		effect: {
@@ -926,7 +927,7 @@ let BattleMovedex = {
 		name: "Demonic Rend",
 		pp: 5,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, contact: 1, slash: 1},
+		flags: {protect: 1, mirror: 1, contact: 1, mystery: 1},
 		secondary: {
 			chance: 40,
 			boosts: {
@@ -1163,7 +1164,7 @@ let BattleMovedex = {
 		name: "Rising Phoenix",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, slash: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
 		secondary: {
 			chance: 30,
 			status: 'brn',
@@ -1487,7 +1488,7 @@ let BattleMovedex = {
 		name: "Sword Rain Beta",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, slash: 1},
+		flags: {protect: 1, mirror: 1, mystery: 1},
 		multihit: 5,
 		secondary: null,
 		target: "normal",
@@ -1506,7 +1507,7 @@ let BattleMovedex = {
 		name: "Thrust Barrage",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, mystery: 1},
 		onModifyMove(move, pokemon) {
 			let type = pokemon.types[0];
       if (pokemon.types.length >= pokemon.addedType ? 3 : 2) type = pokemon.types[1];
@@ -1852,7 +1853,7 @@ let BattleMovedex = {
 		name: "Axe Strike",
 		pp: 5,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, slash: 1},
+		flags: {protect: 1, mirror: 1, mystery: 1},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch',
@@ -1873,7 +1874,7 @@ let BattleMovedex = {
 		name: "Invisible Air",
 		pp: 20,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, slash: 1},
+		flags: {protect: 1, mirror: 1, mystery: 1},
 		secondary: null,
 		target: "normal",
 		type: "Steel",
