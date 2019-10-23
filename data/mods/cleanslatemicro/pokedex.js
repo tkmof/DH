@@ -7,7 +7,7 @@ exports.BattlePokedex = {
 		types: ["Normal", "Steel"],
 		baseStats: {hp: 70, atk: 120, def: 80, spa: 70, spd: 60, spe: 85},
 		abilities: {0: "Battle Armor", 1: "Tinted Lens"},
-    evos: null,
+		evos: null,
 	},
 	crobat: {
 		inherit: true,
@@ -15,6 +15,7 @@ exports.BattlePokedex = {
 		types: ["Poison", "Fighting"],
 		baseStats: {hp: 110, atk: 70, def: 100, spa: 60, spd: 65, spe: 80},
 		abilities: {0: "Big Pecks", 1: "Magic Guard"},
+		prevo: null,
 	},
 	galvantula: {
 		inherit: true,
@@ -22,6 +23,7 @@ exports.BattlePokedex = {
 		types: ["Bug", "Electric"],
 		baseStats: {hp: 60, atk: 50, def: 65, spa: 104, spd: 79, spe: 107},
 		abilities: {0: "Static", 1: "Quick Feet", H: "Fluffy"},
+		prevo: null,
 	},
 	dugtrioalola: {
 		inherit: true,
@@ -29,6 +31,7 @@ exports.BattlePokedex = {
 		types: ["Ground", "Steel"],
 		baseStats: {hp: 55, atk: 90, def: 95, spa: 38, spd: 61, spe: 126},
 		abilities: {0: "Sand Force", 1: "Intimidate"},
+		prevo: null,
 	},
 	ludicolo: {
 		inherit: true,
@@ -36,6 +39,7 @@ exports.BattlePokedex = {
 		types: ["Water", "Grass"],
 		baseStats: {hp: 80, atk: 60, def: 70, spa: 100, spd: 100, spe: 75},
 		abilities: {0: "Swift Swim", 1: "Rain Dish", H: "Thick Fat"},
+		prevo: null,
 	},
 	rotom: {
 		inherit: true,
@@ -51,6 +55,7 @@ exports.BattlePokedex = {
 		types: ["Grass", "Dragon"],
 		baseStats: {hp: 95, atk: 87, def: 125, spa: 78, spd: 50, spe: 45},
 		abilities: {0: "Rock Head", 1: "Drought"},
+		prevo: null,
 	},
 	dragalge: {
 		inherit: true,
@@ -65,6 +70,7 @@ exports.BattlePokedex = {
 		types: ["Fire", "Fairy"],
 		baseStats: {hp: 80, atk: 75, def: 65, spa: 100, spd: 85, spe: 100},
 		abilities: {0: "Flash Fire", 1: "Limber", H: "Flower Gift"},
+		prevo: null,
 	},
 	pupitar: {
 		inherit: true,
@@ -86,6 +92,7 @@ exports.BattlePokedex = {
 		types: ["Dark", "Fairy"],
 		baseStats: {hp: 74, atk: 80, def: 84, spa: 59, spd: 84, spe: 119},
 		abilities: {0: "Cute Charm", 1: "Regenerator"},
+		prevo: null,
 	},
 	kyurem: {
 		inherit: true,
