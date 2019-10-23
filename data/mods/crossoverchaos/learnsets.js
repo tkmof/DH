@@ -7895,11 +7895,12 @@ elphaba: {learnset: {
   	uproar: ["7L1"],
   }},
   sora: {learnset: {
-  	aeriealace: ["7L1"],
+  	aerialace: ["7L1"],
   	agility: ["7L1"],
   	airslash: ["7L1"],
   	chargebeam: ["7L1"],
   	dive: ["7L1"],
+  	flamethrower: ["7L1"],
   	gigaimpact: ["7L1"],
   	hyperbeam: ["7L1"],
   	lockon: ["7L1"],
