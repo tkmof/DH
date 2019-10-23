@@ -270,7 +270,7 @@ exports.BattleScripts = {
           }
 			  }
 		  }
-		  return (scarlettemperaments == 2);
+		  return !(this.battle.sides.length - scarlettemperaments);
 	  }
   },
 
