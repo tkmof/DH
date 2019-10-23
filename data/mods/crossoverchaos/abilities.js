@@ -1154,10 +1154,10 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon's allies have the power of their attacks x1.5 and receive x0.8 damage from attacks.",
 		onAnyBasePowerPriority: 8,
 		onAnyBasePower(basePower, attacker, defender, move) {
-      			if ([attacker, defender].includes(this.effectData.target) && attacker.side !== defender.side) return;
-      			if (attacker.side === this.effectData.target.side && this.isAdjacent(attacker, this.effectData.target)){
-        			return this.chainModify([(defender.side === this.effectData.target.side && this.isAdjacent(defender, this.effectData.target)) ? 0x1333 : 0x1800, 0x1000]);
-      			}
+			if ([attacker, defender].includes(this.effectData.target) && attacker.side !== defender.side) return;
+			if (attacker.side === this.effectData.target.side && this.isAdjacent(attacker, this.effectData.target)){
+  			return this.chainModify([(defender.side === this.effectData.target.side && this.isAdjacent(defender, this.effectData.target)) ? 0x1333 : 0x1800, 0x1000]);
+			}
 			else if (defender.side === this.effectData.target.side && this.isAdjacent(defender, this.effectData.target)) {
 				this.debug('Rose\'s Thorns reduction');
 				return this.chainModify([0x0CCD, 0x1000]);
