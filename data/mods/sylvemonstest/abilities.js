@@ -699,10 +699,10 @@ exports.BattleAbilities = {
 			move.stab = 1;
 		},
 		onBasePower (basePower, pokemon, target, move) {
-			if (!move.stab) {
-				return this.chainModify([0x14CD, 0x1000]);
-				}
-				},
+			if (!pokemon.hasType(move.type)) {
+				return this.chainModify(1.5);
+			}
+		},
 		id: "jackofalltrades",
 		name: "Jack of all Trades",
 		rating: 3.5,
