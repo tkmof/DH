@@ -21,6 +21,10 @@ exports.BattleItems = {
 		onStart: function (pokemon) {
 			this.add('-item', pokemon, pokemon.getItem());
 		},
+		onModifyMovePriority: -5,
+		onSourceModifyMove(move) {
+			move.ignoreImmunity = true;
+		},
 		onEffectiveness: function(typeMod, target, type, move) {
 				if (move && !this.getImmunity(move, type)) return 1;
 				return -typeMod;
