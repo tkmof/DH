@@ -195,8 +195,7 @@ exports.BattleItems = {
 		onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Rage Candy Bar');
 			if (pokemon.baseTemplate.baseSpecies === 'Darmanitan') {
-				this.add('-formechange', pokemon, 'Darmanitan-Zen', '[msg]');
-				pokemon.formeChange("Darmanitan-Zen");
+				pokemon.addVolatile('zenmode');
 			}
 		},
 		fling: {
@@ -262,11 +261,10 @@ exports.BattleItems = {
 		},
 		onUpdate: function(pokemon) {
 			let activate = false;
-			let boosts = {};
 			for (let i in pokemon.boosts) {
 				if (pokemon.boosts[i] < 0) {
 					activate = true;
-					boosts[i] = -boosts[i];
+					pokemon.boosts[i] = -pokemon.boosts[i];
 				}
 			}
 			if (activate && pokemon.useItem()) {
