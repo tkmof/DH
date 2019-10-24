@@ -675,18 +675,17 @@ exports.BattleAbilities = {
 	},
 "darkrising": {
 		shortDesc: "This Pokemon's highest stat is raised by one when switching into Shadow Sky.",
-	onUpdate(source) {
-			if (this.field.isWeather(['shadowsky'])) {
+		onStart(pokemon) {
+			if (!this.field.isWeather(['shadowsky'])) return;
 			let stat = 'atk';
-				let bestStat = 0;
-				for (let i in source.stats) {
-					if (source.stats[i] > bestStat) {
-						stat = i;
-						bestStat = source.stats[i];
-					}
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
 				}
-				this.boost({[stat]: 1}, source);
 			}
+			this.boost({[stat]: 1}, pokemon);
 		},
 		id: "darkrising",
 		name: "Dark Rising",
