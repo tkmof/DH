@@ -19,7 +19,7 @@ exports.BattleItems = {
 		},
 		onTakeItem: false,
 		onStart: function (pokemon) {
-			this.add('-item', pokemon, 'Reverse Core');
+			this.add('-item', pokemon, pokemon.getItem());
 		},
 		onEffectiveness: function(typeMod, target, type, move) {
 				if (move && !this.getImmunity(move, type)) return 1;
