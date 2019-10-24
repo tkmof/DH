@@ -723,14 +723,6 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Acid", target);
 		},
-		onModifyMovePriority: -5,
-		onModifyMove: function(move) {
-			if (!move.ignoreImmunity) move.ignoreImmunity = {};
-			if (move.ignoreImmunity !== true) {
-				move.ignoreImmunity['Steel'] = true;
-				move.ignoreImmunity['Poison'] = true;
-			}
-		},
 		onEffectiveness: function(typeMod, type) {
 			if (type === 'Steel') return 1;
 		},
@@ -738,6 +730,7 @@ exports.BattleMovedex = {
 			chance: 10,
 			status: 'brn',
 		},
+		ignoreImmunity: {'Poison': true},
 		target: "normal",
 		type: "Poison",
 		zMovePower: 140,
