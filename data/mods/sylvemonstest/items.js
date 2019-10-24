@@ -297,7 +297,32 @@ exports.BattleItems = {
 		onAfterDamage: function(damage, target, source, effect) {
 			if (effect && target.useItem()) {
 				this.add('-item', target, 'Mimic Orb');
-				this.useMove('Mimic', target);
+				let move = this.getMove('mimic');
+				if (source.moves.indexOf('mimic') >= 0){
+					this.useMove('Mimic', target);
+					target.moveSlots.push({
+						move: move.name,
+						id: move.id,
+						pp: move.pp,
+						maxpp: move.pp,
+						target: move.target,
+						disabled: false,
+						used: false,
+						virtual: true,
+					});
+				} else {
+					target.moveSlots.push({
+						move: move.name,
+						id: move.id,
+						pp: move.pp,
+						maxpp: move.pp,
+						target: move.target,
+						disabled: false,
+						used: false,
+						virtual: true,
+					});
+					this.useMove('Mimic', target);
+				}
 			}
 		},
 		desc: "When held, the first move that the holder is targeted with gets added to this Pokemon's moveset until switched out. Displays the same message as Mimic does when activated.",
