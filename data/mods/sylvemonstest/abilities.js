@@ -900,4 +900,38 @@ exports.BattleAbilities = {
 		name: "Bloodsucker",
 	},
 	
+	"zenmode": {
+		desc: "If this Pokemon is a Darmanitan, it changes to Zen Mode if it has 1/2 or less of its maximum HP at the end of a turn. If Darmanitan's HP is above 1/2 of its maximum HP at the end of a turn, it changes back to Standard Mode. This Ability cannot be removed or suppressed.",
+		shortDesc: "If Darmanitan, at end of turn changes Mode to Standard if > 1/2 max HP, else Zen.",
+		onResidualOrder: 27,
+		onResidual(pokemon) {
+			if (pokemon.baseTemplate.baseSpecies !== 'Darmanitan' || pokemon.transformed) {
+				return;
+			}
+			if ((pokemon.hp <= pokemon.maxhp / 2 || pokemon.hasItem('ragecandybar')) && pokemon.template.speciesid === 'darmanitan') {
+				pokemon.addVolatile('zenmode');
+			} else if (pokemon.hp > pokemon.maxhp / 2 && pokemon.template.speciesid === 'darmanitanzen') {
+				pokemon.addVolatile('zenmode'); // in case of base Darmanitan-Zen
+				pokemon.removeVolatile('zenmode');
+			}
+		},
+		onEnd(pokemon) {
+			if (!pokemon.volatiles['zenmode'] || !pokemon.hp) return;
+			pokemon.transformed = false;
+			delete pokemon.volatiles['zenmode'];
+			pokemon.formeChange('Darmanitan', this.effect, false, '[silent]');
+		},
+		effect: {
+			onStart(pokemon) {
+				if (pokemon.template.speciesid !== 'darmanitanzen') pokemon.formeChange('Darmanitan-Zen');
+			},
+			onEnd(pokemon) {
+				pokemon.formeChange('Darmanitan');
+			},
+		},
+		id: "zenmode",
+		name: "Zen Mode",
+		rating: -1,
+		num: 161,
+	},
 };
