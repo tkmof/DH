@@ -1198,6 +1198,30 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Tough",
 	},
+	"leechseed": {
+		inherit: true,
+		effect: {
+			onStart(target) {
+				if (target.hasType('Grass')) { 
+					target.removeVolatile('leechseed'); 
+				} else { 
+					this.add('-start', target, 'move: Leech Seed'); 
+				}
+			},
+			onResidualOrder: 8,
+			onResidual(pokemon) {
+				let target = this.effectData.source.side.active[pokemon.volatiles['leechseed'].sourcePosition];
+				if (!target || target.fainted || target.hp <= 0) {
+					this.debug('Nothing to leech into');
+					return;
+				}
+				let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
+				if (damage) {
+					this.heal(damage, target, pokemon);
+				}
+			},
+		},
+	},
 	"dragonrage": {
 		num: 82,
 		accuracy: 100,
