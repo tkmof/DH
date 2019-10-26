@@ -2914,4 +2914,63 @@ this.modData('Learnsets', 'vivillon').learnset.fairywind= ['7L1'];
     // Calculate damage modifiers separately (order differs between generations)
     return this.modifyDamage(baseDamage, pokemon, target, move, suppressMessages);
   },
+	
+	pokemon: {
+	/**
+	 * Changes this Pokemon's forme to match the given templateId (or template).
+	 * This function handles all changes to stats, ability, type, template, etc.
+	 * as well as sending all relevant messages sent to the client.
+	 */
+	formeChange(templateId, source, isPermanent, message, abilitySlot = '0') {
+		const rawTemplate = this.battle.getTemplate(templateId);
+
+		const template = this.setTemplate(rawTemplate, source);
+		if (!template) return false;
+
+		if (this.battle.gen <= 2) return true;
+
+		// The species the opponent sees
+		const apparentSpecies =
+			this.illusion ? this.illusion.template.species : template.baseSpecies;
+		if (isPermanent) {
+			this.baseTemplate = rawTemplate;
+			this.details = template.species + (this.level === 100 ? '' : ', L' + this.level) +
+				(this.gender === '' ? '' : ', ' + this.gender) + (this.set.shiny ? ', shiny' : '');
+			this.battle.add('detailschange', this, (this.illusion || this).details);
+			if (source.effectType === 'Item') {
+				if (source.zMove) {
+					this.battle.add('-burst', this, apparentSpecies, template.requiredItem);
+					this.moveThisTurnResult = true; // Ultra Burst counts as an action for Truant
+				} else if (source.onPrimal) {
+					if (this.illusion) {
+						this.ability = '';
+						this.battle.add('-primal', this.illusion);
+					} else {
+						this.battle.add('-primal', this);
+					}
+				} else {
+					this.battle.add('-mega', this, apparentSpecies, template.requiredItem);
+					this.moveThisTurnResult = true; // Mega Evolution counts as an action for Truant
+				}
+			} else if (source.effectType === 'Status') {
+				// Shaymin-Sky -> Shaymin
+				this.battle.add('-formechange', this, template.species, message);
+			}
+		} else {
+			if (source.effectType === 'Ability') {
+				this.battle.add('-formechange', this, template.species, message, `[from] ability: ${source.name}`);
+			} else {
+				this.battle.add('-formechange', this, this.illusion ? this.illusion.template.species : template.species, message);
+			}
+		}
+		if (source.effectType !== 'Ability' && source.id !== 'reliccharm' && source.id !== 'relicsong' && source.id !== 'zenmode') {
+			if (this.illusion) {
+				this.ability = ''; // Don't allow Illusion to wear off
+			}
+			this.setAbility(template.abilities[abilitySlot], null, true);
+			if (isPermanent) this.baseAbility = this.ability;
+		}
+		return true;
+	}
+	},
 };

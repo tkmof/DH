@@ -399,7 +399,7 @@ exports.BattleFormatsData = { //
         tier: "V2",
 //         doublesTier: "DOU",
     },
-    presidenthaltmann: {
+    haltmann: {
         tier: "V2",
 //         doublesTier: "DOU",
     },
@@ -632,7 +632,7 @@ exports.BattleFormatsData = { //
 		  tier: "V2",
 	 },
 	 magus: {
-		  tier: "Ubers",
+		  tier: "Uber",
 	 },
 	 silver: {
 		  tier: "V2",
@@ -664,6 +664,209 @@ exports.BattleFormatsData = { //
 	 },
 	 highpriest: {
 		  tier: "V2",
+	 },
+	 creeper: {
+		  tier: "V2",
+	 },
+	 creepercharged: {
+		  tier: "V2",
+	 },
+	 sectonia: {
+		  tier: "V2",
+	 },
+	 sectoniadreamstalk: {
+		  tier: "Uber",
+	 },
+	 sectoniasoul: {
+		  requiredItem: "Miracle Fruit",
+		  tier: "Uber",
+	 },
+	 sectoniasoulunrooted: {
+		  requiredItem: "Miracle Fruit",
+		  tier: "Uber",
+	 },
+	 darkmind: {
+		  tier: "V2",
+	 },
+	 darkmindtrue: {
+		  tier: "V2",
+	 },
+	 flandrescarlet: {
+		  tier: "V2",
+	 },
+	 zeromus: {
+		  tier: "V2",
+	 },
+	 truezeromus: {
+		  tier: "V2",
+	 },
+	 dharkon: {
+		  tier: "V2",
+	 },
+	 deliciousfruit: {
+		  tier: "V2",
+	 },
+	 ratsplatman: {
+		  tier: "V2",
+	 },
+	 enderman: {
+		  tier: "V2",
+	 },
+	 gargantuar: {
+		  tier: "V2",
+	 },
+	 smallfry: {
+		  tier: "V2",
+	 },
+	 chum: {
+		  tier: "V2",
+	 },
+	 chumrestless: {
+		  tier: "V2",
+	 },
+	 cohock: {
+		  tier: "V2",
+	 },
+    fairies: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesbug: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesdark: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesdragon: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairieselectric: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesflying: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesfighting: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesfire: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesghost: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesgrass: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesground: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesice: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesnormal: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiespoison: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiespsychic: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiesrock: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairiessteel: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+    fairieswater: {
+        tier: "V2",
+//         doublesTier: "DOU",
+    },
+	 nightmarespowerorb: {
+		  tier: "V2",
+	 },
+	 nightmarewizard: {
+		  tier: "V2",
+	 },
+	 woodman: {
+		  tier: "V2",
+	 },
+	 soulelizabethravenous: {
+		  tier: "Uber",
+	 },
+	 camilla: {
+		  tier: "V2",
+	 },
+	 romulus: {
+		  tier: "V2",
+	 },
+	 lucina: {
+		  tier: "V2",
+	 },
+	 mewtwoshadow: {
+		  tier: "V1",
+	 },
+	 mewtwoshadowburst: {
+		  tier: "V1",
+	 },
+	 marisakirisame: {
+		  tier: "V1",
+	 },
+	 deathwing: {
+		  tier: "V1",
+	 },
+	 niko: {
+		  tier: "V1",
+	 },
+	 sayori: {
+		  tier: "V1",
+	 },
+	 sayorihanged: {
+		  tier: "V1",
+	 },
+	 demigodofrock: {
+		  tier: "V1",
+	 },
+	 sora: {
+		  tier: "V1",
+	 },
+	 bigrig: {
+		  tier: "V1",
+	 },
+	 bigrigforwards: {
+		  tier: "V1",
+	 },
+	 norn: {
+		  tier: "V1",
+	 },
+	 pepsiman: {
+		  tier: "V1",
+	 },
+	 heavy: {
+		  tier: "V1",
+	 },
+	 reimuhakurei: {
+		  tier: "V1",
+	 },
+	 crow: {
+		  tier: "V1",
 	 },
 	 walle: {
 		  tier: "EX",
