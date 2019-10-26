@@ -1275,6 +1275,7 @@ exports.BattleLearnsets = {
 		dazzlinggleam: ["7M"],
 		defensecurl: ["7L1"],
 		doubleteam: ["7M"],
+		drainingkiss: ["7M"],
 		echoedvoice: ["7M"],
 		embargo: ["7M"],
 		energyball: ["7M"],
