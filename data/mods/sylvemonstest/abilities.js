@@ -675,18 +675,17 @@ exports.BattleAbilities = {
 	},
 "darkrising": {
 		shortDesc: "This Pokemon's highest stat is raised by one when switching into Shadow Sky.",
-	onUpdate(source) {
-			if (this.field.isWeather(['shadowsky'])) {
+		onStart(pokemon) {
+			if (!this.field.isWeather(['shadowsky'])) return;
 			let stat = 'atk';
-				let bestStat = 0;
-				for (let i in source.stats) {
-					if (source.stats[i] > bestStat) {
-						stat = i;
-						bestStat = source.stats[i];
-					}
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
 				}
-				this.boost({[stat]: 1}, source);
 			}
+			this.boost({[stat]: 1}, pokemon);
 		},
 		id: "darkrising",
 		name: "Dark Rising",
@@ -699,10 +698,10 @@ exports.BattleAbilities = {
 			move.stab = 1;
 		},
 		onBasePower (basePower, pokemon, target, move) {
-			if (!move.stab) {
-				return this.chainModify([0x14CD, 0x1000]);
-				}
-				},
+			if (!pokemon.hasType(move.type)) {
+				return this.chainModify(1.5);
+			}
+		},
 		id: "jackofalltrades",
 		name: "Jack of all Trades",
 		rating: 3.5,
@@ -900,4 +899,38 @@ exports.BattleAbilities = {
 		name: "Bloodsucker",
 	},
 	
+	"zenmode": {
+		desc: "If this Pokemon is a Darmanitan, it changes to Zen Mode if it has 1/2 or less of its maximum HP at the end of a turn. If Darmanitan's HP is above 1/2 of its maximum HP at the end of a turn, it changes back to Standard Mode. This Ability cannot be removed or suppressed.",
+		shortDesc: "If Darmanitan, at end of turn changes Mode to Standard if > 1/2 max HP, else Zen.",
+		onResidualOrder: 27,
+		onResidual(pokemon) {
+			if (pokemon.baseTemplate.baseSpecies !== 'Darmanitan' || pokemon.transformed) {
+				return;
+			}
+			if ((pokemon.hp <= pokemon.maxhp / 2 || pokemon.hasItem('ragecandybar')) && pokemon.template.speciesid === 'darmanitan') {
+				pokemon.addVolatile('zenmode');
+			} else if (pokemon.hp > pokemon.maxhp / 2 && pokemon.template.speciesid === 'darmanitanzen') {
+				pokemon.addVolatile('zenmode'); // in case of base Darmanitan-Zen
+				pokemon.removeVolatile('zenmode');
+			}
+		},
+		onEnd(pokemon) {
+			if (!pokemon.volatiles['zenmode'] || !pokemon.hp) return;
+			pokemon.transformed = false;
+			delete pokemon.volatiles['zenmode'];
+			pokemon.formeChange('Darmanitan', this.effect, false, '[silent]');
+		},
+		effect: {
+			onStart(pokemon) {
+				if (pokemon.template.speciesid !== 'darmanitanzen') pokemon.formeChange('Darmanitan-Zen');
+			},
+			onEnd(pokemon) {
+				pokemon.formeChange('Darmanitan');
+			},
+		},
+		id: "zenmode",
+		name: "Zen Mode",
+		rating: -1,
+		num: 161,
+	},
 };

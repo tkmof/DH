@@ -4706,7 +4706,7 @@ exports.Formats = [
 		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-expanded-side-project.3647108/>Crossover Chaos</a>",
 		      ],
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: ['Uber', 'Unreleased', 'Illegal', 'V2'],
+		banlist: ['Uber', 'Unreleased', 'Illegal', 'V2', 'V1'],
 		mod: 'crossoverchaos',
 	},
 	{
