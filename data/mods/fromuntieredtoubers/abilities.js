@@ -38,7 +38,7 @@ exports.BattleAbilities = {
 		num: 100003,
 	},
 	"wonderous": {
-		shortDesc: "On switch-in, this Pokemon summons Grassy Terrain.",
+		shortDesc: "On switch-in, this Pokemon summons Wonder Room.",
 		onStart(source) {
 			this.field.addPseudoWeather('wonderroom');
 		},
@@ -46,5 +46,118 @@ exports.BattleAbilities = {
 		name: "Wonderous",
 		rating: 4,
 		num: 100004,
+	},
+	"arachnophobia": {
+		desc: "On switch-in, this Pokemon lowers the Defense of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the Defense of adjacent opponents by 1 stage.",
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Arachnophobia', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({def: -1}, target, pokemon);
+				}
+			}
+		},
+		id: "arachnophobia",
+		name: "Arachnophobia",
+		rating: 3.5,
+		num: 100005,
+	},
+	"armoredplates": {
+		desc: "This Pokemon receives 3/4 damage from contact moves.",
+		shortDesc: "This Pokemon takes 3/4 damage from contact moves.",
+		onSourceModifyDamage(damage, source, target, move) {
+			let mod = 1;
+			if (move.flags['contact']) mod = .75;
+			return this.chainModify(mod);
+		},
+		id: "armoredplates",
+		name: "Armored Plates",
+		rating: 2.5,
+		num: 100006,
+	},
+	"blazingflames": {
+		shortDesc: "This Pokemon's moves have their burn chance doubled.",
+		onModifyMovePriority: -2,
+		onModifyMove(move) {
+			if (move.secondaries) {
+				this.debug('doubling secondary chance');
+				for (const secondary of move.secondaries) {
+					if (secondary.chance) secondary.chance *= 2;
+				}
+			}
+		},
+		id: "blazingflames",
+		name: "Blazing Flames",
+		rating: 4,
+		num: 100007,
+	},
+	"flightrisk": {
+		desc: ".",
+		shortDesc: ".",
+		onSourceHit(target, source, move) {
+			if (!move || !target) return;
+			if (target !== source 
+				&& move.category !== 'Status' 
+				&& move.type == "Flying") 
+			{
+				this.boost({def: -1}, target, pokemon);
+			}
+		},
+		id: "flightrisk",
+		name: "Flight Risk",
+		rating: 1.5,
+		num: 100008,
+	},
+	"foambath" : {
+		shortDesc: "If Rain Dance is active, this Pokemon's Def and SpA are boosted by 50%.",
+		onModifyDef(def, pokemon) {
+			if (this.field.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpa(spa, pokemon) {
+			if (this.field.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "foambath",
+		name: "Foam Bath",
+		rating: 3,
+		num: 100009,
+	},
+	"grouping": {
+		desc: "If this Pokemon is an Aegislash, it changes to Blade Forme before attempting to use an attacking move, and changes to Shield Forme before attempting to use King's Shield.",
+		shortDesc: "If Aegislash, changes Forme to Blade before attacks and Shield before King's Shield.",
+		onBeforeMovePriority: 0.5,
+		onBeforeMove(attacker, defender, move) {
+			if (attacker.template.baseSpecies !== 'Wishiwashi' || attacker.transformed) return;
+			let targetSpecies = (move.category === 'Status' ? 'Wishiwashi' : 'Wishiwashi-School');
+			if (attacker.template.species !== targetSpecies) attacker.formeChange(targetSpecies);
+		},
+		id: "grouping",
+		name: "Grouping",
+		rating: 5,
+		num: 100010,
+	},
+	"impactabsorber": {
+		shortDesc: "This Pokemon takes 50% less damage from recoil moves.",
+		onModifyMovePriority: -2,
+		onModifyMove(move) {
+			if (move.recoil) {
+				move.recoil[1] *= 2;
+			}
+		},
+		id: "impactabsorber",
+		name: "Impact Absorber",
+		rating: 4,
+		num: 100011,
 	},
 };
