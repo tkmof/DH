@@ -4540,7 +4540,7 @@ exports.Formats = [
 	},
 	{
   		name: "[Gen 7] Breeding Variants",
-  		desc: ["Breeding Variants, the mod where pokemon degeneracy pays off. It's like The Shape of Water but they have babies at the end.",
+  		desc: ["Breeding Variants, the mod where pokemon degeneracy pays off.",
 		      ],
   		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		mod: 'breedingvariants',
