@@ -424,7 +424,7 @@ exports.BattleMovedex = {
 		id: "heave",
 		isViable: true,
 		name: "Heave",
-		pp: 20,
+		pp: 10,
 		priority: 0,
 		flags: {snatch: 1,},
 		onTryHit( pokemon ) {
@@ -434,7 +434,7 @@ exports.BattleMovedex = {
 			if ( pokemon.volatiles['slowstart'] ) {
 				let slowStart = pokemon.volatiles['slowstart'];
 				slowStart.effectData.duration--;
-				if ( move.isZ ) pokemon.removeVolatile('slowstart') 
+				if ( move.isZ ) pokemon.removeVolatile('slowstart');
 			}
 		}
 		boosts: {
@@ -447,5 +447,314 @@ exports.BattleMovedex = {
 		type: "Normal",
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Beautiful",
+	},
+	"lunarvision": {
+		num: 10015,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "Lowers the target's Attack and Defense by 1 stage.",
+		shortDesc: "Lowers the target's Attack and Defense by 1.",
+		id: "lunarvision",
+		name: "Lunar Vision",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
+		boosts: {
+			spe: -1,
+			spd: -1,
+			evasion: -1,
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		zMoveBoost: {def: 1},
+		contestType: "Cute",
+	},
+	"lifedrain": {
+		num: 10016,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		shortDesc: "User recovers 50% of the damage dealt.",
+		id: "lifedrain",
+		isViable: true,
+		name: "Life Drain",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
+		drain: [1, 2],
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+		zMovePower: 160,
+		contestType: "Clever",
+	},
+	"rocketsurfing": {
+		num: 10017,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Nearly always goes first.",
+		shortDesc: "Nearly always goes first.",
+		id: "rocketsurfing",
+		isViable: true,
+		name: "Rocket Surfing",
+		pp: 5,
+		priority: 2,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		zMovePower: 160,
+		contestType: "Cool",
+	},
+	"soundburst": {
+		num: 10018,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Nearly always goes first.",
+		shortDesc: "Nearly always goes first.",
+		id: "soundburst",
+		isViable: true,
+		name: "Sound Burst",
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
+		pp: 5,
+		priority: 2,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+		zMovePower: 160,
+		contestType: "Cool",
+	},
+	"lightspeedstrike": {
+		num: 10019,
+		accuracy: true,
+		basePower: 160,
+		category: "Special",
+		desc: "Nearly always goes first.",
+		shortDesc: "Nearly always goes first.",
+		id: "lightspeedstrike",
+		name: "Lightspeed Strike",
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
+		pp: 1,
+		priority: 0,
+		flags: { sound: 1,},
+		isZ: "ninjaskiumz",
+		target: "normal",
+		type: "Flying",
+		contestType: "Clever",
+	},
+	"lilypadleap": {
+		num: 10020,
+		accuracy: true,
+		basePower: 50,
+		category: "Physical",
+		desc: "Sets up Aqua Ring for the user.",
+		shortDesc: "Sets up Aqua Ring for the user.",
+		id: "lilypadleap",
+		isViable: true,
+		name: "Lily Pad Leap",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, distance: 1},
+		onHit(pokemon, source, move) {
+			source.addVolatile('aquaring')
+		},
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.getEffectiveness('Grass', type);
+		},
+		target: "allAdjacentFoes",
+		type: "Water",
+		zMoveEffect: 'heal',
+		contestType: "Clever",
+	},
+	"lilypadlaunch": {
+		num: 10021,
+		accuracy: true,
+		basePower: 100,
+		category: "Physical",
+		desc: "Sets up Ingrain for the user.",
+		shortDesc: "Sets up Ingrain for the user.",
+		id: "lilypadlaunch",
+		name: "Lily Pad Launch",
+		onHit(pokemon, source, move) {
+			source.addVolatile('ingrain')
+		},
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.getEffectiveness('Grass', type);
+		},
+		pp: 1,
+		priority: 0,
+		flags: { sound: 1,},
+		isZ: "politoediumz",
+		target: "normal",
+		type: "Water",
+		contestType: "Clever",
+	},
+	"stonewave": {
+		num: 10022,
+		accuracy: 100,
+		basePower: 95,
+		category: "Special",
+		shortDesc: "No additional effect.",
+		id: "stonewave",
+		isViable: true,
+		name: "Stone Wave",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Rock",
+		zMovePower: 175,
+		contestType: "Beautiful",
+	},
+	"warfeathers": {
+		num: 10023,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Attack and Defense by 1 stage.",
+		shortDesc: "Raises the user's Attack and Defense by 1.",
+		id: "warfeathers",
+		isViable: true,
+		name: "War Feathers",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		boosts: {
+			atk: 1,
+			def: 1,
+		},
+		onHit(pokemon, source, move) {
+			source.addVolatile('focusenergy')
+		},
+		secondary: null,
+		target: "self",
+		type: "Fighting",
+		zMoveBoost: {atk: 1},
+		contestType: "Cool",
+	},
+	"wonderroom": {
+		inherit: true,
+		effect: {
+			duration: 5,
+			durationCallback(target, source, effect) {
+				if (source && source.hasItem('roomkey')) {
+					return 8;
+				}
+				return 5;
+			},
+			onStart(side, source) {
+				this.add('-fieldstart', 'move: Wonder Room', '[of] ' + source);
+			},
+			onRestart(target, source) {
+				this.field.removePseudoWeather('wonderroom');
+			},
+			// Swapping defenses implemented in sim/pokemon.js:Pokemon#calculateStat and Pokemon#getStat
+			onResidualOrder: 24,
+			onEnd() {
+				this.add('-fieldend', 'move: Wonder Room');
+			},
+		},
+	},
+	"magicroom": {
+		inherit: true,
+		effect: {
+			duration: 5,
+			durationCallback(target, source, effect) {
+				if (source && source.hasItem('roomkey')) {
+					return 8;
+				}
+				return 5;
+			},
+			onStart(target, source) {
+				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
+			},
+			onRestart(target, source) {
+				this.field.removePseudoWeather('magicroom');
+			},
+			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
+			onResidualOrder: 25,
+			onEnd() {
+				this.add('-fieldend', 'move: Magic Room', '[of] ' + this.effectData.source);
+			},
+		},
+	},
+	"trickroom": {
+		inherit: true,
+		effect: {
+			duration: 5,
+			durationCallback(target, source, effect) {
+				if (source && source.hasItem('roomkey')) {
+					return 8;
+				}
+				return 5;
+			},
+			onStart(target, source) {
+				this.add('-fieldstart', 'move: Trick Room', '[of] ' + source);
+			},
+			onRestart(target, source) {
+				this.field.removePseudoWeather('trickroom');
+			},
+			// Speed modification is changed in Pokemon.getActionSpeed() in sim/pokemon.js
+			onResidualOrder: 23,
+			onEnd() {
+				this.add('-fieldend', 'move: Trick Room');
+			},
+		},
+	},
+	"grassyterrain": {
+		inherit: true,
+		effect: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source && ( source.hasItem('terrainextender') || source.hasItem('waterlily'))) {
+					return 8;
+				}
+				return 5;
+			},
+			onBasePower(basePower, attacker, defender, move) {
+				let weakenedMoves = ['earthquake', 'bulldoze', 'magnitude'];
+				if (weakenedMoves.includes(move.id)) {
+					this.debug('move weakened by grassy terrain');
+					return this.chainModify(0.5);
+				}
+				if (move.type === 'Grass' && attacker.isGrounded()) {
+					this.debug('grassy terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Grassy Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Grassy Terrain');
+				}
+			},
+			onResidualOrder: 5,
+			onResidualSubOrder: 3,
+			onResidual() {
+				this.eachEvent('Terrain');
+			},
+			onTerrain(pokemon) {
+				if (pokemon.isGrounded() && !pokemon.isSemiInvulnerable()) {
+					this.debug('Pokemon is grounded, healing through Grassy Terrain.');
+					this.heal(pokemon.maxhp / 16, pokemon, pokemon);
+				}
+			},
+			onEnd() {
+				if (!this.effectData.duration) this.eachEvent('Terrain');
+				this.add('-fieldend', 'move: Grassy Terrain');
+			},
+		},
 	},
 };
