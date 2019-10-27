@@ -4539,6 +4539,17 @@ exports.Formats = [
 		},
 	},
 	{
+  		name: "[Gen 7] Breeding Variants",
+  		desc: ["Breeding Variants, the mod where pokemon degeneracy pays off",
+		      ],
+  		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		mod: 'breedingvariants',
+		banlist: ['Unreleased', 'Illegal'],
+		onSwitchIn: function (pokemon) {
+            this.add('-start', pokemon, 'typechange', pokemon.template.types.join('/'), '[silent]');
+        },
+  	},
+	{
 		name: "[Gen 7] Choonmons δ",
 		desc: ["Choonmons is a pet mod created by Choon. Yup.<br>&bullet; <a href=\"http://www.smogon.com/forums/threads/3546063/\">Choonmons</a>"],
 		mod: 'choonmons',
