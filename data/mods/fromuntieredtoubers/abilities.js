@@ -160,4 +160,36 @@ exports.BattleAbilities = {
 		rating: 4,
 		num: 100011,
 	},
+	"specialeyes": {
+		shortDesc: "This pokemon's special attacks always hit for neutral damage.",
+		onSourceEffectiveness(typeMod, target, type, move) {
+			if (move.category !== 'Special') return;
+			if (!target) return; // avoid crashing when called from a chat plugin
+			// ignore effectiveness if the target is Flying type and immune to Ground
+			return 0;
+		},
+		id: "specialeyes",
+		name: "Special Eyes",
+		rating: 4,
+		num: 100012,
+	},
+	"toughhide": {
+		desc: "This Pokemon receives 3/4 damage from contact moves.",
+		shortDesc: "This Pokemon takes 3/4 damage from contact moves.",
+		onSourceModifyDamage(damage, source, target, move) {
+			let mod = 1;
+			if (move.flags['contact']) mod = .75;
+			return this.chainModify(mod);
+		},
+		onModifySecondaries(secondaries) {
+			this.debug('Shield Dust prevent secondary');
+			if (move.flags['contact']){
+				return secondaries.filter(effect => !!(effect.self || effect.dustproof));
+			}
+		},
+		id: "armoredplates",
+		name: "Armored Plates",
+		rating: 2.5,
+		num: 100006,
+	},
 };

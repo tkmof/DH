@@ -233,7 +233,7 @@ exports.BattleMovedex = {
 		contestType: "Tough",
 	},
 	"staticsignal": {
-		num: 1000009,
+		num: 10009,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -319,5 +319,133 @@ exports.BattleMovedex = {
 			}
 			return success;
 		},
+	},
+	"coralpulse": {
+		num: 10010,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		desc: "Has a 20% chance to flinch the target.",
+		shortDesc: "20% chance to flinch the target.",
+		id: "coralpulse",
+		isViable: true,
+		name: "Coral Pulse",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, pulse: 1, mirror: 1, distance: 1},
+		secondary: {
+			chance: 30,
+			boosts: {
+				spe: -1,
+			},
+		},
+		target: "any",
+		type: "Rock",
+		zMovePower: 160,
+		contestType: "Beautiful",
+	},
+	"fallingearth": {
+		num: 10011,
+		accuracy: 85,
+		basePower: 120,
+		category: "Physical",
+		desc: "If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil.",
+		id: "fallingearth",
+		isViable: true,
+		name: "Falling Earth",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		recoil: [33, 100],
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 190,
+		contestType: "Tough",
+	},
+	"giftofgaea": {
+		num: 10012,
+		accuracy: true,
+		basePower: 100,
+		category: "Special",
+		desc: "Every Pokemon in the user's party is cured of its major status condition. Active Pokemon with the Sap Sipper Ability are not cured, unless they are the user.",
+		shortDesc: "Cures the user's party of all status conditions.",
+		id: "giftofgaea",
+		isViable: true,
+		name: "Gift of Gaea",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, distance: 1},
+		onHit(pokemon, source, move) {
+			this.add('-activate', source, 'move: Aromatherapy');
+			let success = false;
+			for (const ally of pokemon.side.pokemon) {
+				if (ally !== source && ((ally.hasAbility('sapsipper')) ||
+						(ally.volatiles['substitute'] && !move.infiltrates))) {
+					continue;
+				}
+				if (ally.cureStatus()) success = true;
+			}
+			return success;
+		},
+		target: "allAdjacentFoes",
+		type: "Grass",
+		zMoveEffect: 'heal',
+		contestType: "Clever",
+	},
+	"gigagaea": {
+		num: 10013,
+		accuracy: true,
+		basePower: 180,
+		category: "Special",
+		desc: "If this move is successful, it removes the target's stat boosts.",
+		shortDesc: "Summons Magic Room.",
+		id: "gigagaea",
+		name: "Giga Gaea",
+		pp: 1,
+		priority: 0,
+		flags: { sound: 1,},
+		isZ: "tropiumz",
+		onTryHit( pokemon ) {
+			pokemon.clearBoosts();
+		}
+		target: "normal",
+		type: "Grass",
+		contestType: "Clever",
+	},
+	"heave": {
+		num: 10014,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Special Attack, Special Defense, and Speed by 1 stage.",
+		shortDesc: "Raises the user's Sp. Atk, Sp. Def, Speed by 1.",
+		id: "heave",
+		isViable: true,
+		name: "Heave",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1,},
+		onTryHit( pokemon ) {
+			if ( pokemon.ability !== "Slow Start" ) return false;
+		}
+		onHit( pokemon, source, move ) {
+			if ( pokemon.volatiles['slowstart'] ) {
+				let slowStart = pokemon.volatiles['slowstart'];
+				slowStart.effectData.duration--;
+				if ( move.isZ ) pokemon.removeVolatile('slowstart') 
+			}
+		}
+		boosts: {
+			atk: 1,
+			def: 1,
+			spe: 1,
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Beautiful",
 	},
 };
