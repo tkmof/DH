@@ -212,15 +212,15 @@ let BattleScripts = {
 		this.modData('Learnsets', 'noctowl').learnset.lunarvision = ['7L1'];
 		this.modData('Learnsets', 'noctowl').learnset.taunt = ['7L1'];
 
-		this.modData('Learnsets', 'pachurisu').learnset.batonpass = ['7L1'];
-		this.modData('Learnsets', 'pachurisu').learnset.healbell = ['7L1'];
-		this.modData('Learnsets', 'pachurisu').learnset.healingwish = ['7L1'];
-		this.modData('Learnsets', 'pachurisu').learnset.lightscreen = ['7L1'];
-		this.modData('Learnsets', 'pachurisu').learnset.nastyplot = ['7L1'];
-		this.modData('Learnsets', 'pachurisu').learnset.reflect = ['7L1'];
-		this.modData('Learnsets', 'pachurisu').learnset.staticsignal = ['7L1'];
-		this.modData('Learnsets', 'pachurisu').learnset.switcheroo = ['7L1'];
-		this.modData('Learnsets', 'pachurisu').learnset.wish = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.batonpass = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.healbell = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.healingwish = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.lightscreen = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.nastyplot = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.reflect = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.staticsignal = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.switcheroo = ['7L1'];
+		this.modData('Learnsets', 'pachirisu').learnset.wish = ['7L1'];
 
 		this.modData('Learnsets', 'persian').learnset.flamethower = ['7L1'];
 
