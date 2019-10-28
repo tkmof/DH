@@ -468,7 +468,7 @@ exports.BattleMovedex = {
 		secondary: null,
 		target: "normal",
 		type: "Flying",
-		zMoveBoost: {def: 1},
+		zMoveEffect: 'crit2',
 		contestType: "Cute",
 	},
 	"lifedrain": {
