@@ -467,7 +467,7 @@ exports.BattleMovedex = {
 		},
 		secondary: null,
 		target: "normal",
-		type: "Normal",
+		type: "Flying",
 		zMoveBoost: {def: 1},
 		contestType: "Cute",
 	},
