@@ -84,9 +84,9 @@ exports.BattlePokedex = {
     eggGroups: ["Amorphous"],
     otherFormes: ["banetteblademastermega"],
   },
-  banetteblademastermega: {
+  banettemegablademaster: {
     num: 354,
-    species: "Banette-Blademaster-Mega",
+    species: "Banette-Mega-Blademaster",
     baseSpecies: "Banette-Blademaster",
     forme: "Mega",
     formeLetter: "M",

@@ -4,7 +4,7 @@ exports.BattleItems = {
   "banettiteb": {
     id: "banettiteb",
     name: "Banettite B",
-    megaStone: "Banette-Blademaster-Mega",
+    megaStone: "Banette-Mega-Blademaster",
     megaEvolves: "Banette",
     onTakeItem: function (item, source) {
       if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
