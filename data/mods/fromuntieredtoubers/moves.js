@@ -409,7 +409,7 @@ exports.BattleMovedex = {
 		isZ: "tropiumz",
 		onTryHit( pokemon ) {
 			pokemon.clearBoosts();
-		}
+		},
 		target: "normal",
 		type: "Grass",
 		contestType: "Clever",
@@ -429,14 +429,14 @@ exports.BattleMovedex = {
 		flags: {snatch: 1,},
 		onTryHit( pokemon ) {
 			if ( pokemon.ability !== "Slow Start" ) return false;
-		}
+		},
 		onHit( pokemon, source, move ) {
 			if ( pokemon.volatiles['slowstart'] ) {
 				let slowStart = pokemon.volatiles['slowstart'];
 				slowStart.effectData.duration--;
 				if ( move.isZ ) pokemon.removeVolatile('slowstart');
 			}
-		}
+		},
 		boosts: {
 			atk: 1,
 			def: 1,

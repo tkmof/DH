@@ -190,6 +190,6 @@ exports.BattleAbilities = {
 		id: "armoredplates",
 		name: "Armored Plates",
 		rating: 2.5,
-		num: 100006,
+		num: 100013,
 	},
 };
