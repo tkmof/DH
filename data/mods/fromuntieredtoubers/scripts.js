@@ -196,11 +196,11 @@ let BattleScripts = {
 		this.modData('Learnsets', 'masquerain').learnset.sleeppowder = ['7L1'];
 		this.modData('Learnsets', 'masquerain').learnset.uturn = ['7L1'];
 
-		this.modData('Learnsets', 'mr.mime').learnset.defog = ['7L1'];
-		this.modData('Learnsets', 'mr.mime').learnset.healbell = ['7L1'];
-		this.modData('Learnsets', 'mr.mime').learnset.mist = ['7L1'];
-		this.modData('Learnsets', 'mr.mime').learnset.partingshot = ['7L1'];
-		this.modData('Learnsets', 'mr.mime').learnset.perishsong = ['7L1'];
+		this.modData('Learnsets', 'mrmime').learnset.defog = ['7L1'];
+		this.modData('Learnsets', 'mrmime').learnset.healbell = ['7L1'];
+		this.modData('Learnsets', 'mrmime').learnset.mist = ['7L1'];
+		this.modData('Learnsets', 'mrmime').learnset.partingshot = ['7L1'];
+		this.modData('Learnsets', 'mrmime').learnset.perishsong = ['7L1'];
 
 		this.modData('Learnsets', 'muk').learnset.slackoff = ['7L1'];
 
