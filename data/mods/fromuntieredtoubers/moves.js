@@ -712,8 +712,37 @@ exports.BattleMovedex = {
 			},
 		},
 	},
+	"electricterrain": {
+		inherit: true,
+		onTryHit( pokemon ) {
+			for (const target of pokemon.side.foe.active) {
+				if ( target.ability === "Terrain Breaker" ) return false;
+			}
+		}
+	},
+	"psychicterrain": {
+		inherit: true,
+		onTryHit( pokemon ) {
+			for (const target of pokemon.side.foe.active) {
+				if ( target.ability === "Terrain Breaker" ) return false;
+			}
+		}
+	},
+	"mistyterrain": {
+		inherit: true,
+		onTryHit( pokemon ) {
+			for (const target of pokemon.side.foe.active) {
+				if ( target.ability === "Terrain Breaker" ) return false;
+			}
+		}
+	},
 	"grassyterrain": {
 		inherit: true,
+		onTryHit( pokemon ) {
+			for (const target of pokemon.side.foe.active) {
+				if ( target.ability === "Terrain Breaker" ) return false;
+			}
+		},
 		effect: {
 			duration: 5,
 			durationCallback(source, effect) {
@@ -756,5 +785,28 @@ exports.BattleMovedex = {
 				this.add('-fieldend', 'move: Grassy Terrain');
 			},
 		},
+	},
+	"quicksand": {
+		num: 10023,
+		accuracy: 90,
+		basePower: 110,
+		category: "Special",
+		shortDesc: "No additional effect.",
+		id: "quicksand",
+		isViable: true,
+		name: "Quicksand",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onHit() {
+			if ( this.field.isWeather('sandstorm')) {
+				target.addVolatile('partiallytrapped');
+			}
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Ground",
+		zMovePower: 175,
+		contestType: "Beautiful",
 	},
 };

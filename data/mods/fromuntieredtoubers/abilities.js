@@ -192,4 +192,152 @@ exports.BattleAbilities = {
 		rating: 2.5,
 		num: 100013,
 	},
+	"triopledge": { // Blastoise, Feraligatr, Swampert, Empoleon, Samurott, Simipour, Greninja, Primarina
+		shortDesc: "Grass Pledge and Fire Pledge deal 30% more damage and summon the swamp or rainbow combo effects, respectively.",
+		onBasePower(move) {
+			move.forceSTAB = true;
+			if ( move.id === 'firepledge' || move.id === 'grasspledge' || move.id === 'firepledge' ){
+				return 150;
+			}
+		},
+		onSourceHit(target, source, move) {
+			if ( move.id === 'waterpledge' ){
+				source.side.addSideCondition('waterpledge');
+			}
+			else if ( move.id === 'grasspledge' ){
+				target.side.addSideCondition('grasspledge');
+			}
+			else if ( move.id === 'firepledge' ){
+				target.side.addSideCondition('firepledge');
+			}
+		},
+		id: "triopledge",
+		name: "Trio Pledge",
+		num: 100014,
+	},
+	"tropicalling": {
+		shortDesc: "This Pokemon's contact moves have a 30% chance of poisoning.",
+		// upokecenter says this is implemented as an added secondary effect
+		onModifyMove(move) {
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			if (move.type === "Fire"){
+				move.secondaries.push({
+					chance: 30,
+					onHit(target, source, move) {
+						target.addVolatile( 'leechseed' );
+					},
+					ability: this.getAbility('tropicalling'),
+				});
+			}
+			if (move.type === "Grass"){
+				move.secondaries.push({
+					chance: 30,
+					status: 'brn',
+					ability: this.getAbility('tropicalling'),
+				});
+			}
+		},
+		id: "tropicalling",
+		name: "Tropicalling",
+		rating: 2,
+		num: 100015,
+	},
+	"aquaticbloom": {
+		shortDesc: "This Pokemon's contact moves have a 30% chance of poisoning.",
+		// upokecenter says this is implemented as an added secondary effect
+		onModifyMove(move) {
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			if (move.type === "Water"){
+				move.secondaries.push({
+					chance: 30,
+					onHit(target, source, move) {
+						this.field.setTerrain( 'grassyterrain' );
+					},
+					ability: this.getAbility('aquaticbloom'),
+				});
+			}
+			if (move.type === "Grass"){
+				move.secondaries.push({
+					chance: 30,
+					onHit(target, source, move) {
+						this.field.setWeather( 'raindance' );
+					},
+					ability: this.getAbility('aquaticbloom'),
+				});
+			}
+		},
+		id: "aquaticbloom",
+		name: "Aquatic Bloom",
+		rating: 2,
+		num: 100016,
+	},
+	"buffeddiver": {
+		shortDesc: "This Pokemon's contact moves have a 30% chance of poisoning.",
+		// upokecenter says this is implemented as an added secondary effect
+		onModifyMove(move) {
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			if (move.type === "Water"){
+				move.secondaries.push({
+					chance: 30,
+					boosts: {
+						spe: -1,
+					},
+					ability: this.getAbility('aquaticbloom'),
+				});
+			}
+			if (move.type === "Fighting"){
+				move.secondaries.push({
+					chance: 30,
+					volatileStatus: 'flinch',
+					ability: this.getAbility('aquaticbloom'),
+				});
+			}
+		},
+		id: "buffeddiver",
+		name: "Buffed Diver",
+		rating: 2,
+		num: 100016,
+	},
+	"grassysurge": {
+		inherit: true
+		onStart(source) {
+			for (const target of pokemon.side.foe.active) {
+				if ( target.ability === "Terrain Breaker" ) return false;
+			}
+			this.field.setTerrain('grassyterrain');
+		},
+	},
+	"electricsurge": {
+		inherit: true
+		onStart(source) {
+			for (const target of pokemon.side.foe.active) {
+				if ( target.ability === "Terrain Breaker" ) return false;
+			}
+			this.field.setTerrain('electricterrain');
+		},
+	},
+	"mistysurge": {
+		inherit: true
+		onStart(source) {
+			for (const target of pokemon.side.foe.active) {
+				if ( target.ability === "Terrain Breaker" ) return false;
+			}
+			this.field.setTerrain('mistyterrain');
+		},
+	},
+	"psychicsurge": {
+		inherit: true
+		onStart(source) {
+			for (const target of pokemon.side.foe.active) {
+				if ( target.ability === "Terrain Breaker" ) return false;
+			}
+			this.field.setTerrain('psychicterrain');
+		},
+	},
 };
