@@ -304,8 +304,39 @@ exports.BattleAbilities = {
 		rating: 2,
 		num: 100016,
 	},
+	"aquaticbloom": {
+		shortDesc: "This Pokemon's contact moves have a 30% chance of poisoning.",
+		// upokecenter says this is implemented as an added secondary effect
+		onModifyMove(move) {
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			if (move.type === "Water"){
+				move.secondaries.push({
+					chance: 30,
+					onHit(target, source, move) {
+						this.field.setTerrain( 'grassyterrain' );
+					},
+					ability: this.getAbility('aquaticbloom'),
+				});
+			}
+			if (move.type === "Grass"){
+				move.secondaries.push({
+					chance: 30,
+					onHit(target, source, move) {
+						this.field.setWeather( 'raindance' );
+					},
+					ability: this.getAbility('aquaticbloom'),
+				});
+			}
+		},
+		id: "aquaticbloom",
+		name: "Aquatic Bloom",
+		rating: 2,
+		num: 100016,
+	},
 	"grassysurge": {
-		inherit: true
+		inherit: true,
 		onStart(source) {
 			for (const target of pokemon.side.foe.active) {
 				if ( target.ability === "Terrain Breaker" ) return false;
@@ -314,7 +345,7 @@ exports.BattleAbilities = {
 		},
 	},
 	"electricsurge": {
-		inherit: true
+		inherit: true,
 		onStart(source) {
 			for (const target of pokemon.side.foe.active) {
 				if ( target.ability === "Terrain Breaker" ) return false;
@@ -323,7 +354,7 @@ exports.BattleAbilities = {
 		},
 	},
 	"mistysurge": {
-		inherit: true
+		inherit: true,
 		onStart(source) {
 			for (const target of pokemon.side.foe.active) {
 				if ( target.ability === "Terrain Breaker" ) return false;
@@ -332,7 +363,7 @@ exports.BattleAbilities = {
 		},
 	},
 	"psychicsurge": {
-		inherit: true
+		inherit: true,
 		onStart(source) {
 			for (const target of pokemon.side.foe.active) {
 				if ( target.ability === "Terrain Breaker" ) return false;
