@@ -912,7 +912,7 @@ exports.BattlePokedex = {
 		species: "Probopass",
 		types: ["Electric", "Steel"],
 		baseStats: {hp: 90, atk: 60, def: 155, spa: 95, spd: 155, spe: 45},
-		abilities: {0: 0: "Levitate", 1: "Electric Surge", H: "Sand Force"},
+		abilities: {0: "Levitate", 1: "Electric Surge", H: "Sand Force"},
 		height: 1.4,
 		weightkg: 340,
 		prevo: "nosepass",
