@@ -809,4 +809,116 @@ exports.BattleMovedex = {
 		zMovePower: 175,
 		contestType: "Beautiful",
 	},
+	"tsunamipunch": {
+		num: 10024,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		desc: "This move combines Flying in its type effectiveness against the target. Damage doubles and no accuracy check is done if the target has used Minimize while active.",
+		shortDesc: "Combines Flying in its type effectiveness.",
+		id: "tsunamipunch",
+		name: "Tsunami Punch",
+		pp: 10,
+		flags: {contact: 1, protect: 1, mirror: 1, distance: 1, punch: 1},
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.getEffectiveness('Fighting', type);
+		},
+		priority: 0,
+		secondary: null,
+		target: "any",
+		type: "Water",
+		zMovePower: 170,
+		contestType: "Tough",
+	},
+	"tidalplow": {
+		num: 10025,
+		accuracy: true,
+		basePower: 150,
+		category: "Physical",
+		desc: "Sets up Ingrain for the user.",
+		shortDesc: "Sets up Ingrain for the user.",
+		id: "tidalplow",
+		name: "Tidal Plow",
+		volatileStatus: 'partiallytrapped',
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.getEffectiveness('Fighting', type);
+		},
+		pp: 1,
+		priority: 0,
+		flags: { sound: 1,},
+		isZ: "poliwrathiumz",
+		target: "normal",
+		type: "Water",
+		contestType: "Clever",
+	},
+	"gravity": {
+		inherit: true,
+		effect: {
+			duration: 5,
+			durationCallback(source, effect) {
+				let toReturn = 5;
+				if (source && source.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					toReturn += 2;
+				}
+				if (source && source.hasItem('densityamplifier')) {
+					toReturn += 3;
+				}
+				return toReturn;
+			},
+			onStart() {
+				this.add('-fieldstart', 'move: Gravity');
+				for (const pokemon of this.getAllActive()) {
+					let applies = false;
+					if (pokemon.removeVolatile('bounce') || pokemon.removeVolatile('fly')) {
+						applies = true;
+						this.cancelMove(pokemon);
+						pokemon.removeVolatile('twoturnmove');
+					}
+					if (pokemon.volatiles['skydrop']) {
+						applies = true;
+						this.cancelMove(pokemon);
+
+						if (pokemon.volatiles['skydrop'].source) {
+							this.add('-end', pokemon.volatiles['twoturnmove'].source, 'Sky Drop', '[interrupt]');
+						}
+						pokemon.removeVolatile('skydrop');
+						pokemon.removeVolatile('twoturnmove');
+					}
+					if (pokemon.volatiles['magnetrise']) {
+						applies = true;
+						delete pokemon.volatiles['magnetrise'];
+					}
+					if (pokemon.volatiles['telekinesis']) {
+						applies = true;
+						delete pokemon.volatiles['telekinesis'];
+					}
+					if (applies) this.add('-activate', pokemon, 'move: Gravity');
+				}
+			},
+			onModifyAccuracy(accuracy) {
+				if (typeof accuracy !== 'number') return;
+				return accuracy * 5 / 3;
+			},
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (this.getMove(moveSlot.id).flags['gravity']) {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			// groundedness implemented in battle.engine.js:BattlePokemon#isGrounded
+			onBeforeMovePriority: 6,
+			onBeforeMove(pokemon, target, move) {
+				if (move.flags['gravity']) {
+					this.add('cant', pokemon, 'move: Gravity', move);
+					return false;
+				}
+			},
+			onResidualOrder: 22,
+			onEnd() {
+				this.add('-fieldend', 'move: Gravity');
+			},
+		},
+	},
 };

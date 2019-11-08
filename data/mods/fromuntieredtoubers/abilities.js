@@ -335,6 +335,27 @@ exports.BattleAbilities = {
 		rating: 2,
 		num: 100016,
 	},
+	"combative": {
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Steel-type attack.",
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Fighting') {
+				this.debug('Combative boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Fighting') {
+				this.debug('Combative boost');
+				return this.chainModify(1.5);
+			}
+		},
+		id: "combative",
+		name: "Combative",
+		rating: 3,
+		num: 100017,
+	},
 	"grassysurge": {
 		inherit: true,
 		onStart(source) {
@@ -370,5 +391,15 @@ exports.BattleAbilities = {
 			}
 			this.field.setTerrain('psychicterrain');
 		},
+	},
+	"wonderous": {
+		shortDesc: "On switch-in, this Pokemon summons Wonder Room.",
+		onStart(source) {
+			this.field.addPseudoWeather('wonderroom');
+		},
+		id: "wonderous",
+		name: "Wonderous",
+		rating: 4,
+		num: 100002,
 	},
 };
