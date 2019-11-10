@@ -159,7 +159,7 @@ let BattleScripts = {
 
 		this.modData('Learnsets', 'kecleon').learnset.pursuit = ['7L1'];
 
-		this.modData('Learnsets', 'lapras').learnset.calm mind = ['7L1'];
+		this.modData('Learnsets', 'lapras').learnset.calmmind = ['7L1'];
 		this.modData('Learnsets', 'lapras').learnset.liquidation = ['7L1'];
 		this.modData('Learnsets', 'lapras').learnset.iciclecrash = ['7L1'];
 		this.modData('Learnsets', 'lapras').learnset.recover = ['7L1'];
