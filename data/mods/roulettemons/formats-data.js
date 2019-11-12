@@ -7,6 +7,7 @@ exports.BattleFormatsData = {
 	aquazelle: {
 		tier: "OU",
 		doublesTier: "DOU",
+	},
 	salamalix: {
 		tier: "OU",
 		doublesTier: "DOU",
