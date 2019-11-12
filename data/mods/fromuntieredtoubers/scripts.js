@@ -159,10 +159,13 @@ let BattleScripts = {
 
 		this.modData('Learnsets', 'kecleon').learnset.pursuit = ['7L1'];
 
-		this.modData('Learnsets', 'lapras').learnset.rocketsurfing = ['7L1'];
-		this.modData('Learnsets', 'lapras').learnset.shellsmash = ['7L1'];
+		this.modData('Learnsets', 'lapras').learnset.calmmind = ['7L1'];
+		this.modData('Learnsets', 'lapras').learnset.liquidation = ['7L1'];
+		this.modData('Learnsets', 'lapras').learnset.iciclecrash = ['7L1'];
+		this.modData('Learnsets', 'lapras').learnset.recover = ['7L1'];
 
 		this.modData('Learnsets', 'ledian').learnset.bulkup = ['7L1'];
+		this.modData('Learnsets', 'ledian').learnset.haze = ['7L1'];
 		this.modData('Learnsets', 'ledian').learnset.closecombat = ['7L1'];
 		this.modData('Learnsets', 'ledian').learnset.leechlife = ['7L1'];
 		this.modData('Learnsets', 'ledian').learnset.lunge = ['7L1'];
@@ -277,6 +280,9 @@ let BattleScripts = {
 		this.modData('Learnsets', 'poliwrath').learnset.plasmafists = ['7L1'];
 		this.modData('Learnsets', 'poliwrath').learnset.tsunamipunch = ['7L1'];
 
+		this.modData('Learnsets', 'persian').learnset.lingeringblast = ['7L1'];
+		this.modData('Learnsets', 'persian').learnset.lingeringsurround = ['7L1'];
+		
 		this.modData('Learnsets', 'pyukumuku').learnset.acupressure = ['7L1'];
 		this.modData('Learnsets', 'pyukumuku').learnset.aquaring = ['7L1'];
 		this.modData('Learnsets', 'pyukumuku').learnset.destinybond = ['7L1'];
@@ -388,6 +394,7 @@ let BattleScripts = {
 		this.modData('Learnsets', 'simipour').learnset.knockoff = ['7L1'];
 		this.modData('Learnsets', 'simipour').learnset.suckerpunch = ['7L1'];
 		this.modData('Learnsets', 'simipour').learnset.swordsdance = ['7L1'];
+		this.modData('Learnsets', 'simipour').learnset.aurasphere = ['7L1'];
 
 		this.modData('Learnsets', 'simisage').learnset.bulletpunch = ['7L1'];
 		this.modData('Learnsets', 'simisage').learnset.closecombat = ['7L1'];
@@ -420,8 +427,11 @@ let BattleScripts = {
 
 		this.modData('Learnsets', 'spinda').learnset.aurasphere = ['7L1'];
 		this.modData('Learnsets', 'spinda').learnset.focusblast = ['7L1'];
-		this.modData('Learnsets', 'spinda').learnset.psychoboost = ['7L1'];
 		this.modData('Learnsets', 'spinda').learnset.taunt = ['7L1'];
+		this.modData('Learnsets', 'spinda').learnset.superpower = ['7L1'];
+		this.modData('Learnsets', 'spinda').learnset.closecombat = ['7L1'];
+		this.modData('Learnsets', 'spinda').learnset.stoneedge = ['7L1'];
+		this.modData('Learnsets', 'spinda').learnset.quickattack = ['7L1'];
 
 		this.modData('Learnsets', 'stunfisk').learnset.lovelykiss = ['7L1'];
 		this.modData('Learnsets', 'stunfisk').learnset.quicksand = ['7L1'];
