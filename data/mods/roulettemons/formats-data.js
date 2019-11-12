@@ -4,6 +4,7 @@ exports.BattleFormatsData = {
 	koatric: {
 		tier: "OU",
 		doublesTier: "DOU",
+	},
 	aquazelle: {
 		tier: "OU",
 		doublesTier: "DOU",
