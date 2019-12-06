@@ -41,7 +41,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Heavy Slam", target);
 		},
 		//useTargetOffensive: true,
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Steel",
 		zMovePower: 160,
@@ -91,7 +91,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', target, "Sunny Day", source);
 		},
-		secondary: false,
+		secondary: null,
 		target: "all",
 		type: "Psychic",
 		zMoveBoost: {acc: 1},
@@ -120,7 +120,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Outrage", target);
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Ghost",
 		zMovePower: 160,
@@ -192,7 +192,7 @@ exports.BattleMovedex = {
 				this.add('-sideend', side, 'move: Swampland');
 			},
 		},
-		secondary: false,
+		secondary: null,
 		target: "foeSide",
 		type: "Water",
 		zMoveBoost: {
@@ -242,7 +242,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Weather Ball", target);
 			this.add('-anim', source, "Knock Off", target);
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Normal",
 		zMovePower: 160,
@@ -286,7 +286,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Weather Ball", target);
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Normal",
 		zMovePower: 160,
@@ -352,7 +352,7 @@ exports.BattleMovedex = {
 				this.add('-fieldend', 'Misty Terrain');
 			},
 		},
-		secondary: false,
+		secondary: null,
 		target: "all",
 		type: "Fairy",
 		zMoveBoost: {
@@ -406,7 +406,7 @@ exports.BattleMovedex = {
 			this.field.removePseudoWeather('wonderroom');
 			this.field.removePseudoWeather('inverseroom');
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Flying",
 		zMoveBoost: {
@@ -436,7 +436,7 @@ exports.BattleMovedex = {
 			this.clearTerrain();
 		},
 		isZ: "lycaniumz",
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Rock",
 		contestType: "Cool",
@@ -468,7 +468,7 @@ exports.BattleMovedex = {
 				}
 			}
 		},
-		secondary: false,
+		secondary: null,
 		target: "all",
 		type: "Ice",
 		zMoveEffect: 'heal',
@@ -528,7 +528,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Ember", target);
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Fire",
 		zMovePower: 100,
@@ -558,7 +558,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Draco Meteor", target);
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Rock",
 		zMovePower: 195,
@@ -579,7 +579,7 @@ exports.BattleMovedex = {
 			mirror: 1
 		},
 		selfSwitch: true,
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Psychic",
 		zMovePower: '140',
@@ -605,7 +605,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Feather Dance", target);
 		},
 		multihit: [2, 5],
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Flying",
 		zMovePower: 140,
@@ -633,12 +633,12 @@ exports.BattleMovedex = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, source, target) {
-			//if (source.sideCondition('tailwind') || target.sideCondition('tailwind')) {
-			return this.chainModify(2);
-			//}
+			if (source.side.getSideCondition('tailwind') || target.side.getSideCondition('tailwind')) {
+				return this.chainModify(2);
+			}
 		},
 		selfSwitch: true,
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Flying",
 		zMovePower: 120,
@@ -666,7 +666,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Earthquake", target);
 			this.add('-anim', source, "Thunder", target);
 		},
-		secondary: false,
+		secondary: null,
 		target: "allAdjacent",
 		type: "Electric",
 		zMovePower: 200,
@@ -698,7 +698,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', target, "Recover", source);
 		},
-		secondary: false,
+		secondary: null,
 		target: "self",
 		type: "Water",
 		zMoveEffect: 'clearnegativeboost',
@@ -723,14 +723,6 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Acid", target);
 		},
-		onModifyMovePriority: -5,
-		onModifyMove: function(move) {
-			if (!move.ignoreImmunity) move.ignoreImmunity = {};
-			if (move.ignoreImmunity !== true) {
-				move.ignoreImmunity['Steel'] = true;
-				move.ignoreImmunity['Poison'] = true;
-			}
-		},
 		onEffectiveness: function(typeMod, type) {
 			if (type === 'Steel') return 1;
 		},
@@ -738,6 +730,7 @@ exports.BattleMovedex = {
 			chance: 10,
 			status: 'brn',
 		},
+		ignoreImmunity: {'Poison': true},
 		target: "normal",
 		type: "Poison",
 		zMovePower: 140,
@@ -825,7 +818,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', target, "Rock Polish", source);
 		},
-		secondary: false,
+		secondary: null,
 		target: "self",
 		type: "Normal",
 		zMoveEffect: 'clearnegativeboost',
@@ -931,7 +924,7 @@ exports.BattleMovedex = {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
 		},
-		secondary: false,
+		secondary: null,
 		target: "self",
 		type: "Normal",
 		zMoveEffect: 'clearnegativeboost',
@@ -958,7 +951,7 @@ exports.BattleMovedex = {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
 		},
-		secondary: false,
+		secondary: null,
 		target: "self",
 		type: "Fairy",
 		zMoveEffect: 'clearnegativeboost',
@@ -985,7 +978,7 @@ exports.BattleMovedex = {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
 		},
-		secondary: false,
+		secondary: null,
 		target: "self",
 		type: "Grass",
 		zMoveEffect: 'clearnegativeboost',
@@ -1031,7 +1024,7 @@ exports.BattleMovedex = {
 				}
 			}
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Bug",
 		zMovePower: 120,
@@ -1078,7 +1071,7 @@ exports.BattleMovedex = {
 				}
 			}
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Flying",
 		zMovePower: 120,
@@ -1123,7 +1116,7 @@ exports.BattleMovedex = {
 				}
 			}
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Fire",
 		zMovePower: 120,
@@ -1198,6 +1191,30 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Tough",
 	},
+	"leechseed": {
+		inherit: true,
+		effect: {
+			onStart(target) {
+				if (target.hasType('Grass')) { 
+					target.removeVolatile('leechseed'); 
+				} else { 
+					this.add('-start', target, 'move: Leech Seed'); 
+				}
+			},
+			onResidualOrder: 8,
+			onResidual(pokemon) {
+				let target = this.effectData.source.side.active[pokemon.volatiles['leechseed'].sourcePosition];
+				if (!target || target.fainted || target.hp <= 0) {
+					this.debug('Nothing to leech into');
+					return;
+				}
+				let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
+				if (damage) {
+					this.heal(damage, target, pokemon);
+				}
+			},
+		},
+	},
 	"dragonrage": {
 		num: 82,
 		accuracy: 100,
@@ -1214,7 +1231,7 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Dragon",
 		zMovePower: 100,
@@ -1236,7 +1253,7 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Normal",
 		zMovePower: 100,
@@ -1258,7 +1275,7 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Psychic",
 		zMovePower: 100,
@@ -1282,7 +1299,7 @@ exports.BattleMovedex = {
 			mirror: 1
 		},
 		multihit: 2,
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Steel",
 		zMovePower: 100,
@@ -1303,7 +1320,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Sunny Day", target);
 		},
 		weather: 'shadowsky',
-		secondary: false,
+		secondary: null,
 		target: "all",
 		type: "Ghost",
 		zMoveBoost: {
@@ -1325,7 +1342,7 @@ exports.BattleMovedex = {
 			this.add('-anim', target, "Tailwind", source);
 		},
 		weather: 'aircurrent',
-		secondary: false,
+		secondary: null,
 		target: "all",
 		type: "Flying",
 		zMoveBoost: {
@@ -1406,7 +1423,7 @@ exports.BattleMovedex = {
 					break;
 			}
 		},
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Normal",
 		zMovePower: 160,
@@ -1452,7 +1469,7 @@ exports.BattleMovedex = {
 				this.add('-fieldend', 'move: Trick Room');
 			},
 		},
-		secondary: false,
+		secondary: null,
 		target: "all",
 		type: "Psychic",
 		zMoveBoost: {
@@ -1501,7 +1518,7 @@ exports.BattleMovedex = {
 				this.add('-fieldend', 'move: Magic Room', '[of] ' + this.effectData.source);
 			},
 		},
-		secondary: false,
+		secondary: null,
 		target: "all",
 		type: "Psychic",
 		zMoveBoost: {
@@ -1548,7 +1565,7 @@ exports.BattleMovedex = {
 				this.add('-fieldend', 'move: Wonder Room');
 			},
 		},
-		secondary: false,
+		secondary: null,
 		target: "all",
 		type: "Psychic",
 		zMoveBoost: {spd: 1},
@@ -1597,7 +1614,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		multihit: [2, 5],
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Fighting",
 		zMovePower: 100,
@@ -1616,7 +1633,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		multihit: [2, 5],
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Steel",
 		zMovePower: 100,
@@ -1635,7 +1652,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		multihit: [2, 5],
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Poison",
 		zMovePower: 100,
@@ -1654,7 +1671,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		multihit: [2, 5],
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Water",
 		zMovePower: 100,
@@ -1701,7 +1718,7 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1,
 		},
-		secondary: false,
+		secondary: null,
 		onAfterHit: function(target, source) {
 			this.field.removePseudoWeather('trickroom');
 			this.field.removePseudoWeather('magicroom');
@@ -1731,7 +1748,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		recoil: [1, 2],
-		secondary: false,
+		secondary: null,
 		target: "normal",
 		type: "Electric",
 		zMovePower: 200,
@@ -1765,15 +1782,17 @@ exports.BattleMovedex = {
 			},
 			onSwitchIn: function (pokemon) {
 				if (!pokemon.isGrounded()) return;
-				if (!pokemon.runImmunity('Poison')) return;
-				if (!pokemon.hasItem('safetysocks')) return;
 				if (pokemon.hasType('Poison')) {
 					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
 					pokemon.side.removeSideCondition('toxicspikes');
-				} else if (this.effectData.layers >= 2) {
-					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
 				} else {
-					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+					if (!pokemon.runImmunity('Poison')) return;
+					if (!pokemon.hasItem('safetysocks')) return;
+					if (this.effectData.layers >= 2) {
+						pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
+					} else {
+						pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+					}
 				}
 			},
 		},
@@ -1854,8 +1873,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 85,
 		category: "Physical",
-		desc: "Has a 10% chance to paralyze the target and a 10% chance to flinch it.",
-		shortDesc: "10% chance to paralyze. 10% chance to flinch.",
+		desc: "Has a 20% chance to paralyze the target.",
+		shortDesc: "20% chance to paralyze.",
 		id: "thunderfang",
 		name: "Thunder Fang",
 		pp: 10,
@@ -1875,8 +1894,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 85,
 		category: "Physical",
-		desc: "Has a 10% chance to freeze the target and a 10% chance to flinch it.",
-		shortDesc: "10% chance to freeze. 10% chance to flinch.",
+		desc: "Has a 20% chance to freeze the target.",
+		shortDesc: "20% chance to freeze.",
 		id: "icefang",
 		isViable: true,
 		name: "Ice Fang",

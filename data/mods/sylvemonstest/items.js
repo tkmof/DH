@@ -19,7 +19,11 @@ exports.BattleItems = {
 		},
 		onTakeItem: false,
 		onStart: function (pokemon) {
-			this.add('-item', pokemon, 'Reverse Core');
+			this.add('-item', pokemon, pokemon.getItem());
+		},
+		onModifyMovePriority: -5,
+		onSourceModifyMove(move) {
+			move.ignoreImmunity = true;
 		},
 		onEffectiveness: function(typeMod, target, type, move) {
 				if (move && !this.getImmunity(move, type)) return 1;
@@ -195,8 +199,7 @@ exports.BattleItems = {
 		onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Rage Candy Bar');
 			if (pokemon.baseTemplate.baseSpecies === 'Darmanitan') {
-				this.add('-formechange', pokemon, 'Darmanitan-Zen', '[msg]');
-				pokemon.formeChange("Darmanitan-Zen");
+				pokemon.addVolatile('zenmode');
 			}
 		},
 		fling: {
@@ -262,11 +265,10 @@ exports.BattleItems = {
 		},
 		onUpdate: function(pokemon) {
 			let activate = false;
-			let boosts = {};
 			for (let i in pokemon.boosts) {
 				if (pokemon.boosts[i] < 0) {
 					activate = true;
-					boosts[i] = -boosts[i];
+					pokemon.boosts[i] = -pokemon.boosts[i];
 				}
 			}
 			if (activate && pokemon.useItem()) {
@@ -295,7 +297,32 @@ exports.BattleItems = {
 		onAfterDamage: function(damage, target, source, effect) {
 			if (effect && target.useItem()) {
 				this.add('-item', target, 'Mimic Orb');
-				this.useMove('Mimic', target);
+				let move = this.getMove('mimic');
+				if (source.moves.indexOf('mimic') >= 0){
+					this.useMove('Mimic', target);
+					target.moveSlots.push({
+						move: move.name,
+						id: move.id,
+						pp: move.pp,
+						maxpp: move.pp,
+						target: move.target,
+						disabled: false,
+						used: false,
+						virtual: true,
+					});
+				} else {
+					target.moveSlots.push({
+						move: move.name,
+						id: move.id,
+						pp: move.pp,
+						maxpp: move.pp,
+						target: move.target,
+						disabled: false,
+						used: false,
+						virtual: true,
+					});
+					this.useMove('Mimic', target);
+				}
 			}
 		},
 		desc: "When held, the first move that the holder is targeted with gets added to this Pokemon's moveset until switched out. Displays the same message as Mimic does when activated.",

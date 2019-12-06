@@ -42,6 +42,8 @@ export class Tools {
 			text = text.id;
 		} else if (text && text.userid) {
 			text = text.userid;
+		} else if (text && text.roomid) {
+			text = text.roomid;
 		}
 		if (typeof text !== 'string' && typeof text !== 'number') return '';
 		return ('' + text).toLowerCase().replace(/[^a-z0-9]+/g, '') as ID;
@@ -94,7 +96,7 @@ export class BasicEffect implements EffectData {
 	 * Is this item/move/ability/pokemon unreleased? True if there's
 	 * no known way to get access to it without cheating.
 	 */
-	isUnreleased: boolean;
+	isUnreleased: boolean | 'Past';
 	/**
 	 * A shortened form of the description of this effect.
 	 * Not all effects have this.
@@ -118,9 +120,6 @@ export class BasicEffect implements EffectData {
 	status?: ID;
 	/** The weather that the effect may cause. */
 	weather?: ID;
-	/** HP that the effect may drain. */
-	drain?: [number, number];
-	flags: AnyObject;
 	sourceEffect: string;
 
 	constructor(data: AnyObject, ...moreData: (AnyObject | null)[]) {
@@ -143,8 +142,6 @@ export class BasicEffect implements EffectData {
 		this.affectsFainted = !!data.affectsFainted;
 		this.status = data.status as ID || undefined;
 		this.weather = data.weather as ID || undefined;
-		this.drain = data.drain || undefined;
-		this.flags = data.flags || {};
 		this.sourceEffect = data.sourceEffect || '';
 	}
 
@@ -163,28 +160,41 @@ export type ComplexTeamBan = ComplexBan;
  * - '-[thing]' or '-[category]:[thing]' ban a thing
  * - '+[thing]' or '+[category]:[thing]' allow a thing (override a ban)
  * [category] is one of: item, move, ability, species, basespecies
+ *
+ * The value is the name of the parent rule (blank for the active format).
  */
-export class RuleTable extends Map {
+export class RuleTable extends Map<string, string> {
 	complexBans: ComplexBan[];
 	complexTeamBans: ComplexTeamBan[];
 	// tslint:disable-next-line:ban-types
 	checkLearnset: [Function, string] | null;
+	timer: [Partial<GameTimerSettings>, string] | null;
 
 	constructor() {
 		super();
 		this.complexBans = [];
 		this.complexTeamBans = [];
 		this.checkLearnset = null;
+		this.timer = null;
 	}
 
-	check(thing: string, setHas: {[id: string]: true} | null = null): string {
+	isBanned(thing: string) {
+		if (this.has(`+${thing}`)) return false;
+		return this.has(`-${thing}`);
+	}
+
+	check(thing: string, setHas: {[id: string]: true} | null = null) {
+		if (this.has(`+${thing}`)) return '';
 		if (setHas) setHas[thing] = true;
 		return this.getReason(`-${thing}`);
 	}
 
-	getReason(key: string): string {
+	getReason(key: string): string | null {
 		const source = this.get(key);
-		if (source === undefined) return '';
+		if (source === undefined) return null;
+		if (key === '-nonexistent' || key.startsWith('obtainable')) {
+			return 'not obtainable';
+		}
 		return source ? `banned by ${source}` : `banned`;
 	}
 
@@ -263,15 +273,8 @@ export class Format extends BasicEffect implements Readonly<BasicEffect & Format
 	readonly teamLength?: {battle?: number, validate?: [number, number]};
 	/** An optional function that runs at the start of a battle. */
 	readonly onBegin?: (this: Battle) => void;
-	/**
-	 * If no team is selected, this format can generate a random team
-	 * for the player.
-	 */
-	readonly canUseRandomTeam: boolean;
-	/** Pokemon must be obtained from Gen 6 or later. */
-	readonly requirePentagon: boolean;
-	/** Pokemon must be obtained from Gen 7 or later. */
-	readonly requirePlus: boolean;
+	/** Pokemon must be obtained from this generation or later. */
+	readonly minSourceGen?: number;
 	/**
 	 * Maximum possible level pokemon you can bring. Note that this is
 	 * still 100 in VGC, because you can bring level 100 pokemon,
@@ -320,9 +323,7 @@ export class Format extends BasicEffect implements Readonly<BasicEffect & Format
 		this.ruleTable = null;
 		this.teamLength = data.teamLength || undefined;
 		this.onBegin = data.onBegin || undefined;
-		this.canUseRandomTeam = !!data.canUseRandomTeam;
-		this.requirePentagon = !!data.requirePentagon;
-		this.requirePlus = !!data.requirePlus;
+		this.minSourceGen = data.minSourceGen || undefined;
 		this.maxLevel = data.maxLevel || 100;
 		this.defaultLevel = data.defaultLevel || this.maxLevel;
 		this.forcedLevel = data.forcedLevel || undefined;
@@ -397,7 +398,7 @@ export class Item extends BasicEffect implements Readonly<BasicEffect & ItemData
 	 * Note that these are the full names, e.g. 'Mimikyu-Busted'
 	 * undefined, if not a species-specific Z crystal
 	 */
-	readonly zMoveUser?: string[];
+	readonly itemUser?: string[];
 	/** Is this item a Berry? */
 	readonly isBerry: boolean;
 	/** Whether or not this item ignores the Klutz ability. */
@@ -406,6 +407,8 @@ export class Item extends BasicEffect implements Readonly<BasicEffect & ItemData
 	readonly onPlate?: string;
 	/** Is this item a Gem? */
 	readonly isGem: boolean;
+	/** Is this item a Pokeball? */
+	readonly isPokeball: boolean;
 
 	constructor(data: AnyObject, ...moreData: (AnyObject | null)[]) {
 		super(data, ...moreData);
@@ -421,11 +424,12 @@ export class Item extends BasicEffect implements Readonly<BasicEffect & ItemData
 		this.zMove = data.zMove || undefined;
 		this.zMoveType = data.zMoveType || undefined;
 		this.zMoveFrom = data.zMoveFrom || undefined;
-		this.zMoveUser = data.zMoveUser || undefined;
+		this.itemUser = data.itemUser || undefined;
 		this.isBerry = !!data.isBerry;
 		this.ignoreKlutz = !!data.ignoreKlutz;
 		this.onPlate = data.onPlate || undefined;
 		this.isGem = !!data.isGem;
+		this.isPokeball = !!data.isPokeball;
 
 		if (!this.gen) {
 			if (this.num >= 689) {
@@ -468,7 +472,9 @@ export class Ability extends BasicEffect implements Readonly<BasicEffect & Abili
 		this.rating = data.rating!;
 
 		if (!this.gen) {
-			if (this.num >= 192) {
+			if (this.num >= 234) {
+				this.gen = 8;
+			} else if (this.num >= 192) {
 				this.gen = 7;
 			} else if (this.num >= 165) {
 				this.gen = 6;
@@ -519,12 +525,6 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	 */
 	readonly otherFormes?: string[];
 	/**
-	 * Forme letter. One-letter version of the forme name. Usually the
-	 * first letter of the forme, but not always - e.g. Rotom-S is
-	 * Rotom-Fan because Rotom-F is Rotom-Frost.
-	 */
-	readonly formeLetter: string;
-	/**
 	 * Sprite ID. Basically the same as ID, but with a dash between
 	 * species and forme.
 	 */
@@ -536,19 +536,11 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	/** Added type (used in OMs). */
 	readonly addedType?: string;
 	/** Pre-evolution. '' if nothing evolves into this Pokemon. */
-	readonly prevo: string;
-	/**
-	 * Singles Tier. The Pokemon's location in the Smogon tier system.
-	 * Do not use for LC bans.
-	 */
-	readonly tier: string;
-	/**
-	 * Doubles Tier. The Pokemon's location in the Smogon doubles tier system.
-	 * Do not use for LC bans.
-	 */
-	readonly doublesTier: string;
+	readonly prevo: ID;
 	/** Evolutions. Array because many Pokemon have multiple evolutions. */
-	readonly evos: string[];
+	readonly evos: ID[];
+	readonly evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold' | 'other';
+	readonly evoMove?: string;
 	/** Evolution level. falsy if doesn't evolve. */
 	readonly evoLevel?: number;
 	/** Is NFE? True if this Pokemon can evolve (Mega evolution doesn't count). */
@@ -562,46 +554,73 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly gender: GenderName;
 	/** Gender ratio. Should add up to 1 unless genderless. */
 	readonly genderRatio: {M: number, F: number};
+	/** Base stats. */
+	readonly baseStats: StatsTable;
+	/** Max HP. Overrides usual HP calculations (for Shedinja). */
+	readonly maxHP?: number;
+	/** Weight (in kg). Not valid for OMs; use weighthg / 10 instead. */
+	readonly weightkg: number;
+	/** Weight (in integer multiples of 0.1kg). */
+	readonly weighthg: number;
+	/** Height (in m). */
+	readonly heightm: number;
+	/** Color. */
+	readonly color: string;
+	/** Does this Pokemon have an unreleased hidden ability? */
+	readonly unreleasedHidden: boolean | 'Past';
+	/**
+	 * Is it only possible to get the hidden ability on a male pokemon?
+	 * This is mainly relevant to Gen 5.
+	 */
+	readonly maleOnlyHidden: boolean;
+	/** True if a pokemon is mega. */
+	readonly isMega?: boolean;
+	/** True if a pokemon is primal. */
+	readonly isPrimal?: boolean;
+	/** Name of its Gigantamax move, if a pokemon is gigantamax. */
+	readonly isGigantamax?: string;
+	/** True if a pokemon is a forme that is only accessible in battle. */
+	readonly battleOnly?: boolean;
 	/** Required item. Do not use this directly; see requiredItems. */
 	readonly requiredItem?: string;
+	/** Required move. Move required to use this forme in-battle. */
+	readonly requiredMove?: string;
+	/** Required ability. Ability required to use this forme in-battle. */
+	readonly requiredAbility?: string;
 	/**
 	 * Required items. Items required to be in this forme, e.g. a mega
 	 * stone, or Griseous Orb. Array because Arceus formes can hold
 	 * either a Plate or a Z-Crystal.
 	 */
 	readonly requiredItems?: string[];
-	/** Base stats. */
-	readonly baseStats: StatsTable;
-	/** Weight (in kg). */
-	readonly weightkg: number;
-	/** Height (in m). */
-	readonly heightm: number;
-	/** Color. */
-	readonly color: string;
-	/** Does this Pokemon have an unreleased hidden ability? */
-	readonly unreleasedHidden: boolean;
-	/**
-	 * Is it only possible to get the hidden ability on a male pokemon?
-	 * This is mainly relevant to Gen 5.
-	 */
-	readonly maleOnlyHidden: boolean;
-	/** Max HP. Used in the battle engine. */
-	readonly maxHP?: number;
+
 	/**
 	 * Keeps track of exactly how a pokemon might learn a move, in the
 	 * form moveid:sources[].
 	 */
 	readonly learnset?: {[moveid: string]: MoveSource[]};
+	/** Source of learnsets for Pokemon that lack their own */
+	readonly inheritsLearnsetFrom: ID;
 	/** True if the only way to get this pokemon is from events. */
 	readonly eventOnly: boolean;
 	/** List of event data for each event. */
 	readonly eventPokemon?: EventInfo[] ;
-	/** True if a pokemon is mega. */
-	readonly isMega?: boolean;
-	/** True if a pokemon is primal. */
-	readonly isPrimal?: boolean;
-	/** True if a pokemon is a forme that is only accessible in battle. */
-	readonly battleOnly?: boolean;
+
+	/**
+	 * Singles Tier. The Pokemon's location in the Smogon tier system.
+	 * Do not use for LC bans (usage tier will override LC Uber).
+	 */
+	readonly tier: string;
+	/**
+	 * Doubles Tier. The Pokemon's location in the Smogon doubles tier system.
+	 * Do not use for LC bans (usage tier will override LC Uber).
+	 */
+	readonly doublesTier: string;
+	readonly randomBattleMoves?: readonly ID[];
+	readonly randomDoubleBattleMoves?: readonly ID[];
+	readonly exclusiveMoves?: readonly ID[];
+	readonly comboMoves?: readonly ID[];
+	readonly essentialMove?: ID;
 
 	constructor(data: AnyObject, ...moreData: (AnyObject | null)[]) {
 		super(data, ...moreData);
@@ -616,7 +635,6 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.forme = data.forme || '';
 		this.otherForms = data.otherForms || undefined;
 		this.otherFormes = data.otherFormes || undefined;
-		this.formeLetter = data.formeLetter || '';
 		this.spriteid = data.spriteid ||
 			(toID(this.baseSpecies) + (this.baseSpecies !== this.name ? `-${toID(this.forme)}` : ''));
 		this.abilities = data.abilities || {0: ""};
@@ -626,6 +644,8 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.tier = data.tier || '';
 		this.doublesTier = data.doublesTier || '';
 		this.evos = data.evos || [];
+		this.evoType = data.evoType || undefined;
+		this.evoMove = data.evoMove || undefined;
 		this.evoLevel = data.evoLevel || undefined;
 		this.nfe = !!this.evos.length;
 		this.eggGroups = data.eggGroups || [];
@@ -638,6 +658,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.requiredItems = this.requiredItems || (this.requiredItem ? [this.requiredItem] : undefined);
 		this.baseStats = data.baseStats!;
 		this.weightkg = data.weightkg!;
+		this.weighthg = this.weightkg * 10;
 		this.heightm = data.heightm!;
 		this.color = data.color || '';
 		this.unreleasedHidden = !!data.unreleasedHidden;
@@ -647,10 +668,17 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.eventOnly = !!data.eventOnly;
 		this.eventPokemon = data.eventPokemon || undefined;
 		this.isMega = !!(this.forme && ['Mega', 'Mega-X', 'Mega-Y'].includes(this.forme)) || undefined;
-		this.battleOnly = !!data.battleOnly || !!this.isMega || undefined;
+		this.isGigantamax = data.isGigantamax || undefined;
+		this.battleOnly = !!data.battleOnly || !!this.isMega || !!this.isGigantamax || undefined;
+		this.inheritsLearnsetFrom = data.inheritsLearnsetFrom || undefined;
+		if (this.forme === 'Gmax') {
+			this.inheritsLearnsetFrom = toID(data.baseSpecies);
+		}
 
 		if (!this.gen && this.num >= 1) {
-			if (this.num >= 722 || this.forme.startsWith('Alola')) {
+			if (this.num >= 810 || this.forme.endsWith('Galar') || this.forme === 'Gmax') {
+				this.gen = 8;
+			} else if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
 				this.gen = 7;
 			} else if (this.forme === 'Primal') {
 				this.gen = 6;
@@ -744,10 +772,10 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 	 * move damage.
 	 */
 	readonly defensiveCategory?: MoveCategory;
-	/** Whether or not this move uses the target's boosts. */
+	/** Uses the target's Atk/SpA as the attacking stat, instead of the user's. */
 	readonly useTargetOffensive: boolean;
-	/** Whether or not this move uses the user's boosts. */
-	readonly useSourceDefensive: boolean;
+	/** Use the user's Def/SpD as the attacking stat, instead of Atk/SpA. */
+	readonly useSourceDefensiveAsOffensive: boolean;
 	/** Whether or not this move ignores negative attack boosts. */
 	readonly ignoreNegativeOffensive: boolean;
 	/** Whether or not this move ignores positive defense boosts. */
@@ -767,6 +795,12 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 	readonly noPPBoosts: boolean;
 	/** Is this move a Z-Move? */
 	readonly isZ: boolean | string;
+	/** How many times does this move hit? */
+	readonly multihit?: number | number[];
+	/** Max/G-Max move power */
+	readonly gmaxPower?: number;
+	/** Z-move power */
+	readonly zMovePower?: number;
 	readonly flags: MoveFlags;
 	/** Whether or not the user must switch after using this move. */
 	readonly selfSwitch?: ID | boolean;
@@ -816,7 +850,7 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 		this.category = data.category!;
 		this.defensiveCategory = data.defensiveCategory || undefined;
 		this.useTargetOffensive = !!data.useTargetOffensive;
-		this.useSourceDefensive = !!data.useSourceDefensive;
+		this.useSourceDefensiveAsOffensive = !!data.useSourceDefensiveAsOffensive;
 		this.ignoreNegativeOffensive = !!data.ignoreNegativeOffensive;
 		this.ignorePositiveDefensive = !!data.ignorePositiveDefensive;
 		this.ignoreOffensive = !!data.ignoreOffensive;
@@ -837,8 +871,75 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 		this.stab = data.stab || undefined;
 		this.volatileStatus = typeof data.volatileStatus === 'string' ? (data.volatileStatus as ID) : undefined;
 
+		if (this.category !== 'Status' && !this.gmaxPower) {
+			if (!this.basePower) {
+				this.gmaxPower = 100;
+			} else if (['Fighting', 'Poison'].includes(this.type)) {
+				if (this.basePower >= 150) {
+					this.gmaxPower = 100;
+				} else if (this.basePower >= 110) {
+					this.gmaxPower = 95;
+				} else if (this.basePower >= 75) {
+					this.gmaxPower = 90;
+				} else if (this.basePower >= 65) {
+					this.gmaxPower = 85;
+				} else if (this.basePower >= 55) {
+					this.gmaxPower = 80;
+				} else if (this.basePower >= 45) {
+					this.gmaxPower = 75;
+				} else  {
+					this.gmaxPower = 70;
+				}
+			} else {
+				if (this.basePower >= 150) {
+					this.gmaxPower = 150;
+				} else if (this.basePower >= 110) {
+					this.gmaxPower = 140;
+				} else if (this.basePower >= 75) {
+					this.gmaxPower = 130;
+				} else if (this.basePower >= 65) {
+					this.gmaxPower = 120;
+				} else if (this.basePower >= 55) {
+					this.gmaxPower = 110;
+				} else if (this.basePower >= 45) {
+					this.gmaxPower = 100;
+				} else  {
+					this.gmaxPower = 90;
+				}
+			}
+		}
+		if (this.category !== 'Status' && !this.zMovePower) {
+			let basePower = this.basePower;
+			if (Array.isArray(this.multihit)) basePower *= 3;
+			if (!basePower) {
+				this.zMovePower = 100;
+			} else if (basePower >= 140) {
+				this.zMovePower = 200;
+			} else if (basePower >= 130) {
+				this.zMovePower = 195;
+			} else if (basePower >= 120) {
+				this.zMovePower = 190;
+			} else if (basePower >= 110) {
+				this.zMovePower = 185;
+			} else if (basePower >= 100) {
+				this.zMovePower = 180;
+			} else if (basePower >= 90) {
+				this.zMovePower = 175;
+			} else if (basePower >= 80) {
+				this.zMovePower = 160;
+			} else if (basePower >= 70) {
+				this.zMovePower = 140;
+			} else if (basePower >= 60) {
+				this.zMovePower = 120;
+			} else  {
+				this.zMovePower = 100;
+			}
+		}
+
 		if (!this.gen) {
-			if (this.num >= 622) {
+			if (this.num >= 743) {
+				this.gen = 8;
+			} else if (this.num >= 622) {
 				this.gen = 7;
 			} else if (this.num >= 560) {
 				this.gen = 6;
