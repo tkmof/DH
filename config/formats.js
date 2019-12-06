@@ -390,7 +390,7 @@ exports.Formats = [
 					this.add('-ability', pokemon, 'Adaptability');
 				}
 				if (name === 'reisen' && pokemon.getAbility().id === 'hugepower') {
-					pokemon.setAbility('adaptability');
+					pokemon.setAbility('toughclaws');
 					this.add('-ability', pokemon, 'Tough Claws');
 				}
 				if (name === 'crestfall' && pokemon.getAbility().id === 'magicbounce') {
@@ -418,155 +418,160 @@ exports.Formats = [
 			}
 
 			// Innate effects.
-			if (name === 'ascriptmaster') {
-				pokemon.addVolatile('ascriptinnate', pokemon);
-			}
-			if (name === 'atomicllamas') {
-				pokemon.addVolatile('baddreamsinnate', pokemon);
-			}
-			if (name === 'blastchance') {
-				pokemon.addVolatile('flipside', pokemon);
-			}
-			if (name === 'bondie') {
-				pokemon.addVolatile('crabstance', pokemon);
-			}
-			if (name === 'clefairy') {
-				pokemon.addVolatile('coldsteel', pokemon);
-			}
-			if (name === 'duck') {
-				pokemon.addVolatile('firstblood', pokemon);
-			}
-			if (name === 'eeveegeneral') {
-				this.add('detailschange', pokemon, pokemon.details); //run mega evo animation
-				this.add('-mega', pokemon, 'Eevee', null);
-				for (let i = 0; i < pokemon.stats.length; i++) {
-					pokemon.stats[i] += 50;
-				}
-			}
-			if (name === 'formerhope') {
-				pokemon.addVolatile('cursedbodyinnate', pokemon);
-			}
-			if (name === 'galbia' || name === 'aurora') {
-				this.field.setWeather('sandstorm');
-			}
-			if (name === 'rodan') {
-				pokemon.addVolatile('gonnamakeyousweat', pokemon);
-			}
-			if (name === 'giagantic') {
-				pokemon.addVolatile('deltastreaminnate', pokemon);
-			}
-			if (name === 'hashtag') {
-				this.boost({
-					spe: 1
-				}, pokemon, pokemon, 'innate ability');
-			}
-			if (name === 'haund') {
-				pokemon.addVolatile('prodigy', pokemon);
-			}
-			if (name === 'innovamania' && !pokemon.illusion) {
-				this.boost({
-					atk: 6,
-					def: 6,
-					spa: 6,
-					spd: 6,
-					spe: 6,
-					accuracy: 6
-				}, pokemon, pokemon, 'divine grace');
-			}
-			if (name === 'jackhiggins') {
-				this.setWeather('sunnyday');
-			}
-			if (name === 'lemonade') {
-				pokemon.addVolatile('adaptabilityinnate', pokemon);
-			}
-			if (name === 'manu11') {
-				pokemon.addVolatile('arachnophobia', pokemon);
-			}
-			if (name === 'marshmallon') {
-				this.boost({
-					def: 1
-				}, pokemon, pokemon, 'fur coat innate');
-			}
-			if (name === 'mizuhime' || name === 'kalalokki' || name === 'sweep') {
-				this.setWeather('raindance');
-			}
-			if (name === 'nv') {
-				pokemon.addVolatile('cuteness', pokemon);
-			}
-			if (name === 'pikachuun') {
-				this.boost({
-					spe: 1
-				}, pokemon, pokemon, 'Reisen Cosplay');
-			}
-			if (name === 'qtrx') {
-				pokemon.addVolatile('qtrxinnate', pokemon);
-			}
-			if (name === 'raseri') {
-				this.useMove('hypnosis', pokemon);
-			}
-			if (name === 'rssp1') {
-				pokemon.addVolatile('speedboostinnate', pokemon);
-			}
-			if (name === 'scythernoswiping') {
-				pokemon.addVolatile('mountaineerinnate', pokemon);
-			}
-			if (name === 'sigilyph') {
-				pokemon.addVolatile('samuraijack', pokemon);
-			}
-			if (name === 'sonired') {
-				this.boost({
-					def: -1,
-					spd: -1,
-					atk: 1,
-					spe: 1
-				}, pokemon, pokemon, 'Weak Skin');
-			}
-			if (name === 'snobalt') {
-				pokemon.addVolatile('amityabsorb', pokemon);
-			}
-			if (name === 'spacebass') {
-				pokemon.addVolatile('badtrip', pokemon);
-			}
-			if (name === 'sparktrain') {
-				pokemon.addVolatile('refrigerateinnate', pokemon);
-			}
-			if (name === 'specsmegabeedrill') {
-				pokemon.addVolatile('weed', pokemon);
-			}
-			if (name === 'starmei') {
-				this.useMove('cosmicpower', pokemon);
-			}
-			if (name === 'talkingtree') {
-				this.useMove('synthesis', pokemon);
-				this.useMove('bulkup', pokemon);
-			}
-			if (name === 'teremiare') {
-				pokemon.addVolatile('coinflip', pokemon);
-			}
-			if (name === 'trickster' || name === 'blitzamirin') {
-				let target = pokemon.battle[pokemon.side.id === 'p1' ? 'p2' : 'p1'].active[0];
-				let targetBoosts = {};
-				let sourceBoosts = {};
-				for (let i in target.boosts) {
-					targetBoosts[i] = target.boosts[i];
-					sourceBoosts[i] = pokemon.boosts[i];
-				}
-				target.setBoost(sourceBoosts);
-				pokemon.setBoost(targetBoosts);
-				this.add('-swapboost', pokemon, target);
-			}
-			if (name === 'unfixable') {
-				pokemon.addVolatile('ironbarbsinnate', pokemon);
-			}
-			if (name === 'urkerab') {
-				pokemon.addVolatile('focusenergy', pokemon);
-				this.useMove('magnetrise', pokemon);
-			}
-			if (name === 'uselesstrainer') {
-				pokemon.addVolatile('ninja', pokemon);
-			}
-			if (name === 'winry') {
-				pokemon.addVolatile('hellacute', pokemon);
+			switch(name){
+				case 'ascriptmater':
+					pokemon.addVolatile('ascriptinnate', pokemon);
+					break;
+				case 'atomicllamas':
+					pokemon.addVolatile('baddreamsinnate', pokemon);
+					break;
+				case 'blastchance':
+					pokemon.addVolatile('flipside', pokemon);
+					break;
+				case 'blondie':
+					pokemon.addVolatile('crabstance', pokemon);
+					break;
+				case 'clefairy':
+					pokemon.addVolatile('coldsteel', pokemon);
+					break;
+				case 'duck':
+					pokemon.addVolatile('firstblood', pokemon);
+					break;
+				case 'eeveegeneral':
+					this.add('detailschange', pokemon, pokemon.details); //run mega evo animation
+					this.add('-mega', pokemon, 'Eevee', null);
+					for (let i = 0; i < pokemon.stats.length; i++) {
+						pokemon.stats[i] += 50;
+					}
+					break;
+				case 'formerhope':
+					pokemon.addVolatile('cursedbodyinnate', pokemon);
+					break;
+				case 'galbia':
+				case 'aurora':
+					this.field.setWeather('sandstorm');
+					break;
+				case 'rodan':
+					pokemon.addVolatile('gonnamakeyousweat', pokemon);
+					break;
+				case 'giagantic':
+					pokemon.addVolatile('deltastreaminnate', pokemon);
+					break;
+				case 'hashtag':
+					this.boost({
+						spe: 1
+					}, pokemon, pokemon, 'innate ability');
+					break;
+				case 'haund':
+					pokemon.addVolatile('prodigy', pokemon);
+					break;
+				case 'innovamania': 
+					if (pokemon.illusion) break;
+					this.boost({
+						atk: 6,
+						def: 6,
+						spa: 6,
+						spd: 6,
+						spe: 6,
+						accuracy: 6
+					}, pokemon, pokemon, 'divine grace');
+					break;
+				case 'jackhiggins':
+					this.setWeather('sunnyday');
+					break;
+				case 'lemonade':
+					pokemon.addVolatile('adaptabilityinnate', pokemon);
+					break;
+				case 'manu11':
+					pokemon.addVolatile('arachnophobia', pokemon);
+					break;
+				case 'marshmallon':
+					this.boost({
+						def: 1
+					}, pokemon, pokemon, 'fur coat innate');
+				break;
+				case 'mizuhime': case 'kalalokki': case 'sweep':
+					this.setWeather('raindance');
+					break;
+				case 'nv':
+					pokemon.addVolatile('cuteness', pokemon);
+					break;
+				case 'pikachuun':
+					this.boost({
+						spe: 1
+					}, pokemon, pokemon, 'Reisen Cosplay');
+					break;
+				case 'qtrx':
+					pokemon.addVolatile('qtrxinnate', pokemon);
+					break;
+				case 'raseri':
+					this.useMove('hypnosis', pokemon);
+					break;
+				case 'rssp1':
+					pokemon.addVolatile('speedboostinnate', pokemon);
+					break;
+				case 'scythernoswiping':
+					pokemon.addVolatile('mountaineerinnate', pokemon);
+					break;
+				case 'sigilyph':
+					pokemon.addVolatile('samuraijack', pokemon);
+					break;
+				case 'sonired':
+					this.boost({
+						def: -1,
+						spd: -1,
+						atk: 1,
+						spe: 1
+					}, pokemon, pokemon, 'Weak Skin');
+					break;
+				case 'snobalt':
+					pokemon.addVolatile('amityabsorb', pokemon);
+					break;
+				case 'spacebass':
+					pokemon.addVolatile('badtrip', pokemon);
+					break;
+				case 'sparktrain':
+					pokemon.addVolatile('refrigerateinnate', pokemon);
+					break;
+				case 'specsmegabeedrill':
+					pokemon.addVolatile('weed', pokemon);
+					break;
+				case 'starmei':
+					this.useMove('cosmicpower', pokemon);
+					break;
+				case 'talkingtree':
+					this.useMove('synthesis', pokemon);
+					this.useMove('bulkup', pokemon);
+					break;
+				case 'teremiare':
+					pokemon.addVolatile('coinflip', pokemon);
+					break;
+				case 'trickster'
+				case 'blitzamirin':
+					let target = pokemon.battle[pokemon.side.id === 'p1' ? 'p2' : 'p1'].active[0];
+					let targetBoosts = {};
+					let sourceBoosts = {};
+					for (let i in target.boosts) {
+						targetBoosts[i] = target.boosts[i];
+						sourceBoosts[i] = pokemon.boosts[i];
+					}
+					target.setBoost(sourceBoosts);
+					pokemon.setBoost(targetBoosts);
+					this.add('-swapboost', pokemon, target);
+					break;
+				case 'unfixable':
+					pokemon.addVolatile('ironbarbsinnate', pokemon);
+					break;
+				case 'urkerab':
+					pokemon.addVolatile('focusenergy', pokemon);
+					this.useMove('magnetrise', pokemon);
+					break;
+				case 'uselesstrainer':
+					pokemon.addVolatile('ninja', pokemon);
+					break;
+				case 'winry':
+					pokemon.addVolatile('hellacute', pokemon);
+					break;
 			}
 
 			// Edgy switch-in sentences go here.
@@ -574,573 +579,569 @@ exports.Formats = [
 			let sentences = [];
 			let sentence = '';
 
-			if (name === 'acast') {
-				this.add('c|%Acast|__A wild Castform appeared!__');
-			}
-			if (name === 'ace') {
-				this.add('c|@Ace|Lmaonade');
-			}
-			if (name === 'aelita') {
-				this.add('c|%Aelita|Transfer, Aelita. Scanner, Aelita. Virtualization!');
-			}
-			if (name === 'ajhockeystar') {
-				this.add('c|+ajhockeystar|Here comes the greatest hockey player alive!');
-			}
-			if (name === 'albacore') {
-				this.add('c|@Albacore|do I have to?');
-			}
-			if (name === 'albert') {
-				this.add('c|+Albert|Art is risk.');
-			}
-			if (name === 'always') {
-				sentence = (pokemon.side.foe.active.length && pokemon.side.foe.active[0].hp ? pokemon.side.foe.active[0].name : "... ohh nobody's there...");
-				this.add('c|+Always|Oh it\'s ' + sentence);
-			}
-			if (name === 'am') {
-				this.add('c|+AM|Lucky and Bad');
-			}
-			if (name === 'andy') {
-				this.add('c|%AndrewGoncel|:I');
-			}
-			if (name === 'antemortem') {
-				this.add('c|&antemortem|I Am Here To Oppress Users');
-			}
-			if (name === 'anttya') {
-				this.add('c|+Anttya|Those crits didn\'t even matter');
-			}
-			if (name === 'anty') {
-				this.add('c|+Anty|mhm');
-			}
-			if (name === 'articuno') {
-				this.add('c|%Articuno|Abolish the patriarchy!');
-			}
-			if (name === 'ascriptmaster') {
-				this.add("c|@Ascriptmaster|It's time for a hero to take the stage!");
-			}
-			if (name === 'astara') {
-				this.add('c|%Ast☆arA|I\'d rather take a nap, I hope you won\'t be a petilil shit, Eat some rare candies and get on my level.');
-			}
-			if (name === 'asty') {
-				this.add('c|@Asty|Top kek :^)');
-			}
-			if (name === 'spandan') {
-				this.add('c|~Spandan|o shit waddup!');
-			}
-			if (name === 'classyz') {
-				this.add('c|%ClassyZ|pro tip: if u kill me go straight to hell do not pass go do not collect $200');
-			}
-			if (name === 'flygonerz') {
-				this.add('c|@Flygonerz|The Sand Dweller has arrived');
-			}
-			if (name === 'pieddychomp') {
-				this.add('c|&PI★EddyChomp|Hey guys, watch me KO this guy lmao xaa :)');
-			}
-			if (name === 'thegodofhaxorus') {
-				this.add('c|@The God of Haxorus|Hi! I\'m a **Hax**orus :3');
-			}
-			if (name === 'loominite') {
-				this.add('c|&Loominite|Okay, lets go :I');
-			}
-			if (name === 'charizard8888') {
-				this.add('c|&charizard8888|It\'s **Outragin\' Time !!**');
-			}
-			if (name === 'ransei') {
-				this.add('c|~Ransei|yo');
-			}
-			if (name === 'xprienzo') {
-				this.add('c|⚔XpRienzo ☑-☑|Wait, was I supposed to do something?');
-			}
-			if (name === 'atomicllamas') {
-				this.add('c|&atomicllamas|(celebrate)(dog)(celebrate)');
-			}
-			if (name === 'aurora') {
-				this.add('c|@Aurora|Best of luck to all competitors!');
-			}
-			if (name === 'reisen') {
-				this.add('c|%Reisen|Fite me irl bruh.');
-			}
-			if (name === 'beowulf') {
-				this.add('c|@Beowulf|Grovel peasant, you are in the presence of the RNGesus');
-			}
-			if (name === 'biggie') {
-				sentences = ["Now I'm in the limelight cause I rhyme tight", "HAPPY FEET! WOMBO COMBO!", "You finna mess around and get dunked on"];
-				this.add('c|@biggie|' + sentences[this.random(3)]);
-			}
-			if (name === 'blastchance') {
-				this.add("c|+Blast Chance|MAN BALAMAR");
-			}
-			if (name === 'blitzamirin') {
-				this.add('c|@Blitzamirin|How Can Mirrors Be Real If Our Eyes Aren\'t Real? ╰( ~ ◕ ᗜ ◕ ~ )੭━☆ﾟ.*･｡ﾟ');
-			}
-			if (name === 'bludz') {
-				this.add('c|+bludz|420 blaze it');
-			}
-			if (name === 'bondie') {
-				this.add('c|+Bondie|__(\\/) snip snip (\\/)__');
-			}
-			if (name === 'bottt') {
-				this.add('c|boTTT|Beep, boop');
-			}
-			if (name === 'brandon') {
-				this.add("c|+Brrandon|Life's too short to take it seriously ALL the time.");
-			}
-			if (name === 'bumbadadabum') {
-				this.add('c|@bumbadadabum|Time for card games on motorcycles!');
-				if (pokemon.side.foe.active.length && pokemon.side.foe.active[0].name === 'Scotteh') this.add('c|@bumbadadabum|Also, fuck you Scotteh');
-			}
-			if (name === 'bummer') {
-				this.add("c|&Bummer|Oh hi.");
-			}
-			if (name === 'chaos') {
-				this.add("c|~chaos|I always win");
-			}
-			if (name === 'ciran') {
-				this.add("c|+Ciran|You called?");
-			}
-			if (name === 'clefairy') {
-				this.add('c|+Clefairy|google "dj clefairyfreak" now');
-			}
-			if (name === 'coolstorybrobat') {
-				sentence = [
-					"Time to GET SLAYED", "BRUH!", "Ahem! Gentlemen...", "I spent 6 months training in the mountains for this day!",
-					"Shoutout to all the pear...",
-				][this.random(5)];
-				this.add('c|@CoolStoryBrobat|' + sentence);
-			}
-			if (name === 'crestfall') {
-				this.add('c|%Crestfall|To say that we\'re in love is dangerous');
-			}
-			if (name === 'deathonwings') {
-				this.add('c|+Death on Wings|rof');
-			}
-			if (name === 'dirpz') {
-				this.add('c|+Dirpz|IT\'S A WATER/FAIRY TYPE!!11!');
-			}
-			if (name === 'dmt') {
-				this.add('c|+DMT|DMT');
-			}
-			if (name === 'dreameatergengar') {
-				this.add('c|+Dream Eater Gengar|Goodnight sweet prince.');
-			}
-			if (name === 'duck') {
-				this.add('c|@Duck|Don\'t duck with me!');
-			}
-			if (name === 'e4flint') {
-				this.add('c|+E4 Flint|hf lul');
-			}
-			if (name === 'eeveegeneral') {
-				sentences = ['yo', 'anyone seen goku?'];
-				this.add('c|~Eevee General|' + sentences[this.random(2)]);
-			}
-			if (name === 'eyan') {
-				this.add('c|@Eyan|░░░░░░░░▄▄▄▀▀▀▄▄███▄░░░░░░░░░░░░░░░░░');
-				this.add('c|@Eyan|░░░░░▄▀▀░░░░░░░▐░▀██▌░░░░░░░░░░░░░░░░');
-				this.add('c|@Eyan|░░░▄▀░░░░▄▄███░▌▀▀░▀█░░░░░░░░░░░░░░░░');
-				this.add('c|@Eyan|░░▄█░░▄▀▀▒▒▒▒▒▄▐░░░░█▌░░░░░░░░░░░░░░░ ');
-				this.add('c|@Eyan|░▐█▀▄▀▄▄▄▄▀▀▀▀▌░░░░░▐█▄░░░░░░░░░░░░░░');
-				this.add('c|@Eyan|░▌▄▄▀▀░░░░░░░░▌░░░░▄███████▄░░░░░░░░░');
-				this.add('c|@Eyan|░░░░░░░░░░░░░▐░░░░▐███████████▄░░░░░░');
-				this.add('c|@Eyan|░░░░░le░░░░░░░▐░░░░▐█████████████▄░░░');
-				this.add('c|@Eyan|░░░░toucan░░░░░░▀▄░░░▐██████████████▄');
-				this.add('c|@Eyan|░░░░░░has░░░░░░░░▀▄▄████████████████▄');
-				this.add('c|@Eyan|░░░░░arrived░░░░░░░░░░░░█▀██████░░░░░');
-				this.add('c|@Eyan|WELCOME TO COMPETITIVE TOUCANNING');
-			}
-			if (name === 'feliburn') {
-				this.add('c|@Feliburn|you don\'t go hand to hand with a fighter noob');
-			}
-			if (name === 'fireburn') {
-				this.add('c|+Fireburn|:V');
-			}
-			if (name === 'flyingkebab') {
-				this.add("c|+Flying Kebab|Kebab > Pizza");
-			}
-			if (name === 'formerhope') {
-				this.add('c|@Former Hope|I have Hope');
-			}
-			if (name === 'freeroamer') {
-				this.add('c|%Freeroamer|lol this is a wrap');
-			}
-			if (name === 'frysinger') {
-				this.add("c|+Frysinger|Nice boosts kid.");
-			}
-			if (name === 'fx') {
-				this.add("c|+f(x)|love is 4 wawawawawawawalls");
-			}
-			if (name === 'galbia') {
-				this.add('c|@galbia|(dog)');
-			}
-			if (name === 'galom') {
-				this.add('c|+Galom|To the end.');
-			}
-			if (name === 'rodan') { // don't delete
-				this.add("c|+RODAN|Here I Come, Rougher Than The Rest of 'Em.");
-			}
-			if (name === 'geoffbruedly') {
-				this.add("c|%GeoffBruedly|FOR WINRY");
-			}
-			if (name === 'giagantic') {
-				this.add("c|%Giagantic|e.e");
-			}
-			if (name === 'golui') {
-				this.add("c|+Golui|Golly gee");
-			}
-			if (name === 'goodmorningespeon') {
-				this.add("c|+GoodMorningEspeon|type /part to continue participating in this battle :)");
-			}
-			if (name === 'grimauxiliatrix') {
-				this.add("c|%grimAuxiliatrix|ᕕ( ᐛ )ᕗ");
-			}
-			if (name === 'halite') {
-				this.add('c|@Halite|You’re gonna get haxxed kid :^)');
-			}
-			if (name === 'hannah') {
-				this.add('c|+Hannahh|♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥');
-			}
-			if (name === 'hashtag') {
-				this.add("c|#Hashtag|hey opponent, you get 5 hashtag points if you forfeit right now ;}");
-			}
-			if (name === 'haund') {
-				this.add('c|%Haund|le balanced normal flying bird has arrived');
-			}
-			if (name === 'healndeal') {
-				this.add('c|+HeaLnDeaL|screw clerics');
-			}
-			if (name === 'himynamesl') {
-				this.add('c|@HiMyNamesL|There’s no such thing as winning or losing. There is won and there is lost, there is victory and defeat. There are absolutes. Everything in between is still left to fight for.');
-				this.add('c|@HiMyNamesL|' + pokemon.side.foe.name + ' will have won only when there is no one left to stand against them. Until then, there is only the struggle, because tides do what tides do – they turn.');
-			}
-			if (name === 'hippopotas') {
-				this.add('-message', '@Hippopotas\'s Sand Stream whipped up a sandstorm!');
-			}
-			if (name === 'hollywood') {
-				this.add('c|+hollywood|Kappa');
-			}
-			if (name === 'ih8ih8sn0w') {
-				this.add('c|+ih8ih8sn0w|*sips tea*');
-			}
-			if (name === 'imanalt') {
-				this.add('c|+imanalt|muh bulk');
-			}
-			if (name === 'imas234') {
-				this.add('c|@imas234|hlo');
-			}
-			if (name === 'innovamania') {
-				sentences = ['Don\'t take this seriously', 'These Black Glasses sure look cool', 'Ready for some fun?( ͡° ͜ʖ ͡°)', '( ͡° ͜ʖ ͡°'];
-				this.add('c|@innovamania|' + sentences[this.random(4)]);
-			}
-			if (name === 'iplaytennislol') {
-				this.add('c|%iplaytennislol|KACAW');
-			}
-			if (name === 'iyarito') {
-				this.add('c|+Iyarito|Welp');
-			}
-			if (name === 'jackhiggins') {
-				this.add("c|+Jack Higgins|Ciran was right, fun deserved to be banned");
-			}
-			if (name === 'jasmine') {
-				this.add("c|+Jasmine|I'm still relevant!");
-			}
-			if (name === 'jdarden') {
-				this.add('c|@jdarden|Did someone call for some BALK?');
-			}
-			if (name === 'jetpack') {
-				this.add('c|+Jetpack|You\'ve met with a terrible fate, haven\'t you?');
-			}
-			if (name === 'joim') {
-				let dice = this.random(8);
-				if (dice === 1) {
-					this.add('c|~Joim|░░░░░░░░░░░░▄▐');
-					this.add('c|~Joim|░░░░░░▄▄▄░░▄██▄');
-					this.add('c|~Joim|░░░░░▐▀█▀▌░░░░▀█▄');
-					this.add('c|~Joim|░░░░░▐█▄█▌░░░░░░▀█▄');
-					this.add('c|~Joim|░░░░░░▀▄▀░░░▄▄▄▄▄▀▀');
-					this.add('c|~Joim|░░░░▄▄▄██▀▀▀▀');
-					this.add('c|~Joim|░░░█▀▄▄▄█░▀▀');
-					this.add('c|~Joim|░░░▌░▄▄▄▐▌▀▀▀');
-					this.add('c|~Joim|▄░▐░░░▄▄░█░▀▀ U HAVE BEEN SPOOKED');
-					this.add('c|~Joim|▀█▌░░░▄░▀█▀░▀');
-					this.add('c|~Joim|░░░░░░░▄▄▐▌▄▄ BY THE');
-					this.add('c|~Joim|░░░░░░░▀███▀█░▄');
-					this.add('c|~Joim|░░░░░░▐▌▀▄▀▄▀▐▄ SPOOKY SKILENTON');
-					this.add('c|~Joim|░░░░░░▐▀░░░░░░▐▌');
-					this.add('c|~Joim|░░░░░░█░░░░░░░░█');
-					this.add('c|~Joim|░░░░░▐▌░░░░░░░░░█');
-					this.add('c|~Joim|░░░░░█░░░░░░░░░░▐▌ SEND THIS TO 7 PPL OR SKELINTONS WILL EAT YOU');
-				} else {
-					sentences = [
-						"Finally a good reason to punch a teenager in the face!", "WUBBA LUBBA DUB DUB",
-						"``So here we are again, it's always such a pleasure.``", "My ex-wife still misses me, BUT HER AIM IS GETTING BETTER!",
-						"A man chooses, a slave obeys.", "You're gonna have a bad time.", "Would you kindly let me win?",
-						"I'm sorry, but I only enjoy vintage memes from the early 00's.",
-					];
-					sentence = sentences[this.random(8)];
-					this.add('c|~Joim|' + sentence);
-				}
-			}
-			if (name === 'juanma') {
-				this.add("c|+Juanma|Okay, well, sometimes, science is more art than science, " + pokemon.side.name + ". A lot of people don't get that.");
-			}
-			if (name === 'kalalokki') {
-				this.add('c|+Kalalokki|(•_•)');
-				this.add('c|+Kalalokki|( •_•)>⌐■-■');
-				this.add('c|+Kalalokki|(⌐■_■)');
-			}
-			if (name === 'kidwizard') {
-				this.add('c|+Kid Wizard|Eevee General room mod me.');
-			}
-			if (name === 'layell') {
-				this.add('c|@Layell|Enter stage left');
-			}
-			if (name === 'legitimateusername') {
-				sentence = ["This isn't my fault.", "I'm not sorry."][this.random(2)];
-				this.add('c|@LegitimateUsername|``' + sentence + '``');
-			}
-			if (name === 'lemonade') {
-				this.add('c|+Lemonade|Pasta');
-			}
-			if (name === 'level51') {
-				this.add('c|@Level 51|n_n!');
-			}
-			if (name === 'lj') {
-				this.add('c|%LJDarkrai|Powerfulll');
-			}
-			if (name === 'lyto') {
-				sentences = ["This is divine retribution!", "I will handle this myself!", "Let battle commence!"];
-				this.add('c|@Lyto|' + sentences[this.random(3)]);
-			}
-			if (name === 'macle') {
-				this.add("c|+macle|Follow the Frog Blog");
-			}
-			if (name === 'manu11') {
-				this.add("c|@manu 11|/me is pet by ihateyourpancreas");
-			}
-			if (name === 'marshmallon') {
-				this.add("c|%Marshmallon|Marshtomb be like");
-				this.add("c|%Marshmallon|- He sees you when you're sleeping -");
-				this.add("c|%Marshmallon|- He knows when you're awake -");
-				this.add("c|%Marshmallon|- He knows if you've been bad or good -");
-				this.add("c|%Marshmallon|- So be good for goodness sake -");
-			}
-			if (name === 'mattl') {
-				this.add('c|+MattL|If you strike me down, I shall become more powerful than you can possibly imagine.');
-			}
-			if (name === 'mcmeghan') {
-				this.add("c|&McMeghan|A Game of Odds");
-			}
-			if (name === 'megazard') {
-				this.add('c|+Megazard|New tricks');
-			}
-			if (name === 'mizuhime') {
-				this.add('c|+Mizuhime|Thou Shalt Double Laser From The Edge');
-			}
-			if (name === 'nv') {
-				this.add('c|+nv|Who tf is nv?');
-			}
-			if (name === 'omegaxis') {
-				this.add('c|+Omega-Xis|lol this isn’t even my final form');
-			}
-			if (name === 'orday') {
-				this.add('c|%Orda-Y|❄');
-			}
-			if (name === 'overneat') {
-				this.add('c|+Overneat|tsk, tsk, is going to be funny');
-			}
-			if (name === 'paradise') {
-				this.add('c|%Paradise~|I sexually identify as a hazard setter');
-			}
-			if (name === 'pikachuun') {
-				sentences = ['Reisen is best waifu', 'Hey look I coded myself into the game', 'sup (\'.w.\')'];
-				this.add('c|+Pikachuun|' + sentences[this.random(3)]);
-			}
-			if (name === 'pluviometer') {
-				this.add('c|+pluviometer|p^2laceholder');
-			}
-			if (name === 'qtrx') {
-				sentences = ["cutie are ex", "q-trix", "quarters", "cute T-rex", "Qatari", "random letters", "spammy letters", "asgdf"];
-				this.add("c|@qtrx|omg DONT call me '" + sentences[this.random(8)] + "' pls respect my name its very special!!1!");
-			}
-			if (name === 'quitequiet') {
-				this.add("c|@Quite Quiet|I'll give it a shot.");
-			}
-			if (name === 'raseri') {
-				this.add('c|&Raseri|gg');
-			}
-			if (name === 'raven') {
-				this.add('c|&Raven|Are you ready? Then let the challenge... Begin!');
-			}
-			if (name === 'rekeri') {
-				this.add('c|@rekeri|Get Rekeri\'d :]');
-			}
-			if (name === 'rosiethevenusaur') {
-				sentences = ['!dt party', 'Are you Wifi whitelisted?', 'Read the roomintro!'];
-				this.add('c|@RosieTheVenusaur|' + sentences[this.random(3)]);
-			}
-			if (name === 'rssp1') {
-				this.add('c|+rssp1|Witness the power of the almighty Rufflet!');
-			}
-			if (name === 'sailorcosmos') {
-				this.add("c|+SailorCosmos|Cosmos Prism Power Make Up!");
-			}
-			if (name === 'scotteh') {
-				this.add('c|&Scotteh|─────▄▄████▀█▄');
-				this.add('c|&Scotteh|───▄██████████████████▄');
-				if (pokemon.side.foe.active.length && pokemon.side.foe.active[0].name === 'bumbadadabum') this.add('c|@bumbadadabum|Fuck you Scotteh');
-				this.add('c|&Scotteh|─▄█████.▼.▼.▼.▼.▼.▼.▼');
-			}
-			if (name === 'scpinion') {
-				this.add('c|@scpinion|/me welcomes funbro');
-			}
-			if (name === 'scythernoswiping') {
-				this.add('c|%Scyther NO Swiping|/me prepares to swipe victory');
-			}
-			if (name === 'shrang') {
-				this.add('raw| [15:30] @<b>Scrappie</b>: It is I, the great and powerful shrang, who is superior to you proles in every conceivable way.');
-			}
-			if (name === 'sigilyph') {
-				this.add('c|@Sigilyph|Prepare to feel the mighty power of an exploding star!');
-			}
-			if (name === 'sirdonovan') {
-				this.add('c|&sirDonovan|Oh, a battle? Let me finish my tea and crumpets');
-			}
-			if (name === 'skitty') {
-				this.add('c|@Skitty|\\_$-_-$_/');
-			}
-			if (name === 'snobalt') {
-				this.add('c|+Snobalt|By the power vested in me from the great Lord Tomohawk...');
-			}
-			if (name === 'snowy') {
-				this.add('c|+Snowy|Why do a lot of black people call each other monica?');
-			}
-			if (name === 'solarisfox') {
-				this.add('raw|<div class="chat chatmessage-solarisfox"><small>%</small><b><font color="#2D8F1E"><span class="username" data-name="SolarisFox">SolarisFox</span>:</font></b> <em><marquee behavior="alternate" scrollamount=3 scrolldelay="60" width="108">[Intense vibrating]</marquee></em></div>');
-			}
-			if (name === 'sonired') {
-				this.add('c|+Sonired|~');
-			}
-			if (name === 'spacebass') {
-				this.add('c|@SpaceBass|He aims his good ear best he can towards conversation and sometimes leans in awkward toward your seat');
-				this.add('c|@SpaceBass|And if by chance one feels their space too invaded, then try your best to calmly be discreet');
-				this.add('c|@SpaceBass|Because this septic breathed man that stands before you is a champion from days gone by');
-			}
-			if (name === 'sparktrain') {
-				this.add('c|+sparktrain|hi');
-			}
-			if (name === 'specsmegabeedrill') {
-				this.add('c|+SpecsMegaBeedrill|(◕‿◕✿)');
-			}
-			if (name === 'spy') {
-				sentences = ['curry consumer', 'try to keep up', 'fucking try to knock me down', 'Sometimes I slather myself in vasoline and pretend I\'m a slug', 'I\'m really feeling it!'];
-				this.add('c|+Spy|' + sentences[this.random(5)]);
-			}
-			if (name === 'starmei') {
-				this.add('c|+Starmei|Starmei wins again');
-			}
-			if (name === 'starry') {
-				this.add('c|%starry|oh');
-			}
-			if (name === 'steamroll') {
-				this.add('c|@Steamroll|Banhammer ready!');
-			}
-			if (name === 'sunfished') {
-				this.add('c|+Sunfished|*raptor screeches*');
-			}
-			if (name === 'sweep') {
-				this.add('c|&Sweep|(ninjacat)(beer)');
-			}
-			if (name === 'talkingtree') {
-				this.add('c|+talkingtree|I am Groot n_n');
-			}
-			if (name === 'teg') {
-				this.add("c|+TEG|It's __The__ Eevee General");
-			}
-			if (name === 'temporaryanonymous') {
-				sentences = ['Hey, hey, can I gently scramble your insides (just for laughs)? ``hahahaha``', 'check em', 'If you strike me down, I shall become more powerful than you can possibly imagine! I have a strong deathrattle effect and I cannot be silenced!'];
-				this.add('c|@Temporaryanonymous|' + sentences[this.random(3)]);
-			}
-			if (name === 'teremiare') {
-				this.add('c|%Teremiare|I like to call it skill');
-			}
-			if (name === 'theimmortal') {
-				this.add('c|~The Immortal|Give me my robe, put on my crown!');
-			}
-			if (name === 'tone114') {
-				this.add('c|+TONE114|Haven\'t you heard the new sensation sweeping the nation?');
-			}
-			if (name === 'trickster') {
-				sentences = ["heh….watch out before you get cut on my edge", "AaAaAaAAaAaAAa"];
-				this.add('c|@Trickster|' + sentences[this.random(2)]);
-			}
-			if (name === 'unfixable') {
-				this.add('c|+unfixable|eevee general sucks lol');
-			}
-			if (name === 'urkerab') {
-				this.add('j|urkerab');
-			}
-			if (name === 'uselesstrainer') {
-				sentences = ['huehuehuehue', 'PIZA', 'SPAGUETI', 'RAVIOLI RAVIOLI GIVE ME THE FORMUOLI', 'get ready for PUN-ishment', 'PIU\' RUSPE PER TUTTI, E I MARO\'???'];
-				this.add('c|@useless trainer|' + sentences[this.random(6)]);
-			}
-			if (name === 'vapo') {
-				this.add('c|%Vapo|/me vapes');
-			}
-			if (name === 'vexeniv') {
-				this.add('c|+Vexen IV|The Arcana is the means by which all is revealed.');
-			}
-			if (name === 'winry') {
-				this.add('c|@Winry|fight me irl');
-			}
-			if (name === 'xfix') {
-				if (this.random(2)) {
-					// The classic one
-					const hazards = {
-						stealthrock: 1,
-						spikes: 1,
-						toxicspikes: 1,
-						burnspikes: 1,
-						stickyweb: 1
-					};
-					let hasHazards = false;
-					for (const hazard in hazards) {
-						if (pokemon.side.getSideCondition(hazard)) {
-							hasHazards = true;
-							break;
-						}
-					}
-					if (hasHazards) {
-						this.add('c|+xfix|(no haz... too late)');
+			switch(name) {
+				case 'acast':
+					this.add('c|%Acast|__A wild Castform appeared!__');
+					break;
+				case 'ace':
+					this.add('c|@Ace|Lmaonade');
+					break;
+				case 'aelita':
+					this.add('c|%Aelita|Transfer, Aelita. Scanner, Aelita. Virtualization!');
+					break;
+				case 'ajhockeystar':
+					this.add('c|+ajhockeystar|Here comes the greatest hockey player alive!');
+					break;
+				case 'albacore':
+					this.add('c|@Albacore|do I have to?');
+					break;
+				case 'albert':
+					this.add('c|+Albert|Art is risk.');
+					break;
+				case 'always':
+					sentence = (pokemon.side.foe.active.length && pokemon.side.foe.active[0].hp ? pokemon.side.foe.active[0].name : "... ohh nobody's there...");
+					this.add('c|+Always|Oh it\'s ' + sentence);
+					break;
+				case 'am':
+					this.add('c|+AM|Lucky and Bad');
+					break;
+				case 'andy':
+					this.add('c|%AndrewGoncel|:I');
+					break;
+				case 'antemortem':
+					this.add('c|&antemortem|I Am Here To Oppress Users');
+					break;
+				case 'anttya':
+					this.add('c|+Anttya|Those crits didn\'t even matter');
+					break;
+				case 'anty':
+					this.add('c|+Anty|mhm');
+					break;
+				case 'articuno':
+					this.add('c|%Articuno|Abolish the patriarchy!');
+					break;
+				case 'ascriptmaster':
+					this.add("c|@Ascriptmaster|It's time for a hero to take the stage!");
+					break;
+				case 'astara':
+					this.add('c|%Ast☆arA|I\'d rather take a nap, I hope you won\'t be a petilil shit, Eat some rare candies and get on my level.');
+					break;
+				case 'asty':
+					this.add('c|@Asty|Top kek :^)');
+					break;
+				case 'spandan':
+					this.add('c|~Spandan|o shit waddup!');
+					break;
+				case 'classyz':
+					this.add('c|%ClassyZ|pro tip: if u kill me go straight to hell do not pass go do not collect $200');
+					break;
+				case 'flygonerz':
+					this.add('c|@Flygonerz|The Sand Dweller has arrived');
+					break;
+				case 'pieddychomp':
+					this.add('c|&PI★EddyChomp|Hey guys, watch me KO this guy lmao xaa :)');
+					break;
+				case 'thegodofhaxorus':
+					this.add('c|@The God of Haxorus|Hi! I\'m a **Hax**orus :3');
+					break;
+				case 'loominite':
+					this.add('c|&Loominite|Okay, lets go :I');
+					break;
+				case 'charizard8888':
+					this.add('c|&charizard8888|It\'s **Outragin\' Time !!**');
+					break;
+				case 'ransei':
+					this.add('c|~Ransei|yo');
+					break;
+				case 'xprienzo':
+					this.add('c|⚔XpRienzo ☑-☑|Wait, was I supposed to do something?');
+					break;
+				case 'atomicllamas':
+					this.add('c|&atomicllamas|(celebrate)(dog)(celebrate)');
+					break;
+				case 'aurora':
+					this.add('c|@Aurora|Best of luck to all competitors!');
+					break;
+				case 'reisen':
+					this.add('c|%Reisen|Fite me irl bruh.');
+					break;
+				case 'beowulf':
+					this.add('c|@Beowulf|Grovel peasant, you are in the presence of the RNGesus');
+					break;
+				case 'biggie':
+					sentences = ["Now I'm in the limelight cause I rhyme tight", "HAPPY FEET! WOMBO COMBO!", "You finna mess around and get dunked on"];
+					this.add('c|@biggie|' + sentences[this.random(3)]);
+					break;
+				case 'blastchance':
+					this.add("c|+Blast Chance|MAN BALAMAR");
+					break;
+				case 'blitzamirin':
+					this.add('c|@Blitzamirin|How Can Mirrors Be Real If Our Eyes Aren\'t Real? ╰( ~ ◕ ᗜ ◕ ~ )੭━☆ﾟ.*･｡ﾟ');
+					break;
+				case 'bludz':
+					this.add('c|+bludz|420 blaze it');
+					break;
+				case 'bondie':
+					this.add('c|+Bondie|__(\\/) snip snip (\\/)__');
+					break;
+				case 'bottt':
+					this.add('c|boTTT|Beep, boop');
+					break;
+				case 'brandon':
+					this.add("c|+Brrandon|Life's too short to take it seriously ALL the time.");
+					break;
+				case 'bumbadadabum':
+					this.add('c|@bumbadadabum|Time for card games on motorcycles!');
+					if (pokemon.side.foe.active.length && pokemon.side.foe.active[0].name === 'Scotteh') this.add('c|@bumbadadabum|Also, fuck you Scotteh');
+					break;
+				case 'bummer':
+					this.add("c|&Bummer|Oh hi.");
+					break;
+				case 'chaos':
+					this.add("c|~chaos|I always win");
+					break;
+				case 'ciran':
+					this.add("c|+Ciran|You called?");
+					break;
+				case 'clefairy':
+					this.add('c|+Clefairy|google "dj clefairyfreak" now');
+					break;
+				case 'coolstorybrobat':
+					sentence = [
+							"Time to GET SLAYED", "BRUH!", "Ahem! Gentlemen...", "I spent 6 months training in the mountains for this day!",
+							"Shoutout to all the pear...",
+					][this.random(5)];
+					this.add('c|@CoolStoryBrobat|' + sentence);
+					break;
+				case 'crestfall':
+					this.add('c|%Crestfall|To say that we\'re in love is dangerous');
+					break;
+				case 'deathonwings':
+					this.add('c|+Death on Wings|rof');
+					break;
+				case 'dirpz':
+					this.add('c|+Dirpz|IT\'S A WATER/FAIRY TYPE!!11!');
+					break;
+				case 'dmt':
+					this.add('c|+DMT|DMT');
+					break;
+				case 'dreameatergengar':
+					this.add('c|+Dream Eater Gengar|Goodnight sweet prince.');
+					break;
+				case 'duck':
+					this.add('c|@Duck|Don\'t duck with me!');
+					break;
+				case 'e4flint':
+					this.add('c|+E4 Flint|hf lul');
+					break;
+				case 'eeveegeneral':
+					sentences = ['yo', 'anyone seen goku?'];
+					this.add('c|~Eevee General|' + sentences[this.random(2)]);
+					break;
+				case 'eyan':
+					this.add('c|@Eyan|░░░░░░░░▄▄▄▀▀▀▄▄███▄░░░░░░░░░░░░░░░░░');
+					this.add('c|@Eyan|░░░░░▄▀▀░░░░░░░▐░▀██▌░░░░░░░░░░░░░░░░');
+					this.add('c|@Eyan|░░░▄▀░░░░▄▄███░▌▀▀░▀█░░░░░░░░░░░░░░░░');
+					this.add('c|@Eyan|░░▄█░░▄▀▀▒▒▒▒▒▄▐░░░░█▌░░░░░░░░░░░░░░░ ');
+					this.add('c|@Eyan|░▐█▀▄▀▄▄▄▄▀▀▀▀▌░░░░░▐█▄░░░░░░░░░░░░░░');
+					this.add('c|@Eyan|░▌▄▄▀▀░░░░░░░░▌░░░░▄███████▄░░░░░░░░░');
+					this.add('c|@Eyan|░░░░░░░░░░░░░▐░░░░▐███████████▄░░░░░░');
+					this.add('c|@Eyan|░░░░░le░░░░░░░▐░░░░▐█████████████▄░░░');
+					this.add('c|@Eyan|░░░░toucan░░░░░░▀▄░░░▐██████████████▄');
+					this.add('c|@Eyan|░░░░░░has░░░░░░░░▀▄▄████████████████▄');
+					this.add('c|@Eyan|░░░░░arrived░░░░░░░░░░░░█▀██████░░░░░');
+					this.add('c|@Eyan|WELCOME TO COMPETITIVE TOUCANNING');
+					break;
+				case 'feliburn':
+					this.add('c|@Feliburn|you don\'t go hand to hand with a fighter noob');
+					break;
+				case 'fireburn':
+					this.add('c|+Fireburn|:V');
+					break;
+				case 'flyingkebab':
+					this.add("c|+Flying Kebab|Kebab > Pizza");
+					break;
+				case 'formerhope':
+					this.add('c|@Former Hope|I have Hope');
+					break;
+				case 'freeroamer':
+					this.add('c|%Freeroamer|lol this is a wrap');
+					break;
+				case 'frysinger':
+					this.add("c|+Frysinger|Nice boosts kid.");
+					break;
+				case 'fx':
+					this.add("c|+f(x)|love is 4 wawawawawawawalls");
+					break;
+				case 'galbia':
+					this.add('c|@galbia|(dog)');
+					break;
+				case 'galom':
+					this.add('c|+Galom|To the end.');
+					break;
+				case 'rodan': // don't delete
+					this.add("c|+RODAN|Here I Come, Rougher Than The Rest of 'Em.");
+					break;
+				case 'geoffbruedly':
+					this.add("c|%GeoffBruedly|FOR WINRY");
+					break;
+				case 'giagantic':
+					this.add("c|%Giagantic|e.e");
+					break;
+				case 'golui':
+					this.add("c|+Golui|Golly gee");
+					break;
+				case 'goodmorningespeon':
+					this.add("c|+GoodMorningEspeon|type /part to continue participating in this battle :)");
+					break;
+				case 'grimauxiliatrix':
+					this.add("c|%grimAuxiliatrix|ᕕ( ᐛ )ᕗ");
+					break;
+				case 'halite':
+					this.add('c|@Halite|You’re gonna get haxxed kid :^)');
+					break;
+				case 'hannah':
+					this.add('c|+Hannahh|♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥');
+					break;
+				case 'hashtag':
+					this.add("c|#Hashtag|hey opponent, you get 5 hashtag points if you forfeit right now ;}");
+					break;
+				case 'haund':
+					this.add('c|%Haund|le balanced normal flying bird has arrived');
+					break;
+				case 'healndeal':
+					this.add('c|+HeaLnDeaL|screw clerics');
+					break;
+				case 'himynamesl':
+					this.add('c|@HiMyNamesL|There’s no such thing as winning or losing. There is won and there is lost, there is victory and defeat. There are absolutes. Everything in between is still left to fight for.');
+					this.add('c|@HiMyNamesL|' + pokemon.side.foe.name + ' will have won only when there is no one left to stand against them. Until then, there is only the struggle, because tides do what tides do – they turn.');
+					break;
+				case 'hippopotas':
+					this.add('-message', '@Hippopotas\'s Sand Stream whipped up a sandstorm!');
+					break;
+				case 'hollywood':
+					this.add('c|+hollywood|Kappa');
+					break;
+				case 'ih8ih8sn0w':
+					this.add('c|+ih8ih8sn0w|*sips tea*');
+					break;
+				case 'imanalt':
+					this.add('c|+imanalt|muh bulk');
+					break;
+				case 'imas234':
+					this.add('c|@imas234|hlo');
+					break;
+				case 'innovamania':
+					sentences = ['Don\'t take this seriously', 'These Black Glasses sure look cool', 'Ready for some fun?( ͡° ͜ʖ ͡°)', '( ͡° ͜ʖ ͡°'];
+					this.add('c|@innovamania|' + sentences[this.random(4)]);
+					break;
+				case 'iplaytennislol':
+					this.add('c|%iplaytennislol|KACAW');
+					break;
+				case 'iyarito':
+					this.add('c|+Iyarito|Welp');
+					break;
+				case 'jackhiggins':
+					this.add("c|+Jack Higgins|Ciran was right, fun deserved to be banned");
+					break;
+				case 'jasmine':
+					this.add("c|+Jasmine|I'm still relevant!");
+					break;
+				case 'jdarden':
+					this.add('c|@jdarden|Did someone call for some BALK?');
+					break;
+				case 'jetpack':
+					this.add('c|+Jetpack|You\'ve met with a terrible fate, haven\'t you?');
+					break;
+				case 'joim':
+					let dice = this.random(8);
+					if (dice === 1) {
+							this.add('c|~Joim|░░░░░░░░░░░░▄▐');
+							this.add('c|~Joim|░░░░░░▄▄▄░░▄██▄');
+							this.add('c|~Joim|░░░░░▐▀█▀▌░░░░▀█▄');
+							this.add('c|~Joim|░░░░░▐█▄█▌░░░░░░▀█▄');
+							this.add('c|~Joim|░░░░░░▀▄▀░░░▄▄▄▄▄▀▀');
+							this.add('c|~Joim|░░░░▄▄▄██▀▀▀▀');
+							this.add('c|~Joim|░░░█▀▄▄▄█░▀▀');
+							this.add('c|~Joim|░░░▌░▄▄▄▐▌▀▀▀');
+							this.add('c|~Joim|▄░▐░░░▄▄░█░▀▀ U HAVE BEEN SPOOKED');
+							this.add('c|~Joim|▀█▌░░░▄░▀█▀░▀');
+							this.add('c|~Joim|░░░░░░░▄▄▐▌▄▄ BY THE');
+							this.add('c|~Joim|░░░░░░░▀███▀█░▄');
+							this.add('c|~Joim|░░░░░░▐▌▀▄▀▄▀▐▄ SPOOKY SKILENTON');
+							this.add('c|~Joim|░░░░░░▐▀░░░░░░▐▌');
+							this.add('c|~Joim|░░░░░░█░░░░░░░░█');
+							this.add('c|~Joim|░░░░░▐▌░░░░░░░░░█');
+							this.add('c|~Joim|░░░░░█░░░░░░░░░░▐▌ SEND THIS TO 7 PPL OR SKELINTONS WILL EAT YOU');
 					} else {
-						this.add('c|+xfix|(no hazards, attacks only, final destination)');
+							sentences = [
+								"Finally a good reason to punch a teenager in the face!", "WUBBA LUBBA DUB DUB",
+								"``So here we are again, it's always such a pleasure.``", "My ex-wife still misses me, BUT HER AIM IS GETTING BETTER!",
+								"A man chooses, a slave obeys.", "You're gonna have a bad time.", "Would you kindly let me win?",
+								"I'm sorry, but I only enjoy vintage memes from the early 00's.",
+							];
+							this.add('c|~Joim|' + sentences[this.random(8)]);
 					}
-				} else {
-					this.add("c|+xfix|//starthunt 1 + 1 | 2 | 2 + 2 | 4 | Opponent's status soon (answer with three letters) | FNT :)");
-				}
-			}
-			if (name === 'xjoelituh') {
-				this.add("c|%xJoelituh|I won't be haxed again, you will be the next one. UUUUUU");
-			}
-			if (name === 'xshiba') { // dd
-				this.add("c|+xShiba|LINDA IS INDA");
-			}
-			if (name === 'zarel') {
-				this.add('c|~Zarel|Your mom');
-			}
-			if (name === 'zebraiken') {
-				pokemon.phraseIndex = this.random(3);
-				//  Zeb's faint and entry phrases correspond to each other.
-				if (pokemon.phraseIndex === 2) {
-					this.add('c|&Zebraiken|bzzt n_n');
-				} else if (pokemon.phraseIndex === 1) {
-					this.add('c|&Zebraiken|bzzt *_*');
-				} else {
-					this.add('c|&Zebraiken|bzzt o_o');
-				}
-			}
-			if (name === 'zeroluxgiven') {
-				this.add('c|%Zero Lux Given|This should be an electrifying battle!');
-			}
-			if (name === 'zodiax') {
-				this.add('c|%Zodiax|Introducing 7 time Grand Champion to the battle!');
+					break;
+				case 'juanma':
+					this.add("c|+Juanma|Okay, well, sometimes, science is more art than science, " + pokemon.side.name + ". A lot of people don't get that.");
+					break;
+				case 'kalalokki':
+					this.add('c|+Kalalokki|(•_•)');
+					this.add('c|+Kalalokki|( •_•)>⌐■-■');
+					this.add('c|+Kalalokki|(⌐■_■)');
+					break;
+				case 'kidwizard':
+					this.add('c|+Kid Wizard|Eevee General room mod me.');
+					break;
+				case 'layell':
+					this.add('c|@Layell|Enter stage left');
+					break;
+				case 'legitimateusername':
+					sentence = ["This isn't my fault.", "I'm not sorry."][this.random(2)];
+					this.add('c|@LegitimateUsername|``' + sentence + '``');
+					break;
+				case 'lemonade':
+					this.add('c|+Lemonade|Pasta');
+					break;
+				case 'level51':
+					this.add('c|@Level 51|n_n!');
+					break;
+				case 'lj':
+					this.add('c|%LJDarkrai|Powerfulll');
+					break;
+				case 'lyto':
+					sentences = ["This is divine retribution!", "I will handle this myself!", "Let battle commence!"];
+					this.add('c|@Lyto|' + sentences[this.random(3)]);
+					break;
+				case 'macle':
+					this.add("c|+macle|Follow the Frog Blog");
+					break;
+				case 'manu11':
+					this.add("c|@manu 11|/me is pet by ihateyourpancreas");
+					break;
+				case 'marshmallon':
+					this.add("c|%Marshmallon|Marshtomb be like");
+					this.add("c|%Marshmallon|- He sees you when you're sleeping -");
+					this.add("c|%Marshmallon|- He knows when you're awake -");
+					this.add("c|%Marshmallon|- He knows if you've been bad or good -");
+					this.add("c|%Marshmallon|- So be good for goodness sake -");
+					break;
+				case 'mattl':
+					this.add('c|+MattL|If you strike me down, I shall become more powerful than you can possibly imagine.');
+					break;
+				case 'mcmeghan':
+					this.add("c|&McMeghan|A Game of Odds");
+					break;
+				case 'megazard':
+					this.add('c|+Megazard|New tricks');
+					break;
+				case 'mizuhime':
+					this.add('c|+Mizuhime|Thou Shalt Double Laser From The Edge');
+					break;
+				case 'nv':
+					this.add('c|+nv|Who tf is nv?');
+					break;
+				case 'omegaxis':
+					this.add('c|+Omega-Xis|lol this isn’t even my final form');
+					break;
+				case 'orday':
+					this.add('c|%Orda-Y|❄');
+					break;
+				case 'overneat':
+					this.add('c|+Overneat|tsk, tsk, is going to be funny');
+					break;
+				case 'paradise':
+					this.add('c|%Paradise~|I sexually identify as a hazard setter');
+					break;
+				case 'pikachuun':
+					sentences = ['Reisen is best waifu', 'Hey look I coded myself into the game', 'sup (\'.w.\')'];
+					this.add('c|+Pikachuun|' + sentences[this.random(3)]);
+					break;
+				case 'pluviometer':
+					this.add('c|+pluviometer|p^2laceholder');
+					break;
+				case 'qtrx':
+					sentences = ["cutie are ex", "q-trix", "quarters", "cute T-rex", "Qatari", "random letters", "spammy letters", "asgdf"];
+					this.add("c|@qtrx|omg DONT call me '" + sentences[this.random(8)] + "' pls respect my name its very special!!1!");
+					break;
+				case 'quitequiet':
+					this.add("c|@Quite Quiet|I'll give it a shot.");
+					break;
+				case 'raseri':
+					this.add('c|&Raseri|gg');
+					break;
+				case 'raven':
+					this.add('c|&Raven|Are you ready? Then let the challenge... Begin!');
+					break;
+				case 'rekeri':
+					this.add('c|@rekeri|Get Rekeri\'d :]');
+					break;
+				case 'rosiethevenusaur':
+					sentences = ['!dt party', 'Are you Wifi whitelisted?', 'Read the roomintro!'];
+					this.add('c|@RosieTheVenusaur|' + sentences[this.random(3)]);
+					break;
+				case 'rssp1':
+					this.add('c|+rssp1|Witness the power of the almighty Rufflet!');
+					break;
+				case 'sailorcosmos':
+					this.add("c|+SailorCosmos|Cosmos Prism Power Make Up!");
+					break;
+				case 'scotteh':
+					this.add('c|&Scotteh|─────▄▄████▀█▄');
+					this.add('c|&Scotteh|───▄██████████████████▄');
+					if (pokemon.side.foe.active.length && pokemon.side.foe.active[0].name === 'bumbadadabum') this.add('c|@bumbadadabum|Fuck you Scotteh');
+					this.add('c|&Scotteh|─▄█████.▼.▼.▼.▼.▼.▼.▼');
+					break;
+				case 'scpinion':
+					this.add('c|@scpinion|/me welcomes funbro');
+					break;
+				case 'scythernoswiping':
+					this.add('c|%Scyther NO Swiping|/me prepares to swipe victory');
+					break;
+				case 'shrang':
+					this.add('raw| [15:30] @<b>Scrappie</b>: It is I, the great and powerful shrang, who is superior to you proles in every conceivable way.');
+					break;
+				case 'sigilyph':
+					this.add('c|@Sigilyph|Prepare to feel the mighty power of an exploding star!');
+					break;
+				case 'sirdonovan':
+					this.add('c|&sirDonovan|Oh, a battle? Let me finish my tea and crumpets');
+					break;
+				case 'skitty':
+					this.add('c|@Skitty|\\_$-_-$_/');
+					break;
+				case 'snobalt':
+					this.add('c|+Snobalt|By the power vested in me from the great Lord Tomohawk...');
+					break;
+				case 'snowy':
+					this.add('c|+Snowy|Why do a lot of black people call each other monica?');
+					break;
+				case 'solarisfox':
+					this.add('raw|<div class="chat chatmessage-solarisfox"><small>%</small><b><font color="#2D8F1E"><span class="username" data-name="SolarisFox">SolarisFox</span>:</font></b> <em><marquee behavior="alternate" scrollamount=3 scrolldelay="60" width="108">[Intense vibrating]</marquee></em></div>');
+					break;
+				case 'sonired':
+					this.add('c|+Sonired|~');
+					break;
+				case 'spacebass':
+					this.add('c|@SpaceBass|He aims his good ear best he can towards conversation and sometimes leans in awkward toward your seat');
+					this.add('c|@SpaceBass|And if by chance one feels their space too invaded, then try your best to calmly be discreet');
+					this.add('c|@SpaceBass|Because this septic breathed man that stands before you is a champion from days gone by');
+					break;
+				case 'sparktrain':
+					this.add('c|+sparktrain|hi');
+					break;
+				case 'specsmegabeedrill':
+					this.add('c|+SpecsMegaBeedrill|(◕‿◕✿)');
+					break;
+				case 'spy':
+					sentences = ['curry consumer', 'try to keep up', 'fucking try to knock me down', 'Sometimes I slather myself in vasoline and pretend I\'m a slug', 'I\'m really feeling it!'];
+					this.add('c|+Spy|' + sentences[this.random(5)]);
+					break;
+				case 'starmei':
+					this.add('c|+Starmei|Starmei wins again');
+					break;
+				case 'starry':
+					this.add('c|%starry|oh');
+					break;
+				case 'steamroll':
+					this.add('c|@Steamroll|Banhammer ready!');
+					break;
+				case 'sunfished':
+					this.add('c|+Sunfished|*raptor screeches*');
+					break;
+				case 'sweep':
+					this.add('c|&Sweep|(ninjacat)(beer)');
+					break;
+				case 'talkingtree':
+					this.add('c|+talkingtree|I am Groot n_n');
+					break;
+				case 'teg':
+					this.add("c|+TEG|It's __The__ Eevee General");
+					break;
+				case 'temporaryanonymous':
+					sentences = ['Hey, hey, can I gently scramble your insides (just for laughs)? ``hahahaha``', 'check em', 'If you strike me down, I shall become more powerful than you can possibly imagine! I have a strong deathrattle effect and I cannot be silenced!'];
+					this.add('c|@Temporaryanonymous|' + sentences[this.random(3)]);
+					break;
+				case 'teremiare':
+					this.add('c|%Teremiare|I like to call it skill');
+					break;
+				case 'theimmortal':
+					this.add('c|~The Immortal|Give me my robe, put on my crown!');
+					break;
+				case 'tone114':
+					this.add('c|+TONE114|Haven\'t you heard the new sensation sweeping the nation?');
+					break;
+				case 'trickster':
+					sentences = ["heh….watch out before you get cut on my edge", "AaAaAaAAaAaAAa"];
+					this.add('c|@Trickster|' + sentences[this.random(2)]);
+					break;
+				case 'unfixable':
+					this.add('c|+unfixable|eevee general sucks lol');
+					break;
+				case 'urkerab':
+					this.add('j|urkerab');
+					break;
+				case 'uselesstrainer':
+					sentences = ['huehuehuehue', 'PIZA', 'SPAGUETI', 'RAVIOLI RAVIOLI GIVE ME THE FORMUOLI', 'get ready for PUN-ishment', 'PIU\' RUSPE PER TUTTI, E I MARO\'???'];
+					this.add('c|@useless trainer|' + sentences[this.random(6)]);
+					break;
+				case 'vapo':
+					this.add('c|%Vapo|/me vapes');
+					break;
+				case 'vexeniv':
+					this.add('c|+Vexen IV|The Arcana is the means by which all is revealed.');
+					break;
+				case 'winry':
+					this.add('c|@Winry|fight me irl');
+					break;
+				case 'xfix':
+					if (this.random(2)) {
+						// The classic one
+						const hazards = {
+							stealthrock: 1,
+							spikes: 1,
+							toxicspikes: 1,
+							burnspikes: 1,
+							stickyweb: 1
+						};
+						let hasHazards = false;
+						for (const hazard in hazards) {
+							if (pokemon.side.getSideCondition(hazard)) {
+								hasHazards = true;
+								break;
+							}
+						}
+						if (hasHazards) {
+							this.add('c|+xfix|(no haz... too late)');
+						} else {
+							this.add('c|+xfix|(no hazards, attacks only, final destination)');
+					}
+					} else {
+						this.add("c|+xfix|//starthunt 1 + 1 | 2 | 2 + 2 | 4 | Opponent's status soon (answer with three letters) | FNT :)");
+					}
+					break;
+				case 'xjoelituh':
+					this.add("c|%xJoelituh|I won't be haxed again, you will be the next one. UUUUUU");
+				break;
+				case 'xshiba': // dd
+					this.add("c|+xShiba|LINDA IS INDA");
+					break;
+				case 'zarel':
+					this.add('c|~Zarel|Your mom');
+					break;
+				case 'zebraiken':
+					//  Zeb's faint and entry phrases correspond to each other.
+					pokemon.phraseIndex = this.random(3);
+					sentences = ["o_o", "*_*", "n_n"];
+					this.add('c|&Zebraiken|bzzt ' + sentences[pokemon.phraseIndex]);
+					break;
+				case 'zeroluxgiven':
+					this.add('c|%Zero Lux Given|This should be an electrifying battle!');
+					break;
+				case 'zodiax':
+					this.add('c|%Zodiax|Introducing 7 time Grand Champion to the battle!');
+					break;
 			}
 		},
 		onFaint: function(pokemon, source, effect) {
@@ -1157,516 +1158,512 @@ exports.Formats = [
 				this.add('c|@galbia|literally 2HKOged');
 			}
 			// Actual faint phrases
-			if (name === 'acast') {
-				this.add('c|%Acast|If only I had more screens...');
-			}
-			if (name === 'ace') {
-				this.add('c|@Ace|inhale all of this');
-			}
-			if (name === 'aelita') {
-				this.add('c|%Aelita|CODE: LYOKO. Tower deactivated...');
-			}
-			if (name === 'ajhockeystar') {
-				this.add('c|+ajhockeystar|You may have beaten me in battle, but never in hockey.');
-			}
-			if (name === 'albacore') {
-				this.add('c|@Albacore|Joke\'s on you, I was just testing!');
-			}
-			if (name === 'albert') {
-				this.add("c|+Albert|You may be good looking, but you're not a piece of art.");
-			}
-			if (name === 'always') {
-				this.add('c|+Always|i swear to fucking god how can a single person be this lucky after getting played all the fucking way. you are a mere slave you glorified heap of trash.');
-			}
-			if (name === 'am') {
-				this.add('c|+AM|RIP');
-			}
-			if (name === 'andy') {
-				this.add('c|%AndrewGoncel|wow r00d! :c');
-			}
-			if (name === 'antemortem') {
-				this.add('c|&antemortem|FUCKING CAMPAIGNERS');
-			}
-			if (name === 'anttya') {
-				this.add('c|+Anttya|Can\'t beat hax ¯\\_(ツ)_/¯');
-			}
-			if (name === 'anty') {
-				this.add('c|+Anty|k');
-			}
-			if (name === 'articuno') {
-				this.add('c|%Articuno|This is why you don\'t get any girls.');
-			}
-			if (name === 'ascriptmaster') {
-				this.add('c|@Ascriptmaster|Farewell, my friends. May we meet another day...');
-			}
-			if (name === 'astara') {
-				sentences = ['/me twerks into oblivion', 'good night ♥', 'Astara Vista Baby'];
-				this.add('c|%Ast☆arA|' + sentences[this.random(3)]);
-			}
-			if (name === 'asty') {
-				this.add('c|@Asty|Bottom kek :^(');
-			}
-			if (name === 'spandan') {
-				this.add('c|~Spandan|Gr8 b8, m8. I rel8, str8 appreci8, and congratul8. I r8 this b8 an 8/8. Plz no h8, I\'m str8 ir8. Cre8 more, can\'t w8. We should convers8, I won\'t ber8, my number is 8888888, ask for N8. No calls l8 or out of st8. If on a d8, ask K8 to loc8. Even with a full pl8, I always have time to communic8 so don\'t hesit8');
-			}
-			if (name === 'classyz') {
-				this.add('c|%ClassyZ|go straight to hell do not pass go do not collect $200');
-			}
-			if (name === 'flygonerz') {
-				this.add('c|@Flygonerz|Plox nerf, Ninten__doh__!');
-			}
-			if (name === 'pieddychomp') {
-				this.add("c|&PI★EddyChomp|Fuck this shit, I got rekt. I\'ll get MY REVENGE! RAWR!!!!");
-			}
-			if (name === 'loominite') {
-				this.add('c|&Loominite|eh, i\'m out!');
-			}
-			if (name === 'thegodofhaxorus') {
-				this.add('c|@The God of Haxorus|My own hax against me -3-');
-			}
-			if (name === 'charizard8888') {
-				this.add('c|&charizard8888|I\'m Outta here!');
-			}
-			if (name === 'xprienzo') {
-				this.add('c|⚔XpRienzo ☑-☑|Bleh');
-			}
-			if (name === 'ransei') {
-				this.add('c|~Ransei|ripsei');
-			}
-			if (name === 'atomicllamas') {
-				this.add('c|&atomicllamas|(puke)');
-			}
-			if (name === 'aurora') {
-				this.add('c|@Aurora|are you serious you\'re so bad oh my god haxed ughhhhh');
-			}
-			if (name === 'reisen') {
-				this.add("c|%Reisen|No need for goodbye. I'll see you on the flip side.");
-			}
-			if (name === 'beowulf') {
-				this.add('c|@Beowulf|There is no need to be mad');
-			}
-			if (name === 'biggie') {
-				sentences = ['It was all a dream', 'It\'s gotta be the shoes', 'ヽ༼ຈل͜ຈ༽ﾉ RIOT ヽ༼ຈل͜ຈ༽ﾉ'];
-				this.add('c|@biggie|' + sentences[this.random(3)]);
-			}
-			if (name === 'blastchance') {
-				this.add("c|+Blast Chance|**oh no!**");
-			}
-			if (name === 'blitzamirin') {
-				this.add('c|@Blitzamirin|The Mirror Can Lie It Doesn\'t Show What\'s Inside ╰( ~ ◕ ᗜ ◕ ~ )੭━☆ﾟ.*･｡ﾟ');
-			}
-			if (name === 'bludz') {
-				this.add('c|+bludz|zzz');
-			}
-			if (name === 'bondie') {
-				this.add('c|+Bondie|Sigh...');
-			}
-			if (name === 'bottt') {
-				this.add("c| boTTT|No longer being maintained...");
-			}
-			if (name === 'brandon') {
-				this.add("c|+Brrandon|Always leave the crowd wanting more~");
-			}
-			if (name === 'bumbadadabum') {
-				this.add("c|@bumbadadabum|Find another planet make the same mistakes.");
-			}
-			if (name === 'bummer') {
-				this.add('c|&Bummer|Thanks for considering me!');
-			}
-			if (name === 'chaos') {
-				this.add('c|~chaos|//forcewin chaos');
-				if (this.random(1000) === 420) {
-					// Shouldn't happen much, but if this happens it's hilarious.
-					this.add('c|~chaos|actually');
-					this.add('c|~chaos|//forcewin ' + pokemon.side.name);
-					this.win(pokemon.side);
-				}
-			}
-			if (name === 'ciran') {
-				this.add("c|+Ciran|Fun is still banned in the Wi-Fi room!");
-			}
-			if (name === 'clefairy') {
-				this.add('c|+Clefairy|flex&no flex zone nightcore remix dj clefairyfreak 2015');
-			}
-			if (name === 'coolstorybrobat') {
-				let sentence = [
-					"Lol I got slayed", "BRUH!", "I tried", "Going back to those mountains to train brb", "I forgot what fruit had... tasted like...",
-				][this.random(5)];
-				this.add('c|@CoolStoryBrobat|' + sentence);
-			}
-			if (name === 'crestfall') {
-				this.add("c|%Crestfall|Her pistol go (bang bang, boom boom, pop pop)");
-			}
-			if (name === 'deathonwings') {
-				this.add('c|+Death on Wings|DEG\'s a nub');
-			}
-			if (name === 'dirpz') {
-				this.add('c|+Dirpz|sylveon is an eeeveeeeeeelutioooooon....');
-			}
-			if (name === 'dmt') {
-				this.add('c|+DMT|DMT');
-			}
-			if (name === 'dreameatergengar') {
-				this.add('c|+Dream Eater Gengar|In the darkness I fade. Remember ghosts don\'t die!');
-			}
-			if (name === 'duck') {
-				this.add('c|@Duck|Duck you!');
-			}
-			if (name === 'e4flint') {
-				this.add('c|#E4 Flint|+n1');
-				this.add('c|+sparkyboTTT|nice 1');
-			}
-			if (name === 'eeveegeneral') {
-				sentences = ["bye room, Electrolyte is in charge", "/me secretly cries", "inap!"];
-				this.add("c|~Eevee General|" + sentences[this.random(3)]);
-			}
-			if (name === 'eyan') {
-				this.add("c|@Eyan|;-;7");
-			}
-			if (name === 'feliburn') {
-				this.add('c|@Feliburn|gg la verga de tu madre');
-			}
-			if (name === 'fireburn') {
-				this.add('c|+Fireburn|>:Y');
-			}
-			if (name === 'flyingkebab') {
-				this.add("c|+Flying Kebab|" + ["I\'ll see you in hell!", "/me vanishes to the depths of hell"][this.random(2)]);
-			}
-			if (name === 'formerhope') {
-				this.add('c|@Former Hope|Now I have Former Hope.');
-			}
-			if (name === 'freeroamer') {
-				this.add('c|%Freeroamer|how do people get these matchups...');
-			}
-			if (name === 'frysinger') {
-				this.add("c|+Frysinger|/me teleports away from the battle and eats a senzu bean");
-			}
-			if (name === 'fx') {
-				this.add("c|+f(x)|mirror, mirror");
-			}
-			if (name === 'galbia') {
-				this.add('c|@galbia|(dog)');
-			}
-			if (name === 'galom') {
-				this.add('c|+Galom|GAME OVER.');
-			}
-			if (name === 'rodan') {
-				this.add("c|+RODAN|The Great Emeralds power allows me to feel... ");
-			}
-			if (name === 'geoffbruedly') {
-				this.add("c|%GeoffBruedly|IM SORRY WINRY");
-			}
-			if (name === 'giagantic') {
-				this.add("c|%Giagantic|x.x");
-			}
-			if (name === 'golui') {
-				this.add("c|+Golui|Freeze in hell");
-			}
-			if (name === 'goodmorningespeon') {
-				this.add("c|+GoodMorningEspeon|gg wp good hunt would scavenge again");
-			}
-			if (name === 'grimauxiliatrix') {
-				this.add("c|%grimAuxiliatrix|∠( ᐛ 」∠)_");
-			}
-			if (name === 'halite') {
-				this.add('c|@Halite|Today was your lucky day...');
-			}
-			if (name === 'hannah') {
-				this.add('c|+Hannahh|Nooo! ;~;');
-			}
-			if (name === 'hashtag') {
-				this.add("c|#Hashtag|fukn immigrants,,, slash me spits");
-			}
-			if (name === 'haund') {
-				this.add('c|%Haund|omg noob team report');
-			}
-			if (name === 'healndeal') {
-				this.add('c|+HeaLnDeaL|sadface I should have been a Sylveon');
-			}
-			if (name === 'himynamesl') {
-				this.add('c|@HiMyNamesL|hey ' + pokemon.side.name + ', get good');
-			}
-			if (name === 'hippopotas') {
-				this.add('-message', 'The sandstorm subsided.');
-			}
-			if (name === 'hollywood') {
-				this.add('c|+hollywood|BibleThump');
-			}
-			if (name === 'ih8ih8sn0w') {
-				this.add('c|+ih8ih8sn0w|nice hax :(');
-			}
-			if (name === 'imanalt') {
-				this.add('c|+imanalt|bshax imo');
-			}
-			if (name === 'imas234') {
-				this.add('c|@imas234|bg no re');
-			}
-			if (name === 'innovamania') {
-				sentences = ['Did you rage quit?', 'How\'d you lose with this set?'];
-				this.add('c|@innovamania|' + sentences[this.random(2)]);
-			}
-			if (name === 'iplaytennislol') {
-				this.add('c|%iplaytennislol|/me des');
-			}
-			if (name === 'iyarito') {
-				this.add('c|+Iyarito|Owwnn ;_;');
-			}
-			if (name === 'jackhiggins') {
-				this.add("c|+Jack Higgins|I blame HiMyNamesL");
-			}
-			if (name === 'jasmine') {
-				this.add("raw|<div class=\"broadcast-red\"><b>The server is restarting soon.</b><br />Please finish your battles quickly. No new battles can be started until the server resets in a few minutes.</div>");
-			}
-			if (name === 'jdarden') {
-				this.add('c|@jdarden|;-;7');
-			}
-			if (name === 'jetpack') {
-				this.add('c|+Jetpack|You shouldn\'t of done that. ;_;');
-			}
-			if (name === 'joim') {
-				sentences = ['AVENGE ME, KIDS! AVEEEENGEEE MEEEEEE!!', 'OBEY!', '``This was a triumph, I\'m making a note here: HUGE SUCCESS.``', '``Remember when you tried to kill me twice? Oh how we laughed and laughed! Except I wasn\'t laughing.``', '``I\'m not even angry, I\'m being so sincere right now, even though you broke my heart and killed me. And tore me to pieces. And threw every piece into a fire.``'];
-				this.add('c|~Joim|' + sentences[this.random(4)]);
-			}
-			if (name === 'juanma') {
-				this.add("c|+Juanma|I guess you were right, now you must be the happiest person in the world, " + pokemon.side.name + "! You get to be major of 'I-told-you-so' town!");
-			}
-			if (name === 'kalalokki') {
-				this.add('c|+Kalalokki|(⌐■_■)');
-				this.add('c|+Kalalokki|( •_•)>⌐■-■');
-				this.add('c|+Kalalokki|(x_x)');
-			}
-			if (name === 'kidwizard') {
-				this.add('c|+Kid Wizard|Go to hell.');
-			}
-			if (name === 'layell') {
-				this.add('c|@Layell|' + ['Alas poor me', 'Goodnight sweet prince'][this.random(2)]);
-			}
-			if (name === 'legitimateusername') {
-				this.add('c|@LegitimateUsername|``This isn\'t brave. It\'s murder. What did I ever do to you?``');
-			}
-			if (name === 'lemonade') {
-				this.add('c|+Lemonade|Pasta');
-			}
-			if (name === 'level51') {
-				this.add('c|@Level 51|u_u!');
-			}
-			if (name === 'lj') {
-				this.add('c|%LJDarkrai|.Blast');
-			}
-			if (name === 'lyto') {
-				this.add('c|@Lyto|' + ['Unacceptable!', 'Mrgrgrgrgr...'][this.random(2)]);
-			}
-			if (name === 'macle') {
-				this.add("c|+macle|Follow the Frog Blog - https://gonefroggin.wordpress.com/");
-			}
-			if (name === 'manu11') {
-				this.add("c|@manu 11|so much hax, why do I even try");
-			}
-			if (name === 'marshmallon') {
-				this.add("c|%Marshmallon|Shoutouts to sombolo and Rory Mercury ... for this trash set -_-");
-			}
-			if (name === 'mattl') {
-				this.add('c|+MattL|Forgive me. I feel it again... the call from the light.');
-			}
-			if (name === 'mcmeghan') {
-				this.add("c|&McMeghan|Out-odded");
-			}
-			if (name === 'megazard') {
-				this.add('c|+Megazard|Old dog');
-			}
-			if (name === 'mizuhime') {
-				this.add('c|+Mizuhime|I got Gimped.');
-			}
-			if (name === 'nv') {
-				this.add('c|+nv|Too cute for this game ;~;');
-			}
-			if (name === 'omegaxis') {
-				this.add('c|+Omega-Xis|bull shit bull sHit thats ✖️ some bullshit rightth ere right✖️there ✖️✖️if i do ƽaү so my selｆ ‼️ i say so ‼️ thats what im talking about right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ) mMMMMᎷМ‼️ HO0ОଠＯOOＯOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ ‼️ Bull shit');
-			}
-			if (name === 'orday') {
-				this.add('c|%Orda-Y|❄_❄');
-			}
-			if (name === 'overneat') {
-				this.add('c|+Overneat|Ugh! I failed you Iya-sama');
-			}
-			if (name === 'paradise') {
-				this.add('c|%Paradise~|RIP THE DREAM');
-			}
-			if (name === 'pikachuun') {
-				sentences = ['press f to pay respects ;_;7', 'this wouldn\'t have happened in my version', 'wait we were battling?'];
-				this.add('c|+Pikachuun|' + sentences[this.random(3)]);
-			}
-			if (name === 'pluviometer') {
-				this.add('c|+pluviometer|GP 2/2');
-			}
-			if (name === 'qtrx') {
-				sentences = ['Keyboard not found; press **Ctrl + W** to continue...', 'hfowurfbiEU;DHBRFEr92he', 'At least my name ain\'t asgdf...'];
-				this.add('c|@qtrx|' + sentences[this.random(3)]);
-			}
-			if (name === 'quitequiet') {
-				this.add('c|@Quite Quiet|Well, I tried at least.');
-			}
-			if (name === 'raseri') {
-				this.add('c|&Raseri|you killed a mush :(');
-			}
-			if (name === 'raven') {
-				this.add('c|&Raven|I failed the challenge, and for that, I must lose a life. At least I had one to lose in the first place, nerd.');
-			}
-			if (name === 'rekeri') {
-				this.add('c|@rekeri|lucky af :[');
-			}
-			if (name === 'rssp1') {
-				this.add('c|+rssp1|Witness the power of the almighty Rufflet!');
-			}
-			if (name === 'rosiethevenusaur') {
-				this.add('c|@RosieTheVenusaur|' + ['SD SKARM SHALL LIVE AGAIN!!!', 'Not my WiFi!'][this.random(2)]);
-			}
-			if (name === 'sailorcosmos') {
-				this.add("c|+SailorCosmos|Cosmos Gorgeous Retreat!");
-			}
-			if (name === 'scotteh') {
-				this.add('c|&Scotteh|▄███████▄.▲.▲.▲.▲.▲.▲');
-				this.add('c|&Scotteh|█████████████████████▀▀');
-			}
-			if (name === 'scpinion') {
-				this.add("c|@scpinion|guys, I don't even know how to pronounce scpinion");
-			}
-			if (name === 'scythernoswiping') {
-				this.add('c|%Scyther NO Swiping|Aww man!');
-			}
-			if (name === 'shrang') {
-				this.add('c|@shrang|FUCKING 2 YO KID');
-			}
-			if (name === 'sigilyph') {
-				this.add('c|@Sigilyph|FROM THE BACK FROM THE BACK FROM THE BACK FROM THE BACK **ANDD**');
-			}
-			if (name === 'sirdonovan') {
-				this.add('-message', 'RIP sirDonovan');
-			}
-			if (name === 'skitty') {
-				this.add('c|@Skitty|!learn skitty, roleplay');
-				this.add('raw|<div class="infobox">In Gen 6, Skitty <span class="message-learn-cannotlearn">can\'t</span> learn Role Play</div>');
-			}
-			if (name === 'solarisfox') {
-				this.add('c|%SolarisFox|So long, and thanks for all the fish.');
-			}
-			if (name === 'sonired') {
-				this.add('c|+Sonired|sigh lucky players.');
-			}
-			if (name === 'sparktrain') {
-				this.add('c|+sparktrain|nice');
-			}
-			if (name === 'spy') {
-				sentences = ['lolhax', 'crit mattered', 'bruh cum @ meh', '>thinking Pokemon takes any skill'];
-				this.add('c|+Spy|' + sentences[this.random(4)]);
-			}
-			if (name === 'snobalt') {
-				this.add('c|+Snobalt|Blasphemy!');
-			}
-			if (name === 'snowy') {
-				this.add('c|+Snowy|i never understood this i always hear them be like "yo whats up monica" "u tryna blaze monica"');
-			}
-			if (name === 'spacebass') {
-				this.add('c|@SpaceBass|And the tales of whales and woe off his liquored toungue will flow, the light will soft white twinkle off the cataracts in his eye');
-				this.add("c|@SpaceBass|So if by chance you're cornered near the bathroom, or he blocks you sprawled in his aisle seat");
-				this.add("c|@SpaceBass|Embrace the chance to hear some tales of greatness, 'cause he's the most interesting ball of toxins you're ever apt to meet");
-			}
-			if (name === 'specsmegabeedrill') {
-				this.add('c|+SpecsMegaBeedrill|Tryhard.');
-			}
-			if (name === 'starmei') {
-				this.add('c|+Starmei|//message AM, must be nice being this lucky');
-			}
-			if (name === 'starry') {
-				this.add('c|%starry|o-oh');
-			}
-			if (name === 'steamroll') {
-				this.add('c|@Steamroll|Not my problem anymore!');
-			}
-			if (name === 'sunfished') {
-				this.add('c|+Sunfished|*raptor screeches*');
-			}
-			if (name === 'sweep') {
-				this.add('c|&Sweep|You offended :C');
-			}
-			if (name === 'talkingtree') {
-				this.add('c|+talkingtree|I am Groot u_u');
-			}
-			if (name === 'teg') {
-				sentences = ['Save me, Joim!', 'Arcticblast is the worst OM leader in history'];
-				this.add('c|+TEG|' + sentences[this.random(2)]);
-			}
-			if (name === 'temporaryanonymous') {
-				sentences = [';_;7', 'This kills the tempo', 'I\'m kill. rip.', 'S-senpai! Y-you\'re being too rough! >.<;;;;;;;;;;;;;;;;;', 'A-at least you checked my dubs right?', 'B-but that\'s impossible! This can\'t be! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHGH'];
-				this.add('c|@Temporaryanonymous|' + sentences[this.random(6)]);
-			}
-			if (name === 'teremiare') {
-				this.add('c|%Teremiare|sigh...');
-			}
-			if (name === 'theimmortal') {
-				this.add('c|~The Immortal|Oh how wrong we were to think immortality meant never dying.');
-			}
-			if (name === 'tone114') {
-				this.add('c|+TONE114|I don\'t have to take this. I\'m going for a walk.');
-			}
-			if (name === 'trickster') {
-				this.add('c|@Trickster|UPLOADING VIRUS.EXE \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588] 99% COMPLETE');
-			}
-			if (name === 'unfixable') {
-				this.add('c|+unfixable|i may be dead but my eyebrows are better than yours will ever be');
-			}
-			if (name === 'urkerab') {
-				this.add('l|urkerab');
-			}
-			if (name === 'uselesstrainer') {
-				sentences = ['TIME TO SET UP', 'One day I\'ll become a beautiful butterfly'];
-				this.add('c|@useless trainer|' + sentences[this.random(2)]);
-			}
-			if (name === 'vapo') {
-				this.add('c|%Vapo|( ; _> ;)');
-			}
-			if (name === 'vexeniv') {
-				this.add('c|+Vexen IV|brb burning my dread');
-			}
-			if (name === 'winry') {
-				this.add('c|@Winry|I AM NOT A WEEB');
-			}
-			if (name === 'xfix') {
-				const foe = pokemon.side.foe.active[0];
-				if (foe.name === 'xfix') {
-					this.add("c|+xfix|(I won. I lost. I... huh... ~~can somebody tell me what actually happened?~~)");
-				} else if (foe.ability === 'magicbounce') {
-					this.add('c|+xfix|(How do mirrors work... oh right, when you use a mirror, your opponent has a mirror as well... or something, ~~that\'s how you "balance" this game~~)');
-				} else {
-					this.add('c|+xfix|~~That must have been a glitch. Hackers.~~');
-				}
-			}
-			if (name === 'xjoelituh') {
-				this.add("c|%xJoelituh|THAT FOR SURE MATTERED. Blame Nayuki. I'm going to play CSGO then.");
-			}
-			if (name === 'xshiba') {
-				this.add("c|+xShiba|Lol that feeling when you just win but get haxed..");
-			}
-			if (name === 'zarel') {
-				this.add('c|~Zarel|your mom');
-				// Followed by the usual '~Zarel fainted'.
-				this.add('-message', '~Zarel used your mom!');
-			}
-			if (name === 'zebraiken') {
-				if (pokemon.phraseIndex === 2) {
-					this.add('c|&Zebraiken|bzzt u_u');
-				} else if (pokemon.phraseIndex === 1) {
-					this.add('c|&Zebraiken|bzzt ._.');
-				} else {
-					// Default faint.
-					this.add('c|&Zebraiken|bzzt x_x');
-				}
-			}
-			if (name === 'zeroluxgiven') {
-				this.add('c|%Zero Lux Given|I\'ve been beaten, what a shock!');
-			}
-			if (name === 'zodiax') {
-				this.add('c|%Zodiax|We need to go full out again soon...');
+			switch(name) {
+				case 'acast':
+					this.add('c|%Acast|If only I had more screens...');
+					break;
+				case 'ace':
+					this.add('c|@Ace|inhale all of this');
+					break;
+				case 'aelita':
+					this.add('c|%Aelita|CODE: LYOKO. Tower deactivated...');
+					break;
+				case 'ajhockeystar':
+					this.add('c|+ajhockeystar|You may have beaten me in battle, but never in hockey.');
+					break;
+				case 'albacore':
+					this.add('c|@Albacore|Joke\'s on you, I was just testing!');
+					break;
+				case 'albert':
+					this.add("c|+Albert|You may be good looking, but you're not a piece of art.");
+					break;
+				case 'always':
+					this.add('c|+Always|i swear to fucking god how can a single person be this lucky after getting played all the fucking way. you are a mere slave you glorified heap of trash.');
+					break;
+				case 'am':
+					this.add('c|+AM|RIP');
+					break;
+				case 'andy':
+					this.add('c|%AndrewGoncel|wow r00d! :c');
+					break;
+				case 'antemortem':
+					this.add('c|&antemortem|FUCKING CAMPAIGNERS');
+					break;
+				case 'anttya':
+					this.add('c|+Anttya|Can\'t beat hax ¯\\_(ツ)_/¯');
+					break;
+				case 'anty':
+					this.add('c|+Anty|k');
+					break;
+				case 'articuno':
+					this.add('c|%Articuno|This is why you don\'t get any girls.');
+					break;
+				case 'ascriptmaster':
+					this.add('c|@Ascriptmaster|Farewell, my friends. May we meet another day...');
+					break;
+				case 'astara':
+					sentences = ['/me twerks into oblivion', 'good night ♥', 'Astara Vista Baby'];
+					this.add('c|%Ast☆arA|' + sentences[this.random(3)]);
+					break;
+				case 'asty':
+					this.add('c|@Asty|Bottom kek :^(');
+					break;
+				case 'spandan':
+					this.add('c|~Spandan|Gr8 b8, m8. I rel8, str8 appreci8, and congratul8. I r8 this b8 an 8/8. Plz no h8, I\'m str8 ir8. Cre8 more, can\'t w8. We should convers8, I won\'t ber8, my number is 8888888, ask for N8. No calls l8 or out of st8. If on a d8, ask K8 to loc8. Even with a full pl8, I always have time to communic8 so don\'t hesit8');
+					break;
+				case 'classyz':
+					this.add('c|%ClassyZ|go straight to hell do not pass go do not collect $200');
+					break;
+				case 'flygonerz':
+					this.add('c|@Flygonerz|Plox nerf, Ninten__doh__!');
+					break;
+				case 'pieddychomp':
+					this.add("c|&PI★EddyChomp|Fuck this shit, I got rekt. I\'ll get MY REVENGE! RAWR!!!!");
+					break;
+				case 'loominite':
+					this.add('c|&Loominite|eh, i\'m out!');
+					break;
+				case 'thegodofhaxorus':
+					this.add('c|@The God of Haxorus|My own hax against me -3-');
+					break;
+				case 'charizard8888':
+					this.add('c|&charizard8888|I\'m Outta here!');
+					break;
+				case 'xprienzo':
+					this.add('c|⚔XpRienzo ☑-☑|Bleh');
+					break;
+				case 'ransei':
+					this.add('c|~Ransei|ripsei');
+					break;
+				case 'atomicllamas':
+					this.add('c|&atomicllamas|(puke)');
+					break;
+				case 'aurora':
+					this.add('c|@Aurora|are you serious you\'re so bad oh my god haxed ughhhhh');
+					break;
+				case 'reisen':
+					this.add("c|%Reisen|No need for goodbye. I'll see you on the flip side.");
+					break;
+				case 'beowulf':
+					this.add('c|@Beowulf|There is no need to be mad');
+					break;
+				case 'biggie':
+					sentences = ['It was all a dream', 'It\'s gotta be the shoes', 'ヽ༼ຈل͜ຈ༽ﾉ RIOT ヽ༼ຈل͜ຈ༽ﾉ'];
+					this.add('c|@biggie|' + sentences[this.random(3)]);
+					break;
+				case 'blastchance':
+					this.add("c|+Blast Chance|**oh no!**");
+					break;
+				case 'blitzamirin':
+					this.add('c|@Blitzamirin|The Mirror Can Lie It Doesn\'t Show What\'s Inside ╰( ~ ◕ ᗜ ◕ ~ )੭━☆ﾟ.*･｡ﾟ');
+					break;
+				case 'bludz':
+					this.add('c|+bludz|zzz');
+					break;
+				case 'bondie':
+					this.add('c|+Bondie|Sigh...');
+					break;
+				case 'bottt':
+					this.add("c| boTTT|No longer being maintained...");
+					break;
+				case 'brandon':
+					this.add("c|+Brrandon|Always leave the crowd wanting more~");
+					break;
+				case 'bumbadadabum':
+					this.add("c|@bumbadadabum|Find another planet make the same mistakes.");
+					break;
+				case 'bummer':
+					this.add('c|&Bummer|Thanks for considering me!');
+					break;
+				case 'chaos':
+					this.add('c|~chaos|//forcewin chaos');
+					if (this.random(1000) === 420) {
+						// Shouldn't happen much, but if this happens it's hilarious.
+						this.add('c|~chaos|actually');
+						this.add('c|~chaos|//forcewin ' + pokemon.side.name);
+						this.win(pokemon.side);
+						}
+					break;
+				case 'ciran':
+					this.add("c|+Ciran|Fun is still banned in the Wi-Fi room!");
+					break;
+				case 'clefairy':
+					this.add('c|+Clefairy|flex&no flex zone nightcore remix dj clefairyfreak 2015');
+					break;
+				case 'coolstorybrobat':
+					let sentence = [
+						"Lol I got slayed", "BRUH!", "I tried", "Going back to those mountains to train brb", "I forgot what fruit had... tasted like...",
+					][this.random(5)];
+					this.add('c|@CoolStoryBrobat|' + sentence);
+					break;
+				case 'crestfall':
+					this.add("c|%Crestfall|Her pistol go (bang bang, boom boom, pop pop)");
+					break;
+				case 'deathonwings':
+					this.add('c|+Death on Wings|DEG\'s a nub');
+					break;
+				case 'dirpz':
+					this.add('c|+Dirpz|sylveon is an eeeveeeeeeelutioooooon....');
+					break;
+				case 'dmt':
+					this.add('c|+DMT|DMT');
+					break;
+				case 'dreameatergengar':
+					this.add('c|+Dream Eater Gengar|In the darkness I fade. Remember ghosts don\'t die!');
+					break;
+				case 'duck':
+					this.add('c|@Duck|Duck you!');
+					break;
+				case 'e4flint':
+					this.add('c|#E4 Flint|+n1');
+					this.add('c|+sparkyboTTT|nice 1');
+					break;
+				case 'eeveegeneral':
+					sentences = ["bye room, Electrolyte is in charge", "/me secretly cries", "inap!"];
+					this.add("c|~Eevee General|" + sentences[this.random(3)]);
+					break;
+				case 'eyan':
+					this.add("c|@Eyan|;-;7");
+					break;
+				case 'feliburn':
+					this.add('c|@Feliburn|gg la verga de tu madre');
+					break;
+				case 'fireburn':
+					this.add('c|+Fireburn|>:Y');
+					break;
+				case 'flyingkebab':
+					this.add("c|+Flying Kebab|" + ["I\'ll see you in hell!", "/me vanishes to the depths of hell"][this.random(2)]);
+					break;
+				case 'formerhope':
+					this.add('c|@Former Hope|Now I have Former Hope.');
+					break;
+				case 'freeroamer':
+					this.add('c|%Freeroamer|how do people get these matchups...');
+					break;
+				case 'frysinger':
+					this.add("c|+Frysinger|/me teleports away from the battle and eats a senzu bean");
+					break;
+				case 'fx':
+					this.add("c|+f(x)|mirror, mirror");
+					break;
+				case 'galbia':
+					this.add('c|@galbia|(dog)');
+					break;
+				case 'galom':
+					this.add('c|+Galom|GAME OVER.');
+					break;
+				case 'rodan':
+					this.add("c|+RODAN|The Great Emeralds power allows me to feel... ");
+					break;
+				case 'geoffbruedly':
+					this.add("c|%GeoffBruedly|IM SORRY WINRY");
+					break;
+				case 'giagantic':
+					this.add("c|%Giagantic|x.x");
+					break;
+				case 'golui':
+					this.add("c|+Golui|Freeze in hell");
+					break;
+				case 'goodmorningespeon':
+					this.add("c|+GoodMorningEspeon|gg wp good hunt would scavenge again");
+					break;
+				case 'grimauxiliatrix':
+					this.add("c|%grimAuxiliatrix|∠( ᐛ 」∠)_");
+					break;
+				case 'halite':
+					this.add('c|@Halite|Today was your lucky day...');
+					break;
+				case 'hannah':
+					this.add('c|+Hannahh|Nooo! ;~;');
+					break;
+				case 'hashtag':
+					this.add("c|#Hashtag|fukn immigrants,,, slash me spits");
+					break;
+				case 'haund':
+					this.add('c|%Haund|omg noob team report');
+					break;
+				case 'healndeal':
+					this.add('c|+HeaLnDeaL|sadface I should have been a Sylveon');
+					break;
+				case 'himynamesl':
+					this.add('c|@HiMyNamesL|hey ' + pokemon.side.name + ', get good');
+					break;
+				case 'hippopotas':
+					this.add('-message', 'The sandstorm subsided.');
+					break;
+				case 'hollywood':
+					this.add('c|+hollywood|BibleThump');
+					break;
+				case 'ih8ih8sn0w':
+					this.add('c|+ih8ih8sn0w|nice hax :(');
+					break;
+				case 'imanalt':
+					this.add('c|+imanalt|bshax imo');
+					break;
+				case 'imas234':
+					this.add('c|@imas234|bg no re');
+					break;
+				case 'innovamania':
+					sentences = ['Did you rage quit?', 'How\'d you lose with this set?'];
+					this.add('c|@innovamania|' + sentences[this.random(2)]);
+					break;
+				case 'iplaytennislol':
+					this.add('c|%iplaytennislol|/me des');
+					break;
+				case 'iyarito':
+					this.add('c|+Iyarito|Owwnn ;_;');
+					break;
+				case 'jackhiggins':
+					this.add("c|+Jack Higgins|I blame HiMyNamesL");
+					break;
+				case 'jasmine':
+					this.add("raw|<div class=\"broadcast-red\"><b>The server is restarting soon.</b><br />Please finish your battles quickly. No new battles can be started until the server resets in a few minutes.</div>");
+					break;
+				case 'jdarden':
+					this.add('c|@jdarden|;-;7');
+					break;
+				case 'jetpack':
+					this.add('c|+Jetpack|You shouldn\'t of done that. ;_;');
+					break;
+				case 'joim':
+					sentences = ['AVENGE ME, KIDS! AVEEEENGEEE MEEEEEE!!', 'OBEY!', '``This was a triumph, I\'m making a note here: HUGE SUCCESS.``', '``Remember when you tried to kill me twice? Oh how we laughed and laughed! Except I wasn\'t laughing.``', '``I\'m not even angry, I\'m being so sincere right now, even though you broke my heart and killed me. And tore me to pieces. And threw every piece into a fire.``'];
+					this.add('c|~Joim|' + sentences[this.random(4)]);
+					break;
+				case 'juanma':
+					this.add("c|+Juanma|I guess you were right, now you must be the happiest person in the world, " + pokemon.side.name + "! You get to be major of 'I-told-you-so' town!");
+					break;
+				case 'kalalokki':
+					this.add('c|+Kalalokki|(⌐■_■)');
+					this.add('c|+Kalalokki|( •_•)>⌐■-■');
+					this.add('c|+Kalalokki|(x_x)');
+					break;
+				case 'kidwizard':
+					this.add('c|+Kid Wizard|Go to hell.');
+					break;
+				case 'layell':
+					this.add('c|@Layell|' + ['Alas poor me', 'Goodnight sweet prince'][this.random(2)]);
+					break;
+				case 'legitimateusername':
+					this.add('c|@LegitimateUsername|``This isn\'t brave. It\'s murder. What did I ever do to you?``');
+					break;
+				case 'lemonade':
+					this.add('c|+Lemonade|Pasta');
+					break;
+				case 'level51':
+					this.add('c|@Level 51|u_u!');
+					break;
+				case 'lj':
+					this.add('c|%LJDarkrai|.Blast');
+					break;
+				case 'lyto':
+					this.add('c|@Lyto|' + ['Unacceptable!', 'Mrgrgrgrgr...'][this.random(2)]);
+					break;
+				case 'macle':
+					this.add("c|+macle|Follow the Frog Blog - https://gonefroggin.wordpress.com/");
+					break;
+				case 'manu11':
+					this.add("c|@manu 11|so much hax, why do I even try");
+					break;
+				case 'marshmallon':
+					this.add("c|%Marshmallon|Shoutouts to sombolo and Rory Mercury ... for this trash set -_-");
+					break;
+				case 'mattl':
+					this.add('c|+MattL|Forgive me. I feel it again... the call from the light.');
+					break;
+				case 'mcmeghan':
+					this.add("c|&McMeghan|Out-odded");
+					break;
+				case 'megazard':
+					this.add('c|+Megazard|Old dog');
+					break;
+				case 'mizuhime':
+					this.add('c|+Mizuhime|I got Gimped.');
+					break;
+				case 'nv':
+					this.add('c|+nv|Too cute for this game ;~;');
+					break;
+				case 'omegaxis':
+					this.add('c|+Omega-Xis|bull shit bull sHit thats ✖️ some bullshit rightth ere right✖️there ✖️✖️if i do ƽaү so my selｆ ‼️ i say so ‼️ thats what im talking about right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ) mMMMMᎷМ‼️ HO0ОଠＯOOＯOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ ‼️ Bull shit');
+					break;
+				case 'orday':
+					this.add('c|%Orda-Y|❄_❄');
+					break;
+				case 'overneat':
+					this.add('c|+Overneat|Ugh! I failed you Iya-sama');
+					break;
+				case 'paradise':
+					this.add('c|%Paradise~|RIP THE DREAM');
+					break;
+				case 'pikachuun':
+					sentences = ['press f to pay respects ;_;7', 'this wouldn\'t have happened in my version', 'wait we were battling?'];
+					this.add('c|+Pikachuun|' + sentences[this.random(3)]);
+					break;
+				case 'pluviometer':
+					this.add('c|+pluviometer|GP 2/2');
+					break;
+				case 'qtrx':
+					sentences = ['Keyboard not found; press **Ctrl + W** to continue...', 'hfowurfbiEU;DHBRFEr92he', 'At least my name ain\'t asgdf...'];
+					this.add('c|@qtrx|' + sentences[this.random(3)]);
+					break;
+				case 'quitequiet':
+					this.add('c|@Quite Quiet|Well, I tried at least.');
+					break;
+				case 'raseri':
+					this.add('c|&Raseri|you killed a mush :(');
+					break;
+				case 'raven':
+					this.add('c|&Raven|I failed the challenge, and for that, I must lose a life. At least I had one to lose in the first place, nerd.');
+					break;
+				case 'rekeri':
+					this.add('c|@rekeri|lucky af :[');
+					break;
+				case 'rssp1':
+					this.add('c|+rssp1|Witness the power of the almighty Rufflet!');
+					break;
+				case 'rosiethevenusaur':
+					this.add('c|@RosieTheVenusaur|' + ['SD SKARM SHALL LIVE AGAIN!!!', 'Not my WiFi!'][this.random(2)]);
+					break;
+				case 'sailorcosmos':
+					this.add("c|+SailorCosmos|Cosmos Gorgeous Retreat!");
+					break;
+				case 'scotteh':
+					this.add('c|&Scotteh|▄███████▄.▲.▲.▲.▲.▲.▲');
+					this.add('c|&Scotteh|█████████████████████▀▀');
+					break;
+				case 'scpinion':
+					this.add("c|@scpinion|guys, I don't even know how to pronounce scpinion");
+					break;
+				case 'scythernoswiping':
+					this.add('c|%Scyther NO Swiping|Aww man!');
+					break;
+				case 'shrang':
+					this.add('c|@shrang|FUCKING 2 YO KID');
+					break;
+				case 'sigilyph':
+					this.add('c|@Sigilyph|FROM THE BACK FROM THE BACK FROM THE BACK FROM THE BACK **ANDD**');
+					break;
+				case 'sirdonovan':
+					this.add('-message', 'RIP sirDonovan');
+					break;
+				case 'skitty':
+					this.add('c|@Skitty|!learn skitty, roleplay');
+					this.add('raw|<div class="infobox">In Gen 6, Skitty <span class="message-learn-cannotlearn">can\'t</span> learn Role Play</div>');
+					break;
+				case 'solarisfox':
+					this.add('c|%SolarisFox|So long, and thanks for all the fish.');
+					break;
+				case 'sonired':
+					this.add('c|+Sonired|sigh lucky players.');
+					break;
+				case 'sparktrain':
+					this.add('c|+sparktrain|nice');
+					break;
+				case 'spy':
+					sentences = ['lolhax', 'crit mattered', 'bruh cum @ meh', '>thinking Pokemon takes any skill'];
+					this.add('c|+Spy|' + sentences[this.random(4)]);
+					break;
+				case 'snobalt':
+					this.add('c|+Snobalt|Blasphemy!');
+					break;
+				case 'snowy':
+					this.add('c|+Snowy|i never understood this i always hear them be like "yo whats up monica" "u tryna blaze monica"');
+					break;
+				case 'spacebass':
+					this.add('c|@SpaceBass|And the tales of whales and woe off his liquored toungue will flow, the light will soft white twinkle off the cataracts in his eye');
+					this.add("c|@SpaceBass|So if by chance you're cornered near the bathroom, or he blocks you sprawled in his aisle seat");
+					this.add("c|@SpaceBass|Embrace the chance to hear some tales of greatness, 'cause he's the most interesting ball of toxins you're ever apt to meet");
+					break;
+				case 'specsmegabeedrill':
+					this.add('c|+SpecsMegaBeedrill|Tryhard.');
+					break;
+				case 'starmei':
+					this.add('c|+Starmei|//message AM, must be nice being this lucky');
+					break;
+				case 'starry':
+					this.add('c|%starry|o-oh');
+					break;
+				case 'steamroll':
+					this.add('c|@Steamroll|Not my problem anymore!');
+					break;
+				case 'sunfished':
+					this.add('c|+Sunfished|*raptor screeches*');
+					break;
+				case 'sweep':
+					this.add('c|&Sweep|You offended :C');
+					break;
+				case 'talkingtree':
+					this.add('c|+talkingtree|I am Groot u_u');
+					break;
+				case 'teg':
+					sentences = ['Save me, Joim!', 'Arcticblast is the worst OM leader in history'];
+					this.add('c|+TEG|' + sentences[this.random(2)]);
+					break;
+				case 'temporaryanonymous':
+					sentences = [';_;7', 'This kills the tempo', 'I\'m kill. rip.', 'S-senpai! Y-you\'re being too rough! >.<;;;;;;;;;;;;;;;;;', 'A-at least you checked my dubs right?', 'B-but that\'s impossible! This can\'t be! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHGH'];
+					this.add('c|@Temporaryanonymous|' + sentences[this.random(6)]);
+					break;
+				case 'teremiare':
+					this.add('c|%Teremiare|sigh...');
+					break;
+				case 'theimmortal':
+					this.add('c|~The Immortal|Oh how wrong we were to think immortality meant never dying.');
+					break;
+				case 'tone114':
+					this.add('c|+TONE114|I don\'t have to take this. I\'m going for a walk.');
+					break;
+				case 'trickster':
+					this.add('c|@Trickster|UPLOADING VIRUS.EXE \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588] 99% COMPLETE');
+					break;
+				case 'unfixable':
+					this.add('c|+unfixable|i may be dead but my eyebrows are better than yours will ever be');
+					break;
+				case 'urkerab':
+					this.add('l|urkerab');
+					break;
+				case 'uselesstrainer':
+					sentences = ['TIME TO SET UP', 'One day I\'ll become a beautiful butterfly'];
+					this.add('c|@useless trainer|' + sentences[this.random(2)]);
+					break;
+				case 'vapo':
+					this.add('c|%Vapo|( ; _> ;)');
+					break;
+				case 'vexeniv':
+					this.add('c|+Vexen IV|brb burning my dread');
+					break;
+				case 'winry':
+					this.add('c|@Winry|I AM NOT A WEEB');
+					break;
+				case 'xfix':
+					const foe = pokemon.side.foe.active[0];
+					if (foe.name === 'xfix') {
+						this.add("c|+xfix|(I won. I lost. I... huh... ~~can somebody tell me what actually happened?~~)");
+					} else if (foe.ability === 'magicbounce') {
+						this.add('c|+xfix|(How do mirrors work... oh right, when you use a mirror, your opponent has a mirror as well... or something, ~~that\'s how you "balance" this game~~)');
+					} else {
+						this.add('c|+xfix|~~That must have been a glitch. Hackers.~~');
+					}
+					break;
+				case 'xjoelituh':
+					this.add("c|%xJoelituh|THAT FOR SURE MATTERED. Blame Nayuki. I'm going to play CSGO then.");
+					break;
+				case 'xshiba':
+					this.add("c|+xShiba|Lol that feeling when you just win but get haxed..");
+					break;
+				case 'zarel':
+					this.add('c|~Zarel|your mom');
+					// Followed by the usual '~Zarel fainted'.
+					this.add('-message', '~Zarel used your mom!');
+					break;
+				case 'zebraiken':
+					sentences = ["x_x", "._.", "u_u"];
+					this.add('c|&Zebraiken|bzzt ' + sentences[pokemon.phraseIndex]);
+					break;
+				case 'zeroluxgiven':
+					this.add('c|%Zero Lux Given|I\'ve been beaten, what a shock!');
+					break;
+				case 'zodiax':
+					this.add('c|%Zodiax|We need to go full out again soon...');
+					break;
 			}
 		},
 		// Special switch-out events for some mons.
@@ -1734,11 +1731,10 @@ exports.Formats = [
 								this.add('message', swapmon2.side.name + " received " + swapmon2.name + "! Take good care of " + swapmon2.name + "!");
 								this.add('-anim', swapmon2.side.active, "Healing Wish", swapmon2.side.active);
 								this.add('-anim', swapmon1.side.active, "Aura Sphere", swapmon1.side.active);
-								this.add('message', swapmon1.side.name + " received " + swapmon1.name + "! Take good care of " + swapmon1.name + "!");
 							} else {
 								this.add('message', swapmon2.side.name + " received " + swapmon2.name + "! Take good care of " + swapmon2.name + "!");
-								this.add('message', swapmon1.side.name + " received " + swapmon1.name + "! Take good care of " + swapmon1.name + "!");
 							}
+							this.add('message', swapmon1.side.name + " received " + swapmon1.name + "! Take good care of " + swapmon1.name + "!");
 							swapped = true;
 							break;
 						}
