@@ -546,7 +546,7 @@ exports.Formats = [
 				case 'teremiare':
 					pokemon.addVolatile('coinflip', pokemon);
 					break;
-				case 'trickster'
+				case 'trickster':
 				case 'blitzamirin':
 					let target = pokemon.battle[pokemon.side.id === 'p1' ? 'p2' : 'p1'].active[0];
 					let targetBoosts = {};
