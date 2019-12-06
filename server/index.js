@@ -9,26 +9,26 @@
  * between users and your server, and also sets up globals. You can
  * see details in their corresponding files, but here's an overview:
  *
- * Users - from users.js
+ * Users - from users.ts
  *
- *   Most of the communication with users happens in users.js, we just
- *   forward messages between the sockets.js and users.js.
+ *   Most of the communication with users happens in users.ts, we just
+ *   forward messages between the sockets.js and users.ts.
  *
- * Rooms - from rooms.js
+ * Rooms - from rooms.ts
  *
  *   Every chat room and battle is a room, and what they do is done in
- *   rooms.js. There's also a global room which every user is in, and
+ *   rooms.ts. There's also a global room which every user is in, and
  *   handles miscellaneous things like welcoming the user.
  *
- * Dex - from .sim-dist/dex.js
+ * Dex - from .sim-dist/dex.ts
  *
  *   Handles getting data about Pokemon, items, etc.
  *
- * Ladders - from ladders.js and ladders-remote.js
+ * Ladders - from ladders.ts and ladders-remote.ts
  *
  *   Handles Elo rating tracking for players.
  *
- * Chat - from chat.js
+ * Chat - from chat.ts
  *
  *   Handles chat and parses chat commands like /me and /ban
  *
@@ -66,16 +66,19 @@ const FS = require('../.lib-dist/fs').FS;
  * Load configuration
  *********************************************************/
 
-global.Config = require('../config/config');
+const ConfigLoader = require('../.server-dist/config-loader');
+global.Config = ConfigLoader.Config;
 
-global.Monitor = require('./monitor');
+global.Monitor = require('../.server-dist/monitor').Monitor;
+global.__version = {head: ''};
+Monitor.version().then(function (hash) {
+	global.__version.tree = hash;
+});
 
 if (Config.watchconfig) {
-	let configPath = require.resolve('../config/config');
-	FS(configPath).onModify(() => {
+	FS(require.resolve('../config/config')).onModify(() => {
 		try {
-			delete require.cache[configPath];
-			global.Config = require('../config/config');
+			global.Config = ConfigLoader.load(true);
 			if (global.Users) Users.cacheGroupData();
 			Monitor.notice('Reloaded ../config/config.js');
 		} catch (e) {
@@ -93,20 +96,20 @@ global.toID = Dex.getId;
 
 global.LoginServer = require('../.server-dist/loginserver').LoginServer;
 
-global.Ladders = require('./ladders');
+global.Ladders = require('../.server-dist/ladders').Ladders;
 
-global.Chat = require('./chat');
+global.Chat = require('../.server-dist/chat').Chat;
 
-global.Users = require('./users');
+global.Users = require('../.server-dist/users').Users;
 
-global.Punishments = require('./punishments');
+global.Punishments = require('../.server-dist/punishments').Punishments;
 
-global.Rooms = require('./rooms');
+global.Rooms = require('../.server-dist/rooms').Rooms;
 
 global.Verifier = require('../.server-dist/verifier');
 Verifier.PM.spawn();
 
-global.Tournaments = require('./tournaments');
+global.Tournaments = require('../.server-dist/tournaments').Tournaments;
 
 global.IPTools = require('../.server-dist/ip-tools').IPTools;
 IPTools.loadDatacenters();
@@ -152,9 +155,3 @@ TeamValidatorAsync.PM.spawn();
  *********************************************************/
 
 require('../.lib-dist/repl').Repl.start('app', cmd => eval(cmd));
-
-/*********************************************************
- * Github plugin
- *********************************************************/
-
-require('./github.js');

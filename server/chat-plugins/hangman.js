@@ -19,9 +19,9 @@ class Hangman extends Rooms.RoomGame {
 
 		this.gameNumber = ++room.gameNumber;
 
-		this.gameid = 'hangman';
+		this.gameid = /** @type {ID} */ ('hangman');
 		this.title = 'Hangman';
-		this.creator = user.userid;
+		this.creator = user.id;
 		this.word = word;
 		this.hint = hint;
 		this.incorrectGuesses = 0;
@@ -48,7 +48,7 @@ class Hangman extends Rooms.RoomGame {
 	 * @param {User} user
 	 */
 	guess(word, user) {
-		if (user.userid === this.creator) return user.sendTo(this.room, "You can't guess in your own hangman game.");
+		if (user.id === this.creator) return user.sendTo(this.room, "You can't guess in your own hangman game.");
 
 		let sanitized = word.replace(/[^A-Za-z ]/g, '');
 		let normalized = toID(sanitized);
@@ -135,7 +135,7 @@ class Hangman extends Rooms.RoomGame {
 	}
 
 	hangingMan() {
-		return `<img width="120" height="120" src="//play.pokemonshowdown.com/fx/hangman${this.incorrectGuesses === -1 ? 7 : this.incorrectGuesses}.png" />`;
+		return `<img width="120" height="120" src="//${Config.routes.client}/fx/hangman${this.incorrectGuesses === -1 ? 7 : this.incorrectGuesses}.png" />`;
 	}
 
 	generateWindow() {
@@ -222,7 +222,7 @@ const commands = {
 	hangman: {
 		create: 'new',
 		new(target, room, user, connection) {
-			let text = Chat.filter(this, target, user, room, connection);
+			let text = this.filter(target);
 			if (target !== text) return this.errorReply("You are not allowed to use filtered words in hangmans.");
 			let params = text.split(',');
 
@@ -250,7 +250,7 @@ const commands = {
 			game.display(user, true);
 
 			this.modlog('HANGMAN');
-			return this.privateModAction(`(A game of hangman was started by ${user.name}.)`);
+			return this.addModAction(`A game of hangman was started by ${user.name}.`);
 		},
 		createhelp: ["/hangman create [word], [hint] - Makes a new hangman game. Requires: % @ # & ~"],
 
@@ -352,5 +352,17 @@ const commands = {
 		`/hangman guess [word] - Same as a letter, but guesses an entire word.`,
 	],
 };
+/** @type {SettingsHandler} */
+const roomSettings = room => ({
+	label: "Hangman",
+	permission: 'editroom',
+	options: [
+		[`disabled`, room.hangmanDisabled || 'hangman disable'],
+		[`enabled`, !room.hangmanDisabled || 'hangman enable'],
+	],
+});
 
-exports.commands = commands;
+module.exports = {
+	commands,
+	roomSettings,
+};

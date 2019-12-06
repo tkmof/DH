@@ -9,8 +9,8 @@ let BattleAbilities = {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
-					const move = this.getMove(moveSlot.move);
-					if (move.category !== 'Status' && (this.getImmunity(move.type, pokemon) && this.getEffectiveness(move.type, pokemon) > 0 || move.ohko)) {
+					const move = this.dex.getMove(moveSlot.move);
+					if (move.category !== 'Status' && (this.dex.getImmunity(move.type, pokemon) && this.dex.getEffectiveness(move.type, pokemon) > 0 || move.ohko)) {
 						this.add('-ability', pokemon, 'Anticipation');
 						return;
 					}
@@ -32,6 +32,7 @@ let BattleAbilities = {
 		inherit: true,
 		desc: "This Pokemon's moves ignore the opposing side's Reflect, Light Screen, Safeguard, and Mist.",
 		shortDesc: "This Pokemon's moves ignore the foe's Reflect, Light Screen, Safeguard, and Mist.",
+		rating: 1.5,
 	},
 	"keeneye": {
 		inherit: true,
@@ -61,6 +62,7 @@ let BattleAbilities = {
 		inherit: true,
 		shortDesc: "This Pokemon is immune to damage from Sandstorm or Hail.",
 		onTryHit() {},
+		rating: 0.5,
 	},
 	"sapsipper": {
 		inherit: true,

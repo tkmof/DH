@@ -19,7 +19,7 @@ let BattleStatuses = {
 		// Damage reduction is handled directly in the sim/battle.js damage function
 		onResidualOrder: 9,
 		onResidual(pokemon) {
-			this.damage(pokemon.maxhp / 16);
+			this.damage(pokemon.baseMaxhp / 16);
 		},
 	},
 	par: {
@@ -132,7 +132,7 @@ let BattleStatuses = {
 		},
 		onResidualOrder: 9,
 		onResidual(pokemon) {
-			this.damage(pokemon.maxhp / 8);
+			this.damage(pokemon.baseMaxhp / 8);
 		},
 	},
 	tox: {
@@ -158,7 +158,7 @@ let BattleStatuses = {
 			if (this.effectData.stage < 15) {
 				this.effectData.stage++;
 			}
-			this.damage(this.clampIntRange(pokemon.maxhp / 16, 1) * this.effectData.stage);
+			this.damage(this.dex.clampIntRange(pokemon.maxhp / 16, 1) * this.effectData.stage);
 		},
 	},
 	confusion: {
@@ -245,15 +245,16 @@ let BattleStatuses = {
 		},
 		onResidualOrder: 11,
 		onResidual(pokemon) {
-			if (this.effectData.source && (!this.effectData.source.isActive || this.effectData.source.hp <= 0 || !this.effectData.source.activeTurns)) {
+			const source = this.effectData.source;
+			if (source && (!source.isActive || source.hp <= 0 || !source.activeTurns)) {
 				delete pokemon.volatiles['partiallytrapped'];
 				this.add('-end', pokemon, this.effectData.sourceEffect, '[partiallytrapped]', '[silent]');
 				return;
 			}
-			if (this.effectData.source.hasItem('bindingband')) {
-				this.damage(pokemon.maxhp / 6);
+			if (source.hasItem('bindingband')) {
+				this.damage(pokemon.baseMaxhp / 6);
 			} else {
-				this.damage(pokemon.maxhp / 8);
+				this.damage(pokemon.baseMaxhp / 8);
 			}
 		},
 		onEnd(pokemon) {
@@ -290,6 +291,7 @@ let BattleStatuses = {
 			target.addVolatile('confusion');
 		},
 		onLockMove(pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
 			return this.effectData.move;
 		},
 	},
@@ -329,10 +331,11 @@ let BattleStatuses = {
 				pokemon.removeVolatile('choicelock');
 				return;
 			}
-			if (!pokemon.ignoringItem() && move.id !== this.effectData.move && move.id !== 'struggle') {
+			if (!pokemon.ignoringItem() && !pokemon.volatiles['dynamax'] && move.id !== this.effectData.move && move.id !== 'struggle') {
 				// Fails unless the Choice item is being ignored, and no PP is lost
 				this.addMove('move', pokemon, move.name);
 				this.attrLastMove('[still]');
+				this.debug("Disabled by Choice item lock");
 				this.add('-fail', pokemon);
 				return false;
 			}
@@ -342,7 +345,7 @@ let BattleStatuses = {
 				pokemon.removeVolatile('choicelock');
 				return;
 			}
-			if (pokemon.ignoringItem()) {
+			if (pokemon.ignoringItem() || pokemon.volatiles['dynamax']) {
 				return;
 			}
 			for (const moveSlot of pokemon.moveSlots) {
@@ -379,7 +382,7 @@ let BattleStatuses = {
 		onEnd(target) {
 			const data = this.effectData;
 			// time's up; time to hit! :D
-			const move = this.getMove(data.move);
+			const move = this.dex.getMove(data.move);
 			if (target.fainted || target === data.source) {
 				this.hint(`${move.name} did not hit because the target is ${(data.fainted ? 'fainted' : 'the user')}.`);
 				return;
@@ -398,9 +401,9 @@ let BattleStatuses = {
 			if (data.source.hasAbility('adaptability') && this.gen >= 6) {
 				data.moveData.stab = 2;
 			}
-			const hitMove = new this.Data.Move(data.moveData);
+			const hitMove = new this.dex.Data.Move(data.moveData);
 
-			this.tryMoveHit(target, data.source, /** @type {ActiveMove} */(/** @type {unknown} */(hitMove)));
+			this.trySpreadMoveHit([target], data.source, /** @type {ActiveMove} */(/** @type {unknown} */(hitMove)));
 		},
 	},
 	healreplacement: {
@@ -476,6 +479,7 @@ let BattleStatuses = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Water') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('rain water boost');
 				return this.chainModify(1.5);
 			}
@@ -518,6 +522,7 @@ let BattleStatuses = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Water') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('Rain water boost');
 				return this.chainModify(1.5);
 			}
@@ -548,10 +553,12 @@ let BattleStatuses = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Fire') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('Sunny Day fire boost');
 				return this.chainModify(1.5);
 			}
 			if (move.type === 'Water') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('Sunny Day water suppress');
 				return this.chainModify(0.5);
 			}
@@ -564,7 +571,8 @@ let BattleStatuses = {
 				this.add('-weather', 'SunnyDay');
 			}
 		},
-		onImmunity(type) {
+		onImmunity(type, pokemon) {
+			if (pokemon.item === "utilityumbrella") return;
 			if (type === 'frz') return false;
 		},
 		onResidualOrder: 1,
@@ -593,6 +601,7 @@ let BattleStatuses = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Fire') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('Sunny Day fire boost');
 				return this.chainModify(1.5);
 			}
@@ -600,7 +609,8 @@ let BattleStatuses = {
 		onStart(battle, source, effect) {
 			this.add('-weather', 'DesolateLand', '[from] ability: ' + effect, '[of] ' + source);
 		},
-		onImmunity(type) {
+		onImmunity(type, pokemon) {
+			if (pokemon.item === "utilityumbrella") return;
 			if (type === 'frz') return false;
 		},
 		onResidualOrder: 1,
@@ -646,7 +656,7 @@ let BattleStatuses = {
 			if (this.field.isWeather('sandstorm')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
-			this.damage(target.maxhp / 16);
+			this.damage(target.baseMaxhp / 16);
 		},
 		onEnd() {
 			this.add('-weather', 'none');
@@ -678,7 +688,7 @@ let BattleStatuses = {
 			if (this.field.isWeather('hail')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
-			this.damage(target.maxhp / 16);
+			this.damage(target.baseMaxhp / 16);
 		},
 		onEnd() {
 			this.add('-weather', 'none');
@@ -691,6 +701,7 @@ let BattleStatuses = {
 		effectType: 'Weather',
 		duration: 0,
 		onEffectiveness(typeMod, target, type, move) {
+			if (target && target.item === "utilityumbrella") return;
 			if (move && move.effectType === 'Move' && move.category !== 'Status' && type === 'Flying' && typeMod > 0) {
 				this.add('-activate', '', 'deltastream');
 				return 0;
@@ -709,6 +720,51 @@ let BattleStatuses = {
 		},
 	},
 
+	dynamax: {
+		name: 'Dynamax',
+		id: 'dynamax',
+		num: 0,
+		noCopy: true,
+		duration: 3,
+		onStart(pokemon) {
+			if (pokemon.species === 'Eternatus-Eternamax') return;
+			pokemon.removeVolatile('substitute');
+			this.add('-start', pokemon, 'Dynamax');
+			if (pokemon.canGigantamax) pokemon.formeChange(pokemon.canGigantamax);
+			if (pokemon.species === 'Shedinja') return;
+
+			// Changes based on dynamax level, 2 is max (at LVL 10)
+			const ratio = 2;
+
+			pokemon.maxhp = Math.floor(pokemon.maxhp * ratio);
+			pokemon.hp = Math.floor(pokemon.hp * ratio);
+			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
+		},
+		onSwitchIn(pokemon) {
+			// Special case for Eternamax
+			if (pokemon.species !== 'Eternatus-Eternamax') return;
+			pokemon.removeVolatile('substitute');
+			this.effectData.duration = 0;
+		},
+		onFlinch: false,
+		onBeforeSwitchOut(pokemon) {
+			if (pokemon.species !== 'Eternatus-Eternamax') pokemon.removeVolatile('dynamax');
+		},
+		onDragOutPriority: 2,
+		onDragOut(pokemon) {
+			this.add('-fail', pokemon, 'Dynamax');
+			return null;
+		},
+		onEnd(pokemon) {
+			this.add('-end', pokemon, 'Dynamax');
+			if (pokemon.canGigantamax) pokemon.formeChange(pokemon.baseTemplate.species);
+			if (pokemon.species === 'Shedinja') return;
+			pokemon.hp = pokemon.getUndynamaxedHP();
+			pokemon.maxhp = pokemon.baseMaxhp;
+			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
+		},
+	},
+
 	// Arceus and Silvally's actual typing is implemented here.
 	// Their true typing for all their formes is Normal, and it's only
 	// Multitype and RKS System, respectively, that changes their type,
@@ -721,7 +777,7 @@ let BattleStatuses = {
 		num: 493,
 		onTypePriority: 1,
 		onType(types, pokemon) {
-			if (pokemon.transformed) return types;
+			if (pokemon.transformed || pokemon.ability !== 'multitype' && this.gen >= 8) return types;
 			/** @type {string | undefined} */
 			let type = 'Normal';
 			if (pokemon.ability === 'multitype') {
@@ -739,7 +795,7 @@ let BattleStatuses = {
 		num: 773,
 		onTypePriority: 1,
 		onType(types, pokemon) {
-			if (pokemon.transformed) return types;
+			if (pokemon.transformed || pokemon.ability !== 'rkssystem' && this.gen >= 8) return types;
 			/** @type {string | undefined} */
 			let type = 'Normal';
 			if (pokemon.ability === 'rkssystem') {
@@ -749,6 +805,17 @@ let BattleStatuses = {
 				}
 			}
 			return [type];
+		},
+	},
+	eternatuseternamax: {
+		name: 'Eternatus-Eternamax',
+		id: 'eternatuseternamax',
+		num: 890,
+		onStart(pokemon) {
+			if (pokemon.transformed) return;
+			pokemon.addVolatile('dynamax');
+			pokemon.maxhp = Math.floor(pokemon.maxhp * 2);
+			pokemon.hp = Math.floor(pokemon.hp * 2);
 		},
 	},
 };

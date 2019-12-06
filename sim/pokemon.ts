@@ -457,7 +457,7 @@ export class Pokemon {
 		boost = boosts[boostName]!;
 		const boostTable = [1, 1.5, 2, 2.5, 3, 3.5, 4];
 		if (boost > 6) boost = 6;
-		else if (boost < -6) boost = -6;
+		if (boost < -6) boost = -6;
 		if (boost >= 0) {
 			stat = Math.floor(stat * boostTable[boost]);
 		} else {
@@ -492,7 +492,7 @@ export class Pokemon {
 			let boost = boosts[statName];
 			const boostTable = [1, 1.5, 2, 2.5, 3, 3.5, 4];
 			if (boost > 6) boost = 6;
-			else if (boost < -6) boost = -6;
+			if (boost < -6) boost = -6;
 			if (boost >= 0) {
 				stat = Math.floor(stat * boostTable[boost]);
 			} else {
@@ -984,7 +984,7 @@ export class Pokemon {
 					this.formeChange('Giratina');
 				}
 			}
-			else if (this.template.num === 493) {
+			if (this.template.num === 493) {
 				// Arceus formes
 				const item = this.getItem();
 				const targetForme = (item && item.onPlate ? 'Arceus-' + item.onPlate : 'Arceus');
@@ -1031,7 +1031,7 @@ export class Pokemon {
 		if (this.battle.gen <= 1) {
 			// Gen 1: Re-Apply burn and para drops.
 			if (this.status === 'par') this.modifyStat!('spe', 0.25);
-			else if (this.status === 'brn') this.modifyStat!('atk', 0.5);
+			if (this.status === 'brn') this.modifyStat!('atk', 0.5);
 		}
 		this.speed = this.storedStats.spe;
 		return template;

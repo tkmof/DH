@@ -61,7 +61,6 @@ exports.ssl = null;
 
 /*
 // example:
-const fs = require('fs');
 exports.ssl = {
 	port: 443,
 	options: {
@@ -84,7 +83,8 @@ Main's SSL deploy script from Let's Encrypt looks like:
  *   This can be either false (meaning not to trust any proxies) or an array
  *   of strings. Each string should be either an IP address or a subnet given
  *   in CIDR notation. You should usually leave this as `false` unless you
- *   know what you are doing.
+ *   know what you are doing
+ * @type {false | string[]}.
  */
 exports.proxyip = false;
 
@@ -135,6 +135,17 @@ Ko0LaPAMhcfETxlFQFutoWBRcH415A/EMXJa4FqYa9oeXWABNtKkUW0zrQ194btg
 Y929lRybWEiKUr+4Yw2O1W0CAwEAAQ==
 -----END PUBLIC KEY-----
 `;
+
+/**
+ * routes - where Pokemon Showdown is hosted.
+ *   Don't change this setting - there aren't any other options right now
+ */
+exports.routes = {
+	root: 'pokemonshowdown.com',
+	client: 'play.pokemonshowdown.com',
+	dex: 'dex.pokemonshowdown.com',
+	replays: 'replay.pokemonshowdown.com',
+};
 
 /**
  * crashguardemail - if the server has been running for more than an hour
@@ -245,14 +256,17 @@ exports.restrictLinks = false;
 
 /**
   * chat modchat - default minimum group for speaking in chatrooms; changeable with /modchat
+  * @type {false | string}
  */
 exports.chatmodchat = false;
 /**
  * battle modchat - default minimum group for speaking in battles; changeable with /modchat
+ * @type {false | string}
  */
 exports.battlemodchat = false;
 /**
  * pm modchat - minimum group for PMing other users, challenging other users
+ * @type {false | string}
  */
 exports.pmmodchat = false;
 /**
@@ -332,27 +346,11 @@ exports.simulatorprocesses = 1;
  */
 exports.inactiveuserthreshold = 1000 * 60 * 60;
 
-//<<<<<<< HEAD
-// tellsexpiryage - how long an offline message remains in existence before being removed.
-// By default, 7 days
-exports.tellsexpiryage = 1000 * 60 * 60 * 24 * 7;
-
-// tellrank - the rank that offline messaging is available to. By default, available to voices
-// and above. Set to ' ' to allow all users to use offline messaging and `false` to disable
-// offline messaging completely. Set to `'autoconfirmed'` to allow only autoconfirmed users
-// to send offline messages.
-exports.tellrank = '+';
-
-// autolockdown - whether or not to automatically kill the server when it is
-// in lockdown mode and the final battle finishes.  This is potentially useful
-// to prevent forgetting to restart after a lockdown where battles are finished.
-//=======
 /**
  * autolockdown - whether or not to automatically kill the server when it is
  * in lockdown mode and the final battle finishes.  This is potentially useful
  * to prevent forgetting to restart after a lockdown where battles are finished.
  */
-//>>>>>>> 3c500c06a638f3149abe584cbdccb21b288ffb40
 exports.autolockdown = true;
 
 /**
@@ -370,20 +368,6 @@ exports.customavatars = {
 	// 'userid': 'customavatar.png'
 };
 
-//<<<<<<< HEAD
-// custom avatars appear in profile by specifiying server url.
-exports.avatarurl = '';
-
-// Tournament announcements
-// When tournaments are created in rooms listed below, they will be announced in
-// the server's main tournament room (either the specified tourroom or by default
-// the room 'tournaments')
-// tourroom - specify a room to receive tournament announcements (defaults to
-// the room 'tournaments').
-// tourannouncements - announcements are only allowed in these rooms
-// tourdefaultplayercap - a set cap of how many players can be in a tournament
-// ratedtours - toggles tournaments being ladder rated (true) or not (false)
-//=======
 /**
  * tourroom - specify a room to receive tournament announcements (defaults to
  * the room 'tournaments').
@@ -391,7 +375,6 @@ exports.avatarurl = '';
  * tourdefaultplayercap - a set cap of how many players can be in a tournament
  * ratedtours - toggles tournaments being ladder rated (true) or not (false)
  */
-//>>>>>>> 3c500c06a638f3149abe584cbdccb21b288ffb40
 exports.tourroom = '';
 /** @type {string[]} */
 exports.tourannouncements = [/* roomids */];
@@ -423,8 +406,17 @@ exports.replsocketmode = 0o600;
 exports.disablehotpatchall = false;
 
 /**
+ * forcedpublicprefixes - user ID prefixes which will be forced to battle publicly.
+ * Battles involving user IDs which begin with one of the prefixes configured here
+ * will be unaffected by various battle privacy commands such as /modjoin, /hideroom
+ * or /ionext.
+ * @type {string[]}
+ */
+exports.forcedpublicprefixes = [];
+
+/**
  * permissions and groups:
- *   Each entry in `grouplist' is a seperate group. Some of the members are "special"
+ *   Each entry in `grouplist` is a seperate group. Some of the members are "special"
  *     while the rest is just a normal permission.
  *   The order of the groups determines their ranking.
  *   The special members are as follows:
@@ -496,7 +488,6 @@ exports.grouplist = [
 		roomdriver: true,
 		forcewin: true,
 		declare: true,
-		modchatall: true,
 		rangeban: true,
 		makeroom: true,
 		editroom: true,
@@ -519,7 +510,6 @@ exports.grouplist = [
 		editroom: true,
 		declare: true,
 		addhtml: true,
-		modchatall: true,
 		roomonly: true,
 		gamemanagement: true,
 	},
@@ -537,19 +527,6 @@ exports.grouplist = [
 		joinbattle: true,
 	},
 	{
-		symbol: '\u2606',
-		id: "player",
-		name: "Player",
-		inherit: '+',
-		roomvoice: true,
-		modchat: true,
-		roomonly: true,
-		joinbattle: true,
-		nooverride: true,
-		editprivacy: true,
-		exportinputlog: true,
-	},
-	{
 		symbol: '*',
 		id: "bot",
 		name: "Bot",
@@ -557,6 +534,7 @@ exports.grouplist = [
 		jurisdiction: 'u',
 		declare: true,
 		addhtml: true,
+		bypassafktimer: true,
 	},
 	{
 		symbol: '@',
@@ -566,6 +544,7 @@ exports.grouplist = [
 		jurisdiction: 'u',
 		ban: true,
 		modchat: true,
+		modchatall: true,
 		roomvoice: true,
 		forcerename: true,
 		ip: true,
@@ -596,6 +575,19 @@ exports.grouplist = [
 		minigame: true,
 	},
 	{
+		symbol: '\u2606',
+		id: "player",
+		name: "Player",
+		inherit: '+',
+		roomvoice: true,
+		modchat: true,
+		roomonly: true,
+		joinbattle: true,
+		nooverride: true,
+		editprivacy: true,
+		exportinputlog: true,
+	},
+	{
 		symbol: '+',
 		id: "voice",
 		name: "Voice",
@@ -605,7 +597,6 @@ exports.grouplist = [
 	},
 	{
 		symbol: ' ',
-		ip: 's',
 	},
 	{
 		name: 'Locked',

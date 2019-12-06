@@ -8,9 +8,9 @@
  * Specifically, this is the file that handles calculating and keeping
  * track of players' Elo ratings for all formats.
  *
- * Matchmaking is currently still implemented in rooms.js.
+ * Matchmaking is currently still implemented in rooms.ts.
  *
- * @license MIT license
+ * @license MIT
  */
 
 'use strict';
@@ -33,8 +33,8 @@ export class LadderStore {
 	ladder: LadderRow[] | null;
 	ladderPromise: Promise<LadderRow[]> | null;
 	saving: boolean;
-	static formatsListPrefix = '|,LL';
-	static ladderCaches = ladderCaches;
+	static readonly formatsListPrefix = '|,LL';
+	static readonly ladderCaches = ladderCaches;
 
 	constructor(formatid: string) {
 		this.formatid = formatid;
@@ -131,7 +131,7 @@ export class LadderStore {
 	 * ladder toplist, to be displayed directly in the ladder tab of the
 	 * client.
 	 */
-	async getTop() {
+	async getTop(prefix?: string) {
 		const formatid = this.formatid;
 		const name = Dex.getFormat(formatid).name;
 		const ladder = await this.getLadder();
@@ -139,6 +139,7 @@ export class LadderStore {
 		buf += `<table>`;
 		buf += `<tr><th>` + ['', 'Username', '<abbr title="Elo rating">Elo</abbr>', 'W', 'L', 'T'].join(`</th><th>`) + `</th></tr>`;
 		for (const [i, row] of ladder.entries()) {
+			if (prefix && !row[0].startsWith(prefix)) continue;
 			buf += `<tr><td>` + [
 				i + 1, row[2], `<strong>${Math.round(row[1])}</strong>`, row[3], row[4], row[5],
 			].join(`</td><td>`) + `</td></tr>`;
@@ -161,7 +162,7 @@ export class LadderStore {
 		if (index >= 0) {
 			rating = ladder[index][1];
 		}
-		if (user && user.userid === userid) {
+		if (user && user.id === userid) {
 			user.mmrCache[formatid] = rating;
 		}
 		return rating;
