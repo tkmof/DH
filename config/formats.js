@@ -3,9 +3,7 @@
 // Note: This is the list of formats
 // The rules that formats use are stored in data/rulesets.js
 
-/**@type {(FormatsData | {section: string, column?: number})[]} */
-let Formats = [
-
+exports.Formats = [
 
 	// Randomized Metas
 	///////////////////////////////////////////////////////////////////
