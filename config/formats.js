@@ -3,7 +3,9 @@
 // Note: This is the list of formats
 // The rules that formats use are stored in data/rulesets.js
 
-exports.Formats = [
+/**@type {(FormatsData | {section: string, column?: number})[]} */
+let Formats = [
+
 
 	// Randomized Metas
 	///////////////////////////////////////////////////////////////////
@@ -2310,15 +2312,6 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview'],
 	},
 	
-
-	'use strict';
-
-// Note: This is the list of formats
-// The rules that formats use are stored in data/rulesets.js
-
-/**@type {(FormatsData | {section: string, column?: number})[]} */
-let Formats = [
-
 	// Sw/Sh Singles
 	///////////////////////////////////////////////////////////////////
 
