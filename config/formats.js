@@ -3238,7 +3238,7 @@ exports.Formats = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-8-more-balanced-hackmons.3644050/">More Balanced Hackmons</a>`,
 		],
 		mod: 'morebalancedhackmons',
-		ruleset: [ 'Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 
+		ruleset: [ '+Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 
 					'Endless Battle Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 
 					'Species Clause', '+Past', 'NatDex Rule' ],
 		banlist: ['Groudon-Primal', 'Arena Trap', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 
