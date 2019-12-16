@@ -3238,13 +3238,25 @@ exports.Formats = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-8-more-balanced-hackmons.3644050/">More Balanced Hackmons</a>`,
 		],
 		mod: 'morebalancedhackmons',
-		ruleset: [ 'Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 
+		ruleset: [ 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 
 					'Endless Battle Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 
 					'Species Clause', '+Past', 'NatDex Rule' ],
 		banlist: ['Groudon-Primal', 'Arena Trap', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 
 					'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 
 					'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk',
 					'Libero', 'Neutralizing Gas', 'Gorilla Tactics', 'Intrepid Sword'],
+		onValidateTeam(team, format){
+			/**@type {{[k: string]: true}} */
+			let abilityTable = [];
+			for (const set of team) {
+				if (!abilityTable.includes( set.ability )){
+					abilityTable.push( set.ability );
+				}
+				else {
+					return [`You have two pokemon with the ability ${set.ability}.`];
+				}
+			}
+		},
 	},
 	{
 		name: "[Gen 7] Mega Mirrors",
