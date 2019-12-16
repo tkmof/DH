@@ -6,7 +6,7 @@ let BattleFormats = {
 		name: 'Ability Clause',
 		desc: "Prevents teams from having more than one Pok&eacute;mon with the same ability",
 		onBegin() {
-			this.add('rule', 'Ability Clause: Limit one of each Pokémon');
+			this.add('rule', 'Ability Clause: Limit one of each Ability');
 		},
 		onValidateTeam(team, format){
 			/**@type {{[k: string]: true}} */
