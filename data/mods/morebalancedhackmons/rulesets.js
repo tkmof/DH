@@ -12,7 +12,7 @@ let BattleFormats = {
 			/**@type {{[k: string]: true}} */
 			let abilityTable = [];
 			for (const set of team) {
-				if (!abilityTable.includes( set.ability ){
+				if (!abilityTable.includes( set.ability )){
 					abilityTable.push( set.ability );
 				}
 				else {
