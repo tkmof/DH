@@ -8,11 +8,11 @@ let BattleFormats = {
 		onBegin() {
 			this.add('rule', 'Ability Clause: Limit one of each Pokémon');
 		},
-		onValidateTeam(team, format)){
+		onValidateTeam(team, format){
 			/**@type {{[k: string]: true}} */
 			let abilityTable = [];
 			for (const set of team) {
-				if (!abilityTable.includes( set.ability ){
+				if (!abilityTable.includes( set.ability )){
 					abilityTable.push( set.ability );
 				}
 				else {
