@@ -530,6 +530,31 @@ exports.Formats = [
 		banlist: [],
 		mod: 'roulettemons',
 	},
+	{
+		name: "[Gen 8] Crossover Chaos v2",
+		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-v2.3636780/>Crossover Chaos</a>",
+		      ],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: ['Uber', 'Unreleased', 'Illegal', 'EX'],
+		mod: 'crossoverchaos',
+	},
+	{
+		name: "[Gen 8] Crossover Chaos Expanded",
+		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-expanded-side-project.3647108/>Crossover Chaos</a>",
+		      ],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: ['Uber', 'Unreleased', 'Illegal', 'V2', 'V1'],
+		mod: 'crossoverchaos',
+	},
+	{
+		name: "[Gen 8] Crossover Chaos v2 + Expanded Ubers",
+		desc: [
+				"&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-v2.3636780/>Crossover Chaos</a>",
+		      "&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-expanded-side-project.3647108/>Crossover Chaos</a>"],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: [],
+		mod: 'crossoverchaos',
+	},
 	// Old Pet Mods ///////////////////////////////////////////////////////////////////
 	{
 		section: "Old Pet Mods",
@@ -573,31 +598,6 @@ exports.Formats = [
             this.add('-start', pokemon, 'typechange', pokemon.template.types.join('/'), '[silent]');
         },
   	},
-	{
-		name: "[Gen 7] Crossover Chaos v2",
-		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-v2.3636780/>Crossover Chaos</a>",
-		      ],
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: ['Uber', 'Unreleased', 'Illegal', 'EX'],
-		mod: 'crossoverchaos',
-	},
-	{
-		name: "[Gen 7] Crossover Chaos Expanded",
-		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-expanded-side-project.3647108/>Crossover Chaos</a>",
-		      ],
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: ['Uber', 'Unreleased', 'Illegal', 'V2', 'V1'],
-		mod: 'crossoverchaos',
-	},
-	{
-		name: "[Gen 7] Crossover Chaos v2 + Expanded Ubers",
-		desc: [
-				"&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-v2.3636780/>Crossover Chaos</a>",
-		      "&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-expanded-side-project.3647108/>Crossover Chaos</a>"],
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: [],
-		mod: 'crossoverchaos',
-	},
 	{
   		name: "[Gen 7] Eevee'd",
   		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/eeveed-current-slate-sliggoo-and-sunkern-submissions.3602933/>Eeveed</a>",
