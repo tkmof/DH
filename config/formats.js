@@ -366,11 +366,10 @@ exports.Formats = [
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', '+Past', 'NatDex Rule'],
 	},
-
 	// Pet Mods ///////////////////////////////////////////////////////////////////
 	{
 		section: "Pet Mods",
-		column: 3,
+		column: 2,
 	},
 	{
 		name: "[Gen 8] Bench Abilities",
@@ -496,6 +495,46 @@ exports.Formats = [
             this.add('-start', pokemon, 'typechange', pokemon.template.types.join('/'), '[silent]');
         },
   	},
+	{
+		name: "[Gen 8] More Balanced Hackmons",
+		desc: `A National Dex mod of Balanced Hackmons with new pokemon, moves, and abilities, as well as some additional bans.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-8-more-balanced-hackmons.3644050/">More Balanced Hackmons</a>`,
+		],
+		mod: 'morebalancedhackmons',
+		ruleset: [ 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 
+					'Endless Battle Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 
+					'Species Clause', '+Past', 'NatDex Rule' ],
+		banlist: ['Groudon-Primal', 'Arena Trap', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 
+					'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 
+					'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk',
+					'Libero', 'Neutralizing Gas', 'Gorilla Tactics', 'Intrepid Sword'],
+		onValidateTeam(team, format){
+			/**@type {{[k: string]: true}} */
+			let abilityTable = [];
+			for (const set of team) {
+				if (!abilityTable.includes( set.ability )){
+					abilityTable.push( set.ability );
+				}
+				else {
+					return [`You have more than one pokemon with the ability ${set.ability}.`];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 8] Roulettemons",
+		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/roulettemons.3649106/>Roulettemons</a>",
+		      ],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: [],
+		mod: 'roulettemons',
+	},
+	// Old Pet Mods ///////////////////////////////////////////////////////////////////
+	{
+		section: "Old Pet Mods",
+		column: 3,
+	},
 	{
   		name: "[Gen 7] Clean Slate",
   		desc: [
@@ -770,33 +809,7 @@ exports.Formats = [
             this.add('-start', pokemon, 'typechange', pokemon.template.types.join('/'), '[silent]');
         },
 	},
-	{
-		name: "[Gen 8] More Balanced Hackmons",
-		desc: `A National Dex mod of Balanced Hackmons with new pokemon, moves, and abilities, as well as some additional bans.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-8-more-balanced-hackmons.3644050/">More Balanced Hackmons</a>`,
-		],
-		mod: 'morebalancedhackmons',
-		ruleset: [ 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 
-					'Endless Battle Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 
-					'Species Clause', '+Past', 'NatDex Rule' ],
-		banlist: ['Groudon-Primal', 'Arena Trap', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 
-					'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 
-					'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk',
-					'Libero', 'Neutralizing Gas', 'Gorilla Tactics', 'Intrepid Sword'],
-		onValidateTeam(team, format){
-			/**@type {{[k: string]: true}} */
-			let abilityTable = [];
-			for (const set of team) {
-				if (!abilityTable.includes( set.ability )){
-					abilityTable.push( set.ability );
-				}
-				else {
-					return [`You have more than one pokemon with the ability ${set.ability}.`];
-				}
-			}
-		},
-	},
+	
 	{
 		name: "[Gen 7] Mega Mirrors",
 		threads: [
@@ -823,14 +836,6 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: [],
 		mod: 'thefirstnewgen',
-	},
-	{
-		name: "[Gen 8] Roulettemons",
-		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/roulettemons.3649106/>Roulettemons</a>",
-		      ],
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: [],
-		mod: 'roulettemons',
 	},
 	{
   		name: "[Gen 7] Super Smash Mods",
@@ -921,4 +926,5 @@ exports.Formats = [
 		banlist: ['Unreleased', 'Illegal'],
 		mod: 'zmoveseverywhere',
 	},
+	
 ];
