@@ -1105,7 +1105,7 @@ exports.Formats = [
 			return pokemon;
 		},
 	},
-		{
+	{
 		name: "[Gen 8] Camomons",
 		desc: `Pok&eacute;mon change type to match their first two moves.`,
 		threads: [
