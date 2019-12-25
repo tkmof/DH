@@ -3393,6 +3393,16 @@ gokusupersaiyangod: {
 		heightm: 7,
 		weightkg: 700,
 	},
+	vegeta: {
+		num: 7000042
+		species: "Vegeta", /* Dragon Ball */
+		types: ["Fighting"],
+		gender: "M",
+		baseStats: {hp: 80, atk: 115, def: 75, spa: 115, spd: 75, spe: 110},
+		abilities: {0: "Zenkai Boost", H: "Defiant"},
+		heightm: 1.64
+		weightkg: 56,
+		otherFormes: ["vegetasupersaiyan", "vegetasupersaiyangod", "vegetasupersaiyanblue", "vegetamajin", "vegetaoozaru", "vegetasupersaiyan4"]
 	milesmorales: {
 		num: 7000045,
 		species: "Miles Morales", /* Spider Man: Into the Spiderverse */
