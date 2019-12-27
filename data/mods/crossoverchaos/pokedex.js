@@ -2712,7 +2712,7 @@ promesteinultimate: {
 			formeLetter: "U",
 			types: ["Psychic", "Grass"],
 			gender: "F",
-			baseStats: {hp: 180, atk: 105, def: 90, spa: 110, spd: 95, spe: 100}
+			baseStats: {hp: 180, atk: 105, def: 90, spa: 110, spd: 95, spe: 100},
 			abilities: {0: "Regenerator", 1: "Chlorophyll", H: "Mad Scientist Angel"},
 },
 walle: {
