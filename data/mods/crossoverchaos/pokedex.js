@@ -3394,7 +3394,7 @@ gokusupersaiyangod: {
 		weightkg: 700,
 	},
 	vegeta: {
-		num: 7000042
+		num: 7000042,
 		species: "Vegeta", /* Dragon Ball */
 		types: ["Fighting"],
 		gender: "M",
