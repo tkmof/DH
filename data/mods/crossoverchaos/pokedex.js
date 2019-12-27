@@ -3402,7 +3402,8 @@ gokusupersaiyangod: {
 		abilities: {0: "Zenkai Boost", H: "Defiant"},
 		heightm: 1.64,
 		weightkg: 56,
-		otherFormes: ["vegetasupersaiyan", "vegetasupersaiyangod", "vegetasupersaiyanblue", "vegetamajin", "vegetaoozaru", "vegetasupersaiyan4"]
+		otherFormes: ["vegetasupersaiyan", "vegetasupersaiyangod", "vegetasupersaiyanblue", "vegetamajin", "vegetaoozaru", "vegetasupersaiyan4"],
+	},
 	milesmorales: {
 		num: 7000045,
 		species: "Miles Morales", /* Spider Man: Into the Spiderverse */
