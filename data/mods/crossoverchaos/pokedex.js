@@ -3608,4 +3608,4 @@ gokusupersaiyangod: {
 		heightm: 1.95,
 		weightkg: 97,
 	},
-};
+}
