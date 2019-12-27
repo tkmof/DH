@@ -3400,7 +3400,7 @@ gokusupersaiyangod: {
 		gender: "M",
 		baseStats: {hp: 80, atk: 115, def: 75, spa: 115, spd: 75, spe: 110},
 		abilities: {0: "Zenkai Boost", H: "Defiant"},
-		heightm: 1.64
+		heightm: 1.64,
 		weightkg: 56,
 		otherFormes: ["vegetasupersaiyan", "vegetasupersaiyangod", "vegetasupersaiyanblue", "vegetamajin", "vegetaoozaru", "vegetasupersaiyan4"]
 	milesmorales: {
