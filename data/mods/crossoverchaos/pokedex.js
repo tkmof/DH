@@ -2700,7 +2700,7 @@ promestein: {
 			species: "Promestein", /* Monster Girl Quest */
 			types: ["Psychic", "Grass"],
 			gender: "F",
-			baseStats: {hp: 130, atk: 95, def: 90, spa: 100, spd: 95, spe: 90,
+			baseStats: {hp: 130, atk: 95, def: 90, spa: 100, spd: 95, spe: 90},
 			abilities: {0: "Regenerator", 1: "Chlorophyll", H: "Mad Scientist Angel"},
 			otherFormes: ["promesteinultimate"],
 },
