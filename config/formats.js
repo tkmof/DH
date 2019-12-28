@@ -596,7 +596,7 @@ exports.Formats = [
 			let speciesTable = {};
 			for (const set of team) {
 				let template = this.dex.getTemplate(set.species);
-				console.log( this.dex );
+				console.log( template );
 				if (speciesTable[template.num]) {
 					return ["You are limited to one of each Pokémon by Species Clause.", "(You have more than one " + template.baseSpecies + ")"];
 				}
