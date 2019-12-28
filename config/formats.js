@@ -560,7 +560,7 @@ exports.Formats = [
 					'Swagger Clause', 'Baton Pass Clause', 'Obtainable', '+Past', 'NatDex Rule'],
 		banlist: [],
 		mod: 'crossoverchaos',
-	, 
+	}, 
 	// Old Pet Mods ///////////////////////////////////////////////////////////////////
 	{
 		section: "Old Pet Mods",
