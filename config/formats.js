@@ -544,7 +544,7 @@ exports.Formats = [
 			for (const set of team) {
 				let template = this.dex.getTemplate(set.species);
 				if ( template.tier === 'V1' || template.tier === 'EX' ) {
-					return ["You are not allowed to use pokemon from " + template.tier];
+					return ["You are not allowed to use pokemon from " + template.tier + ". ( " + template.species + " )"];
 				}
 			}
 		},
@@ -564,7 +564,7 @@ exports.Formats = [
 			for (const set of team) {
 				let template = this.dex.getTemplate(set.species);
 				if ( template.tier === 'V1' || template.tier === 'V2' ) {
-					return ["You are not allowed to use pokemon from " + template.tier];
+					return ["You are not allowed to use pokemon from " + template.tier + ". ( " + template.species + " )"];
 				}
 			}
 		},
