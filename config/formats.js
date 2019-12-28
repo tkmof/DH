@@ -535,7 +535,7 @@ exports.Formats = [
 		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-v2.3636780/>Crossover Chaos</a>",
 		      ],
 		ruleset: [ 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: ['Uber', 'Unreleased',  'EX'],
+		banlist: ['Uber', 'Unreleased',],
 		mod: 'crossoverchaos',
 	},
 	{
@@ -543,7 +543,7 @@ exports.Formats = [
 		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/crossover-chaos-expanded-side-project.3647108/>Crossover Chaos</a>",
 		      ],
 		ruleset: [ 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: ['Uber', 'Unreleased',  'V2', 'V1'],
+		banlist: ['Uber', 'Unreleased',],
 		mod: 'crossoverchaos',
 	},
 	{
