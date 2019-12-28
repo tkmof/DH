@@ -439,8 +439,7 @@ exports.Formats = [
 					for ( var pos in allyBench ) {
 						 if ( allyBench[ pos ].id === ally.id 
 							|| allyBench[ pos ].id === pokemon.id )
-						{
-							console.log( "deleting - position: " + pos + " name: " +	allyBench[ pos ].id )							
+						{					
 							 delete allyBench[ pos ];
 						}
 					}
@@ -539,6 +538,16 @@ exports.Formats = [
 					'Swagger Clause', 'Baton Pass Clause', 'Obtainable', '+Past', 'NatDex Rule'],
 		banlist: ['Uber', 'Unreleased',],
 		mod: 'crossoverchaos',
+    onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}} */
+			let speciesTable = {};
+			for (const set of team) {
+				let template = this.dex.getTemplate(set.species);
+				if ( template.tier === 'V1' || template.tier === 'EX' ) {
+					return ["You are not allowed to use pokemon from " + template.tier];
+				}
+			}
+		},
 	},
 	{
 		name: "[Gen 8] Crossover Chaos Expanded",
@@ -549,6 +558,16 @@ exports.Formats = [
 					'Swagger Clause', 'Baton Pass Clause', 'Obtainable', '+Past', 'NatDex Rule'],
 		banlist: ['Uber', 'Unreleased',],
 		mod: 'crossoverchaos',
+    onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}} */
+			let speciesTable = {};
+			for (const set of team) {
+				let template = this.dex.getTemplate(set.species);
+				if ( template.tier === 'V1' || template.tier === 'V2' ) {
+					return ["You are not allowed to use pokemon from " + template.tier];
+				}
+			}
+		},
 	},
 	{
 		name: "[Gen 8] Crossover Chaos v2 + Expanded Ubers",
