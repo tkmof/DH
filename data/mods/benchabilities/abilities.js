@@ -415,6 +415,12 @@ let BattleAbilities = {
 			}
 			this.field.clearWeather();
 		},
+		onAllyModifyMove(move) {
+			if ( move.name ==='Sky Attack' ) {
+				move.onTryMove = null;
+				move.flags.charge = null;
+			}
+		},
 		id: "windtunnel",
 		name: "Wind Tunnel",
 	},
