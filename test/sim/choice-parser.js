@@ -187,14 +187,14 @@ describe('Choice parser', function () {
 				]});
 
 				assert(battle.choose('p1', `move 1, move Conversion 2 2`));
-				assert.strictEqual(battle.p1.getChoice(), `move conversion, move conversion2 2`);
+				assert.equal(battle.p1.getChoice(), `move conversion, move conversion2 2`);
 				battle.p1.clearChoice();
 
 				assert.throws(() => battle.choose('p1', `move 1, move Conversion -2`));
 				battle.p1.clearChoice();
 
 				assert(battle.choose('p1', `move Conversion 2 zmove 2, move 1`));
-				assert.strictEqual(battle.p1.getChoice(), `move conversion2 2 zmove, move conversion`);
+				assert.equal(battle.p1.getChoice(), `move conversion2 2 zmove, move conversion`);
 				battle.p1.clearChoice();
 			});
 		});
@@ -245,13 +245,13 @@ describe('Choice parser', function () {
 				assert.false.fainted(p1.active[1]);
 
 				assert(battle.choose('p1', 'move smog 2'));
-				assert.strictEqual(battle.p1.getChoice(), `pass, move smog 2`, `Choice mismatch`);
+				assert.equal(battle.p1.getChoice(), `pass, move smog 2`, `Choice mismatch`);
 			});
 		});
 
 		describe('Triples', function () {
 			it('should accept only `move` and `switch` choices for a healthy Pokémon on the center', function () {
-				battle = common.createBattle({gameType: 'triples'});
+				battle = common.gen(5).createBattle({gameType: 'triples'});
 				battle.setPlayer('p1', {team: [
 					{species: "Pineco", ability: 'sturdy', moves: ['selfdestruct']},
 					{species: "Geodude", ability: 'sturdy', moves: ['selfdestruct']},
@@ -280,7 +280,7 @@ describe('Choice parser', function () {
 			});
 
 			it('should accept only `move`, `switch` and `shift` choices for a healthy Pokémon on the left', function () {
-				battle = common.createBattle({gameType: 'triples'});
+				battle = common.gen(5).createBattle({gameType: 'triples'});
 				battle.setPlayer('p1', {team: [
 					{species: "Pineco", ability: 'sturdy', moves: ['selfdestruct']},
 					{species: "Geodude", ability: 'sturdy', moves: ['selfdestruct']},
@@ -310,7 +310,7 @@ describe('Choice parser', function () {
 			});
 
 			it('should accept only `move`, `switch` and `shift` choices for a healthy Pokémon on the right', function () {
-				battle = common.createBattle({gameType: 'triples'});
+				battle = common.gen(5).createBattle({gameType: 'triples'});
 				battle.setPlayer('p1', {team: [
 					{species: "Pineco", ability: 'sturdy', moves: ['selfdestruct']},
 					{species: "Geodude", ability: 'sturdy', moves: ['selfdestruct']},
@@ -340,7 +340,7 @@ describe('Choice parser', function () {
 			});
 
 			it('should enforce `pass` choices for fainted Pokémon', function () {
-				battle = common.createBattle({gameType: 'triples'});
+				battle = common.gen(5).createBattle({gameType: 'triples'});
 				battle.setPlayer('p1', {team: [
 					{species: "Pineco", ability: 'sturdy', moves: ['selfdestruct']},
 					{species: "Geodude", ability: 'sturdy', moves: ['selfdestruct']},
@@ -361,16 +361,16 @@ describe('Choice parser', function () {
 				const validChoices = ['move spikes', 'move 1'];
 				for (const action of validChoices) {
 					battle.choose('p1', action);
-					assert.strictEqual(battle.p1.getChoice(), `pass, move spikes, pass`);
+					assert.equal(battle.p1.getChoice(), `pass, move spikes, pass`);
 					battle.p1.clearChoice();
 					battle.choose('p1', `pass, ${action}, pass`);
-					assert.strictEqual(battle.p1.getChoice(), `pass, move spikes, pass`);
+					assert.equal(battle.p1.getChoice(), `pass, move spikes, pass`);
 					battle.p1.clearChoice();
 					battle.choose('p1', `pass, ${action}`);
-					assert.strictEqual(battle.p1.getChoice(), `pass, move spikes, pass`);
+					assert.equal(battle.p1.getChoice(), `pass, move spikes, pass`);
 					battle.p1.clearChoice();
 					battle.choose('p1', `${action}, pass`);
-					assert.strictEqual(battle.p1.getChoice(), `pass, move spikes, pass`);
+					assert.equal(battle.p1.getChoice(), `pass, move spikes, pass`);
 					battle.p1.clearChoice();
 				}
 			});

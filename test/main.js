@@ -21,7 +21,8 @@ before('initialization', function () {
 		if (err.code !== 'MODULE_NOT_FOUND' && err.code !== 'ENOENT') throw err; // Should never happen
 
 		console.log("config.js doesn't exist - creating one with default settings...");
-		fs.writeFileSync(path.resolve(__dirname, '../config/config.js'),
+		fs.writeFileSync(
+			path.resolve(__dirname, '../config/config.js'),
 			fs.readFileSync(path.resolve(__dirname, '../config/config-example.js'))
 		);
 	} finally {
@@ -43,7 +44,8 @@ before('initialization', function () {
 	require('../.lib-dist/repl').Repl.start = noop;
 
 	// Start the server.
-	require('../server');
+	// NOTE: This used "server" before when we needed ".server-dist"
+	require('../.server-dist');
 
 	LoginServer.disabled = true;
 

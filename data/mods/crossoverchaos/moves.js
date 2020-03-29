@@ -1852,10 +1852,10 @@ let BattleMovedex = {
 		flags: {bullet: 1, protect: 1, mirror: 1},
 		onModifyMove(move, pokemon) {
 			if (!(pokemon.set.ivs['spa'] % 2)){
-        move.type = 'Fire';
-      } else {
-        move.type = 'Ice';
-      }
+      	  move.type = 'Fire';
+      	} else {
+      	  move.type = 'Ice';
+      	}
 		},
 		secondary: null,
 		target: "normal",
@@ -2056,14 +2056,17 @@ let BattleMovedex = {
 		num: 40062,
 		accuracy: true,
 		basePower: 90,
-		category: "Physical",
-		shortDesc: "This move does not check accuracy.",
+		category: "Special",
+		shortDesc: "Physical if user's Atk > Sp. Atk. This move does not check accuracy.",
 		id: "invisibleair",
 		isViable: true,
 		name: "Invisible Air",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, mystery: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Steel",
@@ -2121,6 +2124,809 @@ let BattleMovedex = {
 		type: "Poison",
 		zMovePower: 160,
 		contestType: "Clever",
+	},
+	"rapidsplat": {
+		num: 40065,
+		accuracy: 100,
+		basePower: 15,
+		category: "Special",
+		desc: "Hits 2-5 times. If Inkling-Squid knocks out an opponent with this move, change to Inkling-Kid. If Inkling-Kid knocks out an opponent with this move, raise speed by 1 stage.",
+		shortDesc: "2-5 hits. If Inkling-Squid gets KO, turn to Kid form. If Inkling-Kid gets KO, +1 Spe.",
+		id: "rapidsplat",
+		isViable: true,
+		name: "Rapid Splat",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: [2, 5],
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+//			I have NO idea what I'm doing here so if this works I just got lucky
+			if (pokemon.template.baseSpecies !== 'Inkling') return;
+			if (!target || target.fainted || target.hp <= 0){
+				if (pokemon.template.species === 'Inkling') {
+					pokemon.formeChange('Inkling-Kid', this.effect, false, '[msg]');
+				} else {
+					this.boost({spe: 1}, pokemon, pokemon, move);
+				}
+			}
+		},
+		secondary: null,
+		target: "normal", 
+		type: "Poison",
+		zMovePower: 100,
+	},
+	"alterego": {
+		num: 40066,
+		accuracy: 90,
+		basePower: 90,
+		category: "Special",
+		desc: "If this move is successful and the user has not fainted, the effects of Leech Seed and binding moves end for the user, and all hazards are removed from the user's side of the field.",
+		shortDesc: "Free user from hazards/bind/Leech Seed.",
+		id: "alterego",
+		isViable: true,
+		name: "Alter Ego",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		self: {
+			onHit(pokemon) {
+				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
+					this.add('-end', pokemon, 'Leech Seed', '[from] move: Rapid Spin', '[of] ' + pokemon);
+				}
+				let sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
+				for (const condition of sideConditions) {
+					if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+						this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Rapid Spin', '[of] ' + pokemon);
+					}
+				}
+				if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+					pokemon.removeVolatile('partiallytrapped');
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Smart",
+	},
+	"machtornado": {
+		num: 40067,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		desc: "Has a 30% chance to lower the target's Defense by 1 stage.",
+		shortDesc: "30% chance to lower the target's Defense by 1.",
+		id: "machtornado",
+		name: "Mach Tornado",
+		pp: 15,
+		priority: 0,
+		flags: {mystery: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			boosts: {
+				def: -1,
+			},
+		},
+		target: "normal",
+		type: "Flying",
+		contestType: "Cool",
+	},
+	"squallhammer": {
+		num: 40068,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		shortDesc: "User recovers 50% of the damage dealt.",
+		id: "squallhammer",
+		isViable: true,
+		name: "Squall Hammer",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
+		drain: [1, 2],
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Cute",
+	},
+	"glaciergrind": {
+		num: 40069,
+		accuracy: true,
+		basePower: 175,
+		category: "Physical",
+		desc: "Has a 100% chance to freeze the target.",
+		shortDesc: "100% chance to freeze the target.",
+		id: "glaciergrind",
+		isViable: true,
+		name: "Glacier Grind",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "climbiumz",
+		secondary: {
+			chance: 100,
+			status: 'frz',
+		},
+		target: "normal",
+		type: "Ice",
+		contestType: "Tough",
+	},
+	"waddlespearbarrage": {
+		num: 40070,
+		accuracy: 100,
+		basePower: 30,
+		category: "Physical",
+		desc: "Hits two to five times. Has a 1/3 chance to hit two or three times, and a 1/6 chance to hit four or five times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit five times.",
+		shortDesc: "Hits 2-5 times in one turn.",
+		id: "waddlespearbarrage",
+		isViable: true,
+		name: "Waddle Spear Barrage",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: [2, 5],
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 140,
+		gmaxPower: 130,
+		contestType: "Cute",
+	},
+	"scytheslash": {
+		num: 40071,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Has a 20% chance to inflict Perish Song on the target.",
+		shortDesc: "20% chance to Perish Song the target.",
+		id: "scytheslash",
+		name: "Scythe Slash",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 20,
+			volatileStatus: 'perishsong',
+		},
+		target: "normal",
+		type: "Ghost",
+		contestType: "Cool",
+	},
+	"winterdragonblitz": {
+		num: 40072,
+		accuracy: true,
+		basePower: 190,
+		category: "Physical",
+		desc: "Has a 30% chance to freeze the target.",
+		shortDesc: "30% chance to freeze the target.",
+		id: "winterdragonblitz",
+		isViable: true,
+		name: "Winter Dragon Blitz",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "fredrikiumz",
+		secondary: {
+			chance: 30,
+			status: 'frz',
+		},
+		target: "normal",
+		type: "Ice",
+		contestType: "Tough",
+	},
+	"foilflourish": {
+		num: 40073,
+		accuracy: 90,
+		basePower: 80,
+		category: "Physical",
+		desc: "Has a 50% chance to raise the user's Attack by 1 stage. Has a 50% chance to raise the user's Speed by 1 stage.",
+		shortDesc: "Individual 50% chances to +1 Attack or Speed.",
+		id: "foilflourish",
+		isViable: true,
+		name: "Foil Flourish",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
+		secondaries: [
+			{
+				chance: 50,
+				self: {
+					boosts: {
+						atk: 1,
+					},
+				},
+			},
+	 		{
+				chance: 50,
+				self: {
+					boosts: {
+						spe: 1,
+					},
+				},
+			},
+		],
+		target: "normal",
+		type: "Steel",
+		contestType: "Cool",
+	},
+	"particlegrenade": {
+		num: 40074,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		defensiveCategory: "Special",
+		desc: "Deals damage to the target based on its Special Defense instead of Defense. Boosted by Mega Launcher, blocked by Bulletproof.",
+		shortDesc: "Damages target based on Defense, not Sp. Def. Pulse + bomb.",
+		id: "particlegrenade",
+		isViable: true,
+		name: "Particle Grenade",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, pulse: 1, bullet: 1},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Tough",
+	},
+	"shootercutter": {
+		num: 40075,
+		accuracy: 100,
+		basePower: 30,
+		category: "Physical",
+		desc: "Hits four times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits.",
+		shortDesc: "Hits 4 times in one turn.",
+		id: "shootercutter",
+		isViable: true,
+		name: "Shooter Cutter",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, mystery: 1},
+		multihit: 4,
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+		zMovePower: 190,
+		gmaxPower: 130,
+		contestType: "Cool",
+	},
+	"shovelbash": {
+		num: 40076,
+		accuracy: 100,
+		basePower: 95,
+		category: "Physical",
+		desc: "Hits targets using Dig and stops them from using it.",
+		shortDesc: "Hits targets using Dig and stops them from using it.",
+		id: "shovelbash",
+		isViable: true,
+		name: "Shovel Bash",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1},
+		secondary: null, /* dig is handled in dig */
+		target: "normal",
+		type: "Steel",
+		contestType: "Tough",
+		effect: {
+				duration: 1,
+				onBeforeMovePriority: 8,
+				onBeforeMove(pokemon) {
+					this.add('cant', pokemon, 'Dig', 'Dig');
+					return false;
+				},
+		}
+	},
+	"dig": {
+		num: 91,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks other than Earthquake and Magnitude but takes double damage from them, and is also unaffected by weather. If the user is holding a Power Herb, the move completes in one turn.",
+		shortDesc: "Digs underground turn 1, strikes turn 2.",
+		id: "dig",
+		name: "Dig",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, charge: 1, protect: 1, mirror: 1, nonsky: 1},
+		onTryMove(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		},
+		effect: {
+			duration: 2,
+			onImmunity(type, pokemon) {
+				if (type === 'sandstorm' || type === 'hail') return false;
+			},
+			onInvulnerability(target, source, move) {
+				if (['earthquake', 'magnitude', 'shovelbash'].includes(move.id)) {
+					return;
+				}
+				return false;
+			},
+			onSourceModifyDamage(damage, source, target, move) {
+				if (move.id === 'earthquake' || move.id === 'magnitude') {
+					return this.chainModify(2);
+				}
+			},
+			onHit(pokemon, source, move) {
+				if (move.id === 'shovelbash') {
+					if (this.queue.willMove(pokemon)) {
+						pokemon.addVolatile('shovelbash');
+					} else {
+						pokemon.removeVolatile('dig');
+						pokemon.removeVolatile('twoturnmove');
+					}
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		contestType: "Tough",
+	},
+	"dustknuckle": {
+		num: 40077,
+		accuracy: 100,
+		basePower: 95,
+		category: "Physical",
+		desc: "This move's type effectiveness against Flying is changed to be not very effective no matter what this move's type is.",
+		shortDesc: "Hits Flying, but is not very effective.",
+		id: "dustknuckle",
+		isViable: true,
+		name: "Dust Knuckle",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1},
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Flying') return 2;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		contestType: "Tough",
+	},
+	"corruptedwing": {
+		num: 40078,
+		accuracy: 95,
+		basePower: 100,
+		category: "Special",
+		desc: "This move becomes a physical attack if the user's Attack is greater than its Special Attack, including stat stage changes.",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
+		id: "corruptedwing",
+		isViable: true,
+		name: "Corrupted Wing",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		contestType: "Cool",
+	},
+	"soulabsorption": {
+		num: 40079,
+		accuracy: 100,
+		basePower: 100,
+		category: "Special",
+		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down. Flowey form changes into Omega Flowey if he lands a KO with this move.",
+		shortDesc: "User recovers 50% of the damage dealt. On KO, Flowey -> Omega Flowey",
+		id: "gigadrain",
+		isViable: true,
+		name: "Giga Drain",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, heal: 1},
+		drain: [1, 2],
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+//			I have NO idea what I'm doing here so if this works I just got lucky
+			if ((!target || target.fainted || target.hp <= 0) && pokemon.template.species === 'Flowey') {
+				pokemon.formeChange('Flowey-Omega', this.effect, false, '[msg]');
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Clever",
+	},
+	"spindash": {
+		num: 40080,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		desc: "This move's type effectiveness against Flying is changed to be neutral no matter what this move's type is.",
+		shortDesc: "Hits Flying.",
+		id: "spindash",
+		isViable: true,
+		name: "Spin Dash",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1},
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Flying') return 0;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		contestType: "Cool",
+	},
+	"sonicboost": {
+		num: 40081,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		desc: "Has a 30% chance to raise the user's Speed by 1 stage.",
+		shortDesc: "30% chance to +1  Speed.",
+		id: "sonicboost",
+		isViable: true,
+		name: "Sonic Boost",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			self: {
+				boosts: {
+					spe: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Flying",
+		contestType: "Cool",
+	},
+	"cleaningblast": {
+		num: 40082,
+		accuracy: 100,
+		basePower: 75,
+		category: "Special",
+		desc: "This move's type effectiveness against Poison is changed to be super effective no matter what this move's type is.",
+		shortDesc: "Super effective on Poison.",
+		id: "cleaningblast",
+		isViable: true,
+		name: "Cleaning Blast",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Poison') return 1;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Smart",
+	},
+	"shiningdouser": {
+		num: 40083,
+		accuracy: true,
+		basePower: 185,
+		category: "Special",
+		desc: "Causes the target to become a Water type unless the target is an Arceus or a Silvally, or if the target is already purely Water type.",
+		shortDesc: "Changes the target's type to Water.",
+		id: "shiningdouser",
+		isViable: true,
+		name: "Shining Douser",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "fluddiumz",
+		secondary: {
+			chance: 100,
+			onHit(target) {
+				if (target.getTypes().join() === 'Water' || !target.setType('Water')) return;
+				this.add('-start', target, 'typechange', 'Water');
+			},
+		},
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
+	},
+	"meowtivate": {
+		num: 40084,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user is replaced with another Pokemon in its party. The selected Pokemon gets Attack and Special Attack boosted by one stage.",
+		shortDesc: "User switches, replacement +1 Atk/SpA.",
+		id: "meowtivate",
+		isViable: true,
+		name: "Meowtivate",
+		pp: 30,
+		priority: 0,
+		flags: {},
+		selfSwitch: true,
+		sideCondition: 'meowtivate',
+		effect: { /* code shamelessly swiped from Dirty Escape in Fusion Evolution */
+			duration: 1,
+			onStart(source) {
+				let side = source.side;
+				this.add('-sidestart', side, 'move: Meowtivate');
+			},
+			onSwitchIn(pokemon) {
+				this.add('-activate', pokemon, 'move: Meowtivate');
+				this.boost({
+					atk: 1,
+					spa: 1,
+ 			}, pokemon, this.effectData.positions[pokemon.position], this.getMove('meowtivate'));
+			pokemon.side.removeSideCondition('meowtivate');
+			},
+			onEnd() {
+				this.add('-sideend', 'move: Meowtivate');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'healreplacement',
+		contestType: "Cute",
+	},
+	"flickerlick": {
+		num: 40085,
+		accuracy: 100,
+		basePower: 15,
+		category: "Physical",
+		desc: "Hits 6 times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits.",
+		shortDesc: "Hits 6 times in one turn.",
+		id: "flickerlick",
+		isViable: true,
+		name: "Flicker Lick",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1},
+		multihit: 6,
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		zMovePower: 175,
+		gmaxPower: 130,
+		contestType: "Cute",
+	},
+	"lifeender": {
+		num: 40086,
+		accuracy: 90,
+		basePower: 150,
+		category: "Physical",
+		desc: "If this move is successful, the user must recharge on the following turn and cannot select a move.",
+		shortDesc: "User cannot move next turn.",
+		id: "lifeender",
+		name: "Life Ender",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, recharge: 1, mystery: 1, protect: 1, mirror: 1},
+		self: {
+			volatileStatus: 'mustrecharge',
+		},
+		secondary: null,
+		target: "normal",
+		type: "Bug",
+		contestType: "Tough",
+	},
+	"deduction": {
+		num: 40087,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "Lowers the target's Special Attack by 1 stage. The user restores its HP equal to the target's Special Attack stat calculated with its stat stage before this move was used. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down. Fails if the target's Special Attack stat stage is -6. This move does not ignore type immunity.",
+		shortDesc: "User heals HP=target's SpA stat. Lowers SpA by 1.",
+		id: "deduction",
+		isViable: true,
+		name: "Deduction",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, heal: 1},
+		onHit(target, source) {
+			if (target.boosts.spa === -6) return false;
+			let atk = target.getStat('spa', false, true);
+			let success = this.boost({spa: -1}, target, source, null, false, true);
+			return !!(this.heal(atk, source, target) || success);
+		},
+		ignoreImmunity: false,
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		zMoveBoost: {spd: 1},
+		contestType: "Clever",
+	},
+	"ultimatepurification": {
+		num: 40088,
+		accuracy: 95,
+		basePower: 180,
+		category: "Physical",
+		desc: "Lowers the user's Speed, Defense, and Special Defense by 1 stage.",
+		shortDesc: "Lowers the user's Defense, Sp. Def, Speed by 1.",
+		id: "ultimatepurification",
+		isViable: true,
+		name: "Ultimate Purification",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			boosts: {
+				spe: -1,
+				def: -1,
+				spd: -1,
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		zMovePower: 220,
+		contestType: "Tough",
+	},
+	"speedslice": {
+		num: 40089,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio.",
+		id: "speedslice",
+		name: "Speed Slice",
+		pp: 10,
+		priority: 1,
+		flags: {contact: 1, protect: 1, mirror: 1, mystery: 1},
+		critRatio: 2,
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Cool",
+	},
+	"heartblast": {
+		num: 40090,
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		desc: "Hits one to three times. idk how the probabilities work. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit three times. 10% chance to paralyze per hit.",
+		shortDesc: "Hits 1-3 times in one turn. 10% paralysis per hit.",
+		id: "heartblast",
+		isViable: true,
+		name: "Heart Blast",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: [1, 3],
+		secondary: {
+			chance: 10,
+			status: 'par',
+		},
+		target: "normal",
+		type: "Fairy",
+		zMovePower: 140,
+		gmaxPower: 130,
+		contestType: "Cute",
+	},
+	"wordofdispel": {
+		num: 40091,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user cures its burn, poison, or paralysis. Fails if the user is not burned, poisoned, or paralyzed.",
+		shortDesc: "User cures its burn, poison, or paralysis.",
+		id: "wordofdispel",
+		isViable: true,
+		name: "Word of Dispel",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		onHit(pokemon) {
+			if (['', 'slp', 'frz'].includes(pokemon.status)) return false;
+			pokemon.cureStatus();
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'heal',
+		contestType: "Cute",
+	},
+	"ninemoons": {
+		num: 40092,
+		accuracy: 100,
+		basePower: 12,
+		category: "Special",
+		desc: "Hits nine times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits.",
+		shortDesc: "Hits 9 times in one turn.",
+		id: "ninemoons",
+		isViable: true,
+		name: "Nine Moons",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: 9,
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		zMovePower: 185,
+		gmaxPower: 140,
+		contestType: "Beautiful",
+	},
+	"arrowshot": {
+		num: 40093,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio.",
+		id: "arrowshot",
+		name: "Arrow Shot",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		tracksTarget: true,
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+	},
+	"bowmanofthreestars": {
+		num: 40094,
+		accuracy: 100,
+		basePower: 30,
+		category: "Physical",
+		desc: "Hits three times. If a hit breaks the target's substitute, they will take damage for the remaining hits.",
+		shortDesc: "Hits 3 times in one turn.",
+		id: "bowmanofthreestars",
+		name: "Bowman of Three Stars",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: 3,
+		secondary: null,
+		target: "normal",
+		type: "Electic",
+		zMovePower: 175,
+		gmaxPower: 130,
+		contestType: "Smart",
+	},
+	"ortygiaamoremio": {
+		num: 40095,
+		accuracy: true,
+		basePower: 360,
+		category: "Physical",
+		desc: "User faints.",
+		shortDesc: "User faints.",
+		id: "ortygiaamoremio",
+		name: "Ortygia Amore Mio",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		selfdestruct: "always",
+		isZ: "grandoriumz",
+		secondary: null,
+		target: "normal",
+		type: "Electric",
+		contestType: "Cool",
+	},
+	"tristaramoremio": {
+		num: 40096,
+		accuracy: true,
+		basePower: 180,
+		category: "Physical",
+		desc: "Has a 100% chance to lower the target's Attack by 1 stage.",
+		shortDesc: "100% chance to lower the target's Attack by 1.",
+		id: "tristaramoremio",
+		name: "Tri-Star Amore Mio",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "artemiumz",
+		secondary: {
+			chance: 100,
+			boosts: {
+				spa: -1,
+			},
+		},
+		target: "normal",
+		type: "Fairy",
+		contestType: "Cute",
 	},
 	"suicideride": {
 		num: 50001,
@@ -2218,8 +3024,8 @@ let BattleMovedex = {
 		category: "Special",
 		desc: "Has a 100% chance to raise the user's Special Attack by 1 stage.",
 		shortDesc: "100% chance to raise the user's Special Attack by 1.",
-		id: "stokedsparksurfer",
-		name: "Stoked Sparksurfer",
+		id: "stonehalation",
+		name: "Stone Halation",
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -2258,6 +3064,360 @@ let BattleMovedex = {
 		zMovePower: 190,
 		contestType: "Beautiful",
 	},
+	"viaexpugnatio": {
+		num: 50007,
+		accuracy: 100,
+		basePower: 0,
+		basePowerCallback(pokemon) {
+			return Math.floor((pokemon.happiness * 10) / 25) || 1;
+		},
+		category: "Physical",
+		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1. 20% chance to paralyze.",
+		shortDesc: "Max 102 power at maximum Happiness. 20% chance to paralyze",
+		id: "viaexpugnatio",
+		isViable: true,
+		name: "Via Expugnatio",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 20,
+			status: 'par',
+		},
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 160,
+		gmaxPower: 130,
+		contestType: "Cute",
+	},
+	"ionioihetaroi": {
+		num: 50008,
+		accuracy: true,
+		basePower: 210,
+		basePowerCallback(pokemon, target, move) {
+			if (pokemon.hasAbility('charisma')) {
+				return move.basePower + 63; /* don't know how to actually apply the Charisma multiplier but this'll be exactly as strong so who cares */
+			}
+			return move.basePower;
+		},
+		category: "Physical",
+		desc: "Field effects (including unremovable ones like Aestus Domus Aurea and Unlimited Blade Works from CCv2) are cleared, and Sandstorm is set up. This move is affected by the user's Charisma if it has it.",
+		shortDesc: "Clears field effects, sets sandstorm. Charisma: 1.3x power",
+		id: "ionioihetaroi",
+		name: "Ionioi Hetaroi",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "iskandiumz",
+		self: {
+			onHit(source) {
+				let success = false;
+				let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+				let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
+				for (const targetCondition of removeTarget) {
+					if (source.side.foe.removeSideCondition(targetCondition)) {
+						if (!removeAll.includes(targetCondition)) continue;
+						this.add('-sideend', source.side.foe, this.dex.getEffect(targetCondition).name, '[from] move: Ionioi Hetaroi', '[of] ' + source);
+						success = true;
+					}
+				}
+				for (const sideCondition of removeAll) {
+					if (source.side.removeSideCondition(sideCondition)) {
+						this.add('-sideend', source.side, this.dex.getEffect(sideCondition).name, '[from] move: Ionioi Hetaroi', '[of] ' + source);
+						success = true;
+					}
+				}
+				this.field.clearTerrain();
+				this.field.clearWeather();
+				return success;
+			},
+		},
+		secondary: {
+			chance: 100,
+			self: {
+				onHit() {
+					this.field.setWeather('sandstorm');
+				},
+			},
+		},
+		target: "normal",
+		type: "Fighting",
+		contestType: "Cute",
+	},
+	"vaporizingfreeze": {
+		num: 50009,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user is protected from non-Fire contact attacks made by other Pokemon during this turn, and Pokemon making contact with the user are frozen. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Obstruct, Protect, Quick Guard, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
+		shortDesc: "Protects from non-Fire contact moves. Contact: freeze.",
+		id: "vaporizingfreeze",
+		isViable: true,
+		name: "Vaporizing Freeze",
+		pp: 10,
+		priority: 4,
+		flags: {},
+		stallingMove: true,
+		volatileStatus: 'vaporizingfreeze',
+		onTryHit(target, source, move) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', target);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
+		},
+		effect: {
+			duration: 1,
+			onStart(target) {
+				this.add('-singleturn', target, 'move: Protect');
+			},
+			onTryHitPriority: 3,
+			onTryHit(target, source, move) {
+				if (!move.flags['contact'] || move.type === 'Fire') {
+					return;
+				}
+				if (!move.flags['protect']) {
+					if (move.isZ || move.isMax) target.getMoveHitData(move).zBrokeProtect = true;
+					return;
+				}
+				if (move.smartTarget) {
+					move.smartTarget = false;
+				} else {
+					this.add('-activate', target, 'move: Protect');
+				}
+				let lockedmove = source.getVolatile('lockedmove');
+				if (lockedmove) {
+					// Outrage counter is reset
+					if (source.volatiles['lockedmove'].duration === 2) {
+						delete source.volatiles['lockedmove'];
+					}
+				}
+				if (move.flags['contact']) {
+					source.trySetStatus('frz', target);
+				}
+				return this.NOT_FAIL;
+			},
+			onHit(target, source, move) {
+				if (move.isZPowered && move.flags['contact'] && !move.type === 'Fire') {
+					source.trySetStatus('frz', target);
+				}
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Ice",
+		zMoveBoost: {def: 1},
+		contestType: "Smart",
+	},
+	"orbitout": {
+		num: 50010,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members, or if the target switched out using an Eject Button or through the effect of the Emergency Exit or Wimp Out Abilities.",
+		shortDesc: "User switches out after damaging the target.",
+		id: "orbitout",
+		isViable: true,
+		name: "Orbit Out",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		contestType: "Cute",
+	},
+	//"Regular" hazard moves are here
+		"gmaxsteelsurge": {
+		num: 1000,
+		accuracy: true,
+		basePower: 10,
+		category: "Physical",
+		desc: "Sets a Steel-type entry hazard. Base Power scales with the base move's Base Power.",
+		shortDesc: "Sets Steel entry hazard. BP scales w/ base move.",
+		id: "gmaxsteelsurge",
+		isNonstandard: "Unobtainable",
+		name: "G-Max Steelsurge",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		isMax: "Copperajah",
+		self: {
+			onHit(source) {
+				source.side.foe.addSideCondition('gmaxsteelsurge');
+			},
+		},
+		effect: {
+			onStart(side) {
+				this.add('-sidestart', side, 'move: G-Max Steelsurge');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('heavydutyboots')) return;
+				if (pokemon.hasability('trashcompaction')) return;
+				// Ice Face and Disguise correctly get typed damage from Stealth Rock
+				// because Stealth Rock bypasses Substitute.
+				// They don't get typed damage from Steelsurge because Steelsurge doesn't,
+				// so we're going to test the damage of a Steel-type Stealth Rock instead.
+				const steelHazard = this.dex.getActiveMove('Stealth Rock');
+				steelHazard.type = 'Steel';
+				let typeMod = this.dex.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		target: "adjacentFoe",
+		type: "Steel",
+		contestType: "Cool",
+	},
+		"spikes": {
+		num: 191,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in, unless it is a Flying-type Pokemon or has the Levitate Ability. Can be used up to three times before failing. Opponents lose 1/8 of their maximum HP with one layer, 1/6 of their maximum HP with two layers, and 1/4 of their maximum HP with three layers, all rounded down. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Hurts grounded foes on switch-in. Max 3 layers.",
+		id: "spikes",
+		isViable: true,
+		name: "Spikes",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'spikes',
+		effect: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'Spikes');
+				this.effectData.layers = 1;
+			},
+			onRestart(side) {
+				if (this.effectData.layers >= 3) return false;
+				this.add('-sidestart', side, 'Spikes');
+				this.effectData.layers++;
+			},
+			onSwitchIn(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasItem('heavydutyboots')) return;
+				if (pokemon.hasability('trashcompaction')) return;
+				let damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectData.layers] * pokemon.maxhp / 24);
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Ground",
+		zMoveBoost: {def: 1},
+		contestType: "Clever",
+	},
+		"stealthrock": {
+		num: 446,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in. Fails if the effect is already active on the opposing side. Foes lose 1/32, 1/16, 1/8, 1/4, or 1/2 of their maximum HP, rounded down, based on their weakness to the Rock type; 0.25x, 0.5x, neutral, 2x, or 4x, respectively. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Hurts foes on switch-in. Factors Rock weakness.",
+		id: "stealthrock",
+		isViable: true,
+		name: "Stealth Rock",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1},
+		sideCondition: 'stealthrock',
+		effect: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'move: Stealth Rock');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('heavydutyboots')) return;
+				if (pokemon.hasability('trashcompaction')) return;
+				let typeMod = this.dex.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Rock",
+		zMoveBoost: {def: 1},
+		contestType: "Cool",
+	},
+		"stickyweb": {
+		num: 564,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the opposing side of the field, lowering the Speed by 1 stage of each opposing Pokemon that switches in, unless it is a Flying-type Pokemon or has the Levitate Ability. Fails if the effect is already active on the opposing side. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Lowers Speed of grounded foes by 1 on switch-in.",
+		id: "stickyweb",
+		isViable: true,
+		name: "Sticky Web",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1},
+		sideCondition: 'stickyweb',
+		effect: {
+			onStart(side) {
+				this.add('-sidestart', side, 'move: Sticky Web');
+			},
+			onSwitchIn(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasItem('heavydutyboots')) return;
+				if (pokemon.hasability('trashcompaction')) return;
+				this.add('-activate', pokemon, 'move: Sticky Web');
+				this.boost({spe: -1}, pokemon, this.effectData.source, this.dex.getActiveMove('stickyweb'));
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Bug",
+		zMoveBoost: {spe: 1},
+		contestType: "Tough",
+	},
+		"toxicspikes": {
+		num: 390,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the opposing side of the field, poisoning each opposing Pokemon that switches in, unless it is a Flying-type Pokemon or has the Levitate Ability. Can be used up to two times before failing. Opposing Pokemon become poisoned with one layer and badly poisoned with two layers. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, is hit by Defog, or a grounded Poison-type Pokemon switches in. Safeguard prevents the opposing party from being poisoned on switch-in, but a substitute does not.",
+		shortDesc: "Poisons grounded foes on switch-in. Max 2 layers.",
+		id: "toxicspikes",
+		isViable: true,
+		name: "Toxic Spikes",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'toxicspikes',
+		effect: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectData.layers = 1;
+			},
+			onRestart(side) {
+				if (this.effectData.layers >= 2) return false;
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectData.layers++;
+			},
+			onSwitchIn(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasType('Poison')) {
+					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('toxicspikes');
+				} else if (pokemon.hasType('Steel') || pokemon.hasItem('heavydutyboots') || pokemon.hasability('trashcompaction')) {
+					return;
+				} else if (this.effectData.layers >= 2) {
+					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
+				} else {
+					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+				}
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Poison",
+		zMoveBoost: {def: 1},
+		contestType: "Clever",
+	},
+//Whenever the hazard "Mine" is added here, don't forget to turn the user immune if it holds the Trash Copaction ability, the code is right below the Heavy Duty Boots one in all the hazards above but Stealth Rock
 // "digslash": {
 //         num: 40000,
 //         accuracy: 100,

@@ -349,7 +349,7 @@ const commands = {
 	'!host': true,
 	host(target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help host');
-		if (!this.can('rangeban')) return;
+		if (!this.can('ip')) return;
 		target = target.trim();
 		if (!net.isIPv4(target)) return this.errorReply('You must pass a valid IPv4 IP to /host.');
 		IPTools.lookup(target).then(({dnsbl, host, hostType}) => {
@@ -357,7 +357,7 @@ const commands = {
 			this.sendReply(`IP ${target}: ${host || "ERROR"} [${hostType}]${dnsblMessage}`);
 		});
 	},
-	hosthelp: [`/host [ip] - Gets the host for a given IP. Requires: & ~`],
+	hosthelp: [`/host [ip] - Gets the host for a given IP. Requires: @ & ~`],
 
 	'!ipsearch': true,
 	searchip: 'ipsearch',
@@ -585,10 +585,10 @@ const commands = {
 								evos.push(`${evo.name} (level-up with ${evo.evoMove}${condition})`);
 								break;
 							case 'other':
-								evos.push(`${evo.name} (${condition})`);
+								evos.push(`${evo.name} (${evo.evoCondition})`);
 								break;
 							case 'trade':
-								evos.push(`${evo.name} (trade)`);
+								evos.push(`${evo.name} (trade${evo.evoItem ? ` holding ${evo.evoItem}` : evo.evoCondition ? ` ${evo.evoCondition}` : ``})`);
 								break;
 							default:
 								evos.push(`${evo.name} (${evo.evoLevel})`);
@@ -691,9 +691,13 @@ const commands = {
 						}
 					}
 
-					if (dex.gen >= 8 && move.isMax) {
-						details["&#10003; Max Move"] = "";
-						if (typeof move.isMax === "string") details["User"] = move.isMax + "-Gmax";
+					if (dex.gen >= 8) {
+						if (move.isMax) {
+							details["&#10003; Max Move"] = "";
+							if (typeof move.isMax === "string") details["User"] = move.isMax + "-Gmax";
+						} else if (move.gmaxPower) {
+							details["Dynamax Power"] = move.gmaxPower;
+						}
 					}
 
 					details["Target"] = {
@@ -1060,10 +1064,10 @@ const commands = {
 							let curEff = 0;
 							if ((!dex.getImmunity((move.type || move), type1) || !dex.getImmunity((move.type || move), type2)) && !move.ignoreImmunity) continue;
 							let baseMod = dex.getEffectiveness(move, type1);
-							let moveMod = move.onEffectiveness && move.onEffectiveness.call(Dex, baseMod, null, type1, move);
+							let moveMod = move.onEffectiveness && move.onEffectiveness.call({dex}, baseMod, null, type1, move);
 							curEff += typeof moveMod === 'number' ? moveMod : baseMod;
 							baseMod = dex.getEffectiveness(move, type2);
-							moveMod = move.onEffectiveness && move.onEffectiveness.call(Dex, baseMod, null, type2, move);
+							moveMod = move.onEffectiveness && move.onEffectiveness.call({dex}, baseMod, null, type2, move);
 							curEff += typeof moveMod === 'number' ? moveMod : baseMod;
 
 							if (curEff > bestEff) bestEff = curEff;
@@ -1269,7 +1273,7 @@ const commands = {
 
 			if (!pokemon) {
 				let testPoke = Dex.getTemplate(arg);
-				if (testPoke.baseStats) {
+				if (testPoke.exists) {
 					pokemon = testPoke.baseStats;
 					baseSet = true;
 					continue;
@@ -1722,10 +1726,7 @@ const commands = {
 				if (format.removedRules && format.removedRules.length) rules.push("<b>Removed rules</b> - " + Chat.escapeHTML(format.removedRules.join(", ")));
 				if (format.banlist && format.banlist.length) rules.push("<b>Bans</b> - " + Chat.escapeHTML(format.banlist.join(", ")));
 				if (format.unbanlist && format.unbanlist.length) rules.push("<b>Unbans</b> - " + Chat.escapeHTML(format.unbanlist.join(", ")));
-				if (format.restrictedStones && format.restrictedStones.length) rules.push("<b>Restricted Mega Stones</b> - " + Chat.escapeHTML(format.restrictedStones.join(", ")));
-				if (format.cannotMega && format.cannotMega.length) rules.push("<b>Can't Mega Evolve non-natively</b> - " + Chat.escapeHTML(format.cannotMega.join(", ")));
-				if (format.restrictedAbilities && format.restrictedAbilities.length) rules.push("<b>Restricted abilities</b> - " + Chat.escapeHTML(format.restrictedAbilities.join(", ")));
-				if (format.restrictedMoves && format.restrictedMoves.length) rules.push("<b>Restricted moves</b> - " + Chat.escapeHTML(format.restrictedMoves.join(", ")));
+				if (format.restricted && format.restricted.length) rules.push("<b>Restricted</b> - " + Chat.escapeHTML(format.restricted.join(", ")));
 				if (rules.length > 0) {
 					rulesetHtml = `<details><summary>Banlist/Ruleset</summary>${rules.join("<br />")}</details>`;
 				} else {
@@ -1966,12 +1967,15 @@ const commands = {
 		let ability = Dex.getAbility(targets[0]);
 		let format = Dex.getFormat(targets[0]);
 		let atLeastOne = false;
-		let generation = (targets[1] || 'sm').trim().toLowerCase();
-		let genNumber = 7;
+		let generation = (targets[1] || 'ss').trim().toLowerCase();
+		let genNumber = 8;
 		let extraFormat = Dex.getFormat(targets[2]);
 
-		if (['7', 'gen7', 'seven', 'sm', 'sumo', 'usm', 'usum'].includes(generation)) {
+		if (['8', 'gen8', 'eight', 'ss', 'swsh'].includes(generation)) {
+			generation = 'ss';
+		} else if (['7', 'gen7', 'seven', 'sm', 'sumo', 'usm', 'usum'].includes(generation)) {
 			generation = 'sm';
+			genNumber = 7;
 		} else if (['6', 'gen6', 'oras', 'six', 'xy'].includes(generation)) {
 			generation = 'xy';
 			genNumber = 6;
@@ -1991,7 +1995,7 @@ const commands = {
 			generation = 'rb';
 			genNumber = 1;
 		} else {
-			generation = 'sm';
+			generation = 'ss';
 		}
 
 		// Pokemon
@@ -2001,8 +2005,8 @@ const commands = {
 				return this.sendReplyBox(`${pokemon.name} did not exist in ${generation.toUpperCase()}!`);
 			}
 
-			if ((pokemon.battleOnly && pokemon.baseSpecies !== 'Greninja') || pokemon.baseSpecies === 'Keldeo' || pokemon.baseSpecies === 'Genesect') {
-				pokemon = Dex.getTemplate(pokemon.baseSpecies);
+			if ((pokemon.battleOnly && pokemon.baseSpecies !== 'Greninja') || ['Keldeo', 'Genesect'].includes(pokemon.baseSpecies)) {
+				pokemon = Dex.getTemplate(pokemon.inheritsFrom || pokemon.baseSpecies);
 			}
 
 			let formatName = extraFormat.name;
@@ -2047,7 +2051,8 @@ const commands = {
 				// Translated analysis do not support automatic redirects from a speciesid to the proper page
 				this.sendReplyBox(Chat.html`<a href="https://www.smogon.com/dex/${generation}/pokemon/${speciesid}/${formatId}/?lang=${supportedLanguages[room.language]}">${generation.toUpperCase()} ${formatName} ${pokemon.name} analysis</a>, brought to you by <a href="https://www.smogon.com">Smogon University</a>`);
 			} else if (['ou', 'uu'].includes(formatId) && generation === 'sm') {
-				this.sendReplyBox(Chat.html`<a href="https://www.smogon.com/dex/${generation}/pokemon/${speciesid}/${formatId}">${generation.toUpperCase()} ${formatName} ${pokemon.name} analysis</a>, brought to you by <a href="https://www.smogon.com">Smogon University</a><br />` +
+				this.sendReplyBox(
+					Chat.html`<a href="https://www.smogon.com/dex/${generation}/pokemon/${speciesid}/${formatId}">${generation.toUpperCase()} ${formatName} ${pokemon.name} analysis</a>, brought to you by <a href="https://www.smogon.com">Smogon University</a><br />` +
 					`Other languages: <a href="https://www.smogon.com/dex/${generation}/pokemon/${speciesid}/${formatId}/?lang=es">Español</a>, <a href="https://www.smogon.com/dex/${generation}/pokemon/${speciesid}/${formatId}/?lang=fr">Français</a>, <a href="https://www.smogon.com/dex/${generation}/pokemon/${speciesid}/${formatId}/?lang=it">Italiano</a>, ` +
 					`<a href="https://www.smogon.com/dex/${generation}/pokemon/${speciesid}/${formatId}/?lang=de">Deutsch</a>, <a href="https://www.smogon.com/dex/${generation}/pokemon/${speciesid}/${formatId}/?lang=pt">Português</a>`
 				);
@@ -2131,7 +2136,7 @@ const commands = {
 		// Pokemon
 		if (pokemon.exists) {
 			atLeastOne = true;
-			if (pokemon.isNonstandard) return this.errorReply(`${pokemon.species} is not a real Pok\u00e9mon.`);
+			if (pokemon.isNonstandard && pokemon.isNonstandard !== 'Past') return this.errorReply(`${pokemon.species} is not a real Pok\u00e9mon.`);
 
 			let baseSpecies = pokemon.baseSpecies || pokemon.species;
 			let forme = pokemon.forme;
@@ -2159,7 +2164,7 @@ const commands = {
 		// Item
 		if (item.exists) {
 			atLeastOne = true;
-			if (item.isNonstandard) return this.errorReply(`${item.name} is not a real item.`);
+			if (item.isNonstandard && item.isNonstandard !== 'Past') return this.errorReply(`${item.name} is not a real item.`);
 			let link = baseLink + 'items/' + item.name.toLowerCase();
 			this.sendReplyBox(`<a href="${link}">${item.name} item description</a> by Veekun`);
 		}
@@ -2167,7 +2172,7 @@ const commands = {
 		// Ability
 		if (ability.exists) {
 			atLeastOne = true;
-			if (ability.isNonstandard) return this.errorReply(`${ability.name} is not a real ability.`);
+			if (ability.isNonstandard && ability.isNonstandard !== 'Past') return this.errorReply(`${ability.name} is not a real ability.`);
 			let link = baseLink + 'abilities/' + ability.name.toLowerCase();
 			this.sendReplyBox(`<a href="${link}">${ability.name} ability description</a> by Veekun`);
 		}
@@ -2175,7 +2180,7 @@ const commands = {
 		// Move
 		if (move.exists) {
 			atLeastOne = true;
-			if (move.isNonstandard) return this.errorReply(`${move.name} is not a real move.`);
+			if (move.isNonstandard && move.isNonstandard !== 'Past') return this.errorReply(`${move.name} is not a real move.`);
 			let link = baseLink + 'moves/' + move.name.toLowerCase();
 			this.sendReplyBox(`<a href="${link}">${move.name} move description</a> by Veekun`);
 		}
@@ -2224,7 +2229,7 @@ const commands = {
 	'!dice': true,
 	roll: 'dice',
 	dice(target, room, user) {
-		if (!target || target.match(/[^\d\sdHL+-]/i)) return this.parse('/help dice');
+		if (!target || /[^\d\sdHL+-]/i.test(target)) return this.parse('/help dice');
 		if (!this.runBroadcast(true)) return;
 
 		// ~30 is widely regarded as the sample size required for sum to be a Gaussian distribution.
@@ -2335,6 +2340,18 @@ const commands = {
 	},
 	pickrandomhelp: [`/pick [option], [option], ... - Randomly selects an item from a list containing 2 or more elements.`],
 
+	'!shuffle': true,
+	shuffle(target, room, user) {
+		if (!target || !target.includes(',')) return this.parse('/help shuffle');
+		const args = target.split(',');
+		if (!this.runBroadcast(true)) return false;
+		const results = Dex.shuffle(args.map(arg => arg.trim()));
+		return this.sendReplyBox(Chat.html`<em>Shuffled:</em><br> ${results.join(', ')}`);
+	},
+	shufflehelp: [
+		`/shuffle [option], [option], [option], ... - Randomly shuffles a list of 2 or more elements.`,
+	],
+
 	showimage(target, room, user) {
 		if (!target) return this.parse('/help showimage');
 		if (!this.can('declare', null, room)) return false;
@@ -2388,44 +2405,45 @@ const commands = {
 			'Did you mean: 1. 3.1415926535897932384626... (Decimal)<br />' +
 			'2. 3.184809493B91866... (Duodecimal)<br />' +
 			'3. 3.243F6A8885A308D... (Hexadecimal)<br /><br />' +
-			'How many digits of pi do YOU know? Test it out <a href="http://guangcongluo.com/mempi/">here</a>!');
+			'How many digits of pi do YOU know? Test it out <a href="http://guangcongluo.com/mempi/">here</a>!'
+		);
 	},
 
 	'!code': true,
 	code(target, room, user) {
+		// XXX: target is trimmed by Chat#splitMessage. Let's not add another
+		// awful hack like ! or help command keys for whether or not the target
+		// is raw for now.
+		target = this.message.substr(this.cmdToken.length + this.cmd.length + +this.message.includes(' ')).trimEnd();
 		if (!target) return this.parse('/help code');
-		if (!this.canTalk()) return;
-		if (target.startsWith('\n')) target = target.slice(1);
 		if (target.length >= 8192) return this.errorReply("Your code must be under 8192 characters long!");
-		const separator = '\n';
-		if (target.includes(separator) || target.length > 150) {
-			const params = target.split(separator);
-			let output = [];
-			let cutoff = 3;
-			for (const param of params) {
-				if (output.length < 2 && param.length > 80) cutoff = 2;
-				output.push(Chat.escapeHTML(param));
-			}
-			let code;
-			if (output.length > cutoff) {
-				code = `<div class="chat"><details class="readmore code" style="white-space: pre-wrap; display: table; tab-size: 3"><summary>${output.slice(0, cutoff).join('<br />')}</summary>${output.slice(cutoff).join('<br />')}</details></div>`;
-			} else {
-				code = `<div class="chat"><code style="white-space: pre-wrap; display: table; tab-size: 3">${output.join('<br />')}</code></div>`;
-			}
 
-			if (!this.canBroadcast(true, '!code')) return;
-			if (this.broadcastMessage && !this.can('broadcast', null, room)) return false;
-
-			if (!this.runBroadcast(true, '!code')) return;
-
-			this.sendReplyBox(code);
-		} else {
-			return this.errorReply("You can simply use ``[code]`` for code messages that are only one line.");
+		const params = target.substr(+target.startsWith('\n')).split('\n');
+		if (params.length === 1 && params[0].length < 80 && !params[0].includes('```') && this.shouldBroadcast()) {
+			return this.canTalk(`\`\`\`${params[0]}\`\`\``);
 		}
+
+		if (!this.canBroadcast(true, '!code')) return;
+
+		let output = [];
+		let cutoff = 3;
+		for (const param of params) {
+			if (output.length < 3 && param.length > 80) cutoff = 2;
+			output.push(Chat.escapeHTML(param));
+		}
+
+		let code;
+		if (output.length > cutoff) {
+			code = `<div class="chat"><details class="readmore code" style="white-space: pre-wrap; display: table; tab-size: 3"><summary>${output.slice(0, cutoff).join('<br />')}</summary>${output.slice(cutoff).join('<br />')}</details></div>`;
+		} else {
+			code = `<div class="chat"><code style="white-space: pre-wrap; display: table; tab-size: 3">${output.join('<br />')}</code></div>`;
+		}
+
+		this.runBroadcast(true);
+		this.sendReplyBox(code);
 	},
 	codehelp: [
 		`!code [code] - Broadcasts code to a room. Accepts multi-line arguments. Requires: + % @ & # ~`,
-		`In order to use !code in private messages you must be a global voice or higher`,
 		`/code [code] - Shows you code. Accepts multi-line arguments.`,
 	],
 };

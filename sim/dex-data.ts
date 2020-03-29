@@ -37,6 +37,8 @@ export class Tools {
 	 * Dex.getId is generally assigned to the global toID, because of how
 	 * commonly it's used.
 	 */
+	/* The sucrase transformation of optional chaining is too expensive to be used in a hot function like this. */
+	/* eslint-disable @typescript-eslint/prefer-optional-chain */
 	static getId(text: any): ID {
 		if (text && text.id) {
 			text = text.id;
@@ -48,6 +50,7 @@ export class Tools {
 		if (typeof text !== 'string' && typeof text !== 'number') return '';
 		return ('' + text).toLowerCase().replace(/[^a-z0-9]+/g, '') as ID;
 	}
+	/* eslint-enable @typescript-eslint/prefer-optional-chain */
 }
 const toID = Tools.getId;
 
@@ -169,6 +172,7 @@ export class RuleTable extends Map<string, string> {
 	// tslint:disable-next-line:ban-types
 	checkLearnset: [Function, string] | null;
 	timer: [Partial<GameTimerSettings>, string] | null;
+	minSourceGen: [number, string] | null;
 
 	constructor() {
 		super();
@@ -176,6 +180,7 @@ export class RuleTable extends Map<string, string> {
 		this.complexTeamBans = [];
 		this.checkLearnset = null;
 		this.timer = null;
+		this.minSourceGen = null;
 	}
 
 	isBanned(thing: string) {
@@ -310,7 +315,7 @@ export class Format extends BasicEffect implements Readonly<BasicEffect & Format
 		super(data, ...moreData);
 		data = this;
 
-		this.mod = Tools.getString(data.mod) || 'gen7';
+		this.mod = Tools.getString(data.mod) || 'gen8';
 		this.effectType = Tools.getString(data.effectType) as FormatEffectType || 'Format';
 		this.debug = !!data.debug;
 		this.rated = (data.rated !== false);
@@ -506,6 +511,9 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly name: string;
 	/**
 	 * Base species. Species, but without the forme name.
+	 *
+	 * DO NOT ASSUME A POKEMON CAN TRANSFORM FROM `baseSpecies` TO
+	 * `species`. USE `inheritsFrom` FOR THAT.
 	 */
 	readonly baseSpecies: string;
 	/**
@@ -513,6 +521,10 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	 * `template.species === template.baseSpecies + '-' + template.forme`
 	 */
 	readonly forme: string;
+	/**
+	 * Base forme name (e.g. 'Altered' for Giratina).
+	 */
+	readonly baseForme: string;
 	/**
 	 * Other forms. List of names of cosmetic forms. These should have
 	 * `aliases.js` aliases to this entry, but not have their own
@@ -599,12 +611,20 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	 * form moveid:sources[].
 	 */
 	readonly learnset?: {[moveid: string]: MoveSource[]};
-	/** Source of learnsets for Pokemon that lack their own */
-	readonly inheritsLearnsetFrom: ID;
+	/**
+	 * Formes that can transform into this Pokemon, to inherit learnsets
+	 * from. (Like `prevo`, but for transformations that aren't
+	 * technically evolution. Includes in-battle transformations like
+	 * Zen Mode and out-of-battle transformations like Rotom.)
+	 *
+	 * Not filled out for megas/primals - fall back to baseSpecies
+	 * for in-battle formes.
+	 */
+	readonly inheritsFrom: ID;
 	/** True if the only way to get this pokemon is from events. */
 	readonly eventOnly: boolean;
 	/** List of event data for each event. */
-	readonly eventPokemon?: EventInfo[] ;
+	readonly eventPokemon?: EventInfo[];
 
 	/**
 	 * Singles Tier. The Pokemon's location in the Smogon tier system.
@@ -621,6 +641,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly exclusiveMoves?: readonly ID[];
 	readonly comboMoves?: readonly ID[];
 	readonly essentialMove?: ID;
+	readonly randomSets?: readonly RandomTeamsTypes.Gen2RandomSet[];
 
 	constructor(data: AnyObject, ...moreData: (AnyObject | null)[]) {
 		super(data, ...moreData);
@@ -633,12 +654,13 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.name = data.species;
 		this.baseSpecies = data.baseSpecies || this.name;
 		this.forme = data.forme || '';
+		this.baseForme = data.baseForme || '';
 		this.otherForms = data.otherForms || undefined;
 		this.otherFormes = data.otherFormes || undefined;
 		this.spriteid = data.spriteid ||
 			(toID(this.baseSpecies) + (this.baseSpecies !== this.name ? `-${toID(this.forme)}` : ''));
 		this.abilities = data.abilities || {0: ""};
-		this.types = data.types!;
+		this.types = data.types || ['???'];
 		this.addedType = data.addedType || undefined;
 		this.prevo = data.prevo || '';
 		this.tier = data.tier || '';
@@ -652,16 +674,16 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.gender = data.gender || '';
 		this.genderRatio = data.genderRatio || (this.gender === 'M' ? {M: 1, F: 0} :
 			this.gender === 'F' ? {M: 0, F: 1} :
-				this.gender === 'N' ? {M: 0, F: 0} :
-					{M: 0.5, F: 0.5});
+			this.gender === 'N' ? {M: 0, F: 0} :
+			{M: 0.5, F: 0.5});
 		this.requiredItem = data.requiredItem || undefined;
 		this.requiredItems = this.requiredItems || (this.requiredItem ? [this.requiredItem] : undefined);
-		this.baseStats = data.baseStats!;
-		this.weightkg = data.weightkg!;
+		this.baseStats = data.baseStats || {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
+		this.weightkg = data.weightkg || 0;
 		this.weighthg = this.weightkg * 10;
-		this.heightm = data.heightm!;
+		this.heightm = data.heightm || 0;
 		this.color = data.color || '';
-		this.unreleasedHidden = !!data.unreleasedHidden;
+		this.unreleasedHidden = data.unreleasedHidden || false;
 		this.maleOnlyHidden = !!data.maleOnlyHidden;
 		this.maxHP = data.maxHP || undefined;
 		this.learnset = data.learnset || undefined;
@@ -670,13 +692,10 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.isMega = !!(this.forme && ['Mega', 'Mega-X', 'Mega-Y'].includes(this.forme)) || undefined;
 		this.isGigantamax = data.isGigantamax || undefined;
 		this.battleOnly = !!data.battleOnly || !!this.isMega || !!this.isGigantamax || undefined;
-		this.inheritsLearnsetFrom = data.inheritsLearnsetFrom || undefined;
-		if (this.forme === 'Gmax') {
-			this.inheritsLearnsetFrom = toID(data.baseSpecies);
-		}
+		this.inheritsFrom = data.inheritsFrom || undefined;
 
 		if (!this.gen && this.num >= 1) {
-			if (this.num >= 810 || this.forme.endsWith('Galar') || this.forme === 'Gmax') {
+			if (this.num >= 810 || ['Gmax', 'Galar', 'Galar-Zen'].includes(this.forme)) {
 				this.gen = 8;
 			} else if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
 				this.gen = 7;
@@ -733,7 +752,7 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 	/** Move type. */
 	readonly type: string;
 	/** Move target. */
-	readonly target: string;
+	readonly target: MoveTarget;
 	/** Move base power. */
 	readonly basePower: number;
 	/** Move base accuracy. True denotes a move that always hits. */
@@ -839,7 +858,7 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 		this.fullname = `move: ${this.name}`;
 		this.effectType = 'Move';
 		this.type = Tools.getString(data.type);
-		this.target = Tools.getString(data.target);
+		this.target = data.target;
 		this.basePower = Number(data.basePower!);
 		this.accuracy = data.accuracy!;
 		this.critRatio = Number(data.critRatio) || 1;
@@ -887,7 +906,7 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 					this.gmaxPower = 80;
 				} else if (this.basePower >= 45) {
 					this.gmaxPower = 75;
-				} else  {
+				} else {
 					this.gmaxPower = 70;
 				}
 			} else {
@@ -903,7 +922,7 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 					this.gmaxPower = 110;
 				} else if (this.basePower >= 45) {
 					this.gmaxPower = 100;
-				} else  {
+				} else {
 					this.gmaxPower = 90;
 				}
 			}
@@ -931,7 +950,7 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 				this.zMovePower = 140;
 			} else if (basePower >= 60) {
 				this.zMovePower = 120;
-			} else  {
+			} else {
 				this.zMovePower = 100;
 			}
 		}

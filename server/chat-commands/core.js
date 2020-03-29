@@ -17,8 +17,6 @@
 
 /* eslint no-else-return: "error" */
 
-const crypto = require('crypto');
-
 const avatarTable = new Set([
 	'aaron',
 	'acetrainercouple-gen3', 'acetrainercouple',
@@ -370,10 +368,10 @@ exports.commands = {
 			}
 		}
 
-		let buffer = Object.keys(rankLists).sort((a, b) =>
-			(Config.groups[b] || {rank: 0}).rank - (Config.groups[a] || {rank: 0}).rank
-		).map(r =>
-			`${(Config.groups[r] ? `**${Config.groups[r].name}s** (${r})` : r)}:\n${rankLists[r].sort((a, b) => toID(a).localeCompare(toID(b))).join(", ")}`
+		let buffer = Object.keys(rankLists).sort(
+			(a, b) => (Config.groups[b] || {rank: 0}).rank - (Config.groups[a] || {rank: 0}).rank
+		).map(
+			r => `${(Config.groups[r] ? `**${Config.groups[r].name}s** (${r})` : r)}:\n${rankLists[r].sort((a, b) => toID(a).localeCompare(toID(b))).join(", ")}`
 		);
 
 		if (!buffer.length) return connection.popup("This server has no global authority.");
@@ -976,42 +974,8 @@ exports.commands = {
 			return this.errorReply(`You can only save replays for battles.`);
 		}
 
-		const forPunishment = target === 'forpunishment';
-
-		const battle = room.battle;
-		// retrieve spectator log (0) if there are privacy concerns
-		const format = Dex.getFormat(room.format, true);
-
-		// custom games always show full details
-		// random-team battles show full details if the battle is ended
-		// otherwise, don't show full details
-		let hideDetails = !format.id.includes('customgame');
-		if (format.team && battle.ended) hideDetails = false;
-
-		const data = room.getLog(hideDetails ? 0 : -1);
-		const datahash = crypto.createHash('md5').update(data.replace(/[^(\x20-\x7F)]+/g, '')).digest('hex');
-		let rating = 0;
-		if (battle.ended && room.rated) rating = room.rated;
-		const [success] = await LoginServer.request('prepreplay', {
-			id: room.roomid.substr(7),
-			loghash: datahash,
-			p1: battle.p1.name,
-			p2: battle.p2.name,
-			format: format.id,
-			rating: rating,
-			hidden: forPunishment || room.unlistReplay ? '2' : room.isPrivate || room.hideReplay ? '1' : '',
-			inputlog: battle.inputLog ? battle.inputLog.join('\n') : null,
-		});
-		if (success) battle.replaySaved = true;
-		if (success && success.errorip) {
-			connection.popup(`This server's request IP ${success.errorip} is not a registered server.`);
-			return;
-		}
-		connection.send('|queryresponse|savereplay|' + JSON.stringify({
-			log: data,
-			id: room.roomid.substr(7),
-			silent: forPunishment || target === 'silent',
-		}));
+		const options = (target === 'forpunishment' || target === 'silent') ? target : null;
+		room.uploadReplay(user, connection, options);
 	},
 
 	hidereplay(target, room, user, connection) {
@@ -1455,6 +1419,7 @@ exports.commands = {
 
 			for (let userid in targetRoom.users) {
 				let user = targetRoom.users[userid];
+				if (!user.named) continue;
 				let userinfo = user.getIdentity(targetRoom.roomid);
 				roominfo.users.push(userinfo);
 			}
@@ -1512,8 +1477,8 @@ exports.commands = {
 			this.sendReply(`${this.tr('INFORMATIONAL/RESOURCE COMMANDS')}: /groups, /faq, /rules, /intro, /formatshelp, /othermetas, /analysis, /punishments, /calc, /git, /cap, /roomhelp, /roomfaq ${broadcastMsg}`);
 			this.sendReply(`${this.tr('DATA COMMANDS')}: /data, /dexsearch, /movesearch, /itemsearch, /learn, /statcalc, /effectiveness, /weakness, /coverage, /randommove, /randompokemon ${broadcastMsg}`);
 			if (user.group !== Config.groupsranking[0]) {
-				this.sendReply(`${this.tr('DRIVER COMMANDS')}: /warn, /mute, /hourmute, /unmute, /alts, /forcerename, /modlog, /modnote, /lock, /weeklock, /unlock, /announce`);
-				this.sendReply(`${this.tr('MODERATOR COMMANDS')}: /globalban, /unglobalban, /ip, /modchat, /markshared, /unlockip`);
+				this.sendReply(`${this.tr('DRIVER COMMANDS')}: /warn, /mute, /hourmute, /unmute, /alts, /forcerename, /modlog, /modnote, /modchat, /lock, /weeklock, /unlock, /announce`);
+				this.sendReply(`${this.tr('MODERATOR COMMANDS')}: /globalban, /unglobalban, /ip, /markshared, /unlockip`);
 				this.sendReply(`${this.tr('LEADER COMMANDS')}: /declare, /forcetie, /forcewin, /promote, /demote, /banip, /host, /unbanall, /ipsearch`);
 			}
 			this.sendReply(this.tr("For an overview of room commands, use /roomhelp"));
