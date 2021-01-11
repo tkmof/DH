@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleTypeChart = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const TypeChart = {
 	Bug: {
 		damageTaken: {
 			Bug: 0,
@@ -440,4 +440,4 @@
 		HPivs: {atk: 30, def: 30, spa: 30},
 		HPdvs: {atk: 14, def: 13},
 	},
-}; exports.BattleTypeChart = BattleTypeChart;
+}; exports.TypeChart = TypeChart;

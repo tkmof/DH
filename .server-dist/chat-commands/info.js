@@ -11,6 +11,64 @@
 var _net = require('net'); var net = _net;
 var _youtube = require('../chat-plugins/youtube');
 var _utils = require('../../.lib-dist/utils');
+var _net2 = require('../../.lib-dist/net');
+
+ function getCommonBattles(
+	userID1, user1, userID2, user2, connection
+) {
+	const battles = [];
+	for (const curRoom of Rooms.rooms.values()) {
+		if (!curRoom.battle) continue;
+		if (
+			(_optionalChain([user1, 'optionalAccess', _ => _.inRooms, 'access', _2 => _2.has, 'call', _3 => _3(curRoom.roomid)]) || curRoom.auth.get(userID1) === Users.PLAYER_SYMBOL) &&
+			(_optionalChain([user2, 'optionalAccess', _4 => _4.inRooms, 'access', _5 => _5.has, 'call', _6 => _6(curRoom.roomid)]) || curRoom.auth.get(userID2) === Users.PLAYER_SYMBOL)
+		) {
+			if (connection) void curRoom.uploadReplay(connection.user, connection, "forpunishment");
+			battles.push(curRoom.roomid);
+		}
+	}
+	return battles;
+} exports.getCommonBattles = getCommonBattles;
+
+ function findFormats(targetId, isOMSearch = false) {
+	let formatList = [];
+	const format = Dex.getFormat(targetId);
+	if (['Format', 'ValidatorRule', 'Rule'].includes(format.effectType)) formatList = [targetId];
+	if (!formatList.length) {
+		formatList = Object.keys(Dex.formats);
+	}
+
+	// Filter formats and group by section
+	let exactMatch = '';
+	const sections = {};
+	let totalMatches = 0;
+	for (const mode of formatList) {
+		const subformat = Dex.getFormat(mode);
+		const sectionId = toID(subformat.section);
+		let formatId = subformat.id;
+		if (!/^gen\d+/.test(targetId)) {
+			// Skip generation prefix if it wasn't provided
+			formatId = formatId.replace(/^gen\d+/, '') ;
+		}
+		if (targetId && !(subformat )[targetId + 'Show'] && sectionId !== targetId &&
+		subformat.id === mode && !formatId.startsWith(targetId)) continue;
+		if (isOMSearch) {
+			const officialFormats = [
+				'ou', 'uu', 'ru', 'nu', 'pu', 'ubers', 'lc', 'monotype', 'customgame', 'doublescustomgame', 'gbusingles', 'gbudoubles',
+			];
+			if (subformat.id.startsWith('gen') && officialFormats.includes(subformat.id.slice(4))) {
+				continue;
+			}
+		}
+		totalMatches++;
+		if (!sections[sectionId]) sections[sectionId] = {name: subformat.section, formats: []};
+		sections[sectionId].formats.push(subformat.id);
+		if (subformat.id !== targetId) continue;
+		exactMatch = sectionId;
+		break;
+	}
+	return {totalMatches, sections, exactMatch};
+} exports.findFormats = findFormats;
 
  const commands = {
 	ip: 'whois',
@@ -19,9 +77,10 @@ var _utils = require('../../.lib-dist/utils');
 	alts: 'whois',
 	whoare: 'whois',
 	altsnorecurse: 'whois',
+	profile: 'whois',
 	whois(target, room, user, connection, cmd) {
-		if (_optionalChain([room, 'optionalAccess', _ => _.roomid]) === 'staff' && !this.runBroadcast()) return;
-		const targetUser = this.targetUserOrSelf(target, user.group === ' ');
+		if (_optionalChain([room, 'optionalAccess', _7 => _7.roomid]) === 'staff' && !this.runBroadcast()) return;
+		const targetUser = this.targetUserOrSelf(target, user.tempGroup === ' ');
 		const showAll = (cmd === 'ip' || cmd === 'whoare' || cmd === 'alt' || cmd === 'alts' || cmd === 'altsnorecurse');
 		const showRecursiveAlts = showAll && (cmd !== 'altsnorecurse');
 		if (!targetUser) {
@@ -32,7 +91,7 @@ var _utils = require('../../.lib-dist/utils');
 			return this.errorReply(`/${cmd} - Access denied.`);
 		}
 
-		let buf = _utils.Utils.html`<strong class="username"><small style="display:none">${targetUser.group}</small>${targetUser.name}</strong> `;
+		let buf = _utils.Utils.html`<strong class="username"><small style="display:none">${targetUser.tempGroup}</small>${targetUser.name}</strong> `;
 		const ac = targetUser.autoconfirmed;
 		if (ac && showAll) {
 			buf += ` <small style="color:gray">(ac${targetUser.id === ac ? `` : `: <span class="username">${ac}</span>`})</small>`;
@@ -42,12 +101,12 @@ var _utils = require('../../.lib-dist/utils');
 			buf += ` <small style="color:gray">(trusted${targetUser.id === trusted ? `` : `: <span class="username">${trusted}</span>`})</small>`;
 		}
 		if (!targetUser.connected) buf += ` <em style="color:gray">(offline)</em>`;
-		const roomauth = _optionalChain([room, 'optionalAccess', _2 => _2.auth, 'access', _3 => _3.getDirect, 'call', _4 => _4(targetUser.id)]);
-		if (roomauth && _optionalChain([Config, 'access', _5 => _5.groups, 'access', _6 => _6[roomauth], 'optionalAccess', _7 => _7.name])) {
+		const roomauth = _optionalChain([room, 'optionalAccess', _8 => _8.auth, 'access', _9 => _9.getDirect, 'call', _10 => _10(targetUser.id)]);
+		if (roomauth && _optionalChain([Config, 'access', _11 => _11.groups, 'access', _12 => _12[roomauth], 'optionalAccess', _13 => _13.name])) {
 			buf += _utils.Utils.html`<br />${Config.groups[roomauth].name} (${roomauth})`;
 		}
-		if (_optionalChain([Config, 'access', _8 => _8.groups, 'access', _9 => _9[targetUser.group], 'optionalAccess', _10 => _10.name])) {
-			buf += _utils.Utils.html`<br />Global ${Config.groups[targetUser.group].name} (${targetUser.group})`;
+		if (_optionalChain([Config, 'access', _14 => _14.groups, 'access', _15 => _15[targetUser.tempGroup], 'optionalAccess', _16 => _16.name])) {
+			buf += _utils.Utils.html`<br />Global ${Config.groups[targetUser.tempGroup].name} (${targetUser.tempGroup})`;
 		}
 		if (targetUser.isSysop) {
 			buf += `<br />(Pok&eacute;mon Showdown System Operator)`;
@@ -59,7 +118,6 @@ var _utils = require('../../.lib-dist/utils');
 		let hiddenrooms = ``;
 		let privaterooms = ``;
 		for (const roomid of targetUser.inRooms) {
-			if (roomid === 'global') continue;
 			const targetRoom = Rooms.get(roomid);
 
 			const authSymbol = targetRoom.auth.getDirect(targetUser.id).trim();
@@ -82,14 +140,14 @@ var _utils = require('../../.lib-dist/utils');
 		if (!showAll) {
 			return this.sendReplyBox(buf);
 		}
-		const canViewAlts = (user === targetUser || user.can('alts', targetUser));
+		const canViewAlts = (user === targetUser ? user.can('altsself') : user.can('alts', targetUser));
 		const canViewPunishments = canViewAlts ||
 			(room && room.settings.isPrivate !== true && user.can('mute', targetUser, room) && targetUser.id in room.users);
 		const canViewSecretRooms = user === targetUser || (canViewAlts && targetUser.locked) || user.can('makeroom');
 		buf += `<br />`;
 
 		if (canViewAlts) {
-			let prevNames = Object.keys(targetUser.prevNames).map(userid => {
+			let prevNames = targetUser.previousIDs.map(userid => {
 				const punishment = Punishments.userids.get(userid);
 				return `${userid}${punishment ? ` (${Punishments.punishmentTypes.get(punishment[0]) || `punished`}${punishment[1] !== targetUser.id ? ` as ${punishment[1]}` : ``})` : ``}`;
 			}).join(", ");
@@ -97,14 +155,14 @@ var _utils = require('../../.lib-dist/utils');
 
 			for (const targetAlt of targetUser.getAltUsers(true)) {
 				if (!targetAlt.named && !targetAlt.connected) continue;
-				if (targetAlt.group === '~' && user.group !== '~') continue;
+				if (targetAlt.tempGroup === '~' && user.tempGroup !== '~') continue;
 
 				const punishment = Punishments.userids.get(targetAlt.id);
 				const punishMsg = punishment ? ` (${Punishments.punishmentTypes.get(punishment[0]) || 'punished'}` +
 					`${punishment[1] !== targetAlt.id ? ` as ${punishment[1]}` : ''})` : '';
 				buf += _utils.Utils.html`<br />Alt: <span class="username">${targetAlt.name}</span>${punishMsg}`;
 				if (!targetAlt.connected) buf += ` <em style="color:gray">(offline)</em>`;
-				prevNames = Object.keys(targetAlt.prevNames).map(userid => {
+				prevNames = targetAlt.previousIDs.map(userid => {
 					const p = Punishments.userids.get(userid);
 					return `${userid}${p ? ` (${Punishments.punishmentTypes.get(p[0]) || 'punished'}${p[1] !== targetAlt.id ? ` as ${p[1]}` : ``})` : ``}`;
 				}).join(", ");
@@ -137,30 +195,30 @@ var _utils = require('../../.lib-dist/utils');
 					if (punishment[3]) buf += _utils.Utils.html` (reason: ${punishment[3]})`;
 				}
 			}
+
 			const battlebanned = Punishments.isBattleBanned(targetUser);
 			if (battlebanned) {
 				buf += `<br />BATTLEBANNED: ${battlebanned[1]}`;
-				const expiresIn = new Date(battlebanned[2]).getTime() - Date.now();
-				const expiresDays = Math.round(expiresIn / 1000 / 60 / 60 / 24);
-				let expiresText = ``;
-				if (expiresDays >= 1) {
-					expiresText = `in around ${Chat.count(expiresDays, "days")}`;
-				} else {
-					expiresText = `soon`;
-				}
-				if (expiresIn > 1) buf += ` (expires ${expiresText})`;
+				buf += ` (expires ${Punishments.checkPunishmentExpiration(battlebanned)})`;
 				if (battlebanned[3]) buf += _utils.Utils.html` (reason: ${battlebanned[3]})`;
 			}
+
+			const groupchatbanned = Punishments.isGroupchatBanned(targetUser);
+			if (groupchatbanned) {
+				buf += `<br />Banned from using groupchats${groupchatbanned[1] !== targetUser.id ? `: ${groupchatbanned[1]}` : ``}`;
+				buf += ` ${Punishments.checkPunishmentExpiration(groupchatbanned)}`;
+				if (groupchatbanned[3]) buf += _utils.Utils.html` (reason: ${groupchatbanned[3]})`;
+			}
+
 			if (targetUser.semilocked) {
-				buf += `<br />Semilocked: ${targetUser.semilocked}`;
+				buf += `<br />Semilocked: ${user.can('lock') ? targetUser.semilocked : "(reason hidden)"}`;
 			}
 		}
-		if (user.can('ip', targetUser)) {
-			let ips = Object.keys(targetUser.ips);
-			ips = ips.map(ip => {
+		if (user === targetUser ? user.can('ipself') : user.can('ip', targetUser)) {
+			const ips = targetUser.ips.map(ip => {
 				const status = [];
 				const punishment = Punishments.ips.get(ip);
-				if (user.can('globalban') && punishment) {
+				if (user.can('alts') && punishment) {
 					const [punishType, userid] = punishment;
 					let punishMsg = Punishments.punishmentTypes.get(punishType) || 'punished';
 					if (userid !== targetUser.id) punishMsg += ` as ${userid}`;
@@ -176,7 +234,7 @@ var _utils = require('../../.lib-dist/utils');
 				return `<a href="https://whatismyipaddress.com/ip/${ip}" target="_blank">${ip}</a>` + (status.length ? ` (${status.join('; ')})` : '');
 			});
 			buf += `<br /> IP${Chat.plural(ips)}: ${ips.join(", ")}`;
-			if (user.group !== ' ' && targetUser.latestHost) {
+			if (user.tempGroup !== ' ' && targetUser.latestHost) {
 				buf += _utils.Utils.html`<br />Host: ${targetUser.latestHost} [${targetUser.latestHostType}]`;
 			}
 		} else if (user === targetUser) {
@@ -192,11 +250,11 @@ var _utils = require('../../.lib-dist/utils');
 		const gameRooms = [];
 		for (const curRoom of Rooms.rooms.values()) {
 			if (!curRoom.game) continue;
-			if ((targetUser.id in curRoom.game.playerTable && !targetUser.inRooms.has(curRoom.roomid)) ||
-				curRoom.auth.getDirect(targetUser.id) === Users.PLAYER_SYMBOL) {
-				if (curRoom.settings.isPrivate && !canViewAlts) {
-					continue;
-				}
+			const inPlayerTable = targetUser.id in curRoom.game.playerTable && !targetUser.inRooms.has(curRoom.roomid);
+			const hasPlayerSymbol = curRoom.auth.getDirect(targetUser.id) === Users.PLAYER_SYMBOL;
+			const canSeeRoom = canViewAlts || user === targetUser || !curRoom.settings.isPrivate;
+
+			if ((inPlayerTable || hasPlayerSymbol) && canSeeRoom) {
 				gameRooms.push(curRoom.roomid);
 			}
 		}
@@ -232,8 +290,8 @@ var _utils = require('../../.lib-dist/utils');
 		if (showRecursiveAlts && canViewAlts) {
 			const targetId = toID(target);
 			for (const alt of Users.users.values()) {
-				if (alt !== targetUser && targetId in alt.prevNames) {
-					this.parse(`/altsnorecurse ${alt.name}`);
+				if (alt !== targetUser && alt.previousIDs.includes(targetId)) {
+					void this.parse(`/altsnorecurse ${alt.name}`);
 				}
 			}
 		}
@@ -255,12 +313,12 @@ var _utils = require('../../.lib-dist/utils');
 		let buf = _utils.Utils.html`<strong class="username">${target}</strong>`;
 		if (!targetUser || !targetUser.connected) buf += ` <em style="color:gray">(offline)</em>`;
 
-		const roomauth = _optionalChain([room, 'optionalAccess', _11 => _11.auth, 'access', _12 => _12.getDirect, 'call', _13 => _13(userid)]);
-		if (roomauth && _optionalChain([Config, 'access', _14 => _14.groups, 'access', _15 => _15[roomauth], 'optionalAccess', _16 => _16.name])) {
+		const roomauth = _optionalChain([room, 'optionalAccess', _17 => _17.auth, 'access', _18 => _18.getDirect, 'call', _19 => _19(userid)]);
+		if (roomauth && _optionalChain([Config, 'access', _20 => _20.groups, 'access', _21 => _21[roomauth], 'optionalAccess', _22 => _22.name])) {
 			buf += `<br />${Config.groups[roomauth].name} (${roomauth})`;
 		}
 		const group = Users.globalAuth.get(userid);
-		if (_optionalChain([Config, 'access', _17 => _17.groups, 'access', _18 => _18[group], 'optionalAccess', _19 => _19.name])) {
+		if (_optionalChain([Config, 'access', _23 => _23.groups, 'access', _24 => _24[group], 'optionalAccess', _25 => _25.name])) {
 			buf += `<br />Global ${Config.groups[group].name} (${group})`;
 		}
 
@@ -288,7 +346,7 @@ var _utils = require('../../.lib-dist/utils');
 
 		const punishments = Punishments.getRoomPunishments(targetUser || {id: userid} );
 
-		if (_optionalChain([punishments, 'optionalAccess', _20 => _20.length])) {
+		if (_optionalChain([punishments, 'optionalAccess', _26 => _26.length])) {
 			buf += `<br />Room punishments: `;
 
 			buf += punishments.map(([curRoom, curPunishment]) => {
@@ -311,8 +369,9 @@ var _utils = require('../../.lib-dist/utils');
 		this.sendReplyBox(buf);
 	},
 
+	sbtl: 'sharedbattles',
 	sharedbattles(target, room) {
-		if (!this.can('lock')) return false;
+		this.checkCan('lock');
 
 		const [targetUsername1, targetUsername2] = target.split(',');
 		if (!targetUsername1 || !targetUsername2) return this.parse(`/help sharedbattles`);
@@ -321,16 +380,7 @@ var _utils = require('../../.lib-dist/utils');
 		const userID1 = toID(targetUsername1);
 		const userID2 = toID(targetUsername2);
 
-		const battles = [];
-		for (const curRoom of Rooms.rooms.values()) {
-			if (!curRoom.battle) continue;
-			if (
-				(_optionalChain([user1, 'optionalAccess', _21 => _21.inRooms, 'access', _22 => _22.has, 'call', _23 => _23(curRoom.roomid)]) || curRoom.auth.has(userID1)) &&
-				(_optionalChain([user2, 'optionalAccess', _24 => _24.inRooms, 'access', _25 => _25.has, 'call', _26 => _26(curRoom.roomid)]) || curRoom.auth.has(userID2))
-			) {
-				battles.push(curRoom.roomid);
-			}
-		}
+		const battles = getCommonBattles(userID1, user1, userID2, user2, this.connection);
 
 		if (!battles.length) return this.sendReply(`${targetUsername1} and ${targetUsername2} have no common battles.`);
 
@@ -343,7 +393,7 @@ var _utils = require('../../.lib-dist/utils');
 
 	sp: 'showpunishments',
 	showpunishments(target, room, user) {
-		if (!room) return this.requiresRoom();
+		room = this.requireRoom();
 		if (!room.persist) {
 			return this.errorReply("This command is unavailable in temporary rooms.");
 		}
@@ -353,20 +403,19 @@ var _utils = require('../../.lib-dist/utils');
 
 	sgp: 'showglobalpunishments',
 	showglobalpunishments(target, room, user) {
-		if (!this.can('lock')) return;
+		this.checkCan('lock');
 		return this.parse(`/join view-globalpunishments`);
 	},
 	showglobalpunishmentshelp: [`/showpunishments - Shows the current global punishments. Requires: % @ # &`],
 
-	host(target, room, user, connection, cmd) {
+	async host(target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help host');
-		if (!this.can('globalban')) return;
+		this.checkCan('ip');
 		target = target.trim();
 		if (!net.isIPv4(target)) return this.errorReply('You must pass a valid IPv4 IP to /host.');
-		void IPTools.lookup(target).then(({dnsbl, host, hostType}) => {
-			const dnsblMessage = dnsbl ? ` [${dnsbl}]` : ``;
-			this.sendReply(`IP ${target}: ${host || "ERROR"} [${hostType}]${dnsblMessage}`);
-		});
+		const {dnsbl, host, hostType} = await IPTools.lookup(target);
+		const dnsblMessage = dnsbl ? ` [${dnsbl}]` : ``;
+		this.sendReply(`IP ${target}: ${host || "ERROR"} [${hostType}]${dnsblMessage}`);
 	},
 	hosthelp: [`/host [ip] - Gets the host for a given IP. Requires: @ &`],
 
@@ -375,7 +424,7 @@ var _utils = require('../../.lib-dist/utils');
 	hostsearch: 'ipsearch',
 	ipsearch(target, room, user, connection, cmd) {
 		if (!target.trim()) return this.parse(`/help ipsearch`);
-		if (!this.can('rangeban')) return;
+		this.checkCan('rangeban');
 
 		let [ip, roomid] = this.splitOne(target);
 		const targetRoom = roomid ? Rooms.get(roomid) : null;
@@ -397,7 +446,7 @@ var _utils = require('../../.lib-dist/utils');
 			if (results.length > 100 && !isAll) {
 				return this.sendReply(`More than 100 users match the specified IP range. Use /ipsearchall to retrieve the full list.`);
 			}
-		} else if (ip.slice(-1) === '*') {
+		} else if (ip.endsWith('*')) {
 			// IP range
 			this.sendReply(`Users in IP range ${ip}${targetRoom ? ` in the room ${targetRoom.title}` : ``}:`);
 			ip = ip.slice(0, -1);
@@ -419,16 +468,40 @@ var _utils = require('../../.lib-dist/utils');
 			}
 		}
 		if (!results.length) {
-			if (!ip.includes('.')) return this.errorReply(`${ip} is not a valid IP or host.`);
+			if (!IPTools.ipRangeRegex.test(ip)) return this.errorReply(`${ip} is not a valid IP or host.`);
 			return this.sendReply(`No results found.`);
 		}
 		return this.sendReply(results.join('; '));
 	},
 	ipsearchhelp: [`/ipsearch [ip|range|host], (room) - Find all users with specified IP, IP range, or host. If a room is provided only users in the room will be shown. Requires: &`],
 
+	usersearch(target) {
+		this.checkCan('lock');
+		const results = [];
+		target = toID(target);
+		if (!target) {
+			return this.parse(`/help usersearch`);
+		}
+		if (target.length < 3) {
+			return this.errorReply(`That's too short of a term to search for.`);
+		}
+		for (const curUser of Users.users.values()) {
+			if (!curUser.id.includes(target)) continue;
+			results.push(
+				_utils.Utils.html`${curUser.connected ? ` \u25C9 ` : ` \u25CC `} ${curUser.name}`
+			);
+		}
+		_utils.Utils.sortBy(results, name => name.startsWith('  \u25C9'));
+		if (!results.length) results.push(`No users found.`);
+		return this.sendReplyBox(
+			`Users with a name matching '${target}':<br />${results.join('; ')}`
+		);
+	},
+	usersearchhelp: [`/usersearch [pattern]: Looks for all names matching the [pattern]. Requires: &`],
+
 	checkchallenges(target, room, user) {
-		if (!room) return this.requiresRoom();
-		if (!this.can('ban', null, room)) return false;
+		room = this.requireRoom();
+		if (!user.can('addhtml', null, room)) this.checkCan('ban', null, room);
 		if (!this.runBroadcast(true)) return;
 		if (!this.broadcasting) {
 			this.errorReply(`This command must be broadcast:`);
@@ -465,7 +538,7 @@ var _utils = require('../../.lib-dist/utils');
 		}
 		this.sendReplyBox(challenges.join(`<br />`));
 	},
-	checkchallengeshelp: [`!checkchallenges [user1], [user2] - Check if the specified users are challenging each other. Requires: @ # &`],
+	checkchallengeshelp: [`!checkchallenges [user1], [user2] - Check if the specified users are challenging each other. Requires: * @ # &`],
 
 	/*********************************************************
 	 * Client fallback
@@ -549,7 +622,7 @@ var _utils = require('../../.lib-dist/utils');
 			case 'pokemon':
 				let pokemon = dex.getSpecies(newTarget.name);
 				if (_optionalChain([format, 'optionalAccess', _28 => _28.onModifySpecies])) {
-					pokemon = format.onModifySpecies.call({dex} , pokemon) || pokemon;
+					pokemon = format.onModifySpecies.call({dex, clampIntRange: _utils.Utils.clampIntRange, toID} , pokemon) || pokemon;
 				}
 				let tierDisplay = _optionalChain([room, 'optionalAccess', _29 => _29.settings, 'access', _30 => _30.dataCommandTierDisplay]);
 				if (!tierDisplay && _optionalChain([room, 'optionalAccess', _31 => _31.battle])) {
@@ -582,12 +655,9 @@ var _utils = require('../../.lib-dist/utils');
 						Gen: String(pokemon.gen) || 'CAP',
 						Height: `${pokemon.heightm} m`,
 					};
-					if (pokemon.forme !== "Gmax" || dex.currentMod === 'megamax') {
-						details["Weight"] = `${pokemon.weighthg / 10} kg <em>(${weighthit} BP)</em>`;
-					} else {
-						details["Weight"] = "0 kg <em>(GK/LK fail)</em>";
-					}
-					if (pokemon.isGigantamax) details["G-Max Move"] = pokemon.isGigantamax;
+					details["Weight"] = `${pokemon.weighthg / 10} kg <em>(${weighthit} BP)</em>`;
+					const gmaxMove = pokemon.canGigantamax || dex.getSpecies(pokemon.changesFrom).canGigantamax;
+					if (gmaxMove) details["G-Max Move"] = gmaxMove;
 					if (pokemon.color && dex.gen >= 5) details["Dex Colour"] = pokemon.color;
 					if (pokemon.eggGroups && dex.gen >= 2) details["Egg Group(s)"] = pokemon.eggGroups.join(", ");
 					const evos = [];
@@ -729,7 +799,7 @@ var _utils = require('../../.lib-dist/utils');
 					if (dex.gen >= 8) {
 						if (move.isMax) {
 							details["&#10003; Max Move"] = "";
-							if (typeof move.isMax === "string") details["User"] = `${move.isMax}-Gmax`;
+							if (typeof move.isMax === "string") details["User"] = `${move.isMax}`;
 						} else if (_optionalChain([move, 'access', _38 => _38.maxMove, 'optionalAccess', _39 => _39.basePower])) {
 							details["Dynamax Power"] = String(move.maxMove.basePower);
 						}
@@ -772,13 +842,15 @@ var _utils = require('../../.lib-dist/utils');
 					details = {
 						Gen: String(ability.gen) || 'CAP',
 					};
+					if (ability.isPermanent) details["&#10003; Not affected by Gastro Acid"] = "";
+					if (ability.isUnbreakable) details["&#10003; Not affected by Mold Breaker"] = "";
 				}
 				break;
 			default:
 				throw new Error(`Unrecognized searchType`);
 			}
 
-			if (details) {
+			if (showDetails) {
 				buffer += `|raw|<font size="1">${Object.keys(details).map(detail => {
 					if (details[detail] === '') return detail;
 					return `<font color="#686868">${detail}:</font> ${details[detail]}`;
@@ -823,16 +895,22 @@ var _utils = require('../../.lib-dist/utils');
 		if (!target) return this.parse('/help weakness');
 		if (!this.runBroadcast()) return;
 		target = target.trim();
-		const modName = target.split(',');
+		const targets = target.split(',').map(toID);
+		const maybeMod = targets[targets.length - 1];
 		let mod = Dex;
 		let format = null;
-		if (modName[modName.length - 1] && toID(modName[modName.length - 1]) in Dex.dexes) {
-			mod = Dex.mod(toID(modName[modName.length - 1]));
+		let isInverse = false;
+		if (maybeMod && maybeMod in Dex.dexes) {
+			mod = Dex.mod(maybeMod);
+			targets.pop();
 		} else if (_optionalChain([room, 'optionalAccess', _40 => _40.battle])) {
 			format = Dex.getFormat(room.battle.format);
 			mod = Dex.mod(format.mod);
 		}
-		const targets = target.split(/ ?[,/] ?/);
+		if (maybeMod === 'inverse') {
+			isInverse = true;
+			targets.pop();
+		}
 		let species = mod.getSpecies(targets[0]);
 		const type1 = mod.getType(targets[0]);
 		const type2 = mod.getType(targets[1]);
@@ -864,8 +942,9 @@ var _utils = require('../../.lib-dist/utils');
 		const immunities = [];
 		for (const type in mod.data.TypeChart) {
 			const notImmune = mod.getImmunity(type, species);
-			if (notImmune) {
-				const typeMod = mod.getEffectiveness(type, species);
+			if (notImmune || isInverse) {
+				let typeMod = !notImmune && isInverse ? 1 : 0;
+				typeMod += (isInverse ? -1 : 1) * mod.getEffectiveness(type, species);
 				switch (typeMod) {
 				case 1:
 					weaknesses.push(type);
@@ -1348,10 +1427,10 @@ var _utils = require('../../.lib-dist/utils');
 				if (['band', 'scarf', 'specs'].includes(arg)) {
 					modifier = 1;
 					modSet = true;
-				} else if (arg.charAt(0) === '+') {
+				} else if (arg.startsWith('+')) {
 					modifier = parseInt(arg.charAt(1));
 					modSet = true;
-				} else if (arg.charAt(0) === '-') {
+				} else if (arg.startsWith('-')) {
 					positiveMod = false;
 					modifier = parseInt(arg.charAt(1));
 					modSet = true;
@@ -1408,7 +1487,7 @@ var _utils = require('../../.lib-dist/utils');
 		if (realSet) {
 			if (!baseSet) {
 				if (calcHP) {
-					baseStat = Math.ceil((100 * realStat - 10 - level * (ev / 4 + iv + 100)) / (2 * level));
+					baseStat = Math.ceil((100 * realStat - 10 - level * (Math.floor(ev / 4) + iv + 100)) / (2 * level));
 				} else {
 					if (!positiveMod) {
 						realStat *= (2 + modifier) / 2;
@@ -1416,7 +1495,10 @@ var _utils = require('../../.lib-dist/utils');
 						realStat *= 2 / (2 + modifier);
 					}
 
-					baseStat = Math.ceil((100 * Math.ceil(realStat) - nature * (level * (ev / 4 + iv) + 500)) / (2 * level * nature));
+					baseStat = Math.ceil(
+						(100 * Math.ceil(realStat) - nature * (level * (Math.floor(ev / 4) + iv) + 500)) /
+						(2 * level * nature)
+					);
 				}
 				if (baseStat < 0) {
 					return this.sendReplyBox('No valid value for base stat possible with given parameters.');
@@ -1449,9 +1531,9 @@ var _utils = require('../../.lib-dist/utils');
 		let output;
 
 		if (calcHP) {
-			output = (((iv + (2 * baseStat) + (ev / 4) + 100) * level) / 100) + 10;
+			output = (((iv + (2 * baseStat) + Math.floor(ev / 4) + 100) * level) / 100) + 10;
 		} else {
-			output = Math.floor(nature * Math.floor((((iv + (2 * baseStat) + (ev / 4)) * level) / 100) + 5));
+			output = Math.floor(nature * Math.floor((((iv + (2 * baseStat) + Math.floor(ev / 4)) * level) / 100) + 5));
 			if (positiveMod) {
 				output *= (2 + modifier) / 2;
 			} else {
@@ -1495,11 +1577,13 @@ var _utils = require('../../.lib-dist/utils');
 
 	groups(target, room, user) {
 		if (!this.runBroadcast()) return;
+		target = toID(target);
 		const showRoom = (target !== 'global');
 		const showGlobal = (target !== 'room' && target !== 'rooms');
 
 		const roomRanks = [
 			`<strong>Room ranks</strong>`,
+			`^ <strong>Prize Winner</strong> - They don't have any powers beyond a symbol.`,
 			`+ <strong>Voice</strong> - They can use ! commands like !groups`,
 			`% <strong>Driver</strong> - The above, and they can mute and warn`,
 			`@ <strong>Moderator</strong> - The above, and they can room ban users`,
@@ -1539,6 +1623,7 @@ var _utils = require('../../.lib-dist/utils');
 			`<strong>mute</strong> - Mutes a user (makes them unable to talk) for 7 minutes.`,
 			`<strong>hourmute</strong> - Mutes a user for 60 minutes.`,
 			`<strong>ban</strong> - Bans a user (makes them unable to join the room) for 2 days.`,
+			`<strong>weekban</strong> - Bans a user from the room for a week.`,
 			`<strong>blacklist</strong> - Bans a user for a year.`,
 		];
 
@@ -1547,6 +1632,7 @@ var _utils = require('../../.lib-dist/utils');
 			`<strong>lock</strong> - Locks a user (makes them unable to talk in any rooms or PM non-staff) for 2 days.`,
 			`<strong>weeklock</strong> - Locks a user for a week.`,
 			`<strong>namelock</strong> - Locks a user and prevents them from having a username for 2 days.`,
+			`<strong>groupchatban</strong> — Bans a user from creating or joining groupchats for a week or a month.`,
 			`<strong>globalban</strong> - Globally bans (makes them unable to connect and play games) for a week.`,
 		];
 
@@ -1568,7 +1654,7 @@ var _utils = require('../../.lib-dist/utils');
 		if (!this.runBroadcast()) return;
 		this.sendReplyBox(
 			`Pok&eacute;mon Showdown is open source:<br />` +
-			`- Language: TypeScript and JavaScript (Node.js)<br />` +
+			`- Language: mostly TypeScript, a little PHP<br />` +
 			`- <a href="https://github.com/smogon/pokemon-showdown/commits/master">What's new?</a><br />` +
 			`- <a href="https://github.com/smogon/pokemon-showdown">Server source code</a><br />` +
 			`- <a href="https://github.com/smogon/pokemon-showdown-client">Client source code</a><br />` +
@@ -1697,7 +1783,7 @@ var _utils = require('../../.lib-dist/utils');
 		if (RANDOMS_CALC_COMMANDS.includes(cmd) ||
 			(isRandomBattle && !DEFAULT_CALC_COMMANDS.includes(cmd) && !BATTLESPOT_CALC_COMMANDS.includes(cmd))) {
 			return this.sendReplyBox(
-				`Random Battles damage calculator. (Courtesy of Austin &amp; pre)<br />` +
+				`Random Battles damage calculator. (Courtesy of Austin)<br />` +
 				`- <a href="https://calc.pokemonshowdown.com/randoms.html">Random Battles Damage Calculator</a>`
 			);
 		}
@@ -1727,7 +1813,7 @@ var _utils = require('../../.lib-dist/utils');
 			`- <a href="https://www.smogon.com/cap/">CAP project website and description</a><br />` +
 			`- <a href="https://www.smogon.com/forums/threads/48782/">What Pok&eacute;mon have been made?</a><br />` +
 			`- <a href="https://www.smogon.com/forums/forums/477">Talk about the metagame here</a><br />` +
-			`- <a href="https://www.smogon.com/forums/threads/3648521/">Sample SM CAP teams</a>`
+			`- <a href="https://www.smogon.com/forums/threads/3671157/">Sample SS CAP teams</a>`
 		);
 	},
 	caphelp: [
@@ -1745,6 +1831,13 @@ var _utils = require('../../.lib-dist/utils');
 			`- <a href="https://replay.pokemonshowdown.com/gennextou-130756055">NickMP vs Khalogie</a>`
 		);
 	},
+
+	battlerules(target, room, user) {
+		return this.parse(`/join view-battlerules`);
+	},
+	battleruleshelp: [
+		`/battlerules - Provides information on the rules that can be added to tournament and challenge battles.`,
+	],
 
 	banlists: 'formathelp',
 	tier: 'formathelp',
@@ -1768,43 +1861,7 @@ var _utils = require('../../.lib-dist/utils');
 		let targetId = toID(target);
 		if (targetId === 'ladder') targetId = 'search' ;
 		if (targetId === 'all') targetId = '';
-
-		let formatList = [];
-		const format = Dex.getFormat(targetId);
-		if (['Format', 'ValidatorRule', 'Rule'].includes(format.effectType)) formatList = [targetId];
-		if (!formatList.length) {
-			formatList = Object.keys(Dex.formats);
-		}
-
-		// Filter formats and group by section
-		let exactMatch = '';
-		const sections = {};
-		let totalMatches = 0;
-		for (const mode of formatList) {
-			const subformat = Dex.getFormat(mode);
-			const sectionId = toID(subformat.section);
-			let formatId = subformat.id;
-			if (!/^gen\d+/.test(targetId)) {
-				// Skip generation prefix if it wasn't provided
-				formatId = formatId.replace(/^gen\d+/, '') ;
-			 }
-			if (targetId && !(subformat )[targetId + 'Show'] && sectionId !== targetId &&
-			subformat.id === mode && !formatId.startsWith(targetId)) continue;
-			if (isOMSearch) {
-				const officialFormats = [
-					'ou', 'uu', 'ru', 'nu', 'pu', 'ubers', 'lc', 'monotype', 'customgame', 'doublescustomgame', 'gbusingles', 'gbudoubles',
-				];
-				if (subformat.id.startsWith('gen') && officialFormats.includes(subformat.id.slice(4))) {
-					continue;
-				}
-			}
-			totalMatches++;
-			if (!sections[sectionId]) sections[sectionId] = {name: subformat.section, formats: []};
-			sections[sectionId].formats.push(subformat.id);
-			if (subformat.id !== targetId) continue;
-			exactMatch = sectionId;
-			break;
-		}
+		const {totalMatches, sections, exactMatch} = findFormats(targetId, isOMSearch);
 
 		if (!totalMatches) return this.errorReply("No matched formats found.");
 		if (!this.runBroadcast()) return;
@@ -1828,19 +1885,19 @@ var _utils = require('../../.lib-dist/utils');
 				if (rules.length > 0) {
 					rulesetHtml = `<details><summary>Banlist/Ruleset</summary>${rules.join("<br />")}</details>`;
 				} else {
-					rulesetHtml = `No ruleset found for ${format.name}`;
+					rulesetHtml = `No ruleset found for ${subformat.name}`;
 				}
 			}
-			let formatType = (format.gameType || "singles");
+			let formatType = (subformat.gameType || "singles");
 			formatType = formatType.charAt(0).toUpperCase() + formatType.slice(1).toLowerCase();
-			if (!format.desc && !format.threads) {
-				if (format.effectType === 'Format') {
-					return this.sendReplyBox(`No description found for this ${formatType} ${format.section} format.<br />${rulesetHtml}`);
+			if (!subformat.desc && !subformat.threads) {
+				if (subformat.effectType === 'Format') {
+					return this.sendReplyBox(`No description found for this ${formatType} ${subformat.section} format.<br />${rulesetHtml}`);
 				} else {
 					return this.sendReplyBox(`No description found for this rule.<br />${rulesetHtml}`);
 				}
 			}
-			const descHtml = [...(format.desc ? [format.desc] : []), ...(format.threads || [])];
+			const descHtml = [...(subformat.desc ? [subformat.desc] : []), ...(subformat.threads || [])];
 			return this.sendReplyBox(`${descHtml.join("<br />")}<br />${rulesetHtml}`);
 		}
 
@@ -1868,9 +1925,9 @@ var _utils = require('../../.lib-dist/utils');
 	},
 
 	roomhelp(target, room, user) {
-		if (!room) return this.requiresRoom();
-		if (!this.canBroadcast(false, '!htmlbox')) return;
-		if (this.broadcastMessage && !this.can('declare', null, room)) return false;
+		room = this.requireRoom();
+		this.checkBroadcast(false, '!htmlbox');
+		if (this.broadcastMessage) this.checkCan('declare', null, room);
 
 		if (!this.runBroadcast(false, '!htmlbox')) return;
 
@@ -1886,8 +1943,6 @@ var _utils = require('../../.lib-dist/utils');
 				`- /modlog <em>username</em>: search the moderator log of the room`,
 				`- /modnote <em>note</em>: add a moderator note that can be read through modlog`,
 				`- !show [image or youtube link]: display given media in chat.`,
-				`- /whitelist [user]: whitelist a non-staff user to use !show.`,
-				`- /unwhitelist [user]: removes the user from !show whitelist.`,
 			],
 			[
 				`<strong>Room moderators (@)</strong> can also use:`,
@@ -1931,7 +1986,7 @@ var _utils = require('../../.lib-dist/utils');
 	},
 
 	restarthelp(target, room, user) {
-		if (!Rooms.global.lockdown && !this.can('lockdown')) return false;
+		if (!Rooms.global.lockdown) this.checkCan('lockdown');
 		if (!this.runBroadcast()) return;
 		this.sendReplyBox(
 			`The server is restarting. Things to know:<br />` +
@@ -1943,7 +1998,8 @@ var _utils = require('../../.lib-dist/utils');
 	},
 
 	rule: 'rules',
-	rules(target, room, user) {
+	roomrules: "rules",
+	rules(target, room, user, connection, cmd) {
 		if (!target) {
 			if (!this.runBroadcast()) return;
 			this.sendReplyBox(
@@ -1956,7 +2012,27 @@ var _utils = require('../../.lib-dist/utils');
 		if (!room) {
 			return this.errorReply(`This is not a room you can set the rules of.`);
 		}
-		if (!this.can('editroom', null, room)) return;
+		const possibleRoom = Rooms.search(toID(target));
+		const {totalMatches: formatMatches} = findFormats(toID(target));
+		if (formatMatches && possibleRoom && cmd !== 'roomrules') {
+			this.errorReply(`'${target}' is both a room and a tier. `);
+			this.errorReply(`If you were looking for rules of that room, use /roomrules [room].`);
+			this.errorReply(`Otherwise, use /tier [tiername].`);
+			return;
+		}
+
+		if (possibleRoom) {
+			const rulesLink = possibleRoom.settings.rulesLink;
+			return this.sendReplyBox(
+				`${possibleRoom.title}'s rules:<br />` +
+				`${rulesLink ? _utils.Utils.html`- <a href="${rulesLink}">${this.tr `${possibleRoom.title} room rules`}</a><br />` : `None set.`}`
+			);
+		}
+
+		if (formatMatches > 0 && cmd !== 'roomrules') {
+			return this.parse(`/tier ${target}`);
+		}
+		this.checkCan('editroom', null, room);
 		if (target.length > 150) {
 			return this.errorReply(`Error: Room rules link is too long (must be under 150 characters). You can use a URL shortener to shorten the link.`);
 		}
@@ -1966,11 +2042,11 @@ var _utils = require('../../.lib-dist/utils');
 		if (target === 'delete' || target === 'remove') {
 			if (!room.settings.rulesLink) return this.errorReply(`This room does not have rules set to remove.`);
 			delete room.settings.rulesLink;
-			this.privateModAction(`(${user.name} has removed the room rules link.)`);
+			this.privateModAction(`${user.name} has removed the room rules link.`);
 			this.modlog('RULES', null, `removed room rules link`);
 		} else {
 			room.settings.rulesLink = target;
-			this.privateModAction(`(${user.name} changed the room rules link to: ${target})`);
+			this.privateModAction(`${user.name} changed the room rules link to: ${target}`);
 			this.modlog('RULES', null, `changed link to: ${target}`);
 		}
 
@@ -1985,45 +2061,47 @@ var _utils = require('../../.lib-dist/utils');
 
 	faq(target, room, user) {
 		if (!this.runBroadcast()) return;
-		target = target.toLowerCase().trim();
+		target = toID(target);
 		const showAll = target === 'all';
 		if (showAll && this.broadcasting) {
-			return this.sendReplyBox("You cannot broadcast all FAQs at once.");
+			return this.sendReplyBox(this.tr`You cannot broadcast all FAQs at once.`);
 		}
 
 		const buffer = [];
 		if (showAll || target === 'staff') {
-			buffer.push(`<a href="https://www.smogon.com/forums/posts/6774482/">Staff FAQ</a>`);
+			buffer.push(`<a href="https://pokemonshowdown.com/${this.tr`pages/staff`}">${this.tr`Staff FAQ`}</a>`);
 		}
 		if (showAll || target === 'autoconfirmed' || target === 'ac') {
-			buffer.push(`A user is autoconfirmed when they have won at least one rated battle and have been registered for one week or longer. In order to prevent spamming and trolling, most chatrooms only allow autoconfirmed users to chat. If you are not autoconfirmed, you can politely PM a staff member (staff have %, @, or # in front of their username) in the room you would like to chat and ask them to disable modchat. However, staff are not obligated to disable modchat.`);
-		}
-		if (showAll || target === 'coil') {
-			buffer.push(`<a href="https://www.smogon.com/forums/threads/3508013/">What is COIL?</a>`);
+			buffer.push(this.tr`A user is autoconfirmed when they have won at least one rated battle and have been registered for one week or longer. In order to prevent spamming and trolling, most chatrooms only allow autoconfirmed users to chat. If you are not autoconfirmed, you can politely PM a staff member (staff have %, @, or # in front of their username) in the room you would like to chat and ask them to disable modchat. However, staff are not obligated to disable modchat.`);
+			if (!this.broadcasting) void this.parse(`/regtime`);
 		}
 		if (showAll || target === 'ladder' || target === 'ladderhelp' || target === 'decay') {
-			buffer.push(`<a href="https://${Config.routes.root}/pages/ladderhelp">How the ladder works</a>`);
+			buffer.push(`<a href="https://${Config.routes.root}/${this.tr`pages/ladderhelp`}">${this.tr`How the ladder works`}</a>`);
 		}
 		if (showAll || target === 'tiering' || target === 'tiers' || target === 'tier') {
-			buffer.push(`<a href="https://www.smogon.com/ingame/battle/tiering-faq">Tiering FAQ</a>`);
+			buffer.push(`<a href="https://www.smogon.com/ingame/battle/tiering-faq">${this.tr`Tiering FAQ`}</a>`);
 		}
 		if (showAll || target === 'badge' || target === 'badges') {
-			buffer.push(`<a href="https://www.smogon.com/badge_faq">Badge FAQ</a>`);
+			buffer.push(`<a href="https://www.smogon.com/badge_faq">${this.tr`Badge FAQ`}</a>`);
 		}
 		if (showAll || target === 'rng') {
-			buffer.push(`<a href="https://${Config.routes.root}/pages/rng">How Pokémon Showdown's RNG works</a>`);
+			buffer.push(`<a href="https://${Config.routes.root}/${this.tr`pages/rng`}">${this.tr`Common misconceptions about our RNG`}</a>`);
 		}
 		if (showAll || ['tournaments', 'tournament', 'tours', 'tour'].includes(target)) {
-			buffer.push(`To join a room tournament, click the <strong>Join!</strong> button or type the command <code>/tour join</code> in the room's chat. You can check if your team is legal for the tournament by clicking the <strong>Validate</strong> button once you've joined and selected a team. To battle your opponent in the tournament, click the <strong>Ready!</strong> button when it appears. There are two different types of room tournaments: elimination (if a user loses more than a certain number of times, they are eliminated) and round robin (all users play against each other, and the user with the most wins is the winner).`);
+			buffer.push(this.tr`To join a room tournament, click the <strong>Join!</strong> button or type the command <code>/tour join</code> in the room's chat. You can check if your team is legal for the tournament by clicking the <strong>Validate</strong> button once you've joined and selected a team. To battle your opponent in the tournament, click the <strong>Ready!</strong> button when it appears. There are two different types of room tournaments: elimination (if a user loses more than a certain number of times, they are eliminated) and round robin (all users play against each other, and the user with the most wins is the winner).`);
 		}
-		if (showAll || !buffer.length) {
-			buffer.unshift(`<a href="https://www.smogon.com/forums/posts/6774128/">Frequently Asked Questions</a>`);
+		if (!buffer.length && target) {
+			this.errorReply(`'${target}' is an invalid FAQ.`);
+			return this.parse(`/help faq`);
+		}
+		if (!target || showAll) {
+			buffer.unshift(`<a href="https://pokemonshowdown.com/${this.tr`pages/faq`}">${this.tr`Frequently Asked Questions`}</a>`);
 		}
 		this.sendReplyBox(buffer.join(`<br />`));
 	},
 	faqhelp: [
-		`/faq [theme] - Provides a link to the FAQ. Add autoconfirmed, badges, coil, ladder, staff, or tiers for a link to these questions. Add all for all of them.`,
-		`!faq [theme] - Shows everyone a link to the FAQ. Add autoconfirmed, badges, coil, ladder, staff, or tiers for a link to these questions. Add all for all of them. Requires: + % @ # &`,
+		`/faq [theme] - Provides a link to the FAQ. Add autoconfirmed, badges, ladder, staff, or tiers for a link to these questions. Add all for all of them.`,
+		`!faq [theme] - Shows everyone a link to the FAQ. Add autoconfirmed, badges, ladder, staff, or tiers for a link to these questions. Add all for all of them. Requires: + % @ # &`,
 	],
 
 	analysis: 'smogdex',
@@ -2084,8 +2162,8 @@ var _utils = require('../../.lib-dist/utils');
 
 			let formatName = extraFormat.name;
 			let formatId = extraFormat.id;
-			if (formatName.startsWith('[Gen ')) {
-				formatName = formatName.replace('[Gen ' + formatName[formatName.indexOf('[') + 5] + '] ', '');
+			if (formatName.startsWith('[Gen ') && formatName.slice(6, 8) === '] ') {
+				formatName = formatName.slice(8);
 				formatId = toID(formatName);
 			}
 			if (formatId === 'battlespotdoubles') {
@@ -2426,9 +2504,9 @@ var _utils = require('../../.lib-dist/utils');
 		return this.errorReply(`/showimage has been deprecated - use /show instead.`);
 	},
 
-	requestshow(target, room, user) {
-		if (!room) return this.requiresRoom();
-		if (!this.canTalk()) return false;
+	async requestshow(target, room, user) {
+		room = this.requireRoom();
+		this.checkChat();
 		if (!room.settings.requestShowEnabled) {
 			return this.errorReply(`Media approvals are disabled in this room.`);
 		}
@@ -2439,11 +2517,20 @@ var _utils = require('../../.lib-dist/utils');
 		let [link, comment] = target.split(',');
 		if (!/^https?:\/\//.test(link)) link = `https://${link}`;
 		link = encodeURI(link);
+		let dimensions;
+		if (!/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)(\/|$)/i.test(link)) {
+			try {
+				dimensions = await Chat.fitImage(link);
+			} catch (e) {
+				throw new Chat.ErrorMessage('Invalid link.');
+			}
+		}
 		if (!room.pendingApprovals) room.pendingApprovals = new Map();
 		room.pendingApprovals.set(user.id, {
 			name: user.name,
 			link: link,
 			comment: comment,
+			dimensions: dimensions,
 		});
 		this.sendReply(`You have requested to show the link: ${link}${comment ? ` (with the comment ${comment})` : ''}.`);
 		const message = `|tempnotify|pendingapprovals|Pending media request!` +
@@ -2458,8 +2545,8 @@ var _utils = require('../../.lib-dist/utils');
 	requestshowhelp: [`/requestshow [link], [comment] - Requests permission to show media in the room.`],
 
 	async approveshow(target, room, user) {
-		if (!room) return this.requiresRoom();
-		if (!this.can('mute', null, room)) return false;
+		room = this.requireRoom();
+		this.checkCan('mute', null, room);
 		if (!room.settings.requestShowEnabled) {
 			return this.errorReply(`Media approvals are disabled in this room.`);
 		}
@@ -2475,18 +2562,14 @@ var _utils = require('../../.lib-dist/utils');
 		room.sendRankedUsers(`|tempnotifyoff|pendingapprovals`, '%');
 
 		let buf;
-		if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)(\/|$)/i.test(request.link)) {
+		if (request.dimensions) { // image
+			const [width, height, resized] = request.dimensions;
+			buf = _utils.Utils.html`<img src="${request.link}" width="${width}" height="${height}" />`;
+			if (resized) buf += _utils.Utils.html`<br /><a href="${request.link}" target="_blank">full-size image</a>`;
+		} else {
 			const YouTube = new (0, _youtube.YoutubeInterface)();
 			buf = await YouTube.generateVideoDisplay(request.link);
 			if (!buf) return this.errorReply('Could not get YouTube video');
-		} else {
-			try {
-				const [width, height, resized] = await Chat.fitImage(request.link);
-				buf = _utils.Utils.html`<img src="${request.link}" width="${width}" height="${height}" />`;
-				if (resized) buf += _utils.Utils.html`<br /><a href="${request.link}" target="_blank">full-size image</a>`;
-			} catch (err) {
-				return this.errorReply('Invalid image');
-			}
 		}
 		buf += _utils.Utils.html`<br /><div class="infobox"><small>(Requested by ${request.name})</small>`;
 		if (request.comment) {
@@ -2500,8 +2583,8 @@ var _utils = require('../../.lib-dist/utils');
 	approveshowhelp: [`/approveshow [user] - Approves the media display request of [user]. Requires: % @ # &`],
 
 	denyshow(target, room, user) {
-		if (!room) return this.requiresRoom();
-		if (!this.can('mute', null, room)) return false;
+		room = this.requireRoom();
+		this.checkCan('mute', null, room);
 		if (!room.settings.requestShowEnabled) {
 			return this.errorReply(`Media approvals are disabled in this room.`);
 		}
@@ -2514,31 +2597,34 @@ var _utils = require('../../.lib-dist/utils');
 		room.pendingApprovals.delete(target);
 		room.sendMods(`|uhtmlchange|request-${target}|`);
 		room.sendRankedUsers(`|tempnotifyoff|pendingapprovals`, '%');
-		this.privateModAction(`(${user.name} denied ${target}'s request to display ${entry.link}.)`);
+		this.privateModAction(`${user.name} denied ${target}'s request to display ${entry.link}.`);
 	},
 	denyshowhelp: [`/denyshow [user] - Denies the media display request of [user]. Requires: % @ # &`],
 
 	approvallog(target, room, user) {
-		if (!room) return this.requiresRoom();
+		room = this.requireRoom();
 		return this.parse(`/sl approved showing media from, ${room.roomid}`);
 	},
 
 	viewapprovals(target, room, user) {
-		if (!room) return this.requiresRoom();
+		room = this.requireRoom();
 		return this.parse(`/join view-approvals-${room.roomid}`);
 	},
 
-	async show(target, room, user) {
+	async show(target, room, user, connection) {
 		if (!_optionalChain([room, 'optionalAccess', _78 => _78.persist]) && !this.pmTarget) return this.errorReply(`/show cannot be used in temporary rooms.`);
 		if (!toID(target).trim()) return this.parse(`/help show`);
+		if (Monitor.countNetRequests(connection.ip)) {
+			return this.errorReply(`You are using this command too quickly. Wait a bit and try again.`);
+		}
 
 		const [link, comment] = _utils.Utils.splitFirst(target, ',');
 
 		let buf;
-		if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)(\/|$)/i.test(link)) {
-			const YouTube = new (0, _youtube.YoutubeInterface)();
+		const YouTube = new (0, _youtube.YoutubeInterface)();
+		if (YouTube.linkRegex.test(link)) {
 			buf = await YouTube.generateVideoDisplay(link);
-			if (!buf) return this.errorReply('Could not get YouTube video');
+			this.message = this.message.replace(/&ab_channel=(.*)(&|)/ig, '').replace(/https:\/\/www\./ig, '');
 		} else {
 			try {
 				const [width, height, resized] = await Chat.fitImage(link);
@@ -2550,22 +2636,44 @@ var _utils = require('../../.lib-dist/utils');
 		}
 		if (comment) buf += _utils.Utils.html`<br>(${comment.trim()})</div>`;
 
-		if (!this.canBroadcast()) return false;
+		this.checkBroadcast();
 		if (this.broadcastMessage) {
-			const minGroup = room ? (room.settings.showEnabled || '#') : '+';
-			const auth = _optionalChain([room, 'optionalAccess', _79 => _79.auth]) || Users.globalAuth;
-			if (minGroup !== true && !auth.atLeast(user, minGroup)) {
-				this.errorReply(`You must be at least group ${minGroup} to use /show`);
-				if (auth.atLeast(user, '%')) {
-					this.errorReply(`The limit can be changed in /roomsettings`);
-				}
-				return;
+			if (room) {
+				this.checkCan('show', null, room);
+			} else {
+				this.checkCan('altsself');
 			}
 		}
 		this.runBroadcast();
 		this.sendReplyBox(buf);
 	},
 	showhelp: [`/show [url] - shows an image or video url in chat. Requires: whitelist % @ # &`],
+
+	regdate: 'registertime',
+	regtime: 'registertime',
+	async registertime(target, room, user, connection) {
+		this.runBroadcast();
+		if (Monitor.countNetRequests(connection.ip)) {
+			return this.errorReply(`You are using this command too quickly. Wait a bit and try again.`);
+		}
+		if (!user.autoconfirmed) return this.errorReply(`Only autoconfirmed users can use this command.`);
+		target = toID(target);
+		if (!target) target = user.id;
+		let rawResult;
+		try {
+			rawResult = await _net2.Net.call(void 0, `https://${Config.routes.root}/users/${target}.json`).get();
+		} catch (e) {
+			if (e.message.includes('Not found')) throw new Chat.ErrorMessage(`User '${target}' is unregistered.`);
+			throw new Chat.ErrorMessage(e.message);
+		}
+		// not in a try-catch block because if this doesn't work, this is a problem that should be known
+		const result = JSON.parse(rawResult);
+		const date = new Date(result.registertime * 1000);
+		const regDate = Chat.toTimestamp(date, {human: true});
+		const regTimeAgo = Chat.toDurationString(Date.now() - date.getTime(), {precision: 1});
+		this.sendReplyBox(_utils.Utils.html`The user '${target}' registered ${regTimeAgo} ago, at ${regDate}.`);
+	},
+	registertimehelp: [`/registertime OR /regtime [user] - Find out when [user] registered.`],
 
 	pi(target, room, user) {
 		if (!this.runBroadcast()) return false;
@@ -2577,24 +2685,29 @@ var _utils = require('../../.lib-dist/utils');
 		);
 	},
 
-	code(target, room, user) {
+	code(target, room, user, connection) {
 		// target is trimmed by Chat#splitMessage, but leading spaces can be
 		// important to code block indentation.
 		target = this.message.substr(this.cmdToken.length + this.cmd.length + +this.message.includes(' ')).trimRight();
 		if (!target) return this.parse('/help code');
 		if (target.length >= 8192) return this.errorReply("Your code must be under 8192 characters long!");
 		if (target.length < 80 && !target.includes('\n') && !target.includes('```') && this.shouldBroadcast()) {
-			return this.canTalk(`\`\`\`${target}\`\`\``);
+			return this.checkChat(`\`\`\`${target}\`\`\``);
 		}
 
-		if (!this.canBroadcast(true, '!code')) return;
-
-		const code = Chat.getReadmoreCodeBlock(target);
+		this.checkBroadcast(true, '!code');
 		this.runBroadcast(true);
+
+		const isPMOrPersonalRoom = _optionalChain([this, 'access', _79 => _79.room, 'optionalAccess', _80 => _80.settings, 'access', _81 => _81.isPersonal]) !== false;
+
 		if (this.broadcasting) {
-			return `/raw <div class="infobox">${code}</div>`;
+			if (isPMOrPersonalRoom) {
+				target = this.filter(target);
+				if (!target) return this.errorReply(`Invalid code.`);
+			}
+			return `/raw <div class="infobox">${Chat.getReadmoreCodeBlock(target)}</div>`;
 		} else {
-			this.sendReplyBox(code);
+			this.sendReplyBox(Chat.getReadmoreCodeBlock(target));
 		}
 	},
 	codehelp: [
@@ -2604,15 +2717,54 @@ var _utils = require('../../.lib-dist/utils');
 }; exports.commands = commands;
 
  const pages = {
+	battlerules(query, user) {
+		const rules = Object.values(Dex.data.Formats).filter(rule => rule.effectType !== "Format");
+		const tourHelp = `https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-forum-rules-resources-read-here-first.3570628/#post-6777489`;
+		this.title = "Custom Rules";
+		let rulesHTML = `<div clas="pad"><h1>Custom Rules in challenges and tournaments</h1>`;
+		const basics = [
+			`<p>Pok&eacute;mon Showdown! supports custom rules in three ways:</p>`,
+			`<ul><li>Challenging another user, using the command <code>/challenge USERNAME, FORMAT @@@ RULES</code></li>`,
+			`<li>Tournaments, using the command <code>/tour rules RULES</code> (see the <a href="${tourHelp}">Tournament command help)</a></li>`,
+			`<li>Custom rules on your own server</li></ul>`,
+			`<h2><u>Bans</u></h2>`,
+			`<p>Bans are just a <code>-</code> followed by the thing you want to ban.</p>`,
+			`<h3>Individual bans</h3>`,
+			`<ul><li><code>- Arceus</code>: Ban a Pok&eacute;mon (including all formes)</li>`,
+			`<li><code>- Arceus-Flying</code> or <code>- Giratina-Altered</code>: Ban a Pok&eacute;mon forme</li>`,
+			`<li><code>- Baton Pass</code>: Ban a move/item/ability/etc</li></ul>`,
+			`<h3>Group bans</h3>`,
+			`<ul><li><code>- OU</code> or <code>- DUU</code>: Ban a tier</li>`,
+			`<li><code>- Mega</code> or <code>- CAP</code>: Ban a Pok&eacute;mon category</li></ul>`,
+			`<h3>Complex bans</h3>`,
+			`<ul><li><code>- Blaziken + Speed Boost</code>: Ban a combination of things in a single Pokemon (you can have a Blaziken, and you can have Speed Boost on the same team, but the Blaziken can't have Speed Boost)</li>`,
+			`<li><code>- Drizzle ++ Swift Swim</code>: Ban a combination of things in a team (if any Pokémon on your team have Drizzle, no Pokémon can have Swift Swim)</li></ul>`,
+			`<h2><u>Unbans</u></h2>`,
+			`<p>Using a <code>+</code> instead of a <code>-</code> unbans that category.</p>`,
+			`<ul><li><code>+ Blaziken</code>: Unban/unrestrict a Pok&eacute;mon.</li></ul>`,
+			`<p><a class="button" href="https://github.com/smogon/pokemon-showdown/blob/master/config/CUSTOM-RULES.md">More details</a></p>`,
+		];
+		const rulesets = [
+			`<h2><u>Rules, mods, and clauses</u></h2>`,
+			`<p>The following rules can be added to challenges/tournaments to modify the style of play. Alternatively, already present rules can be removed from formats by preceding the rule name with <code>!</code></p>`,
+			`<p>However, some rules, like <code>Obtainable</code>, are made of subrules, that can be individually turned on and off.</p>`,
+			`<ul>`,
+		];
+		for (const rule of rules) {
+			rulesets.push(`<li><code>${rule.name}</code>: ${rule.desc}</li>`);
+		}
+		rulesets.push(`</ul>`);
+		rulesHTML += `${basics.concat(rulesets).join('')}</div>`;
+		return rulesHTML;
+	},
 	punishments(query, user) {
 		this.title = 'Punishments';
-		const room = this.extractRoom();
-		if (!room) return;
+		const room = this.requireRoom();
 
 		let buf = "";
 		if (!user.named) return Rooms.RETRY_AFTER_LOGIN;
 		if (!room.persist) return;
-		if (!this.can('mute', null, room)) return;
+		this.checkCan('mute', null, room);
 		// Ascending order
 		const sortedPunishments = Array.from(Punishments.getPunishments(room.roomid))
 			.sort((a, b) => a[1].expireTime - b[1].expireTime);
@@ -2627,7 +2779,7 @@ var _utils = require('../../.lib-dist/utils');
 		this.title = 'Global Punishments';
 		let buf = "";
 		if (!user.named) return Rooms.RETRY_AFTER_LOGIN;
-		if (!this.can('lock')) return;
+		this.checkCan('lock');
 		// Ascending order
 		const sortedPunishments = Array.from(Punishments.getPunishments()).sort((a, b) => a[1].expireTime - b[1].expireTime);
 		const sP = new Map();
@@ -2639,7 +2791,7 @@ var _utils = require('../../.lib-dist/utils');
 	},
 	approvals(args) {
 		const room = Rooms.get(args[0]) ;
-		if (!this.can('mute', null, room)) return;
+		this.checkCan('mute', null, room);
 		if (!room.pendingApprovals) room.pendingApprovals = new Map();
 		if (room.pendingApprovals.size < 1) return `<h2>No pending approvals on ${room.title}</h2>`;
 		let buf = `<div class="pad"><strong>Pending media requests on ${room.title}</strong><hr />`;
@@ -2657,6 +2809,7 @@ var _utils = require('../../.lib-dist/utils');
 process.nextTick(() => {
 	Dex.includeData();
 	Chat.multiLinePattern.register(
-		'/htmlbox', '!htmlbox', '/addhtmlbox', '/addrankhtmlbox', '/adduhtml', '/changeuhtml', '/addrankuhtmlbox', '/changerankuhtmlbox'
+		'/htmlbox', '/quote', '/addquote', '!htmlbox', '/addhtmlbox', '/addrankhtmlbox', '/adduhtml',
+		'/changeuhtml', '/addrankuhtmlbox', '/changerankuhtmlbox', '/addrankuhtml',
 	);
 });

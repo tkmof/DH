@@ -26,8 +26,7 @@ var _streams = require('./../.lib-dist/streams'); var Streams = _streams;
  const Sockets = new class {
 	async onSpawn(worker) {
 		const id = worker.workerid;
-		let data;
-		while ((data = await worker.stream.read())) {
+		for await (const data of worker.stream) {
 			switch (data.charAt(0)) {
 			case '*': {
 				// *socketid, ip, protocol
@@ -209,7 +208,7 @@ var _streams = require('./../.lib-dist/streams'); var Streams = _streams;
 			if (key && cert) {
 				try {
 					// In case there are additional SSL config settings besides the key and cert...
-					this.serverSsl = https.createServer(Object.assign({}, config.ssl.options, {key, cert}));
+					this.serverSsl = https.createServer({...config.ssl.options, key, cert});
 				} catch (e) {
 					_crashlogger.crashlogger.call(void 0, new Error(`The SSL settings are misconfigured:\n${e.stack}`), `Socket process ${process.pid}`);
 				}
@@ -565,9 +564,7 @@ if (!exports.PM.isParentProcess) {
 			_crashlogger.crashlogger.call(void 0, err, `Socket process ${exports.PM.workerid} (${process.pid})`);
 		});
 		process.on('unhandledRejection', err => {
-			if (err instanceof Error) {
-				_crashlogger.crashlogger.call(void 0, err, `Socket process ${exports.PM.workerid} (${process.pid}) Promise`);
-			}
+			_crashlogger.crashlogger.call(void 0, err  || {}, `Socket process ${exports.PM.workerid} (${process.pid}) Promise`);
 		});
 	}
 

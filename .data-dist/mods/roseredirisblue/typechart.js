@@ -6,7 +6,7 @@
  * Psychic was immune to ghost
  */
 
- const BattleTypeChart = {
+ const TypeChart = {
 	"Bug": {
 		damageTaken: {
 			"Bug": 0,
@@ -128,4 +128,4 @@
 	},
 	"Dark": null,
 	"Steel": null,
-}; exports.BattleTypeChart = BattleTypeChart;
+}; exports.TypeChart = TypeChart;

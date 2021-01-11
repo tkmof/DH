@@ -63,7 +63,7 @@ const pendingUpdates = new Map();
 		if (typeof options !== 'string' && options.encoding === undefined) {
 			options.encoding = 'utf8';
 		}
-		return fs.readFileSync(this.path, options) ;
+		return fs.readFileSync(this.path, options );
 	}
 
 	readBuffer(options = {}) {
@@ -75,7 +75,7 @@ const pendingUpdates = new Map();
 	}
 
 	readBufferSync(options = {}) {
-		return fs.readFileSync(this.path, options) ;
+		return fs.readFileSync(this.path, options );
 	}
 
 	exists() {
@@ -323,6 +323,20 @@ const pendingUpdates = new Map();
 		} catch (err) {
 			if (err.code !== 'ENOENT') throw err;
 		}
+	}
+
+	async rmdir(recursive) {
+		if (Config.nofswriting) return Promise.resolve();
+		return new Promise((resolve, reject) => {
+			fs.rmdir(this.path, {recursive}, err => {
+				err ? reject(err) : resolve();
+			});
+		});
+	}
+
+	rmdirSync(recursive) {
+		if (Config.nofswriting) return;
+		return fs.rmdirSync(this.path, {recursive});
 	}
 
 	mkdir(mode = 0o755) {

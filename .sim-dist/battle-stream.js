@@ -43,28 +43,36 @@ function splitFirst(str, delimiter, limit = 1) {
 	
 	
 	
+	
 
-	constructor(options = {}) {
+	constructor(options
+
+ = {}) {
 		super();
 		this.debug = !!options.debug;
-		this.replay = !!options.replay;
+		this.noCatch = !!options.noCatch;
+		this.replay = options.replay || false;
 		this.keepAlive = !!options.keepAlive;
 		this.battle = null;
 	}
 
 	_write(chunk) {
-		try {
+		if (this.noCatch) {
 			this._writeLines(chunk);
-		} catch (err) {
-			this.pushError(err, true);
-			return;
+		} else {
+			try {
+				this._writeLines(chunk);
+			} catch (err) {
+				this.pushError(err, true);
+				return;
+			}
 		}
 		if (this.battle) this.battle.sendUpdates();
 	}
 
 	_writeLines(chunk) {
 		for (const line of chunk.split('\n')) {
-			if (line.charAt(0) === '>') {
+			if (line.startsWith('>')) {
 				const [type, message] = splitFirst(line.slice(1), ' ');
 				this._writeLine(type, message);
 			}
@@ -74,7 +82,11 @@ function splitFirst(str, delimiter, limit = 1) {
 	pushMessage(type, data) {
 		if (this.replay) {
 			if (type === 'update') {
-				this.push(data.replace(/\n\|split\|p[1234]\n([^\n]*)\n(?:[^\n]*)/g, '\n$1'));
+				if (this.replay === 'spectator') {
+					this.push(data.replace(/\n\|split\|p[1234]\n(?:[^\n]*)\n([^\n]*)/g, '\n$1'));
+				} else {
+					this.push(data.replace(/\n\|split\|p[1234]\n([^\n]*)\n(?:[^\n]*)/g, '\n$1'));
+				}
 			}
 			return;
 		}
@@ -167,9 +179,7 @@ function splitFirst(str, delimiter, limit = 1) {
 		}),
 	};
 	(async () => {
-		let chunk;
-		// tslint:disable-next-line:no-conditional-assignment
-		while ((chunk = await stream.read())) {
+		for await (const chunk of stream) {
 			const [type, data] = splitFirst(chunk, `\n`);
 			switch (type) {
 			case 'update':
@@ -212,9 +222,7 @@ function splitFirst(str, delimiter, limit = 1) {
 	}
 
 	async start() {
-		let chunk;
-		// tslint:disable-next-line:no-conditional-assignment
-		while ((chunk = await this.stream.read())) {
+		for await (const chunk of this.stream) {
 			this.receive(chunk);
 		}
 	}
@@ -227,7 +235,7 @@ function splitFirst(str, delimiter, limit = 1) {
 
 	receiveLine(line) {
 		if (this.debug) console.log(line);
-		if (line.charAt(0) !== '|') return;
+		if (!line.startsWith('|')) return;
 		const [cmd, rest] = splitFirst(line.slice(1), '|');
 		if (cmd === 'request') return this.receiveRequest(JSON.parse(rest));
 		if (cmd === 'error') return this.receiveError(new Error(rest));
@@ -253,12 +261,11 @@ function splitFirst(str, delimiter, limit = 1) {
 		super();
 		this.battleStream = new BattleStream(options);
 		this.currentMessage = '';
+		void this._listen();
 	}
 
-	async start() {
-		let message;
-		// tslint:disable-next-line:no-conditional-assignment
-		while ((message = await this.battleStream.read())) {
+	async _listen() {
+		for await (let message of this.battleStream) {
 			if (!message.endsWith('\n')) message += '\n';
 			this.push(message + '\n');
 		}

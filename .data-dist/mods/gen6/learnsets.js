@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleLearnsets = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Learnsets = {
 	tomohawk: {
 		inherit: true,
 		learnset: {
@@ -247,4 +247,4 @@
 			zenheadbutt: ["6T"],
 		},
 	},
-}; exports.BattleLearnsets = BattleLearnsets;
+}; exports.Learnsets = Learnsets;

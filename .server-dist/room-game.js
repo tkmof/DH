@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});/**
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }/**
  * Room games
  * Pokemon Showdown - http://pokemonshowdown.com/
  *
@@ -41,7 +41,7 @@
 		this.name = (typeof user === 'string' ? user : user.name);
 		if (typeof user === 'string') user = null;
 		this.id = user ? user.id : '';
-		if (user) {
+		if (user && !this.game.isSubGame) {
 			user.games.add(this.game.roomid);
 			user.updateSearch();
 		}
@@ -49,7 +49,7 @@
 	unlinkUser() {
 		if (!this.id) return;
 		const user = Users.getExact(this.id);
-		if (user) {
+		if (user && !this.game.isSubGame) {
 			user.games.delete(this.game.roomid);
 			user.updateSearch();
 		}
@@ -78,9 +78,10 @@
  class RoomGame {
 	
 	/**
-	 * The room this roomgame is in. Rooms can only have one RoomGame at a time,
-	 * which are available as `this.room.game === this`.
+	 * The room this roomgame is in. Rooms can have two RoomGames at a time,
+	 * which are available as `this.room.game === this` and `this.room.subGame === this`.
 	 */
+	
 	
 	
 	
@@ -95,28 +96,39 @@
 	
 	
 	
+	/** Does `/guess` or `/choose` require the user to be able to talk? */
+	__init() {this.checkChat = false}
 	/**
 	 * We should really resolve this collision at _some_ point, but it will have
 	 * to be later. The /timer command is written to be resilient to this.
 	 */
 	
-	constructor(room) {
+	constructor(room, isSubGame = false) {;RoomGame.prototype.__init.call(this);
 		this.roomid = room.roomid;
 		this.room = room;
 		this.gameid = 'game' ;
 		this.title = 'Game';
 		this.allowRenames = false;
+		this.isSubGame = isSubGame;
 		this.playerTable = Object.create(null);
 		this.players = [];
 		this.playerCount = 0;
 		this.playerCap = 0;
 		this.ended = false;
 
-		this.room.game = this ;
+		if (this.isSubGame) {
+			this.room.subGame = this ;
+		} else {
+			this.room.game = this ;
+		}
 	}
 
 	destroy() {
-		this.room.game = null;
+		if (this.isSubGame) {
+			this.room.subGame = null;
+		} else {
+			this.room.game = null;
+		}
 		// @ts-ignore
 		this.room = null;
 		for (const player of this.players) {
@@ -192,6 +204,15 @@
 		}
 	}
 
+	renameRoom(roomid) {
+		for (const player of this.players) {
+			const user = Users.get(player.id);
+			_optionalChain([user, 'optionalAccess', _ => _.games, 'access', _2 => _2.delete, 'call', _3 => _3(this.roomid)]);
+			_optionalChain([user, 'optionalAccess', _4 => _4.games, 'access', _5 => _5.add, 'call', _6 => _6(roomid)]);
+		}
+		this.roomid = roomid;
+	}
+
 	// Commands:
 
 	// These are all optional to implement:
@@ -262,7 +283,7 @@
 	 */
 	onRename(user, oldUserid, isJoining, isForceRenamed) {
 		if (!this.allowRenames || (!user.named && !isForceRenamed)) {
-			if (!(user.id in this.playerTable)) {
+			if (!(user.id in this.playerTable) && !this.isSubGame) {
 				user.games.delete(this.roomid);
 				user.updateSearch();
 			}
@@ -305,12 +326,11 @@
 
 	/**
 	 * Called for every message a user sends while this game is active.
-	 * Return an error message to prevent the message from being sent, or
-	 * `false` to let it through.
+	 * Return an error message to prevent the message from being sent,
+	 * an empty string to prevent it with no error message, or
+	 * `undefined` to let it through.
 	 */
-	onChatMessage(message, user) {
-		return false;
-	}
+	onChatMessage(message, user) {}
 
 	/**
 	 * Called for every message a user sends while this game is active.

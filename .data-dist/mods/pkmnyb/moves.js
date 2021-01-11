@@ -22,7 +22,7 @@ reflectable: Bounced back to the original user by Magic Coat or the Ability Magi
 snatch: Can be stolen from the original user and instead used by another Pokemon using Snatch.
 sound: Has no effect on Pokemon with the Ability Soundproof.
 */
- const BattleMovedex = {
+ const Moves = {
     "firepunch": {
         num: 7,
         accuracy: 100,
@@ -404,7 +404,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
         onHit(pokemon) {
             pokemon.addVolatile('stall');
         },
-        effect: {
+        condition: {
             duration: 1,
             onStart(target) {
                 this.add('-singleturn', target, 'Protect');
@@ -642,7 +642,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
         priority: 0,
         flags: {reflectable: 1},
         sideCondition: 'sharpsteel',
-        effect: {
+        condition: {
             // this is a side condition
             onStart(side) {
                 this.add('-sidestart', side, 'move: Sharp Steel');
@@ -667,7 +667,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
         shortDesc: "Super effective on Steel.",
         id: "oxidation",
         isViable: true,
-        name: "oxidation",
+        name: "Oxidation",
         pp: 20,
         priority: 0,
         flags: {protect: 1, mirror: 1},
@@ -735,5 +735,57 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		  target: "normal",
 		  type: "Poison",
 		  contestType: "Beautiful",
-	 },		
-}; exports.BattleMovedex = BattleMovedex;    
+	 },
+    "dizzypunch": {
+        num: 146,
+        accuracy: 100,
+        basePower: 80,
+        category: "Physical",
+        shortDesc: "10% chance to confuse the target.",
+        id: "dizzypunch",
+        isViable: true,
+        name: "Dizzy Punch",
+        pp: 15,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+        secondary: {
+            chance: 10,
+            volatileStatus: 'confusion',
+        },
+        target: "normal",
+        type: "Fairy",
+        contestType: "Clever",
+    },
+		"splitatoms": {
+		  accuracy: 100,
+		  basePower: 250,
+		  category: "Special",
+		  name: "Split Atoms",
+		  pp: 5,
+		  priority: 0,
+		  flags: {protect: 1, mirror: 1},
+		  selfdestruct: "always",
+		  self: {
+			  sideCondition: 'auroraveil',
+		  },
+		  secondary: null,
+		  target: "allAdjacent",
+		  type: "Psychic",
+	},
+		"cometpunch": {
+		  num: 4,
+		  accuracy: 100,
+		  basePower: 25,
+		  category: "Physical",
+		  name: "Comet Punch",
+		  pp: 15,
+		  priority: 0,
+		  flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		  multihit: [2, 5],
+		  secondary: null,
+		  target: "normal",
+		  type: "Psychic",
+		  maxMove: {basePower: 100},
+		  contestType: "Tough",
+	},
+}; exports.Moves = Moves;    

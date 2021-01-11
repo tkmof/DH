@@ -16,6 +16,7 @@ var _utils = require('../.lib-dist/utils');
 
 
 
+
 /**
  * Most rooms have three logs:
  * - scrollback
@@ -29,6 +30,8 @@ var _utils = require('../.lib-dist/utils');
  * The modlog is stored in
  * `logs/modlog/modlog_<ROOMID>.txt`
  * It contains moderator messages, formatted for ease of search.
+ * Direct modlog access is handled in modlog.ts; this file is just
+ * a wrapper to make other code more readable.
  *
  * The roomlog is stored in
  * `logs/chat/<ROOMID>/<YEAR>-<MONTH>/<YEAR>-<MONTH>-<DAY>.txt`
@@ -60,12 +63,6 @@ var _utils = require('../.lib-dist/utils');
 	 * null = disabled
 	 */
 	
-	/**
-	 * undefined = uninitialized,
-	 * null = disabled
-	 */
-	
-	
 	
 	constructor(room, options = {}) {
 		this.roomid = room.roomid;
@@ -75,17 +72,12 @@ var _utils = require('../.lib-dist/utils');
 		this.noLogTimes = !!options.noLogTimes;
 
 		this.log = [];
-		this.broadcastBuffer = '';
+		this.broadcastBuffer = [];
 
-		this.modlogStream = undefined;
 		this.roomlogStream = undefined;
-
-		// modlog/roomlog state
-		this.sharedModlog = false;
-
 		this.roomlogFilename = '';
 
-		this.setupModlogStream();
+		Rooms.Modlog.initialize(this.roomid);
 		void this.setupRoomlogStream(true);
 	}
 	getScrollback(channel = 0) {
@@ -108,21 +100,6 @@ var _utils = require('../.lib-dist/utils');
 			}
 		}
 		return log.join('\n') + '\n';
-	}
-	setupModlogStream() {
-		if (this.modlogStream !== undefined) return;
-		if (!this.roomid.includes('-')) {
-			this.modlogStream = _fs.FS.call(void 0, `logs/modlog/modlog_${this.roomid}.txt`).createAppendStream();
-			return;
-		}
-		const sharedStreamId = this.roomid.split('-')[0];
-		let stream = exports.Roomlogs.sharedModlogs.get(sharedStreamId);
-		if (!stream) {
-			stream = _fs.FS.call(void 0, `logs/modlog/modlog_${sharedStreamId}.txt`).createAppendStream();
-			exports.Roomlogs.sharedModlogs.set(sharedStreamId, stream);
-		}
-		this.modlogStream = stream;
-		this.sharedModlog = true;
 	}
 	async setupRoomlogStream(sync = false) {
 		if (this.roomlogStream === null) return;
@@ -166,7 +143,7 @@ var _utils = require('../.lib-dist/utils');
 		this.roomlog(message);
 		message = this.withTimestamp(message);
 		this.log.push(message);
-		this.broadcastBuffer += message + '\n';
+		this.broadcastBuffer.push(message);
 		return this;
 	}
 	 withTimestamp(message) {
@@ -220,7 +197,7 @@ var _utils = require('../.lib-dist/utils');
 				break;
 			}
 		}
-		this.broadcastBuffer += fullMessage + '\n';
+		this.broadcastBuffer.push(fullMessage);
 	}
 	attributedUhtmlchange(user, name, message) {
 		const start = `/uhtmlchange ${name},`;
@@ -231,7 +208,7 @@ var _utils = require('../.lib-dist/utils');
 				break;
 			}
 		}
-		this.broadcastBuffer += fullMessage + '\n';
+		this.broadcastBuffer.push(fullMessage);
 	}
 	 parseChatLine(line) {
 		const messageStart = !this.noLogTimes ? '|c:|' : '|c|';
@@ -247,38 +224,23 @@ var _utils = require('../.lib-dist/utils');
 		message = message.replace(/<img[^>]* src="data:image\/png;base64,[^">]+"[^>]*>/g, '');
 		void this.roomlogStream.write(timestamp + message + '\n');
 	}
-	modlog(message) {
-		if (!this.modlogStream) return;
-		void this.modlogStream.write('[' + (new Date().toJSON()) + '] ' + message + '\n');
+	modlog(entry, overrideID) {
+		void Rooms.Modlog.write(this.roomid, entry, overrideID);
 	}
 	async rename(newID) {
-		const modlogPath = `logs/modlog`;
 		const roomlogPath = `logs/chat`;
-		const modlogStreamExisted = this.modlogStream !== null;
 		const roomlogStreamExisted = this.roomlogStream !== null;
-		await this.destroy();
-		await Promise.all([
-			_fs.FS.call(void 0, modlogPath + `/modlog_${this.roomid}.txt`).exists(),
+		await this.destroy(false); // don't destroy modlog, since it's renamed later
+		const [roomlogExists, newRoomlogExists] = await Promise.all([
 			_fs.FS.call(void 0, roomlogPath + `/${this.roomid}`).exists(),
-			_fs.FS.call(void 0, modlogPath + `/modlog_${newID}.txt`).exists(),
 			_fs.FS.call(void 0, roomlogPath + `/${newID}`).exists(),
-		]).then(([modlogExists, roomlogExists, newModlogExists, newRoomlogExists]) => {
-			return Promise.all([
-				modlogExists && !newModlogExists ?
-					_fs.FS.call(void 0, modlogPath + `/modlog_${this.roomid}.txt`).rename(modlogPath + `/modlog_${newID}.txt`) :
-					undefined,
-				roomlogExists && !newRoomlogExists ?
-					_fs.FS.call(void 0, roomlogPath + `/${this.roomid}`).rename(roomlogPath + `/${newID}`) :
-					undefined,
-			]);
-		});
+		]);
+		if (roomlogExists && !newRoomlogExists) {
+			await _fs.FS.call(void 0, roomlogPath + `/${this.roomid}`).rename(roomlogPath + `/${newID}`);
+		}
+		await Rooms.Modlog.rename(this.roomid, newID);
 		this.roomid = newID;
 		exports.Roomlogs.roomlogs.set(newID, this);
-		if (modlogStreamExisted) {
-			// set modlogStream to undefined (uninitialized) instead of null (disabled)
-			this.modlogStream = undefined;
-			this.setupModlogStream();
-		}
 		if (roomlogStreamExisted) {
 			this.roomlogStream = undefined;
 			this.roomlogFilename = "";
@@ -307,25 +269,17 @@ var _utils = require('../.lib-dist/utils');
 		}
 	}
 
-	destroy() {
+	destroy(destroyModlog) {
 		const promises = [];
-		if (this.sharedModlog) {
-			this.modlogStream = null;
-		}
-		if (this.modlogStream) {
-			promises.push(this.modlogStream.writeEnd());
-			this.modlogStream = null;
-		}
 		if (this.roomlogStream) {
 			promises.push(this.roomlogStream.writeEnd());
 			this.roomlogStream = null;
 		}
+		if (destroyModlog) promises.push(Rooms.Modlog.destroy(this.roomid));
 		exports.Roomlogs.roomlogs.delete(this.roomid);
 		return Promise.all(promises);
 	}
 } exports.Roomlog = Roomlog;
-
-const sharedModlogs = new Map();
 
 const roomlogs = new Map();
 
@@ -342,7 +296,6 @@ function createRoomlog(room, options = {}) {
 	create: createRoomlog,
 	Roomlog,
 	roomlogs,
-	sharedModlogs,
 
 	rollLogs: Roomlog.rollLogs,
 

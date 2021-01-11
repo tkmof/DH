@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleMovedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Moves = {
 	"sheepiousrend": {
 		num: 755,
 		accuracy: 100,
@@ -54,4 +54,4 @@
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Tough",
 	},
-}; exports.BattleMovedex = BattleMovedex;
+}; exports.Moves = Moves;

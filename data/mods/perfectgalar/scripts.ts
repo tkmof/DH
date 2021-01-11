@@ -1,5 +1,6 @@
-export const BattleScripts: {[k: string]: ModdedBattleScriptsData} = {
+export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	init() {
+		//These are in roughly chronological order by slate
 		// Butterfree
 		this.modData('Learnsets', 'butterfree').learnset.dazzlinggleam = ['8L1'];
 		this.modData('Learnsets', 'butterfree').learnset.defog = ['8L1'];
@@ -56,7 +57,7 @@ export const BattleScripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData('Learnsets', 'weezinggalar').learnset.banefulbunker = ['8L1'];
 		this.modData('Learnsets', 'weezinggalar').learnset.acidarmor = ['8L1'];
 		this.modData('Learnsets', 'weezinggalar').learnset.wonderroom = ['8L1'];
-		this.modData('Learnsets', 'weezinggalar').learnset.sunnyday = null;
+		this.modData('Learnsets', 'weezinggalar').learnset.sunnyday = ['8L1'];
 		
 		// Gloom
 		this.modData('Learnsets', 'gloom').learnset.toxicspikes = ['8M'];
@@ -85,6 +86,173 @@ export const BattleScripts: {[k: string]: ModdedBattleScriptsData} = {
 		
 		// Bouffalant
 		this.modData('Learnsets', 'bouffalant').learnset.flareblitz = ['8L1'];
+		
+		// Sky Uppercut
+		this.modData('Learnsets', 'mankey').learnset.skyuppercut = ['8L1'];
+		this.modData('Learnsets', 'primeape').learnset.skyuppercut = ['8L1'];
+		this.modData('Learnsets', 'poliwrath').learnset.skyuppercut = ['8L1'];
+		this.modData('Learnsets', 'grapploct').learnset.skyuppercut = ['8L1'];
+		this.modData('Learnsets', 'clobbopus').learnset.skyuppercut = ['8L1'];
+		delete this.modData('Learnsets', 'kommoo').learnset.skyuppercut;
+		delete this.modData('Learnsets', 'hakamoo').learnset.skyuppercut;
+		delete this.modData('Learnsets', 'jangmoo').learnset.skyuppercut;
+		
+		// Pursuit
+		this.modData('Learnsets', 'zigzagoongalar').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'linoonegalar').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'obstagoon').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'nickit').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'thievul').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'arrokuda').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'barraskewda').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'grapploct').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'falinks').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'dreepy').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'drakloak').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'dragapult').learnset.pursuit = ['8L1'];
+		this.modData('Learnsets', 'zarude').learnset.pursuit = ['8L1'];
+		
+		// Sonic Boom
+		this.modData('Learnsets', 'noibat').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'noivern').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'exploud').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'toxtricity').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'toxtricitylowkey').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'primarina').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'indeedee').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'indeedeef').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'drampa').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'jigglypuff').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'wigglytuff').learnset.sonicboom = ['8L1'];
+		
+		// Trump Card
+		this.modData('Learnsets', 'indeedeef').learnset.trumpcard = ['8L1'];
+		this.modData('Learnsets', 'mimejr').learnset.trumpcard = ['8L1'];
+		this.modData('Learnsets', 'mrmime').learnset.trumpcard = ['8L1'];
+		this.modData('Learnsets', 'mrmimegalar').learnset.trumpcard = ['8L1'];
+		this.modData('Learnsets', 'mrrime').learnset.trumpcard = ['8L1'];
+		this.modData('Learnsets', 'silvally').learnset.trumpcard = ['8L1'];
+		this.modData('Learnsets', 'keldeo').learnset.trumpcard = ['8L1'];
+		
+		// Regirock
+		this.modData('Learnsets', 'regirock').learnset.bulkup = ['8L1'];
+		this.modData('Learnsets', 'regirock').learnset.shoreup = ['8L1'];
+		
+		// Regice
+		this.modData('Learnsets', 'regice').learnset.calmmind = ['8L1'];
+		this.modData('Learnsets', 'regice').learnset.freezyfrost = ['8L1'];
+		this.modData('Learnsets', 'regice').learnset.dazzlinggleam = ['8L1'];
+		this.modData('Learnsets', 'regice').learnset.rapidspin = ['8L1'];
+		
+		// Registeel
+		this.modData('Learnsets', 'registeel').learnset.icebeam = ['8L1'];
+		this.modData('Learnsets', 'registeel').learnset.knockoff = ['8L1'];
+		this.modData('Learnsets', 'registeel').learnset.shiftgear = ['8L1'];
+		this.modData('Learnsets', 'registeel').learnset.painsplit = ['8L1'];
+		
+		//Regieleki
+		this.modData('Learnsets', 'regieleki').learnset.flashcannon = ['8L1'];
+		this.modData('Learnsets', 'regieleki').learnset.smartstrike = ['8L1'];
+		this.modData('Learnsets', 'regieleki').learnset.sonicboom = ['8L1'];
+		this.modData('Learnsets', 'regieleki').learnset.thundercage = ['8L1'];
+		this.modData('Learnsets', 'regieleki').learnset.superpower = ['8L1'];
+		
+		//Regidrago
+		this.modData('Learnsets', 'regidrago').learnset.aurasphere = ['8L1'];
+		this.modData('Learnsets', 'regidrago').learnset.fireblast = ['8L1'];
+		this.modData('Learnsets', 'regidrago').learnset.flamethrower = ['8L1'];
+		this.modData('Learnsets', 'regidrago').learnset.icefang = ['8L1'];
+		this.modData('Learnsets', 'regidrago').learnset.poisonfang = ['8L1'];
+		this.modData('Learnsets', 'regidrago').learnset.superpower = ['8L1'];
+		
+		//Regigigas
+		this.modData('Learnsets', 'regigigas').learnset.crushgrip = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.dragonclaw = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.dragonpulse = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.flashcannon = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.icebeam = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.meteormash = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.outrage = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.powergem = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.stealthrock = ['8L1'];
+		this.modData('Learnsets', 'regigigas').learnset.triattack = ['8L1'];
+		
+		//Articuno-Galar
+		this.modData('Learnsets', 'articunogalar').learnset.roost = ['8L1'];
+		this.modData('Learnsets', 'articunogalar').learnset.icebeam = ['8L1'];
+		this.modData('Learnsets', 'articunogalar').learnset.focusblast = ['8L1'];
+		
+		//Zapdos-Galar
+		this.modData('Learnsets', 'zapdosgalar').learnset.roost = ['8L1'];
+		this.modData('Learnsets', 'zapdosgalar').learnset.wildcharge = ['8L1'];
+		this.modData('Learnsets', 'zapdosgalar').learnset.highjumpkick = ['8L1'];
+		
+		//Moltres-Galar
+		this.modData('Learnsets', 'moltresgalar').learnset.roost = ['8L1'];
+		this.modData('Learnsets', 'moltresgalar').learnset.wildcharge = ['8L1'];
+		this.modData('Learnsets', 'moltresgalar').learnset.highjumpkick = ['8L1'];
+		
+		//Crobat
+		this.modData('Learnsets', 'crobat').learnset.toxicspikes = ['8L1'];
+		this.modData('Learnsets', 'crobat').learnset.sludgewave = ['8L1'];
+		this.modData('Learnsets', 'crobat').learnset.clearsmog = ['8L1'];
+		
+		//Slowking-Galar
+		this.modData('Learnsets', 'slowkinggalar').learnset.recover = ['8L1'];
+		
+		//Urshifu
+		delete this.modData('Learnsets', 'urshifu').learnset.suckerpunch;
+		delete this.modData('Learnsets', 'urshifurapidstrike').learnset.aquajet;
+		
+		//Zarude
+		this.modData('Learnsets', 'zarude').learnset.knockoff = ['8L1'];
+		
+		//Glastrier
+		this.modData('Learnsets', 'glastrier').learnset.glaciallance = ['8L1'];
+		this.modData('Learnsets', 'glastrier').learnset.iceshard = ['8L1'];
+		this.modData('Learnsets', 'glastrier').learnset.trickroom = ['8L1'];
+		
+		//Spectrier
+		this.modData('Learnsets', 'spectrier').learnset.astralbarrage = ['8L1'];
+		this.modData('Learnsets', 'spectrier').learnset.extrasensory = ['8L1'];
+		this.modData('Learnsets', 'spectrier').learnset.gigadrain = ['8L1'];
+		
+		//Cursola
+		this.modData('Learnsets', 'cursola').learnset.focusblast = ['8L1'];
+		this.modData('Learnsets', 'cursola').learnset.psyshock = ['8L1'];
+		this.modData('Learnsets', 'cursola').learnset.thunderwave = ['8L1'];
+		
+		//Calyrex
+		this.modData('Learnsets', 'calyrex').learnset.blizzard = ['8L1'];
+		this.modData('Learnsets', 'calyrex').learnset.hex = ['8L1'];
+		this.modData('Learnsets', 'calyrex').learnset.teleport = ['8L1'];
+		this.modData('Learnsets', 'calyrex').learnset.thunderwave = ['8L1'];
+		this.modData('Learnsets', 'calyrex').learnset.teleport = ['8L1'];
+		this.modData('Learnsets', 'calyrex').learnset.kingsshield = ['8L1'];
+		
+		//Zamaenta
+		this.modData('Learnsets', 'zamazenta').learnset.behemothbash = ['8L1'];
+		this.modData('Learnsets', 'zamazenta').learnset.bodypress = ['8L1'];
+		this.modData('Learnsets', 'zamazenta').learnset.haze = ['8L1'];
+		this.modData('Learnsets', 'zamazenta').learnset.healingwish = ['8L1'];
+		this.modData('Learnsets', 'zamazenta').learnset.moonlight = ['8L1'];
+		
+		//Zacian
+		this.modData('Learnsets', 'zacian').learnset.zacian = ['8L1'];
+		this.modData('Learnsets', 'zacian').learnset.behemothblade = ['8L1'];
+		delete this.modData('Learnsets', 'zacian').learnset.haze;
+		delete this.modData('Learnsets', 'zacian').learnset.healingwish;
+		
+		//Heatmor
+		this.modData('Learnsets', 'heatmor').learnset.spikes = ['8L1'];
+		
+		//Pangoro
+		this.modData('Learnsets', 'pangoro').learnset.machpunch = ['8L1'];
+		this.modData('Learnsets', 'pangoro').learnset.suckerpunch = ['8L1'];
+		
+		//Machamp
+		this.modData('Learnsets', 'machamp').learnset.gunkshot = ['8L1'];
+		this.modData('Learnsets', 'machamp').learnset.powerwhip = ['8L1'];
 	},
 	//Modded functions
 	canDynamax(pokemon, skipChecks) {
@@ -112,47 +280,51 @@ export const BattleScripts: {[k: string]: ModdedBattleScriptsData} = {
 		if (pokemon.canGigantamax) result.gigantamax = pokemon.canGigantamax;
 		return result;
 	},
-	
 	getMaxMove(move, pokemon) {
 		if (typeof move === 'string') move = this.dex.getMove(move);
-		if (pokemon.canGigantamax && move.category !== 'Status') {
-			let gMaxTemplate = this.dex.getTemplate(pokemon.canGigantamax);
-			let gMaxMove = this.dex.getMove(gMaxTemplate.isGigantamax);
+		if (move.name === 'Struggle') return move;
+		if (pokemon.gigantamax && pokemon.canGigantamax && move.category !== 'Status') {
+			const gMaxMove = this.dex.getMove(pokemon.canGigantamax);
 			if (gMaxMove.exists && gMaxMove.type === move.type) return gMaxMove;
 		}
-		let maxMove = this.dex.getMove(this.maxMoveTable[move.category === 'Status' ? move.category : move.type]);
+		const maxMove = this.dex.getMove(this.maxMoveTable[move.category === 'Status' ? move.category : move.type]);
 		if (maxMove.exists) return maxMove;
 	},
-	
+
 	getActiveMaxMove(move, pokemon) {
 		if (typeof move === 'string') move = this.dex.getActiveMove(move);
+		if (move.name === 'Struggle') return this.dex.getActiveMove(move);
 		let maxMove = this.dex.getActiveMove(this.maxMoveTable[move.category === 'Status' ? move.category : move.type]);
 		if (move.category !== 'Status') {
-			if (pokemon.canGigantamax) {
-				let gMaxTemplate = this.dex.getTemplate(pokemon.canGigantamax);
-				let gMaxMove = this.dex.getActiveMove(gMaxTemplate.isGigantamax ? gMaxTemplate.isGigantamax : '');
+			if (pokemon.gigantamax && pokemon.canGigantamax) {
+				const gMaxMove = this.dex.getActiveMove(pokemon.canGigantamax);
 				if (gMaxMove.exists && gMaxMove.type === move.type) maxMove = gMaxMove;
 			}
-			if (!move.gmaxPower) throw new Error(`${move.name} doesn't have a gmaxPower`);
-			let gmaxPower = this.newGMaxPower( move ); // new max power
-			maxMove.basePower = gmaxPower; // bypass old max power
-			maxMove.baseMove = move.id; // need to access this for choice lock and torment
+			if (!move.maxMove?.basePower) throw new Error(`${move.name} doesn't have a maxMove basePower`);
+			if (!['gmaxdrumsolo', 'gmaxfireball', 'gmaxhydrosnipe'].includes(maxMove.id)) {
+				maxMove.basePower = move.maxMove.basePower;
+			}
 			maxMove.category = move.category;
 		}
-		maxMove.maxPowered = true;
+		let gmaxPower = this.newGMaxPower( move ); // new max power
+		maxMove.basePower = gmaxPower; // bypass old max power
+		maxMove.baseMove = move.id;
+		// copy the priority for Psychic Terrain, Quick Guard
+		maxMove.priority = move.priority;
+		maxMove.isZOrMaxPowered = true;
 		return maxMove;
 	},
 	//New functions
 	doMaxBoostFormeChange( pokemon, isPermanent ){
 		if ( !pokemon.hasDynamaxed ) return;
-		let template = this.dex.deepClone( pokemon.template );
-		if ( pokemon.lastFormeBoosted !== pokemon.template.forme ){ // don't boost the same forme twice in a row
+		let template = this.dex.deepClone( pokemon.species );
+		if ( pokemon.lastFormeBoosted !== pokemon.species.forme ){ // don't boost the same forme twice in a row
 			for ( let statName in template.baseStats ){
 				let boost = this.getMaxBoost( statName, pokemon );
 				template.baseStats[ statName ] = template.baseStats[ statName ] + boost;
 			}
 		}
-		pokemon.lastFormeBoosted = pokemon.template.forme;
+		pokemon.lastFormeBoosted = pokemon.species.forme;
 		pokemon.formeChange(template, "dynamax", isPermanent);
 	},
 	
@@ -163,20 +335,20 @@ export const BattleScripts: {[k: string]: ModdedBattleScriptsData} = {
 		let gmaxPower = 90;
 		if (!move.basePower) {
 			return gmaxPower;
-		} else if ( !move.gmaxPower ){
+		} else if ( !move.maxMove?.basePower ){
 			return null;
 		} else if (['Fighting', 'Poison'].includes(move.type)) {
-			return move.gmaxPower;
+			return move.maxMove?.basePower;
 		} else if (['Flying'].includes(move.type)) {
 			for ( const i in oldMaxPowers ){
-				if ( move.gmaxPower === oldMaxPowers[i] ){
+				if ( move.maxMove?.basePower === oldMaxPowers[i] ){
 					gmaxPower = weakMaxPowers[i]
 					break
 				}
 			}
 		} else {
 			for ( const i in oldMaxPowers ){
-				if ( move.gmaxPower === oldMaxPowers[i] ){
+				if ( move.maxMove?.basePower === oldMaxPowers[i] ){
 					gmaxPower = maxPowers[i]
 					break
 				}
@@ -212,9 +384,12 @@ export const BattleScripts: {[k: string]: ModdedBattleScriptsData} = {
 			pikachu: { hp: 30, atk: 10, def: 10, spa: 20, spd: 10, spe: -30 },
 			sandaconda: { hp: 0, atk: 0, def: 20, spa: 0, spd: 0, spe: 30 },
 			toxtricity: { hp: 0, atk: 20, def: 0, spa: 4, spd: 16, spe: 10 },
-		}
+			toxtricitylowkey: { hp: 0, atk: 20, def: 0, spa: 4, spd: 16, spe: 10 },
+			urshifu: { hp: 0, atk: 15, def: 10, spa: 0, spd: 25, spe: 10 },
+			urshifurapidstrike: { hp: 0, atk: 10, def: 5, spa: 0, spd: 5, spe: 30 },
+		};
 		let boostType = statBoosts.dynamax;
-		if ( pokemon.canGigantamax ) boostType = statBoosts[ pokemon.speciesid ];
+		if ( pokemon.gigantamax ) boostType = statBoosts[ pokemon.species.id ];
 		let statBoost = boostType[ statName ];
 		return statBoost;
 	},

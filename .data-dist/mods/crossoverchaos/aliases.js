@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAliases = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Aliases = {
 	// basically a bunch of names
 	"seiba": "Saber",
 	"artoriapendragon": "Saber",
@@ -82,4 +82,4 @@
 	"kalel": "Superman",
 	"clarkkent": "Superman",
 	"spiderman": "Miles Morales",
-}; exports.BattleAliases = BattleAliases;
+}; exports.Aliases = Aliases;

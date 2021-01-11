@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleStatuses = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Statuses = {
 	par: {
 		inherit: true,
 		onBeforeMove(pokemon) {
@@ -73,4 +73,4 @@
 		inherit: true,
 		counterMax: 8,
 	},
-}; exports.BattleStatuses = BattleStatuses;
+}; exports.Statuses = Statuses;

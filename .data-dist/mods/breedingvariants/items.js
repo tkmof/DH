@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
   "banettiteb": {
     id: "banettiteb",
     name: "Banettite B",
@@ -10,4 +10,4 @@
     },
     desc: "If held by a Banettite-Blademaster, this item allows it to Mega Evolve in battle.",
   },
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

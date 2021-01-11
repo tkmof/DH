@@ -1,4 +1,4 @@
-export const BattleLearnsets = {
+export const Learnsets = {
 	cofagrigus: {learnset: {
         afteryou: ["7T", "6T", "5T"],
         allyswitch: ["7T"],
@@ -2767,7 +2767,7 @@ export const BattleLearnsets = {
         thunderbolt: ["7M", "7L1"],
         thunderwave: ["7M"],
         toxic: ["7M"],
-        vicegrip: ["7L1"],
+        visegrip: ["7L1"],
         voltswitch: ["7M"],
         wildcharge: ["7M"],
         xscissor: ["7M"],

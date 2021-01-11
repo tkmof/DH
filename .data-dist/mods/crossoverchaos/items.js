@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
     "shulkiumz": {
         id: "shulkiumz",
         name: "Shulkium Z",
@@ -15,7 +15,7 @@
 		  megaStone: "Smolitzer-Mega",
 		  megaEvolves: "Smolitzer",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by the Smolitzer, this item allows it to Mega Evolve in battle."
@@ -35,7 +35,7 @@
 		  megaStone: "Sonic-Super",
 		  megaEvolves: "Sonic",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Sonic, this item allows him to become Super Sonic in battle."
@@ -89,7 +89,7 @@
 		id: "falchion",
 		name: "Falchion",
 		onTakeItem(item, source) {
-			return !(source.baseTemplate.baseSpecies === 'Lucina');
+			return !(source.baseSpecies.baseSpecies === 'Lucina');
 		},
 		onSourceEffectiveness(typeMod, target, type, move) {
 			if (type === 'Dragon' && move.type === 'Fighting') return 1;
@@ -100,10 +100,10 @@
 		id: "darkcrown",
 		name: "Dark Crown",
 		onTakeItem(item, source) {
-			return !(source.baseTemplate.baseSpecies === 'King Boo');
+			return !(source.baseSpecies.baseSpecies === 'King Boo');
 		},
 		onSourceModifyDamage(damage, source, target, move) {
-			if (target.baseTemplate.baseSpecies !== 'King Boo') return;
+			if (target.baseSpecies.baseSpecies !== 'King Boo') return;
 			if (move.flags['light']) return this.chainModify(0.5);
 		},
 		desc: "If holder is King Boo, he takes halved damage from light-based moves.",
@@ -493,7 +493,7 @@
 		  megaStone: "Maple-Mega",
 		  megaEvolves: "Maple",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by the Maple, this item allows her to Mega Evolve in battle."
@@ -504,7 +504,7 @@
 		  megaStone: "Goku-Super Saiyan",
 		  megaEvolves: "Goku",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Goku, this item allows him to Mega Evolve in battle."
@@ -515,7 +515,7 @@
 		  megaStone: "Goku-Super Saiyan God",
 		  megaEvolves: "Goku",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Goku, this item allows him to Mega Evolve in battle."
@@ -526,7 +526,7 @@
 		  megaStone: "Goku-Super Saiyan Blue",
 		  megaEvolves: "Goku",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Goku, this item allows him to Mega Evolve in battle."
@@ -537,7 +537,7 @@
 		  megaStone: "Goku-Ultra Instinct",
 		  megaEvolves: "Goku",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Goku, this item allows him to Mega Evolve in battle."
@@ -548,7 +548,7 @@
 		  megaStone: "Goku-Super Saiyan 4",
 		  megaEvolves: "Goku",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Goku, this item allows him to Mega Evolve in battle."
@@ -559,7 +559,7 @@
 		  megaStone: "Vegeta-Super Saiyan",
 		  megaEvolves: "Vegeta",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Vegeta, this item allows him to Mega Evolve in battle."
@@ -570,7 +570,7 @@
 		  megaStone: "Vegeta-Super Saiyan Blue",
 		  megaEvolves: "Vegeta",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Vegeta, this item allows him to Mega Evolve in battle."
@@ -581,7 +581,7 @@
 		  megaStone: "Vegeta-Majin",
 		  megaEvolves: "Vegeta",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Vegeta, this item allows him to Mega Evolve in battle."
@@ -592,7 +592,7 @@
 		  megaStone: "Vegeta-Super Saiyan 4",
 		  megaEvolves: "Vegeta",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Vegeta, this item allows him to Mega Evolve in battle."
@@ -601,7 +601,7 @@
 		id: "phantomruby",
 		name: "Phantom Ruby",
 		onSwitchIn(pokemon) {
-			if (pokemon.isActive && pokemon.baseTemplate.species === 'Heavy King') {
+			if (pokemon.isActive && pokemon.baseSpecies.species === 'Heavy King') {
 				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
 			}
 		},
@@ -626,9 +626,9 @@
 		  megaStone: "Overhaul-Mega",
 		  megaEvolves: "Overhaul",
 		  onTakeItem(item, source) {
-			  if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			  if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			  return true;
 		  },
 		 desc: "If held by Overhaul, this item allows her to Mega Evolve in battle."
 	 },
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

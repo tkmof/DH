@@ -1111,5 +1111,3 @@ var _randomteams2 = require('../gen7/random-teams');
 		return pokemon;
 	}
 } exports.RandomGen6Teams = RandomGen6Teams;
-
-exports. default = RandomGen6Teams;

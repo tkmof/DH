@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormats = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Formats = {
 	standardpetmod: {
 		inherit: true,
 		ruleset: ['[Gen 7] OU', '!Species Clause'],
@@ -19,4 +19,4 @@
 			}
 		},
 	},
-}; exports.BattleFormats = BattleFormats;
+}; exports.Formats = Formats;

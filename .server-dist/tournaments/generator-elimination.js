@@ -75,23 +75,19 @@ class ElimNode {
 		}
 		this.children = children;
 	}
-	traverse(callback) {
+	traverse(multiCallback) {
 		const queue = [this];
 		let node;
-		// tslint:disable-next-line: no-conditional-assignment
 		while ((node = queue.shift())) {
-			// eslint-disable-next-line callback-return
-			callback(node);
+			multiCallback(node);
 			if (node.children) queue.push(...node.children);
 		}
 	}
-	find(callback) {
+	find(multiCallback) {
 		const queue = [this];
 		let node;
-		// tslint:disable-next-line: no-conditional-assignment
 		while ((node = queue.shift())) {
-			// eslint-disable-next-line callback-return
-			const value = callback(node);
+			const value = multiCallback(node);
 			if (value) {
 				return value;
 			}
@@ -229,7 +225,6 @@ const nameMap = [
 			const matchesByDepth = {};
 			const queue = [{node: tree.root, depth: 0}];
 			let frame;
-			// tslint:disable-next-line: no-conditional-assignment
 			while ((frame = queue.shift())) {
 				if (!frame.node.children || frame.node.losersBracketNode) continue;
 

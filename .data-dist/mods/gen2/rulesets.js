@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormats = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Formats = {
 	obtainablemoves: {
 		inherit: true,
 		banlist: [
@@ -33,4 +33,4 @@
 			'Spore + Spider Web',
 		],
 	},
-}; exports.BattleFormats = BattleFormats;
+}; exports.Formats = Formats;

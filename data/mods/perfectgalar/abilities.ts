@@ -1,5 +1,5 @@
-export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
-	"screencleaner": {
+export const Abilities: {[k: string]: ModdedAbilityData} = {
+	screencleaner: {
 		desc: "On switch-in, this Pokémon ends the effects of screens, hazards, and terrain for both the user's and the opposing side.",
 		shortDesc: "Removes screens, hazards, and terrain on switch-in.",
 		onStart(pokemon) {
@@ -27,7 +27,7 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 		rating: 2,
 		num: 251,
 	},
-	"gorillatactics": {
+	gorillatactics: {
 		inherit: true,
 		onModifyAtk(atk, pokemon) {
 			// PLACEHOLDER
@@ -43,14 +43,204 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 	},
+	curiousmedicine: {
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of this.getAllActive()) {
+				if (!activated && (target.status || target.boosts)) {
+					this.add('-ability', pokemon, 'Curious Medicine');
+					activated = true;
+				}
+				target.clearBoosts();
+				target.cureStatus();
+			}
+		},
+		name: "Curious Medicine",
+		rating: 0,
+		num: 261,
+	},
+	lightmetal: {
+		shortDesc: "Reduces damage from contact moves 25%.",
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.flags['contact']) return this.chainModify(0.75);
+		},
+		name: "Light Metal",
+		rating: 1,
+		num: 135,
+	},
+	transistor: {
+		shortDesc: "Electric moves: 30% stronger, make contact",
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				move.flags.contact = 1;
+			}
+			if (move.flags['contact']) {
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
+		name: "Transistor",
+		rating: 3.5,
+		num: 262,
+	},
+	dragonsmaw: {
+		shortDesc: "Removes screens, hazards, and terrain on switch-in.",
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.type === 'Dragon') {
+				move.flags.bite = 1;
+			}
+			if (move.flags['bite']) {
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
+		name: "Dragon's Maw",
+		rating: 3.5,
+		num: 263,
+	},
+	slowstart: {
+		shortDesc: "Atk, Spe halved for 5 turns. Ally regis reduce turns.",
+		onStart(pokemon) {
+			if ( !pokemon.slowStartInit ) {
+				pokemon.slowStartInit = true;
+				pokemon.slowStartTurns = 5;
+				for (const ally of pokemon.side.pokemon) {
+					if (["Registeel", "Regice", "Regirock", "Regieleki", "Regidrago"].includes( ally.name )) {
+						pokemon.slowStartTurns--;
+					}
+				}
+			}
+			if (pokemon.slowStartTurns > 0) pokemon.addVolatile('slowstart');
+		},
+		onResidual(pokemon) {
+			if (pokemon.slowStartTurns && pokemon.slowStartTurns > 0) pokemon.slowStartTurns--;
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['slowstart'];
+			this.add('-end', pokemon, 'Slow Start', '[silent]');
+		},
+		condition: {
+			duration: 5,
+			durationCallback(pokemon) {
+				return pokemon.slowStartTurns
+			},
+			onStart(target) {
+				this.add('-start', target, 'ability: Slow Start');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, pokemon) {
+				return this.chainModify(0.8);
+			},
+			onModifySpe(spe, pokemon) {
+				return this.chainModify(0.8);
+			},
+			onEnd(target) {
+				this.add('-end', target, 'Slow Start');
+			},
+		},
+		name: "Slow Start",
+		rating: -1,
+		num: 112,
+	},
+	grimneigh: {
+		shortDesc: "Lowers foe's SpA on switch-in.",
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Grim Neigh', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({spa: -1}, target, pokemon, null, true);
+				}
+			}
+		},
+		name: "Grim Neigh",
+		rating: 3,
+		num: 265,
+	},
+	pastelveil: {
+		shortDesc: "Immune to Poison-type moves.",
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Poison') {
+				return null;
+			}
+		},
+		name: "Pastel Veil",
+		rating: 2,
+		num: 257,
+	},
+	minus: {
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Minus', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({spd: -1}, target, pokemon, null, true);
+				}
+			}
+		},
+		name: "Minus",
+		rating: 3.5,
+		num: 58,
+	},
+	dauntlessshield: {
+		name: "Dauntless Shield",
+		onAnyModifyBoost(boosts, pokemon) {
+			const unawareUser = this.effectData.target;
+			if (unawareUser === pokemon || !pokemon.hasDynamaxed) return;
+			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['def'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		rating: 4,
+		num: 235,
+	},
+	intrepidsword: {
+		onModifyCritRatio(critRatio, source, target) {
+			if (target.hasDynamaxed) return 5;
+		},
+		name: "Intrepid Sword",
+		rating: 1.5,
+		num: 234,
+	},
+	quickdraw: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move.flags['bullet']) {
+				return priority + 1;
+			}
+		},
+		name: "Quick Draw",
+		rating: 4,
+		num: 259,
+	},
+	
 //-----------------------------forme changes---------------------------------------------------------------------------------
 	"stancechange": {
 		inherit: true,
 		onBeforeMove(attacker, defender, move) {
-			if (attacker.template.baseSpecies !== 'Aegislash' || attacker.transformed) return;
+			if (attacker.species.baseSpecies !== 'Aegislash' || attacker.transformed) return;
 			if (move.category === 'Status' && move.id !== 'kingsshield') return;
 			let targetSpecies = (move.id === 'kingsshield' ? 'Aegislash' : 'Aegislash-Blade');
-			if (attacker.template.species !== targetSpecies){
+			if (attacker.species.species !== targetSpecies){
 				attacker.formeChange(targetSpecies);
 				this.doMaxBoostFormeChange( attacker, false );
 			}
@@ -63,8 +253,8 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 	"hungerswitch": {
 		inherit: true,
 		onResidual(pokemon) {
-			if (pokemon.template.baseSpecies !== 'Morpeko' || pokemon.transformed) return;
-			let targetForme = pokemon.template.species === 'Morpeko' ? 'Morpeko-Hangry' : 'Morpeko';
+			if (pokemon.species.baseSpecies !== 'Morpeko' || pokemon.transformed) return;
+			let targetForme = pokemon.species.species === 'Morpeko' ? 'Morpeko-Hangry' : 'Morpeko';
 			pokemon.formeChange(targetForme);
 			this.doMaxBoostFormeChange( pokemon, true );
 		},
@@ -72,14 +262,14 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 	"flowergift": {
 		inherit: true,
 		onUpdate(pokemon) {
-			if (!pokemon.isActive || pokemon.baseTemplate.baseSpecies !== 'Cherrim' || pokemon.transformed) return;
+			if (!pokemon.isActive || pokemon.baseSpecies.baseSpecies !== 'Cherrim' || pokemon.transformed) return;
 			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
-				if (pokemon.template.speciesid !== 'cherrimsunshine') {
+				if (pokemon.species.speciesid !== 'cherrimsunshine') {
 					pokemon.formeChange('Cherrim-Sunshine', this.effect, false, '[msg]');
 					this.doMaxBoostFormeChange( pokemon, false );
 				}
 			} else {
-				if (pokemon.template.speciesid === 'cherrimsunshine') {
+				if (pokemon.species.speciesid === 'cherrimsunshine') {
 					pokemon.formeChange('Cherrim', this.effect, false, '[msg]');
 					this.doMaxBoostFormeChange( pokemon, false );
 				}
@@ -89,9 +279,9 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 	"disguise": {
 		inherit: true,
 		onUpdate(pokemon) {
-			if (['mimikyu', 'mimikyutotem'].includes(pokemon.template.speciesid) && this.effectData.busted) {
-				let templateid = pokemon.template.speciesid === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' : 'Mimikyu-Busted';
-				pokemon.formeChange(templateid, this.effect, true);
+			if (['mimikyu', 'mimikyutotem'].includes(pokemon.species.speciesid) && this.effectData.busted) {
+				let speciesid = pokemon.species.speciesid === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' : 'Mimikyu-Busted';
+				pokemon.formeChange(speciesid, this.effect, true);
 				this.doMaxBoostFormeChange( pokemon, true );
 				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon);
 			}
@@ -100,7 +290,7 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 	"iceface": {
 		inherit: true,
 		onStart(pokemon) {
-			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuenoice' && !pokemon.transformed) {
+			if (this.field.isWeather('hail') && pokemon.species.speciesid === 'eiscuenoice' && !pokemon.transformed) {
 				this.add('-activate', pokemon, 'ability: Ice Face');
 				this.effectData.busted = false;
 				pokemon.formeChange('Eiscue', this.effect, true);
@@ -108,14 +298,14 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onUpdate(pokemon) {
-			if (pokemon.template.speciesid === 'eiscue' && this.effectData.busted) {
+			if (pokemon.species.speciesid === 'eiscue' && this.effectData.busted) {
 				pokemon.formeChange('Eiscue-Noice', this.effect, true);
 				this.doMaxBoostFormeChange( pokemon, true );
 			}
 		},
 		onAnyWeatherStart() {
 			const pokemon = this.effectData.target;
-			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuenoice' && !pokemon.transformed) {
+			if (this.field.isWeather('hail') && pokemon.species.speciesid === 'eiscuenoice' && !pokemon.transformed) {
 				this.add('-activate', pokemon, 'ability: Ice Face');
 				this.effectData.busted = false;
 				pokemon.formeChange('Eiscue', this.effect, true);
@@ -127,9 +317,9 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 		inherit: true,
 		onDamage(damage, target, source, effect) {
 			// Needs to trigger even if cramorant is about to faint
-			if (effect && effect.effectType === 'Move' && ['cramorantgulping', 'cramorantgorging'].includes(target.template.speciesid) && !target.transformed) {
+			if (effect && effect.effectType === 'Move' && ['cramorantgulping', 'cramorantgorging'].includes(target.species.speciesid) && !target.transformed) {
 				// Forme change before damaging to avoid a potential infinite loop with surf cramorant vs surf cramorant
-				const forme = target.template.speciesid;
+				const forme = target.species.speciesid;
 				target.formeChange('cramorant', effect);
 				this.doMaxBoostFormeChange( target, false );
 				this.damage(source.baseMaxhp / 4, source, target);
@@ -141,7 +331,7 @@ export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onAfterMove(pokemon, target, move) {
-			if (pokemon.template.species !== 'Cramorant' || pokemon.transformed || !['dive', 'surf'].includes(move.id) || pokemon.volatiles['dive']) return;
+			if (pokemon.species.species !== 'Cramorant' || pokemon.transformed || !['dive', 'surf'].includes(move.id) || pokemon.volatiles['dive']) return;
 			const forme = pokemon.hp <= pokemon.maxhp / 2 ? 'cramorantgorging' : 'cramorantgulping';
 			pokemon.formeChange(forme, move);
 			this.doMaxBoostFormeChange( pokemon, false );

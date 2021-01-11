@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAbilities = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Abilities = {
 	calmingtides: {
 		desc: "Water-type Pokemon on this Pokemon's side cannot have their stat stages lowered by other Pokemon or have a major status condition inflicted on them by other Pokemon.",
 		shortDesc: "This side's Water types can't have stats lowered or status inflicted by other Pokemon.",
@@ -127,4 +127,4 @@
 		name: "Psycho Zone",
 		rating: 4,
 	},
-}; exports.BattleAbilities = BattleAbilities;
+}; exports.Abilities = Abilities;

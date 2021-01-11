@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAbilities = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Abilities = {
 	"forceofattraction": {
         shortDesc: "On switch-in, this Pokemon summons Gravity.",
         onStart: function (source) {
@@ -152,6 +152,4 @@
         rating: 3.5,
         num: 153,
     },
-}; exports.BattleAbilities = BattleAbilities;
-
-exports.BattleAbilities = exports.BattleAbilities;
+}; exports.Abilities = Abilities;

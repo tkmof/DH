@@ -82,7 +82,7 @@ var _crashlogger = require('./crashlogger');
 					try {
 						return callback(null, evalFunction(cmd));
 					} catch (e) {
-						return callback(e);
+						return callback(e, undefined);
 					}
 				},
 			}).on('exit', () => socket.end());

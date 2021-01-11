@@ -1,8 +1,8 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleScripts = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Scripts = {
 	init() {
 		const addNewMoves = (pokemonid, moveids) => {
-			for (const moveid of moveids.map(toID)) {
-				this.modData('Learnsets', toID(pokemonid)).learnset[moveid] = [moveid === 'dracometeor' || moveid === 'steelbeam' ? '8T' : '8M'];
+			for (const moveid of moveids) {
+				this.modData('Learnsets', pokemonid).learnset[moveid] = [moveid === 'dracometeor' || moveid === 'steelbeam' ? '8T' : '8M'];
 			}
 		};
 		addNewMoves('inteleon', ['taunt', 'encore', 'hypervoice', 'psychic', 'sludgewave']);
@@ -36,4 +36,4 @@
 		addNewMoves('druddigon', ['recover', 'dragondance', 'steelbeam']);
 		addNewMoves('flygon', ['sludgewave', 'powergem']);
 	},
-}; exports.BattleScripts = BattleScripts;
+}; exports.Scripts = Scripts;

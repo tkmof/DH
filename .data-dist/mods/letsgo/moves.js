@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleMovedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Moves = {
 	absorb: {
 		inherit: true,
 		basePower: 40,
@@ -93,4 +93,4 @@
 		inherit: true,
 		isNonstandard: null,
 	},
-}; exports.BattleMovedex = BattleMovedex;
+}; exports.Moves = Moves;

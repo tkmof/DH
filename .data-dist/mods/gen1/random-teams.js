@@ -379,5 +379,3 @@
 		};
 	}
 } exports.RandomGen1Teams = RandomGen1Teams;
-
-exports. default = RandomGen1Teams;

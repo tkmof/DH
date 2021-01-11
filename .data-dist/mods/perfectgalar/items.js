@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
   	"leftovers": {
 		inherit: true,
 		onResidual(pokemon) {
@@ -63,4 +63,4 @@
 		gen: 5,
 		desc: "If holder survives a hit, attacker is forced to switch to a random ally. Single use.",
 	},
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

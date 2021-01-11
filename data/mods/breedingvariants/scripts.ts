@@ -1,4 +1,4 @@
-export const BattleScripts: {[k: string]: ModdedBattleScriptsData} = {
+export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	init: function () {
 		this.modData('Learnsets', 'goodraflame').learnset.dragonclaw = ['8L1'];
 		this.modData('Learnsets', 'goodraflame').learnset.dragondance = ['8L1'];
@@ -142,5 +142,3 @@ export const BattleScripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData('Learnsets', 'roseradescarfed').learnset.uturn = ['8L1'];
 	}
 };
-
-exports.BattleScripts = BattleScripts;

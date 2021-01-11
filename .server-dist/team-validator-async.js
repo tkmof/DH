@@ -8,8 +8,7 @@
  */
 
 var _crashlogger = require('../.lib-dist/crashlogger');
-
-
+var _teamvalidator = require('../.sim-dist/team-validator');
 
  class TeamValidatorAsync {
 	
@@ -43,7 +42,7 @@ var _processmanager = require('../.lib-dist/process-manager');
 	const {formatid, options, team} = message;
 	const parsedTeam = Dex.fastUnpackTeam(team);
 
-	if (_configloader.Config.debugvalidatorprocesses && process.send) {
+	if (Config.debugvalidatorprocesses && process.send) {
 		process.send('DEBUG\n' + JSON.stringify(message));
 	}
 
@@ -70,44 +69,30 @@ var _processmanager = require('../.lib-dist/process-manager');
 	return '1' + packedTeam;
 }); exports.PM = PM;
 
-var _repl = require('../.lib-dist/repl');
-var _dex = require('../.sim-dist/dex');
-var _teamvalidator = require('../.sim-dist/team-validator');
-var _configloader = require('./config-loader');
-
 if (!exports.PM.isParentProcess) {
 	// This is a child process!
-	global.Config = _configloader.Config;
+	global.Config = require('./config-loader');
 
-	global.TeamValidator = _teamvalidator.TeamValidator;
-
-	// @ts-ignore ???
 	global.Monitor = {
 		crashlog(error, source = 'A team validator process', details = null) {
 			const repr = JSON.stringify([error.name, error.message, source, details]);
-			// @ts-ignore
 			process.send(`THROW\n@!!@${repr}\n${error.stack}`);
 		},
 	};
 
-	if (_configloader.Config.crashguard) {
+	if (Config.crashguard) {
 		process.on('uncaughtException', (err) => {
 			Monitor.crashlog(err, `A team validator process`);
 		});
-		// Typescript doesn't like this call
-		// @ts-ignore
-		process.on('unhandledRejection', (err, promise) => {
-			if (err instanceof Error) {
-				Monitor.crashlog(err, 'A team validator process Promise');
-			}
+		process.on('unhandledRejection', err => {
+			Monitor.crashlog(err  || {}, 'A team validator process Promise');
 		});
 	}
 
-	global.Dex = _dex.Dex.includeData();
-	global.toID = Dex.getId;
+	global.Dex = require('../.sim-dist/dex').Dex.includeData();
 
 	// eslint-disable-next-line no-eval
-	_repl.Repl.start(`team-validator-${process.pid}`, cmd => eval(cmd));
+	require('../.lib-dist/repl').Repl.start(`team-validator-${process.pid}`, (cmd) => eval(cmd));
 } else {
-	exports.PM.spawn(global.Config ? _configloader.Config.validatorprocesses : 1);
+	exports.PM.spawn(global.Config ? Config.validatorprocesses : 1);
 }

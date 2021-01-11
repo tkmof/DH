@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAbilities = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Abilities = {
   karmicretribution: {
     desc:
       "This Pokemon's damaging moves become multi-hit moves that hit five times, each with their own accuracy. Does not affect moves that have multiple targets or moves that use the target's attacking stats instead of the user's.",
@@ -2386,4 +2386,4 @@
 		id: "allforone",
 		name: "All For One",
 	},
-}; exports.BattleAbilities = BattleAbilities;
+}; exports.Abilities = Abilities;

@@ -8,7 +8,7 @@
  * under certain conditions and re-applied under other conditions.
  */
 
- const BattleStatuses = {
+ const Statuses = {
 	brn: {
 		name: 'brn',
 		effectType: 'Status',
@@ -256,6 +256,4 @@
 			this.effectData.duration = 2;
 		},
 	},
-}; exports.BattleStatuses = BattleStatuses;
-
-exports.BattleStatuses = exports.BattleStatuses;
+}; exports.Statuses = Statuses;

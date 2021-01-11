@@ -7,6 +7,7 @@
 
 var _state = require('./state');
 
+var _dex = require('./dex');
 
  class Field {
 	
@@ -115,9 +116,9 @@ var _state = require('./state');
 	isWeather(weather) {
 		const ourWeather = this.effectiveWeather();
 		if (!Array.isArray(weather)) {
-			return ourWeather === toID(weather);
+			return ourWeather === _dex.toID.call(void 0, weather);
 		}
-		return weather.map(toID).includes(ourWeather);
+		return weather.map(_dex.toID).includes(ourWeather);
 	}
 
 	getWeather() {
@@ -170,9 +171,9 @@ var _state = require('./state');
 	isTerrain(terrain, target) {
 		const ourTerrain = this.effectiveTerrain(target);
 		if (!Array.isArray(terrain)) {
-			return ourTerrain === toID(terrain);
+			return ourTerrain === _dex.toID.call(void 0, terrain);
 		}
-		return terrain.map(toID).includes(ourTerrain);
+		return terrain.map(_dex.toID).includes(ourTerrain);
 	}
 
 	getTerrain() {
@@ -228,7 +229,6 @@ var _state = require('./state');
 		// deallocate ourself
 
 		// get rid of some possibly-circular references
-		// @ts-ignore - readonly
-		this.battle = null;
+		(this ).battle = null;
 	}
 } exports.Field = Field;

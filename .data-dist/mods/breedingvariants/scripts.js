@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleScripts = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Scripts = {
 	init: function () {
 		this.modData('Learnsets', 'goodraflame').learnset.dragonclaw = ['8L1'];
 		this.modData('Learnsets', 'goodraflame').learnset.dragondance = ['8L1'];
@@ -141,6 +141,4 @@
 		this.modData('Learnsets', 'roseradescarfed').learnset.stickyweb = ['8L1'];
 		this.modData('Learnsets', 'roseradescarfed').learnset.uturn = ['8L1'];
 	}
-}; exports.BattleScripts = BattleScripts;
-
-exports.BattleScripts = exports.BattleScripts;
+}; exports.Scripts = Scripts;

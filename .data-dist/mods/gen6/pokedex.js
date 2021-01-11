@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	charizardmegax: {
 		inherit: true,
 		color: "Red",
@@ -370,4 +370,4 @@
 		inherit: true,
 		abilities: {0: "Volt Absorb", 1: "Lightning Rod"},
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

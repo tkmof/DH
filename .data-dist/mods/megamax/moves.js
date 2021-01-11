@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleMovedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Moves = {
 	coppermines: {
 		num: -1000,
 		accuracy: true,
@@ -35,4 +35,4 @@
 		inherit: true,
 		isNonstandard: null,
 	},
-}; exports.BattleMovedex = BattleMovedex;
+}; exports.Moves = Moves;

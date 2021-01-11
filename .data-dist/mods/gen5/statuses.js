@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleStatuses = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Statuses = {
 	slp: {
 		inherit: true,
 		onSwitchIn(target) {
@@ -54,4 +54,4 @@
 			return this.chainModify(1.5);
 		},
 	},
-}; exports.BattleStatuses = BattleStatuses;
+}; exports.Statuses = Statuses;

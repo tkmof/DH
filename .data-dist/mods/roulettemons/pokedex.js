@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	koatric: {
 		num: 1.5,
 		name: "Koatric",
@@ -24,15 +24,6 @@
 		baseStats: {hp: 119, atk: 99, def: 122, spa: 49, spd: 76, spe: 135},
 		abilities: {0: "Forewarn", H: "Sheer Force"},
 		weightkg: 75,
-		eggGroups: ["Undiscovered"],
-	},
-	brawnkey: {
-		num: 4.5,
-		name: "Brawnkey",
-		types: ["Fighting"],
-		baseStats: {hp: 143, atk: 86, def: 144, spa: 76, spd: 37, spe: 114},
-		abilities: {0: "Swarm", 1: "Mold Breaker", H: "Intimidate"},
-		weightkg: 150,
 		eggGroups: ["Undiscovered"],
 	},
 	stuneleon: {
@@ -471,4 +462,13 @@
 		weightkg: 150,
 		eggGroups: ["Undiscovered"],
 	},
-}; exports.BattlePokedex = BattlePokedex;
+	brawnkey: {
+		num: 999,
+		name: "Brawnkey",
+		types: ["Fighting"],
+		baseStats: {hp: 143, atk: 86, def: 144, spa: 76, spd: 37, spe: 114},
+		abilities: {0: "Swarm", 1: "Mold Breaker", H: "Intimidate"},
+		weightkg: 150,
+		eggGroups: ["Undiscovered"],
+	},
+}; exports.Pokedex = Pokedex;

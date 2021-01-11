@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	venusaurgmax: {
 		num: 3,
 		name: "Venusaur-Gmax",
@@ -526,4 +526,4 @@
 		battleOnly: "Urshifu-Rapid-Strike",
 		gen: 8,
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

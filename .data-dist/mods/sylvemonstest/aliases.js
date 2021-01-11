@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAliases = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Aliases = {
 
 	// basically deerling & sawsbuck formes
 	"deerlingspring": "Deerling-Spring",
@@ -9,4 +9,4 @@
 	"sawsbucksummer": "Sawsbuck-Summer",
 	"sawsbuckautumn": "Sawsbuck-Autmn",
 	"sawsbuckwinter": "Sawsbuck-Winter",
-}; exports.BattleAliases = BattleAliases;
+}; exports.Aliases = Aliases;

@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
 	chillytite: {
 		name: "Chillytite",
 		spritenum: 594,
@@ -14,4 +14,4 @@
 		isNonstandard: "Past",
 		desc: "If held by a Chillyte, this item allows it to Mega Evolve in battle.",
 	},
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

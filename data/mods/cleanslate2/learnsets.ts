@@ -1,4 +1,4 @@
-export const BattleLearnsets = {
+export const Learnsets = {
 	weezinggalar: {learnset: {
 		aromatherapy: ["8L24"],
 		aromaticmist: ["8L1"],
@@ -545,7 +545,6 @@ export const BattleLearnsets = {
 		headbutt: ["8V", "4T", "3L18"],
 		heatcrash: ["8M"],
 		heavyslam: ["8M", "8L32", "8L50", "6L50", "5L52"],
-		hiddenpower: ["8M", "8V", "6M", "5M", "4M", "3M"],
 		highhorsepower: ["8M", "8L40", "8L58"],
 		hydropump: ["8M"],
 		hyperbeam: ["8M", "8M", "8V", "6M", "5M", "4M", "3M", "3L51"],
@@ -579,7 +578,6 @@ export const BattleLearnsets = {
 		refresh: ["3S0"],
 		rest: ["8M", "8L20", "8M", "8L28", "8V", "6M", "6L28", "5M", "5L28", "4M", "4L25", "3M", "3L25"],
 		retaliate: ["8M", "6M", "5M"],
-		return: ["8M", "8V", "6M", "5M", "4M", "3M"],
 		rockclimb: ["4M"],
 		rockslide: ["8M", "8M", "8V", "6M", "5M", "4M", "3T"],
 		rocksmash: ["8V", "6M", "5M", "4M"],
@@ -712,6 +710,7 @@ export const BattleLearnsets = {
 		spitup: ["7E", "6E", "5E", "4E", "3E"],
 		stockpile: ["7E", "6E", "5E", "4E", "3E"],
 		swallow: ["7E", "6E", "5E", "4E", "3E"],
+		swordsdance: ["8L1", "6E", "5E", "4E", "3E"],
 	}},
 	dhelmise: {learnset: {
 		absorb: ["8L1", "7L1"],
@@ -1804,6 +1803,10 @@ export const BattleLearnsets = {
 		wideguard: ["7E", "7S1", "6E"],
 		wingattack: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 		meteorbeam: ["7L1"],
+		diamondstorm: ["7L1"],
+		dragonascent: ["7L1"],
+		accelerock: ["7L1"],
+		dragondance: ["7L1"],
 	}},
 	unown: {learnset: {
 		rapidspin: ["8L1"],

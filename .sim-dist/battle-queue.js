@@ -117,6 +117,8 @@
 
 
 
+
+
 /**
  * Kind of like a priority queue, although not sorted mid-turn in Gen 1-7.
  *
@@ -269,7 +271,12 @@
 	addChoice(choices) {
 		if (!Array.isArray(choices)) choices = [choices];
 		for (const choice of choices) {
-			this.list.push(...this.resolveAction(choice));
+			const resolvedChoices = this.resolveAction(choice);
+			this.list.push(...resolvedChoices);
+			const resolvedChoice = resolvedChoices[0];
+			if (resolvedChoice && resolvedChoice.choice === 'move' && resolvedChoice.move.id !== 'recharge') {
+				resolvedChoice.pokemon.side.lastSelectedMove = resolvedChoice.move.id;
+			}
 		}
 	}
 
@@ -355,7 +362,6 @@
 
 	debug(action) {
 		if (action) {
-			// @ts-ignore
 			return `${action.order || ''}:${action.priority || ''}:${action.speed || ''}:${action.subOrder || ''} - ${action.choice}${action.pokemon ? ' ' + action.pokemon : ''}${action.move ? ' ' + action.move : ''}`;
 		}
 		return this.list.map(

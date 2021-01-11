@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _fs = require('../../.lib-dist/fs');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }var _fs = require('../../.lib-dist/fs');
 
 const DAY = 24 * 60 * 60 * 1000;
 const SPOTLIGHT_FILE = 'config/chat-plugins/spotlights.json';
@@ -43,7 +43,7 @@ async function renderSpotlight(description, image) {
 		} catch (err) {}
 	}
 
-	return `<table style="text-align:center;margin:auto"><tr><td style="padding-right:10px;">${Chat.formatText(description, true).replace(/\n/g, `<br />`)}</td>${imgHTML}</tr></table>`;
+	return `<table style="text-align:center;margin:auto"><tr><td style="padding-right:10px;">${Chat.formatText(description, true)}</td>${imgHTML}</tr></table>`;
 }
 
  const destroy = () => {
@@ -53,8 +53,7 @@ async function renderSpotlight(description, image) {
  const pages = {
 	async spotlights(query, user, connection) {
 		this.title = 'Daily Spotlights';
-		const room = this.extractRoom();
-		if (!room) return;
+		const room = this.requireRoom();
 
 		let buf = `<div class="pad ladder"><h2>Daily Spotlights</h2>`;
 		if (!spotlights[room.roomid]) {
@@ -77,14 +76,14 @@ async function renderSpotlight(description, image) {
 
  const commands = {
 	removedaily(target, room, user) {
-		if (!room) return this.requiresRoom();
+		room = this.requireRoom();
 		if (!room.persist) return this.errorReply("This command is unavailable in temporary rooms.");
 		let [key, rest] = target.split(',');
 		key = toID(key);
 		if (!key) return this.parse('/help daily');
 		if (!spotlights[room.roomid][key]) return this.errorReply(`Cannot find a daily spotlight with name '${key}'`);
 
-		if (!this.can('announce', null, room)) return false;
+		this.checkCan('announce', null, room);
 		if (rest) {
 			const queueNumber = parseInt(rest);
 			if (isNaN(queueNumber) || queueNumber < 1) return this.errorReply("Invalid queue number");
@@ -108,10 +107,10 @@ async function renderSpotlight(description, image) {
 	},
 	swapdailies: 'swapdaily',
 	swapdaily(target, room, user) {
-		if (!room) return this.requiresRoom();
+		room = this.requireRoom();
 		if (!room.persist) return this.errorReply("This command is unavailable in temporary rooms.");
 		if (!spotlights[room.roomid]) return this.errorReply("There are no dailies for this room.");
-		if (!this.can('announce', null, room)) return false;
+		this.checkCan('announce', null, room);
 
 		const [key, indexStringA, indexStringB] = target.split(',').map(index => toID(index));
 		if (!indexStringB) return this.parse('/help daily');
@@ -140,7 +139,7 @@ async function renderSpotlight(description, image) {
 	queuedailyat: 'setdaily',
 	replacedaily: 'setdaily',
 	async setdaily(target, room, user, connection, cmd) {
-		if (!room) return this.requiresRoom();
+		room = this.requireRoom();
 		if (!room.persist) return this.errorReply("This command is unavailable in temporary rooms.");
 		let key, indexString, rest;
 		if (cmd.endsWith('at') || cmd === 'replacedaily') {
@@ -153,8 +152,7 @@ async function renderSpotlight(description, image) {
 		if (key.length > 20) return this.errorReply("Spotlight names can be a maximum of 20 characters long.");
 		if (key === 'constructor') return false;
 		if (!spotlights[room.roomid]) spotlights[room.roomid] = {};
-		if (!spotlights[room.roomid][key]) spotlights[room.roomid][key] = [];
-		const queueLength = spotlights[room.roomid][key].length;
+		const queueLength = _optionalChain([spotlights, 'access', _ => _[room.roomid], 'access', _2 => _2[key], 'optionalAccess', _3 => _3.length]) || 0;
 
 		if (indexString && !NUMBER_REGEX.test(indexString)) return this.errorReply("The queue number must be a number.");
 
@@ -163,7 +161,7 @@ async function renderSpotlight(description, image) {
 			return this.errorReply(`Queue numbers must be between 1 and the length of the queue (${queueLength}).`);
 		}
 
-		if (!this.can('announce', null, room)) return false;
+		this.checkCan('announce', null, room);
 		if (!rest.length) return this.parse('/help daily');
 		let img;
 		if (rest[0].trim().startsWith('http://') || rest[0].trim().startsWith('https://')) {
@@ -180,6 +178,7 @@ async function renderSpotlight(description, image) {
 			return this.errorReply("Descriptions can be at most 500 characters long.");
 		}
 		const obj = {image: img, description: desc};
+		if (!spotlights[room.roomid][key]) spotlights[room.roomid][key] = [];
 		if (cmd === 'setdaily') {
 			spotlights[room.roomid][key].shift();
 			spotlights[room.roomid][key].unshift(obj);
@@ -203,7 +202,7 @@ async function renderSpotlight(description, image) {
 		saveSpotlights();
 	},
 	async daily(target, room, user) {
-		if (!room) return this.requiresRoom();
+		room = this.requireRoom();
 		if (!room.persist) return this.errorReply("This command is unavailable in temporary rooms.");
 		const key = toID(target);
 		if (!key) return this.parse('/help daily');
@@ -220,8 +219,10 @@ async function renderSpotlight(description, image) {
 		this.sendReplyBox(html);
 		room.update();
 	},
+	vsl: 'viewspotlights',
+	dailies: 'viewspotlights',
 	viewspotlights(target, room, user) {
-		if (!room) return this.requiresRoom();
+		room = this.requireRoom();
 		if (!room.persist) return this.errorReply("This command is unavailable in temporary rooms.");
 		return this.parse(`/join view-spotlights-${room.roomid}`);
 	},

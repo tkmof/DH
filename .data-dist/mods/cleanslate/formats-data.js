@@ -1,5 +1,8 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormatsData = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const FormatsData = {
 	cofagrigus: {
+		tier: "CS1",
+	},
+	trevenant: {
 		tier: "CS1",
 	},
 	nihilego: {
@@ -131,4 +134,4 @@
 	kommoo: {
 		tier: "CS1",
 	},
-}; exports.BattleFormatsData = BattleFormatsData;
+}; exports.FormatsData = FormatsData;

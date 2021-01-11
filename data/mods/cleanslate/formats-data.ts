@@ -1,5 +1,8 @@
-export const BattleFormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
+export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	cofagrigus: {
+		tier: "CS1",
+	},
+	trevenant: {
 		tier: "CS1",
 	},
 	nihilego: {

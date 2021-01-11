@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleLearnsets = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Learnsets = {
 	cofagrigus: {learnset: {
         afteryou: ["7T", "6T", "5T"],
         allyswitch: ["7T"],
@@ -2767,7 +2767,7 @@
         thunderbolt: ["7M", "7L1"],
         thunderwave: ["7M"],
         toxic: ["7M"],
-        vicegrip: ["7L1"],
+        visegrip: ["7L1"],
         voltswitch: ["7M"],
         wildcharge: ["7M"],
         xscissor: ["7M"],
@@ -3135,4 +3135,4 @@ kommoo: {learnset: {
 		xscissor: ["7M"],
 		uturn: ["7L1"],
 	}},
-}; exports.BattleLearnsets = BattleLearnsets;
+}; exports.Learnsets = Learnsets;

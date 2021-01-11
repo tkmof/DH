@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAbilities = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Abilities = {
     "cacophony": {
         desc: "Boosts the power of sound-based moves.",
         shortDesc: "Boosts sound move power.",
@@ -126,10 +126,10 @@
         num: 22,
     },
     "watercompaction": {
-        shortDesc: "This Pokemon's Defense is raised 3 stages after it is damaged by a Water- or Ice-type move.",
+        shortDesc: "This Pokemon's Defense is raised 6 stages after it is damaged by a Water- or Ice-type move.",
         onDamagingHit(damage, target, source, move) {
             if (['Water', 'Ice'].includes(move.type)) {
-                this.boost({def: 3});
+                this.boost({def: 6});
             }
         },
         id: "watercompaction",
@@ -216,12 +216,110 @@
 		  shortDesc: "This Pokemon's Defense is boosted by 1.5x but its Speed is halved.",
 		  onModifyDefPriority: 6,
 		  onModifyDef(def) {
-			  return this.chainModify(2);
+			  return this.chainModify(1.5);
 		  },
 		  onModifySpe(spe, pokemon) {
 			  return this.chainModify(0.5);
 		  },
         id: "solidify",
         name: "Solidify",
-	 },	 
-	 }; exports.BattleAbilities = BattleAbilities;
+	 },
+	 "schooling": {
+		  desc: "On switch-in, if this Pokemon is a Wishiwashi that is level 20 or above and has more than 1/4 of its maximum HP left, it changes to School Form. If it is in School Form and its HP drops to 1/4 of its maximum HP or less, it changes to Solo Form at the end of the turn. If it is in Solo Form and its HP is greater than 1/4 its maximum HP at the end of the turn, it changes to School Form.",
+		  shortDesc: "If user is Wishiwashi, changes to School Form if it has > 1/4 max HP, else Solo Form.",
+		  onStart(pokemon) {
+			  if (pokemon.baseSpecies.baseSpecies !== 'Wishiwashi' || pokemon.level < 20 || pokemon.transformed) return;
+			  if (pokemon.hp > pokemon.maxhp / 4) {
+				  if (pokemon.species.speciesid === 'wishiwashi') {
+					  pokemon.formeChange('Wishiwashi-School');
+					  this.add('-formechange', pokemon, 'Wishiwashi-School', '[from] ability: Schooling');
+				  }
+			  } else {
+				  if (pokemon.species.speciesid === 'wishiwashischool') {
+					  pokemon.formeChange('Wishiwashi');
+					  this.add('-formechange', pokemon, 'Wishiwashi', '[from] ability: Schooling');
+				  }
+			  }
+		  },
+		  onResidualOrder: 27,
+		  onResidual(pokemon) {
+			  if (pokemon.baseSpecies.baseSpecies !== 'Wishiwashi' || pokemon.level < 20 || pokemon.transformed || !pokemon.hp) return;
+			  if (pokemon.hp > pokemon.maxhp / 4) {
+				  if (pokemon.species.speciesid === 'wishiwashi') {
+					  pokemon.formeChange('Wishiwashi-School');
+					  this.add('-formechange', pokemon, 'Wishiwashi-School', '[from] ability: Schooling');
+				  }
+			  } else {
+				  if (pokemon.species.speciesid === 'wishiwashischool' && !pokemon.hasItem('graduationscale')) {
+					  pokemon.formeChange('Wishiwashi');
+					  this.add('-formechange', pokemon, 'Wishiwashi', '[from] ability: Schooling');
+				  }
+			  }
+		  },
+		  id: "schooling",
+		  name: "Schooling",
+		  rating: 3,
+		  num: 208,
+	 },
+	 "shadowbeacon": {
+		shortDesc: "Ghost and Dark-type moves used by any Pokemon on the field are boosted 1.3x. Effected by Aura Break.",
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Shadow Beacon');
+		},
+		onAnyBasePowerPriority: 20,
+		onAnyBasePower(basePower, source, target, move) {
+			if (target === source || move.category === 'Status' || move.type !== 'Dark' || move.type !== 'Ghost') return;
+			if (!move.auraBooster) move.auraBooster = this.effectData.target;
+			if (move.auraBooster !== this.effectData.target) return;
+			return this.chainModify([move.hasAuraBreak ? 0x0C00 : 0x1547, 0x1000]);
+		},
+		isUnbreakable: true,
+		id: "shadowbeacon", 
+		name: "Shadow Beacon",
+	},	
+	 "energybeacon": {
+		shortDesc: "Electric and Fighting-type moves used by any Pokemon on the field are boosted 1.3x. Effected by Aura Break.",
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Energy Beacon');
+		},
+		onAnyBasePowerPriority: 20,
+		onAnyBasePower(basePower, source, target, move) {
+			if (target === source || move.category === 'Status' || move.type !== 'Electric' || move.type !== 'Fighting') return;
+			if (!move.auraBooster) move.auraBooster = this.effectData.target;
+			if (move.auraBooster !== this.effectData.target) return;
+			return this.chainModify([move.hasAuraBreak ? 0x0C00 : 0x1547, 0x1000]);
+		},
+		isUnbreakable: true,
+		id: "energybeacon",
+		name: "Energy Beacon",
+	},
+	"overconfidence": {
+      shortDesc: "This Pokemon's Special Attack is raised 1 stage after getting a KO",
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({spa: length}, source);
+			}
+		},
+		name: "Overconfidence",
+		id: "overconfidence",
+	},
+	"elementalteething": {
+		shortDesc: "This Pokemon's type changes before using a move and its biting moves are boosted 1.2x",
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['bite']) {
+				return this.chainModify(1.2);
+			}
+		},
+		onPrepareHit(source, target, move) {
+			if (move.hasBounced) return;
+			const type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+				this.add('-start', source, 'typechange', type, '[from] ability: Elemental Teething');
+			}
+		},
+		name: "Elemental Teething",
+		id: "elementalteething",
+	},
+	}; exports.Abilities = Abilities;

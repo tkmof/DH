@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleTypeChart = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const TypeChart = {
 	Fire: {
 		inherit: true,
 		damageTaken: {
@@ -67,4 +67,4 @@
 			Water: 0,
 		},
 	},
-}; exports.BattleTypeChart = BattleTypeChart;
+}; exports.TypeChart = TypeChart;

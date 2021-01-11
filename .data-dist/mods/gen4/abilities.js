@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAbilities = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Abilities = {
 	angerpoint: {
 		inherit: true,
 		desc: "If this Pokemon, or its substitute, is struck by a critical hit, its Attack is raised by 12 stages.",
@@ -488,4 +488,4 @@
 			}
 		},
 	},
-}; exports.BattleAbilities = BattleAbilities;
+}; exports.Abilities = Abilities;

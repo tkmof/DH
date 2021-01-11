@@ -1,6 +1,14 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormatsData = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const FormatsData = {
 	charizardgmax: {
 		isGigantamax: "G-Max Wildfire",
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	zacian: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	zamazenta: {
 		tier: "OU",
 		doublesTier: "DOU",
 	},
@@ -200,4 +208,4 @@
 		tier: "OU",
 		doublesTier: "DOU",
 	},
-}; exports.BattleFormatsData = BattleFormatsData;
+}; exports.FormatsData = FormatsData;

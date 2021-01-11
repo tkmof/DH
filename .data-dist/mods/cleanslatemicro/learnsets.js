@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleLearnsets = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Learnsets = {
 	typenull: {learnset: {
 		aerialace: ["7M", "7L20"],
 		airslash: ["7L60"],
@@ -1593,4 +1593,4 @@
 		stealthrock: ["7L1"],
 		powergem: ["7L1"],
 	}},
-}; exports.BattleLearnsets = BattleLearnsets;
+}; exports.Learnsets = Learnsets;

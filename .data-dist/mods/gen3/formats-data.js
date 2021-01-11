@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormatsData = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const FormatsData = {
 	bulbasaur: {
 		tier: "LC",
 	},
@@ -1395,4 +1395,4 @@
 		randomBattleMoves: ["calmmind", "icebeam", "psychic", "recover", "shadowball", "spikes", "superpower", "taunt", "toxic"],
 		tier: "Uber",
 	},
-}; exports.BattleFormatsData = BattleFormatsData;
+}; exports.FormatsData = FormatsData;

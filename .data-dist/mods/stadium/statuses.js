@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleStatuses = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Statuses = {
 	brn: {
 		name: 'brn',
 		effectType: 'Status',
@@ -128,4 +128,4 @@
 			this.add('-end', pokemon, this.effectData.sourceEffect, '[partiallytrapped]');
 		},
 	},
-}; exports.BattleStatuses = BattleStatuses;
+}; exports.Statuses = Statuses;

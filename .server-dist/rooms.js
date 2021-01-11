@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }/**
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _nullishCoalesce(lhs, rhsFn) { if (lhs != null) { return lhs; } else { return rhsFn(); } } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }/**
  * Rooms
  * Pokemon Showdown - http://pokemonshowdown.com/
  *
@@ -15,9 +15,12 @@
  * @license MIT
  */
 
+const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');
+
 const TIMEOUT_EMPTY_DEALLOCATE = 10 * 60 * 1000;
 const TIMEOUT_INACTIVE_DEALLOCATE = 40 * 60 * 1000;
 const REPORT_USER_STATS_INTERVAL = 10 * 60 * 1000;
+const MAX_CHATROOM_ID_LENGTH = 225;
 
 const CRASH_REPORT_THROTTLE = 60 * 60 * 1000;
 
@@ -25,9 +28,13 @@ const LAST_BATTLE_WRITE_THROTTLE = 10;
 
 const RETRY_AFTER_LOGIN = null;
 
+const MODLOG_PATH = 'logs/modlog';
+const MODLOG_DB_PATH = `${__dirname}/../databases/modlog.db`;
+
 var _fs = require('../.lib-dist/fs');
 var _utils = require('../.lib-dist/utils');
 var _streams = require('../.lib-dist/streams');
+
 
 
 
@@ -36,10 +43,17 @@ var _roomgame = require('./room-game');
 var _roomlogs = require('./roomlogs');
 var _crypto = require('crypto'); var crypto = _crypto;
 var _usergroups = require('./user-groups');
+var _modlog = require('./modlog');
 
 /*********************************************************
  * the Room object.
  *********************************************************/
+
+
+
+
+
+
 
 
 
@@ -134,9 +148,12 @@ var _usergroups = require('./user-groups');
 	 */
 	
 	/**
-	 * The room's current RoomGame, if it exists. Each room can only have 0 or 1
+	 * The room's current RoomGame, if it exists. Each room can have 0 to 2
 	 * `RoomGame`s, and `this.game.room === this`.
+	 * Rooms may also have an additional game in `this.subGame`.
+	 * However, `subGame`s do not update `user.game`.
 	 */
+	
 	
 	/**
 	 * The room's current battle. Battles are a type of RoomGame, so in battle
@@ -145,8 +162,8 @@ var _usergroups = require('./user-groups');
 	 */
 	
 	/**
-	 * The room's current tournament. Tours are a type of RoomGame, so if the
-	 * current room is hosting a tournament, `this.tour === this.game`.
+	 * The game room's current tournament. If the room is a battle room whose
+	 * battle is part of a tournament, `this.tour === this.parent.game`.
 	 * In all other rooms, `this.tour` is `null`.
 	 */
 	
@@ -166,6 +183,7 @@ var _usergroups = require('./user-groups');
 	/** If true, this room's settings will be saved in config/chatrooms.json, allowing it to stay past restarts. */
 	
 
+	
 	
 	
 	
@@ -192,6 +210,7 @@ var _usergroups = require('./user-groups');
 
 		this.battle = null;
 		this.game = null;
+		this.subGame = null;
 		this.tour = null;
 
 		this.roomid = roomid;
@@ -277,6 +296,7 @@ var _usergroups = require('./user-groups');
 		this.tour = null;
 		this.game = null;
 		this.battle = null;
+		this.validateTitle(this.title, this.roomid);
 	}
 
 	toString() {
@@ -328,8 +348,12 @@ var _usergroups = require('./user-groups');
 		this.log.roomlog(message);
 		return this;
 	}
-	modlog(message) {
-		this.log.modlog(message);
+	/**
+	 * Writes an entry to the modlog for that room, and the global modlog if entry.isGlobal is true.
+	 */
+	modlog(entry) {
+		const override = this.tour ? `${this.roomid} tournament: ${this.tour.roomid}` : undefined;
+		this.log.modlog(entry, override);
 		return this;
 	}
 	uhtmlchange(name, message) {
@@ -338,10 +362,10 @@ var _usergroups = require('./user-groups');
 	attributedUhtmlchange(user, name, message) {
 		this.log.attributedUhtmlchange(user, name, message);
 	}
-	hideText(userids, lineCount = 0) {
+	hideText(userids, lineCount = 0, hideRevealButton) {
 		const cleared = this.log.clearText(userids, lineCount);
 		for (const userid of cleared) {
-			this.send(`|unlink|hide|${userid}|${lineCount}`);
+			this.send(`|hidelines|${hideRevealButton ? 'delete' : 'hide'}|${userid}|${lineCount}`);
 		}
 		this.update();
 	}
@@ -363,7 +387,7 @@ var _usergroups = require('./user-groups');
 	 * Like addByUser, but without logging
 	 */
 	sendByUser(user, text) {
-		this.send('|c|' + user.getIdentity(this.roomid) + '|/log ' + text);
+		this.send('|c|' + (user ? user.getIdentity(this.roomid) : '&') + '|/log ' + text);
 	}
 	/**
 	 * Like addByUser, but sends to mods only.
@@ -372,14 +396,14 @@ var _usergroups = require('./user-groups');
 		this.sendMods('|c|' + user.getIdentity(this.roomid) + '|/log ' + text);
 	}
 	update() {
-		if (!this.log.broadcastBuffer) return;
+		if (!this.log.broadcastBuffer.length) return;
 		if (this.reportJoinsInterval) {
 			clearInterval(this.reportJoinsInterval);
 			this.reportJoinsInterval = null;
 			this.userList = this.getUserList();
 		}
-		this.send(this.log.broadcastBuffer);
-		this.log.broadcastBuffer = '';
+		this.send(this.log.broadcastBuffer.join('\n'));
+		this.log.broadcastBuffer = [];
 		this.log.truncate();
 
 		this.pokeExpireTimer();
@@ -469,23 +493,13 @@ var _usergroups = require('./user-groups');
 		if (!this.settings.modjoin) return true;
 		// users with a room rank can always join
 		if (this.auth.has(user.id)) return true;
-		const userGroup = user.can('makeroom') ? user.group : this.auth.get(user.id);
 
 		const modjoinSetting = this.settings.modjoin !== true ? this.settings.modjoin : this.settings.modchat;
 		if (!modjoinSetting) return true;
-		let modjoinGroup = modjoinSetting;
-
-		if (modjoinGroup === 'trusted') {
-			if (user.trusted) return true;
-			modjoinGroup = Config.groupsranking[1];
+		if (!Users.Auth.isAuthLevel(modjoinSetting)) {
+			Monitor.error(`Invalid modjoin setting in ${this.roomid}: ${modjoinSetting}`);
 		}
-		if (modjoinGroup === 'autoconfirmed') {
-			if (user.autoconfirmed) return true;
-			modjoinGroup = Config.groupsranking[1];
-		}
-		if (!(userGroup in Config.groups)) return false;
-		if (!(modjoinGroup in Config.groups)) throw new Error(`Invalid modjoin setting in ${this.roomid}: ${modjoinGroup}`);
-		return Config.groups[userGroup].rank >= Config.groups[modjoinGroup].rank;
+		return Users.globalAuth.atLeast(user, modjoinSetting);
 	}
 	mute(user, setTime) {
 		const userid = user.id;
@@ -520,8 +534,8 @@ var _usergroups = require('./user-groups');
 
 		user.updateIdentity();
 
-		if (!(this.settings.isPrivate === true || this.settings.isPersonal || this.battle)) {
-			Punishments.monitorRoomPunishments(user);
+		if (!(this.settings.isPrivate === true || this.settings.isPersonal)) {
+			void Punishments.monitorRoomPunishments(user);
 		}
 
 		return userid;
@@ -581,7 +595,7 @@ var _usergroups = require('./user-groups');
 
 	pokeExpireTimer() {
 		if (this.expireTimer) clearTimeout(this.expireTimer);
-		if (this.settings.isPersonal || this.settings.isHelp) {
+		if (this.settings.isPersonal) {
 			this.expireTimer = setTimeout(() => this.expire(), TIMEOUT_INACTIVE_DEALLOCATE);
 		} else {
 			this.expireTimer = null;
@@ -592,11 +606,8 @@ var _usergroups = require('./user-groups');
 		this.destroy();
 	}
 	reportJoin(type, entry, user) {
-		let reportJoins = this.reportJoins;
-		if (reportJoins && this.settings.modchat && !user.authAtLeast(this.settings.modchat, this)) {
-			reportJoins = false;
-		}
-		if (reportJoins) {
+		const canTalk = this.auth.atLeast(user, _nullishCoalesce(this.settings.modchat, () => ( 'unlocked'))) && !this.isMuted(user);
+		if (this.reportJoins && (canTalk || this.auth.has(user.id))) {
 			this.add(`|${type}|${entry}`).update();
 			return;
 		}
@@ -608,7 +619,7 @@ var _usergroups = require('./user-groups');
 		}
 		entry = `|${ucType}|${entry}`;
 		if (this.batchJoins) {
-			this.log.broadcastBuffer += entry;
+			this.log.broadcastBuffer.push(entry);
 
 			if (!this.reportJoinsInterval) {
 				this.reportJoinsInterval = setTimeout(
@@ -638,41 +649,116 @@ var _usergroups = require('./user-groups');
 				this.settings.introMessage.replace(/\n/g, '') +
 				`</div></div>`;
 		}
-		if (this.settings.staffMessage && user.can('mute', null, this)) {
+		const staffIntro = this.getStaffIntroMessage(user);
+		if (staffIntro) message += `\n${staffIntro}`;
+		return message;
+	}
+	getStaffIntroMessage(user) {
+		if (!user.can('mute', null, this)) return ``;
+		let message = ``;
+		if (this.settings.staffMessage) {
 			message += `\n|raw|<div class="infobox">(Staff intro:)<br /><div>` +
 				this.settings.staffMessage.replace(/\n/g, '') +
 				`</div>`;
 		}
-		if (_optionalChain([this, 'access', _ => _.pendingApprovals, 'optionalAccess', _2 => _2.size]) && user.can('mute', null, this)) {
+		if (_optionalChain([this, 'access', _ => _.pendingApprovals, 'optionalAccess', _2 => _2.size])) {
 			message += `\n|raw|<div class="infobox">`;
-			message += `<details><summary>(Pending media requests: ${this.pendingApprovals.size})</summary>`;
+			message += `<details open><summary>(Pending media requests: ${this.pendingApprovals.size})</summary>`;
 			for (const [userid, entry] of this.pendingApprovals) {
 				message += `<div class="infobox">`;
 				message += `<strong>Requester ID:</strong> ${userid}<br />`;
-				message += `<strong>Link:</strong> <a href="${entry.link}">${entry.link}</a><br />`;
+				if (entry.dimensions) {
+					const [width, height, resized] = entry.dimensions;
+					message += `<strong>Link:</strong><br /> <img src="${entry.link}" width="${width}" height="${height}"><br />`;
+					if (resized) message += `(Resized)<br />`;
+				} else {
+					message += `<strong>Link:</strong><br /> <a href="${entry.link}"">Link</a><br />`;
+				}
 				message += `<strong>Comment:</strong> ${entry.comment ? entry.comment : 'None.'}<br />`;
 				message += `<button class="button" name="send" value="/approveshow ${userid}">Approve</button>` +
 				`<button class="button" name="send" value="/denyshow ${userid}">Deny</button></div>`;
-				message += `</div><hr />`;
+				message += `<hr />`;
 			}
 			message += `</details></div>`;
 		}
-		return message;
+		return message ? `|raw|${message}` : ``;
 	}
 	getSubRooms(includeSecret = false) {
 		if (!this.subRooms) return [];
 		return [...this.subRooms.values()].filter(
-			room => !room.settings.isPrivate || includeSecret
+			room => includeSecret ? true : !room.settings.isPrivate && !room.settings.isPersonal
 		);
+	}
+	validateTitle(newTitle, newID) {
+		if (!newID) newID = toID(newTitle);
+		// `,` is a delimiter used by a lot of /commands
+		// `|` and `[` are delimiters used by the protocol
+		// `-` has special meaning in roomids
+		if (newTitle.includes(',') || newTitle.includes('|')) {
+			throw new Chat.ErrorMessage(`Room title "${newTitle}" can't contain any of: ,|`);
+		}
+		if ((!newID.includes('-') || newID.startsWith('groupchat-')) && newTitle.includes('-')) {
+			throw new Chat.ErrorMessage(`Room title "${newTitle}" can't contain -`);
+		}
+		if (newID.length > MAX_CHATROOM_ID_LENGTH) throw new Chat.ErrorMessage("The given room title is too long.");
+		if (exports.Rooms.search(newTitle)) throw new Chat.ErrorMessage(`The room '${newTitle}' already exists.`);
+	}
+	setPrivate(privacy) {
+		this.settings.isPrivate = privacy;
+		this.saveSettings();
+
+		if (privacy) {
+			for (const user of Object.values(this.users)) {
+				if (!user.named) {
+					user.leaveRoom(this.roomid);
+					user.popup(`The room <<${this.roomid}>> has been made private; you must log in to be in private rooms.`);
+				}
+			}
+		}
+
+		if (this.battle) {
+			if (privacy) {
+				if (this.roomid.endsWith('pw')) return true;
+
+				// This is the same password generation approach as genPassword in the client replays.lib.php
+				// but obviously will not match given mt_rand there uses a different RNG and seed.
+				let password = '';
+				for (let i = 0; i < 31; i++) password += ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
+
+				this.rename(this.title, `${this.roomid}-${password}pw` , true);
+			} else {
+				if (!this.roomid.endsWith('pw')) return true;
+
+				const lastDashIndex = this.roomid.lastIndexOf('-');
+				if (lastDashIndex < 0) throw new Error(`invalid battle ID ${this.roomid}`);
+
+				this.rename(this.title, this.roomid.slice(0, lastDashIndex) );
+			}
+		}
+	}
+
+	/**
+	 * Displays a warning popup to all users in the room.
+	 * Returns a list of all the user IDs that were warned.
+	 */
+	warnParticipants(message) {
+		const warned = Object.values(this.users);
+		for (const user of warned) {
+			user.popup(`|modal|${message}`);
+		}
+		return warned;
 	}
 
 	/**
 	 * @param newID Add this param if the roomid is different from `toID(newTitle)`
+	 * @param noAlias Set this param to true to not redirect aliases and the room's old name to its new name.
 	 */
-	async rename(newTitle, newID) {
+	rename(newTitle, newID, noAlias) {
 		if (!newID) newID = toID(newTitle) ;
-		if (this.game || this.tour) return;
-
+		this.validateTitle(newTitle, newID);
+		if (this.type === 'chat' && this.game) {
+			throw new Chat.ErrorMessage(`Please finish your game (${this.game.title}) before renaming ${this.roomid}.`);
+		}
 		const oldID = this.roomid;
 		this.roomid = newID;
 		this.title = newTitle;
@@ -685,27 +771,34 @@ var _usergroups = require('./user-groups');
 			exports.Rooms.lobby = this ;
 		}
 
-		for (const [alias, roomid] of exports.Rooms.aliases.entries()) {
-			if (roomid === oldID) {
-				exports.Rooms.aliases.set(alias, newID);
+		if (!noAlias) {
+			for (const [alias, roomid] of exports.Rooms.aliases.entries()) {
+				if (roomid === oldID) {
+					exports.Rooms.aliases.set(alias, newID);
+				}
 			}
+
+			// add an alias from the old id
+			exports.Rooms.aliases.set(oldID, newID);
+			if (!this.settings.aliases) this.settings.aliases = [];
+			// resolve an old (fixed) bug in /renameroom
+			if (!this.settings.aliases.includes(oldID)) this.settings.aliases.push(oldID);
+		} else {
+			// clear aliases
+			for (const [alias, roomid] of exports.Rooms.aliases.entries()) {
+				if (roomid === oldID) {
+					exports.Rooms.aliases.delete(alias);
+				}
+			}
+			this.settings.aliases = undefined;
 		}
-		// add an alias from the old id
-		exports.Rooms.aliases.set(oldID, newID);
-		if (!this.settings.aliases) this.settings.aliases = [];
-		// resolve an old (fixed) bug in /renameroom
-		if (!this.settings.aliases.includes(oldID)) this.settings.aliases.push(oldID);
+
+		_optionalChain([this, 'access', _3 => _3.game, 'optionalAccess', _4 => _4.renameRoom, 'call', _5 => _5(newID)]);
+
 		this.saveSettings();
 
 		for (const user of Object.values(this.users)) {
-			user.inRooms.delete(oldID);
-			user.inRooms.add(newID);
-			for (const connection of user.connections) {
-				connection.inRooms.delete(oldID);
-				connection.inRooms.add(newID);
-				Sockets.roomRemove(connection.worker, oldID, connection.socketid);
-				Sockets.roomAdd(connection.worker, newID, connection.socketid);
-			}
+			user.moveConnections(oldID, newID);
 			user.send(`>${oldID}\n|noinit|rename|${newID}|${newTitle}`);
 		}
 
@@ -723,7 +816,7 @@ var _usergroups = require('./user-groups');
 		this.settings.title = newTitle;
 		this.saveSettings();
 
-		return this.log.rename(newID);
+		void this.log.rename(newID);
 	}
 
 	onConnect(user, connection) {
@@ -742,6 +835,9 @@ var _usergroups = require('./user-groups');
 		if (user.named) {
 			this.reportJoin('j', user.getIdentityWithStatus(this.roomid), user);
 		}
+
+		const staffIntro = this.getStaffIntroMessage(user);
+		if (staffIntro) this.sendUser(user, staffIntro);
 
 		this.users[user.id] = user;
 		this.userCount++;
@@ -764,12 +860,8 @@ var _usergroups = require('./user-groups');
 		this.users[user.id] = user;
 		if (joining) {
 			this.reportJoin('j', user.getIdentityWithStatus(this.roomid), user);
-			if (this.settings.staffMessage && user.can('mute', null, this)) {
-				this.sendUser(
-					user,
-					`|raw|<div class="infobox">(Staff intro:)<br /><div>${this.settings.staffMessage.replace(/\n/g, '')}</div></div>`
-				);
-			}
+			const staffIntro = this.getStaffIntroMessage(user);
+			if (staffIntro) this.sendUser(user, staffIntro);
 		} else if (!user.named) {
 			this.reportJoin('l', oldid, user);
 		} else {
@@ -784,7 +876,7 @@ var _usergroups = require('./user-groups');
 	 * onRename, but without a userid change
 	 */
 	onUpdateIdentity(user) {
-		if (_optionalChain([user, 'optionalAccess', _3 => _3.connected])) {
+		if (_optionalChain([user, 'optionalAccess', _6 => _6.connected])) {
 			if (!this.users[user.id]) return false;
 			if (user.named) {
 				this.reportJoin('n', user.getIdentityWithStatus(this.roomid) + '|' + user.id, user);
@@ -820,7 +912,7 @@ var _usergroups = require('./user-groups');
 
 		// remove references to ourself
 		for (const i in this.users) {
-			this.users[i].leaveRoom(this , null, true);
+			this.users[i].leaveRoom(this , null);
 			delete this.users[i];
 		}
 
@@ -866,10 +958,13 @@ var _usergroups = require('./user-groups');
 		}
 		this.logUserStatsInterval = null;
 
-		void this.log.destroy();
+		void this.log.destroy(true);
 
 		// get rid of some possibly-circular references
 		exports.Rooms.rooms.delete(this.roomid);
+	}
+	tr(strings, ...keys) {
+		return Chat.tr(this.settings.language || 'english' , strings, ...keys);
 	}
 } exports.BasicRoom = BasicRoom;
 
@@ -881,9 +976,8 @@ var _usergroups = require('./user-groups');
 	 */
 	
 	/**
-	 * Rooms that staff autojoin upon connecting
+	 * Rooms that users autojoin upon logging in
 	 */
-	
 	
 	
 	
@@ -914,20 +1008,27 @@ var _usergroups = require('./user-groups');
 				title: 'Staff',
 				auth: {},
 				creationTime: Date.now(),
-				isPrivate: true,
-				staffRoom: true,
-				staffAutojoin: true,
+				isPrivate: 'hidden',
+				modjoin: '%',
+				autojoin: true,
 			}];
 		}
 
 		this.chatRooms = [];
 
 		this.autojoinList = [];
-		this.staffAutojoinList = [];
+		this.modjoinedAutojoinList = [];
 		for (const [i, settings] of this.settingsList.entries()) {
 			if (!settings || !settings.title) {
 				Monitor.warn(`ERROR: Room number ${i} has no data and could not be loaded.`);
 				continue;
+			}
+			if ((settings ).staffAutojoin) {
+				// convert old staffAutojoin format
+				delete (settings ).staffAutojoin;
+				(settings ).autojoin = true;
+				if (!settings.modjoin) settings.modjoin = '%';
+				if (settings.isPrivate === true) settings.isPrivate = 'hidden';
 			}
 
 			// We're okay with assinging type `ID` to `RoomID` here
@@ -935,7 +1036,7 @@ var _usergroups = require('./user-groups');
 			// meaning, unlike in helptickets, groupchats, battles etc
 			// where they are used for shared modlogs and the like
 			const id = toID(settings.title) ;
-			Monitor.notice("NEW CHATROOM: " + id);
+			Monitor.notice("RESTORE CHATROOM: " + id);
 			const room = exports.Rooms.createChatRoom(id, settings.title, settings);
 			if (room.settings.aliases) {
 				for (const alias of room.settings.aliases) {
@@ -944,8 +1045,13 @@ var _usergroups = require('./user-groups');
 			}
 
 			this.chatRooms.push(room);
-			if (room.settings.autojoin) this.autojoinList.push(id);
-			if (room.settings.staffAutojoin) this.staffAutojoinList.push(id);
+			if (room.settings.autojoin) {
+				if (room.settings.modjoin) {
+					this.modjoinedAutojoinList.push(id);
+				} else {
+					this.autojoinList.push(id);
+				}
+			}
 		}
 		exports.Rooms.lobby = exports.Rooms.rooms.get('lobby') ;
 
@@ -958,7 +1064,7 @@ var _usergroups = require('./user-groups');
 			this.ladderIpLog = new (0, _streams.WriteStream)({write() { return undefined; }});
 		}
 		// Create writestream for modlog
-		this.modlogStream = _fs.FS.call(void 0, 'logs/modlog/modlog_global.txt').createAppendStream();
+		exports.Rooms.Modlog.initialize('global');
 
 		this.reportUserStatsInterval = setInterval(
 			() => this.reportUserStats(),
@@ -983,8 +1089,8 @@ var _usergroups = require('./user-groups');
 		this.lastWrittenBattle = this.lastBattle;
 	}
 
-	modlog(message) {
-		void this.modlogStream.write('[' + (new Date().toJSON()) + '] ' + message + '\n');
+	modlog(entry, overrideID) {
+		void exports.Rooms.Modlog.write('global', entry, overrideID);
 	}
 
 	writeChatRoomData() {
@@ -1069,7 +1175,7 @@ var _usergroups = require('./user-groups');
 			if (!Config.groups[rank] || !rank) continue;
 
 			const tarGroup = Config.groups[rank];
-			const groupType = tarGroup.addhtml || (!tarGroup.mute && !tarGroup.root) ?
+			const groupType = tarGroup.id === 'bot' || (!tarGroup.mute && !tarGroup.root) ?
 				'normal' : (tarGroup.root || tarGroup.declare) ? 'leadership' : 'staff';
 
 			rankList.push({
@@ -1091,14 +1197,10 @@ var _usergroups = require('./user-groups');
 		return Config.rankList;
 	}
 
-	getBattles(/** "formatfilter, elofilter, usernamefilter */ filter) {
+	getBattles(/** formatfilter, elofilter, usernamefilter */ filter) {
 		const rooms = [];
-		let skipCount = 0;
 		const [formatFilter, eloFilterString, usernameFilter] = filter.split(',');
 		const eloFilter = +eloFilterString;
-		if (this.battleCount > 150 && !formatFilter && !eloFilter && !usernameFilter) {
-			skipCount = this.battleCount - 150;
-		}
 		for (const room of exports.Rooms.rooms.values()) {
 			if (!room || !room.active || room.settings.isPrivate) continue;
 			if (room.type !== 'battle') continue;
@@ -1110,8 +1212,6 @@ var _usergroups = require('./user-groups');
 				if (!p1userid || !p2userid) continue;
 				if (!p1userid.startsWith(usernameFilter) && !p2userid.startsWith(usernameFilter)) continue;
 			}
-			if (skipCount && skipCount--) continue;
-
 			rooms.push(room);
 		}
 
@@ -1143,7 +1243,7 @@ var _usergroups = require('./user-groups');
 		for (const room of this.chatRooms) {
 			if (!room) continue;
 			if (room.parent) continue;
-			if (room.settings.isPrivate && !(room.settings.isPrivate === 'voice' && user.group !== ' ')) continue;
+			if (room.settings.isPrivate && !(room.settings.isPrivate === 'voice' && user.tempGroup !== ' ')) continue;
 			const roomData = {
 				title: room.title,
 				desc: room.settings.desc || '',
@@ -1259,7 +1359,7 @@ var _usergroups = require('./user-groups');
 	}
 	autojoinRooms(user, connection) {
 		// we only autojoin regular rooms if the client requests it with /autojoin
-		// note that this restriction doesn't apply to staffAutojoin
+		// note that this restriction doesn't apply to modjoined autojoin rooms
 		let includesLobby = false;
 		for (const roomName of this.autojoinList) {
 			user.joinRoom(roomName, connection);
@@ -1269,19 +1369,14 @@ var _usergroups = require('./user-groups');
 	}
 	checkAutojoin(user, connection) {
 		if (!user.named) return;
-		for (let [i, staffAutojoin] of this.staffAutojoinList.entries()) {
-			const room = exports.Rooms.get(staffAutojoin);
+		for (let [i, roomid] of this.modjoinedAutojoinList.entries()) {
+			const room = exports.Rooms.get(roomid);
 			if (!room) {
-				this.staffAutojoinList.splice(i, 1);
+				this.modjoinedAutojoinList.splice(i, 1);
 				i--;
 				continue;
 			}
-			if (room.settings.staffAutojoin === true && user.isStaff ||
-					typeof room.settings.staffAutojoin === 'string' && room.settings.staffAutojoin.includes(user.group) ||
-					room.auth.has(user.id)) {
-				// if staffAutojoin is true: autojoin if isStaff
-				// if staffAutojoin is String: autojoin if user.group in staffAutojoin
-				// if staffAutojoin is anything truthy: autojoin if user has any roomauth
+			if (room.checkModjoin(user)) {
 				user.joinRoom(room.roomid, connection);
 			}
 		}
@@ -1308,7 +1403,6 @@ var _usergroups = require('./user-groups');
 		// @ts-ignore
 		const stack = (err ? _utils.Utils.escapeHTML(err.stack).split(`\n`).slice(0, 2).join(`<br />`) : ``);
 		for (const [id, curRoom] of exports.Rooms.rooms) {
-			if (id === 'global') continue;
 			if (err) {
 				if (id === 'staff' || id === 'development' || (!devRoom && id === 'lobby')) {
 					curRoom.addRaw(`<div class="broadcast-red"><b>The server needs to restart because of a crash:</b> ${stack}<br />Please restart the server.</div>`);
@@ -1332,7 +1426,7 @@ var _usergroups = require('./user-groups');
 			}
 		}
 		for (const user of Users.users.values()) {
-			user.send(`|pm|&|${user.group}${user.name}|/raw <div class="broadcast-red"><b>The server is restarting soon.</b><br />Please finish your battles quickly. No new battles can be started until the server resets in a few minutes.</div>`);
+			user.send(`|pm|&|${user.tempGroup}${user.name}|/raw <div class="broadcast-red"><b>The server is restarting soon.</b><br />Please finish your battles quickly. No new battles can be started until the server resets in a few minutes.</div>`);
 		}
 
 		this.lockdown = true;
@@ -1387,15 +1481,24 @@ var _usergroups = require('./user-groups');
 			return;
 		}
 		this.lastReportedCrash = time;
-		// @ts-ignore
-		const stackLines = (err ? _utils.Utils.escapeHTML(err.stack).split(`\n`) : []);
-		const stack = stackLines.slice(1).join(`<br />`);
 
-		let crashMessage = `|html|<div class="broadcast-red"><details class="readmore"><summary><b>${crasher} crashed:</b> ${stackLines[0]}</summary>${stack}</details></div>`;
+		const stack = (err && (err.stack || err.message || err.name)) || '';
+		const stackLines = _utils.Utils.escapeHTML(stack).split(`\n`);
+
+		let crashMessage = `|html|<div class="broadcast-red"><details class="readmore"><summary><b>${crasher} crashed:</b> ${stackLines[0]}</summary>${stackLines.slice(1).join('<br />')}</details></div>`;
 		let privateCrashMessage = null;
 
 		const upperStaffRoom = exports.Rooms.get('upperstaff');
-		if (stack.includes("private")) {
+
+		let hasPrivateTerm = stack.includes('private');
+		for (const term of (Config.privatecrashterms || [])) {
+			if (typeof term === 'string' ? stack.includes(term) : term.test(stack)) {
+				hasPrivateTerm = true;
+				break;
+			}
+		}
+
+		if (hasPrivateTerm) {
 			if (upperStaffRoom) {
 				privateCrashMessage = crashMessage;
 				crashMessage = `|html|<div class="broadcast-red"><b>${crasher} crashed in private code</b> <a href="/upperstaff">Read more</a></div>`;
@@ -1407,11 +1510,11 @@ var _usergroups = require('./user-groups');
 		if (devRoom) {
 			devRoom.add(crashMessage).update();
 		} else {
-			_optionalChain([exports.Rooms, 'access', _4 => _4.lobby, 'optionalAccess', _5 => _5.add, 'call', _6 => _6(crashMessage), 'access', _7 => _7.update, 'call', _8 => _8()]);
-			_optionalChain([exports.Rooms, 'access', _9 => _9.get, 'call', _10 => _10('staff'), 'optionalAccess', _11 => _11.add, 'call', _12 => _12(crashMessage), 'access', _13 => _13.update, 'call', _14 => _14()]);
+			_optionalChain([exports.Rooms, 'access', _7 => _7.lobby, 'optionalAccess', _8 => _8.add, 'call', _9 => _9(crashMessage), 'access', _10 => _10.update, 'call', _11 => _11()]);
+			_optionalChain([exports.Rooms, 'access', _12 => _12.get, 'call', _13 => _13('staff'), 'optionalAccess', _14 => _14.add, 'call', _15 => _15(crashMessage), 'access', _16 => _16.update, 'call', _17 => _17()]);
 		}
 		if (privateCrashMessage) {
-			upperStaffRoom.add(privateCrashMessage);
+			upperStaffRoom.add(privateCrashMessage).update();
 		}
 	}
 	/**
@@ -1421,7 +1524,6 @@ var _usergroups = require('./user-groups');
 	destroyPersonalRooms(userid) {
 		const roomauth = [];
 		for (const [id, curRoom] of exports.Rooms.rooms) {
-			if (id === 'global' || !curRoom.persist) continue;
 			if (curRoom.settings.isPersonal && curRoom.auth.get(userid) === Users.HOST_SYMBOL) {
 				curRoom.destroy();
 			} else {
@@ -1430,7 +1532,9 @@ var _usergroups = require('./user-groups');
 				}
 
 				if (curRoom.auth.has(userid)) {
-					roomauth.push(`${curRoom.auth.get(userid)}${id}`);
+					let oldGroup = curRoom.auth.get(userid) ;
+					if (oldGroup === ' ') oldGroup = 'whitelist in ';
+					roomauth.push(`${oldGroup}${id}`);
 				}
 			}
 		}
@@ -1516,12 +1620,12 @@ var _usergroups = require('./user-groups');
 		return this.getLog(this.game.playerTable[user.id].num);
 	}
 	update(excludeUser = null) {
-		if (!this.log.broadcastBuffer) return;
+		if (!this.log.broadcastBuffer.length) return;
 
 		if (this.userCount) {
-			Sockets.channelBroadcast(this.roomid, '>' + this.roomid + '\n\n' + this.log.broadcastBuffer);
+			Sockets.channelBroadcast(this.roomid, `>${this.roomid}\n${this.log.broadcastBuffer.join('\n')}`);
 		}
-		this.log.broadcastBuffer = '';
+		this.log.broadcastBuffer = [];
 
 		this.pokeExpireTimer();
 	}
@@ -1576,8 +1680,9 @@ var _usergroups = require('./user-groups');
 		const datahash = crypto.createHash('md5').update(data.replace(/[^(\x20-\x7F)]+/g, '')).digest('hex');
 		let rating = 0;
 		if (battle.ended && this.rated) rating = this.rated;
+		const {id, password} = this.getReplayData();
 		const [success] = await LoginServer.request('prepreplay', {
-			id: this.roomid.substr(7),
+			id: id,
 			loghash: datahash,
 			p1: battle.p1.name,
 			p2: battle.p2.name,
@@ -1585,18 +1690,26 @@ var _usergroups = require('./user-groups');
 			rating,
 			hidden: options === 'forpunishment' || (this ).unlistReplay ?
 				'2' : this.settings.isPrivate || this.hideReplay ? '1' : '',
-			inputlog: _optionalChain([battle, 'access', _15 => _15.inputLog, 'optionalAccess', _16 => _16.join, 'call', _17 => _17('\n')]) || null,
+			inputlog: _optionalChain([battle, 'access', _18 => _18.inputLog, 'optionalAccess', _19 => _19.join, 'call', _20 => _20('\n')]) || null,
 		});
 		if (success) battle.replaySaved = true;
-		if (_optionalChain([success, 'optionalAccess', _18 => _18.errorip])) {
+		if (_optionalChain([success, 'optionalAccess', _21 => _21.errorip])) {
 			connection.popup(`This server's request IP ${success.errorip} is not a registered server.`);
 			return;
 		}
 		connection.send('|queryresponse|savereplay|' + JSON.stringify({
 			log: data,
-			id: this.roomid.substr(7),
+			id: id,
+			password: password,
 			silent: options === 'forpunishment' || options === 'silent',
 		}));
+	}
+
+	getReplayData() {
+		if (!this.roomid.endsWith('pw')) return {id: this.roomid.slice(7)};
+		const end = this.roomid.length - 2;
+		const lastHyphen = this.roomid.lastIndexOf('-', end);
+		return {id: this.roomid.slice(7, lastHyphen), password: this.roomid.slice(lastHyphen + 1, end)};
 	}
 } exports.GameRoom = GameRoom;
 
@@ -1606,6 +1719,9 @@ function getRoom(roomid) {
 }
 
  const Rooms = {
+	MODLOG_PATH,
+	MODLOG_DB_PATH,
+	Modlog: new (0, _modlog.Modlog)(MODLOG_PATH, MODLOG_DB_PATH),
 	/**
 	 * The main roomid:Room table. Please do not hold a reference to a
 	 * room long-term; just store the roomid and grab it from here (with
@@ -1693,6 +1809,7 @@ function getRoom(roomid) {
 		} else {
 			roomTitle = `${p1name} vs. ${p2name}`;
 		}
+		options.isPersonal = true;
 		const room = exports.Rooms.createGameRoom(roomid, roomTitle, options);
 		const battle = new exports.Rooms.RoomBattle(room, formatid, options);
 		room.game = battle;
@@ -1711,13 +1828,12 @@ function getRoom(roomid) {
 		}
 
 		if (privacySetter.size) {
-			const prefix = battle.forcedPublic();
-			if (prefix) {
-				room.settings.isPrivate = false;
+			if (battle.forcePublic) {
+				room.setPrivate(false);
 				room.settings.modjoin = null;
-				room.add(`|raw|<div class="broadcast-blue"><strong>This battle is required to be public due to a player having a name prefixed by '${prefix}'.</div>`);
+				room.add(`|raw|<div class="broadcast-blue"><strong>This battle is required to be public due to a player having a name starting with '${battle.forcePublic}'.</div>`);
 			} else if (!options.tour || (room.tour && room.tour.modjoin)) {
-				room.settings.isPrivate = 'hidden';
+				room.setPrivate('hidden');
 				if (inviteOnly) room.settings.modjoin = '%';
 				room.privacySetter = privacySetter;
 				if (inviteOnly) {
@@ -1736,9 +1852,6 @@ function getRoom(roomid) {
 
 		return room;
 	},
-
-	battleModlogStream: _fs.FS.call(void 0, 'logs/modlog/modlog_battle.txt').createAppendStream(),
-	groupchatModlogStream: _fs.FS.call(void 0, 'logs/modlog/modlog_groupchat.txt').createAppendStream(),
 
 	global: null ,
 	lobby: null ,
@@ -1760,7 +1873,3 @@ function getRoom(roomid) {
 	RoomBattleTimer: _roombattle.RoomBattleTimer,
 	PM: _roombattle.PM,
 }; exports.Rooms = Rooms;
-
-// initialize
-
-exports.Rooms.global = new GlobalRoomState();

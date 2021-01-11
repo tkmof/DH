@@ -5,8 +5,6 @@
  * @license MIT
  */
 var _dex = require('./dex');
-global.toID = _dex.Dex.getId;
-var _dexdata = require('./dex-data'); var Data = _dexdata;
 var _field = require('./field');
 var _pokemon = require('./pokemon');
 var _prng = require('./prng');
@@ -14,6 +12,9 @@ var _side = require('./side');
 var _state = require('./state');
 var _battlequeue = require('./battle-queue');
 var _utils = require('../.lib-dist/utils');
+var _fs = require('../.lib-dist/fs');
+
+const suspectTests = JSON.parse(_fs.FS.call(void 0, '../config/suspects.json').readIfExistsSync() || "{}");
 
 /** A Pokemon that has fainted. */
 
@@ -139,8 +140,11 @@ var _utils = require('../.lib-dist/utils');
 
 	
 	
+	__init() {this.toID = _dex.toID}
+	constructor(options) {;Battle.prototype.__init.call(this);
+		this.log = [];
+		this.add('t:', Math.floor(Date.now() / 1000));
 
-	constructor(options) {
 		const format = options.format || _dex.Dex.getFormat(options.formatid, true);
 		this.format = format;
 		this.dex = _dex.Dex.forFormat(format);
@@ -174,7 +178,6 @@ var _utils = require('../.lib-dist/utils');
 		this.queue = new (0, _battlequeue.BattleQueue)(this);
 		this.faintQueue = [];
 
-		this.log = [];
 		this.inputLog = [];
 		this.messageLog = [];
 		this.sentLogPos = 0;
@@ -186,7 +189,6 @@ var _utils = require('../.lib-dist/utils');
 		this.started = false;
 		this.ended = false;
 
-		// tslint:disable-next-line:no-object-literal-type-assertion
 		this.effect = {id: ''} ;
 		this.effectData = {id: ''};
 
@@ -200,7 +202,7 @@ var _utils = require('../.lib-dist/utils');
 
 		this.lastMove = null;
 		this.lastMoveLine = -1;
-		this.lastMoveThisTurn = null;
+		this.lastSuccessfulMoveThisTurn = null;
 		this.lastDamage = 0;
 		this.abilityOrder = 0;
 
@@ -300,10 +302,8 @@ var _utils = require('../.lib-dist/utils');
 
 	clearActiveMove(failed) {
 		if (this.activeMove) {
-			this.lastMoveThisTurn = null;
 			if (!failed) {
 				this.lastMove = this.activeMove;
-				this.lastMoveThisTurn = this.activeMove;
 			}
 			this.activeMove = null;
 			this.activePokemon = null;
@@ -432,6 +432,13 @@ var _utils = require('../.lib-dist/utils');
 			this.add('message', 'Event: ' + eventid);
 			this.add('message', 'Parent event: ' + this.event.id);
 			throw new Error("Stack overflow");
+		}
+		if (this.log.length - this.sentLogPos > 1000) {
+			this.add('message', 'LINE LIMIT EXCEEDED');
+			this.add('message', 'PLEASE REPORT IN BUG THREAD');
+			this.add('message', 'Event: ' + eventid);
+			this.add('message', 'Parent event: ' + this.event.id);
+			throw new Error("Infinite loop");
 		}
 		// this.add('Event: ' + eventid + ' (depth ' + this.eventDepth + ')');
 		let hasRelayVar = true;
@@ -784,8 +791,9 @@ var _utils = require('../.lib-dist/utils');
 		handler.priority = handler.effect[`${callbackName}Priority`] || 0;
 		// @ts-ignore
 		handler.subOrder = handler.effect[`${callbackName}SubOrder`] || 0;
-		// @ts-ignore
-		if (handler.effectHolder && handler.effectHolder.getStat) handler.speed = handler.effectHolder.speed;
+		if (handler.effectHolder && (handler.effectHolder ).getStat) {
+			(handler ).speed = (handler.effectHolder ).speed;
+		}
 		return handler ;
 	}
 
@@ -885,7 +893,7 @@ var _utils = require('../.lib-dist/utils');
 			const slotConditionData = side.slotConditions[pokemon.position][conditionid];
 			const slotCondition = side.getSlotCondition(pokemon, conditionid);
 			// @ts-ignore - dynamic lookup
-			callback = slotCondition[callbackName] ;
+			callback = slotCondition[callbackName];
 			if (callback !== undefined || (getKey && slotConditionData[getKey])) {
 				handlers.push(this.resolvePriority({
 					effect: slotCondition,
@@ -908,13 +916,11 @@ var _utils = require('../.lib-dist/utils');
 		const format = this.format;
 		// @ts-ignore - dynamic lookup
 		callback = format[callbackName];
-		// @ts-ignore - dynamic lookup
 		if (callback !== undefined || (getKey && this.formatData[getKey])) {
 			handlers.push(this.resolvePriority({
 				effect: format, callback, state: this.formatData, end: null, effectHolder: this,
 			}, callbackName));
 		}
-		// tslint:disable-next-line:no-conditional-assignment
 		if (this.events && (callback = this.events[callbackName]) !== undefined) {
 			for (const handler of callback) {
 				const state = (handler.target.effectType === 'Format') ? this.formatData : null;
@@ -1004,7 +1010,6 @@ var _utils = require('../.lib-dist/utils');
 			throw new TypeError(`${target.name} is a ${target.effectType} but only Format targets are supported right now`);
 		}
 
-		// tslint:disable-next-line:one-variable-per-declaration
 		let callback, priority, order, subOrder, data;
 		if (rest.length === 1) {
 			[callback] = rest;
@@ -1409,7 +1414,7 @@ var _utils = require('../.lib-dist/utils');
 
 	nextTurn() {
 		this.turn++;
-		this.lastMoveThisTurn = null;
+		this.lastSuccessfulMoveThisTurn = null;
 
 		const trappedBySide = [];
 		const stalenessBySide = [];
@@ -1423,7 +1428,7 @@ var _utils = require('../.lib-dist/utils');
 				pokemon.newlySwitched = false;
 				pokemon.moveLastTurnResult = pokemon.moveThisTurnResult;
 				pokemon.moveThisTurnResult = undefined;
-				pokemon.hurtThisTurn = false;
+				pokemon.hurtThisTurn = null;
 				pokemon.statsRaisedThisTurn = false;
 				pokemon.statsLoweredThisTurn = false;
 
@@ -1434,6 +1439,7 @@ var _utils = require('../.lib-dist/utils');
 				}
 				this.runEvent('DisableMove', pokemon);
 				if (!pokemon.ateBerry) pokemon.disableMove('belch');
+				if (!pokemon.getItem().isBerry) pokemon.disableMove('stuffcheeks');
 
 				// If it was an illusion, it's not any more
 				if (pokemon.getLastAttackedBy() && this.gen >= 7) pokemon.knownType = true;
@@ -1499,15 +1505,14 @@ var _utils = require('../.lib-dist/utils');
 				if (pokemon.fainted) continue;
 
 				sideTrapped = sideTrapped && pokemon.trapped;
-				if (pokemon.staleness) {
-					sideStaleness = sideStaleness === 'external' ? sideStaleness : pokemon.staleness;
-				}
+				const staleness = pokemon.volatileStaleness || pokemon.staleness;
+				if (staleness) sideStaleness = sideStaleness === 'external' ? sideStaleness : staleness;
 				pokemon.activeTurns++;
 			}
 			trappedBySide.push(sideTrapped);
 			stalenessBySide.push(sideStaleness);
 			side.faintedLastTurn = side.faintedThisTurn;
-			side.faintedThisTurn = false;
+			side.faintedThisTurn = null;
 		}
 
 		if (this.maybeTriggerEndlessBattleClause(trappedBySide, stalenessBySide)) return;
@@ -1556,7 +1561,7 @@ var _utils = require('../.lib-dist/utils');
 			const side = this.sides[i];
 
 			for (const pokemon of side.pokemon) {
-				if (!pokemon.fainted && !pokemon.staleness) {
+				if (!pokemon.fainted && !(pokemon.volatileStaleness || pokemon.staleness)) {
 					canSwitch[i] = true;
 					break;
 				}
@@ -1570,9 +1575,9 @@ var _utils = require('../.lib-dist/utils');
 			let berry = false; // Restorative Berry
 			let cycle = false; // Harvest or Recycle
 			for (const pokemon of side.pokemon) {
-				berry = _pokemon.RESTORATIVE_BERRIES.has(toID(pokemon.set.item));
-				if (['harvest', 'pickup'].includes(toID(pokemon.set.ability)) ||
-					pokemon.set.moves.map(toID).includes('recycle' )) {
+				berry = _pokemon.RESTORATIVE_BERRIES.has(_dex.toID.call(void 0, pokemon.set.item));
+				if (['harvest', 'pickup'].includes(_dex.toID.call(void 0, pokemon.set.ability)) ||
+					pokemon.set.moves.map(_dex.toID).includes('recycle' )) {
 					cycle = true;
 				}
 				if (berry && cycle) break;
@@ -1617,6 +1622,10 @@ var _utils = require('../.lib-dist/utils');
 		if (this.rated) {
 			if (this.rated === 'Rated battle') this.rated = true;
 			this.add('rated', typeof this.rated === 'string' ? this.rated : '');
+			// Suspect test notice
+			if (suspectTests[format.id]) {
+				this.add('html', `<div class="broadcast-blue"><strong>${format.name} is currently suspecting ${suspectTests[format.id].suspect}! For information on how to participate check out the <a href="${suspectTests[format.id].url}">suspect thread</a>.</strong></div>`);
+			}
 		}
 
 		if (format.onBegin) format.onBegin.call(this);
@@ -1646,8 +1655,7 @@ var _utils = require('../.lib-dist/utils');
 	restart(send) {
 		if (!this.deserialized) throw new Error('Attempt to restart a battle which has not been deserialized');
 
-		// @ts-ignore - readonly
-		this.send = send;
+		(this ).send = send;
 	}
 
 	checkEVBalance() {
@@ -1676,7 +1684,7 @@ var _utils = require('../.lib-dist/utils');
 		if (!target || !target.hp) return 0;
 		if (!target.isActive) return false;
 		if (this.gen > 5 && !target.side.foe.pokemonLeft) return false;
-		boost = this.runEvent('Boost', target, source, effect, Object.assign({}, boost));
+		boost = this.runEvent('Boost', target, source, effect, {...boost});
 		let success = null;
 		let boosted = isSecondary;
 		let boostName;
@@ -1777,7 +1785,7 @@ var _utils = require('../.lib-dist/utils');
 			}
 
 			retVals[i] = targetDamage = target.damage(targetDamage, source, effect);
-			if (targetDamage !== 0) target.hurtThisTurn = true;
+			if (targetDamage !== 0) target.hurtThisTurn = target.hp;
 			if (source && effect.effectType === 'Move') source.lastDamage = targetDamage;
 
 			const name = effect.fullname === 'tox' ? 'psn' : effect.fullname;
@@ -1989,6 +1997,41 @@ var _utils = require('../.lib-dist/utils');
 		return tr((tr(value * modifier) + 2048 - 1) / 4096);
 	}
 
+	/** Given a table of base stats and a pokemon set, return the actual stats. */
+	spreadModify(baseStats, set) {
+		const modStats = {atk: 10, def: 10, spa: 10, spd: 10, spe: 10};
+		const tr = this.trunc;
+		let statName;
+		for (statName in modStats) {
+			const stat = baseStats[statName];
+			modStats[statName] = tr(tr(2 * stat + set.ivs[statName] + tr(set.evs[statName] / 4)) * set.level / 100 + 5);
+		}
+		if ('hp' in baseStats) {
+			const stat = baseStats['hp'];
+			modStats['hp'] = tr(tr(2 * stat + set.ivs['hp'] + tr(set.evs['hp'] / 4) + 100) * set.level / 100 + 10);
+		}
+		return this.natureModify(modStats , set);
+	}
+
+	natureModify(stats, set) {
+		// Natures are calculated with 16-bit truncation.
+		// This only affects Eternatus-Eternamax in Pure Hackmons.
+		const tr = this.trunc;
+		const nature = this.dex.getNature(set.nature);
+		let s;
+		if (nature.plus) {
+			s = nature.plus;
+			const stat = this.ruleTable.has('overflowstatmod') ? Math.min(stats[s], 595) : stats[s];
+			stats[s] = tr(tr(stat * 110, 16) / 100);
+		}
+		if (nature.minus) {
+			s = nature.minus;
+			const stat = this.ruleTable.has('overflowstatmod') ? Math.min(stats[s], 728) : stats[s];
+			stats[s] = tr(tr(stat * 90, 16) / 100);
+		}
+		return stats;
+	}
+
 	getCategory(move) {
 		return this.dex.getMove(move).category || 'Physical';
 	}
@@ -2007,7 +2050,7 @@ var _utils = require('../.lib-dist/utils');
 
 		if (typeof move === 'number') {
 			const basePower = move;
-			move = new Data.Move({
+			move = new _dex.Dex.Move({
 				basePower,
 				type: '???',
 				category: 'Physical',
@@ -2216,7 +2259,7 @@ var _utils = require('../.lib-dist/utils');
 		// Final modifier. Modifiers that modify damage after min damage check, such as Life Orb.
 		baseDamage = this.runEvent('ModifyDamage', pokemon, target, move, baseDamage);
 
-		if ((move.isZOrMaxPowered || move.isZOrMaxPowered) && target.getMoveHitData(move).zBrokeProtect) {
+		if (move.isZOrMaxPowered && target.getMoveHitData(move).zBrokeProtect) {
 			baseDamage = this.modify(baseDamage, 0.25);
 			this.add('-zbroken', target);
 		}
@@ -2393,7 +2436,7 @@ var _utils = require('../.lib-dist/utils');
 				pokemon.illusion = null;
 				pokemon.isActive = false;
 				pokemon.isStarted = false;
-				pokemon.side.faintedThisTurn = true;
+				pokemon.side.faintedThisTurn = pokemon;
 			}
 		}
 
@@ -2490,6 +2533,7 @@ var _utils = require('../.lib-dist/utils');
 
 	runAction(action) {
 		const pokemonOriginalHP = _optionalChain([action, 'access', _12 => _12.pokemon, 'optionalAccess', _13 => _13.hp]);
+		let residualPokemon = [];
 		// returns whether or not we ended in a callback
 		switch (action.choice) {
 		case 'start': {
@@ -2549,7 +2593,6 @@ var _utils = require('../.lib-dist/utils');
 		}
 
 		case 'event':
-			// @ts-ignore - easier than defining a custom event attribute TBH
 			this.runEvent(action.event, action.pokemon);
 			break;
 		case 'team': {
@@ -2606,13 +2649,8 @@ var _utils = require('../.lib-dist/utils');
 			this.add('');
 			this.clearActiveMove(true);
 			this.updateSpeed();
-			const residualPokemon = this.getAllActive().map(pokemon => [pokemon, pokemon.hp] );
+			residualPokemon = this.getAllActive().map(pokemon => [pokemon, pokemon.getUndynamaxedHP()] );
 			this.residualEvent('Residual');
-			for (const [pokemon, originalHP] of residualPokemon) {
-				if (pokemon.hp && pokemon.hp <= pokemon.maxhp / 2 && originalHP > pokemon.maxhp / 2) {
-					this.runEvent('EmergencyExit', pokemon);
-				}
-			}
 			this.add('upkeep');
 			break;
 		}
@@ -2658,6 +2696,12 @@ var _utils = require('../.lib-dist/utils');
 
 		if (this.gen >= 5) {
 			this.eachEvent('Update');
+			for (const [pokemon, originalHP] of residualPokemon) {
+				const maxhp = pokemon.getUndynamaxedHP(pokemon.maxhp);
+				if (pokemon.hp && pokemon.getUndynamaxedHP() <= maxhp / 2 && originalHP > maxhp / 2) {
+					this.runEvent('EmergencyExit', pokemon);
+				}
+			}
 		}
 
 		if (action.choice === 'runSwitch') {
@@ -2703,6 +2747,7 @@ var _utils = require('../.lib-dist/utils');
 
 	go() {
 		this.add('');
+		this.add('t:', Math.floor(Date.now() / 1000));
 		if (this.requestState) this.requestState = '';
 
 		if (!this.midTurn) {
@@ -2780,6 +2825,7 @@ var _utils = require('../.lib-dist/utils');
 		}
 
 		this.go();
+		if (this.log.length - this.sentLogPos > 500) this.sendUpdates();
 	}
 
 	undoChoice(sideid) {
@@ -2854,13 +2900,13 @@ var _utils = require('../.lib-dist/utils');
 		this.addSplit(side, secret, shared);
 	}
 
-	// tslint:disable-next-line:ban-types
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	addMove(...args) {
 		this.lastMoveLine = this.log.length;
 		this.log.push(`|${args.join('|')}`);
 	}
 
-	// tslint:disable-next-line:ban-types
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	attrLastMove(...args) {
 		if (this.lastMoveLine < 0) return;
 		if (this.log[this.lastMoveLine].startsWith('|-anim|')) {
@@ -3225,8 +3271,7 @@ var _utils = require('../.lib-dist/utils');
 
 		// deallocate children and get rid of references to them
 		this.field.destroy();
-		// @ts-ignore - readonly
-		this.field = null;
+		(this ).field = null;
 
 		for (let i = 0; i < this.sides.length; i++) {
 			if (this.sides[i]) {
@@ -3235,14 +3280,13 @@ var _utils = require('../.lib-dist/utils');
 			}
 		}
 		for (const action of this.queue.list) {
-			delete action.pokemon;
+			delete (action ).pokemon;
 		}
 
 		this.queue.battle = null;
 		this.queue = null;
 		// in case the garbage collector really sucks, at least deallocate the log
-		// @ts-ignore - readonly
-		this.log = [];
+		(this ).log = [];
 	}
 } exports.Battle = Battle;
 

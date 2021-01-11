@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormatsData = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const FormatsData = {
 	goodraflame: {
 		tier: "OU",
 		doublesTier: "DOU",
@@ -143,4 +143,4 @@
 		tier: "OU",
 		doublesTier: "DOU",
 	},
-}; exports.BattleFormatsData = BattleFormatsData;
+}; exports.FormatsData = FormatsData;

@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleLearnsets = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Learnsets = {
 	bulbasaur: {learnset: {
 		ancientpower: ["2S0"],
 		attract: ["2M"],
@@ -7717,4 +7717,4 @@
 		thunderpunch: ["1M"],
 		toxic: ["1M"],
 	}},
-}; exports.BattleLearnsets = BattleLearnsets;
+}; exports.Learnsets = Learnsets;

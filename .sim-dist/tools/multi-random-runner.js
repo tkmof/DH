@@ -42,7 +42,7 @@ var _runner = require('./runner');
 	
 
 	constructor(options) {
-		this.options = Object.assign({}, options);
+		this.options = {...options};
 
 		this.totalGames = options.totalGames;
 
@@ -65,7 +65,6 @@ var _runner = require('./runner');
 		let format;
 		let lastFormat = false;
 		let failures = 0;
-		// tslint:disable-next-line no-conditional-assignment
 		while ((format = this.getNextFormat())) {
 			if (this.all && lastFormat && format !== lastFormat) {
 				if (this.async) await Promise.all(games);
@@ -73,7 +72,7 @@ var _runner = require('./runner');
 			}
 
 			const seed = this.prng.seed;
-			const game = new (0, _runner.Runner)(Object.assign({format}, this.options)).run().catch(err => {
+			const game = new (0, _runner.Runner)({format, ...this.options}).run().catch(err => {
 				failures++;
 				console.error(
 					`Run \`node tools/simulate multi 1 --format=${format} --seed=${seed.join()}\` ` +

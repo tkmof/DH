@@ -3,44 +3,10 @@
 const DISHES_FILE = 'config/chat-plugins/thecafe-foodfight.json';
 const FOODFIGHT_COOLDOWN = 5 * 60 * 1000;
 
-const thecafe = Rooms.get('thecafe') ;
-
-let dishes = {};
-try {
-	dishes = JSON.parse(_fs.FS.call(void 0, DISHES_FILE).readIfExistsSync() || "{}");
-} catch (e) {
-	if (e.code !== 'MODULE_NOT_FOUND' && e.code !== 'ENOENT') throw e;
-}
-if (!dishes || typeof dishes !== 'object') dishes = {};
+const dishes = JSON.parse(_fs.FS.call(void 0, DISHES_FILE).readIfExistsSync() || "{}");
 
 function saveDishes() {
 	void _fs.FS.call(void 0, DISHES_FILE).write(JSON.stringify(dishes));
-}
-
-/**
- * Used instead of Dex.packTeam to generate more human-readable output.
- */
-function stringifyTeam(team, ingredients) {
-	let output = '';
-	for (const [i, mon] of team.entries()) {
-		output += `${ingredients[i]} (${mon.species}) @ ${mon.item}<br/>`;
-		output += `Ability: ${mon.ability}<br/>`;
-		if (mon.happiness && mon.happiness !== 255) output += `Happiness: ${mon.happiness}<br/>`;
-		const evs = [];
-		for (const stat in mon.evs) {
-			if (mon.evs[stat ]) evs.push(`${mon.evs[stat ]} ${stat}`);
-		}
-		if (evs.length) output += `EVs: ${evs.join(' / ')}<br/>`;
-		output += `${mon.nature} Nature<br/>`;
-		const ivs = [];
-		for (const stat in mon.ivs) {
-			if (mon.ivs[stat ] !== 31) ivs.push(`${mon.ivs[stat ]} ${stat}`);
-		}
-		if (ivs.length) output += `IVs: ${ivs.join(' / ')}<br/>`;
-		output += mon.moves.map(move => `- ${move}<br/>`).join('');
-		output += '<br/>';
-	}
-	return output;
 }
 
 function generateTeam(generator = '') {
@@ -106,9 +72,7 @@ function generateDish() {
 
  const commands = {
 	foodfight(target, room, user) {
-		if (!room) return this.requiresRoom();
-		if (room.roomid !== thecafe.roomid) return this.errorReply("This command is only available in The Café.");
-
+		room = this.requireRoom('thecafe' );
 		if (!Object.keys(dishes).length) return this.errorReply("No dishes found. Add some dishes first.");
 
 		if (user.foodfight && user.foodfight.timestamp + FOODFIGHT_COOLDOWN > Date.now()) {
@@ -122,7 +86,7 @@ function generateDish() {
 		const [newDish, newIngredients] = generateDish();
 		if (!target) {
 			const bfTeam = Dex.generateTeam('gen7bssfactory');
-			importable = stringifyTeam(bfTeam, newIngredients);
+			importable = Dex.stringifyTeam(bfTeam, newIngredients);
 			team = bfTeam.map(val => val.species);
 		} else {
 			team = generateTeam(target);
@@ -134,13 +98,12 @@ function generateDish() {
 		return this.sendReplyBox(`<div class="ladder"><table style="text-align:center;"><tr><th colspan="7" style="font-size:10pt;">Your dish is: <u>${newDish}</u></th></tr><tr><th>Team</th>${team.map(mon => `<td><psicon pokemon="${mon}"/> ${mon}</td>`).join('')}</tr><tr><th>Ingredients</th>${newIngredients.map(ingredient => `<td>${ingredient}</td>`).join('')}</tr>${importStr}</table></div>`);
 	},
 	checkfoodfight(target, room, user) {
-		if (!room) return this.requiresRoom();
-		if (room.roomid !== thecafe.roomid) return this.errorReply("This command is only available in The Café.");
+		room = this.requireRoom('thecafe' );
 
 		const targetUser = this.targetUserOrSelf(target, false);
 		if (!targetUser) return this.errorReply(`User ${this.targetUsername} not found.`);
 		const self = targetUser === user;
-		if (!self && !this.can('mute', targetUser, room)) return false;
+		if (!self) this.checkCan('mute', targetUser, room);
 		if (!targetUser.foodfight) {
 			return this.errorReply(`${self ? `You don't` : `This user doesn't`} have an active Foodfight team.`);
 		}
@@ -148,9 +111,8 @@ function generateDish() {
 	},
 	addingredients: 'adddish',
 	adddish(target, room, user, connection, cmd) {
-		if (!room) return this.requiresRoom();
-		if (room.roomid !== thecafe.roomid) return this.errorReply("This command is only available in The Café.");
-		if (!this.can('mute', null, room)) return false;
+		room = this.requireRoom('thecafe' );
+		this.checkCan('mute', null, room);
 
 		let [dish, ...ingredients] = target.split(',');
 		dish = dish.trim();
@@ -183,9 +145,8 @@ function generateDish() {
 		this.sendReply(`${cmd.slice(3)} '${dish}: ${ingredients.join(', ')}' added successfully.`);
 	},
 	removedish(target, room, user) {
-		if (!room) return this.requiresRoom();
-		if (room.roomid !== thecafe.roomid) return this.errorReply("This command is only available in The Café.");
-		if (!this.can('mute', null, room)) return false;
+		room = this.requireRoom('thecafe' );
+		this.checkCan('mute', null, room);
 
 		const id = toID(target);
 		if (id === 'constructor') return this.errorReply("Invalid dish.");
@@ -196,8 +157,7 @@ function generateDish() {
 		this.sendReply(`Dish '${target}' deleted successfully.`);
 	},
 	viewdishes(target, room, user, connection) {
-		if (!room) return this.requiresRoom();
-		if (room.roomid !== thecafe.roomid) return this.errorReply("This command is only available in The Café.");
+		room = this.requireRoom('thecafe' );
 
 		return this.parse(`/join view-foodfight`);
 	},
@@ -215,7 +175,9 @@ function generateDish() {
 	foodfight(query, user, connection) {
 		if (!user.named) return Rooms.RETRY_AFTER_LOGIN;
 		let buf = `|title|Foodfight\n|pagehtml|<div class="pad ladder"><h2>Foodfight Dish list</h2>`;
-		if (!user.can('mute', null, thecafe)) {
+		const room = Rooms.get('thecafe');
+		if (!room) return this.errorReply(`Room not found.`);
+		if (!user.can('mute', null, room)) {
 			return buf + `<p>Access denied</p></div>`;
 		}
 		const content = Object.keys(dishes).map(entry => {

@@ -7,10 +7,8 @@ var _smogon = require('smogon'); var smogon = _smogon;
 
 var _streams = require('../../.lib-dist/streams'); var Streams = _streams;
 var _dex = require('../../.sim-dist/dex');
-
 var _teamvalidator = require('../../.sim-dist/team-validator');
 _dex.Dex.includeModData();
-const toID = _dex.Dex.getId;
 
 
 
@@ -182,7 +180,7 @@ async function importSmogonSets(
 		if (baseSpecies.otherFormes) {
 			for (const forme of baseSpecies.otherFormes) {
 				const formeSpecies = dex.getSpecies(forme);
-				if (formeSpecies.battleOnly && eligible(dex, toID(formeSpecies))) {
+				if (formeSpecies.battleOnly && eligible(dex, _dex.toID.call(void 0, formeSpecies))) {
 					battleOnlyFormes.push(formeSpecies);
 				}
 			}
@@ -195,7 +193,7 @@ async function importSmogonSets(
 				addSmogonSet(dex, format, pokemon, name, set, setsForPokemon, numByFormat);
 				for (const battleOnlyForme of battleOnlyFormes) {
 					// Note: this is just a shallow copy which is fine because we're just modifying the ability
-					const s = Object.assign({}, set);
+					const s = {...set};
 					if (!format.id.includes('balancedhackmons')) s.ability = battleOnlyForme.abilities[0];
 					if (typeof battleOnlyForme.battleOnly !== 'string') {
 						if (!battleOnlyForme.battleOnly.includes(pokemon)) continue;
@@ -337,20 +335,20 @@ function toPokemonSet(
 				set.hpType = type;
 				fill = 31;
 			} else if (dex.gen === 2) {
-				const dvs = Object.assign({}, dex.getType(type).HPdvs);
+				const dvs = {...dex.getType(type).HPdvs};
 				let stat;
 				for (stat in dvs) {
 					dvs[stat] *= 2;
 				}
-				set.ivs = Object.assign({}, dvs, set.ivs);
+				set.ivs = {...dvs, ...set.ivs};
 				set.ivs.hp = expectedHP(set.ivs);
 			} else {
-				set.ivs = Object.assign({}, dex.getType(type).HPivs, set.ivs);
+				set.ivs = {...dex.getType(type).HPivs, ...set.ivs};
 			}
 		}
 	}
 
-	const copy = Object.assign({species: pokemon}, set) ;
+	const copy = {species: pokemon, ...set} ;
 	copy.ivs = fillStats(set.ivs, fill);
 	// The validator expects us to have at least 1 EV set to prove it is intentional
 	if (!set.evs && dex.gen >= 3 && format.id !== 'gen7letsgoou') set.evs = {spe: 1};
@@ -422,7 +420,7 @@ async function getAnalysesByFormat(pokemon, gen) {
 
 		const analysesByFormat = new Map();
 		for (const [tier, analyses] of analysesByTier.entries()) {
-			const t = toID(tier);
+			const t = _dex.toID.call(void 0, tier);
 			const f = FORMATS.get(`gen${gen}${SMOGON[t] || t}` );
 			if (f) analysesByFormat.set(f.format, analyses);
 		}
@@ -447,10 +445,7 @@ function getLevel(format, level = 0) {
 	format
 ) {
 	const current = index.includes(format.id);
-	// tslint is for some reason reporting that this isn't a Promise for some reason,
-	// but breaking it out into a const seems to fix it
-	const latestPromise = smogon.Statistics.latestDate(format.id, !current);
-	const latest = await latestPromise;
+	const latest = await smogon.Statistics.latestDate(format.id, !current);
 	if (!latest) return undefined;
 	return {url: smogon.Statistics.url(latest.date, format.id, current || 1500), count: latest.count};
 } exports.getStatisticsURL = getStatisticsURL;
@@ -463,7 +458,7 @@ function importUsageBasedSets(gen, format, statistics, count) {
 	let num = 0;
 	for (const pokemon in statistics.data) {
 		const stats = statistics.data[pokemon];
-		if (eligible(dex, toID(pokemon)) && stats.usage >= threshold) {
+		if (eligible(dex, _dex.toID.call(void 0, pokemon)) && stats.usage >= threshold) {
 			const set = {
 				level: getLevel(format),
 				moves: (top(stats.Moves, 4) ).map(m => dex.getMove(m).name).filter(m => m),

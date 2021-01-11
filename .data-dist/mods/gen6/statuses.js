@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleStatuses = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Statuses = {
 	brn: {
 		inherit: true,
 		onResidual(pokemon) {
@@ -39,4 +39,4 @@
 		inherit: true,
 		onBeforeMove() {},
 	},
-}; exports.BattleStatuses = BattleStatuses;
+}; exports.Statuses = Statuses;

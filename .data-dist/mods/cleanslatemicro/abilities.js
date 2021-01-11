@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAbilities = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Abilities = {
 	"flowergift": {
 		inherit: true,
 		onAllyModifyAtk: function (atk) {
@@ -12,4 +12,4 @@
 			}
 		},
 	},
-}; exports.BattleAbilities = BattleAbilities;
+}; exports.Abilities = Abilities;

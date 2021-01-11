@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAbilities = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Abilities = {
 	chlorophyll: {
 		inherit: true,
 		desc: "If Sunny Day is active, this Pokemon's Speed is doubled.",
@@ -120,4 +120,4 @@
 		inherit: true,
 		onBasePowerPriority: 19,
 	},
-}; exports.BattleAbilities = BattleAbilities;
+}; exports.Abilities = Abilities;

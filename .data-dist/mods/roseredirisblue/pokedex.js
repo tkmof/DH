@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	missingno: {
 		num: 0,
 		species: "Missingno.",
@@ -2136,4 +2136,4 @@
 		color: "Green",
 		eggGroups: ["Fairy", "Grass"],
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

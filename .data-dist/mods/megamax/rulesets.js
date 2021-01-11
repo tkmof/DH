@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormats = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Formats = {
 	dynamaxclause: {
 		effectType: 'Rule',
 		name: 'Dynamax Clause',
@@ -19,4 +19,4 @@
 			this.add('rule', 'Evasion Moves Clause: Evasion moves are banned');
 		},
 	},
-}; exports.BattleFormats = BattleFormats;
+}; exports.Formats = Formats;

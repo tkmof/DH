@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
 	venusauritez: {
 		name: "Venusaurite Z",
 		spritenum: 608,
@@ -447,4 +447,4 @@
 		gen: 8,
 		desc: "If held by a Urshifu, this item allows it to Mega Evolve in battle.",
 	},
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

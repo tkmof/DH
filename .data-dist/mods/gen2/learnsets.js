@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleLearnsets = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Learnsets = {
 	missingno: {
 		learnset: {
 			blizzard: ["1M"],
@@ -12152,4 +12152,4 @@
 		],
 		eventOnly: true,
 	},
-}; exports.BattleLearnsets = BattleLearnsets;
+}; exports.Learnsets = Learnsets;

@@ -275,5 +275,3 @@ var _randomteams = require('../../random-teams');
 		return pokemon;
 	}
 } exports.RandomLetsGoTeams = RandomLetsGoTeams;
-
-exports. default = RandomLetsGoTeams;

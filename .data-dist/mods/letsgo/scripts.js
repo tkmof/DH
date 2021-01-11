@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleScripts = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Scripts = {
 	inherit: 'gen7',
 	init() {
 		this.modData('Abilities', 'noability').isNonstandard = null;
@@ -53,6 +53,4 @@
 			return weighthg + (weighthg * (this.battle.random(2) === 1 ? 1 : -1) * weightModifierFinal);
 		},
 	},
-}; exports.BattleScripts = BattleScripts;
-
-exports.BattleScripts = exports.BattleScripts;
+}; exports.Scripts = Scripts;

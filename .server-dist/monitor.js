@@ -51,28 +51,34 @@ if (('Config' in global) &&
 	Config.loglevel = 2;
 }
 
- const Monitor = new (_class = class {constructor() { _class.prototype.__init.call(this);_class.prototype.__init2.call(this);_class.prototype.__init3.call(this);_class.prototype.__init4.call(this);_class.prototype.__init5.call(this);_class.prototype.__init6.call(this);_class.prototype.__init7.call(this);_class.prototype.__init8.call(this);_class.prototype.__init9.call(this);_class.prototype.__init10.call(this);_class.prototype.__init11.call(this);_class.prototype.__init12.call(this);_class.prototype.__init13.call(this); }
+ const Monitor = new (_class = class {constructor() { _class.prototype.__init.call(this);_class.prototype.__init2.call(this);_class.prototype.__init3.call(this);_class.prototype.__init4.call(this);_class.prototype.__init5.call(this);_class.prototype.__init6.call(this);_class.prototype.__init7.call(this);_class.prototype.__init8.call(this);_class.prototype.__init9.call(this);_class.prototype.__init10.call(this);_class.prototype.__init11.call(this);_class.prototype.__init12.call(this);_class.prototype.__init13.call(this);_class.prototype.__init14.call(this);_class.prototype.__init15.call(this); }
 	__init() {this.connections = new TimedCounter()}
-	__init2() {this.battles = new TimedCounter()}
-	__init3() {this.battlePreps = new TimedCounter()}
-	__init4() {this.groupChats = new TimedCounter()}
-	__init5() {this.tickets = new TimedCounter()}
+	__init2() {this.netRequests = new TimedCounter()}
+	__init3() {this.battles = new TimedCounter()}
+	__init4() {this.battlePreps = new TimedCounter()}
+	__init5() {this.groupChats = new TimedCounter()}
+	__init6() {this.tickets = new TimedCounter()}
 
-	__init6() {this.activeIp = null}
-	__init7() {this.networkUse = {}}
-	__init8() {this.networkCount = {}}
-	__init9() {this.hotpatchLock = {}}
-	__init10() {this.hotpatchVersions = {}}
+	__init7() {this.activeIp = null}
+	__init8() {this.networkUse = {}}
+	__init9() {this.networkCount = {}}
+	__init10() {this.hotpatchLock = {}}
+	__init11() {this.hotpatchVersions = {}}
 
-	__init11() {this.TimedCounter = exports.TimedCounter = TimedCounter}
+	__init12() {this.TimedCounter = exports.TimedCounter = TimedCounter}
 
-	__init12() {this.updateServerLock = false}
-	__init13() {this.cleanInterval = null}
+	__init13() {this.updateServerLock = false}
+	__init14() {this.cleanInterval = null}
+	/**
+	 * Inappropriate userid : number of times the name has been forcerenamed
+	 */
+	 __init15() {this.forceRenames = new Map()}
 
 	/*********************************************************
 	 * Logging
 	 *********************************************************/
 	crashlog(error, source = 'The main process', details = null) {
+		if (!error) error = {} ;
 		if ((error.stack || '').startsWith('@!!@')) {
 			try {
 				const stack = (error.stack || '');
@@ -113,6 +119,11 @@ if (('Config' in global) &&
 		}
 	}
 
+	error(text) {
+		_optionalChain([(Rooms.get('development') || Rooms.get('staff') || Rooms.get('lobby')), 'optionalAccess', _ => _.add, 'call', _2 => _2(`|error|${text}`), 'access', _3 => _3.update, 'call', _4 => _4()]);
+		if (Config.loglevel <= 3) console.error(text);
+	}
+
 	debug(text) {
 		if (Config.loglevel <= 1) console.log(text);
 	}
@@ -141,6 +152,7 @@ if (('Config' in global) &&
 	 * Counts a connection. Returns true if the connection should be terminated for abuse.
 	 */
 	countConnection(ip, name = '') {
+		if (Config.noipchecks || Config.nothrottle) return false;
 		const [count, duration] = this.connections.increment(ip, 30 * 60 * 1000);
 		if (count === 500) {
 			this.adminlog(`[ResourceMonitor] IP ${ip} banned for cflooding (${count} times in ${Chat.toDurationString(duration)}${name ? ': ' + name : ''})`);
@@ -165,6 +177,7 @@ if (('Config' in global) &&
 	 * terminated for abuse.
 	 */
 	countBattle(ip, name = '') {
+		if (Config.noipchecks || Config.nothrottle) return false;
 		const [count, duration] = this.battles.increment(ip, 30 * 60 * 1000);
 		if (duration < 5 * 60 * 1000 && count % 30 === 0) {
 			this.adminlog(`[ResourceMonitor] IP ${ip} has battled ${count} times in the last ${Chat.toDurationString(duration)}${name ? ': ' + name : ''})`);
@@ -183,6 +196,7 @@ if (('Config' in global) &&
 	 * Counts team validations. Returns true if too many.
 	 */
 	countPrepBattle(ip, connection) {
+		if (Config.noipchecks || Config.nothrottle) return false;
 		const count = this.battlePreps.increment(ip, 3 * 60 * 1000)[0];
 		if (count <= 12) return false;
 		if (count < 120 && Punishments.sharedIps.has(ip)) return false;
@@ -194,6 +208,7 @@ if (('Config' in global) &&
 	 * Counts concurrent battles. Returns true if too many.
 	 */
 	countConcurrentBattle(count, connection) {
+		if (Config.noipchecks || Config.nothrottle) return false;
 		if (count <= 5) return false;
 		connection.popup(`Due to high load, you are limited to 5 games at the same time.`);
 		return true;
@@ -202,14 +217,27 @@ if (('Config' in global) &&
 	 * Counts group chat creation. Returns true if too much.
 	 */
 	countGroupChat(ip) {
+		if (Config.noipchecks) return false;
 		const count = this.groupChats.increment(ip, 60 * 60 * 1000)[0];
 		return count > 4;
+	}
+
+	/**
+	 * Counts commands that use HTTPs requests. Returns true if too many.
+	 */
+	countNetRequests(ip) {
+		if (Config.noipchecks || Config.nothrottle) return false;
+		const [count] = this.netRequests.increment(ip, 1 * 60 * 1000);
+		if (count <= 10) return false;
+		if (count < 120 && Punishments.sharedIps.has(ip)) return false;
+		return true;
 	}
 
 	/**
 	 * Counts ticket creation. Returns true if too much.
 	 */
 	countTickets(ip) {
+		if (Config.noipchecks || Config.nothrottle) return false;
 		const count = this.tickets.increment(ip, 60 * 60 * 1000)[0];
 		if (Punishments.sharedIps.has(ip)) {
 			return count >= 20;
@@ -223,7 +251,12 @@ if (('Config' in global) &&
 	 * message, as well as the data length in the server's response.
 	 */
 	countNetworkUse(size) {
-		if (!Config.emergency || typeof this.activeIp !== 'string') return;
+		if (
+			!Config.emergency || typeof this.activeIp !== 'string' ||
+			Config.noipchecks || Config.nothrottle
+		) {
+			return;
+		}
 		if (this.activeIp in this.networkUse) {
 			this.networkUse[this.activeIp] += size;
 			this.networkCount[this.activeIp]++;
@@ -285,7 +318,7 @@ if (('Config' in global) &&
 	sh(command, options = {}) {
 		return new Promise((resolve, reject) => {
 			_child_process.exec.call(void 0, command, options, (error, stdout, stderr) => {
-				resolve([_optionalChain([error, 'optionalAccess', _ => _.code]) || 0, '' + stdout, '' + stderr]);
+				resolve([_optionalChain([error, 'optionalAccess', _5 => _5.code]) || 0, '' + stdout, '' + stderr]);
 			});
 		});
 	}

@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});/**
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }/**
  * Crash logger
  * Pokemon Showdown - http://pokemonshowdown.com/
  *
@@ -27,7 +27,7 @@ let transport;
 ) {
 	const datenow = Date.now();
 
-	let stack = typeof error === 'string' ? error : error.stack;
+	let stack = (typeof error === 'string' ? error : _optionalChain([error, 'optionalAccess', _ => _.stack])) || '';
 	if (data) {
 		stack += `\n\nAdditional information:\n`;
 		for (const k in data) {
@@ -63,7 +63,6 @@ let transport;
 			text += `again with this stack trace:\n${stack}`;
 		} else {
 			try {
-				// tslint:disable-next-line:no-implicit-dependencies
 				transport = require('nodemailer').createTransport(Config.crashguardemail.options);
 			} catch (e) {
 				throw new Error("Failed to start nodemailer; are you sure you've configured Config.crashguardemail correctly?");

@@ -80,7 +80,7 @@ const BUF_SIZE = 65536 * 4;
 
 		if (options.read) this._read = options.read;
 		if (options.pause) this._pause = options.pause;
-		if (options.destroy) this._destroy = options.read;
+		if (options.destroy) this._destroy = options.destroy;
 		if (options.encoding) this.encoding = options.encoding;
 		if (options.buffer !== undefined) {
 			this.push(options.buffer);
@@ -105,6 +105,7 @@ const BUF_SIZE = 65536 * 4;
 		this.buf.copy(newBuf, 0, this.bufStart, this.bufEnd);
 		this.bufEnd -= this.bufStart;
 		this.bufStart = 0;
+		this.bufCapacity = newCapacity;
 		this.buf = newBuf;
 	}
 
@@ -200,7 +201,7 @@ const BUF_SIZE = 65536 * 4;
 		);
 		if (!this.errorBuf && !this.atEOF && this.bufSize < this.readSize) {
 			let bytes = this.readSize - this.bufSize;
-			if (bytes === Infinity || byteCount === null) bytes = null;
+			if (bytes === Infinity || byteCount === null || byteCount === true) bytes = null;
 			return this.doLoad(bytes, readError);
 		}
 	}
@@ -248,19 +249,72 @@ const BUF_SIZE = 65536 * 4;
 			byteCount = null;
 		}
 		await this.loadIntoBuffer(byteCount, true);
-		const out = this.peek(byteCount, encoding) ;
+
+		// This MUST NOT be awaited: we MUST synchronously clear byteCount after peeking
+		// if the buffer is written to after peek but before clearing the buffer, the write
+		// will be lost forever
+		const out = this.peek(byteCount, encoding);
+		if (out && typeof out !== 'string') {
+			throw new Error("Race condition; you must not read before a previous read has completed");
+		}
+
 		if (byteCount === null || byteCount >= this.bufSize) {
 			this.bufStart = 0;
 			this.bufEnd = 0;
+			this.readSize = 0;
 		} else {
 			this.bufStart += byteCount;
+			this.readSize -= byteCount;
 		}
 		return out;
 	}
 
+	byChunk(byteCount) {
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
+		const byteStream = this;
+		return new ObjectReadStream({
+			async read() {
+				const next = await byteStream.read(byteCount);
+				if (typeof next === 'string') this.push(next);
+				else this.pushEnd();
+			},
+		});
+	}
+
+	byLine() {
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
+		const byteStream = this;
+		return new ObjectReadStream({
+			async read() {
+				const next = await byteStream.readLine();
+				if (typeof next === 'string') this.push(next);
+				else this.pushEnd();
+			},
+		});
+	}
+
+	delimitedBy(delimiter) {
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
+		const byteStream = this;
+		return new ObjectReadStream({
+			async read() {
+				const next = await byteStream.readDelimitedBy(delimiter);
+				if (typeof next === 'string') this.push(next);
+				else this.pushEnd();
+			},
+		});
+	}
+
 	async readBuffer(byteCount = null) {
 		await this.loadIntoBuffer(byteCount, true);
-		const out = this.peek(byteCount) ;
+
+		// This MUST NOT be awaited: we must synchronously clear the buffer after peeking
+		// (see `read`)
+		const out = this.peekBuffer(byteCount);
+		if (out && (out ).then) {
+			throw new Error("Race condition; you must not read before a previous read has completed");
+		}
+
 		if (byteCount === null || byteCount >= this.bufSize) {
 			this.bufStart = 0;
 			this.bufEnd = 0;
@@ -366,7 +420,9 @@ const BUF_SIZE = 65536 * 4;
 					});
 				}
 				return new Promise(resolve => {
-					this.drainListeners.push(resolve);
+					// `as () => void` is necessary because TypeScript thinks that it should be a function
+					// that takes an undefined value as its only parameter: `(value: PromiseLike<undefined> | undefined) => void`
+					this.drainListeners.push(resolve );
 				});
 			};
 			// Prior to Node v10.12.0, attempting to close STDOUT or STDERR will throw
@@ -476,6 +532,20 @@ const BUF_SIZE = 65536 * 4;
 	}
 } exports.ReadWriteStream = ReadWriteStream;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  class ObjectReadStream {
 	
 	
@@ -508,10 +578,10 @@ const BUF_SIZE = 65536 * 4;
 		} else if (typeof (optionsOrStreamLike )._readableState === 'object') {
 			options = {nodeStream: optionsOrStreamLike };
 		} else {
-			options = optionsOrStreamLike;
+			options = optionsOrStreamLike ;
 		}
-		if (options.nodeStream) {
-			const nodeStream = options.nodeStream;
+		if ((options ).nodeStream) {
+			const nodeStream = (options ).nodeStream;
 			this.nodeReadableStream = nodeStream;
 			nodeStream.on('data', data => {
 				this.push(data);
@@ -520,18 +590,19 @@ const BUF_SIZE = 65536 * 4;
 				this.pushEnd();
 			});
 
-			options.read = function ( unusedBytes) {
-				this.nodeReadableStream.resume();
-			};
-
-			options.pause = function () {
-				this.nodeReadableStream.pause();
+			options = {
+				read() {
+					this.nodeReadableStream.resume();
+				},
+				pause() {
+					this.nodeReadableStream.pause();
+				},
 			};
 		}
 
 		if (options.read) this._read = options.read;
 		if (options.pause) this._pause = options.pause;
-		if (options.destroy) this._destroy = options.read;
+		if (options.destroy) this._destroy = options.destroy;
 		if (options.buffer !== undefined) {
 			this.buf = options.buffer.slice();
 			this.pushEnd();
@@ -650,18 +721,20 @@ const BUF_SIZE = 65536 * 4;
 		return this._destroy();
 	}
 
+	// eslint-disable-next-line no-restricted-globals
+	[Symbol.asyncIterator]() { return this; }
 	async next() {
-		const value = await this.read();
-		return {value, done: value === null};
+		if (this.buf.length) return {value: this.buf.shift() , done: false };
+		await this.loadIntoBuffer(1, true);
+		if (!this.buf.length) return {value: undefined, done: true };
+		return {value: this.buf.shift() , done: false };
 	}
 
 	async pipeTo(outStream, options = {}) {
-		/* tslint:disable */
 		let value, done;
 		while (({value, done} = await this.next(), !done)) {
 			await outStream.write(value);
 		}
-		/* tslint:enable */
 		if (!options.noEnd) return outStream.writeEnd();
 	}
 } exports.ObjectReadStream = ObjectReadStream;
@@ -736,6 +809,9 @@ const BUF_SIZE = 65536 * 4;
 		return this._writeEnd();
 	}
 } exports.ObjectWriteStream = ObjectWriteStream;
+
+
+
 
 
 

@@ -309,5 +309,3 @@
 		} while (!done);
 	}
 } exports.RandomGen2Teams = RandomGen2Teams;
-
-exports. default = RandomGen2Teams;

@@ -6,6 +6,7 @@
  */
 
 var _state = require('./state');
+var _dex = require('./dex');
 
 /** A Pokemon's move slot. */
 
@@ -36,6 +37,7 @@ var _state = require('./state');
 	
 	
 
+	
 	
 	
 	
@@ -191,7 +193,12 @@ var _state = require('./state');
 	 * always be overwritten by a move action before the end of that turn.
 	 */
 	
-	/** used for Assurance check */
+	/**
+	 * The undynamaxed HP value this Pokemon was reduced to by damage this turn,
+	 * or false if it hasn't taken damage yet this turn
+	 *
+	 * Used for Assurance, Emergency Exit, and Wimp Out
+	 */
 	
 	
 	
@@ -225,17 +232,28 @@ var _state = require('./state');
 	
 	
 
+	/** A Pokemon's currently 'staleness' with respect to the Endless Battle Clause. */
 	
+	/** Staleness that will be set once a future action occurs (eg. eating a berry). */
+	
+	/** Temporary staleness that lasts only until the Pokemon switches. */
 	
 
 	// Gen 1 only
 	
+	
+	// Stadium only
 	
 
 	/**
 	 * An object for storing untyped data, for mods to use.
 	 */
 	
+
+
+
+
+
 
 	constructor(set, side) {;Pokemon.prototype.__init.call(this);Pokemon.prototype.__init2.call(this);
 		this.side = side;
@@ -251,19 +269,6 @@ var _state = require('./state');
 		this.baseSpecies = this.battle.dex.getSpecies(set.species || set.name);
 		if (!this.baseSpecies.exists) {
 			throw new Error(`Unidentified species: ${this.baseSpecies.name}`);
-		}
-		// Change Gigantamax formes to their base formes
-		let gMax = null;
-		if (this.baseSpecies.isGigantamax) {
-			gMax = this.baseSpecies.name;
-			if (set.species && toID(set.species) === this.baseSpecies.id) {
-				set.species = this.baseSpecies.battleOnly || this.baseSpecies.baseSpecies;
-			}
-			if (set.name && toID(set.name) === this.baseSpecies.id) {
-				set.name = this.baseSpecies.battleOnly || this.baseSpecies.baseSpecies;
-			}
-			// Species#battleOnly type checking is handled in team-validator.ts
-			this.baseSpecies = this.battle.dex.getSpecies(this.baseSpecies.battleOnly  || this.baseSpecies.baseSpecies);
 		}
 		this.set = set ;
 
@@ -283,6 +288,7 @@ var _state = require('./state');
 		if (this.gender === 'N') this.gender = '';
 		this.happiness = typeof set.happiness === 'number' ? this.battle.clampIntRange(set.happiness, 0, 255) : 255;
 		this.pokeball = this.set.pokeball || 'pokeball';
+		this.gigantamax = this.set.gigantamax || false;
 
 		this.baseMoveSlots = [];
 		this.moveSlots = [];
@@ -354,11 +360,11 @@ var _state = require('./state');
 		this.storedStats = {atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
 		this.boosts = {atk: 0, def: 0, spa: 0, spd: 0, spe: 0, accuracy: 0, evasion: 0};
 
-		this.baseAbility = toID(set.ability);
+		this.baseAbility = _dex.toID.call(void 0, set.ability);
 		this.ability = this.baseAbility;
 		this.abilityData = {id: this.ability};
 
-		this.item = toID(set.item);
+		this.item = _dex.toID.call(void 0, set.item);
 		this.itemData = {id: this.item};
 		this.lastItem = '';
 		this.usedItemThisTurn = false;
@@ -391,7 +397,7 @@ var _state = require('./state');
 		this.moveThisTurn = '';
 		this.statsRaisedThisTurn = false;
 		this.statsLoweredThisTurn = false;
-		this.hurtThisTurn = false;
+		this.hurtThisTurn = null;
 		this.lastDamage = 0;
 		this.attackedBy = [];
 
@@ -411,7 +417,7 @@ var _state = require('./state');
 		this.canUltraBurst = this.battle.canUltraBurst(this);
 		// Normally would want to use battle.canDynamax to set this, but it references this property.
 		this.canDynamax = (this.battle.gen >= 8);
-		this.canGigantamax = gMax;
+		this.canGigantamax = this.baseSpecies.canGigantamax || null;
 
 		// This is used in gen 1 only, here to avoid code repetition.
 		// Only declared if gen 1 to avoid declaring an object we aren't going to need.
@@ -463,7 +469,7 @@ var _state = require('./state');
 	}
 
 	calculateStat(statName, boost, modifier) {
-		statName = toID(statName) ;
+		statName = _dex.toID.call(void 0, statName) ;
 		// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
 		if (statName === 'hp') throw new Error("Please read `maxhp` directly");
 
@@ -499,7 +505,7 @@ var _state = require('./state');
 	}
 
 	getStat(statName, unboosted, unmodified) {
-		statName = toID(statName) ;
+		statName = _dex.toID.call(void 0, statName) ;
 		// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
 		if (statName === 'hp') throw new Error("Please read `maxhp` directly");
 
@@ -518,7 +524,7 @@ var _state = require('./state');
 
 		// stat boosts
 		if (!unboosted) {
-			const boosts = this.battle.runEvent('ModifyBoost', this, null, null, Object.assign({}, this.boosts));
+			const boosts = this.battle.runEvent('ModifyBoost', this, null, null, {...this.boosts});
 			let boost = boosts[statName];
 			const boostTable = [1, 1.5, 2, 2.5, 3, 3.5, 4];
 			if (boost > 6) boost = 6;
@@ -555,7 +561,7 @@ var _state = require('./state');
 		for (const stat in this.stats) {
 			statSum += this.calculateStat(stat, this.boosts[stat as BoostName]);
 			awakeningSum += this.calculateStat(
-				stat, this.boosts[stat as BoostName]) + this.battle.getAwakeningValues(this.set, stat);
+				stat, this.boosts[stat as BoostName]) + this.set.evs[stat];
 		}
 		const combatPower = Math.floor(Math.floor(statSum * this.level * 6 / 100) +
 			(Math.floor(awakeningSum) * Math.floor((this.level * 4) / 100 + 2)));
@@ -715,9 +721,6 @@ var _state = require('./state');
 	}
 
 	ignoringAbility() {
-		const abilities = [
-			'battlebond', 'comatose', 'disguise', 'gulpmissile', 'iceface', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange',
-		];
 		// Check if any active pokemon have the ability Neutralizing Gas
 		let neutralizinggas = false;
 		for (const pokemon of this.battle.getAllActive()) {
@@ -732,7 +735,8 @@ var _state = require('./state');
 		return !!(
 			(this.battle.gen >= 5 && !this.isActive) ||
 			((this.volatiles['gastroacid'] || (neutralizinggas && this.ability !== ('neutralizinggas' ))) &&
-			!abilities.includes(this.ability))
+			!this.getAbility().isPermanent
+			)
 		);
 	}
 
@@ -796,7 +800,7 @@ var _state = require('./state');
 
  {
 		if (lockedMove) {
-			lockedMove = toID(lockedMove);
+			lockedMove = _dex.toID.call(void 0, lockedMove);
 			this.trapped = true;
 			if (lockedMove === 'recharge') {
 				return [{
@@ -824,12 +828,9 @@ var _state = require('./state');
 			if (moveSlot.id === 'hiddenpower') {
 				moveName = 'Hidden Power ' + this.hpType;
 				if (this.battle.gen < 6) moveName += ' ' + this.hpPower;
-			} else if (moveSlot.id === 'return') {
-				// @ts-ignore - Return's basePowerCallback only takes one parameter
-				moveName = 'Return ' + this.battle.dex.getMove('return').basePowerCallback(this);
-			} else if (moveSlot.id === 'frustration') {
-				// @ts-ignore - Frustration's basePowerCallback only takes one parameter
-				moveName = 'Frustration ' + this.battle.dex.getMove('frustration').basePowerCallback(this);
+			} else if (moveSlot.id === 'return' || moveSlot.id === 'frustration') {
+				const basePowerCallback = this.battle.dex.getMove(moveSlot.id).basePowerCallback ;
+				moveName += ' ' + basePowerCallback(this);
 			}
 			let target = moveSlot.target;
 			if (moveSlot.id === 'curse') {
@@ -875,14 +876,12 @@ var _state = require('./state');
 			if (!this.canDynamax) return;
 			if (
 				this.species.isMega || this.species.isPrimal || this.species.forme === "Ultra" ||
-				this.getItem().zMove || this.battle.canMegaEvo(this)
+				this.getItem().zMove || this.canMegaEvo
 			) {
 				return;
 			}
 			// Some pokemon species are unable to dynamax
-			const cannotDynamax = ['Zacian', 'Zamazenta', 'Eternatus'];
-			if (cannotDynamax.includes(this.species.baseSpecies)) return;
-			if (this.illusion && cannotDynamax.includes(this.illusion.species.baseSpecies)) return;
+			if (this.species.cannotDynamax || _optionalChain([this, 'access', _ => _.illusion, 'optionalAccess', _2 => _2.species, 'access', _3 => _3.cannotDynamax])) return;
 		}
 		const result = {maxMoves: []};
 		let atLeastOne = false;
@@ -974,13 +973,11 @@ var _state = require('./state');
 			},
 			moves: this.moves.map(move => {
 				if (move === 'hiddenpower') {
-					return move + toID(this.hpType) + (this.battle.gen < 6 ? '' : this.hpPower);
+					return move + _dex.toID.call(void 0, this.hpType) + (this.battle.gen < 6 ? '' : this.hpPower);
 				}
 				if (move === 'frustration' || move === 'return') {
-					const m = this.battle.dex.getMove(move);
-					// @ts-ignore - Frustration and Return only require the source Pokemon
-					const basePower = m.basePowerCallback(this);
-					return `${move}${basePower}`;
+					const basePowerCallback = this.battle.dex.getMove(move).basePowerCallback ;
+					return move + basePowerCallback(this);
 				}
 				return move;
 			}),
@@ -1048,7 +1045,7 @@ var _state = require('./state');
 		for (const i in pokemon.volatiles) {
 			if (this.battle.dex.getEffectByID(i ).noCopy) continue;
 			// shallow clones
-			this.volatiles[i] = Object.assign({}, pokemon.volatiles[i]);
+			this.volatiles[i] = {...pokemon.volatiles[i]};
 			if (this.volatiles[i].linkedPokemon) {
 				delete pokemon.volatiles[i].linkedPokemon;
 				delete pokemon.volatiles[i].linkedStatus;
@@ -1079,7 +1076,7 @@ var _state = require('./state');
 		this.weighthg = pokemon.weighthg;
 
 		const types = pokemon.getTypes(true);
-		this.setType(pokemon.volatiles.roost ? pokemon.volatiles.roost.typeWas : types, true);
+		this.setType(pokemon.volatiles['roost'] ? pokemon.volatiles['roost'].typeWas : types, true);
 		this.addedType = pokemon.addedType;
 		this.knownType = this.side === pokemon.side && pokemon.knownType;
 		this.apparentType = pokemon.apparentType;
@@ -1144,7 +1141,7 @@ var _state = require('./state');
 			if (this.species.num === 493) {
 				// Arceus formes
 				const item = this.getItem();
-				const targetForme = (_optionalChain([item, 'optionalAccess', _ => _.onPlate]) ? 'Arceus-' + item.onPlate : 'Arceus');
+				const targetForme = (_optionalChain([item, 'optionalAccess', _4 => _4.onPlate]) ? 'Arceus-' + item.onPlate : 'Arceus');
 				if (this.species.name !== targetForme) {
 					this.formeChange(targetForme);
 				}
@@ -1170,7 +1167,7 @@ var _state = require('./state');
 		this.knownType = true;
 		this.weighthg = species.weighthg;
 
-		const stats = this.battle.dex.spreadModify(this.species.baseStats, this.set);
+		const stats = this.battle.spreadModify(this.species.baseStats, this.set);
 		if (this.species.maxHP) stats.hp = this.species.maxHP;
 
 		if (!this.maxhp) {
@@ -1249,7 +1246,7 @@ var _state = require('./state');
 				this.ability = ''; // Don't allow Illusion to wear off
 			}
 			this.setAbility(species.abilities['0'], null, true);
-			if (isPermanent) this.baseAbility = this.ability;
+			this.baseAbility = this.ability;
 		}
 		return true;
 	}
@@ -1283,8 +1280,8 @@ var _state = require('./state');
 				this.removeLinkedVolatiles(this.volatiles[i].linkedStatus, this.volatiles[i].linkedPokemon);
 			}
 		}
-		if (this.species.name === 'Eternatus-Eternamax' && this.volatiles.dynamax) {
-			this.volatiles = {dynamax: this.volatiles.dynamax};
+		if (this.species.name === 'Eternatus-Eternamax' && this.volatiles['dynamax']) {
+			this.volatiles = {dynamax: this.volatiles['dynamax']};
 		} else {
 			this.volatiles = {};
 		}
@@ -1298,9 +1295,11 @@ var _state = require('./state');
 
 		this.lastDamage = 0;
 		this.attackedBy = [];
-		this.hurtThisTurn = false;
+		this.hurtThisTurn = null;
 		this.newlySwitched = true;
 		this.beingCalledBack = false;
+
+		this.volatileStaleness = undefined;
 
 		this.setSpecies(this.baseSpecies);
 	}
@@ -1358,7 +1357,7 @@ var _state = require('./state');
 	}
 
 	hasMove(moveid) {
-		moveid = toID(moveid);
+		moveid = _dex.toID.call(void 0, moveid);
 		if (moveid.substr(0, 11) === 'hiddenpower') moveid = 'hiddenpower';
 		for (const moveSlot of this.moveSlots) {
 			if (moveid === moveSlot.id) {
@@ -1372,7 +1371,7 @@ var _state = require('./state');
 		if (!sourceEffect && this.battle.event) {
 			sourceEffect = this.battle.effect;
 		}
-		moveid = toID(moveid);
+		moveid = _dex.toID.call(void 0, moveid);
 
 		for (const moveSlot of this.moveSlots) {
 			if (moveSlot.id === moveid && moveSlot.disabled !== true) {
@@ -1442,9 +1441,9 @@ var _state = require('./state');
 		if (!source) source = this;
 
 		if (this.status === status.id) {
-			if (_optionalChain([(sourceEffect ), 'optionalAccess', _2 => _2.status]) === this.status) {
+			if (_optionalChain([(sourceEffect ), 'optionalAccess', _5 => _5.status]) === this.status) {
 				this.battle.add('-fail', this, this.status);
-			} else if (_optionalChain([(sourceEffect ), 'optionalAccess', _3 => _3.status])) {
+			} else if (_optionalChain([(sourceEffect ), 'optionalAccess', _6 => _6.status])) {
 				this.battle.add('-fail', source);
 				this.battle.attrLastMove('[still]');
 			}
@@ -1452,11 +1451,11 @@ var _state = require('./state');
 		}
 
 		if (!ignoreImmunities && status.id &&
-				!(_optionalChain([source, 'optionalAccess', _4 => _4.hasAbility, 'call', _5 => _5('corrosion')]) && ['tox', 'psn'].includes(status.id))) {
+				!(_optionalChain([source, 'optionalAccess', _7 => _7.hasAbility, 'call', _8 => _8('corrosion')]) && ['tox', 'psn'].includes(status.id))) {
 			// the game currently never ignores immunities
 			if (!this.runStatusImmunity(status.id === 'tox' ? 'psn' : status.id)) {
 				this.battle.debug('immune to status');
-				if (_optionalChain([(sourceEffect ), 'optionalAccess', _6 => _6.status])) {
+				if (_optionalChain([(sourceEffect ), 'optionalAccess', _9 => _9.status])) {
 					this.battle.add('-immune', this);
 				}
 				return false;
@@ -1584,8 +1583,8 @@ var _state = require('./state');
 		if (!this.item) return false;
 		if (!source) source = this;
 		if (this.battle.gen === 4) {
-			if (toID(this.ability) === 'multitype') return false;
-			if (source && toID(source.ability) === 'multitype') return false;
+			if (_dex.toID.call(void 0, this.ability) === 'multitype') return false;
+			if (source && _dex.toID.call(void 0, source.ability) === 'multitype') return false;
 		}
 		const item = this.getItem();
 		if (this.battle.runEvent('TakeItem', this, source, null, item)) {
@@ -1624,8 +1623,8 @@ var _state = require('./state');
 	hasItem(item) {
 		if (this.ignoringItem()) return false;
 		const ownItem = this.item;
-		if (!Array.isArray(item)) return ownItem === toID(item);
-		return item.map(toID).includes(ownItem);
+		if (!Array.isArray(item)) return ownItem === _dex.toID.call(void 0, item);
+		return item.map(_dex.toID).includes(ownItem);
 	}
 
 	clearItem() {
@@ -1637,11 +1636,7 @@ var _state = require('./state');
 		if (typeof ability === 'string') ability = this.battle.dex.getAbility(ability);
 		const oldAbility = this.ability;
 		if (!isFromFormeChange) {
-			const abilities = [
-				'battlebond', 'comatose', 'disguise', 'gulpmissile', 'hungerswitch', 'iceface', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange',
-			];
-			if (ability.id === 'illusion' || abilities.includes(ability.id) || abilities.includes(oldAbility)) return false;
-			if (this.battle.gen >= 7 && (ability.id === 'zenmode' || oldAbility === 'zenmode')) return false;
+			if (ability.isPermanent || this.getAbility().isPermanent) return false;
 		}
 		if (!this.battle.runEvent('SetAbility', this, source, this.battle.effect, ability)) return false;
 		this.battle.singleEvent('End', this.battle.dex.getAbility(oldAbility), this.abilityData, this, source);
@@ -1665,8 +1660,8 @@ var _state = require('./state');
 	hasAbility(ability) {
 		if (this.ignoringAbility()) return false;
 		const ownAbility = this.ability;
-		if (!Array.isArray(ability)) return ownAbility === toID(ability);
-		return ability.map(toID).includes(ownAbility);
+		if (!Array.isArray(ability)) return ownAbility === _dex.toID.call(void 0, ability);
+		return ability.map(_dex.toID).includes(ownAbility);
 	}
 
 	clearAbility() {
@@ -1697,7 +1692,7 @@ var _state = require('./state');
 		}
 		if (!this.runStatusImmunity(status.id)) {
 			this.battle.debug('immune to volatile status');
-			if (_optionalChain([(sourceEffect ), 'optionalAccess', _7 => _7.status])) {
+			if (_optionalChain([(sourceEffect ), 'optionalAccess', _10 => _10.status])) {
 				this.battle.add('-immune', this);
 			}
 			return false;
@@ -1808,7 +1803,12 @@ var _state = require('./state');
 	 */
 	setType(newType, enforce = false) {
 		// First type of Arceus, Silvally cannot be normally changed
-		if (!enforce && (this.species.num === 493 || this.species.num === 773)) return false;
+		if (!enforce) {
+			if ((this.battle.gen >= 5 && (this.species.num === 493 || this.species.num === 773)) ||
+				(this.battle.gen === 4 && this.hasAbility('multitype'))) {
+				return false;
+			}
+		}
 
 		if (!newType) throw new Error("Must pass type to setType");
 		this.types = (typeof newType === 'string' ? [newType] : newType);
@@ -1951,9 +1951,7 @@ var _state = require('./state');
 	destroy() {
 		// deallocate ourself
 		// get rid of some possibly-circular references
-		// @ts-ignore - readonly
-		this.battle = null;
-		// @ts-ignore - readonly
-		this.side = null;
+		(this ).battle = null;
+		(this ).side = null;
 	}
 } exports.Pokemon = Pokemon;

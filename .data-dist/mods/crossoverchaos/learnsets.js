@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleLearnsets = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Learnsets = {
 /*
 TMs/Tutors sorted by last generation they carry that status (for kirby, nero, etc.)
 	Gen 8:
@@ -16683,7 +16683,7 @@ TMs/Tutors sorted by last generation they carry that status (for kirby, nero, et
 		snarl: ["8L1"],
 		nightslash: ["8L1"],
 	}},
-}; exports.BattleLearnsets = BattleLearnsets;
+}; exports.Learnsets = Learnsets;
 
 
 

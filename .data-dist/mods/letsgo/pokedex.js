@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	pichu: {
 		inherit: true,
 		evos: [],
@@ -172,4 +172,4 @@
 		prevo: '',
 		evoLevel: undefined,
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

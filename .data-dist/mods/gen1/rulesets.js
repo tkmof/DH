@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormats = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Formats = {
 	standard: {
 		effectType: 'ValidatorRule',
 		name: 'Standard',
@@ -24,4 +24,4 @@
 			return newSpecies;
 		},
 	},
-}; exports.BattleFormats = BattleFormats;
+}; exports.Formats = Formats;

@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});/* eslint-disable max-len */
 
- const BattleLearnsets = {
+ const Learnsets = {
 	bulbasaur: {
 		learnset: {
 			doubleedge: ["7L32"],
@@ -5397,4 +5397,4 @@
 			toxic: ["7M"],
 		},
 	},
-}; exports.BattleLearnsets = BattleLearnsets;
+}; exports.Learnsets = Learnsets;

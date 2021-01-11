@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormats = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Formats = {
 	standard: {
 		inherit: true,
 		ruleset: ['Obtainable', 'Team Preview', 'Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
@@ -26,4 +26,4 @@
 			this.add('rule', 'Gravity Sleep Clause: The combination of Gravity and sleep-inducing moves with imperfect accuracy are banned');
 		},
 	},
-}; exports.BattleFormats = BattleFormats;
+}; exports.Formats = Formats;

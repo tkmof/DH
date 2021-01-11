@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
 	aguavberry: {
 		inherit: true,
 		naturalGift: {
@@ -536,4 +536,4 @@
 			type: "Ice",
 		},
 	},
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

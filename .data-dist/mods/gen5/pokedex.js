@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	bulbasaur: {
 		inherit: true,
 		maleOnlyHidden: true,
@@ -520,4 +520,4 @@
 		inherit: true,
 		abilities: {0: "Flame Body"},
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

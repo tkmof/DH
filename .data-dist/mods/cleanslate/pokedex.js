@@ -1,7 +1,7 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	cofagrigus: {
         num: 563,
-        species: "Cofagrigus",
+        name: "Cofagrigus",
         types: ["Ghost", "Dark"],
         baseStats: {hp: 40, atk: 48, def: 180, spa: 92, spd: 100, spe: 40},
         abilities: {0: "Mummy", 1: "Rough Skin", H: "Cursed Body"},
@@ -12,7 +12,7 @@
     },
     nihilego: {
         num: 793,
-        species: "Nihilego",
+        name: "Nihilego",
         types: ["Rock", "Poison"],
         gender: "N",
         baseStats: {hp: 101, atk: 83, def: 67, spa: 89, spd: 119, spe: 101},
@@ -24,7 +24,7 @@
     },
     raichu: {
         num: 26,
-        species: "Raichu",
+        name: "Raichu",
         types: ["Electric", "Ice"],
         baseStats: {hp: 55, atk: 105, def: 40, spa: 100, spd: 70, spe: 125},
         abilities: {0: "Static", 2: "Lightning Rod", H: "Magic Guard"},
@@ -35,7 +35,7 @@
     },
 	flygon: {
         num: 330,
-        species: "Flygon",
+        name: "Flygon",
         types: ["Dragon", "Fairy"],
         baseStats: {hp: 85, atk: 50, def: 80, spa: 105, spd: 70, spe: 100},
         abilities: {0: "Mythical Presence"},
@@ -46,7 +46,7 @@
     },
 	meganium: {
         num: 154,
-        species: "Meganium",
+        name: "Meganium",
         types: ["Grass", "Dragon"],
         genderRatio: {M: 0.875, F: 0.125},
         baseStats: {hp: 82, atk: 83, def: 96, spa: 84, spd: 96, spe: 69},
@@ -59,7 +59,7 @@
     },
 	tapubulu: {
         num: 787,
-        species: "Tapu Bulu",
+        name: "Tapu Bulu",
         types: ["Grass", "Fire"],
         gender: "N",
         baseStats: {hp: 85, atk: 85, def: 115, spa: 75, spd: 80, spe: 70},
@@ -71,7 +71,7 @@
     },
     metagross: {
         num: 376,
-        species: "Metagross",
+        name: "Metagross",
         types: ["Psychic", "Steel"],
         gender: "N",
         baseStats: {hp: 80, atk: 125, def: 105, spa: 65, spd: 65, spe: 75},
@@ -83,7 +83,7 @@
     },
 	metagrossmega: {
 		num: 531,
-		species: "Metagross-Mega",
+		name: "Metagross-Mega",
 		baseSpecies: "Metagross",
 		forme: "Mega",
 		formeLetter: "M",
@@ -94,7 +94,7 @@
 	},
     cloyster: {
         num: 91,
-        species: "Cloyster",
+        name: "Cloyster",
         types: ["Water", "Dark"],
         baseStats: {hp: 45, atk: 50, def: 180, spa: 75, spd: 55, spe: 80},
         abilities: {0: "Shell Armor", 1: "Intimidate", H: "Contrary"},
@@ -105,7 +105,7 @@
     },
     flaaffy: {
         num: 180,
-        species: "Flaaffy",
+        name: "Flaaffy",
         types: ["Electric", "Flying"],
         baseStats: {hp: 100, atk: 55, def: 35, spa: 90, spd: 50, spe: 60},
         abilities: {0: "Natural Cure", 1: "Static", H: "Fur Coat"},
@@ -118,7 +118,7 @@
     },
 	swalot: {
         num: 317,
-        species: "Swalot",
+        name: "Swalot",
         types: ["Poison", "Dark"],
         baseStats: {hp: 175, atk: 40, def: 65, spa: 80, spd: 65, spe: 50},
         abilities: {0: "Sticky Hold", 1: "Cheek Pouch", H: "Dry Skin"},
@@ -129,7 +129,7 @@
     },
 	kricketune: {
         num: 402,
-        species: "Kricketune",
+        name: "Kricketune",
         types: ["Bug", "Normal"],
         baseStats: {hp: 77, atk: 75, def: 61, spa: 75, spd: 61, spe: 95},
         abilities: {0: "Swarm", H: "Soundproof"},
@@ -140,7 +140,7 @@
     },
     poipole: {
         num: 803,
-        species: "Poipole",
+        name: "Poipole",
         types: ["Poison", "Psychic"],
         gender: "N",
         baseStats: {hp: 87, atk: 123, def: 67, spa: 123, spd: 67, spe: 78},
@@ -152,7 +152,7 @@
     },
     celesteela: {
         num: 797,
-        species: "Celesteela",
+        name: "Celesteela",
         types: ["Steel"],
         gender: "N",
         baseStats: {hp: 97, atk: 97, def: 103, spa: 89, spd: 101, spe: 73},
@@ -164,7 +164,7 @@
     },
 	raticatealolatotem: {
         num: 20,
-        species: "Raticate-Alola-Totem",
+        name: "Raticate-Alola-Totem",
         baseSpecies: "Raticate",
 		forme: "Alola-Totem",
 		formeLetter: "T",
@@ -178,7 +178,7 @@
     },
     rhydon: {
         num: 112,
-        species: "Rhydon",
+        name: "Rhydon",
         types: ["Ground", "Rock"],
         baseStats: {hp: 115, atk: 130, def: 110, spa: 45, spd: 45, spe: 45},
         abilities: {0: "Lightning Rod", 1: "Thick Fat", H: "Mold Breaker"},
@@ -191,7 +191,7 @@
     },
 	evioliteenabler: {
         num: 112,
-        species: "Eviolite Enabler",
+        name: "Eviolite Enabler",
         types: ["Normal"],
         baseStats: {hp: 5, atk: 5, def: 5, spa: 5, spd: 5, spe: 5},
         abilities: {0: "Truant"},
@@ -203,7 +203,7 @@
     },
     pangoro: {
         num: 675,
-        species: "Pangoro",
+        name: "Pangoro",
         types: ["Fighting", "Dark"],
         baseStats: {hp: 81, atk: 110, def: 93, spa: 62, spd: 80, spe: 84},
         abilities: {0: "Iron Fist", 1: "Intimidate", H: "Sap Sipper"},
@@ -214,7 +214,7 @@
     },
     trapinch: {
         num: 328,
-        species: "Trapinch",
+        name: "Trapinch",
         types: ["Ground", "Dark"],
         baseStats: {hp: 65, atk: 100, def: 65, spa: 45, spd: 65, spe: 50},
         abilities: {0: "Hyper Cutter", 1: "Arena Trap", H: "Mold Breaker"},
@@ -226,7 +226,7 @@
     },
 	ninjask: {
         num: 291,
-        species: "Ninjask",
+        name: "Ninjask",
         types: ["Water", "Flying"],
         baseStats: {hp: 70, atk: 60, def: 70, spa: 100, spd: 70, spe: 110},
         abilities: {0: "Infiltrator", H: "Technician"},
@@ -237,7 +237,7 @@
     },
 	swampert: {
 		num: 260,
-		species: "Swampert",
+		name: "Swampert",
 		types:["Water", "Ground"],
 		baseStats: {hp: 100, atk: 100, def: 85, spa: 70, spd: 75, spe: 60},
 		abilities: {0: "Torrent", H: "Poison Heal"},
@@ -245,7 +245,7 @@
 	},
 	swampertmega: {
 		num: 260,
-		species: "Swampert-Mega",
+		name: "Swampert-Mega",
 		baseSpecies: "Swampert",
 		forme: "Mega",
 		formeLetter: "M",
@@ -256,7 +256,7 @@
 	},
 	audino: {
 		num: 531,
-		species: "Audino",
+		name: "Audino",
 		types:["Fairy", "Normal"],
 		baseStats: {hp: 125, atk: 60, def: 80, spa: 95, spd: 80, spe: 50},
 		abilities: {0: "Aroma Veil", 1: "Regenerator", H: "Natural Cure"},
@@ -264,7 +264,7 @@
 	},
 	audinomega: {
 		num: 531,
-		species: "Audino-Mega",
+		name: "Audino-Mega",
 		baseSpecies: "Audino",
 		forme: "Mega",
 		formeLetter: "M",
@@ -275,7 +275,7 @@
 	},
 	sharpedo: {
 		num: 319,
-		species: "Sharpedo",
+		name: "Sharpedo",
 		types:["Water", "Steel"],
 		baseStats: {hp: 60, atk: 100, def: 70, spa: 85, spd: 40, spe: 95},
 		abilities: {0: "Unnerve", 1: "Water Veil", H: "Moxie"},
@@ -283,7 +283,7 @@
 	},
 	sharpedomega: {
 		num: 319,
-		species: "Sharpedo-Mega",
+		name: "Sharpedo-Mega",
 		baseSpecies: "Sharpedo",
 		forme: "Mega",
 		formeLetter: "M",
@@ -294,7 +294,7 @@
 	},
 	milotic: {
         num: 350,
-        species: "Milotic",
+        name: "Milotic",
         types: ["Water", "Fairy"],
         baseStats: {hp: 85, atk: 95, def: 90, spa: 85, spd: 90, spe: 95},
         abilities: {0: "Trace", 1: "Damp", H: "Hydration"},
@@ -305,7 +305,7 @@
     },
 	lanturn: {
         num: 171,
-        species: "Lanturn",
+        name: "Lanturn",
         types: ["Water", "Electric"],
         baseStats: {hp: 125, atk: 40, def: 50, spa: 85, spd: 85, spe: 70},
         abilities: {0: "Water Absorb", 1: "Volt Absorb", H: "Abyssal Light"},
@@ -316,7 +316,7 @@
     },
 	toucannon: {
         num: 733,
-        species: "Toucannon",
+        name: "Toucannon",
         types: ["Flying"],
         baseStats: {hp: 70, atk: 110, def: 110, spa: 75, spd: 75, spe: 55},
         abilities: {0: "Poison Heal", H: "Sheer Force"},
@@ -327,7 +327,7 @@
     },
 	mew: {
         num: 151,
-        species: "Mew",
+        name: "Mew",
         types: ["Psychic", "Fairy"],
         gender: "N",
         baseStats: {hp: 85, atk: 85, def: 85, spa: 85, spd: 85, spe: 85},
@@ -339,7 +339,7 @@
     },
 	cacturne: {
 		num: 332,
-		species: "Cacturne",
+		name: "Cacturne",
 		types:["Grass", "Fighting"],
 		baseStats: {hp: 70, atk: 120, def: 82, spa: 118, spd: 70, spe: 65},
 		abilities: {0: "Sand Rush", 1: "Sand Veil", H: "Desert Coat"},
@@ -347,7 +347,7 @@
 	},
 	trevenant: {
 		num: 709,
-		species: "Trevenant",
+		name: "Trevenant",
 		types:["Ghost", "Fighting"],
 		baseStats: {hp: 70, atk: 102, def: 73, spa: 64, spd: 81, spe: 60},
 		abilities: {0: "Natural Cure", 1: "Harvest", H: "Long Reach"},
@@ -355,7 +355,7 @@
 	},	
 	gardevoir: {
 		num: 282,
-		species: "Gardevoir",
+		name: "Gardevoir",
 		types:["Fairy", "Ground"],
 		baseStats: {hp: 70, atk: 70, def: 80, spa: 120, spd: 90, spe: 80},
 		abilities: {0: "Synchronize", H: "Pixilate"},
@@ -363,7 +363,7 @@
 	},
 	gardevoirmega: {
 		num: 282,
-		species: "Gardevoir-Mega",
+		name: "Gardevoir-Mega",
 		baseSpecies: "Gardevoir",
 		forme: "Mega",
 		formeLetter: "M",
@@ -374,7 +374,7 @@
 	},
 	ditto: {
 		num: 132,
-		species: "Ditto",
+		name: "Ditto",
 		types:["Normal"],
 		baseStats: {hp: 115, atk: 30, def: 50, spa: 90, spd: 60, spe: 50},
 		abilities: {0: "Sticky Hold", 1: "Sturdy", H: "Protean"},
@@ -382,7 +382,7 @@
 	},
 	porygonz: {
 		num: 474,
-		species: "Porygon-Z",
+		name: "Porygon-Z",
 		types: ["Bug"],
 		baseStats: {hp: 85, atk: 85, def: 90, spa: 120, spd: 95, spe: 65},
 		abilities: {0: "Malware", 1: "Download", H: "Analytic"},
@@ -390,15 +390,15 @@
 	},
 	druddigon: {
 		num: 621,
-		species: "Druddigon",
+		name: "Druddigon",
 		types: ["Dragon", "Ghost"],
-		baseStats: {hp: 90, atk: 120, def: 90, spa: 75, spd: 90, spe: 65},
+		baseStats: {hp: 90, atk: 120, def: 90, spa: 75, spd: 90, spe: 55},
 		abilities: {0: "Mold Breaker", H: "Defiant"},
 		weightkg: 139,
 	},
 	forretress: {
 		num: 205,
-		species: "Forretress",
+		name: "Forretress",
 		types: ["Bug", "Steel"],
 		baseStats: {hp: 70, atk: 100, def: 130, spa: 60, spd: 80, spe: 40},
 		abilities: {0: "Overcoat", H: "Regenerator"},
@@ -406,7 +406,7 @@
 	},
 	unown: {
 		num: 201,
-		species: "Unown",
+		name: "Unown",
 		baseForme: "A",
 		types: ["Psychic"],
 		baseStats: {hp: 57, atk: 93, def: 42, spa: 123, spd: 82, spe: 103},
@@ -415,7 +415,7 @@
 	},
 	sigilyph: {
         num: 561,
-        species: "Sigilyph",
+        name: "Sigilyph",
         types: ["Psychic", "Flying"],
         baseStats: {hp: 70, atk: 58, def: 77, spa: 117, spd: 108, spe: 63},
         abilities: {0: "Wonder Skin", H: "Magic Guard"},
@@ -426,7 +426,7 @@
     },
     vikavolt: {
         num: 738,
-        species: "Vikavolt",
+        name: "Vikavolt",
         types: ["Rock", "Electric"],
         baseStats: {hp: 77, atk: 70, def: 95, spa: 130, spd: 110, spe: 34},
         abilities: {0: "Levitate", H: "Technician"},
@@ -437,7 +437,7 @@
     },
     xurkitree: {
         num: 796,
-        species: "Xurkitree",
+        name: "Xurkitree",
         types: ["Electric"],
         gender: "N",
         baseStats: {hp: 103, atk: 89, def: 89, spa: 97, spd: 103, spe: 79},
@@ -449,7 +449,7 @@
     },
     genesect: {
         num: 649,
-        species: "Genesect",
+        name: "Genesect",
         types: ["Steel"],
         gender: "N",
         baseStats: {hp: 71, atk: 105, def: 95, spa: 105, spd: 95, spe: 99},
@@ -461,7 +461,7 @@
     },
     musharna: {
         num: 518,
-        species: "Musharna",
+        name: "Musharna",
         types: ["Fairy", "Poison"],
         baseStats: {hp: 100, atk: 55, def: 80, spa: 105, spd: 100, spe: 5},
         abilities: {0: "White Smoke", 1: "Pink Smoke", H: "Gooey"},
@@ -472,7 +472,7 @@
     },
     lycanrocmidnight: {
         num: 745,
-        species: "Lycanroc-Midnight",
+        name: "Lycanroc-Midnight",
         baseSpecies: "Lycanroc",
         forme: "Midnight",
         formeLetter: "M",
@@ -486,7 +486,7 @@
     },
 	kommoo: {
 		num: 784,
-		species: "Kommo-o",
+		name: "Kommo-o",
 		types: ["Dragon", "Ground"],
 		baseStats: {hp: 75, atk: 106, def: 80, spa: 67, spd: 110, spe: 102},
 		abilities: {0: "Battle Armor", H: "Sand Stream"},
@@ -495,4 +495,4 @@
 		color: "Gray",
 		eggGroups: ["Dragon"],
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

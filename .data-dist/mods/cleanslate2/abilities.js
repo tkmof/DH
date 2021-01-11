@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAbilities = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Abilities = {
 	"powerspot": {
 		shortDesc: "This Pokemon and it's allies have the base power of their moves multiplied by 1.3.",
 		onAllyBasePowerPriority: 8,
@@ -158,4 +158,4 @@
 		rating: 3.5,
 		num: 22,
 	},
-}; exports.BattleAbilities = BattleAbilities;
+}; exports.Abilities = Abilities;

@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
     "waterstone": {
         id: "waterstone",
         name: "Water Stone",
@@ -151,6 +151,23 @@
         num: 109,
         gen: 4,
         desc: "Holder's Fighting-type and Ice-type attacks have 1.2x power. Evolves certain species of Pokemon when used",
+    },
+    "icestone": {
+        id: "icestone",
+        name: "Ice Stone",
+        spritenum: 693,
+        fling: {
+            basePower: 80,
+        },
+        onBasePowerPriority: 6,
+        onBasePower(basePower, user, target, move) {
+            if (move.type === 'Steel' || move.type === 'Ice') {
+                return this.chainModify([0x1333, 0x1000]);
+            }
+        },
+        num: 849,
+        gen: 1,
+        desc: "Holder's Ice-type and Steel-type attacks have 1.2x power. Evolves certain species of Pokemon when used",
     },
     "bugmemory": {
         id: "bugmemory",
@@ -579,62 +596,43 @@
         itemUser: ["Pikachu"],
         num: 236,
         gen: 2,
-        desc: "If held by a Pikachu, its Attack and Sp. Atk are doubled.",
+        desc: "If held by a Pikachu, its Attack and Sp. Atk are doubled. If the holder is not a Pikachu, the holder is paralyzed at the end of the turn",
     },
-    "ragecandybar": {
-        id: "ragecandybar",
-        name: "RageCandyBar",
-        onStart: function(pokemon) {
-            this.add('-item', pokemon, 'Rage Candy Bar');
-            if (pokemon.baseSpecies.baseSpecies === 'Darmanitan') {
-                pokemon.addVolatile('zenmode');
-            }
-        },
-        fling: {
-            basePower: 20,
-        },
-        onBasePowerPriority: 6,
-        onBasePower: function(basePower, user, target, move) {
-            if (move && (user.baseSpecies.num === 555) && (move.type === 'Psychic')) {
-                return this.chainModify([0x1333, 0x1000]);
-            }
-        },
-        onTakeItem: function(item, pokemon, source) {
-            if ((source && source.baseSpecies.num === 555) || pokemon.baseSpecies.num === 555) {
-                return false;
-            }
-            return true;
-        },
-        gen: 7,
-        desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan, and it's Psychic-Type moves have 1.2x more power",
-    },
-    "mintyragecandybar": {
-        id: "mintyragecandybar",
-        name: "RageCandyBar",
-        onStart: function(pokemon) {
-            this.add('-item', pokemon, 'MintyRageCandyBar');
-            if (pokemon.baseSpecies.baseSpecies === 'Darmanitan') {
-                pokemon.addVolatile('zenmode');
-            }
-        },
-        fling: {
-            basePower: 20,
-        },
-        onBasePowerPriority: 6,
-        onBasePower: function(basePower, user, target, move) {
-            if (move && (user.baseSpecies.num === 555) && (move.type === 'Fire')) {
-                return this.chainModify([0x1333, 0x1000]);
-            }
-        },
-        onTakeItem: function(item, pokemon, source) {
-            if ((source && source.baseSpecies.num === 555) || pokemon.baseSpecies.num === 555) {
-                return false;
-            }
-            return true;
-        },
-        gen: 8,
-        desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan, and it's Fire-Type moves have 1.2x more power",
-    },
+	"ragecandybar": {
+		id: "ragecandybar",
+		name: "Rage Candy Bar",
+		onStart: function(pokemon) {
+			this.add('-item', pokemon, 'Rage Candy Bar');
+			if (pokemon.species.baseSpecies === 'Darmanitan') {
+				if (!pokemon.species.name.includes('Galar')) {
+					if (pokemon.species.id !== 'darmanitanzen') pokemon.formeChange('Darmanitan-Zen');
+				} else {
+					if (pokemon.species.id !== 'darmanitangalarzen') pokemon.formeChange('Darmanitan-Galar-Zen');
+				}
+			}
+		},
+		fling: {
+			basePower: 20,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function(basePower, user, target, move) {
+			if (move && (user.species.id === 'darmanitanzen') && (move.type === 'Psychic')) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+			if (move && (user.species.id === 'darmanitangalarzen') && (move.type === 'Fire')) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		onTakeItem: function(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 555) || pokemon.baseSpecies.num === 555) {
+				return false;
+			}
+			return true;
+		},
+      itemUser: ["Darmanitan"],
+		gen: 7,
+		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan, and its Psychic-Type moves have 1.2x more power. If this Pokémon is a Galarian Darmanitan, it becomes Zen Mode Galarian Darmanitan, and its Fire-Type moves have 1.2x more power.",
+	},
     "reliccharm": {
         id: "reliccharm",
         name: "Relic Charm",
@@ -660,6 +658,7 @@
             }
             return true;
         },
+        itemUser: ["Meloetta"],
         gen: 7,
         desc: "If this Pokémon is a Meloetta, it changes to Pirouette, and it's Fighting-Type moves have 1.2x more power",
     },
@@ -690,6 +689,7 @@
                 return this.chainModify([0x1333, 0x1000]);
             }
         },
+        itemUser: ["Wishiwashi"],
         gen: 7,
         desc: "If holder is a Wishiwashi, it becomes School Form. Its ability becomes Intimidate. Water moves are boosted by 1.2x",
     },
@@ -706,6 +706,7 @@
         name: "Meganiumite",
         megaStone: "Meganium-Mega",
         megaEvolves: "Meganium",
+		  itemUser: ["Meganium"],
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -715,8 +716,9 @@
     "typhlosionite": {
         id: "typhlosionite",
         name: "Typhlosionite",
-        megaStone: "Meganium-Mega",
-        megaEvolves: "Meganium",
+        megaStone: "Typhlosion-Mega",
+        megaEvolves: "Typhlosion",
+		  itemUser: ["Typhlosion"],
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -728,6 +730,7 @@
         name: "Feraligite",
         megaStone: "Feraligatr-Mega",
         megaEvolves: "Feraligatr",
+		  itemUser: ["Feraligatr"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -739,6 +742,7 @@
         name: "Galarslowbronite",
         megaStone: "Slowbro-Galar-Mega",
         megaEvolves: "Slowbro-Galar",
+		  itemUser: ["Slowbro-Galar"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -750,6 +754,7 @@
         name: "Slowkinite",
         megaStone: "Slowking-Mega",
         megaEvolves: "Slowking",
+		  itemUser: ["Slowking"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -761,6 +766,7 @@
         name: "Froslassite",
         megaStone: "Froslass-Mega",
         megaEvolves: "Froslass",
+		  itemUser: ["Froslass"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -772,6 +778,7 @@
         name: "Butterfrite",
         megaStone: "Butterfree-Mega",
         megaEvolves: "Butterfree",
+		  itemUser: ["Butterfree"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -783,6 +790,7 @@
         name: "Milotite",
         megaStone: "Milotic-Mega",
         megaEvolves: "Milotic",
+		  itemUser: ["Milotic"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -794,6 +802,7 @@
         name: "Dragonitite",
         megaStone: "Dragonite-Mega",
         megaEvolves: "Dragonite",
+		  itemUser: ["Dragonite"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -805,6 +814,7 @@
         name: "Dusknoirite",
         megaStone: "Dusknoir-Mega",
         megaEvolves: "Dusknoir",
+		  itemUser: ["Dusknoir"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -816,6 +826,7 @@
         name: "Flygonite",
         megaStone: "Flygon-Mega",
         megaEvolves: "Flygon",
+		  itemUser: ["Flygon"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -827,6 +838,7 @@
         name: "Hydreigonite",
         megaStone: "Hydreigon-Mega",
         megaEvolves: "Hydreigon",
+		  itemUser: ["Hydreigon"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -838,6 +850,7 @@
         name: "Mienshaonite",
         megaStone: "Mienshao-Mega",
         megaEvolves: "Mienshao",
+		  itemUser: ["Mienshao"],			 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -849,6 +862,7 @@
         name: "Musharnite",
         megaStone: "Musharna-Mega",
         megaEvolves: "Musharna",
+		  itemUser: ["Musharna"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -860,6 +874,7 @@
         name: "Zoroarkite",
         megaStone: "Zoroark-Mega",
         megaEvolves: "Zoroark",
+		  itemUser: ["Zoroark"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -871,6 +886,7 @@
         name: "Zebstrikite",
         megaStone: "Zebstrika-Mega",
         megaEvolves: "Zebstrika",
+		  itemUser: ["Zebstrika"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -882,6 +898,7 @@
         name: "Goodrite",
         megaStone: "Goodra-Mega",
         megaEvolves: "Goodra",
+		  itemUser: ["Goodra"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -893,6 +910,7 @@
         name: "Talonflite",
         megaStone: "Talonflame-Mega",
         megaEvolves: "Talonflame",
+		  itemUser: ["Talonflame"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -904,6 +922,7 @@
         name: "Gogoatite",
         megaStone: "Gogoat-Mega",
         megaEvolves: "Gogoat",
+		  itemUser: ["Gogoat"],		 
         onTakeItem: function (item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -915,6 +934,7 @@
         name: "Barbaraclelite",
         megaStone: "Barbaracle-Mega",
         megaEvolves: "Barbaracle",
+		  itemUser: ["Barbaracle"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -926,6 +946,7 @@
         name: "Malmeowstite",
         megaStone: "Meowstic-Mega",
         megaEvolves: "Meowstic",
+		  itemUser: ["Meowstic"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -937,6 +958,7 @@
         name: "Femmeowstite",
         megaStone: "Meowstic-F-Mega",
         megaEvolves: "Meowstic-F",
+		  itemUser: ["Meowstic-F"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -948,6 +970,7 @@
         name: "Golisopodite",
         megaStone: "Golisopod-Mega",
         megaEvolves: "Golisopod",
+		  itemUser: ["Golisopod"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -959,6 +982,7 @@
         name: "Kommonite",
         megaStone: "Kommo-o-Mega",
         megaEvolves: "Kommo-o",
+		  itemUser: ["Kommo-o"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -970,6 +994,7 @@
         name: "Shiinotite",
         megaStone: "Shiinotic-Mega",
         megaEvolves: "Shiinotic",
+		  itemUser: ["Shiinotic"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -981,6 +1006,7 @@
         name: "Turtonite",
         megaStone: "Turtonator-Mega",
         megaEvolves: "Turtonator",
+		  itemUser: ["Turtonator"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -992,6 +1018,7 @@
         name: "Drampite",
         megaStone: "Drampa-Mega",
         megaEvolves: "Drampa",
+		  itemUser: ["Drampa"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1003,6 +1030,7 @@
         name: "Corviknightite",
         megaStone: "Corviknight-Mega",
         megaEvolves: "Corviknight",
+		  itemUser: ["Corviknight"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1014,6 +1042,7 @@
         name: "Boltundite",
         megaStone: "Boltund-Mega",
         megaEvolves: "Boltund",
+		  itemUser: ["Boltund"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1025,6 +1054,7 @@
         name: "Falinksite",
         megaStone: "Falinks-Mega",
         megaEvolves: "Falinks",
+		  itemUser: ["Falinks"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1036,6 +1066,7 @@
         name: "Malindeedite",
         megaStone: "Indeedee-Mega",
         megaEvolves: "Indeedee",
+		  itemUser: ["Indeedee"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1047,6 +1078,7 @@
         name: "Femindeedite",
         megaStone: "Indeedee-F-Mega",
         megaEvolves: "Indeedee-F",
+		  itemUser: ["Indeedee-F"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1058,6 +1090,7 @@
         name: "Dragapultite",
         megaStone: "Dragapult-Mega",
         megaEvolves: "Dragapult",
+		  itemUser: ["Dragapult"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1069,6 +1102,7 @@
         name: "Synthinobite",
         megaStone: "Synthinobi-Mega",
         megaEvolves: "Synthinobi",
+		  itemUser: ["Synthinobi"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1080,6 +1114,7 @@
         name: "Chemicite",
         megaStone: "Chemicander-Mega",
         megaEvolves: "Chemicander",
+		  itemUser: ["Chemicander"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
@@ -1091,10 +1126,11 @@
         name: "Primadillite",
         megaStone: "Primadillo-Mega",
         megaEvolves: "Primadillo",
+		  itemUser: ["Primadillo"],		 
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
             return true;
         },
         desc: "If holder is a Primadillo, this item allows it to Mega Evolve in battle.",
     },
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

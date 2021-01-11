@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
 	berryjuice: {
 		inherit: true,
 		isNonstandard: null,
@@ -152,4 +152,4 @@
 		inherit: true,
 		isNonstandard: null,
 	},
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

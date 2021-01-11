@@ -10,7 +10,6 @@ var _dex = require('../dex');
 var _prng = require('../prng');
 var _randomplayerai = require('./random-player-ai');
 var _runner = require('./runner');
-const toID = _dex.Dex.getId;
 
 
 
@@ -115,7 +114,7 @@ const toID = _dex.Dex.getId;
 				(_, p) => (p.name !== 'Pichu-Spiky-eared' && p.name.substr(0, 8) !== 'Pikachu-')), this.prng),
 			items: new Pool(ExhaustiveRunner.onlyValid(dex.gen, dex.data.Items, i => dex.getItem(i)), this.prng),
 			abilities: new Pool(ExhaustiveRunner.onlyValid(dex.gen, dex.data.Abilities, a => dex.getAbility(a)), this.prng),
-			moves: new Pool(ExhaustiveRunner.onlyValid(dex.gen, dex.data.Movedex, m => dex.getMove(m),
+			moves: new Pool(ExhaustiveRunner.onlyValid(dex.gen, dex.data.Moves, m => dex.getMove(m),
 				m => (m !== 'struggle' && (m === 'hiddenpower' || m.substr(0, 11) !== 'hiddenpower'))), this.prng),
 		};
 	}
@@ -135,7 +134,7 @@ const toID = _dex.Dex.getId;
 		for (const id of pools.items.possible) {
 			const item = dex.data.Items[id];
 			if (item.megaEvolves) {
-				const pokemon = toID(item.megaEvolves);
+				const pokemon = _dex.toID.call(void 0, item.megaEvolves);
 				const combo = {item: id};
 				let combos = signatures.get(pokemon);
 				if (!combos) {
@@ -145,9 +144,9 @@ const toID = _dex.Dex.getId;
 				combos.push(combo);
 			} else if (item.itemUser) {
 				for (const user of item.itemUser) {
-					const pokemon = toID(user);
+					const pokemon = _dex.toID.call(void 0, user);
 					const combo = {item: id};
-					if (item.zMoveFrom) combo.move = toID(item.zMoveFrom);
+					if (item.zMoveFrom) combo.move = _dex.toID.call(void 0, item.zMoveFrom);
 					let combos = signatures.get(pokemon);
 					if (!combos) {
 						combos = [];
@@ -431,7 +430,7 @@ class CoordinatedPlayerAI extends _randomplayerai.RandomPlayerAI {
 	 choosePokemon(choices) {
 		// Prefer to choose a Pokemon that has a species/ability/item/move we haven't seen yet.
 		for (const {slot, pokemon} of choices) {
-			const species = toID(pokemon.details.split(',')[0]);
+			const species = _dex.toID.call(void 0, pokemon.details.split(',')[0]);
 			if (!this.pools.pokemon.wasUsed(species) ||
 					!this.pools.abilities.wasUsed(pokemon.baseAbility) ||
 					!this.pools.items.wasUsed(pokemon.item) ||
@@ -447,7 +446,7 @@ class CoordinatedPlayerAI extends _randomplayerai.RandomPlayerAI {
 	// The move options provided by the simulator have been converted from the name
 	// which we're tracking, so we need to convert them back.
 	 fixMove(m) {
-		const id = toID(m.move);
+		const id = _dex.toID.call(void 0, m.move);
 		if (id.startsWith('return')) return 'return';
 		if (id.startsWith('frustration')) return 'frustration';
 		if (id.startsWith('hiddenpower')) return 'hiddenpower';
@@ -458,7 +457,7 @@ class CoordinatedPlayerAI extends _randomplayerai.RandomPlayerAI {
 	// tracking only works if you can switch in a Pokemon.
 	 markUsedIfGmax(active) {
 		if (active && !active.canDynamax && active.maxMoves && active.maxMoves.gigantamax) {
-			this.pools.pokemon.markUsed(toID(active.maxMoves.gigantamax));
+			this.pools.pokemon.markUsed(_dex.toID.call(void 0, active.maxMoves.gigantamax));
 		}
 	}
 }

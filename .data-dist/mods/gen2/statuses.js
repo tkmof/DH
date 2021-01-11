@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleStatuses = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Statuses = {
 	brn: {
 		name: 'brn',
 		effectType: 'Status',
@@ -224,7 +224,7 @@
 			if (['brn', 'psn', 'tox'].includes(pokemon.status)) pokemon.volatiles['residualdmg'].counter++;
 		},
 	},
-}; exports.BattleStatuses = BattleStatuses;
+}; exports.Statuses = Statuses;
 
 function residualdmg(battle, pokemon) {
 	if (pokemon.volatiles['residualdmg']) {
@@ -237,5 +237,3 @@ function residualdmg(battle, pokemon) {
 		battle.damage(battle.clampIntRange(Math.floor(pokemon.maxhp / 8), 1), pokemon);
 	}
 }
-
-exports.BattleStatuses = exports.BattleStatuses;

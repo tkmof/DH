@@ -1,5 +1,12 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleScripts = {
-
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Scripts = {
+	init(){
+		for (const id in this.dataCache.Pokedex) {
+			const tieringData = this.dataCache.FormatsData[id];
+			if (!tieringData) {
+				this.dataCache.FormatsData[id] = { tier: "Crossovers Without Format-Data Entries (Harass Coders to Fix)" };
+			}
+		}
+	},
 	useMoveInner(moveOrMoveName, pokemon, target, sourceEffect, zMove, maxMove) {
 		if (!sourceEffect && this.effect.id) sourceEffect = this.effect;
 		if (sourceEffect && ['instruct', 'custapberry'].includes(sourceEffect.id)) sourceEffect = null;
@@ -306,4 +313,4 @@
 		  return !(this.battle.sides.length - scarlettemperaments);
 	  }
   },
-}; exports.BattleScripts = BattleScripts;
+}; exports.Scripts = Scripts;

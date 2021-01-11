@@ -575,5 +575,3 @@ var _randomteams = require('../gen4/random-teams');
 		return pokemon;
 	}
 } exports.RandomGen3Teams = RandomGen3Teams;
-
-exports. default = RandomGen3Teams;

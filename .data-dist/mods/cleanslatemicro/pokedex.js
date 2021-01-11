@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	typenull: {
 		inherit: true,
 		species: "Type: Null",
@@ -61,6 +61,7 @@
 		types: ["Poison", "Dragon"],
 		baseStats: {hp: 71, atk: 85, def: 90, spa: 87, spd: 123, spe: 44},
 		abilities: {0: "Poison Point", 1: "Poison Touch", H: "Hydration"},
+		prevo: null,
 	},
 	ninetales: {
 		inherit: true,
@@ -155,4 +156,4 @@
 		baseStats: {hp: 50, atk: 50, def: 97, spa: 105, spd: 127, spe: 76},
 		abilities: {0: "Levitate", 1: "Flame Body", H: "Sand Stream"},
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

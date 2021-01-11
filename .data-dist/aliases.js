@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleAliases = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Aliases = {
 	// formats
 	randbats: "[Gen 8] Random Battle",
 	uber: "[Gen 8] Ubers",
@@ -20,7 +20,7 @@
 	mnm: "[Gen 8] Mix and Mega",
 	aaa: "[Gen 8] Almost Any Ability",
 	stab: "[Gen 8] STABmons",
-	camo: "[Gen 8] Camomons",
+	// camo: "[Gen 8] Camomons",
 	ts: "[Gen 8] Tier Shift",
 	gen7bh: "[Gen 7] Balanced Hackmons",
 	cc1v1: "[Gen 8] Challenge Cup 1v1",
@@ -1761,4 +1761,4 @@
 	zugadoon: "Blacephalon",
 	merutan: "Meltan",
 	merumetaru: "Melmetal",
-}; exports.BattleAliases = BattleAliases;
+}; exports.Aliases = Aliases;

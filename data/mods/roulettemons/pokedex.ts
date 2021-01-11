@@ -1,4 +1,4 @@
-export const BattlePokedex: {[k: string]: ModdedSpeciesData} = {
+export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	koatric: {
 		num: 1.5,
 		name: "Koatric",
@@ -24,15 +24,6 @@ export const BattlePokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 119, atk: 99, def: 122, spa: 49, spd: 76, spe: 135},
 		abilities: {0: "Forewarn", H: "Sheer Force"},
 		weightkg: 75,
-		eggGroups: ["Undiscovered"],
-	},
-	brawnkey: {
-		num: 4.5,
-		name: "Brawnkey",
-		types: ["Fighting"],
-		baseStats: {hp: 143, atk: 86, def: 144, spa: 76, spd: 37, spe: 114},
-		abilities: {0: "Swarm", 1: "Mold Breaker", H: "Intimidate"},
-		weightkg: 150,
 		eggGroups: ["Undiscovered"],
 	},
 	stuneleon: {
@@ -468,6 +459,15 @@ export const BattlePokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Fire"],
 		baseStats: {hp: 99, atk: 125, def: 66, spa: 70, spd: 111, spe: 129},
 		abilities: {0: "Turboblaze", 1: "Anger Point", H: "Gluttony"},
+		weightkg: 150,
+		eggGroups: ["Undiscovered"],
+	},
+	brawnkey: {
+		num: 999,
+		name: "Brawnkey",
+		types: ["Fighting"],
+		baseStats: {hp: 143, atk: 86, def: 144, spa: 76, spd: 37, spe: 114},
+		abilities: {0: "Swarm", 1: "Mold Breaker", H: "Intimidate"},
 		weightkg: 150,
 		eggGroups: ["Undiscovered"],
 	},

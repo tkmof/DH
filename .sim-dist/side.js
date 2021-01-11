@@ -4,9 +4,11 @@
  *
  * @license MIT license
  */
+var _utils = require('../.lib-dist/utils');
 
 var _pokemon = require('./pokemon');
 var _state = require('./state');
+var _dex = require('./dex');
 
 /** A single action that can be chosen. */
 
@@ -53,8 +55,11 @@ var _state = require('./state');
 
 	
 	
+
 	
 	
+	/** only used by Gen 1 Counter */
+	__init() {this.lastSelectedMove = ''}
 
 	
 	
@@ -64,7 +69,7 @@ var _state = require('./state');
 
 	
 
-	constructor(name, battle, sideNum, team) {
+	constructor(name, battle, sideNum, team) {;Side.prototype.__init.call(this);
 		const sideScripts = battle.dex.data.Scripts.side;
 		if (sideScripts) Object.assign(this, sideScripts);
 
@@ -99,8 +104,8 @@ var _state = require('./state');
 		}
 
 		this.pokemonLeft = this.pokemon.length;
-		this.faintedLastTurn = false;
-		this.faintedThisTurn = false;
+		this.faintedLastTurn = null;
+		this.faintedThisTurn = null;
 		this.zMoveUsed = false;
 
 		this.sideConditions = {};
@@ -292,7 +297,7 @@ var _state = require('./state');
 		return true;
 	}
 
-	// tslint:disable-next-line:ban-types
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	send(...parts) {
 		const sideUpdate = '|' + parts.map(part => {
 			if (typeof part !== 'function') return part;
@@ -356,7 +361,7 @@ var _state = require('./state');
 		} else {
 			// Parse a move ID.
 			// Move names are also allowed, but may cause ambiguity (see client issue #167).
-			moveid = toID(moveText);
+			moveid = _dex.toID.call(void 0, moveText);
 			if (moveid.startsWith('hiddenpower')) {
 				moveid = 'hiddenpower';
 			}
@@ -378,7 +383,7 @@ var _state = require('./state');
 			if (!targetType && ['', 'zmove'].includes(megaDynaOrZ) && request.canZMove) {
 				for (const [i, moveRequest] of request.canZMove.entries()) {
 					if (!moveRequest) continue;
-					if (moveid === toID(moveRequest.move)) {
+					if (moveid === _dex.toID.call(void 0, moveRequest.move)) {
 						moveid = request.moves[i].id;
 						targetType = moveRequest.target;
 						megaDynaOrZ = 'zmove';
@@ -449,7 +454,7 @@ var _state = require('./state');
 				choice: 'move',
 				pokemon,
 				targetLoc: lockedMoveTarget,
-				moveid: toID(lockedMove),
+				moveid: _dex.toID.call(void 0, lockedMove),
 			});
 			return true;
 		} else if (!moves.length && !zMove) {
@@ -586,7 +591,7 @@ var _state = require('./state');
 			// maybe it's a name/species id!
 			slot = -1;
 			for (const [i, mon] of this.pokemon.entries()) {
-				if (slotText.toLowerCase() === mon.name.toLowerCase() || toID(slotText) === mon.species.id) {
+				if (slotText.toLowerCase() === mon.name.toLowerCase() || _dex.toID.call(void 0, slotText) === mon.species.id) {
 					slot = i;
 					break;
 				}
@@ -637,7 +642,6 @@ var _state = require('./state');
 
 		this.choice.switchIns.add(slot);
 
-		// tslint:disable-next-line:no-object-literal-type-assertion
 		this.choice.actions.push({
 			choice: (this.requestState === 'switch' ? 'instaswitch' : 'switch'),
 			pokemon,
@@ -682,7 +686,6 @@ var _state = require('./state');
 			}
 
 			this.choice.switchIns.add(pos);
-			// tslint:disable-next-line:no-object-literal-type-assertion
 			this.choice.actions.push({
 				choice: 'team',
 				index,
@@ -707,7 +710,6 @@ var _state = require('./state');
 		}
 		const pokemon = this.active[index];
 
-		// tslint:disable-next-line:no-object-literal-type-assertion
 		this.choice.actions.push({
 			choice: 'shift',
 			pokemon,
@@ -760,17 +762,9 @@ var _state = require('./state');
 			);
 		}
 
-		for (let choiceString of choiceStrings) {
-			let choiceType = '';
-			let data = '';
-			choiceString = choiceString.trim();
-			const firstSpaceIndex = choiceString.indexOf(' ');
-			if (firstSpaceIndex >= 0) {
-				data = choiceString.slice(firstSpaceIndex + 1).trim();
-				choiceType = choiceString.slice(0, firstSpaceIndex);
-			} else {
-				choiceType = choiceString;
-			}
+		for (const choiceString of choiceStrings) {
+			let [choiceType, data] = _utils.Utils.splitFirst(choiceString.trim(), ' ');
+			data = data.trim();
 
 			switch (choiceType) {
 			case 'move':
@@ -783,7 +777,7 @@ var _state = require('./state');
 					// We need to special case 'Conversion 2' so it doesn't get
 					// confused with 'Conversion' erroneously sent with the target
 					// '2' (since Conversion targets 'self', targetLoc can't be 2).
-					if (/\s(?:-|\+)?[1-3]$/.test(data) && toID(data) !== 'conversion2') {
+					if (/\s(?:-|\+)?[1-3]$/.test(data) && _dex.toID.call(void 0, data) !== 'conversion2') {
 						if (targetLoc !== undefined) return error();
 						targetLoc = parseInt(data.slice(-2));
 						data = data.slice(0, -2).trim();
@@ -894,7 +888,6 @@ var _state = require('./state');
 			return this.emitChoiceError(`Can't pass: Not a move or switch request`);
 		}
 
-		// tslint:disable-next-line:no-object-literal-type-assertion
 		this.choice.actions.push({
 			choice: 'pass',
 		} );
@@ -941,8 +934,7 @@ var _state = require('./state');
 		// get rid of some possibly-circular references
 		this.pokemon = [];
 		this.active = [];
-		// @ts-ignore - readonly
-		this.battle = null;
 		this.foe = null;
+		(this ).battle = null;
 	}
 } exports.Side = Side;

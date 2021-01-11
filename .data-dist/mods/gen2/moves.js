@@ -2,7 +2,7 @@
  * Gen 2 moves
  */
 
- const BattleMovedex = {
+ const Moves = {
 	absorb: {
 		inherit: true,
 		desc: "The user recovers 1/2 the HP lost by the target, rounded down. If the target has a substitute, this move misses.",
@@ -1047,4 +1047,4 @@
 		},
 		priority: -1,
 	},
-}; exports.BattleMovedex = BattleMovedex;
+}; exports.Moves = Moves;

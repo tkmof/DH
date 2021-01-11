@@ -28,23 +28,16 @@
  * @license MIT license
  */
 
-// eslint-disable-next-line no-extend-native
-Object.defineProperty(Array.prototype, 'flatMap', {
-	value( callback, thisArg) {
-		const newArray = [];
-		for (let i = 0; i < this.length; i++) {
-			newArray.push(...callback.call(thisArg, this[i], i, this));
-		}
-		return newArray;
-	},
-	configurable: true,
-	writable: true,
-});
-
 var _fs = require('fs'); var fs = _fs;
 var _path = require('path'); var path = _path;
 
 var _dexdata = require('./dex-data'); var Data = _dexdata;
+var _dexconditions = require('./dex-conditions');
+var _dexmoves = require('./dex-moves');
+var _dexitems = require('./dex-items');
+var _dexabilities = require('./dex-abilities');
+var _dexspecies = require('./dex-species');
+var _dexformats = require('./dex-formats');
 
 var _utils = require('../.lib-dist/utils');
 
@@ -52,7 +45,8 @@ const BASE_MOD = 'gen8' ;
 const DEFAULT_MOD = BASE_MOD;
 const DATA_DIR = path.resolve(__dirname, '../.data-dist');
 const MODS_DIR = path.resolve(__dirname, '../.data-dist/mods');
-const FORMATS = path.resolve(__dirname, '../.config-dist/formats');
+const MAIN_FORMATS = path.resolve(__dirname, '../.config-dist/formats');
+const CUSTOM_FORMATS = path.resolve(__dirname, '../.config-dist/custom-formats');
 
 const dexes = Object.create(null);
 
@@ -60,8 +54,8 @@ const dexes = Object.create(null);
 
 
 const DATA_TYPES = [
-	'Abilities', 'Formats', 'FormatsData', 'Items', 'Learnsets', 'Movedex',
-	'Natures', 'Pokedex', 'Scripts', 'Statuses', 'TypeChart',
+	'Abilities', 'Formats', 'FormatsData', 'Items', 'Learnsets', 'Moves',
+	'Natures', 'Pokedex', 'Scripts', 'Conditions', 'TypeChart',
 ];
 
 const DATA_FILES = {
@@ -71,15 +65,15 @@ const DATA_FILES = {
 	FormatsData: 'formats-data',
 	Items: 'items',
 	Learnsets: 'learnsets',
-	Movedex: 'moves',
+	Moves: 'moves',
 	Natures: 'natures',
 	Pokedex: 'pokedex',
 	Scripts: 'scripts',
-	Statuses: 'statuses',
+	Conditions: 'conditions',
 	TypeChart: 'typechart',
 };
 
-const nullEffect = new Data.PureEffect({name: '', exists: false});
+const nullEffect = new (0, _dexconditions.Condition)({name: '', exists: false});
 
 
 
@@ -103,86 +97,49 @@ const nullEffect = new Data.PureEffect({name: '', exists: false});
 
 
 
-const BattleNatures = {
-	adamant: {name: "Adamant", plus: 'atk', minus: 'spa'},
-	bashful: {name: "Bashful"},
-	bold: {name: "Bold", plus: 'def', minus: 'atk'},
-	brave: {name: "Brave", plus: 'atk', minus: 'spe'},
-	calm: {name: "Calm", plus: 'spd', minus: 'atk'},
-	careful: {name: "Careful", plus: 'spd', minus: 'spa'},
-	docile: {name: "Docile"},
-	gentle: {name: "Gentle", plus: 'spd', minus: 'def'},
-	hardy: {name: "Hardy"},
-	hasty: {name: "Hasty", plus: 'spe', minus: 'def'},
-	impish: {name: "Impish", plus: 'def', minus: 'spa'},
-	jolly: {name: "Jolly", plus: 'spe', minus: 'spa'},
-	lax: {name: "Lax", plus: 'def', minus: 'spd'},
-	lonely: {name: "Lonely", plus: 'atk', minus: 'def'},
-	mild: {name: "Mild", plus: 'spa', minus: 'def'},
-	modest: {name: "Modest", plus: 'spa', minus: 'atk'},
-	naive: {name: "Naive", plus: 'spe', minus: 'spd'},
-	naughty: {name: "Naughty", plus: 'atk', minus: 'spd'},
-	quiet: {name: "Quiet", plus: 'spa', minus: 'spe'},
-	quirky: {name: "Quirky"},
-	rash: {name: "Rash", plus: 'spa', minus: 'spd'},
-	relaxed: {name: "Relaxed", plus: 'def', minus: 'spe'},
-	sassy: {name: "Sassy", plus: 'spd', minus: 'spe'},
-	serious: {name: "Serious"},
-	timid: {name: "Timid", plus: 'spe', minus: 'atk'},
-};
-
-const toID = Data.Tools.getId;
+ const toID = Data.toID; exports.toID = toID;
 
  class ModdedDex {
+	 __init() {this.Data = Data}
+	 __init2() {this.Condition = _dexconditions.Condition}
+	 __init3() {this.Ability = _dexabilities.Ability}
+	 __init4() {this.Item = _dexitems.Item}
+	 __init5() {this.Move = _dexmoves.DataMove}
+	 __init6() {this.Species = _dexspecies.Species}
+	 __init7() {this.Format = _dexformats.Format}
+	 __init8() {this.ModdedDex = exports.ModdedDex = ModdedDex}
+
+	 __init9() {this.name = "[ModdedDex]"}
 	
 	
+
+	 __init10() {this.toID = Data.toID}
+
+	 __init11() {this.abilityCache = new Map()}
+	 __init12() {this.effectCache = new Map()}
+	 __init13() {this.itemCache = new Map()}
+	 __init14() {this.learnsetCache = new Map()}
+	 __init15() {this.moveCache = new Map()}
+	 __init16() {this.speciesCache = new Map()}
+	 __init17() {this.natureCache = new Map()}
+	 __init18() {this.typeCache = new Map()}
+
+	__init19() {this.gen = 0}
+	__init20() {this.parentMod = ''}
+	__init21() {this.modsLoaded = false}
 
 	
 	
 	
 
-	
-	
+	__init22() {this.deepClone = _utils.Utils.deepClone}
 
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-
-	
-	
-
-	constructor(mod = 'base', isOriginal = false) {
-		this.ModdedDex = ModdedDex;
-		this.Data = Data;
-
-		this.name = "[ModdedDex]";
+	constructor(mod = 'base', isOriginal = false) {;ModdedDex.prototype.__init.call(this);ModdedDex.prototype.__init2.call(this);ModdedDex.prototype.__init3.call(this);ModdedDex.prototype.__init4.call(this);ModdedDex.prototype.__init5.call(this);ModdedDex.prototype.__init6.call(this);ModdedDex.prototype.__init7.call(this);ModdedDex.prototype.__init8.call(this);ModdedDex.prototype.__init9.call(this);ModdedDex.prototype.__init10.call(this);ModdedDex.prototype.__init11.call(this);ModdedDex.prototype.__init12.call(this);ModdedDex.prototype.__init13.call(this);ModdedDex.prototype.__init14.call(this);ModdedDex.prototype.__init15.call(this);ModdedDex.prototype.__init16.call(this);ModdedDex.prototype.__init17.call(this);ModdedDex.prototype.__init18.call(this);ModdedDex.prototype.__init19.call(this);ModdedDex.prototype.__init20.call(this);ModdedDex.prototype.__init21.call(this);ModdedDex.prototype.__init22.call(this);
 		this.isBase = (mod === 'base');
 		this.currentMod = mod;
 
-		this.getId = Data.Tools.getId;
-		this.getString = Data.Tools.getString;
-
-		this.abilityCache = new Map();
-		this.effectCache = new Map();
-		this.itemCache = new Map();
-		this.moveCache = new Map();
-		this.learnsetCache = new Map();
-		this.speciesCache = new Map();
-		this.typeCache = new Map();
-
-		this.gen = 0;
-		this.parentMod = '';
-		this.modsLoaded = false;
-
 		this.dataCache = null;
+		this.textCache = null;
 		this.formatsCache = null;
 
 		if (!isOriginal) {
@@ -240,7 +197,7 @@ const toID = Data.Tools.getId;
 	modData(dataType, id) {
 		if (this.isBase) return this.data[dataType][id];
 		if (this.data[dataType][id] !== dexes[this.parentMod].data[dataType][id]) return this.data[dataType][id];
-		return (this.data[dataType][id] = this.deepClone(this.data[dataType][id]));
+		return (this.data[dataType][id] = _utils.Utils.deepClone(this.data[dataType][id]));
 	}
 
 	effectToString() {
@@ -334,10 +291,10 @@ const toID = Data.Tools.getId;
 		if (name && typeof name !== 'string') return name;
 
 		name = (name || '').trim();
-		let id = toID(name);
-		if (id === 'nidoran' && name.slice(-1) === '♀') {
+		let id = exports.toID.call(void 0, name);
+		if (id === 'nidoran' && name.endsWith('♀')) {
 			id = 'nidoranf' ;
-		} else if (id === 'nidoran' && name.slice(-1) === '♂') {
+		} else if (id === 'nidoran' && name.endsWith('♂')) {
 			id = 'nidoranm' ;
 		}
 		let species = this.speciesCache.get(id);
@@ -345,8 +302,8 @@ const toID = Data.Tools.getId;
 		if (this.data.Aliases.hasOwnProperty(id)) {
 			if (this.data.FormatsData.hasOwnProperty(id)) {
 				// special event ID, like Rockruff-Dusk
-				const baseId = toID(this.data.Aliases[id]);
-				species = new Data.Species({name}, this.data.Pokedex[baseId], this.data.FormatsData[id]);
+				const baseId = exports.toID.call(void 0, this.data.Aliases[id]);
+				species = new (0, _dexspecies.Species)({name}, this.data.Pokedex[baseId], this.data.FormatsData[id]);
 				species.name = id;
 				species.name = id;
 				species.id = id;
@@ -355,8 +312,8 @@ const toID = Data.Tools.getId;
 				species = this.getSpecies(this.data.Aliases[id]);
 				if (species.cosmeticFormes) {
 					for (const forme of species.cosmeticFormes) {
-						if (toID(forme) === id) {
-							species = new Data.Species(species, {
+						if (exports.toID.call(void 0, forme) === id) {
+							species = new (0, _dexspecies.Species)(species, {
 								name: forme,
 								id,
 								forme: forme.slice(species.name.length + 1),
@@ -380,7 +337,6 @@ const toID = Data.Tools.getId;
 			const formeNames = {
 				alola: ['a', 'alola', 'alolan'],
 				galar: ['g', 'galar', 'galarian'],
-				gmax: ['gigantamax', 'gmax'],
 				mega: ['m', 'mega'],
 				primal: ['p', 'primal'],
 			};
@@ -393,7 +349,7 @@ const toID = Data.Tools.getId;
 						pokeName = id.slice(0, -i.length);
 					}
 				}
-				if (this.data.Aliases.hasOwnProperty(pokeName)) pokeName = toID(this.data.Aliases[pokeName]);
+				if (this.data.Aliases.hasOwnProperty(pokeName)) pokeName = exports.toID.call(void 0, this.data.Aliases[pokeName]);
 				if (this.data.Pokedex[pokeName + forme]) {
 					aliasTo = pokeName + forme;
 					break;
@@ -408,9 +364,9 @@ const toID = Data.Tools.getId;
 			}
 		}
 		if (id && this.data.Pokedex.hasOwnProperty(id)) {
-			species = new Data.Species({name}, this.data.Pokedex[id], this.data.FormatsData[id]);
+			species = new (0, _dexspecies.Species)({name}, this.data.Pokedex[id], this.data.FormatsData[id]);
 			// Inherit any statuses from the base species (Arceus, Silvally).
-			const baseSpeciesStatuses = this.data.Statuses[toID(species.baseSpecies)];
+			const baseSpeciesStatuses = this.data.Conditions[exports.toID.call(void 0, species.baseSpecies)];
 			if (baseSpeciesStatuses !== undefined) {
 				let key;
 				for (key in baseSpeciesStatuses) {
@@ -419,16 +375,16 @@ const toID = Data.Tools.getId;
 			}
 			if (!species.tier && !species.doublesTier && species.baseSpecies !== species.name) {
 				if (species.baseSpecies === 'Mimikyu') {
-					species.tier = this.data.FormatsData[toID(species.baseSpecies)].tier || 'Illegal';
-					species.doublesTier = this.data.FormatsData[toID(species.baseSpecies)].doublesTier || 'Illegal';
+					species.tier = this.data.FormatsData[exports.toID.call(void 0, species.baseSpecies)].tier || 'Illegal';
+					species.doublesTier = this.data.FormatsData[exports.toID.call(void 0, species.baseSpecies)].doublesTier || 'Illegal';
 				} else if (species.id.endsWith('totem')) {
 					species.tier = this.data.FormatsData[species.id.slice(0, -5)].tier || 'Illegal';
 					species.doublesTier = this.data.FormatsData[species.id.slice(0, -5)].doublesTier || 'Illegal';
 				} else if (species.battleOnly) {
-					species.tier = this.data.FormatsData[toID(species.battleOnly)].tier || 'Illegal';
-					species.doublesTier = this.data.FormatsData[toID(species.battleOnly)].doublesTier || 'Illegal';
+					species.tier = this.data.FormatsData[exports.toID.call(void 0, species.battleOnly)].tier || 'Illegal';
+					species.doublesTier = this.data.FormatsData[exports.toID.call(void 0, species.battleOnly)].doublesTier || 'Illegal';
 				} else {
-					const baseFormatsData = this.data.FormatsData[toID(species.baseSpecies)];
+					const baseFormatsData = this.data.FormatsData[exports.toID.call(void 0, species.baseSpecies)];
 					if (!baseFormatsData) {
 						throw new Error(`${species.baseSpecies} has no formats-data entry`);
 					}
@@ -451,8 +407,11 @@ const toID = Data.Tools.getId;
 				if (!isLetsGo) species.isNonstandard = 'Past';
 			}
 			species.nfe = species.evos.length && this.getSpecies(species.evos[0]).gen <= this.gen;
+			species.canHatch = species.canHatch ||
+				(!['Ditto', 'Undiscovered'].includes(species.eggGroups[0]) && !species.prevo && species.name !== 'Manaphy');
+			if (this.gen === 1) species.bst -= species.baseStats.spd;
 		} else {
-			species = new Data.Species({
+			species = new (0, _dexspecies.Species)({
 				id, name, exists: false, tier: 'Illegal', doublesTier: 'Illegal', isNonstandard: 'Custom',
 			});
 		}
@@ -471,11 +430,40 @@ const toID = Data.Tools.getId;
 		return learnsetData;
 	}
 
+	getDescs(table, id, dataEntry) {
+		if (dataEntry.shortDesc) {
+			return {
+				desc: dataEntry.desc,
+				shortDesc: dataEntry.shortDesc,
+			};
+		}
+		const entry = this.loadTextData()[table][id];
+		if (!entry) return null;
+		const descs = {
+			desc: '',
+			shortDesc: '',
+		};
+		for (let i = this.gen; i < dexes['base'].gen; i++) {
+			const curDesc = _optionalChain([entry, 'access', _5 => _5[`gen${i}`], 'optionalAccess', _6 => _6.desc]);
+			const curShortDesc = _optionalChain([entry, 'access', _7 => _7[`gen${i}`], 'optionalAccess', _8 => _8.shortDesc]);
+			if (!descs.desc && curDesc) {
+				descs.desc = curDesc;
+			}
+			if (!descs.shortDesc && curShortDesc) {
+				descs.shortDesc = curShortDesc;
+			}
+			if (descs.desc && descs.shortDesc) break;
+		}
+		if (!descs.shortDesc) descs.shortDesc = entry.shortDesc || '';
+		if (!descs.desc) descs.desc = entry.desc || descs.shortDesc;
+		return descs;
+	}
+
 	getMove(name) {
 		if (name && typeof name !== 'string') return name;
 
 		name = (name || '').trim();
-		let id = toID(name);
+		let id = exports.toID.call(void 0, name);
 		let move = this.moveCache.get(id);
 		if (move) return move;
 		if (this.data.Aliases.hasOwnProperty(id)) {
@@ -488,13 +476,15 @@ const toID = Data.Tools.getId;
 		if (id.substr(0, 11) === 'hiddenpower') {
 			id = /([a-z]*)([0-9]*)/.exec(id)[1] ;
 		}
-		if (id && this.data.Movedex.hasOwnProperty(id)) {
-			move = new Data.Move({name}, this.data.Movedex[id]);
+		if (id && this.data.Moves.hasOwnProperty(id)) {
+			const moveData = this.data.Moves[id];
+			const moveTextData = this.getDescs('Moves', id, moveData);
+			move = new (0, _dexmoves.DataMove)({name}, moveData, moveTextData);
 			if (move.gen > this.gen) {
 				(move ).isNonstandard = 'Future';
 			}
 		} else {
-			move = new Data.Move({id, name, exists: false});
+			move = new (0, _dexmoves.DataMove)({id, name, exists: false});
 		}
 		if (move.exists) this.moveCache.set(id, move);
 		return move;
@@ -525,7 +515,7 @@ const toID = Data.Tools.getId;
 		if (!name) return nullEffect;
 		if (typeof name !== 'string') return name ;
 
-		const id = toID(name);
+		const id = exports.toID.call(void 0, name);
 		let effect = this.effectCache.get(id);
 		if (effect) return effect ;
 
@@ -539,8 +529,7 @@ const toID = Data.Tools.getId;
 		}
 		if (effect) {
 			this.effectCache.set(id, effect);
-			// @ts-ignore
-			return effect;
+			return effect ;
 		}
 		return this.getEffectByID(id, effect);
 	}
@@ -553,19 +542,21 @@ const toID = Data.Tools.getId;
 
 		let found;
 		if (this.data.Formats.hasOwnProperty(id)) {
-			effect = new Data.Format({name: id}, this.data.Formats[id]);
-		} else if (this.data.Statuses.hasOwnProperty(id)) {
-			effect = new Data.PureEffect({name: id}, this.data.Statuses[id]);
-		} else if ((this.data.Movedex.hasOwnProperty(id) && (found = this.data.Movedex[id]).effect) ||
-							 (this.data.Abilities.hasOwnProperty(id) && (found = this.data.Abilities[id]).effect) ||
-							 (this.data.Items.hasOwnProperty(id) && (found = this.data.Items[id]).effect)) {
-			effect = new Data.PureEffect({name: found.name || id}, found.effect);
+			effect = new (0, _dexformats.Format)({name: id}, this.data.Formats[id]);
+		} else if (this.data.Conditions.hasOwnProperty(id)) {
+			effect = new (0, _dexconditions.Condition)({name: id}, this.data.Conditions[id]);
+		} else if (
+			(this.data.Moves.hasOwnProperty(id) && (found = this.data.Moves[id]).condition) ||
+			(this.data.Abilities.hasOwnProperty(id) && (found = this.data.Abilities[id]).condition) ||
+			(this.data.Items.hasOwnProperty(id) && (found = this.data.Items[id]).condition)
+		) {
+			effect = new (0, _dexconditions.Condition)({name: found.name || id}, found.condition);
 		} else if (id === 'recoil') {
-			effect = new Data.PureEffect({id, name: 'Recoil', effectType: 'Recoil'});
+			effect = new (0, _dexconditions.Condition)({id, name: 'Recoil', effectType: 'Recoil'});
 		} else if (id === 'drain') {
-			effect = new Data.PureEffect({id, name: 'Drain', effectType: 'Drain'});
+			effect = new (0, _dexconditions.Condition)({id, name: 'Drain', effectType: 'Drain'});
 		} else {
-			effect = new Data.PureEffect({id, name: id, exists: false});
+			effect = new (0, _dexconditions.Condition)({id, name: id, exists: false});
 		}
 
 		this.effectCache.set(id, effect);
@@ -582,10 +573,11 @@ const toID = Data.Tools.getId;
 		if (!customRulesString) return format.id;
 		const ruleTable = this.getRuleTable(format);
 		const customRules = customRulesString.split(',').map(rule => {
+			rule = rule.replace(/[\r\n|]*/g, '').trim();
 			const ruleSpec = this.validateRule(rule);
 			if (typeof ruleSpec === 'string' && ruleTable.has(ruleSpec)) return null;
-			return rule.replace(/[\r\n|]*/g, '').trim();
-		}).filter(rule => rule);
+			return rule;
+		}).filter(Boolean);
 		if (!customRules.length) throw new Error(`The format already has your custom rules`);
 		const validatedFormatid = format.id + '@@@' + customRules.join(',');
 		const moddedFormat = this.getFormat(validatedFormatid, true);
@@ -597,10 +589,10 @@ const toID = Data.Tools.getId;
 		if (name && typeof name !== 'string') return name;
 
 		name = (name || '').trim();
-		let id = toID(name);
+		let id = exports.toID.call(void 0, name);
 		if (this.data.Aliases.hasOwnProperty(id)) {
 			name = this.data.Aliases[id];
-			id = toID(name);
+			id = exports.toID.call(void 0, name);
 		}
 		if (this.data.Formats.hasOwnProperty(DEFAULT_MOD + id)) {
 			id = (DEFAULT_MOD + id) ;
@@ -615,7 +607,7 @@ const toID = Data.Tools.getId;
 			}
 			const [newName, customRulesString] = name.split('@@@', 2);
 			name = newName;
-			id = toID(name);
+			id = exports.toID.call(void 0, name);
 			if (isTrusted && customRulesString) {
 				supplementaryAttributes = {
 					customRules: customRulesString.split(','),
@@ -625,9 +617,9 @@ const toID = Data.Tools.getId;
 		}
 		let effect;
 		if (this.data.Formats.hasOwnProperty(id)) {
-			effect = new Data.Format({name}, this.data.Formats[id], supplementaryAttributes);
+			effect = new (0, _dexformats.Format)({name}, this.data.Formats[id], supplementaryAttributes);
 		} else {
-			effect = new Data.Format({id, name, exists: false});
+			effect = new (0, _dexformats.Format)({id, name, exists: false});
 		}
 		return effect;
 	}
@@ -636,7 +628,7 @@ const toID = Data.Tools.getId;
 		if (name && typeof name !== 'string') return name;
 
 		name = (name || '').trim();
-		const id = toID(name);
+		const id = exports.toID.call(void 0, name);
 		let item = this.itemCache.get(id);
 		if (item) return item;
 		if (this.data.Aliases.hasOwnProperty(id)) {
@@ -652,7 +644,9 @@ const toID = Data.Tools.getId;
 			return item;
 		}
 		if (id && this.data.Items.hasOwnProperty(id)) {
-			item = new Data.Item({name}, this.data.Items[id]);
+			const itemData = this.data.Items[id];
+			const itemTextData = this.getDescs('Items', id, itemData);
+			item = new (0, _dexitems.Item)({name}, itemData, itemTextData);
 			if (item.gen > this.gen) {
 				(item ).isNonstandard = 'Future';
 			}
@@ -661,7 +655,7 @@ const toID = Data.Tools.getId;
 				(item ).isNonstandard = 'Past';
 			}
 		} else {
-			item = new Data.Item({id, name, exists: false});
+			item = new (0, _dexitems.Item)({id, name, exists: false});
 		}
 
 		if (item.exists) this.itemCache.set(id, item);
@@ -671,7 +665,7 @@ const toID = Data.Tools.getId;
 	getAbility(name = '') {
 		if (name && typeof name !== 'string') return name;
 
-		const id = toID(name);
+		const id = exports.toID.call(void 0, name);
 		let ability = this.abilityCache.get(id);
 		if (ability) return ability;
 		if (this.data.Aliases.hasOwnProperty(id)) {
@@ -682,7 +676,9 @@ const toID = Data.Tools.getId;
 			return ability;
 		}
 		if (id && this.data.Abilities.hasOwnProperty(id)) {
-			ability = new Data.Ability({name}, this.data.Abilities[id]);
+			const abilityData = this.data.Abilities[id];
+			const abilityTextData = this.getDescs('Abilities', id, abilityData);
+			ability = new (0, _dexabilities.Ability)({name}, abilityData, abilityTextData);
 			if (ability.gen > this.gen) {
 				(ability ).isNonstandard = 'Future';
 			}
@@ -693,7 +689,7 @@ const toID = Data.Tools.getId;
 				(ability ).isNonstandard = null;
 			}
 		} else {
-			ability = new Data.Ability({id, name, exists: false});
+			ability = new (0, _dexabilities.Ability)({id, name, exists: false});
 		}
 
 		if (ability.exists) this.abilityCache.set(id, ability);
@@ -703,7 +699,7 @@ const toID = Data.Tools.getId;
 	getType(name) {
 		if (name && typeof name !== 'string') return name;
 
-		const id = toID(name);
+		const id = exports.toID.call(void 0, name);
 		const typeName = id.charAt(0).toUpperCase() + id.substr(1);
 		let type = this.typeCache.get(typeName);
 		if (type) return type;
@@ -721,63 +717,26 @@ const toID = Data.Tools.getId;
 		if (name && typeof name !== 'string') return name;
 
 		name = (name || '').trim();
-		const id = toID(name);
-		// tslint:disable-next-line:no-object-literal-type-assertion
-		let nature = {} ;
-		if (id && id !== 'constructor' && this.data.Natures[id]) {
-			nature = this.data.Natures[id];
-			if (nature.cached) return nature;
-			nature.cached = true;
-			nature.exists = true;
+		const id = exports.toID.call(void 0, name);
+		let nature = this.natureCache.get(id);
+		if (nature) return nature;
+		if (this.data.Aliases.hasOwnProperty(id)) {
+			nature = this.getNature(this.data.Aliases[id]);
+			if (nature.exists) {
+				this.natureCache.set(id, nature);
+			}
+			return nature;
 		}
-		if (!nature.id) nature.id = id;
-		if (!nature.name) nature.name = name;
-		nature.toString = this.effectToString;
-		if (!nature.effectType) nature.effectType = 'Nature';
-		if (!nature.gen) nature.gen = 3;
+		if (id && this.data.Natures.hasOwnProperty(id)) {
+			const natureData = this.data.Natures[id];
+			nature = new Data.Nature(natureData);
+			if (nature.gen > this.gen) nature.isNonstandard = 'Future';
+		} else {
+			nature = new Data.Nature({id, name, exists: false});
+		}
 
+		if (nature.exists) this.natureCache.set(id, nature);
 		return nature;
-	}
-
-	getAwakeningValues(set, statName) {
-		if (typeof statName === 'string') statName = toID(statName);
-		const avs = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
-		let ev;
-		for (ev in set.evs) {
-			avs[ev] = set.evs[ev];
-		}
-		if (typeof statName === 'string' && statName in avs) return avs[statName ];
-		return avs;
-	}
-
-	/** Given a table of base stats and a pokemon set, return the actual stats. */
-	spreadModify(baseStats, set) {
-		const modStats = {atk: 10, def: 10, spa: 10, spd: 10, spe: 10};
-		const tr = this.trunc;
-		let statName;
-		for (statName in modStats) {
-			const stat = baseStats[statName];
-			modStats[statName] = tr(tr(2 * stat + set.ivs[statName] + tr(set.evs[statName] / 4)) * set.level / 100 + 5);
-		}
-		if ('hp' in baseStats) {
-			const stat = baseStats['hp'];
-			modStats['hp'] = tr(tr(2 * stat + set.ivs['hp'] + tr(set.evs['hp'] / 4) + 100) * set.level / 100 + 10);
-		}
-		return this.natureModify(modStats , set);
-	}
-
-	natureModify(stats, set) {
-		const nature = this.getNature(set.nature);
-		let stat;
-		if (nature.plus) {
-			stat = nature.plus;
-			stats[stat] = Math.floor(stats[stat] * 1.1);
-		}
-		if (nature.minus) {
-			stat = nature.minus;
-			stats[stat] = Math.floor(stats[stat] * 0.9);
-		}
-		return stats;
 	}
 
 	getHiddenPower(ivs) {
@@ -823,7 +782,7 @@ const toID = Data.Tools.getId;
 			// throw new Error(`${format.mod} ${this.currentMod}`);
 			return this.mod(format.mod).getRuleTable(format, depth + 1);
 		}
-		const ruleTable = new Data.RuleTable();
+		const ruleTable = new (0, _dexformats.RuleTable)();
 
 		const ruleset = format.ruleset.slice();
 		for (const ban of format.banlist) {
@@ -893,7 +852,7 @@ const toID = Data.Tools.getId;
 				continue;
 			}
 			const subformat = this.getFormat(ruleSpec);
-			if (_optionalChain([repeals, 'optionalAccess', _5 => _5.has, 'call', _6 => _6(subformat.id)])) {
+			if (_optionalChain([repeals, 'optionalAccess', _9 => _9.has, 'call', _10 => _10(subformat.id)])) {
 				repeals.set(subformat.id, -Math.abs(repeals.get(subformat.id)));
 				continue;
 			}
@@ -908,7 +867,7 @@ const toID = Data.Tools.getId;
 			const subRuleTable = this.getRuleTable(subformat, depth + 1, repeals);
 			for (const [k, v] of subRuleTable) {
 				// don't check for "already exists" here; multiple inheritance is allowed
-				if (!_optionalChain([repeals, 'optionalAccess', _7 => _7.has, 'call', _8 => _8(k)])) {
+				if (!_optionalChain([repeals, 'optionalAccess', _11 => _11.has, 'call', _12 => _12(k)])) {
 					ruleTable.set(k, v || subformat.name);
 				}
 			}
@@ -953,15 +912,16 @@ const toID = Data.Tools.getId;
 	}
 
 	validateRule(rule, format = null) {
+		if (rule !== rule.trim()) throw new Error(`Rule "${rule}" should be trimmed`);
 		switch (rule.charAt(0)) {
 		case '-':
 		case '*':
 		case '+':
-			if (_optionalChain([format, 'optionalAccess', _9 => _9.team])) throw new Error(`We don't currently support bans in generated teams`);
+			if (_optionalChain([format, 'optionalAccess', _13 => _13.team])) throw new Error(`We don't currently support bans in generated teams`);
 			if (rule.slice(1).includes('>') || rule.slice(1).includes('+')) {
 				let buf = rule.slice(1);
 				const gtIndex = buf.lastIndexOf('>');
-				let limit = rule.charAt(0) === '+' ? Infinity : 0;
+				let limit = rule.startsWith('+') ? Infinity : 0;
 				if (gtIndex >= 0 && /^[0-9]+$/.test(buf.slice(gtIndex + 1).trim())) {
 					if (limit === 0) limit = parseInt(buf.slice(gtIndex + 1));
 					buf = buf.slice(0, gtIndex);
@@ -982,37 +942,38 @@ const toID = Data.Tools.getId;
 			}
 			return rule.charAt(0) + this.validateBanRule(rule.slice(1));
 		default:
-			const id = toID(rule);
+			const id = exports.toID.call(void 0, rule);
 			if (!this.data.Formats.hasOwnProperty(id)) {
 				throw new Error(`Unrecognized rule "${rule}"`);
 			}
-			if (rule.charAt(0) === '!') return `!${id}`;
+			if (rule.startsWith('!')) return `!${id}`;
 			return id;
 		}
 	}
 
 	validateBanRule(rule) {
-		let id = toID(rule);
+		let id = exports.toID.call(void 0, rule);
 		if (id === 'unreleased') return 'unreleased';
 		if (id === 'nonexistent') return 'nonexistent';
 		const matches = [];
-		let matchTypes = ['pokemon', 'move', 'ability', 'item', 'pokemontag'];
+		let matchTypes = ['pokemon', 'move', 'ability', 'item', 'nature', 'pokemontag'];
 		for (const matchType of matchTypes) {
-			if (rule.slice(0, 1 + matchType.length) === matchType + ':') {
+			if (rule.startsWith(`${matchType}:`)) {
 				matchTypes = [matchType];
 				id = id.slice(matchType.length) ;
 				break;
 			}
 		}
 		const ruleid = id;
-		if (this.data.Aliases.hasOwnProperty(id)) id = toID(this.data.Aliases[id]);
+		if (this.data.Aliases.hasOwnProperty(id)) id = exports.toID.call(void 0, this.data.Aliases[id]);
 		for (const matchType of matchTypes) {
 			let table;
 			switch (matchType) {
 			case 'pokemon': table = this.data.Pokedex; break;
-			case 'move': table = this.data.Movedex; break;
+			case 'move': table = this.data.Moves; break;
 			case 'item': table = this.data.Items; break;
 			case 'ability': table = this.data.Abilities; break;
+			case 'nature': table = this.data.Natures; break;
 			case 'pokemontag':
 				// valid pokemontags
 				const validTags = [
@@ -1025,7 +986,7 @@ const toID = Data.Tools.getId;
 					// illegal/nonstandard reasons
 					'past', 'future', 'unobtainable', 'lgpe', 'custom',
 					// all
-					'allpokemon', 'allitems', 'allmoves', 'allabilities',
+					'allpokemon', 'allitems', 'allmoves', 'allabilities', 'allnatures',
 				];
 				if (validTags.includes(ruleid)) matches.push('pokemontag:' + ruleid);
 				continue;
@@ -1035,13 +996,13 @@ const toID = Data.Tools.getId;
 			if (table.hasOwnProperty(id)) {
 				if (matchType === 'pokemon') {
 					const species = table[id] ;
-					if (species.otherFormes && ruleid !== species.id + toID(species.baseForme)) {
+					if (species.otherFormes && ruleid !== species.id + exports.toID.call(void 0, species.baseForme)) {
 						matches.push('basepokemon:' + id);
 						continue;
 					}
 				}
 				matches.push(matchType + ':' + id);
-			} else if (matchType === 'pokemon' && id.slice(-4) === 'base') {
+			} else if (matchType === 'pokemon' && id.endsWith('base')) {
 				id = id.slice(0, -4) ;
 				if (table.hasOwnProperty(id)) {
 					matches.push('pokemon:' + id);
@@ -1067,25 +1028,24 @@ const toID = Data.Tools.getId;
 	}
 
 	getTeamGenerator(format, seed = null) {
-		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		const TeamGenerator = require(dexes['base'].forFormat(format).dataDir + '/random-teams').default;
 		return new TeamGenerator(format, seed);
 	}
 
 	generateTeam(format, options = null) {
-		return this.getTeamGenerator(format, _optionalChain([options, 'optionalAccess', _10 => _10.seed])).getTeam(options);
+		return this.getTeamGenerator(format, _optionalChain([options, 'optionalAccess', _14 => _14.seed])).getTeam(options);
 	}
 
 	dataSearch(target, searchIn, isInexact) {
 		if (!target) return false;
 
-		searchIn = searchIn || ['Pokedex', 'Movedex', 'Abilities', 'Items', 'Natures'];
+		searchIn = searchIn || ['Pokedex', 'Moves', 'Abilities', 'Items', 'Natures'];
 
 		const searchFunctions = {
-			Pokedex: 'getSpecies', Movedex: 'getMove', Abilities: 'getAbility', Items: 'getItem', Natures: 'getNature',
+			Pokedex: 'getSpecies', Moves: 'getMove', Abilities: 'getAbility', Items: 'getItem', Natures: 'getNature',
 		};
 		const searchTypes = {
-			Pokedex: 'pokemon', Movedex: 'move', Abilities: 'ability', Items: 'item', Natures: 'nature',
+			Pokedex: 'pokemon', Moves: 'move', Abilities: 'ability', Items: 'item', Natures: 'nature',
 		};
 		let searchResults = [];
 		for (const table of searchIn) {
@@ -1095,14 +1055,14 @@ const toID = Data.Tools.getId;
 				searchResults.push({
 					isInexact,
 					searchType: searchTypes[table],
-					name: res.species ? res.species : res.name,
+					name: res.name,
 				});
 			}
 		}
 		if (searchResults.length) return searchResults;
 		if (isInexact) return false; // prevent infinite loop
 
-		const cmpTarget = toID(target);
+		const cmpTarget = exports.toID.call(void 0, target);
 		let maxLd = 3;
 		if (cmpTarget.length <= 1) {
 			return false;
@@ -1135,6 +1095,10 @@ const toID = Data.Tools.getId;
 	packTeam(team) {
 		if (!team) return '';
 
+		function getIv(ivs, s) {
+			return ivs[s] === 31 || ivs[s] === undefined ? '' : ivs[s].toString();
+		}
+
 		let buf = '';
 		for (const set of team) {
 			if (buf) buf += ']';
@@ -1143,17 +1107,17 @@ const toID = Data.Tools.getId;
 			buf += (set.name || set.species);
 
 			// species
-			const id = toID(set.species || set.name);
-			buf += '|' + (toID(set.name || set.species) === id ? '' : id);
+			const id = exports.toID.call(void 0, set.species || set.name);
+			buf += '|' + (exports.toID.call(void 0, set.name || set.species) === id ? '' : id);
 
 			// item
-			buf += '|' + toID(set.item);
+			buf += '|' + exports.toID.call(void 0, set.item);
 
 			// ability
-			buf += '|' + toID(set.ability);
+			buf += '|' + exports.toID.call(void 0, set.ability);
 
 			// moves
-			buf += '|' + set.moves.map(toID).join(',');
+			buf += '|' + set.moves.map(exports.toID).join(',');
 
 			// nature
 			buf += '|' + (set.nature || '');
@@ -1177,9 +1141,6 @@ const toID = Data.Tools.getId;
 			}
 
 			// ivs
-			const getIv = (ivs, s) => {
-				return ivs[s] === 31 || ivs[s] === undefined ? '' : ivs[s].toString();
-			};
 			let ivs = '|';
 			if (set.ivs) {
 				ivs = '|' + getIv(set.ivs, 'hp') + ',' + getIv(set.ivs, 'atk') + ',' + getIv(set.ivs, 'def') +
@@ -1212,9 +1173,10 @@ const toID = Data.Tools.getId;
 				buf += '|';
 			}
 
-			if (set.pokeball || set.hpType) {
-				buf += ',' + set.hpType;
-				buf += ',' + toID(set.pokeball);
+			if (set.pokeball || set.hpType || set.gigantamax) {
+				buf += ',' + (set.hpType || '');
+				buf += ',' + exports.toID.call(void 0, set.pokeball || '');
+				buf += ',' + (set.gigantamax ? 'G' : '');
 			}
 		}
 
@@ -1224,7 +1186,7 @@ const toID = Data.Tools.getId;
 	fastUnpackTeam(buf) {
 		if (!buf) return null;
 		if (typeof buf !== 'string') return buf;
-		if (buf.charAt(0) === '[' && buf.charAt(buf.length - 1) === ']') {
+		if (buf.startsWith('[') && buf.endsWith(']')) {
 			buf = this.packTeam(JSON.parse(buf));
 		}
 
@@ -1234,7 +1196,6 @@ const toID = Data.Tools.getId;
 
 		// limit to 24
 		for (let count = 0; count < 24; count++) {
-			// tslint:disable-next-line:no-object-literal-type-assertion
 			const set = {} ;
 			team.push(set);
 
@@ -1332,14 +1293,15 @@ const toID = Data.Tools.getId;
 			j = buf.indexOf(']', i);
 			let misc;
 			if (j < 0) {
-				if (i < buf.length) misc = buf.substring(i).split(',', 3);
+				if (i < buf.length) misc = buf.substring(i).split(',', 4);
 			} else {
-				if (i !== j) misc = buf.substring(i, j).split(',', 3);
+				if (i !== j) misc = buf.substring(i, j).split(',', 4);
 			}
 			if (misc) {
 				set.happiness = (misc[0] ? Number(misc[0]) : 255);
-				set.hpType = misc[1];
-				set.pokeball = misc[2];
+				set.hpType = misc[1] || '';
+				set.pokeball = this.toID(misc[2] || '');
+				set.gigantamax = !!misc[3];
 			}
 			if (j < 0) break;
 			i = j + 1;
@@ -1348,35 +1310,61 @@ const toID = Data.Tools.getId;
 		return team;
 	}
 
-	deepClone(obj) {
-		if (obj === null || typeof obj !== 'object') return obj;
-		if (Array.isArray(obj)) return obj.map(prop => this.deepClone(prop));
-		const clone = Object.create(Object.getPrototypeOf(obj));
-		for (const key of Object.keys(obj)) {
-			clone[key] = this.deepClone(obj[key]);
+	/**
+	* Use instead of Dex.packTeam to generate more human-readable team output.
+	*/
+	stringifyTeam(team, nicknames, hideStats) {
+		let output = '';
+		for (const [i, mon] of team.entries()) {
+			const species = exports.Dex.getSpecies(mon.species);
+			const nickname = _optionalChain([nicknames, 'optionalAccess', _15 => _15[i]]);
+			output += nickname && nickname !== species.baseSpecies ? `${nickname} (${species.name})` : species.name;
+			output += mon.item ? ` @ ${exports.Dex.getItem(mon.item).name}<br />` : `<br />`;
+			output += `Ability: ${exports.Dex.getAbility(mon.ability).name}<br />`;
+			if (typeof mon.happiness === 'number' && mon.happiness !== 255) output += `Happiness: ${mon.happiness}<br />`;
+			if (mon.gigantamax) output += `Gigantamax: Yes<br />`;
+			if (!hideStats) {
+				const evs = [];
+				for (const stat in mon.evs) {
+					if (mon.evs[stat ]) evs.push(`${mon.evs[stat ]} ${stat}`);
+				}
+				if (evs.length) output += `EVs: ${evs.join(' / ')}<br />`;
+				if (mon.nature) output += `${this.getNature(mon.nature).name} Nature<br />`;
+				const ivs = [];
+				for (const stat in mon.ivs) {
+					if (mon.ivs[stat ] !== 31) ivs.push(`${mon.ivs[stat ]} ${stat}`);
+				}
+				if (ivs.length) output += `IVs: ${ivs.join(' / ')}<br />`;
+			}
+			output += mon.moves.map(move => `- ${exports.Dex.getMove(move).name}<br />`).join('');
+			output += '<br />';
 		}
-		return clone;
+		return output;
 	}
 
 	loadDataFile(basePath, dataType) {
 		try {
 			const filePath = basePath + DATA_FILES[dataType];
-			// eslint-disable-next-line @typescript-eslint/no-var-requires
 			const dataObject = require(filePath);
-			const key = `Battle${dataType}`;
 			if (!dataObject || typeof dataObject !== 'object') {
 				throw new TypeError(`${filePath}, if it exists, must export a non-null object`);
 			}
-			if (_optionalChain([dataObject, 'access', _11 => _11[key], 'optionalAccess', _12 => _12.constructor, 'optionalAccess', _13 => _13.name]) !== 'Object') {
-				throw new TypeError(`${filePath}, if it exists, must export an object whose '${key}' property is an Object`);
+			if (_optionalChain([dataObject, 'access', _16 => _16[dataType], 'optionalAccess', _17 => _17.constructor, 'optionalAccess', _18 => _18.name]) !== 'Object') {
+				throw new TypeError(`${filePath}, if it exists, must export an object whose '${dataType}' property is an Object`);
 			}
-			return dataObject[key];
+			return dataObject[dataType];
 		} catch (e) {
 			if (e.code !== 'MODULE_NOT_FOUND' && e.code !== 'ENOENT') {
 				throw e;
 			}
 		}
 		return {};
+	}
+
+	loadTextFile(
+		name, exportName
+	) {
+		return require(`${DATA_DIR}/text/${name}`)[exportName];
 	}
 
 	includeMods() {
@@ -1403,6 +1391,18 @@ const toID = Data.Tools.getId;
 		return this;
 	}
 
+	loadTextData() {
+		if (dexes['base'].textCache) return dexes['base'].textCache;
+		dexes['base'].textCache = {
+			Pokedex: this.loadTextFile('pokedex', 'PokedexText') ,
+			Moves: this.loadTextFile('moves', 'MovesText') ,
+			Abilities: this.loadTextFile('abilities', 'AbilitiesText') ,
+			Items: this.loadTextFile('items', 'ItemsText') ,
+			Default: this.loadTextFile('default', 'DefaultText') ,
+		};
+		return dexes['base'].textCache;
+	}
+
 	loadData() {
 		if (this.dataCache) return this.dataCache;
 		dexes['base'].includeMods();
@@ -1410,8 +1410,8 @@ const toID = Data.Tools.getId;
 
 		const basePath = this.dataDir + '/';
 
-		const BattleScripts = this.loadDataFile(basePath, 'Scripts');
-		this.parentMod = this.isBase ? '' : (BattleScripts.inherit || 'base');
+		const Scripts = this.loadDataFile(basePath, 'Scripts');
+		this.parentMod = this.isBase ? '' : (Scripts.inherit || 'base');
 
 		let parentDex;
 		if (this.parentMod) {
@@ -1424,10 +1424,6 @@ const toID = Data.Tools.getId;
 		}
 
 		for (const dataType of DATA_TYPES.concat('Aliases')) {
-			if (dataType === 'Natures' && this.isBase) {
-				dataCache[dataType] = BattleNatures;
-				continue;
-			}
 			const BattleData = this.loadDataFile(basePath, dataType);
 			if (BattleData !== dataCache[dataType]) dataCache[dataType] = Object.assign(BattleData, dataCache[dataType]);
 			if (dataType === 'Formats' && !parentDex) Object.assign(BattleData, this.formats);
@@ -1474,7 +1470,7 @@ const toID = Data.Tools.getId;
 		this.dataCache = dataCache ;
 
 		// Execute initialization script.
-		if (BattleScripts.init) BattleScripts.init.call(this);
+		if (Scripts.init) Scripts.init.call(this);
 
 		return this.dataCache;
 	}
@@ -1488,8 +1484,16 @@ const toID = Data.Tools.getId;
 
 		// Load formats
 		let Formats;
+		let customFormats;
 		try {
-			Formats = require(FORMATS).Formats;
+			customFormats = require(CUSTOM_FORMATS).Formats;
+		} catch (e) {
+			if (e.code !== 'MODULE_NOT_FOUND' && e.code !== 'ENOENT') {
+				throw e;
+			}
+		}
+		try {
+			Formats = _dexformats.mergeFormatLists.call(void 0, require(MAIN_FORMATS).Formats, customFormats);
 		} catch (e) {
 			if (e.code !== 'MODULE_NOT_FOUND' && e.code !== 'ENOENT') {
 				throw e;
@@ -1501,7 +1505,7 @@ const toID = Data.Tools.getId;
 		let section = '';
 		let column = 1;
 		for (const [i, format] of Formats.entries()) {
-			const id = toID(format.name);
+			const id = exports.toID.call(void 0, format.name);
 			if (format.section) section = format.section;
 			if (format.column) column = format.column;
 			if (!format.name && format.section) continue;
@@ -1531,3 +1535,13 @@ dexes['base'] = new ModdedDex(undefined, true);
 dexes[BASE_MOD] = dexes['base'];
 
  const Dex = dexes['base']; exports.Dex = Dex;
+
+
+
+
+
+
+
+
+
+

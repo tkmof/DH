@@ -2,7 +2,7 @@
  * Gen 2 scripts.
  */
 
- const BattleScripts = {
+ const Scripts = {
 	inherit: 'gen3',
 	gen: 2,
 	// BattlePokemon scripts.
@@ -705,4 +705,4 @@
 		// We are done, this is the final damage
 		return damage;
 	},
-}; exports.BattleScripts = BattleScripts;
+}; exports.Scripts = Scripts;

@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	pikachuoriginal: {
 		inherit: true,
 		abilities: {0: "Static"},
@@ -155,4 +155,4 @@
 		inherit: true,
 		abilities: {0: "Misty Surge"},
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

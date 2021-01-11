@@ -1,6 +1,14 @@
-export const BattleFormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
+export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	charizardgmax: {
 		isGigantamax: "G-Max Wildfire",
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	zacian: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	zamazenta: {
 		tier: "OU",
 		doublesTier: "DOU",
 	},

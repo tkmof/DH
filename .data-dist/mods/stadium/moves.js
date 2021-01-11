@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleMovedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Moves = {
 	bind: {
 		inherit: true,
 		// FIXME: onBeforeMove() {},
@@ -181,4 +181,4 @@
 		inherit: true,
 		// FIXME: onBeforeMove() {},
 	},
-}; exports.BattleMovedex = BattleMovedex;
+}; exports.Moves = Moves;

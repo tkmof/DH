@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormats = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Formats = {
 	standard: {
 		inherit: true,
 		ruleset: [
@@ -13,4 +13,4 @@
 			'Huntail + Shell Smash + Sucker Punch',
 		],
 	},
-}; exports.BattleFormats = BattleFormats;
+}; exports.Formats = Formats;

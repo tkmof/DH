@@ -52,14 +52,13 @@
 try {
 	// I've gotten enough reports by people who don't use the launch
 	// script that this is worth repeating here
-	RegExp("\\p{Emoji}", "u");
+	[].flatMap(x => x);
 } catch (e) {
-	throw new Error("We require Node.js version 10 or later; you're using " + process.version);
+	throw new Error("We require Node.js version 12 or later; you're using " + process.version);
 }
 
 try {
 	require.resolve('../.sim-dist/index');
-	// tslint:disable-next-line
 	const sucraseVersion = require('sucrase').getVersion().split('.');
 	if (
 		parseInt(sucraseVersion[0]) < 3 ||
@@ -76,9 +75,6 @@ var _fs = require('../.lib-dist/fs');
 /*********************************************************
  * Load configuration
  *********************************************************/
-
-// global becomes much easier to use if declared as an object
-
 
 var _configloader = require('./config-loader'); var ConfigLoader = _configloader;
 global.Config = ConfigLoader.Config;
@@ -107,7 +103,7 @@ if (Config.watchconfig) {
 
 var _dex = require('../.sim-dist/dex');
 global.Dex = _dex.Dex;
-global.toID = _dex.Dex.getId;
+global.toID = _dex.Dex.toID;
 
 var _loginserver = require('./loginserver');
 global.LoginServer = _loginserver.LoginServer;
@@ -126,6 +122,8 @@ global.Punishments = _punishments.Punishments;
 
 var _rooms = require('./rooms');
 global.Rooms = _rooms.Rooms;
+// We initialize the global room here because roomlogs.ts needs the Rooms global
+_rooms.Rooms.global = new _rooms.Rooms.GlobalRoomState();
 
 var _verifier = require('./verifier'); var Verifier = _verifier;
 global.Verifier = Verifier;
@@ -136,7 +134,7 @@ global.Tournaments = _tournaments.Tournaments;
 
 var _iptools = require('./ip-tools');
 global.IPTools = _iptools.IPTools;
-void _iptools.IPTools.loadDatacenters();
+void _iptools.IPTools.loadHostsAndRanges();
 
 if (Config.crashguard) {
 	// graceful crash - allow current battles to finish before restarting
@@ -144,10 +142,8 @@ if (Config.crashguard) {
 		_monitor.Monitor.crashlog(err, 'The main process');
 	});
 
-	// Typescript doesn't like this call
-	// @ts-ignore
-	process.on('unhandledRejection', (err, promise) => {
-		_monitor.Monitor.crashlog(err, 'A main process Promise');
+	process.on('unhandledRejection', err => {
+		_monitor.Monitor.crashlog(err , 'A main process Promise');
 	});
 }
 

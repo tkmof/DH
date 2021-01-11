@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
 	aguavberry: {
 		inherit: true,
 		onUpdate() {},
@@ -365,4 +365,4 @@
 			}
 		},
 	},
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;

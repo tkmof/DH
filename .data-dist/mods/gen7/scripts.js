@@ -1,3 +1,3 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleScripts = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Scripts = {
 	gen: 7,
-}; exports.BattleScripts = BattleScripts;
+}; exports.Scripts = Scripts;

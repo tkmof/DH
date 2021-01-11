@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleFormatsData = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const FormatsData = {
 mienshaomega: {
     randomBattleMoves: [],
     randomDoublesBattleMoves: [],
@@ -129,18 +129,240 @@ synthinobimega: {
     randomBattleMoves: [],
     randomDoublesBattleMoves: [],
     requiredItem: "Synthinobite",
-    tier: "OU",
+    tier: "YB",
 },
 chemicandermega: {
     randomBattleMoves: [],
     randomDoublesBattleMoves: [],
     requiredItem: "Chemicite",
-    tier: "OU",
+    tier: "YB",
 },
 primadillomega: {
     randomBattleMoves: [],
     randomDoublesBattleMoves: [],
     requiredItem: "Primadillite",
+    tier: "YB",
+},
+meganiummega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Meganiumite",
     tier: "OU",
 },
-}; exports.BattleFormatsData = BattleFormatsData;
+typhlosionmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Typhlosionite",
+    tier: "OU",
+},
+feraligatrmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Feraligite",
+    tier: "OU",
+},
+slowbrogalarmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Galarslowbronite",
+    tier: "OU",
+},
+slowkingmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Slowkinite",
+    tier: "OU",
+},
+slowkingmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Slowkinite",
+    tier: "OU",
+},
+froslassmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Froslassite",
+    tier: "OU",
+},
+butterfreemega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Butterfrite",
+    tier: "OU",
+},
+miloticmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Milotite",
+    tier: "OU",
+},
+dragonitemega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Dragonitite",
+    tier: "OU",
+},
+dusknoirmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Dusknoirite",
+    tier: "OU",
+},
+flygonmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Flygonite",
+    tier: "OU",
+},
+hydreigonmega: {
+    randomBattleMoves: [],
+    randomDoublesBattleMoves: [],
+    requiredItem: "Hydreigonite",
+    tier: "OU",
+},
+synthinobi: {
+		tier: "YB",
+},	
+chemicander: {
+		tier: "YB",
+},	
+primadillo: {
+		tier: "YB",
+},
+bersawk: {
+		tier: "YB",
+},
+electzal: {
+		tier: "YB",
+},
+pyrogrine: {
+		tier: "YB",
+},
+chompean: {
+		tier: "YB",
+},
+mothicoal: {
+		tier: "YB",
+},
+neurowatt: {
+		tier: "YB",
+},
+menursa: {
+		tier: "YB",
+},
+bloomivolt: {
+		tier: "YB",
+},
+muaytiger: {
+		tier: "YB",
+},
+razorine: {
+		tier: "YB",
+},
+hareloom: {
+		tier: "YB",
+},
+arbbory: {
+		tier: "YB",
+},
+mustellar: {
+		tier: "YB",
+},
+wolverflare: {
+		tier: "YB",
+},
+photyrant: {
+		tier: "YB",
+},
+ghoulgoyle: {
+		tier: "YB",
+},
+gammaroo: {
+		tier: "YB",
+},
+serpentorch: {
+		tier: "YB",
+},
+kaclash: {
+		tier: "YB",
+},
+solinira: {
+		tier: "YB",
+},
+zapish: {
+		tier: "YB",
+},
+sanatee: {
+		tier: "YB",
+},
+glaciarch: {
+		tier: "YB",
+},
+creaviary: {
+		tier: "YB",
+},
+plummuse: {
+		tier: "YB",
+},
+sparsqueak: {
+		tier: "YB",
+},
+darsqueak: {
+		tier: "YB",
+},
+giraflame: {
+		tier: "YB",
+},
+petrasapien: {
+		tier: "YB",
+},
+petradvena: {
+		tier: "YB",
+},
+fyrecho: {
+		tier: "YB",
+},
+osprime: {
+		tier: "YB",
+},
+buffalocean: {
+		tier: "YB",
+},
+ingarde: {
+		tier: "YB",
+},
+venometta: {
+		tier: "YB",
+},
+nimbless: {
+		tier: "YB",
+},
+frixen: {
+		tier: "YB",
+},
+necrice: {
+		tier: "YB",
+},
+goblizz: {
+		tier: "YB",
+},
+ptarabola: {
+		tier: "YB",
+},
+dominidon: {
+		tier: "YB",
+},
+yamaboucha: {
+		tier: "YB",
+},
+geareon: {
+		tier: "YB",
+},
+mytheon: {
+		tier: "YB",
+},
+arbborry: {
+		tier: "YB",
+},
+}; exports.FormatsData = FormatsData;

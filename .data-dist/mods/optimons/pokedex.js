@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	inteleon: {
 		inherit: true,
 		types: ["Water", "Normal"],
@@ -173,4 +173,4 @@
 		baseStats: {hp: 100, atk: 70, def: 90, spa: 115, spd: 90, spe: 100},
 		abilities: {0: "Levitate", 1: "Adaptability", H: "Berserk"},
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

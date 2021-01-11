@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattlePokedex = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Pokedex = {
 	milotic: {
 		inherit: true,
 		evoType: 'levelExtra',
@@ -24,4 +24,4 @@
 		inherit: true,
 		types: ["Electric", "Ghost"],
 	},
-}; exports.BattlePokedex = BattlePokedex;
+}; exports.Pokedex = Pokedex;

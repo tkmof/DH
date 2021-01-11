@@ -68,10 +68,10 @@ class Leaderboard {
 						lowestScore = bit[sortBy];
 						lastPlacement = i + 1;
 					}
-					return Object.assign(
-						{rank: lastPlacement},
-						bit
-					);
+					return {
+						rank: lastPlacement,
+						...bit,
+					};
 				}); // identify ties
 			if (userid) {
 				const rank = ladder.find(entry => toID(entry.name) === userid);
@@ -115,7 +115,8 @@ const TWISTS = {
 		},
 
 		onComplete(player, time, blitz) {
-			const isPerfect = Object.keys(player.answers).map(q => player.answers[q].length).every(attempts => attempts <= 1);
+			const isPerfect = !_optionalChain([this, 'access', _ => _.leftGame, 'optionalAccess', _2 => _2.includes, 'call', _3 => _3(player.id)]) &&
+				Object.keys(player.answers).map(q => player.answers[q].length).every(attempts => attempts <= 1);
 			return {name: player.name, time, blitz, isPerfect};
 		},
 
@@ -124,6 +125,53 @@ const TWISTS = {
 			const perfect = this.completed.filter(entry => entry.isPerfect).map(entry => entry.name);
 			if (perfect.length) {
 				this.announce(_utils.Utils.html`${Chat.toListString(perfect)} ${perfect.length > 1 ? 'have' : 'has'} completed the hunt without a single wrong answer!`);
+			}
+		},
+	},
+
+	bonusround: {
+		name: 'Bonus Round',
+		id: 'bonusround',
+		desc: "Players can choose whether or not they choose to complete the 4th question.",
+
+		onAfterLoad() {
+			if (this.questions.length === 3) {
+				this.announce('This twist requires at least four questions.  Please reset the hunt and make it again.');
+				this.huntLocked = true;
+			} else {
+				this.questions[this.questions.length - 1].hint += ' (You may choose to skip this question using ``/scavenge skip``.)';
+			}
+		},
+
+		onAnySubmit(player) {
+			if (this.huntLocked) {
+				player.sendRoom('The hunt was not set up correctly.  Please wait for the host to reset the hunt and create a new one.');
+				return true;
+			}
+		},
+
+		onSubmitPriority: 1,
+		onSubmit(player, value) {
+			const currentQuestion = player.currentQuestion;
+
+			if (value === 'skip' && currentQuestion + 1 === this.questions.length) {
+				player.sendRoom('You have opted to skip the current question.');
+				player.skippedQuestion = true;
+				this.onComplete(player);
+				return true;
+			}
+		},
+
+		onComplete(player, time, blitz) {
+			const noSkip = !player.skippedQuestion;
+			return {name: player.name, time, blitz, noSkip};
+		},
+
+		onAfterEndPriority: 1,
+		onAfterEnd() {
+			const noSkip = this.completed.filter(entry => entry.noSkip).map(entry => entry.name);
+			if (noSkip.length) {
+				this.announce(_utils.Utils.html`${Chat.toListString(noSkip)} ${noSkip.length > 1 ? 'have' : 'has'} completed the hunt without skipping the last question!`);
 			}
 		},
 	},
@@ -146,9 +194,10 @@ const TWISTS = {
 		onPreComplete(player) {
 			const now = Date.now();
 			const time = Chat.toDurationString(now - this.startTime, {hhmmss: true});
+			const canBlitz = this.completed.length < 3;
 
-			const blitz = now - this.startTime <= 60000 &&
-				(_optionalChain([this, 'access', _ => _.room, 'access', _2 => _2.settings, 'access', _3 => _3.scavSettings, 'optionalAccess', _4 => _4.blitzPoints, 'optionalAccess', _5 => _5[this.gameType]]) || this.gameType === 'official');
+			const blitz = now - this.startTime <= 60000 && canBlitz &&
+				(_optionalChain([this, 'access', _4 => _4.room, 'access', _5 => _5.settings, 'access', _6 => _6.scavSettings, 'optionalAccess', _7 => _7.blitzPoints, 'optionalAccess', _8 => _8[this.gameType]]) || this.gameType === 'official');
 
 			const result = this.runEvent('Complete', player, time, blitz) || {name: player.name, time, blitz};
 
@@ -193,9 +242,10 @@ const TWISTS = {
 		onPreComplete(player) {
 			const now = Date.now();
 			const time = Chat.toDurationString(now - this.startTime, {hhmmss: true});
+			const canBlitz = this.completed.length < 3;
 
-			const blitz = now - this.startTime <= 60000 &&
-				(_optionalChain([this, 'access', _6 => _6.room, 'access', _7 => _7.settings, 'access', _8 => _8.scavSettings, 'optionalAccess', _9 => _9.blitzPoints, 'optionalAccess', _10 => _10[this.gameType]]) || this.gameType === 'official');
+			const blitz = now - this.startTime <= 60000 && canBlitz &&
+				(_optionalChain([this, 'access', _9 => _9.room, 'access', _10 => _10.settings, 'access', _11 => _11.scavSettings, 'optionalAccess', _12 => _12.blitzPoints, 'optionalAccess', _13 => _13[this.gameType]]) || this.gameType === 'official');
 
 			const result = this.runEvent('Complete', player, time, blitz) || {name: player.name, time, blitz};
 
@@ -678,7 +728,7 @@ const MODES = {
 		if (this.timer) clearTimeout(this.timer);
 		const game = this.room.getGame(_scavengers.ScavengerHunt);
 		if (force && game) game.onEnd(false);
-		delete this.room.scavgame;
+		this.room.scavgame = null;
 	}
 
 	eliminate(userid) {
@@ -701,7 +751,7 @@ const LoadGame = function (room, gameid) {
 
 	const base = new ScavengerGameTemplate(room);
 
-	const scavgame = Object.assign(base, Dex.deepClone(game));
+	const scavgame = Object.assign(base, _utils.Utils.deepClone(game));
 
 	// initialize leaderboard if required
 	if (scavgame.leaderboard) {

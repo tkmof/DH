@@ -203,7 +203,7 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 			if (timerSettings[k] === undefined) delete timerSettings[k];
 		}
 
-		this.settings = Object.assign({
+		this.settings = {
 			dcTimer: !isChallenge,
 			dcTimerBank: isChallenge,
 			starting: isChallenge ? STARTING_TIME_CHALLENGE : STARTING_TIME,
@@ -213,7 +213,8 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 			maxFirstTurn: isChallenge ? MAX_TURN_TIME_CHALLENGE : MAX_TURN_TIME,
 			timeoutAutoChoose: false,
 			accelerate: !timerSettings,
-		}, timerSettings);
+			...timerSettings,
+		};
 		if (this.settings.maxPerTurn <= 0) this.settings.maxPerTurn = Infinity;
 
 		for (const player of this.battle.players) {
@@ -457,6 +458,8 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 	
 	
 	
+	/** Will exist even if the game is unrated, in case it's later forced to be rated */
+	
 	
 	
 	/**
@@ -475,6 +478,8 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 	
 	
 	
+	__init() {this.forcePublic = null}
+	
 	
 	
 	
@@ -491,8 +496,9 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 	
 	
 	
+	
 	constructor(room, formatid, options) {
-		super(room);
+		super(room);RoomBattle.prototype.__init.call(this);;
 		const format = Dex.getFormat(formatid, true);
 		this.gameid = 'battle' ;
 		this.room = room;
@@ -504,6 +510,7 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 		this.gameType = format.gameType;
 		this.challengeType = options.challengeType;
 		this.rated = options.rated || 0;
+		this.ladder = typeof format.rated === 'string' ? toID(format.rated) : formatid;
 		// true when onCreateBattleRoom has been called
 		this.missingBattleStartMessage = !!options.inputLog;
 		this.started = false;
@@ -521,6 +528,7 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 		this.p2 = null;
 		this.p3 = null;
 		this.p4 = null;
+		this.inviteOnlySetter = null;
 
 		// data to be logged
 		this.allowExtraction = {};
@@ -698,11 +706,9 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 	}
 
 	async listen() {
-		let next;
 		let disconnected = false;
 		try {
-			// tslint:disable-next-line: no-conditional-assignment
-			while ((next = await this.stream.read())) {
+			for await (const next of this.stream) {
 				this.receive(next.split('\n'));
 			}
 		} catch (err) {
@@ -726,6 +732,12 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 		for (const player of this.players) player.wantsTie = false;
 
 		switch (lines[0]) {
+		case 'requesteddata':
+			lines = lines.slice(1);
+			const [resolver] = this.dataResolvers.shift();
+			resolver(lines);
+			break;
+
 		case 'update':
 			for (const line of lines.slice(1)) {
 				if (line.startsWith('|turn|')) {
@@ -807,7 +819,7 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 			if (winner && !winner.registered) {
 				this.room.sendUser(winner, '|askreg|' + winner.id);
 			}
-			const [score, p1rating, p2rating] = await Ladders(this.format).updateRating(p1name, p2name, p1score, this.room);
+			const [score, p1rating, p2rating] = await Ladders(this.ladder).updateRating(p1name, p2name, p1score, this.room);
 			void this.logBattle(score, p1rating, p2rating);
 		} else if (Config.logchallenges) {
 			if (winnerid === p1id) {
@@ -837,7 +849,7 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 		// If the room's replay was hidden, disable users from joining after the game is over
 		if (this.room.hideReplay) {
 			this.room.settings.modjoin = '%';
-			this.room.settings.isPrivate = 'hidden';
+			this.room.setPrivate('hidden');
 		}
 		this.room.update();
 	}
@@ -878,8 +890,9 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 		const logfolder = logsubfolder.split('-', 2).join('-');
 		const tier = this.room.format.toLowerCase().replace(/[^a-z0-9]+/g, '');
 		const logpath = `logs/${logfolder}/${tier}/${logsubfolder}/`;
+
 		await _fs.FS.call(void 0, logpath).mkdirp();
-		await _fs.FS.call(void 0, logpath + this.room.roomid + '.log.json').write(JSON.stringify(logData));
+		await _fs.FS.call(void 0, `${logpath}${this.room.getReplayData().id}.log.json`).write(JSON.stringify(logData));
 		// console.log(JSON.stringify(logData));
 	}
 	onConnect(user, connection = null) {
@@ -1014,17 +1027,14 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 			void this.stream.write(`>player ${slot} ${JSON.stringify(options)}`);
 		}
 
-		if (user) this.room.auth.set(player.id, Users.PLAYER_SYMBOL);
+		if (user) {
+			this.room.auth.set(player.id, Users.PLAYER_SYMBOL);
+			if (this.rated && !this.forcePublic) {
+				this.forcePublic = user.battlesForcedPublic();
+			}
+		}
 		if (_optionalChain([user, 'optionalAccess', _7 => _7.inRooms, 'access', _8 => _8.has, 'call', _9 => _9(this.roomid)])) this.onConnect(user);
 		return player;
-	}
-
-	forcedPublic() {
-		if (!this.rated) return;
-		for (const player of this.players) {
-			const user = player.getUser();
-			if (_optionalChain([user, 'optionalAccess', _10 => _10.forcedPublic])) return user.forcedPublic;
-		}
 	}
 
 	makePlayer(user) {
@@ -1110,6 +1120,39 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 
 		// @ts-ignore
 		this.room = null;
+		if (this.dataResolvers) {
+			for (const [, reject] of this.dataResolvers) {
+				// reject the promise, make whatever function called it return undefined
+				reject(new Error('Battle was destroyed.'));
+			}
+		}
+	}
+	async getTeam(user) {
+		const id = user.id;
+		const player = this.playerTable[id];
+		if (!player) return;
+		void this.stream.write(`>requestteam ${player.slot}`);
+		const teamDataPromise = new Promise((resolve, reject) => {
+			if (!this.dataResolvers) this.dataResolvers = [];
+			this.dataResolvers.push([resolve, reject]);
+		});
+		const resultStrings = await teamDataPromise;
+		if (!resultStrings) return;
+		const result = resultStrings.map(item => Dex.fastUnpackTeam(item))[0];
+		return result;
+	}
+	onChatMessage(message, user) {
+		void this.stream.write(`>chat-inputlogonly ${user.getIdentity(this.room.roomid)}|${message}`);
+	}
+	async getLog() {
+		if (!this.logData) this.logData = {};
+		void this.stream.write('>requestlog');
+		const logPromise = new Promise((resolve, reject) => {
+			if (!this.dataResolvers) this.dataResolvers = [];
+			this.dataResolvers.push([resolve, reject]);
+		});
+		const result = await logPromise;
+		return result;
 	}
 } exports.RoomBattle = RoomBattle;
 
@@ -1138,7 +1181,7 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 			this.push(`update\n|html|<div class="broadcast-red"><b>The battle crashed</b><br />Don't worry, we're working on fixing it.</div>`);
 			if (battle) {
 				for (const side of battle.sides) {
-					if (_optionalChain([side, 'optionalAccess', _11 => _11.requestState])) {
+					if (_optionalChain([side, 'optionalAccess', _10 => _10.requestState])) {
 						this.push(`sideupdate\n${side.id}\n|error|[Invalid choice] The battle crashed`);
 					}
 				}
@@ -1153,6 +1196,16 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 
 	_writeLine(type, message) {
 		switch (type) {
+		case 'chat-inputlogonly':
+			this.battle.inputLog.push(`>chat ${message}`);
+			break;
+		case 'chat':
+			this.battle.inputLog.push(`>chat ${message}`);
+			this.battle.add('chat', `${message}`);
+			break;
+		case 'requestlog':
+			this.push(`requesteddata\n${this.battle.inputLog.join('\n')}`);
+			break;
 		case 'eval':
 			const battle = this.battle;
 			battle.inputLog.push(`>${type} ${message}`);
@@ -1160,18 +1213,18 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 			battle.add('', '>>> ' + message.replace(/\n/g, '\n||'));
 			try {
 				/* eslint-disable no-eval, @typescript-eslint/no-unused-vars */
-				const p1 = _optionalChain([battle, 'optionalAccess', _12 => _12.sides, 'access', _13 => _13[0]]);
-				const p2 = _optionalChain([battle, 'optionalAccess', _14 => _14.sides, 'access', _15 => _15[1]]);
-				const p3 = _optionalChain([battle, 'optionalAccess', _16 => _16.sides, 'access', _17 => _17[2]]);
-				const p4 = _optionalChain([battle, 'optionalAccess', _18 => _18.sides, 'access', _19 => _19[3]]);
-				const p1active = _optionalChain([p1, 'optionalAccess', _20 => _20.active, 'access', _21 => _21[0]]);
-				const p2active = _optionalChain([p2, 'optionalAccess', _22 => _22.active, 'access', _23 => _23[0]]);
-				const p3active = _optionalChain([p3, 'optionalAccess', _24 => _24.active, 'access', _25 => _25[0]]);
-				const p4active = _optionalChain([p4, 'optionalAccess', _26 => _26.active, 'access', _27 => _27[0]]);
+				const p1 = _optionalChain([battle, 'optionalAccess', _11 => _11.sides, 'access', _12 => _12[0]]);
+				const p2 = _optionalChain([battle, 'optionalAccess', _13 => _13.sides, 'access', _14 => _14[1]]);
+				const p3 = _optionalChain([battle, 'optionalAccess', _15 => _15.sides, 'access', _16 => _16[2]]);
+				const p4 = _optionalChain([battle, 'optionalAccess', _17 => _17.sides, 'access', _18 => _18[3]]);
+				const p1active = _optionalChain([p1, 'optionalAccess', _19 => _19.active, 'access', _20 => _20[0]]);
+				const p2active = _optionalChain([p2, 'optionalAccess', _21 => _21.active, 'access', _22 => _22[0]]);
+				const p3active = _optionalChain([p3, 'optionalAccess', _23 => _23.active, 'access', _24 => _24[0]]);
+				const p4active = _optionalChain([p4, 'optionalAccess', _25 => _25.active, 'access', _26 => _26[0]]);
 				let result = eval(message);
 				/* eslint-enable no-eval, @typescript-eslint/no-unused-vars */
 
-				if (_optionalChain([result, 'optionalAccess', _28 => _28.then])) {
+				if (_optionalChain([result, 'optionalAccess', _27 => _27.then])) {
 					result.then((unwrappedResult) => {
 						unwrappedResult = _utils.Utils.visualize(unwrappedResult);
 						battle.add('', 'Promise -> ' + unwrappedResult);
@@ -1189,6 +1242,16 @@ const TIMER_COOLDOWN = 20 * SECONDS;
 				battle.add('', '<<< error: ' + e.message);
 			}
 			break;
+		case 'requestteam':
+			message = message.trim();
+			const slotNum = parseInt(message.slice(1)) - 1;
+			if (isNaN(slotNum) || slotNum < 0) {
+				throw new Error(`Team requested for slot ${message}, but that slot does not exist.`);
+			}
+			const side = this.battle.sides[slotNum];
+			const team = Dex.packTeam(side.team);
+			this.push(`requesteddata\n${team}`);
+			break;
 		default: super._writeLine(type, message);
 		}
 	}
@@ -1198,21 +1261,16 @@ const TIMER_COOLDOWN = 20 * SECONDS;
  * Process manager
  *********************************************************/
 
- const PM = new (0, _processmanager.StreamProcessManager)(module, () => {
-	return new RoomBattleStream();
-}); exports.PM = PM;
+ const PM = new (0, _processmanager.StreamProcessManager)(module, () => new RoomBattleStream()); exports.PM = PM;
 
 if (!exports.PM.isParentProcess) {
 	// This is a child process!
-	// tslint:disable-next-line: no-var-requires
 	global.Config = require('./config-loader').Config;
-	// tslint:disable-next-line: no-var-requires
 	global.Chat = require('./chat').Chat;
-	// @ts-ignore ???
+	global.Dex = require('../.sim-dist/dex').Dex;
 	global.Monitor = {
 		crashlog(error, source = 'A simulator process', details = null) {
 			const repr = JSON.stringify([error.name, error.message, source, details]);
-			// @ts-ignore
 			process.send(`THROW\n@!!@${repr}\n${error.stack}`);
 		},
 	};
@@ -1235,9 +1293,7 @@ if (!exports.PM.isParentProcess) {
 			Monitor.crashlog(err, 'A simulator process');
 		});
 		process.on('unhandledRejection', err => {
-			if (err instanceof Error) {
-				Monitor.crashlog(err, 'A simulator process Promise');
-			}
+			Monitor.crashlog(err  || {}, 'A simulator process Promise');
 		});
 	}
 

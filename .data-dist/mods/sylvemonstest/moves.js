@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});/*
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }/*
 List of flags and their descriptions:
 authentic: Ignores a target's substitute.
 bite: Power is multiplied by 1.5 when used by a Pokemon with the Ability Strong Jaw.
@@ -22,7 +22,7 @@ reflectable: Bounced back to the original user by Magic Coat or the Ability Magi
 snatch: Can be stolen from the original user and instead used by another Pokemon using Snatch.
 sound: Has no effect on Pokemon with the Ability Soundproof.
 */
- const BattleMovedex = {
+ const Moves = {
 	"shieldslam": {
 		accuracy: 100,
 		basePower: 80,
@@ -39,7 +39,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Heavy Slam", target);
 		},
-		//useTargetOffensive: true,
+		useSourceDefensiveAsOffensive: true,
 		secondary: null,
 		target: "normal",
 		type: "Steel",
@@ -53,11 +53,11 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "For 5 turns, all Pokémon on the field are resistant to normally super-effective types and weak to normally not-very-effective or ineffective types (as in Inverse Battles) ",
 		id: "inverseroom",
 		name: "Inverse Room",
-		pp: 8,
+		pp: 5,
 		priority: 0,
 		flags: {mirror: 1},
 		pseudoWeather: 'inverseroom',
-		effect: {
+		condition: {
 			duration: 5,
 			durationCallback: function(source, effect) {
 				if (source && source.hasAbility('persistent')) {
@@ -78,7 +78,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 				return null;
 			},
 			onEffectiveness: function(typeMod, target, type, move) {
-				if (move && !this.getImmunity(move, type)) return 1;
+				if (move && this.dex.getImmunity(move, type) === false) return 3;
 				return -typeMod;
 			},
 			onResidualOrder: 23,
@@ -103,7 +103,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "shadowcharge",
 		isViable: true,
 		name: "Shadow Charge",
-		pp: 24,
+		pp: 15,
 		priority: 0,
 		flags: {
 			contact: 1,
@@ -133,12 +133,13 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "hauntingscream",
 		isViable: true,
 		name: "Haunting Scream",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {
 			protect: 1,
 			mirror: 1,
-			sound: 1
+			sound: 1,
+			authentic: 1
 		},
 		secondary: {
 			chance: 30,
@@ -171,7 +172,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			this.add('-anim', source, "Rain Dance", target);
 		},
 		sideCondition: 'swampland',
-		effect: {
+		condition: {
 			duration: 4,
 			durationCallback: function(target, source, effect) {
 				if (source && source.hasAbility('persistent')) {
@@ -214,26 +215,52 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			protect: 1,
 			mirror: 1
 		},
-		onModifyMove: function(move) {
-			switch (this.field.effectiveWeather()) {
-				case 'sunnyday':
-				case 'desolateland':
-					move.type = 'Fire';
-					move.basePower *= 2;
-					break;
-				case 'raindance':
-				case 'primordialsea':
-					move.type = 'Water';
-					move.basePower *= 2;
-					break;
-				case 'sandstorm':
-					move.type = 'Rock';
-					move.basePower *= 2;
-					break;
-				case 'hail':
-					move.type = 'Ice';
-					move.basePower *= 2;
-					break;
+		onModifyType(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				break;
+			case 'hail':
+				move.type = 'Ice';
+				break;
+			case 'aircurrent':
+				move.type = 'Flying';
+				break;
+			case 'shadowsky':
+				move.type = 'Ghost';
+				break;					
+			}
+		},
+		onModifyMove(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.basePower *= 2;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.basePower *= 2;
+				break;
+			case 'sandstorm':
+				move.basePower *= 2;
+				break;
+			case 'hail':
+				move.basePower *= 2;
+				break;
+			case 'aircurrent':
+				move.basePower *= 2;
+				break;
+			case 'shadowsky':
+				move.basePower *= 2;
+				break;					
 			}
 		},
 		onPrepareHit: function(target, source, move) {
@@ -261,24 +288,26 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			protect: 1,
 			mirror: 1
 		},
-		onModifyMove: function(move) {
-			switch (this.effectiveTerrain()) {
-				case 'electricterrain':
-					move.type = 'Electric';
-					move.basePower *= 2;
-					break;
-				case 'psychicterrain':
-					move.type = 'Psychic';
-					move.basePower *= 2;
-					break;
-				case 'mistyterrain':
-					move.type = 'Fairy';
-					move.basePower *= 2;
-					break;
-				case 'grassyterrain':
-					move.type = 'Grass';
-					move.basePower *= 2;
-					break;
+		onModifyType(move, pokemon) {
+			if (!pokemon.isGrounded()) return;
+			switch (this.field.terrain) {
+			case 'electricterrain':
+				move.type = 'Electric';
+				break;
+			case 'grassyterrain':
+				move.type = 'Grass';
+				break;
+			case 'mistyterrain':
+				move.type = 'Fairy';
+				break;
+			case 'psychicterrain':
+				move.type = 'Psychic';
+				break;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			if (this.field.terrain && pokemon.isGrounded()) {
+				move.basePower *= 2;
 			}
 		},
 		onPrepareHit: function(target, source, move) {
@@ -306,7 +335,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			nonsky: 1
 		},
 		terrain: 'mistyterrain',
-		effect: {
+		condition: {
 			duration: 5,
 			durationCallback: function(source, effect) {
 				if (source && source.hasItem('terrainextender')) {
@@ -333,9 +362,9 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 					this.debug('misty terrain weaken');
 					return this.chainModify(0.5);
 				}
-				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
-					this.debug('electric terrain boost');
-					return this.chainModify(1.5);
+				if (move.type === 'Fairy' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					this.debug('misty terrain boost');
+					return this.chainModify(1.3);
 				}
 			},
 			onStart: function(battle, source, effect) {
@@ -365,7 +394,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		basePower: 0,
 		category: "Status",
 		desc: "Lowers the target's evasiveness by 1 stage. If this move is successful and whether or not the target's evasiveness was affected, the effects of Reflect, Light Screen, Aurora Veil, Safeguard, Mist, Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the target's side, and the effects of Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the user's side. Ignores a target's substitute, although a substitute will still block the lowering of evasiveness.",
-		shortDesc: "-1 evasion; clears user and target side's hazards, clears rooms.",
+		shortDesc: "-1 evasion; clears user and target side's hazards, terrain, and rooms.",
 		id: "defog",
 		isViable: true,
 		name: "Defog",
@@ -377,26 +406,29 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			mirror: 1,
 			authentic: 1
 		},
-		onHit: function(target, source, move) {
-			if (!target.volatiles['substitute'] || move.infiltrates) this.boost({
-				evasion: -1
-			});
-			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
-			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+		onHit(target, source, move) {
 			let success = false;
-			for (let targetCondition of removeTarget) {
+			if (!target.volatiles['substitute'] || move.infiltrates) success = !!this.boost({evasion: -1});
+			const removeTarget = [
+				'reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge',
+			];
+			const removeAll = [
+				'spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge',
+			];
+			for (const targetCondition of removeTarget) {
 				if (target.side.removeSideCondition(targetCondition)) {
 					if (!removeAll.includes(targetCondition)) continue;
-					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + target);
+					this.add('-sideend', target.side, this.dex.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + source);
 					success = true;
 				}
 			}
-			for (let sideCondition of removeAll) {
+			for (const sideCondition of removeAll) {
 				if (source.side.removeSideCondition(sideCondition)) {
-					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					this.add('-sideend', source.side, this.dex.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
 					success = true;
 				}
 			}
+			this.field.clearTerrain();
 			return success;
 		},
 		onTryHit: function(target, source) {
@@ -431,8 +463,8 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			this.field.removePseudoWeather('wonderroom');
 			this.field.removePseudoWeather('inverseroom');
 		},
-		onHit: function() {
-			this.clearTerrain();
+		onHit() {
+			this.field.clearTerrain();
 		},
 		isZ: "lycaniumz",
 		secondary: null,
@@ -571,7 +603,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "The user switches out after successful use.",
 		id: "teleport",
 		name: "Teleport",
-		pp: 32,
+		pp: 20,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -593,7 +625,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "plumecannon",
 		isViable: true,
 		name: "Plume Cannon",
-		pp: 8,
+		pp: 5,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -619,7 +651,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "slipstream",
 		isViable: true,
 		name: "Slipstream",
-		pp: 32,
+		pp: 20,
 		priority: 0,
 		flags: {
 			contact: 1,
@@ -680,7 +712,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "rinseoff",
 		isViable: true,
 		name: "Rinse Off",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {
 			snatch: 1,
@@ -712,7 +744,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "acidmelt",
 		isViable: true,
 		name: "Acid Melt",
-		pp: 32,
+		pp: 20,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -722,7 +754,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Acid", target);
 		},
-		onEffectiveness: function(typeMod, type) {
+		onEffectiveness(typeMod, target, type) {
 			if (type === 'Steel') return 1;
 		},
 		secondary: {
@@ -776,7 +808,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "jetstream",
 		isViable: true,
 		name: "Jetstream",
-		pp: 48,
+		pp: 30,
 		priority: 1,
 		flags: {
 			protect: 1,
@@ -819,7 +851,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		},
 		secondary: null,
 		target: "self",
-		type: "Normal",
+		type: "Ice",
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Beautiful",
 	},
@@ -910,7 +942,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "morningsun",
 		isViable: true,
 		name: "Morning Sun",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {
 			snatch: 1,
@@ -937,7 +969,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "moonlight",
 		isViable: true,
 		name: "Moonlight",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {
 			snatch: 1,
@@ -964,7 +996,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "synthesis",
 		isViable: true,
 		name: "Synthesis",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {
 			snatch: 1,
@@ -990,7 +1022,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "1.5x damage if foe holds an item. Removes item.",
 		id: "bugbite",
 		name: "Bug Bite",
-		pp: 32,
+		pp: 20,
 		priority: 0,
 		flags: {
 			contact: 1,
@@ -1037,7 +1069,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "1.5x damage if foe holds an item. Removes item.",
 		id: "pluck",
 		name: "Pluck",
-		pp: 32,
+		pp: 20,
 		priority: 0,
 		flags: {
 			contact: 1,
@@ -1083,7 +1115,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "1.5x damage if foe holds an item. Removes item.",
 		id: "incinerate",
 		name: "Incinerate",
-		pp: 32,
+		pp: 20,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -1123,13 +1155,13 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 	doublehit: {
 		inherit: true,
 		basePower: 50,
-		pp: 16,
+		pp: 10,
 		zMovePower: 100,
 	},
 	doublekick: {
 		inherit: true,
 		basePower: 50,
-		pp: 16,
+		pp: 10,
 		zMovePower: 100,
 	},
 	"twineedle": {
@@ -1141,7 +1173,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "Hits 2 times. Each hit has 20% chance to poison.",
 		id: "twineedle",
 		name: "Twineedle",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -1161,7 +1193,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 	dualchop: {
 		inherit: true,
 		basePower: 50,
-		pp: 16,
+		pp: 10,
 		zMovePower: 100,
 	},
 	"seedbomb": { // 50% chance to seed the target
@@ -1192,7 +1224,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 	},
 	"leechseed": {
 		inherit: true,
-		effect: {
+		condition: {
 			onStart(target) {
 				if (target.hasType('Grass')) { 
 					target.removeVolatile('leechseed'); 
@@ -1224,7 +1256,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "Deals fixed damage equal to the user's level",
 		id: "dragonrage",
 		name: "Dragon Rage",
-		pp: 16,
+		pp: 20,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -1246,7 +1278,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "Deals fixed damage equal to the user's level",
 		id: "sonicboom",
 		name: "Sonic Boom",
-		pp: 32,
+		pp: 20,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -1268,7 +1300,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "Deals fixed damage equal to the user's level",
 		id: "psywave",
 		name: "Psywave",
-		pp: 24,
+		pp: 20,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -1290,7 +1322,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		id: "geargrind",
 		isViable: true,
 		name: "Gear Grind",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {
 			contact: 1,
@@ -1311,7 +1343,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "Summons Shadow Sky",
 		id: "shadowsky",
 		name: "Shadow Sky",
-		pp: 16,
+		pp: 5,
 		priority: 0,
 		flags: {},
 		onPrepareHit: function(target, source, move) {
@@ -1322,9 +1354,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		secondary: null,
 		target: "all",
 		type: "Ghost",
-		zMoveBoost: {
-			spe: 1
-		},
+		zMove: {boost: {spe: 1}},
 	},
 	"aircurrent": {
 		accuracy: true,
@@ -1333,7 +1363,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		shortDesc: "Summons Air Current",
 		id: "aircurrent",
 		name: "Air Current",
-		pp: 16,
+		pp: 5,
 		priority: 0,
 		flags: {},
 		onPrepareHit: function(target, source, move) {
@@ -1344,9 +1374,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		secondary: null,
 		target: "all",
 		type: "Flying",
-		zMoveBoost: {
-			spe: 1
-		},
+		zMove: {boost: {spe: 1}},
 	},
 	"hurricane": {
 		num: 542,
@@ -1385,10 +1413,6 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		num: 311,
 		accuracy: 100,
 		basePower: 50,
-		basePowerCallback: function(pokemon, target, move) {
-			if (this.weather) return move.basePower * 2;
-			return move.basePower;
-		},
 		category: "Special",
 		desc: "Power doubles during weather effects and this move's type changes to match; Ice type during Hail, Water type during Rain Dance, Rock type during Sandstorm, and Fire type during Sunny Day.",
 		shortDesc: "Power doubles and type varies in each weather.",
@@ -1401,25 +1425,52 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			protect: 1,
 			mirror: 1
 		},
-		onModifyMove: function(move) {
-			switch (this.field.effectiveWeather()) {
-				case 'sunnyday':
-				case 'desolateland':
-					move.type = 'Fire';
-					break;
-				case 'raindance':
-				case 'primordialsea':
-					move.type = 'Water';
-					break;
-				case 'sandstorm':
-					move.type = 'Rock';
-					break;
-				case 'hail':
-					move.type = 'Ice';
-					break;
-				case 'aircurrent':
-					move.type = 'Flying';
-					break;
+		onModifyType(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				break;
+			case 'hail':
+				move.type = 'Ice';
+				break;
+			case 'aircurrent':
+				move.type = 'Flying';
+				break;
+			case 'shadowsky':
+				move.type = 'Ghost';
+				break;					
+			}
+		},
+		onModifyMove(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.basePower *= 2;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.basePower *= 2;
+				break;
+			case 'sandstorm':
+				move.basePower *= 2;
+				break;
+			case 'hail':
+				move.basePower *= 2;
+				break;
+			case 'aircurrent':
+				move.basePower *= 2;
+				break;
+			case 'shadowsky':
+				move.basePower *= 2;
+				break;					
 			}
 		},
 		secondary: null,
@@ -1443,7 +1494,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			mirror: 1
 		},
 		pseudoWeather: 'trickroom',
-		effect: {
+		condition: {
 			duration: 5,
 			durationCallback: function(source, effect) {
 				if (source && source.hasAbility('persistent')) {
@@ -1451,6 +1502,10 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 				}
 				else if (source && source.hasItem('roomextender')) {
 					return 8;
+				}
+				if (_optionalChain([source, 'optionalAccess', _ => _.hasAbility, 'call', _2 => _2('timewarp')])) {
+					this.add('-activate', source, 'ability: Time Warp', effect);
+					return 0;
 				}
 				return 5;
 			},
@@ -1491,7 +1546,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 			mirror: 1
 		},
 		pseudoWeather: 'magicroom',
-		effect: {
+		condition: {
 			duration: 5,
 			durationCallback: function(source, effect) {
 				if (source && source.hasAbility('persistent')) {
@@ -1538,7 +1593,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		priority: 0,
 		flags: {mirror: 1},
 		pseudoWeather: 'wonderroom',
-		effect: {
+		condition: {
 			duration: 5,
 			durationCallback: function (source, effect) {
 				if (source && source.hasAbility('persistent')) {
@@ -1733,7 +1788,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		zMovePower: 140,
 		contestType: "Tough",
 	},
-"wildcharge": {
+	"wildcharge": {
 		num: 528,
 		accuracy: 80,
 		basePower: 150,
@@ -1753,50 +1808,168 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		zMovePower: 200,
 		contestType: "Tough",
 	},
+
 	"stickyweb": {
 		inherit: true,
-		effect: {
+		condition: {
 			onStart: function (side) {
 				this.add('-sidestart', side, 'move: Sticky Web');
 			},
 			onSwitchIn: function (pokemon) {
-				if (!pokemon.isGrounded() || pokemon.hasItem('safetysocks')) return;
+				if (!pokemon.isGrounded() || pokemon.hasItem('heavydutyboots') || pokemon.hasItem('safetysocks')) return;
 				this.add('-activate', pokemon, 'move: Sticky Web');
-				this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], this.dex.getMove('stickyweb'));
+				this.boost({spe: -1}, pokemon, this.effectData.source, this.dex.getActiveMove('stickyweb'))
 			},
 		},
 	},
 	"toxicspikes": {
-		inherit: true,
-		effect: {
+		num: 390,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the opposing side of the field, poisoning each opposing Pokemon that switches in, unless it is a Flying-type Pokemon or has the Levitate Ability. Can be used up to two times before failing. Opposing Pokemon become poisoned with one layer and badly poisoned with two layers. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, is hit by Defog, or a grounded Poison-type Pokemon switches in. Safeguard prevents the opposing party from being poisoned on switch-in, but a substitute does not.",
+		shortDesc: "Poisons grounded foes on switch-in. Max 2 layers.",
+		name: "Toxic Spikes",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'toxicspikes',
+		condition: {
 			// this is a side condition
-			onStart: function (side) {
+			onStart(side) {
 				this.add('-sidestart', side, 'move: Toxic Spikes');
 				this.effectData.layers = 1;
 			},
-			onRestart: function (side) {
+			onRestart(side) {
 				if (this.effectData.layers >= 2) return false;
 				this.add('-sidestart', side, 'move: Toxic Spikes');
 				this.effectData.layers++;
 			},
-			onSwitchIn: function (pokemon) {
+			onSwitchIn(pokemon) {
 				if (!pokemon.isGrounded()) return;
 				if (pokemon.hasType('Poison')) {
 					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
 					pokemon.side.removeSideCondition('toxicspikes');
+				} else if (pokemon.hasType('Steel') || pokemon.hasItem('heavydutyboots') || pokemon.hasItem('safetysocks')) {
+					return;
+				} else if (this.effectData.layers >= 2) {
+					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
 				} else {
-					if (!pokemon.runImmunity('Poison')) return;
-					if (!pokemon.hasItem('safetysocks')) return;
-					if (this.effectData.layers >= 2) {
-						pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
-					} else {
-						pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
-					}
+					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
 				}
 			},
 		},
+		secondary: null,
+		target: "foeSide",
+		type: "Poison",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
 	},
-"fairylock": {
+	gmaxsteelsurge: {
+		num: 1000,
+		accuracy: true,
+		basePower: 10,
+		category: "Physical",
+		desc: "Power is equal to the base move's Max Move power. If this move is successful, it sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in. Foes lose 1/32, 1/16, 1/8, 1/4, or 1/2 of their maximum HP, rounded down, based on their weakness to the Steel type; 0.25x, 0.5x, neutral, 2x, or 4x, respectively. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Base move affects power. Foes: Steel hazard.",
+		name: "G-Max Steelsurge",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		isMax: "Copperajah",
+		self: {
+			onHit(source) {
+				source.side.foe.addSideCondition('gmaxsteelsurge');
+			},
+		},
+		condition: {
+			onStart(side) {
+				this.add('-sidestart', side, 'move: G-Max Steelsurge');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('heavydutyboots') || pokemon.hasItem('safetysocks')) return;
+				// Ice Face and Disguise correctly get typed damage from Stealth Rock
+				// because Stealth Rock bypasses Substitute.
+				// They don't get typed damage from Steelsurge because Steelsurge doesn't,
+				// so we're going to test the damage of a Steel-type Stealth Rock instead.
+				const steelHazard = this.dex.getActiveMove('Stealth Rock');
+				steelHazard.type = 'Steel';
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		target: "adjacentFoe",
+		type: "Steel",
+		contestType: "Cool",
+	},
+	spikes: {
+		num: 191,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in, unless it is a Flying-type Pokemon or has the Levitate Ability. Can be used up to three times before failing. Opponents lose 1/8 of their maximum HP with one layer, 1/6 of their maximum HP with two layers, and 1/4 of their maximum HP with three layers, all rounded down. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Hurts grounded foes on switch-in. Max 3 layers.",
+		name: "Spikes",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'spikes',
+		condition: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'Spikes');
+				this.effectData.layers = 1;
+			},
+			onRestart(side) {
+				if (this.effectData.layers >= 3) return false;
+				this.add('-sidestart', side, 'Spikes');
+				this.effectData.layers++;
+			},
+			onSwitchIn(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasItem('heavydutyboots') || pokemon.hasItem('safetysocks')) return;
+				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectData.layers] * pokemon.maxhp / 24);
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Ground",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
+	},
+	stealthrock: {
+		num: 446,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in. Fails if the effect is already active on the opposing side. Foes lose 1/32, 1/16, 1/8, 1/4, or 1/2 of their maximum HP, rounded down, based on their weakness to the Rock type; 0.25x, 0.5x, neutral, 2x, or 4x, respectively. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Hurts foes on switch-in. Factors Rock weakness.",
+		name: "Stealth Rock",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1},
+		sideCondition: 'stealthrock',
+		condition: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'move: Stealth Rock');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('heavydutyboots') || pokemon.hasItem('safetysocks')) return;
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Rock",
+		zMove: {boost: {def: 1}},
+		contestType: "Cool",
+	},
+
+	"fairylock": {
 		num: 587,
 		accuracy: 100,
 		basePower: 80,
@@ -1838,6 +2011,10 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 				def: -1,
 				spd: -1,
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Crabhammer", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -1893,8 +2070,8 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		accuracy: 100,
 		basePower: 85,
 		category: "Physical",
-		desc: "Has a 20% chance to freeze the target.",
-		shortDesc: "20% chance to freeze.",
+		desc: "Has a 10% chance to freeze the target.",
+		shortDesc: "10% chance to freeze.",
 		id: "icefang",
 		isViable: true,
 		name: "Ice Fang",
@@ -1902,7 +2079,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		priority: 0,
 		flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
 		secondary: {
-			chance: 20,
+			chance: 10,
 			status: 'frz',
 		},
 		target: "normal",
@@ -1958,8 +2135,8 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		accuracy: 100,
 		basePower: 85,
 		category: "Physical",
-		desc: "Has a 20% chance to freeze the target.",
-		shortDesc: "20% chance to freeze the target.",
+		desc: "Has a 10% chance to freeze the target.",
+		shortDesc: "10% chance to freeze the target.",
 		id: "icepunch",
 		isViable: true,
 		name: "Ice Punch",
@@ -1967,7 +2144,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
 		secondary: {
-			chance: 20,
+			chance: 10,
 			status: 'frz',
 		},
 		target: "normal",
@@ -2060,75 +2237,6 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		zMovePower: 200,
 		contestType: "Beautiful",
 	},
-	"flamewheel": {
-		num: 228,
-		accuracy: 100,
-		basePower: 40,
-		basePowerCallback: function (pokemon, target, move) {
-			// You can't get here unless the pursuit succeeds
-			if (target.beingCalledBack) {
-				this.debug('Flame Wheel damage boost');
-				return move.basePower * 2;
-			}
-			return move.basePower;
-		},
-		category: "Physical",
-		desc: "If an opposing Pokemon switches out this turn, this move hits that Pokemon before it leaves the field, even if it was not the original target. If the user moves after an opponent using Parting Shot, U-turn, or Volt Switch, but not Baton Pass, it will hit that opponent before it leaves the field. Power doubles and no accuracy check is done if the user hits an opponent switching out, and the user's turn is over; if an opponent faints from this, the replacement Pokemon does not become active until the end of the turn.",
-		shortDesc: "Power doubles if a foe is switching out.",
-		id: "flamewheel",
-		isViable: true,
-		name: "Flame Wheel",
-		pp: 20,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		beforeTurnCallback: function (pokemon) {
-			for (const side of this.sides) {
-				if (side === pokemon.side) continue;
-				side.addSideCondition('flamewheel', pokemon);
-				if (!side.sideConditions['flamewheel'].sources) {
-					side.sideConditions['flamewheel'].sources = [];
-				}
-				side.sideConditions['flamewheel'].sources.push(pokemon);
-			}
-		},
-		onModifyMove: function (move, source, target) {
-			if (target && target.beingCalledBack) move.accuracy = true;
-		},
-		onTryHit: function (target, pokemon) {
-			target.side.removeSideCondition('flamewheel');
-		},
-		effect: {
-			duration: 1,
-			onBeforeSwitchOut: function (pokemon) {
-				this.debug('Flame Wheel start');
-				let alreadyAdded = false;
-				for (const source of this.effectData.sources) {
-					if (!this.cancelMove(source) || !source.hp) continue;
-					if (!alreadyAdded) {
-						this.add('-activate', pokemon, 'move: Flame Wheel');
-						alreadyAdded = true;
-					}
-					// Run through each action in queue to check if the Pursuit user is supposed to Mega Evolve this turn.
-					// If it is, then Mega Evolve before moving.
-					if (source.canMegaEvo || source.canUltraBurst) {
-						for (const [actionIndex, action] of this.queue.entries()) {
-							if (action.pokemon === source && action.choice === 'megaEvo') {
-								this.runMegaEvo(source);
-								this.queue.splice(actionIndex, 1);
-								break;
-							}
-						}
-					}
-					this.runMove('flamewheel', source, this.getTargetLoc(pokemon, source));
-				}
-			},
-		},
-		secondary: null,
-		target: "normal",
-		type: "Fire",
-		zMovePower: 100,
-		contestType: "Clever",
-	},
 	"heartbeat": {
 		num: 331,
 		accuracy: 100,
@@ -2141,8 +2249,12 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		name: "Heartbeat",
 		pp: 30,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1, sound: 1},
+		flags: {bullet: 1, protect: 1, mirror: 1, sound: 1, authentic: 1},
 		multihit: [2, 5],
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Attract", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Fairy",
@@ -2161,7 +2273,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		name: "Metal Sound",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, pulse: 1, mirror: 1, sound: 1},
+		flags: {protect: 1, pulse: 1, mirror: 1, sound: 1, authentic: 1},
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -2287,6 +2399,10 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		selfSwitch: true,
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flip Turn", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Water",
@@ -2325,6 +2441,11 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		pp: 10,
 		priority: 0,
 		flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Dance", target);
+			this.add('-anim', source, "Psychic Fangs", target);
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch',
@@ -2491,6 +2612,10 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, heal: 1, bite: 1},
 		drain: [1, 2],
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Crunch", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Dark",
@@ -2498,7 +2623,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		contestType: "Tough",
 	},
 	"souldrain": {
-		num: 532,
+		num: 9999,
 		accuracy: 100,
 		basePower: 85,
 		category: "Special",
@@ -2511,6 +2636,10 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		priority: 0,
 		flags: {protect: 1, mirror: 1, heal: 1},
 		drain: [1, 2],
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spite", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ghost",
@@ -2848,5 +2977,138 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 		  target: "normal",
 		  type: "Flying",
 		  maxMove: {basePower: 130},
-	 },
-}; exports.BattleMovedex = BattleMovedex;
+	 },  
+	 "drumbeating": {
+		  num: 778,
+		  accuracy: 100,
+		  basePower: 80,
+		  category: "Physical",
+		  desc: "Has a 100% chance to lower the target's Speed by 1 stage.",
+		  shortDesc: "100% chance to lower the target's Speed by 1.",
+		  name: "Drum Beating",
+		  pp: 10,
+		  priority: 0,
+		  flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+		  secondary: {
+			  chance: 100,
+			  boosts: {
+			 	   spe: -1,
+			  },
+		  },
+		  target: "normal",
+		  type: "Grass",
+	},
+	shedleaves: {
+ 		  accuracy: true,
+		  basePower: 0,
+		  category: "Status",
+		  shortDesc: "Removes the user's Grass-type, resets negative stat changes, and cures the user of status.",		
+		  name: "Shed Leaves",
+		  pp: 10,
+		  priority: 0,
+		  flags: {snatch: 1},
+		  onTryMove(pokemon, target, move) {
+			  if (pokemon.hasType('Grass')) return;
+			  this.add('-fail', pokemon, 'move: Shed Leaves');
+			  this.attrLastMove('[still]');
+			  return null;
+		  },		
+		  onHit(pokemon) {
+				if (['', 'slp', 'frz'].includes(pokemon.status)) return;
+				pokemon.cureStatus();
+		  },
+		  self: {
+			  onHit(pokemon) {
+				const boosts = {};
+				let i;
+				for (i in pokemon.boosts) {
+					if (pokemon.boosts[i] < 0) {
+						boosts[i] = 0;
+					}
+				}
+				pokemon.setBoost(boosts);
+				this.add('-clearnegativeboost', pokemon, '[silent]');
+				this.add('-message', pokemon.name + "'s negative stat changes were removed!");
+				
+				  pokemon.setType(pokemon.getTypes(true).map(type => type === "Grass" ? "???" : type));
+				  this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[from] move: Shed Leaves');
+			  },
+		  },
+		  secondary: null,
+		  target: "self",
+		  type: "Grass",
+		  zMove: {effect: 'heal'},
+		  contestType: "Clever",
+	},
+	"flamewheel": {
+		num: 228,
+		accuracy: 100,
+		basePower: 40,
+		basePowerCallback(pokemon, target, move) {
+			// You can't get here unless the flame wheel succeeds
+			if (target.beingCalledBack) {
+				this.debug('Flame Wheel damage boost');
+				return move.basePower * 2;
+			}
+			return move.basePower;
+		},
+		category: "Physical",
+		desc: "If an opposing Pokemon switches out this turn, this move hits that Pokemon before it leaves the field, even if it was not the original target. If the user moves after an opponent using Parting Shot, U-turn, or Volt Switch, but not Baton Pass, it will hit that opponent before it leaves the field. Power doubles and no accuracy check is done if the user hits an opponent switching out, and the user's turn is over; if an opponent faints from this, the replacement Pokemon does not become active until the end of the turn.",
+		shortDesc: "Power doubles if a foe is switching out.",
+		id: "flamewheel",
+		isViable: true,
+		name: "Flame Wheel",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		beforeTurnCallback(pokemon) {
+			for (const side of this.sides) {
+				if (side === pokemon.side) continue;
+				side.addSideCondition('flamewheel', pokemon);
+				const data = side.getSideConditionData('flamewheel');
+				if (!data.sources) {
+					data.sources = [];
+				}
+				data.sources.push(pokemon);
+			}
+		},
+		onModifyMove(move, source, target) {
+			if (_optionalChain([target, 'optionalAccess', _3 => _3.beingCalledBack])) move.accuracy = true;
+		},
+		onTryHit(target, pokemon) {
+			target.side.removeSideCondition('flamewheel');
+		},
+		condition: {
+			duration: 1,
+			onBeforeSwitchOut(pokemon) {
+				this.debug('Flame Wheel start');
+				let alreadyAdded = false;
+				pokemon.removeVolatile('destinybond');
+				for (const source of this.effectData.sources) {
+					if (!this.queue.cancelMove(source) || !source.hp) continue;
+					if (!alreadyAdded) {
+						this.add('-activate', pokemon, 'move: Flame Wheel');
+						alreadyAdded = true;
+					}
+					// Run through each action in queue to check if the Flame Wheel user is supposed to Mega Evolve this turn.
+					// If it is, then Mega Evolve before moving.
+					if (source.canMegaEvo || source.canUltraBurst) {
+						for (const [actionIndex, action] of this.queue.entries()) {
+							if (action.pokemon === source && action.choice === 'megaEvo') {
+								this.runMegaEvo(source);
+								this.queue.list.splice(actionIndex, 1);
+								break;
+							}
+						}
+					}
+					this.runMove('flamewheel', source, this.getTargetLoc(pokemon, source));
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		zMovePower: 100,
+		contestType: "Clever",
+	},
+}; exports.Moves = Moves;

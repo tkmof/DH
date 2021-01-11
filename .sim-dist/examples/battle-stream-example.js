@@ -16,7 +16,6 @@ var _randomplayerai = require('../tools/random-player-ai');
 /*********************************************************************
  * Run AI
  *********************************************************************/
-// tslint:disable:no-floating-promises
 
 const streams = _battlestream.getPlayerStreams.call(void 0, new (0, _battlestream.BattleStream)());
 
@@ -42,9 +41,7 @@ void p1.start();
 void p2.start();
 
 void (async () => {
-	let chunk;
-	// tslint:disable-next-line no-conditional-assignment
-	while ((chunk = await streams.omniscient.read())) {
+	for await (const chunk of streams.omniscient) {
 		console.log(chunk);
 	}
 })();

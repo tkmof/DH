@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
 	aguavberry: {
 		inherit: true,
 		desc: "Restores 1/8 max HP at 1/2 max HP or less; confuses if -SpD Nature. Single use.",
@@ -201,6 +201,4 @@
 			}
 		},
 	},
-}; exports.BattleItems = BattleItems;
-
-exports.BattleItems = exports.BattleItems;
+}; exports.Items = Items;

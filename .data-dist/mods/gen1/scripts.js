@@ -4,7 +4,7 @@
  * This generation inherits all the changes from older generations, that must be taken into account when editing code.
  */
 
- const BattleScripts = {
+ const Scripts = {
 	inherit: 'gen2',
 	gen: 1,
 	init() {
@@ -863,6 +863,4 @@
 		// And we are done.
 		return Math.floor(damage);
 	},
-}; exports.BattleScripts = BattleScripts;
-
-exports.BattleScripts = exports.BattleScripts;
+}; exports.Scripts = Scripts;

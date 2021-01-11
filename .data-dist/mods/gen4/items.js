@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const BattleItems = {
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); const Items = {
 	adamantorb: {
 		inherit: true,
 		onBasePower(basePower, user, target, move) {
@@ -266,4 +266,4 @@
 			}
 		},
 	},
-}; exports.BattleItems = BattleItems;
+}; exports.Items = Items;
