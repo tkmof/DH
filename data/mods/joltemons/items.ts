@@ -502,7 +502,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			}
 		},
 	  onOverrideAction(pokemon, target, move) {
-			if (!pokemon.status === 'slp') return;
+			if (pokemon.status !=== 'slp') return;
 			const noSleepTalk = [
 				 'assist', 'beakblast', 'belch', 'bide', 'celebrate', 'chatter', 'copycat', 'dynamaxcannon', 'focuspunch', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'shelltrap', 'sketch', 'sleeptalk', 'uproar',
 			];
