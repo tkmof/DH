@@ -369,6 +369,9 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onModifySpA(spa) {
 			return this.chainModify(1.3);
 		},
+		onStart(pokemon) {
+				pokemon.canDynamax = true;
+		},
 		name: "Power Spot",
 		rating: 1,
 		num: 249,
