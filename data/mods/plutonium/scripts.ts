@@ -13,9 +13,13 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
       abilities: {0: "Blaze", H: "Sheer Force"}
    }, 
    charizardmegax: {
-	   	inherit: true,
+	   inherit: true,
       baseStats: {hp: 78, atk: 130, def: 117, spa: 130, spd: 85, spe: 100},
    },
    charizardmegay: {
-	   	inherit: true,
-      baseStats: {hp: 78, atk: 104, def: 78, spa: 165, spd: 115, spe: 100}
+	   inherit: true,
+      baseStats: {hp: 78, atk: 104, def: 78, spa: 165, spd: 115, spe: 100},
+	},
+	blastoise: {
+      inherit: true
+		baseStats: {hp: 79, atk: 83, def: 100, spa: 95, spd: 105, spe: 78}
