@@ -18,4 +18,4 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
    },
    charizardmegay: {
 	   	inherit: true,
-      baseStats: {hp: 78, atk: 104, def: 78, spa: 165, spd: 115, spe: 100},
+      baseStats: {hp: 78, atk: 104, def: 78, spa: 165, spd: 115, spe: 100}
