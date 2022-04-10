@@ -10,7 +10,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
    charizard: {
 		  inherit: true,
       baseStats: {hp: 78, atk: 84, def: 78, spa: 115, spd: 85, spe: 100},
-      abilities: {0: "Blaze", H: "Sheer Force"}
+      abilities: {0: "Blaze", H: "Sheer Force"},
    }, 
    charizardmegax: {
 	   inherit: true,
@@ -23,3 +23,9 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 	blastoise: {
       inherit: true
 		baseStats: {hp: 79, atk: 83, def: 100, spa: 95, spd: 105, spe: 78}
+      abilities: {0: "Torrent", H: "Stamina"},
+   },
+   blastoisemega: {
+       inherit: true
+       types: {"Water", "Steel"}
+       baseStats: {hp: 79, atk: 103, def: 120, spa: 135, spd: 125, spe: 78}
