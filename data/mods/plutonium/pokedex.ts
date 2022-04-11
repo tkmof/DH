@@ -8,7 +8,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
       baseStats: {hp: 95, atk: 100, def: 123, spa: 122, spd: 120, spe: 80},
    },
    charizard: {
-		  inherit: true,
+	   inherit: true,
       baseStats: {hp: 78, atk: 84, def: 78, spa: 115, spd: 85, spe: 100},
       abilities: {0: "Blaze", H: "Sheer Force"},
    }, 
@@ -22,10 +22,27 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 	},
 	blastoise: {
       inherit: true
-		baseStats: {hp: 79, atk: 83, def: 100, spa: 95, spd: 105, spe: 78}
+		baseStats: {hp: 79, atk: 83, def: 100, spa: 95, spd: 105, spe: 78},
       abilities: {0: "Torrent", H: "Stamina"},
    },
    blastoisemega: {
-       inherit: true
-       types: {"Water", "Steel"}
-       baseStats: {hp: 79, atk: 103, def: 120, spa: 135, spd: 125, spe: 78}
+      inherit: true,
+      types: {"Water", "Steel"},
+      baseStats: {hp: 79, atk: 103, def: 120, spa: 135, spd: 125, spe: 78},
+	}, 
+   raticate: {
+      inherit: true,
+      baseStats: {hp: 75, atk: 101, def: 60, spa: 50, spd: 70, spe: 107},
+      abilities: {0: "Run Away", 1: "Guts", H: "Stakeout"},
+	}, 
+   raticatealola: {
+      inherit: true
+      baseStats: {hp: 75, atk: 101, def: 70, spa: 40, spd: 80, spe: 107},
+      abilities: {0: "Gluttony", 1: "Hustle", H: Thick Fat}, 
+	}, 
+   ninetales: {
+      inherit: true
+      types: {"Fire", "Fairy"}, 
+	},
+   golduck: {
+		
