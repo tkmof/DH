@@ -45,4 +45,23 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
       types: {"Fire", "Fairy"}, 
 	},
    golduck: {
-		
+		inherit: true,
+		types: {"Water", "Psychic"},
+      baseStats: {hp: 80, atk: 82, def: 78, spa: 95, spd: 80, spe: 100},
+	}, 
+   poliwrath: {
+      inherit: true,
+      baseStats: {hp: 90, atk: 110, def: 95, spa: 70, spd: 90, spe: 70}, 
+	}, 
+   alakazammega: {
+      inherit: true,
+      baseStats: {hp: 55, atk: 50, def: 85, spa: 155, spd: 105, spe: 150},
+	}, 
+   rapidash: {
+		inherit: true,
+      baseStats: {hp: 75, atk: 100, def: 70, spa: 80, spd: 80, spe: 105},
+	},
+	rapidashgalar: {
+      inherit: true,
+		baseStats: {hp: 75, atk: 100, def: 70, spa: 80, spd: 80, spe: 105},
+		abilities: {0: "Chilling Neigh", 1: "Pastel Veil", H: "Anticipation"
