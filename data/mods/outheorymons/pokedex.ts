@@ -181,5 +181,14 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
    marowakalola: { 
       inherit: true, 
       abilities: {0: "Magic Guard", 1: "Lightning Rod", H: "Cursed Body"},
+   }, 
+   toxicroak: {
+      inherit: true, 
+      baseStats: {hp: 83, atk: 106, def: 65, spa: 86, spd: 65, spe: 105}, 
+   }, 
+   archeops: {
+      inherit: true, 
+      baseStats: {hp: 75, atk: 140, def: 65, spa: 112, spd: 65, spe: 130},
+      abilities: {0: "Defeatist", H: "Dazzling"},
 	}, 
 };
