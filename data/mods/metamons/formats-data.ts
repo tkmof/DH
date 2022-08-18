@@ -53,4 +53,22 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	persianalola: {
 		tier: "metamons",
 	},
+	duraludon: {
+		tier: "metamons",
+	},
+	houndoom: {
+		tier: "metamons",
+	},
+	stunfisk: {
+		tier: "metamons",
+	},
+	emolga: {
+		tier: "metamons",
+	},
+	espeon: {
+		tier: "metamons",
+	},
+	toxicroak: {
+		tier: "metamons",
+	},
 };

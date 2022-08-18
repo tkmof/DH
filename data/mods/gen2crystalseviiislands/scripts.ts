@@ -1,4 +1,4 @@
-const csi = ["horatekku", "aroofaondo", "exoltol", "animon", "esscargoo", "tunguru", "terricks", "skunkle", "skunking", "kipuro", "kamebi", "pyronoir", "kazappelin", "pierzer"];
+const csi = ["horatekku", "aroofaondo", "exoltol", "animon", "esscargoo", "tunguru", "terricks", "skunkle", "skunking", "kipuro", "kamebi", "pyronoir", "kazappelin", "pierzer", "oatu", "lunaraknid", "cumulos", "altocumulos"];
 
 export const Scripts: ModdedBattleScriptsData = {
 	inherit: 'gen2',
@@ -6,7 +6,16 @@ export const Scripts: ModdedBattleScriptsData = {
 
 	
 	init: function () {
-				
+		const specialTypes = ['Fire', 'Water', 'Grass', 'Ice', 'Electric', 'Dark', 'Psychic', 'Dragon', 'Cosmic'];
+		let newCategory = '';
+		for (const i in this.data.Moves) {
+			if (!this.data.Moves[i]) console.log(i);
+			if (this.data.Moves[i].category === 'Status') continue;
+			newCategory = specialTypes.includes(this.data.Moves[i].type) ? 'Special' : 'Physical';
+			if (newCategory !== this.data.Moves[i].category) {
+				this.modData('Moves', i).category = newCategory;
+			}
+		}
 		for (const id in this.dataCache.Pokedex) {
 			const pokemon = this.dataCache.Pokedex[id];
 			if (this.modData('FormatsData', id)) {

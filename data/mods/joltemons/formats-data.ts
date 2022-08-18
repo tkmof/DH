@@ -525,7 +525,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	mukalola: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	pelipper: {
@@ -1768,7 +1768,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	metagrossmega: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DOU",
 		randomBattleMoves: ["meteormash", "thunderpunch", "icepunch", "earthquake"],
 	},
@@ -3845,7 +3845,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		randomBattleMoves: ["recover", "acidicfists", "mudspike", "curse"],
 	},
 	mukalola: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 		randomBattleMoves: ["knockoff", "recover", "acidicfists", "pursuit"],
 	},

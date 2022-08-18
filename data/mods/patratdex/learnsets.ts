@@ -268,6 +268,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			uproar: ["8L1"],
 			willowisp: ["8L1"],
 			workup: ["8L1"],
+			lavaplume: ["8L1"],
 		},
 	},
 	gilatoa: {
@@ -342,6 +343,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			stoneedge: ["8L1"],
 			dragonclaw: ["8L1"],
 			poisonjab: ["8L1"],
+			lavaplume: ["8L1"],
 		},
 	},
 	gilabora: {
@@ -421,6 +423,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			fissure: ["8L1"],
 			gigaimpact: ["8L1"],
 			hyperbeam: ["8L1"],
+			lavaplume: ["8L1"],
 		},
 	},
 	clawgua: {
@@ -2444,6 +2447,10 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			toxic: ["8L1"],
 			trickortreat: ["8L1"],
 			wonderroom: ["8L1"],
+			rest: ["8L1"],
+			sleeptalk: ["8L1"],
+			snore: ["8L1"],
+			sunnyday: ["8L1"],
 		},
 	},
 	commaery: {
@@ -2498,6 +2505,10 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			trickortreat: ["8L1"],
 			wonderroom: ["8L1"],
 			woodhammer: ["8L1"],
+			rest: ["8L1"],
+			sleeptalk: ["8L1"],
+			snore: ["8L1"],
+			sunnyday: ["8L1"],
 		},
 	},
 	symbaery: {
@@ -2556,6 +2567,10 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			gigaimpact: ["8L1"],
 			tropkick: ["8L1"],
 			hypervoice: ["8L1"],
+			rest: ["8L1"],
+			sleeptalk: ["8L1"],
+			snore: ["8L1"],
+			sunnyday: ["8L1"],
 		},
 	},
 	temperpup: {
@@ -3451,6 +3466,8 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			toxic: ["8L1"],
 			hyperbeam: ["8L1"],
 			gigaimpact: ["8L1"],
+			swordsdance: ["8L1"],
+			accelerock: ["8L1"],
 		},
 	},
 	vanillitepatratdex: {
@@ -3502,6 +3519,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			terrainpulse: ["8L1"],
 			toxic: ["8L1"],
 			uproar: ["8L1"],
+			powergem: ["8L1"],
 		},
 	},
 	vanillishpatratdex: {
@@ -3554,6 +3572,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			toxic: ["8L1"],
 			uproar: ["8L1"],
 			smartstrike: ["8L1"],
+			powergem: ["8L1"],
 		},
 	},
 	vanilluxepatratdex: {
@@ -3611,6 +3630,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			smartstrike: ["8L1"],
 			hyperbeam: ["8L1"],
 			gigaimpact: ["8L1"],
+			powergem: ["8L1"],
 		},
 	},
 	polapod: {
