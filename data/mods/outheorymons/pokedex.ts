@@ -200,4 +200,14 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		inherit: true,
 		types: ["Ground", "Flying"], 
 	}, 
+	rapidash: {
+		inherit: true,
+		baseStats: {hp: 65, atk: 100, def: 70, spa: 80, spd: 80, spe: 113}, 
+		abilities: {0: "Run Away", 1: "Flash Fire", H: "Contrary"},
+	},
+	tornadus: {
+		inherit: true,
+		types: ["Flying", "Fighting"],
+		abilities: {0: "Prankster", 1: "Victory Star", H: "Defiant"},
+	}, 
 };
