@@ -191,4 +191,13 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
       baseStats: {hp: 75, atk: 140, def: 65, spa: 112, spd: 65, spe: 130},
       abilities: {0: "Defeatist", H: "Dazzling"},
 	}, 
+	musharna: {
+		inherit: true,
+		types: ["Psychic", "Fire"],
+		abilities: {0: "Forewarn", 1: "Synchronize", H: "Magic Bounce"},
+	}, 
+	unfezant: {
+		inherit: true,
+		types: ["Ground", "Flying"], 
+	}, 
 };
