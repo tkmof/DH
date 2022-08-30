@@ -181,33 +181,5 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
    marowakalola: { 
       inherit: true, 
       abilities: {0: "Magic Guard", 1: "Lightning Rod", H: "Cursed Body"},
-   }, 
-   toxicroak: {
-      inherit: true, 
-      baseStats: {hp: 83, atk: 106, def: 65, spa: 86, spd: 65, spe: 105}, 
-   }, 
-   archeops: {
-      inherit: true, 
-      baseStats: {hp: 75, atk: 140, def: 65, spa: 112, spd: 65, spe: 130},
-      abilities: {0: "Defeatist", H: "Dazzling"},
-	}, 
-	musharna: {
-		inherit: true,
-		types: ["Psychic", "Fire"],
-		abilities: {0: "Forewarn", 1: "Synchronize", H: "Magic Bounce"},
-	}, 
-	unfezant: {
-		inherit: true,
-		types: ["Ground", "Flying"], 
-	}, 
-	rapidash: {
-		inherit: true,
-		baseStats: {hp: 65, atk: 100, def: 70, spa: 80, spd: 80, spe: 113}, 
-		abilities: {0: "Run Away", 1: "Flash Fire", H: "Contrary"},
-	},
-	tornadus: {
-		inherit: true,
-		types: ["Flying", "Fighting"],
-		abilities: {0: "Prankster", 1: "Victory Star", H: "Defiant"},
 	}, 
 };
