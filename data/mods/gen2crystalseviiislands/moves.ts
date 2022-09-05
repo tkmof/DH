@@ -111,6 +111,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		   	onFoeAfterMoveSelf(target, source, attack) {
 				if (target === source) return;
 				if (attack.category === 'Status') return;
+				if (target.lastDamage === 0) return;
 
 				this.add('-message', `${source.name} parried the attack!`);
 				this.add('-anim', target, "Mimic", source);
@@ -554,6 +555,22 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Rock",
 		contestType: "Tough",
 	},
+	hiddenpowercosmic: {
+		gen: 2,
+		num: -15,
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		realMove: "Hidden Power",
+		name: "Hidden Power Cosmic",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Cosmic",
+		contestType: "Clever",
+	},
 	rapidspin: {
 		inherit: true,
 		onAfterHit(target, pokemon) {
@@ -694,14 +711,17 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	cometpunch: {
 		inherit: true,
+		category: "Special",
 		type: "Cosmic",
 	},
 	triattack: {
 		inherit: true,
+		category: "Special",
 		type: "Cosmic",
 	},
 	swift: {
 		inherit: true,
+		category: "Special",
 		type: "Cosmic",
 	},
 };
