@@ -63,6 +63,10 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				move.type = 'Grass';
 			}
 		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.underbrushtacticsBoosted) return this.chainModify([0x1333, 0x1000]);
+		},
 		name: "Underbrush Tactics",
 		desc: "This Pokemon's Dark-type moves become Grass-type moves. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Dark-type moves become Grass-type.",
