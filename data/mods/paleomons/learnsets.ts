@@ -3935,7 +3935,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			dig: ["8M", "7V", "6M", "5M", "4M", "3M"],
 			doubleedge: ["3T"],
 			doubleteam: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			dragondance: ["8M", "7E", "6E", "5E", "4E", "3E", "3S0"],
 			earthpower: ["8M", "7T", "6T", "5T", "4T"],
 			earthquake: ["8M", "8L31", "7M", "7L46", "7V", "6M", "6L46", "5M", "5L46", "4M", "4L41", "3M", "3L50"],
 			endure: ["8M", "7V", "4M", "3T"],
@@ -3994,7 +3993,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 		},
 		eventData: [
-			{generation: 3, level: 20, moves: ["sandstorm", "dragondance", "bite", "outrage"], pokeball: "pokeball"},
 			{generation: 5, level: 5, shiny: true, gender: "M", moves: ["bite", "leer", "sandstorm", "superpower"], pokeball: "cherishball"},
 		],
 	},
@@ -4022,7 +4020,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			dig: ["8M", "7V", "6M", "5M", "4M", "3M"],
 			doubleedge: ["3T"],
 			doubleteam: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			dragondance: ["8M"],
 			earthpower: ["8M", "7T", "6T", "5T", "4T"],
 			earthquake: ["8M", "8L33", "7M", "7L54", "7V", "6M", "6L54", "5M", "5L54", "4M", "4L47", "3M", "3L56"],
 			endure: ["8M", "7V", "4M", "3T"],
