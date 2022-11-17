@@ -262,11 +262,14 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			pokemon.addVolatile('respawnpunisher');
 		},
 		onEnd(pokemon) {
-			delete pokemon.volatiles['slowstart'];
-			this.add('-end', pokemon, 'Slow Start', '[silent]');
+			delete pokemon.volatiles['respawnpunisher'];
+			this.add('-end', pokemon, 'Respawn Punisher', '[silent]');
 		},
 		condition: {
-			// dummy text jus remember this
+			onStart(target) {
+				this.boost({atk: 1}, target);
+			}
+			
 		},
 		name: "Respawn Punisher",
 		shortDesc: "If an enemy switches or faints, raises Atk by 1 for one turn.",
