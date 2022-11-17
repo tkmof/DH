@@ -255,10 +255,11 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	respawnpunisher: {
 		onAnyFaintPriority: 1,
 		onAnyFaint() {
+			delete this.effectData.target.volatiles['respawnpunisher'];
 			this.effectData.target.addVolatile('respawnpunisher');
 		},
 		onBeforeSwitchOut(pokemon) {
-			// for target = any active or something just to be safe???
+			delete pokemon.volatiles['respawnpunisher'];
 			pokemon.addVolatile('respawnpunisher');
 		},
 		onEnd(pokemon) {
@@ -266,10 +267,14 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			this.add('-end', pokemon, 'Respawn Punisher', '[silent]');
 		},
 		condition: {
-			onStart(target) {
-				this.boost({atk: 1}, target);
-			}
-			
+			duration: 1,
+			onStart(pokemon) {
+				this.boost({atk: 1}, pokemon);
+			},
+			onEnd(pokemon) {
+				delete pokemon.volatiles['respawnpunisher'];
+				this.boost({atk: -1}, pokemon);
+			},			
 		},
 		name: "Respawn Punisher",
 		shortDesc: "If an enemy switches or faints, raises Atk by 1 for one turn.",
