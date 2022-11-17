@@ -270,26 +270,17 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 
 	persistence: { 
-		onBeforeMove(target, source, move) {
-			if (!source || source === target || move.category === 'Status' || move.name === "Counter") return;
-			const moveType = move.id === 'hiddenpower' ? target.hpType : move.type;
-			/*if (move.flags['charge'] && !target.volatiles['twoturnmove']) {
-				this.boost({atk: 1});
-			} else if (!this.dex.getImmunity(moveType, source)) {
-				this.boost({atk: 1});
-			}
-			(move as any).persistence = true;
-			*/
-		},
-		onAfterMove(source, target, move) {
-			if (!source || source === target || move.category === 'Status' || move.name === "Counter") return;
-         if (!move.flags['charge']) return;
-			if(source.moveThisTurnResult === null || source.moveThisTurnResult === undefined) return;
-			if(!source.moveThisTurnResult) {
-				this.boost({atk: 1});
-			} else if(target.moveThisTurnResult) {
-			}
-		},
+      onAfterMove(source, target, move) {
+            if (!source || source === target || move.category === 'Status' || move.name === "Counter") return;
+             if (move.flags['charge'] && source.volatiles['twoturnmove'].duration === 2) { //checks if the user is using a charge move AND that they are on the first turn of the charge
+                this.add("-message", "charge flag activated: the move used has the charge tag & is in the first stage of the charge");
+                return;
+            }
+            if(source.moveThisTurnResult === null || source.moveThisTurnResult === undefined) return;
+            if(!source.moveThisTurnResult) {
+                this.boost({atk: 1});
+            }
+        },
 		name: "Persistence",
 		desc: "If the user chooses an attacking move but doesn't damage the target on the same turn, raises the user's Attack by 1 stage. This effect doesn't occur if this Pokemon is charging.",
 		shortDesc: "If the user doesn't damage the target with an attacking move, raises user's Attack by 1 stage.",
@@ -301,6 +292,11 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onModifyMove(critRatio, source, target, move) {
 			if (kickMoves.includes(move.id)) {
 				move.basePower *= 1.2;
+		}, 
+		onSourceModifyAccuracyPriority: 7,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (move.flags === ['kick'] && typeof accuracy === 'number') {
+				return accuracy true;
 			}
 		},
 		name: "Thunder Thighs",
