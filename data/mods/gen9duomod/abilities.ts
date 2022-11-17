@@ -261,6 +261,10 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			// for target = any active or something just to be safe???
 			pokemon.addVolatile('respawnpunisher');
 		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['slowstart'];
+			this.add('-end', pokemon, 'Slow Start', '[silent]');
+		},
 		condition: {
 			// dummy text jus remember this
 		},
