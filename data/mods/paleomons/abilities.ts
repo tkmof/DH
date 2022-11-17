@@ -294,14 +294,14 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				move.basePower *= 1.2;
 			}
 		}, 
-		onSourceModifyAccuracyPriority: 7,
-		onSourceModifyAccuracy(accuracy, target, source, move) {
-			if (move.flags === ['kick'] && typeof accuracy === 'number') {
-				return accuracy true;
+		onAnyAccuracy(accuracy, target, source, move) {
+			if (move.flags['kick'] || move && (source === this.effectData.target || target === this.effectData.target)) {
+				return true;
 			}
+			return accuracy;
 		},
 		name: "Thunder Thighs",
-		desc: "Moves with the word 'kick' in their name have their power multiplied by 1.2x.",
+		desc: "Moves with the word 'kick' in their name have their power multiplied by 1.2x and never misses.",
 		shortDesc: "Kicking moves deal 1.2x damage.",
 		num: -112,
 	},
