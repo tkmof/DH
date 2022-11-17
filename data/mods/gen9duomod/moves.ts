@@ -184,7 +184,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 				}
 			}
 		},
-		critRatio: 2,
 		secondary: null,
 		target: "allAdjacentFoes",
 		type: "Flying",
@@ -735,5 +734,275 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Psychic",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Cute",
+	},
+	
+	chillyreception: {
+		num: 10001,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Chilly Reception",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+		weather: 'hail',
+		selfSwitch: true,
+		onTryHit: true,
+		secondary: null,
+		target: "self",
+		type: "Ice",
+		zMove: {effect: 'heal'},
+		contestType: "Cool",
+	},
+	
+	gigatonhammer: {
+		num: 10002,
+		accuracy: 100,
+		basePower: 160,
+		category: "Physical",
+		name: "Gigaton Hammer",
+		pp: 5,
+		priority: 0,
+		onDisableMove(pokemon) {
+				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+		},
+		flags: {protect: 1, mirror: 1},
+		target: "normal",
+		type: "Steel",
+		contestType: "Cool",
+	},
+	
+	wavecrash: {
+		num: 10003,
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		name: "Wave Crash",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		recoil: [33, 100],
+		target: "normal",
+		type: "Water",
+		contestType: "Cool",
+	},
+	
+	chloroblast: {
+		num: 10004,
+		accuracy: 95,
+		basePower: 150,
+		category: "Special",
+		name: "Chloroblast",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		recoil: [50, 100],
+		target: "normal",
+		type: "Grass",
+		contestType: "Cool",
+	},
+	
+	luminacrash: {
+		num: 10005,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Lumina Crash",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spd: -2,
+			},
+		},
+		target: "normal",
+		type: "Psychic",
+		contestType: "Cute",
+	},
+	
+	glaiverush: {
+		num: 10006,
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		name: "Glaive Rush",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			onHit(target, source, move) {
+				if (source.isActive) source.addVolatile('glaiverush');
+			},
+		},
+		condition: {
+			duration: 1;
+			onFoeBasePowerPriority: 17,
+			onFoeBasePower(basePower, attacker, defender, move) {
+				if (this.effectData.target !== defender) return;
+				move.accuracy = true;
+				return this.chainModify(2);
+			},
+		},
+		target: "normal",
+		type: "Dragon",
+		contestType: "Tough",
+	},
+	
+	ceaselessedge: {
+		num: 10007,
+		accuracy: 90,
+		basePower: 65,
+		category: "Physical",
+		name: "Ceaseless Edge",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		sideCondition: 'spikes',
+		condition: {
+			onStart(side) {
+				this.add('-sidestart', side, 'Spikes');
+				this.effectData.layers = 1;
+			},
+			onRestart(side) {
+				if (this.effectData.layers >= 3) return false;
+				this.add('-sidestart', side, 'Spikes');
+				this.effectData.layers++;
+			},
+			onSwitchIn(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasItem('heavydutyboots')) return;
+				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectData.layers] * pokemon.maxhp / 24);
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
+	},
+	
+	stoneaxe: {
+		num: 10008,
+		accuracy: 90,
+		basePower: 65,
+		category: "Physical",
+		name: "Stone Axe",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		sideCondition: 'stealthrock',
+		condition: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'move: Stealth Rock');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('heavydutyboots')) return;
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		critRatio: 2,
+		target: "normal",
+		type: "Rock",
+		zMove: {boost: {def: 1}},
+		contestType: "Cool",
+	},
+	
+	lunarblessing: {
+		num: 10009,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Lunar Blessing",
+		pp: 10,
+		priority: 0,
+		flags: {heal: 1, authentic: 1, mystery: 1},
+		onHit(pokemon) {
+			const success = !!this.heal(this.modify(pokemon.maxhp, 0.25));
+			return pokemon.cureStatus() || success;
+		},
+		secondary: null,
+		target: "allies",
+		type: "Psychic",
+	},
+	
+	jetpunch: {
+		num: 10010,
+		accuracy: 100,
+		basePower: 60,
+		category: "Physical",
+		name: "Jet Punch",
+		pp: 15,
+		priority: 1,
+		flags: {punch: 1, contact: 1, protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Cool",
+	},
+	
+	// haha i have stolen hematite's code AND HE MAY NEVER KNOW!!
+	direclaw: {
+		shortDesc: "50% to paralyze, poison, or sleep target. High crit ratio.",
+		num: 10011,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Dire Claw",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Crush Claw", target);
+		},
+		critRatio: 2,
+		secondary: {
+			chance: 50,
+			onHit(target, source) {
+				const result = this.random(3);
+				if (result === 0) {
+					target.trySetStatus('psn', source);
+					if ((target) && source.ability === "unstableclaws") {this.add('-start', target, 'typechange', 'Poison');}
+				} else if (result === 1) {
+					target.trySetStatus('par', source);
+					if ((target) && source.ability === "unstableclaws") {this.add('-start', target, 'typechange', 'Electric');}
+				} else {
+					target.trySetStatus('slp', source);
+					if ((target) && source.ability === "unstableclaws") {this.add('-start', target, 'typechange', 'Psychic');}
+				}
+			},
+		},
+		target: "normal",
+		type: "Poison",
+		contestType: "Clever",
+	},
+	
+	shedtail: {
+		num: 10012,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Shed Tail",
+		pp: 10,
+		priority: 0,
+		flags: {authentic: 1},
+		onAfterHit(target, source, move) {
+			this.add('-clearallboost');
+			source.clearBoosts();
+			this.directDamage(source.maxhp / 2);
+		},
+		selfSwitch: 'copyvolatile',
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'heal'},
+		contestType: "Beautiful",
 	},
 };
