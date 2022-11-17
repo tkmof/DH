@@ -292,6 +292,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onModifyMove(critRatio, source, target, move) {
 			if (kickMoves.includes(move.id)) {
 				move.basePower *= 1.2;
+			}
 		}, 
 		onSourceModifyAccuracyPriority: 7,
 		onSourceModifyAccuracy(accuracy, target, source, move) {
