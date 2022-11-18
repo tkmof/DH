@@ -985,24 +985,42 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	
 	shedtail: {
-		num: 10012,
+		num: 880,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
 		name: "Shed Tail",
 		pp: 10,
 		priority: 0,
-		flags: {authentic: 1},
-		onAfterHit(target, source, move) {
-			this.add('-clearallboost');
-			source.clearBoosts();
-			this.directDamage(source.maxhp / 2);
+		flags: {},
+		volatileStatus: 'substitute',
+		onTryHit(target) {
+			if (target.volatiles['substitute']) {
+				this.add('-fail', target, 'move: Shed Tail');
+				return null;
+			}
+			if (target.hp <= target.maxhp / 2 || target.maxhp === 1) { // Shedinja clause
+				this.add('-fail', target, 'move: Shed Tail', '[weak]');
+				return null;
+			}
 		},
-		selfSwitch: 'copyvolatile',
+		onHit(target) {
+			if (!this.canSwitch(target.side)) {
+				this.attrLastMove('[still]');
+				this.add('-fail', target);
+				return this.NOT_FAIL;
+			}
+			this.directDamage(target.maxhp / 2);
+		},
+		self: {
+			onHit(source) {
+				source.skipBeforeSwitchOutEventFlag = true;
+			},
+		},
+		selfSwitch: 'shedtail',
 		secondary: null,
 		target: "self",
 		type: "Normal",
-		zMove: {effect: 'heal'},
-		contestType: "Beautiful",
+		zMove: {effect: 'clearnegativeboost'},
 	},
 };
