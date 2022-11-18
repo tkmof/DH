@@ -300,6 +300,153 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 10000,
 	},
 
+	supremeoverlord: {
+		onModifyAtk(atk, source, target, move) {
+			const faintedAllies = source.side.pokemon.filter(ally => ally.fainted).length;
+			if (faintedAllies < 1) return;
+			this.debug(`Supreme Overlord atk boost for ${faintedAllies} defeated allies.`);
+			// Placeholder 1.1 -> 1.5
+			return this.chainModify(1 + (0.1 * faintedAllies));
+		},
+		onModifySpA(spa, source, target, move) {
+			const faintedAllies = source.side.pokemon.filter(ally => ally.fainted).length;
+			if (faintedAllies < 1) return;
+			this.debug(`Supreme Overlord spa boost for ${faintedAllies} defeated allies.`);
+			// Placeholder 1.1 -> 1.5
+			return this.chainModify(1 + (0.1 * faintedAllies));
+		},
+		name: "Supreme Overlord",
+		rating: 2.5,
+		num: 293,
+	},
 	
+	angershell: {
+		onDamage(damage, target, source, effect) {
+			if (
+				effect.effectType === "Move" &&
+				!effect.multihit &&
+				(!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility('sheerforce')))
+			) {
+				target.abilityState.checkedAngerShell = false;
+			} else {
+				target.abilityState.checkedAngerShell = true;
+			}
+		},
+		onTryEatItem(item, pokemon) {
+			const healingItems = [
+				'aguavberry', 'enigmaberry', 'figyberry', 'iapapaberry', 'magoberry', 'sitrusberry', 'wikiberry', 'oranberry', 'berryjuice',
+			];
+			if (healingItems.includes(item.id)) {
+				return pokemon.abilityState.checkedAngerShell;
+			}
+			return true;
+		},
+		onAfterMoveSecondary(target, source, move) {
+			target.abilityState.checkedAngerShell = true;
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			const lastAttackedBy = target.getLastAttackedBy();
+			if (!lastAttackedBy) return;
+			const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+				this.boost({atk: 1, spa: 1, spe: 1, def: -1, spd: -1});
+			}
+		},
+		name: "Anger Shell",
+		rating: 2,
+		num: 271,
+	},
 	
+	electromorphosis: {
+		onDamagingHit(damage, target, source, move) {
+			this.add('-activate', target, 'ability: Electromorphosis', '[move] ' + move.name);
+			target.addVolatile('charge');
+		},
+		name: "Electromorphosis",
+		rating: 3,
+		num: 280,
+	},
+	
+	goodasgold: {
+		onTryHit(target, source, move) {
+			if (move.category !== 'Status' || target === source) {
+				return;
+			}
+			this.add('-ability', target, 'Good as Gold');
+			return null;
+		},
+		name: "Good as Gold",
+		rating: 2,
+		num: 283,
+	},
+	
+	eartheater: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Earth Eater');
+				}
+				return null;
+			}
+		},
+		name: "Earth Eater",
+		rating: 3,
+		num: 297,
+	},
+	
+	wellbakedbody: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+				if (!this.boost({def: 2})) {
+					this.add('-immune', target, '[from] ability: Well-Baked Body');
+				}
+				return null;
+			}
+		},
+		name: "Well-Baked Body",
+		rating: 2,
+		num: 273,
+	},
+	
+	purifyingsalt: {
+		onSetStatus(status, target, source, effect) {
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Purifying Salt');
+			}
+			return false;
+		},
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				this.debug('Purifying Salt weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(spa, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				this.debug('Purifying Salt weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		isBreakable: true, // TODO verify the assumption that this can be supprsed by Mold Breaker & friends
+		name: "Purifying Salt",
+		rating: 2,
+		num: 272,
+	},
+	
+	swordofruin: {
+		onStart(pokemon) {
+			if (this.suppressingAbility(pokemon)) return;
+			this.add('-ability', pokemon, 'Sword of Ruin');
+		},
+		onAnyModifyDef(def, source, target, move) {
+			if (this.effectState.target === source) return;
+			this.debug('Sword of Ruin Def drop');
+			// TODO Placeholder
+			return this.chainModify(0.75);
+		},
+		name: "Sword of Ruin",
+		rating: 3,
+		num: 285,
+	},
 };
