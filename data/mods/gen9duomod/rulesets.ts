@@ -870,7 +870,7 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 8) { // might need to change the name for this one later.
 			this.hint("Roulette Wheel Result 9 - Both Pokemon change their types.");
 			for (const pokemon of this.getAllActive()) {
-				pokemon.addVolatile('conversion');
+				this.useMove("Conversion", pokemon);
 			}
 		}         
         
@@ -878,9 +878,104 @@ export const Formats: {[k: string]: FormatData} = {
 			this.hint("Roulette Wheel Result 10 - How do you like THIS one, Game Freak?");
 			for (const pokemon of this.getAllActive()) {
 				this.heal(pokemon.maxhp / 2, pokemon);
-      }
-    } 
-        
+      	}
+    	} 
+		
+		else if (result === 10) { 
+			this.hint("Roulette Wheel Result 11 - lmao x2");
+			for (const pokemon of this.getAllActive()) {
+				this.useMove("Pound", pokemon);
+			}
+		}  	
+		
+		else if (result === 11) { 
+			this.hint("Roulette Wheel Result 12 - Everyone gets their ability replaced with Defeatist.");
+			for (const pokemon of this.getAllActive()) {
+				const oldAbility = pokemon.setAbility('Defeatist');
+				if (oldAbility) {
+					this.add('-ability', pokemon, 'Defeatist', '[from] move: Roulette Spin');
+					return;
+				}
+			}
+		} 		
+
+		else if (result === 12) {
+			this.hint("Roulette Wheel Result 13 - I felt like being mean today");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.boost({atk: 4, spa: 4, spe: -12}, target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.boost({atk: 4, spa: 4, spe: -12}, target);
+				}
+				}
+			}	
+		}
+		
+		else if (result === 13) { 
+			this.hint("Roulette Wheel Result 14 - Everyone gets perfect accuracy.");
+			for (const pokemon of this.getAllActive()) {
+				this.boost({acc: 12}, pokemon);
+			}
+		} 		
+
+		else if (result === 14) {
+			this.hint("Roulette Wheel Result 15 - One Pokemon gets to Baton Pass.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Baton Pass", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Baton Pass", target);
+				}
+				}
+			}
+		}  
+		
+		else if (result === 15) { 
+			this.hint("Roulette Wheel Result 16 - Both Pokemon click Destiny Bond.");
+			for (const pokemon of this.getAllActive()) {
+				this.useMove("Destiny Bond", pokemon);
+			}
+		}  
+		
+		else if (result === 16) {
+			this.hint("Roulette Wheel Result 17 - One side sets webs.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Sticky Web", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Sticky Web", target);
+				}
+				}
+			}
+		}  	
+		
+		else if (result === 17) {
+			this.hint("Roulette Wheel Result 18 - One of you needs a hand!");
+			const s1 of this.sides[0].active;
+			const s2 of this.sides[1].active;
+			if (s1.hp >= s2.hp) {this.heal(s2.maxhp, s2);}
+			if (s1.hp <= s2.hp) {this.heal(s1.maxhp, s1);}
+		}
+		
+
 		},
 	},		
 	
