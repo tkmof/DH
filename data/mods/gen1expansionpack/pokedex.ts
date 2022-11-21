@@ -517,6 +517,46 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoType: "useItem",
 		evoItem: "Moon Stone",//Yeah yeah I know Black Augurite exists, implement it if you want...
 	},
+	meltan: { // look just let me put them here
+		inherit: true,
+		baseStats: {hp: 46, atk: 65, def: 55, spa: 35, spd: 35, spe: 34},
+		evos: ["Melmetal"], // iirc ps hates this so i will just force it myself like a 2 year old
+	},
+	melmetal: { // please?
+		inherit: true,
+		baseStats: {hp: 135, atk: 143, def: 143, spa: 65, spd: 65, spe: 34},
+		prevo: "Meltan",
+		evoType: "useItem",
+		evoItem: "Thunder Stone",
+	},
+	annihilape: {
+		inherit: true,
+		baseStats: {hp: 110, atk: 115, def: 80, spa: 50, spd: 50, spe: 90},
+	},
+	wiglett: { // yeah convergents can go here too idgaf
+		inherit: true,
+		baseStats: {hp: 10, atk: 55, def: 25, spa: 35, spd: 35, spe: 95},
+	},
+	wugtrio: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 80, def: 50, spa: 70, spd: 70, spe: 120},
+	},
+	toedscool: {
+		inherit: true,
+		baseStats: {hp: 40, atk: 40, def: 35, spa: 100, spd: 100, spe: 70},
+	},
+	toedscruel: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 60, def: 65, spa: 120, spd: 120, spe: 100},
+	},
+	screamtail: { //ehh go on then you paradox fucks can go here too
+		inherit: true,
+		baseStats: {hp: 115, atk: 65, def: 99, spa: 65, spd: 65, spe: 111},
+	},
+	sandyshocks: {
+		inherit: true,
+		baseStats: {hp: 85, atk: 81, def: 97, spa: 121, spd: 121, spe: 101},
+	},
 	///d8888b. d88888b  d888b  d888888b  .d88b.  d8b   db  .d8b.  db        db    db  .d8b.  d8888b. d888888b  .d8b.  d8b   db d888888b .d8888. 
 	///88  `8D 88'     88' Y8b   `88'   .8P  Y8. 888o  88 d8' `8b 88        88    88 d8' `8b 88  `8D   `88'   d8' `8b 888o  88 `~~88~~' 88'  YP 
 	///88oobY' 88ooooo 88         88    88    88 88V8o 88 88ooo88 88        Y8    8P 88ooo88 88oobY'    88    88ooo88 88V8o 88    88    `8bo.   
@@ -662,6 +702,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	mrmimegalar: {
 		inherit: true,
 		baseStats: {hp: 50, atk: 65, def: 65, spa: 90, spd: 90, spe: 100},
+	},
+	taurospaldea: {
+		inherit: true,
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 70, spd: 70, spe: 100},
+	},
+	taurospaldeafire: {
+		inherit: true,
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 70, spd: 70, spe: 100},
+	},
+	taurospaldeawater: {
+		inherit: true,
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 70, spd: 70, spe: 100},
 	},
 	articunogalar: {
 		inherit: true,
