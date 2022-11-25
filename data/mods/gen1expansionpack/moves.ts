@@ -506,6 +506,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		willCrit: true,
 		type: "Normal",
 	},
+	kowtowcleave: { // unused but will definitely consider
+		inherit: true,
+	},
 	leechseed: {
 		inherit: true,
 		onHit() {},
