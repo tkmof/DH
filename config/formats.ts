@@ -530,6 +530,7 @@ export const Formats: FormatList = [
 						'Oshawott', 'Dewott', 'Samurott-Hisui', 'Riolu', 'Lucario', 'Popplio', 'Brionne', 'Primarina',
 						'Grimmsnarl', 'Impidimp', 'Morgrem', 'Sylveon', 'Diglett-Alola', 'Dugtrio-Alola',
 						'Magnezone', 'Houndour', 'Houndoom', 'Cutiefly', 'Ribombee',
+						'Zarude', 'Zarude-Dada', 'Vulpix-Alola', 'Ninetales-Alola', 'Piplup', 'Prinplup', 'Empoleon',
 					  ],
     },
    {
@@ -4273,6 +4274,18 @@ export const Formats: FormatList = [
 		mod: 'gen3',
 		ruleset: ['Standard', '3 Baton Pass Clause'],
 		banlist: ['Uber', 'Smeargle + Baton Pass'],
+	},
+	{
+		name: "[Gen 3] Sample Team Randbats",
+		team: 'random',
+		mod: 'gen3sampleteamrandbats',
+		ruleset: ['Standard', 'One Boost Passer Clause', 'Freeze Clause Mod'],
+		onBegin() {
+			for (const pokemon of this.getAllPokemon()) {
+				var side = pokemon.side;
+				this.hint(side.team[0].sampleTeamName, true, pokemon.side);
+			}
+		},
 	},
 	{
 		name: "[Gen 2] OU",
