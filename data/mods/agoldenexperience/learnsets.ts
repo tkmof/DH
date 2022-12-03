@@ -1617,6 +1617,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			powerwhip: ["8LM"],
 			sludgewave: ["8LM"],
 			drillrun: ["8LM"],
+			uturn: ["8LM"],
 			psychicfangs: ["8LM"],
 			scorchingsands: ["8LT"],
 			skittersmack: ["8LT"],
