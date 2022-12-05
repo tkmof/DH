@@ -2916,13 +2916,16 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 	screamtail: {
 		learnset: {
 			sing: ["1L1"],
-			pound: ["1L1"],
+			disarmingvoice: ["1L1"],
 			disable: ["1L1"],
-			bite: ["1L17"],
-			drainingkiss: ["1L20"],
-			dreameater: ["1L35"],
-			bodyslam: ["1L42", "1M"],
-			dazzlinggleam: ["1L54"],
+			bite: ["1L1"],
+			screech: ["1L51"],
+			drainingkiss: ["1L55"],
+			dazzlinggleam: ["1L55"], // intentional day care exploit
+			
+			dreameater: ["1M"],
+			bodyslam: ["1M"],
+			
 			megapunch: ["1M"],
 			megakick: ["1M"],
 			takedown: ["1M"],
@@ -2958,7 +2961,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			substitute: ["1M"],
 		},
 		encounters: [
-			{generation: 1, level: 5},
+			{generation: 1, level: 50},
 		],
 	},
 	sandyshocks: {
@@ -2967,11 +2970,9 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			sonicboom: ["1L1"],
 			thundershock: ["1L1"],
 			magnetbomb: ["1L1"],
-			supersonic: ["1L29"],
-			thunderwave: ["1L38", "1M"],
-			metalsound: ["1L46"],
-			earthquake: ["1M"],
-			screech: ["1L54"],
+			supersonic: ["1L51"],
+			screech: ["1L55"],
+			metalsound: ["1L55"], // intentional day care exploit
 			megakick: ["1M"],
 			bodyslam: ["1M"],
 			takedown: ["1M"],
@@ -2979,11 +2980,13 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			hyperbeam: ["1M"],
 			thunderbolt: ["1M"],
 			thunder: ["1M"],
+			earthquake: ["1M"],
 			fissure: ["1M"],
 			dig: ["1M"],
 			teleport: ["1M"],
 			reflect: ["1M"],
 			swift: ["1M"],
+			thunderwave: ["1M"],
 			flash: ["1M"],
 			
 			toxic: ["1M"],
@@ -2995,7 +2998,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			substitute: ["1M"],
 		},
 		encounters: [
-			{generation: 1, level: 5},
+			{generation: 1, level: 50},
 		],
 	},
 	///d8888b. d88888b  d888b  d888888b  .d88b.  d8b   db  .d8b.  db        db    db  .d8b.  d8888b. d888888b  .d8b.  d8b   db d888888b .d8888. 
