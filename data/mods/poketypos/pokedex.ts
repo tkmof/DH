@@ -1,5 +1,5 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
-	 soaperior: {
+	soaperior: {
 		num: 1,
 	   name: "Soaperior",
 	  	types: ["Water", "Fairy"],
