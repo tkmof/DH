@@ -3990,6 +3990,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 		},
 		eventData: [
+			{generation: 3, level: 20, moves: ["sandstorm", "dragondance", "bite", "outrage"], pokeball: "pokeball"},
 			{generation: 5, level: 5, shiny: true, gender: "M", moves: ["bite", "leer", "sandstorm", "superpower"], pokeball: "cherishball"},
 		],
 	},
