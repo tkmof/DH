@@ -24,3 +24,4 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		weightkg: 19.5,
 	},
 };
+
