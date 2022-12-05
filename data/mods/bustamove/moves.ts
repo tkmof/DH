@@ -146,6 +146,33 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Ice",
 		contestType: "Beautiful",
 	},
+	batonpass: {
+		num: 226,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Switches out. Incoming Ally: +1 Speed",
+		name: "Baton Pass",
+		pp: 20,
+		priority: 0,
+		flags: {},
+		slotCondition: 'batonpass',
+		condition: {
+			onSwap(target) {
+				if (!target.fainted) {
+					this.add('-message', target.name + " received the baton!");
+					const boost = this.boost({spe: 1}, target, target);
+				}
+				target.side.removeSlotCondition(target, 'batonpass');
+			},
+		},
+		selfSwitch: true,
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cute",
+	},
 	beakblast: {
 		num: 690,
 		accuracy: 100,
