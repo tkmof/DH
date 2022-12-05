@@ -1,7 +1,7 @@
 export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	teambuilderConfig: {
 		excludeStandardTiers: true,
-		customTiers: ['Paleomons', 'Paleomons NFE', 'Paleomons LC'],
-		customDoublesTiers: ['Paleomons', 'Paleomons NFE', 'Paleomons LC'],
+		customTiers: ['Poketypos', 'Poketypos NFE', 'Poketypos LC'],
+		customDoublesTiers: ['Poketypos', 'Poketypos NFE', 'Poketypos LC'],
 	},
 };
