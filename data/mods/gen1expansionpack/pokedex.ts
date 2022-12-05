@@ -721,7 +721,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	zapdosgalar: {
 		inherit: true,
-		baseStats: {hp: 90, atk: 125, def: 90, spa: 75, spd: 75, spe: 100},
+		baseStats: {hp: 90, atk: 125, def: 90, spa: 85, spd: 85, spe: 100},
 	},
 	moltresgalar: {
 		inherit: true,
