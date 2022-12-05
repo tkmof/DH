@@ -672,6 +672,26 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fire",
 		contestType: "Cute",
 	},
+	eternabeam: {
+		num: 795,
+		accuracy: 90,
+		basePower: 110,
+		category: "Special",
+		shortDesc: "User loses 10% of their max hp.",
+		name: "Eternabeam",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		mindBlownRecoil: true,
+		onAfterMove(pokemon, target, move) {
+			if (move.mindBlownRecoil && !move.multihit) {
+				this.damage(Math.round(pokemon.maxhp / 10), pokemon, pokemon, this.dex.getEffect('Eternabeam'), true);
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+	},
 	extrasensory: {
 		num: 326,
 		accuracy: 100,
@@ -936,6 +956,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		basePower: 100,
 		category: "Physical",
+		shortDesc: "20% chance to Paralyze target.",
 		name: "Freeze Shock",
 		pp: 5,
 		priority: 0,
@@ -1142,6 +1163,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 75,
 		category: "Special",
+		shortDesc: "30% chance to Burn target.",
 		name: "Ice Burn",
 		pp: 10,
 		priority: 0,
