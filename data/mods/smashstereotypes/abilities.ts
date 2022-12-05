@@ -809,4 +809,78 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3,
 		num: 146,
 	},
+	divinegrace: {
+		shortDesc: "This Pokemon's healing moves are boosted 1.5x.",
+		name: "Divine Grace",
+		rating: 3,
+		num: -1020,
+	},
+	allseeingeye: {
+        onAfterMove(target, source, move) {
+			if (move.type === 'Psychic' && move.category === 'Status') {
+				this.heal(target.baseMaxhp / 4);
+			}
+		},
+		name: "All-Seeing Eye",
+		shortDesc: "This Pokemon's Psychic-type status moves heal it for 1/4 max HP.",
+		num: -1017,
+	},
+	retribution: {
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect?.effectType !== 'Move') {
+				return;
+			}
+			if (source.species.id === 'greninja' && source.hp && !source.transformed && source.side.foe.pokemonLeft) {
+				this.add('-activate', source, 'ability: Battle Bond');
+				source.formeChange('Greninja-Ash', this.effect, true);
+			}
+		},
+		onBoost(boost, target, source, effect) {
+			let showMsg = false;
+			let i: BoostName;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					showMsg = true;
+				}
+			}
+			if (showMsg && !(effect as ActiveMove).secondaries && target.species.id === 'thunjust' && target.hp && !target.transformed && target.side.foe.pokemonLeft) {
+				this.add('-activate', target, 'ability: Retribution');
+				target.formeChange('Thunjust-Super', this.effect, true);
+			}
+		},
+		onModifyMovePriority: -1,
+		onModifyMove(move, attacker) {
+			if (move.id === 'boltarang' && attacker.species.name === 'Thunjust-Super') {
+				move.multihit = 3;
+			}
+		},
+		isPermanent: true,
+		name: "Retribution",
+		shortDesc: "When this Pokemon has a stat raised or lowered (including self-inflicted changes), it transforms into Super form. Boltarang: 25 power, hits 3x.",
+		rating: 4,
+		num: -100,
+	},
+	tacticschange: {
+		onBeforeMovePriority: 0.5,
+		onBeforeMove(attacker, defender, move) {
+			if ((attacker.species.baseSpecies !== 'Aegislash' && !attacker.species.name.includes('Ancient'))|| attacker.transformed) return;
+			if (move.category === 'Status' && move.id !== 'foragerspoise') return;
+			const targetForme = (move.id === 'foragerspoise' ? 'Aegislash-Ancient' : 'Aegislash-Ancient-Hunter');
+			if (attacker.species.name !== targetForme) attacker.formeChange(targetForme);
+		},
+		isPermanent: true,
+		name: "Tactics Change",
+		shortDesc: "If Aegislash-Ancient, changes Forme to Ancient-Hunter before attacks and Ancient before King's Shield.",
+		rating: 5,
+		num: -117
+	},
+	refreshment: {
+		onSwitchIn(pokemon) {
+			pokemon.heal(pokemon.baseMaxhp / 16);
+		},
+		name: "Refreshment",
+		rating: 4.5,
+		num: -118,
+		shortDesc: "(Partially functional) When the user switches in, all non-fainted team members regain 1/16 HP.",
+	},
 };
