@@ -1753,6 +1753,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		otherFormes: ["Basculin-Blue-Striped", "Basculin-White-Striped"],
 		formeOrder: ["Basculin", "Basculin-Blue-Striped", "Basculin-White-Striped"],
 	},
+	basculinbluestriped: {
+		inherit: true,
+		types: ["Water", "Fighting"],
+	},
 	basculinwhitestriped: {
 		num: 550,
 		name: "Basculin-White-Striped",
@@ -3103,6 +3107,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 92, atk: 115, def: 115, spa: 115, spd: 115, spe: 118},
 	},
 	zarude: {
+		inherit: true,
+		abilities: {0: "Defiant"},
+	},
+	zarudedada: {
 		inherit: true,
 		abilities: {0: "Defiant"},
 	},
