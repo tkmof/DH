@@ -498,24 +498,24 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -19,
 	},
 	windupkey: {
-		onAnyFaintPriority: 1,
-		onAnyFaint(pokemon) {
-				const boosts: SparseBoostsTable = {};
-				let i: BoostName;
-				for (i in pokemon.boosts) {
-					if (pokemon.boosts[i] < 0) {
-						boosts[i] = 0;
-					}
-				}
-				pokemon.setBoost(boosts);
-				this.add('-clearnegativeboost', pokemon, '[silent]');
-				this.add('-message', pokemon.name + "'s negative stat changes were removed!");
-	    },
-		name: "Wind-up Key",
-		shortDesc: "This Pokemon's negative stat changes are removed when a Pokemon faints.",
-		rating: 3,
-		num: -20,
-	},
+        onAnyFaintPriority: 1,
+        onAnyFaint(target, source) {
+                const boosts: SparseBoostsTable = {};
+                let i: BoostName;
+                for (i in source.boosts) {
+                    if (source.boosts[i] < 0) {
+                        boosts[i] = 0;
+                    }
+                }
+                source.setBoost(boosts);
+                this.add('-clearnegativeboost', source, '[silent]');
+                this.add('-message', source.name + "'s negative stat changes were removed!");
+        },
+        name: "Wind-up Key",
+        shortDesc: "This Pokemon's negative stat changes are removed when a Pokemon faints.",
+        rating: 3,
+        num: -20,
+    },
 	mountaineer: {
 		onDamage(damage, target, source, effect) {
 			if (effect && effect.id === 'stealthrock') {

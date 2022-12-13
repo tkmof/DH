@@ -933,7 +933,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: -19,
 		accuracy: 100,
 		basePower: 25,
-		category: "Special",
+		category: "Physical",
 		name: "Barb Barrage",
 		shortDesc: "Hits 2-5 times in one turn. Each hit has 10% to poison.",
 		pp: 30,
