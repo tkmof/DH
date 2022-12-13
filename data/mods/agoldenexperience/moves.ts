@@ -126,7 +126,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		num: -6,
 		accuracy: 100,
 		basePower: 60,
-		category: "Special",
+		category: "Physical",
 		name: "Toxic Sting",
 		pp: 10,
 		priority: 0,
