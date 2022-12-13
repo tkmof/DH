@@ -849,12 +849,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			}
 			return success;
 		},
-		secondary: {
-			chance: 100,
-			boosts: {
-				spe: -1,
-			},
-		},
 		target: "normal",
 		type: "Ground",
 		contestType: "Tough",
