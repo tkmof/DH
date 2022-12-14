@@ -18,6 +18,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	butterfreemega: {
 		num: 12,
 		name: "Butterfree-Mega",
+		baseSpecies: "Butterfree",
+		forme: "Mega",
 		types: ["Bug", "Flying"],
 		baseStats: {hp: 60, atk: 40, def: 70, spa: 140, spd: 110, spe: 75},
 		abilities: {0: "Magic Guard"},
@@ -53,6 +55,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	arbokmega: {
 		num: 24,
 		name: "Arbok-Mega",
+		baseSpecies: "Arbok",
+		forme: "Mega",
 		types: ["Poison", "Dark"],
 		baseStats: {hp: 60, atk: 112, def: 119, spa: 65, spd: 112, spe: 80},
 		abilities: {0: "Regenerator"},
@@ -113,6 +117,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	wigglytuffmega: {
 		num: 40,
 		name: "Wigglytuff-Mega",
+		baseSpecies: "Wigglytuff",
+		forme: "Mega",
 		types: ["Normal", "Fairy"],
 		baseStats: {hp: 140, atk: 93, def: 50, spa: 120, spd: 90, spe: 90},
 		abilities: {0: "Fluffy"},
@@ -2432,6 +2438,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	ribombeemega: {
 		num: 743,
 		name: "Ribombee-Mega",
+		baseSpecies: "Ribombee",
+		forme: "Mega",
 		types: ["Bug", "Fairy"],
 		baseStats: {hp: 60, atk: 70, def: 85, spa: 105, spd: 130, spe: 109},
 		abilities: {0: "Fluffy"},
