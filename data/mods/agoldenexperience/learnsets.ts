@@ -376,6 +376,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			swift: ["8M"],
 			swordsdance: ["8L34"],
 			xscissor: ["8M"],
+			gunkshot: ["8M"],
 		},
 	},
 	samurotthisui: {
