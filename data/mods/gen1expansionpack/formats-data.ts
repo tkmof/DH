@@ -45,7 +45,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	croakozuna: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	skimper: {
@@ -57,11 +57,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	cryithan: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	nidoreign: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	decilla: {
@@ -69,19 +69,19 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	gyaoon: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	omega: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	trampel: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	jagg: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	blottle: {
@@ -89,15 +89,15 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	pendraken: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	deer: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	barunda: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	cheep: {
@@ -105,11 +105,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	jabetta: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	cactus: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	kotora: {
@@ -121,43 +121,43 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	gorotora: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	crocky: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	gorochu: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	guardia: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	totartle: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	buu: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	purakkusu: { //1.1 SW97 additions begin here
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	madaamu: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	tsubomitto: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	animon: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	monja: {
@@ -189,35 +189,35 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	/// `Y88P' 88   YD  `Y88P'  `8888Y' `8888Y'         Y888P  Y88888P VP   V8P   Y88888P    YP     `Y88P'  `8888Y' 
 	///
 	kleavor: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	scizor: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	crobat: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	steelix: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	bellossom: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	slowking: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	slowkinggalar: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	magnezone: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	lickilicky: {
@@ -225,7 +225,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	tangrowth: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	blissey: {
@@ -233,67 +233,67 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	rhyperior: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	hitmontop: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	politoed: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	mrrime: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	kingdra: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	magmortar: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	electivire: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	porygon2: {
 		tier: "Uber",
-		gen: 1, //I really don't think people want to fight this or Porygon-Z. Let's just launch with them banned.
+		gen: 1,
 	},
 	porygonz: {
 		tier: "Uber",
 		gen: 1,
 	},
 	espeon: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	umbreon: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	leafeon: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	glaceon: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	sylveon: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	perrserker: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	sirfetchd: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	pichu: {
@@ -383,11 +383,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	raticatealola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	raichualola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	sandshrewalola: {
@@ -395,7 +395,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	sandslashalola: { //fweezai
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	vulpixalola: {
@@ -403,7 +403,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	ninetalesalola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	diglettalola: {
@@ -411,7 +411,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	dugtrioalola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	meowthalola: {
@@ -423,7 +423,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	persianalola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	growlithehisui: {
@@ -431,7 +431,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	arcaninehisui: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	geodudealola: {
@@ -443,7 +443,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	golemalola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	ponytagalar: {
@@ -451,7 +451,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	rapidashgalar: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	slowpokegalar: {
@@ -459,7 +459,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	slowbrogalar: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	farfetchdgalar: {
@@ -471,7 +471,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	mukalola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	voltorbhisui: {
@@ -479,19 +479,19 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	electrodehisui: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	exeggutoralola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	marowakalola: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	weezinggalar: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	mrmimegalar: {
@@ -499,15 +499,15 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	articunogalar: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	zapdosgalar: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	moltresgalar: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	taurospaldea: {
@@ -899,7 +899,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleMoves: ["bodyslam", "sleeppowder", "stunspore"],
 		essentialMove: "razorleaf",
 		comboMoves: ["hyperbeam", "swordsdance"],
-		tier: "(OU)",
+		tier: "UU",
 	},
 	tentacool: {
 		randomBattleMoves: ["barrier", "hydropump", "surf"],
@@ -1216,7 +1216,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleMoves: ["bodyslam", "confuseray", "rest", "sing", "surf"],
 		essentialMove: "blizzard",
 		exclusiveMoves: ["thunderbolt", "thunderbolt"],
-		tier: "(OU)",
+		tier: "UU",
 	},
 	ditto: {
 		randomBattleMoves: ["transform"],
