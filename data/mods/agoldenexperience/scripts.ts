@@ -1103,6 +1103,14 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     delete this.modData('Learnsets', 'ekans').learnset.hiddenpower;
     delete this.modData('Learnsets', 'arbok').learnset.hiddenpower;
     delete this.modData('Learnsets', 'pikachu').learnset.hiddenpower;
+    delete this.modData('Learnsets', 'pikachualola').learnset.hiddenpower;
+    delete this.modData('Learnsets', 'pikachuhoenn').learnset.hiddenpower;
+    delete this.modData('Learnsets', 'pikachukalos').learnset.hiddenpower;
+    delete this.modData('Learnsets', 'pikachuoriginal').learnset.hiddenpower;
+    delete this.modData('Learnsets', 'pikachupartner').learnset.hiddenpower;
+    delete this.modData('Learnsets', 'pikachusinnoh').learnset.hiddenpower;
+    delete this.modData('Learnsets', 'pikachuunova').learnset.hiddenpower;
+    delete this.modData('Learnsets', 'pikachuworld').learnset.hiddenpower;
     delete this.modData('Learnsets', 'raichu').learnset.hiddenpower;
     delete this.modData('Learnsets', 'raichualola').learnset.hiddenpower;
     delete this.modData('Learnsets', 'sandshrew').learnset.hiddenpower;
@@ -1608,9 +1616,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     delete this.modData('Learnsets', 'liepard').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'pansage').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'simisage').learnset.hiddenpower; 
-    delete this.modData('Learnsets', 'pansage').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'pansear').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'simisear').learnset.hiddenpower; 
+    delete this.modData('Learnsets', 'panpour').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'simipour').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'munna').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'musharna').learnset.hiddenpower; 
@@ -1753,6 +1761,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     delete this.modData('Learnsets', 'froakie').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'frogadier').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'greninja').learnset.hiddenpower; 
+    delete this.modData('Learnsets', 'greninjaash').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'bunnelby').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'diggersby').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'fletchling').learnset.hiddenpower; 
@@ -1804,13 +1813,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     delete this.modData('Learnsets', 'phantump').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'trevenant').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'pumpkaboo').learnset.hiddenpower; 
-    //delete this.modData('Learnsets', 'pumpkaboolarge').learnset.hiddenpower; 
-    //delete this.modData('Learnsets', 'pumpkaboosuper').learnset.hiddenpower; 
-    //delete this.modData('Learnsets', 'pumpkaboosmall').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'gourgeist').learnset.hiddenpower; 
-    //delete this.modData('Learnsets', 'gourgeistsmall').learnset.hiddenpower; 
-    //delete this.modData('Learnsets', 'gourgeistlarge').learnset.hiddenpower; 
-    //delete this.modData('Learnsets', 'gourgeistsuper').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'bergmite').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'avalugg').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'noibat').learnset.hiddenpower; 

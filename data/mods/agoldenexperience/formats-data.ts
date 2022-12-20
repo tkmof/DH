@@ -4684,10 +4684,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 		doublesTier: "DOU",
 	},
-	straightasani: {
+	/*straightasani: {
 		tier: "OU",
 		doublesTier: "DOU",
-	},
+	},*/
 	nopainnogain: {
 		tier: "OU",
 		doublesTier: "DOU",
