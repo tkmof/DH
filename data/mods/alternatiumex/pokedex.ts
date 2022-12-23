@@ -843,7 +843,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Qwilfish",
 		types: ["Water", "Ground"],
 		baseStats: {hp: 85, atk: 105, def: 75, spa: 65, spd: 95, spe: 90},
-		abilities: {0: "Sticky Hold", 1: "Iron Barbs", 0: "Intimidate"},
+		abilities: {0: "Sticky Hold", 1: "Iron Barbs", H: "Intimidate"},
 		heightm: 0.5,
 		weightkg: 3.9,
 	},
