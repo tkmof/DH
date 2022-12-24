@@ -4610,4 +4610,283 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			{generation: 2, level: 5, shiny: 1, moves: ["wingattack", "rockthrow"]},
 		],
 	},
+	// 8888ba.88ba                    oo dP                                  
+	// 88  `8b  `8b                      88                                  
+	// 88   88   88 .d8888b. .d8888b. dP 88  .dP  .d8888b. 88d888b. 88d888b. 
+	// 88   88   88 88'  `88 88'  `88 88 88888"   88'  `88 88'  `88 88'  `88 
+	// 88   88   88 88.  .88 88.  .88 88 88  `8b. 88.  .88 88       88.  .88 
+	// dP   dP   dP `88888P8 `8888P88 dP dP   `YP `88888P8 dP       88Y888P' 
+	// 						   .88                               88       
+	// 					   d8888P                                dP       
+	// 	   dP                              
+	// 	   88                              
+	// 	   88 dP    dP 88d8b.d8b. 88d888b. 
+	// 	   88 88    88 88'`88'`88 88'  `88 
+	// 88.  .d8P 88.  .88 88  88  88 88.  .88 
+	//  `Y8888'  `88888P' dP  dP  dP 88Y888P' 
+	// 							  88       
+	// 							  dP       
+	//  88888888b                                       
+	//  88                                              
+	// a88aaaa    .d8888b. 88d888b. 88d8b.d8b. .d8888b. 
+	//  88        88'  `88 88'  `88 88'`88'`88 Y8ooooo. 
+	//  88        88.  .88 88       88  88  88       88 
+	//  dP        `88888P' dP       dP  dP  dP `88888P' 
+	// These are the Magikarp formes from Magikarp Jump, done by Albatross on Christmas. She is insane and so am I.
+	magikarpskelly: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpcalicoorange: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpcalicowhite: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpcalicoblack: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpcalicogold: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarporangetwotone: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarporangeorca: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarporangedapples: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarppinktwotone: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarppinktwotone: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarppinkdapples: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpgraybubbles: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpgraydiamonds: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpgraypatches: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarppurplepatches: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarppurplediamonds: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarppurplebubbles: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpapricottiger: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpapricotzebra: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpapricotstripes: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpbrowntiger: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpbrownzebra: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpbrownstripes: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarporangeforehead: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarporangemask: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpblackforehead: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpblackmask: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpsaucyblue: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpblueraindrops: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpsaucyviolet: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpvioletraindrops: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
+	magikarpgold: {learnset: {
+		bubble: ["2S1"],
+		dragonrage: ["1S0"],
+		flail: ["2L30"],
+		reversal: ["2S2"],
+		splash: ["1L1", "2L1", "2S1", "2S2"],
+		tackle: ["1L15", "2L15"],
+	}},
 };
