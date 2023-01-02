@@ -57,9 +57,8 @@ exports.wsdeflate = {
  *  something.
  * @type {{port: number, options: {key: string, cert: string}} | null}
  */
-exports.ssl = null;
+// exports.ssl = null;
 
-/*
 // example:
 exports.ssl = {
 	port: 443,
@@ -68,7 +67,6 @@ exports.ssl = {
 		cert: './config/ssl/fullchain.pem',
 	},
 };
-*/
 
 /*
 Main's SSL deploy script from Let's Encrypt looks like:
@@ -286,7 +284,7 @@ exports.restrictLinks = true;
   * chat modchat - default minimum group for speaking in chatrooms; changeable with /modchat
   * @type {false | string}
  */
-exports.chatmodchat = '+',
+exports.chatmodchat = '+';
 /**
  * battle modchat - default minimum group for speaking in battles; changeable with /modchat
  * @type {false | string}
@@ -619,7 +617,7 @@ exports.grouplist = [
 		symbol: '%',
 		id: "driver",
 		name: "Driver",
-		inherit: '+',
+		inherit: '+';
 		jurisdiction: 'u',
 		announce: true,
 		warn: '\u2606u',
@@ -642,7 +640,7 @@ exports.grouplist = [
 		symbol: '\u2606',
 		id: "player",
 		name: "Player",
-		inherit: '+',
+		inherit: '+';
 		roomvoice: true,
 		modchat: true,
 		roomonly: true,
@@ -652,7 +650,7 @@ exports.grouplist = [
 		exportinputlog: true,
 	},
 	{
-		symbol: '+',
+		symbol: '+';
 		id: "voice",
 		name: "Voice",
 		inherit: ' ',
