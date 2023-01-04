@@ -551,7 +551,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	screamtail: { //ehh go on then you paradox fucks can go here too
 		inherit: true,
-		baseStats: {hp: 115, atk: 65, def: 99, spa: 65, spd: 65, spe: 111},
+		baseStats: {hp: 115, atk: 65, def: 99, spa: 115, spd: 115, spe: 111},
 	},
 	sandyshocks: {
 		inherit: true,
