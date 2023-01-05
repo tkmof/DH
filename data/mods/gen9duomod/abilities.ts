@@ -12,7 +12,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 1,
 		num: 9001,
 	},
-
+	
 	queenofroulette: {
 		shortDesc: "Spins the Roulette Wheel two additional times.",
 		onResidual (pokemon) {
@@ -102,9 +102,11 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	
 	stickystarch: {
 		onAnyTryMove(target, source, effect) {
-			if (['teleport', 'chillyreception', 'voltswitch', 'uturn', 'flipturn', 'batonpass'].includes(effect.id)) {
+			if (['teleport', 'chillyreception', 'voltswitch', 'uturn', 'flipturn', 'batonpass', 'shedtail'].includes(effect.id)) {
 				this.attrLastMove('[still]');
-				this.add('cant', this.effectData.target, 'ability: Sticky Starch', effect, '[of] ' + target);
+				this.add('cant', this.effectData.target, 'ability: Sticky Starch', effect, '[of] ' + source);
+				target.addVolatile('partiallytrapped');
+				target.volatiles['partiallytrapped'].duration = 2;
 				return false;
 			}
 		},
@@ -116,74 +118,76 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 
 	update: {
 		onStart(pokemon) {
-			this.add('-message', pokemon.name + " is currently holding a " + pokemon.item + "!", '[identify]');	
+			this.add('-message', pokemon.name + " is currently holding a " + pokemon.item + "!", '[identify]');
+			this.add('-activate', pokemon, 'ability: Update', this.dex.getItem(pokemon.item).name, '[silent]');
 		},
 		onTryHit(target, source, move) {
-			if (target !== source && move.type === 'Water' && target.hasItem('splashplate') && target.getMoveHitData(move).typeMod <= 0) {
+			if (target.getMoveHitData(move).typeMod > 0) {return;}
+			if (target !== source && move.type === 'Water' && target.hasItem('splashplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Fire' && target.hasItem('flameplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Fire' && target.hasItem('flameplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Grass' && target.hasItem('meadowplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Grass' && target.hasItem('meadowplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Electric' && target.hasItem('zapplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Electric' && target.hasItem('zapplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Bug' && target.hasItem('insectplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Bug' && target.hasItem('insectplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Flying' && target.hasItem('skyplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Flying' && target.hasItem('skyplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Rock' && target.hasItem('stoneplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Rock' && target.hasItem('stoneplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Ground' && target.hasItem('earthplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Ground' && target.hasItem('earthplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Fighting' && target.hasItem('fistplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Fighting' && target.hasItem('fistplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Psychic' && target.hasItem('mindplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Psychic' && target.hasItem('mindplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Poison' && target.hasItem('toxicplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Poison' && target.hasItem('toxicplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Ghost' && target.hasItem('spookyplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Ghost' && target.hasItem('spookyplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Ice' && target.hasItem('icicleplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Ice' && target.hasItem('icicleplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Dragon' && target.hasItem('dracoplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Dragon' && target.hasItem('dracoplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Steel' && target.hasItem('ironplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Steel' && target.hasItem('ironplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Dark' && target.hasItem('dreadplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Dark' && target.hasItem('dreadplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
-			else if (target !== source && move.type === 'Fairy' && target.hasItem('pixieplate') && target.getMoveHitData(move).typeMod <= 0) {
+			else if (target !== source && move.type === 'Fairy' && target.hasItem('pixieplate')) {
 				this.add('-immune', target, '[from] ability: Update');
 				return null;
 			}
@@ -199,7 +203,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onTryHit(target, source, move) {
 			if (move.category === 'Status' && target !== source && move.type !== 'Flying') {
 				this.add('-immune', target, '[from] ability: Magic Absorb');	
-				this.heal(target.baseMaxhp);
+				this.heal(target.baseMaxhp / 4);
 				return null;
 			}
 		},
@@ -217,29 +221,29 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 9008,
 	},	
 	
-	// expect errors
 	drawfour: {
 		shortDesc: "After knocking out target, if user knows less than 12 moves, it learns target's moves.",
-		onSourceAfterFaint(length, target, source, effect) {
-			for (const moveSlot of target.moveSlots) {
-				if (moveSlot === null) return;
-				if (source.moveSlots.length < 12) {
-					this.attrLastMove('[still]');
-					if (source.moveSlots.length < 0) return false;
-					const learnedMove = {
-						move: target.moveSlots.name,
-						id: target.moveSlots.id,
-						pp: target.moveSlots.pp,
-						maxpp: target.moveSlots.pp,
-						target: target.moveSlots.target,
-						disabled: false,
-						used: false,
-					};	
-					source.moveSlots[source.moveSlots.length] = learnedMove;
-					source.baseMoveSlots[source.moveSlots.length - 1] = learnedMove;
+		onModifyDamage(damage, source, target, move) {
+			if (damage >= target.hp) {
+				for (const moveSlot of target.moveSlots) {
+					if (moveSlot === null) return;
+					if (source.moveSlots.length < 12) {
+						this.attrLastMove('[still]');
+						if (source.moveSlots.length < 0) return false;
+						const learnedMove = {
+							move: this.dex.getMove(moveSlot.id),
+							id: moveSlot.id,
+							pp: moveSlot.pp,
+							maxpp: moveSlot.pp,
+							target: moveSlot.target,
+							disabled: false,
+							used: false,
+						};	
+						source.moveSlots[source.moveSlots.length] = learnedMove;
+						source.baseMoveSlots[source.moveSlots.length - 1] = learnedMove;
+					}
 				}
 			}
-			this.add('-message', source.name + " copied its victim's moves!");
 		},
 		name: "Draw Four",
 		shortDesc: "After knocking out target, if user knows less than 12 moves, it learns target's moves.",
@@ -249,14 +253,14 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	
 	conduction: {
 		onAfterMoveSecondary(target, source, move) {
-			if (source.species.id === 'gelsius' && source.hp && !source.transformed && source.side.foe.pokemonLeft && move.type === 'Ice') {
+			if ((source.species.id === 'gelsius' || source.species.id === 'Gelsius') && source.hp && move.type === 'Ice') {
 				this.add('-message', source.name + " is beginning to rapidly cool!");
 				source.formeChange('Gelsius-Subzero', this.effect, true);
 				this.add('-message', source.name + " transformed!");
 			}
-			else if (source.species.id === 'gelsius' && source.hp && !source.transformed && source.side.foe.pokemonLeft && move.type === 'Fire') {
+			else if ((source.species.id === 'gelsius' || source.species.id === 'Gelsius') && source.hp && move.type === 'Fire') {
 				this.add('-message', source.name + " is beginning to rapidly heat up!");
-				source.formeChange('Gelsius-Thousand', this.effect, true);
+				source.formeChange('Gelsius-Hundred', this.effect, true);
 				this.add('-message', source.name + " transformed!");
 			}
 		},
@@ -265,29 +269,36 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 2,
 		num: 9010,
 	},	
+	//  && source.side.foe.pokemonLeft
 
 	respawnpunisher: {
-		onAnyFaintPriority: 1,
-		onAnyFaint() {
-			delete this.effectData.target.volatiles['respawnpunisher'];
-			this.effectData.target.addVolatile('respawnpunisher');
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (!target || target.fainted || target.hp <= 0) {
+				if (pokemon.ability != 'respawnpunisher') {return;}
+				pokemon.addVolatile('respawnpunisher');
+			}
 		},
-		onBeforeSwitchOut(pokemon) {
-			delete pokemon.volatiles['respawnpunisher'];
-			pokemon.addVolatile('respawnpunisher');
+		onPrepareHit(source, target, move) {
+			for (const targ of source.side.foe.active) {
+				if (!targ.activeTurns) {
+					if (source.ability != 'respawnpunisher') {return;}
+					source.addVolatile('respawnpunisher');
+				}
+			}
 		},
 		onEnd(pokemon) {
 			delete pokemon.volatiles['respawnpunisher'];
 			this.add('-end', pokemon, 'Respawn Punisher', '[silent]');
 		},
 		condition: {
-			duration: 1,
-			onStart(pokemon) {
-				this.boost({atk: 1}, pokemon);
+			onStart(target) {
+				this.add('-start', target, 'ability: Respawn Punisher');
+			},
+			onBasePower(basePower, attacker, defender, move) {
+				return this.chainModify(1.3);
 			},
 			onEnd(pokemon) {
-				delete pokemon.volatiles['respawnpunisher'];
-				this.boost({atk: -1}, pokemon);
+				this.add('-end', pokemon, 'Respawn Punisher', '[silent]');
 			},			
 		},
 		name: "Respawn Punisher",
@@ -335,39 +346,18 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	
 	angershell: {
-		onDamage(damage, target, source, effect) {
-			if (
-				effect.effectType === "Move" &&
-				!effect.multihit &&
-				(!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility('sheerforce')))
-			) {
-				target.abilityState.checkedAngerShell = false;
-			} else {
-				target.abilityState.checkedAngerShell = true;
-			}
-		},
-		onTryEatItem(item, pokemon) {
-			const healingItems = [
-				'aguavberry', 'enigmaberry', 'figyberry', 'iapapaberry', 'magoberry', 'sitrusberry', 'wikiberry', 'oranberry', 'berryjuice',
-			];
-			if (healingItems.includes(item.id)) {
-				return pokemon.abilityState.checkedAngerShell;
-			}
-			return true;
-		},
 		onAfterMoveSecondary(target, source, move) {
-			target.abilityState.checkedAngerShell = true;
 			if (!source || source === target || !target.hp || !move.totalDamage) return;
 			const lastAttackedBy = target.getLastAttackedBy();
 			if (!lastAttackedBy) return;
 			const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
 			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
-				this.boost({atk: 1, spa: 1, spe: 1, def: -1, spd: -1});
+				this.boost({atk: 1, def: -1, spa: 1, spd: -1, spe: 1});
 			}
 		},
 		name: "Anger Shell",
 		rating: 2,
-		num: 271,
+		num: 201,
 	},
 	
 	electromorphosis: {
