@@ -5,11 +5,9 @@ export const Formats: {[k: string]: FormatData} = {
 		desc: 'https://www.youtube.com/channel/UCvVihnVokWwZ4NpeMsBk48A',
 		onBegin() {
 			this.add(`raw|<img src="https://media.discordapp.net/attachments/575738724680204329/909632559036629022/talkinchu.png" height="454" width="411">`);
-			this.add('-message', "");		
-			this.add('-message', "Welcome to Duomod!");		
+			this.add('-message', "Welcome to the Gen 9 version of Duomod!");		
 			this.add('-message', "A lot of crazy stuff can happen in this meta. For more information, please check this spreadsheet - ");	
 			this.add('-message', "https://docs.google.com/spreadsheets/d/1FO4wuxSQnquV5vubEHNVwEwrzZWjtR6gCt4RZRXBqdM/edit#gid=768503844");	
-			this.add('-message', "");
 		},
 		
 		onResidual(pokemon) {
@@ -140,14 +138,19 @@ export const Formats: {[k: string]: FormatData} = {
 		
 		else if (result === 11) { 
 			this.hint("Roulette Wheel Result 12 - Everyone gets their ability replaced with Defeatist.");
-			for (const pokemon of this.getAllActive()) {
-				const oldAbility = pokemon.setAbility('Defeatist');
-				if (oldAbility) {
-					this.add('-ability', pokemon, 'Defeatist', '[from] move: Roulette Spin');
-					return;
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					const oldAbility1 = s1.setAbility('Defeatist');
+					if (oldAbility1) {
+						this.add('-ability', s1, 'Defeatist', '[from] move: Roulette Spin');
+					}
+					const oldAbility2 = s2.setAbility('Defeatist');
+					if (oldAbility2) {
+						this.add('-ability', s2, 'Defeatist', '[from] move: Roulette Spin');
+					}
 				}
 			}
-		} 		
+		} 			
 
 		else if (result === 12) {
 			this.hint("Roulette Wheel Result 13 - I felt like being mean today");
@@ -170,7 +173,7 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 13) { 
 			this.hint("Roulette Wheel Result 14 - Everyone gets perfect accuracy.");
 			for (const pokemon of this.getAllActive()) {
-				this.boost({acc: 12}, pokemon);
+				this.boost({accuracy: 12}, pokemon);
 			}
 		} 		
 
@@ -218,20 +221,34 @@ export const Formats: {[k: string]: FormatData} = {
 		}  	
 		
 		else if (result === 17) {
-			this.hint("Roulette Wheel Result 18 - One of you needs a hand!");
-			const s1 of this.sides[0].active;
-			const s2 of this.sides[1].active;
-			if (s1.hp >= s2.hp) {this.heal(s2.maxhp, s2);}
-			if (s1.hp <= s2.hp) {this.heal(s1.maxhp, s1);}
-		}
+			this.hint("Roulette Wheel Result 18 - i felt like it would be funny");
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					if (pickSide === 0) {
+						this.damage(s2.baseMaxhp / 4, s2);
+						this.heal(s1.baseMaxhp / 4, s1);
+						
+					}
+					else if (pickSide === 1) {
+						this.damage(s1.baseMaxhp / 4, s1);
+						this.heal(s2.baseMaxhp / 4, s2);
+					}
+				}
+			}
+		}  
 			
 		else if (result === 18) { 
 			this.hint("Roulette Wheel Result 19 - Everyone gets Beast Boost.");
-			for (const pokemon of this.getAllActive()) {
-				const oldAbility = pokemon.setAbility('Beast Boost');
-				if (oldAbility) {
-					this.add('-ability', pokemon, 'Beast Boost', '[from] move: Roulette Spin');
-					return;
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					const oldAbility1 = s1.setAbility('Beast Boost');
+					if (oldAbility1) {
+						this.add('-ability', s1, 'Beast Boost', '[from] move: Roulette Spin');
+					}
+					const oldAbility2 = s2.setAbility('Beast Boost');
+					if (oldAbility2) {
+						this.add('-ability', s2, 'Beast Boost', '[from] move: Roulette Spin');
+					}
 				}
 			}
 		} 			
@@ -430,8 +447,6 @@ export const Formats: {[k: string]: FormatData} = {
 			this.hint("Roulette Wheel Result 33 - Funeral service...");
 			var deez: number;
 			deez = this.random(32);
-			
-				for (const target of this.sides[1].active) {
 			if (deez === 0) {
 				for (const pokemon of this.sides[0].active) {
 					this.directDamage(pokemon.hp, pokemon);
@@ -475,7 +490,7 @@ export const Formats: {[k: string]: FormatData} = {
 		},
 	},		
 	
-	secondspin: {
+	secondspin: { // FIX
 		effectType: 'Rule',
 		name: 'Second Spin',
 		desc: 'https://www.youtube.com/channel/UCvVihnVokWwZ4NpeMsBk48A',
@@ -489,10 +504,10 @@ export const Formats: {[k: string]: FormatData} = {
 			}
 		} 
 
-		this.add('-message', "Time for the Roulette Wheel!");
+		this.add('-message', "Time for the SECOND Roulette Wheel!");
 		
 		result = this.random(35);
-  
+
 		if (result === 0) {
 			this.hint("Roulette Wheel Result 1 - Both Pokemon trade Speed stats.");
 			if (pickSide === 0) {
@@ -607,14 +622,19 @@ export const Formats: {[k: string]: FormatData} = {
 		
 		else if (result === 11) { 
 			this.hint("Roulette Wheel Result 12 - Everyone gets their ability replaced with Defeatist.");
-			for (const pokemon of this.getAllActive()) {
-				const oldAbility = pokemon.setAbility('Defeatist');
-				if (oldAbility) {
-					this.add('-ability', pokemon, 'Defeatist', '[from] move: Roulette Spin');
-					return;
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					const oldAbility1 = s1.setAbility('Defeatist');
+					if (oldAbility1) {
+						this.add('-ability', s1, 'Defeatist', '[from] move: Roulette Spin');
+					}
+					const oldAbility2 = s2.setAbility('Defeatist');
+					if (oldAbility2) {
+						this.add('-ability', s2, 'Defeatist', '[from] move: Roulette Spin');
+					}
 				}
 			}
-		} 		
+		} 			
 
 		else if (result === 12) {
 			this.hint("Roulette Wheel Result 13 - I felt like being mean today");
@@ -637,7 +657,7 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 13) { 
 			this.hint("Roulette Wheel Result 14 - Everyone gets perfect accuracy.");
 			for (const pokemon of this.getAllActive()) {
-				this.boost({acc: 12}, pokemon);
+				this.boost({accuracy: 12}, pokemon);
 			}
 		} 		
 
@@ -685,20 +705,34 @@ export const Formats: {[k: string]: FormatData} = {
 		}  	
 		
 		else if (result === 17) {
-			this.hint("Roulette Wheel Result 18 - One of you needs a hand!");
-			const s1 of this.sides[0].active;
-			const s2 of this.sides[1].active;
-			if (s1.hp >= s2.hp) {this.heal(s2.maxhp, s2);}
-			if (s1.hp <= s2.hp) {this.heal(s1.maxhp, s1);}
-		}
+			this.hint("Roulette Wheel Result 18 - i felt like it would be funny");
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					if (pickSide === 0) {
+						this.damage(s2.baseMaxhp / 4, s2);
+						this.heal(s1.baseMaxhp / 4, s1);
+						
+					}
+					else if (pickSide === 1) {
+						this.damage(s1.baseMaxhp / 4, s1);
+						this.heal(s2.baseMaxhp / 4, s2);
+					}
+				}
+			}
+		}  
 			
 		else if (result === 18) { 
 			this.hint("Roulette Wheel Result 19 - Everyone gets Beast Boost.");
-			for (const pokemon of this.getAllActive()) {
-				const oldAbility = pokemon.setAbility('Beast Boost');
-				if (oldAbility) {
-					this.add('-ability', pokemon, 'Beast Boost', '[from] move: Roulette Spin');
-					return;
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					const oldAbility1 = s1.setAbility('Beast Boost');
+					if (oldAbility1) {
+						this.add('-ability', s1, 'Beast Boost', '[from] move: Roulette Spin');
+					}
+					const oldAbility2 = s2.setAbility('Beast Boost');
+					if (oldAbility2) {
+						this.add('-ability', s2, 'Beast Boost', '[from] move: Roulette Spin');
+					}
 				}
 			}
 		} 			
@@ -897,8 +931,6 @@ export const Formats: {[k: string]: FormatData} = {
 			this.hint("Roulette Wheel Result 33 - Funeral service...");
 			var deez: number;
 			deez = this.random(32);
-			
-				for (const target of this.sides[1].active) {
 			if (deez === 0) {
 				for (const pokemon of this.sides[0].active) {
 					this.directDamage(pokemon.hp, pokemon);
@@ -938,6 +970,7 @@ export const Formats: {[k: string]: FormatData} = {
 				this.useMove("Ultranome", pokemon);
 			}
 		}
+		
 		},
 	},		
 	
