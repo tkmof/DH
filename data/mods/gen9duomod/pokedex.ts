@@ -99,6 +99,17 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       weightkg: 5,
       eggGroups: ["Undiscovered"],
     },
+	 fluidrake: {
+   	num: 31.5,
+   	species: "Fluidrake",
+    	types: ["Water", "Steel"],
+    	baseStats: {hp: 105, atk: 70, def: 100, spa: 75, spd: 95, spe: 80},
+    	abilities: {0: "Poison Touch"},
+    	height: 5,
+    	weightkg: 5,
+	  	eggGroups: ["Undiscovered"],
+    },
+
     jewelode: {
       num: 11.5,
       species: "Jewelode",
