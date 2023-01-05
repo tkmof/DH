@@ -12,12 +12,26 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 1,
 		num: 9001,
 	},
+
+	queenofroulette: {
+		shortDesc: "Spins the Roulette Wheel two additional times.",
+		onResidual (pokemon) {
+			this.useMove("Roulette Spin", pokemon);
+			this.useMove("Roulette Spin", pokemon);
+		},
+		name: "Queen of Roulette",
+		rating: 1,
+		num: 3009,
+	},	
 	
 	hostabsorb: {
-		onModifyMove(move) {
+		onModifyMove(move, attacker) {
 			if (!move || !move.flags['contact'] || move.target === 'self') return;
 			if (!move.secondaries) {
 				move.secondaries = [];
+			} // the 3 rows below this get deleted if there's issues
+			for (const target of attacker.side.foe.active) {
+				if (target.hasType('Grass')) {return;}
 			}
 			move.secondaries.push({
 				chance: 100,
