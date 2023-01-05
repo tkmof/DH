@@ -5,6 +5,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 70,
 		category: "Physical",
 		name: "Blue Shell",
+		shortDesc: "Deals 2x if user has less Pokemon than foe.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -27,7 +28,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 15,
 		category: "Physical",
-		name: "Bonemerang",
+		name: "Double Dab",
+		shortDesc: "skeet skeet dab",
 		pp: 1,
 		noPPBoosts: true,
 		priority: 1,
@@ -56,12 +58,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		category: "Physical",
 		name: "Exo Bash",
+		shortDesc: "More power the more user's Def is lower than target's.",
 		pp: 15,
 		priority: 0,
 		flags: {bullet: 1, contact: 1, protect: 1, mirror: 1},
 		secondary: null,
 		target: "normal",
-		type: "Steel",
+		type: "Bug",
 		zMove: {basePower: 160},
 		maxMove: {basePower: 130},
 		contestType: "Cool",
@@ -101,6 +104,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 0,
 		category: "Status",
 		name: "Gelatinize",
+		shortDesc: "+1 Priority. Changes ability to Magic Bounce.",
 		pp: 10,
 		priority: 1,
 		flags: {snatch: 1},
@@ -118,7 +122,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return false;
 		},
 		secondary: null,
-		target: "normal",
+		target: "self",
 		type: "Psychic",
 		zMove: {boost: {spa: 1}},
 		contestType: "Cute",
@@ -130,6 +134,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 0,
 		category: "Status",
 		name: "Incense",
+		shortDesc: "For 5 turns, user side cannot lose their items.",
 		pp: 20,
 		priority: 0,
 		flags: {snatch: 1},
@@ -165,12 +170,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 110,
 		category: "Special",
-		shortDesc: "Clears the opponents hazards.",
+		shortDesc: "Clears the opponent's hazards.",
 		inherit: true,
 		isNonstandard: null,
 		gen: 8,
-		shortDesc: "The user clears hazards from the opponents side.",
-		name: "Razor Wind",
+		name: "Hyper Wind",
 		pp: 10,
 		priority: 0,
 		flags: {charge: 1, protect: 1, mirror: 1},
@@ -196,22 +200,24 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 120,
 		category: "Physical",
 		name: "Impostor Blade",
+		shortDesc: "kill with this move or you die (pretty sus)",
 		pp: 5,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (pokemon.species.id === 'impsaustor') {return;}
 			if (!target || target.fainted || target.hp <= 0) {
-				this.add('-message', "I dunno... ", pokemon.name, "'s been acting pretty sus lately...");
-				target.formeChange('Impsaustor', this.effect, true);
-				const oldAbility = target.setAbility('Vent');
+//				this.add('-message', "I dunno... ", pokemon.name, "'s been acting pretty sus lately...");
+				pokemon.formeChange('Impsaustor', this.effect, true);
+				const oldAbility = pokemon.setAbility('Vent');
 				if (oldAbility) {
-					this.add('-ability', target, 'Vent', '[from] move: Impostor Blade', '[silent]');
+					this.add('-ability', pokemon, 'Vent', '[from] move: Impostor Blade', '[silent]');
 					target.volatileStaleness = 'external';
 					return;
 				}
-				this.add('-message', target + " was the Impsaustor!");
-				this.add('-start', target, 'typechange', target.getTypes(true).join('/'), '[silent]');
-				const species = this.dex.getSpecies(target.species.name);
+				this.add('-message', pokemon.name + " was the Impsaustor!");
+				this.add('-start', pokemon, 'typechange', target.getTypes(true).join('/'), '[silent]');
+				const species = this.dex.getSpecies(pokemon.species.name);
 				const abilities = species.abilities;
 				const baseStats = species.baseStats;
 				const type = species.types[0];
@@ -221,10 +227,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 				} else {
 					this.add(`raw|<ul class="utilichart"><li class="result"><span class="col pokemonnamecol" style="white-space: nowrap">` + species.name + `</span> <span class="col typecol"><img src="https://${Config.routes.client}/sprites/types/${type}.png" alt="${type}" height="14" width="32"></span> <span style="float: left ; min-height: 26px"><span class="col abilitycol">` + abilities[0] + `</span><span class="col abilitycol"></span></span><span style="float: left ; min-height: 26px"><span class="col statcol"><em>HP</em><br>` + baseStats.hp + `</span> <span class="col statcol"><em>Atk</em><br>` + baseStats.atk + `</span> <span class="col statcol"><em>Def</em><br>` + baseStats.def + `</span> <span class="col statcol"><em>SpA</em><br>` + baseStats.spa + `</span> <span class="col statcol"><em>SpD</em><br>` + baseStats.spd + `</span> <span class="col statcol"><em>Spe</em><br>` + baseStats.spe + `</span> </span></li><li style="clear: both"></li></ul>`);
 				}
-				this.add('-start', target, 'typechange', target.species.types.join('/'), '[silent]');
+				this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
 			}
-			else if (this.dex.getSpecies(pokemon.species.name) !== 'Impsaustor') {
-				this.damage(pokemon.baseMaxhp / 16, pokemon, pokemon);
+			else {
+				this.add('-message', "VOTE HIM OUT!!!");
+				this.damage(pokemon.baseMaxhp, pokemon);
 			}
 		},
 		secondary: null,
@@ -239,6 +246,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 20,
 		category: "Physical",
 		name: "Inkbrush",
+		shortDesc: "Hits 4 times. High crit ratio.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, contact: 1, punch: 1},
@@ -246,7 +254,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		critRatio: 2,
 		secondary: null,
 		target: "normal",
-		type: "Fighting",
+		type: "Poison",
 		maxMove: {basePower: 130},
 		contestType: "Tough",
 	},
@@ -256,13 +264,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 50,
 		basePower: 0,
 		damageCallback(pokemon, target) {
-			return this.clampIntRange(target.maxHP / 2, 1);
+			return this.clampIntRange(target.maxhp / 2, 1);
 		},
 		onMoveFail(target, source, move) {
 			this.damage(source.baseMaxhp / 2, source, source, this.dex.getEffect('High Jump Kick'));
 		},
 		category: "Physical",
 		name: "Kamikaze",
+		shortDesc: "Deals 50% of user or target's max HP.",
 		pp: 5,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, gravity: 1},
@@ -279,28 +288,33 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 40,
 		category: "Physical",
 		name: "One Trillion Arrows",
+		shortDesc: "Removes target's immunities.",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, nonsky: 1},
 		onEffectiveness(typeMod, target, type, move) {
-			target.addVolatile('arrowed');
 			move.ignoreImmunity = true;
-			return 0; // literally all three of these lines should do the same thing but i am NOT taking my chances
 		},
-		volatileStatus: 'arrowed',
+		onHit(target, source) {
+			target.addVolatile('onetrillionarrows', target);
+			this.add('-message', "The arrows left the target vulnerable!");
+		},
+		volatileStatus: 'onetrillionarrows',
 		condition: {
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'move: One Trillion Arrows');
+			},
+			onTryHit(target, source, move) {
+				move.ignoreImmunity = true;
+			},
 			onEnd(pokemon) {
-				onTryHit(target, source, move) {
-					move.ignoreImmunity = true;
-					return 0;
-				}
-				delete pokemon.volatiles['arrowed'];
-				this.add('-end', pokemon, 'arrowed');
-			}
-		}
+				delete pokemon.volatiles['onetrillionarrows'];
+				this.add('-end', pokemon, 'onetrillionarrows');
+			},
+		},
 		ignoreImmunity: {'Ground': true},
 		secondary: null,
-		target: "allAdjacentFoes",
+		target: "normal",
 		type: "Ground",
 		zMove: {basePower: 180},
 		contestType: "Beautiful",
@@ -312,20 +326,21 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 140,
 		category: "Special",
 		name: "Outburst",
-		pp: 8,
+		shortDesc: "Changes target's ability to Lightning Rod.",
+		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, mystery: 1},
 		onTryHit(target) {
 			if (target.getAbility().isPermanent || target.ability === 'lightningrod') {
 				return false;
-			},
+			}
 		},
 		onHit(pokemon) {
 			const oldAbility = pokemon.setAbility('lightningrod');
 			if (oldAbility) {
 				this.add('-ability', pokemon, 'Lightning Rod', '[from] move: Outburst');
 				return;
-			},
+			}
 			return false;
 		},
 		secondary: null,
@@ -342,18 +357,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 70,
 		category: "Special",
 		name: "Pharaoh Shot",
+		shortDesc: "-3 Priority. If user's hit by contact while charging, hits twice.",
 		pp: 15,
 		priority: -3,
 		flags: {contact: 1, protect: 1, punch: 1},
 		beforeTurnCallback(pokemon) {
 			pokemon.addVolatile('pharaohshot');
 		},
-		beforeMoveCallback(pokemon) {
+/*		beforeMoveCallback(pokemon) {
 			if (pokemon.volatiles['pharaohshot'] && pokemon.volatiles['pharaohshot'].lostFocus) {
 				this.add('cant', pokemon, 'Pharaoh Shot', 'Pharaoh Shot');
 				return true;
 			}
-		},
+		},*/
 		condition: {
 			duration: 1,
 			onStart(pokemon) {
@@ -361,7 +377,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onHit(pokemon, source, move) {
 				if (move.flags['contact']) {
-					this.useMove("Pharaoh Shot", pokemon);
+					this.add('-message', "The attack hit the charging flame!");
 					this.useMove("Pharaoh Shot", pokemon);
 				}
 			},
@@ -378,12 +394,17 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 80,
 		category: "Physical",
 		name: "Polar Pounce",
-		pp: 16,
+		shortDesc: "Sets Hail.",
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		weather: 'hail',
+		self: {
+			onHit(source) {
+				this.field.setWeather('hail');
+			},
+		},
 		secondary: null,
-		target: "all",
+		target: "normal",
 		type: "Ice",
 		zMove: {boost: {spe: 1}},
 		contestType: "Beautiful",
@@ -396,8 +417,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onBeforeMovePriority: 6,
 		onTryMove(pokemon, target, move) {
 			const callerMoveId = move.sourceEffect || move.id;
-			const moveSlot = callerMoveId === 'instruct' ? source.getMoveData(move.id) : pokemon.getMoveData(callerMoveId);
-			if (!moveSlot || (moveSlot.pp % 2 = 0)) return false;
+			const moveSlot = callerMoveId === 'instruct' ? pokemon.getMoveData(move.id) : pokemon.getMoveData(callerMoveId);
+			if (!moveSlot) {return false;}
+			if (moveSlot.pp % 2 === 1) {
+				this.add('-message', "It readied a mine!");
+				return false;
+			}
 			return true;
 		},
 		category: "Special",
@@ -419,7 +444,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 0,
 		damage: 5,
 		category: "Special",
-		shortDesc: "For your own sake, please don't use this.",
+		shortDesc: "no",
 		name: "Stupid Cannon",
 		pp: 10,
 		priority: 0,
@@ -451,6 +476,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 40,
 		category: "Physical",
 		name: "Shadow Scratch",
+		shortDesc: "If target has lowered HP, deals more damage (check the sheet!).",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -749,7 +775,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return !!this.canSwitch(source.side);
 		},
 		selfSwitch: true,
-		weather: 'snow',
+		weather: 'hail',
 		secondary: null,
 		target: "all",
 		type: "Ice",
@@ -838,9 +864,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 0,
 		category: "Status",
 		name: "Lunar Blessing",
-		pp: 5,
+		pp: 10,
 		priority: 0,
-		flags: {snatch: 1, heal: 1},
+		flags: {heal: 1, authentic: 1, mystery: 1},
 		onHit(pokemon) {
 			const success = !!this.heal(this.modify(pokemon.maxhp, 0.25));
 			return pokemon.cureStatus() || success;
@@ -874,11 +900,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			noCopy: true,
 			duration: 2,
 			onAccuracy(accuracy) {
-				if (this.effectState.duration === 2) return accuracy;
 				return true;
 			},
 			onSourceModifyDamage() {
-				if (this.effectState.duration === 2) return;
 				return this.chainModify(2);
 			},
 		},
@@ -940,9 +964,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Water",
 		contestType: "Cool",
-	},
+	}, 
 	
-	// haha i have stolen hematite's code AND HE MAY NEVER KNOW!!
 	direclaw: {
 		shortDesc: "50% to paralyze, poison, or sleep target. High crit ratio.",
 		num: 10011,
@@ -964,13 +987,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 				const result = this.random(3);
 				if (result === 0) {
 					target.trySetStatus('psn', source);
-					if ((target) && source.ability === "unstableclaws") {this.add('-start', target, 'typechange', 'Poison');}
+					if ((target) && source.ability === "unstableclaws") {this.add('-start', source, 'typechange', 'Poison');}
 				} else if (result === 1) {
 					target.trySetStatus('par', source);
-					if ((target) && source.ability === "unstableclaws") {this.add('-start', target, 'typechange', 'Electric');}
+					if ((target) && source.ability === "unstableclaws") {this.add('-start', source, 'typechange', 'Electric');}
 				} else {
 					target.trySetStatus('slp', source);
-					if ((target) && source.ability === "unstableclaws") {this.add('-start', target, 'typechange', 'Psychic');}
+					if ((target) && source.ability === "unstableclaws") {this.add('-start', source, 'typechange', 'Psychic');}
 				}
 			},
 		},
@@ -980,43 +1003,49 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	
 	shedtail: {
-		num: 880,
+		num: 10111,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
 		name: "Shed Tail",
+		shortDesc: "In exchange for half of its HP, switches out and creates a Substitute for the switch-in.",
 		pp: 10,
 		priority: 0,
-		flags: {},
-		volatileStatus: 'substitute',
+		flags: {snatch: 1},
+		selfSwitch: true,
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Substitute", target);
+		},
 		onTryHit(target) {
-			if (target.volatiles['substitute']) {
-				this.add('-fail', target, 'move: Shed Tail');
-				return null;
-			}
 			if (target.hp <= target.maxhp / 2 || target.maxhp === 1) { // Shedinja clause
-				this.add('-fail', target, 'move: Shed Tail', '[weak]');
+				this.add('-fail', target, 'move: Substitute', '[weak]');
 				return null;
 			}
 		},
 		onHit(target) {
-			if (!this.canSwitch(target.side)) {
-				this.attrLastMove('[still]');
-				this.add('-fail', target);
-				return this.NOT_FAIL;
-			}
 			this.directDamage(target.maxhp / 2);
 		},
-		self: {
-			onHit(source) {
-				source.skipBeforeSwitchOutEventFlag = true;
+		slotCondition: 'shedtail',
+		condition: {
+			onStart(pokemon, source) {
+				this.effectData.hp = Math.floor(source.maxhp / 4);
+			},
+			onSwap(target) {
+				target.side.removeSlotCondition(target, 'shedtail');
+				if (!target.fainted) {
+					if (target.addVolatile('substitute')) {
+						target.volatiles['substitute'].hp = this.effectData.hp;
+						this.add('-anim', target, "Substitute", target);
+					}
+				}
 			},
 		},
-		selfSwitch: 'shedtail',
 		secondary: null,
 		target: "self",
 		type: "Normal",
-		zMove: {effect: 'clearnegativeboost'},
+		zMove: {effect: 'heal'},
+		contestType: "Cute",
 	},
 	
 	infernalparade: {
@@ -1027,15 +1056,16 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (target.status || target.hasAbility('comatose')) return move.basePower * 2;
 			return move.basePower;
 		},
+		onHit(target, source) {
+			const result = this.random(10);
+			if (result <= 2) {target.trySetStatus('brn', source);}
+		},
 		category: "Special",
 		name: "Infernal Parade",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		secondary: {
-			chance: 30,
-			status: 'brn',
-		},
+		secondary: null,
 		target: "normal",
 		type: "Ghost",
 	},
@@ -1059,7 +1089,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Steel",
 		contestType: "Beautiful",
 	},
-		
+	
 	roulettespin: {
 		accuracy: true,
 		basePower: 0,
@@ -1201,14 +1231,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 		
 		else if (result === 11) { 
 			this.hint("Roulette Wheel Result 12 - Everyone gets their ability replaced with Defeatist.");
-			for (const pokemon of this.getAllActive()) {
-				const oldAbility = pokemon.setAbility('Defeatist');
-				if (oldAbility) {
-					this.add('-ability', pokemon, 'Defeatist', '[from] move: Roulette Spin');
-					return;
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					const oldAbility1 = s1.setAbility('Defeatist');
+					if (oldAbility1) {
+						this.add('-ability', s1, 'Defeatist', '[from] move: Roulette Spin');
+					}
+					const oldAbility2 = s2.setAbility('Defeatist');
+					if (oldAbility2) {
+						this.add('-ability', s2, 'Defeatist', '[from] move: Roulette Spin');
+					}
 				}
 			}
-		} 		
+		} 			
 
 		else if (result === 12) {
 			this.hint("Roulette Wheel Result 13 - I felt like being mean today");
@@ -1231,7 +1266,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		else if (result === 13) { 
 			this.hint("Roulette Wheel Result 14 - Everyone gets perfect accuracy.");
 			for (const pokemon of this.getAllActive()) {
-				this.boost({acc: 12}, pokemon);
+				this.boost({accuracy: 12}, pokemon);
 			}
 		} 		
 
@@ -1279,20 +1314,34 @@ export const Moves: {[moveid: string]: MoveData} = {
 		}  	
 		
 		else if (result === 17) {
-			this.hint("Roulette Wheel Result 18 - One of you needs a hand!");
-			const s1 of this.sides[0].active;
-			const s2 of this.sides[1].active;
-			if (s1.hp >= s2.hp) {this.heal(s2.maxhp, s2);}
-			if (s1.hp <= s2.hp) {this.heal(s1.maxhp, s1);}
-		}
+			this.hint("Roulette Wheel Result 18 - i felt like it would be funny");
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					if (pickSide === 0) {
+						this.damage(s2.baseMaxhp / 4, s2);
+						this.heal(s1.baseMaxhp / 4, s1);
+						
+					}
+					else if (pickSide === 1) {
+						this.damage(s1.baseMaxhp / 4, s1);
+						this.heal(s2.baseMaxhp / 4, s2);
+					}
+				}
+			}
+		}  
 			
 		else if (result === 18) { 
 			this.hint("Roulette Wheel Result 19 - Everyone gets Beast Boost.");
-			for (const pokemon of this.getAllActive()) {
-				const oldAbility = pokemon.setAbility('Beast Boost');
-				if (oldAbility) {
-					this.add('-ability', pokemon, 'Beast Boost', '[from] move: Roulette Spin');
-					return;
+			for (const s1 of this.sides[0].active) {
+				for (const s2 of this.sides[1].active) {
+					const oldAbility1 = s1.setAbility('Beast Boost');
+					if (oldAbility1) {
+						this.add('-ability', s1, 'Beast Boost', '[from] move: Roulette Spin');
+					}
+					const oldAbility2 = s2.setAbility('Beast Boost');
+					if (oldAbility2) {
+						this.add('-ability', s2, 'Beast Boost', '[from] move: Roulette Spin');
+					}
 				}
 			}
 		} 			
@@ -1491,8 +1540,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.hint("Roulette Wheel Result 33 - Funeral service...");
 			var deez: number;
 			deez = this.random(32);
-			
-				for (const target of this.sides[1].active) {
 			if (deez === 0) {
 				for (const pokemon of this.sides[0].active) {
 					this.directDamage(pokemon.hp, pokemon);
@@ -1532,6 +1579,33 @@ export const Moves: {[moveid: string]: MoveData} = {
 				this.useMove("Ultranome", pokemon);
 			}
 		}
+			
 		},
+	},
+		
+	ultranome: {
+		num: 118,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Ultranome",
+		pp: 40,
+		shortDesc: "Uses Metronome 3 times; not learnable.",
+		noPPBoosts: true,
+		priority: 0,
+		flags: {},
+		onPrepareHit: function(target, source, move) {
+		    this.attrLastMove('[still]');
+		    this.add('-anim', source, "Metronome", target);
+		},
+		onHit(pokemon) {
+			this.useMove("Metronome", pokemon);
+			this.useMove("Metronome", pokemon);
+			this.useMove("Metronome", pokemon);
+		},
+		secondary: null,
+		target: "self",
+		type: "Dark",
+		contestType: "Cute",
 	},
 };
