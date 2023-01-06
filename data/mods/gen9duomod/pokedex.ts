@@ -279,9 +279,9 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       abilities: {0: "Supreme Overlord"},
       weightkg: 5,
     },
-    solisle: {
+    temporand: {
       num: 27.5,
-      species: "Solisle",
+      species: "Temporand",
       types: ["Ground", "Psychic"],
       baseStats: {hp: 95, atk: 75, def: 75, spa: 95, spd: 95, spe: 95},
       abilities: {0: "Purifying Salt"},
