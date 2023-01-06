@@ -136,7 +136,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     sanbatter: {
-		randomBattleMoves: ["poltergeist", "closecombat", "shadowsneak", "machpunch", "drainpunch", "swordsdance", "bulkup", "bellydrum", "shadowscratch"],
+		randomBattleMoves: ["poltergeist", "closecombat", "shadowsneak", "machpunch", "drainpunch", "swordsdance", "shadowscratch"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
