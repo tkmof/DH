@@ -295,9 +295,9 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       abilities: {0: "Magic Absorb"},
       weightkg: 5,
     },
-    mantistorm: {
+    mantelec: {
       num: 29.5,
-      species: "Mantistorm",
+      species: "Mantelec",
       types: ["Bug", "Electric"],
       baseStats: {hp: 70, atk: 120, def: 30, spa: 70, spd: 170, spe: 70},
       abilities: {0: "Sword of Ruin"},
