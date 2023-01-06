@@ -811,6 +811,29 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 8] Poketypos",
+		desc: `<b>[Gen 8] Poketypos</b>: A NatDex metagame that alters the names of Pokemon and change said Pokemon to fit their new name.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/pok%C3%A9typos-slate-2-single-stage-pokemon.3711498/">Poketypos on Smogon Forums</a>`,
+		],
+		mod: 'poketypos',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause', 'Data Mod', 'Mega Data Mod'],
+		banlist: [
+			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
+		],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}} */
+			let speciesTable = {};
+			let allowedTiers = ['Poketypos', 'Poketypos NFE', 'Poketypos LC'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (template.tier !== 'Poketypos' && template.tier !== 'Poketypos NFE' && template.tier !== 'Poketypos LC') {
+					return [set.species + ' is not legal in the Poketypos format.'];
+				}
+			}
+		},
+	 },
+	 {
 		name: "[Gen 1] RBY CAP",
 	   desc: `<b>[Gen 1] RBY CAP</b>: Community-made competitive Pokemon are added into the Gen 1 OU Metagame.`,
 	   threads: [
@@ -3655,22 +3678,22 @@ export const Formats: FormatList = [
 			}
 		},
 	},
-	{
-        name: "[Gen 8] Dance of the Dead",
-        desc: `<b>?????</b>`,
-        threads: [
-            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1sh7JljsjdTXlVlvUq45O2rT8x6ZM3nVv-kWkMnCgK_A/edit?usp=sharing">Spreadsheet</a>`,
-        ],
-        mod: 'danceofthedead',
-        ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Baton Pass Clause', 'OHKO Clause', 'Item Clause', 'Data Mod'],
-        banlist: ['All Pokemon', 'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'King\'s Rock',],
-        unbanlist: [
- 'Baloon-Popped', 'Encrave', 'Eneryth', 'Fantom', 'Flamepion', 'Grievenge', 'Hydread', 'Marspookial', 'Mortemoth', 'Pozaqes', 'Sanbatter', 'Sheegal', 'Spirox', 'Tumbleak', 'Wistape',			  
-			],	
-			onSwitchIn(pokemon) {
-        		this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
-        	},	
-	}, 
+	// {
+        // name: "[Gen 8] Dance of the Dead",
+        // desc: `<b>?????</b>`,
+        // threads: [
+            // `&bullet; <a href="https://docs.google.com/spreadsheets/d/1sh7JljsjdTXlVlvUq45O2rT8x6ZM3nVv-kWkMnCgK_A/edit?usp=sharing">Spreadsheet</a>`,
+        // ],
+        // mod: 'danceofthedead',
+        // ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Baton Pass Clause', 'OHKO Clause', 'Item Clause', 'Data Mod'],
+        // banlist: ['All Pokemon', 'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'King\'s Rock',],
+        // unbanlist: [
+ // 'Baloon-Popped', 'Encrave', 'Eneryth', 'Fantom', 'Flamepion', 'Grievenge', 'Hydread', 'Marspookial', 'Mortemoth', 'Pozaqes', 'Sanbatter', 'Sheegal', 'Spirox', 'Tumbleak', 'Wistape',			  
+			// ],	
+			// onSwitchIn(pokemon) {
+        		// this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+        	// },	
+	// }, 
 	{
 		name: "[Gen 8] Dex Reversal",
 		desc: `<b>Dex Reversal</b>.`,
