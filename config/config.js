@@ -289,17 +289,17 @@ exports.chatmodchat = '+';
  * battle modchat - default minimum group for speaking in battles; changeable with /modchat
  * @type {false | string}
  */
-exports.battlemodchat = false,
+exports.battlemodchat = false;
 /**
  * pm modchat - minimum group for PMing other users, challenging other users
  * @type {false | string}
  */
-exports.pmmodchat = false,
+exports.pmmodchat = false;
 /**
  * ladder modchat - minimum group for laddering
  * @type {false | GroupSymbol}
  */
-exports.laddermodchat = false,
+exports.laddermodchat = false;
 
 /**
  * forced timer - force the timer on for all battles
@@ -617,7 +617,7 @@ exports.grouplist = [
 		symbol: '%',
 		id: "driver",
 		name: "Driver",
-		inherit: '+';
+		inherit: '+',
 		jurisdiction: 'u',
 		announce: true,
 		warn: '\u2606u',
@@ -640,7 +640,7 @@ exports.grouplist = [
 		symbol: '\u2606',
 		id: "player",
 		name: "Player",
-		inherit: '+';
+		inherit: '+',
 		roomvoice: true,
 		modchat: true,
 		roomonly: true,
@@ -650,7 +650,7 @@ exports.grouplist = [
 		exportinputlog: true,
 	},
 	{
-		symbol: '+';
+		symbol: '+',
 		id: "voice",
 		name: "Voice",
 		inherit: ' ',
