@@ -249,7 +249,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		shortDesc: "Hits 4 times. High crit ratio.",
 		pp: 15,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, contact: 1, punch: 1},
+		flags: {protect: 1, mirror: 1, contact: 1},
 		multihit: 4,
 		critRatio: 2,
 		secondary: null,
