@@ -460,6 +460,7 @@ export class RandomTeams {
 			'iceshard', 'machpunch', 'pluck', 'pursuit', 'quickattack', 'selfdestruct', 'skydrop', 'suckerpunch', 'watershuriken', 'jetpunch', 
 
 			'clearsmog', 'eruption', 'icywind', 'incinerate', 'meteorbeam', 'snarl', 'vacuumwave', 'voltswitch', 'waterspout', 'gigatonhammer', 'uturn', 'onetrillionarrows',
+			'Remote Mine', 'Gigaton Hammer', 'One Trillion Arrows', 
 		];
 
 		// Iterate through all moves we've chosen so far and keep track of what they do:
