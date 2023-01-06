@@ -18,7 +18,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     spirox: {
-		randomBattleMoves: ["extremebeam", "remotemine", "makeitrain", "infernalparade", "nastyplot", "recover", "thunderbolt", "voltswitch", "calmmind", "trick", "spikes", "memento", "willowisp", "haze", "shadowball", "flashcannon"],
+		randomBattleMoves: ["extremebeam", "remotemine", "makeitrain", "infernalparade", "nastyplot", "recover", "thunderbolt", "voltswitch", "calmmind", "trick", "spikes", "memento", "willowisp", "shadowball", "flashcannon"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
