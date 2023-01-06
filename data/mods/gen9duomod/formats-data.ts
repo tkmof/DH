@@ -100,7 +100,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     commanto: {
-		randomBattleMoves: ["remotemine", "vacuumwave", "bugbuzz", "focusblast", "earthpower", "darkpulse", "fireblast", "psychic", "megahorn", "closecombat", "stoneedge", "skillswap", "stealthrock", "outburst"],
+		randomBattleMoves: ["remotemine", "vacuumwave", "bugbuzz", "focusblast", "earthpower", "knockoff", "fireblast", "psychic", "megahorn", "closecombat", "stoneedge", "skillswap", "stealthrock", "outburst"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
