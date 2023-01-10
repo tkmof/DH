@@ -44,8 +44,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('cant', pokemon, 'par');
 				pokemon.removeVolatile('bide');
 				pokemon.removeVolatile('twoturnmove');
-				pokemon.removeVolatile('fly');
-				pokemon.removeVolatile('dig');
 				pokemon.removeVolatile('solarbeam');
 				pokemon.removeVolatile('skullbash');
 				pokemon.removeVolatile('partialtrappinglock');
