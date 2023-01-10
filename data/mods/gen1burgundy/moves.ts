@@ -761,6 +761,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		recoil: [1, 2],
 		onModifyMove() {},
 	},
+/*
 	substitute: {
 		inherit: true,
 		onTryHit(target) {
@@ -839,6 +840,101 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: null,
 		target: "self",
 		type: "Normal",
+	},
+*/
+	substitute: {
+		num: 164,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user takes 1/4 of its maximum HP, rounded down, and puts it into a substitute to take its place in battle. The substitute has 1 HP plus the HP used to create it, and is removed once enough damage is inflicted on it or 255 damage is inflicted at once, or if the user switches out or faints. Until the substitute is broken, it receives damage from all attacks made by the opposing Pokemon and shields the user from status effects and stat stage changes caused by the opponent, unless the effect is Disable, Leech Seed, sleep, primary paralysis, or secondary confusion and the user's substitute did not break. The user still takes normal damage from status effects while behind its substitute, unless the effect is confusion damage, which is applied to the opposing Pokemon's substitute instead. If the substitute breaks during a multi-hit attack, the attack ends. Fails if the user does not have enough HP remaining to create a substitute, or if it already has a substitute. The user will create a substitute and then faint if its current HP is exactly 1/4 of its maximum HP.",
+		shortDesc: "User takes 1/4 its max HP to put in a Substitute.",
+		name: "Substitute",
+		pp: 10,
+		priority: 0,
+		volatileStatus: 'substitute',
+		onTryHit(target) {
+			if (target.volatiles['substitute']) {
+				this.add('-fail', target, 'move: Substitute');
+				return null;
+			}
+			// Stadium fixes the 25% = you die gag
+			if (target.hp <= target.maxhp / 4) {
+				this.add('-fail', target, 'move: Substitute', '[weak]');
+				return null;
+			}
+		},
+		onHit(target) {
+			// If max HP is 3 or less substitute makes no damage
+			if (target.maxhp > 3) {
+				this.directDamage(target.maxhp / 4, target, target);
+			}
+		},
+		condition: {
+			onStart(target) {
+				this.add('-start', target, 'Substitute');
+				this.effectData.hp = Math.floor(target.maxhp / 4) + 1;
+				delete target.volatiles['partiallytrapped'];
+			},
+			onTryHitPriority: -1,
+			onTryHit(target, source, move) {
+				if (move.drain) {
+					this.add('-miss', source);
+					return null;
+				}
+				if (move.category === 'Status') {
+					const SubBlocked = ['leechseed', 'lockon', 'mindreader', 'nightmare'];
+					if (move.status || move.boosts || move.volatileStatus === 'confusion' || SubBlocked.includes(move.id)) {
+						this.add('-activate', target, 'Substitute', '[block] ' + move.name);
+						return null;
+					}
+					return;
+				}
+				if (move.volatileStatus && target === source) return;
+				// NOTE: In future generations the damage is capped to the remaining HP of the
+				// Substitute, here we deliberately use the uncapped damage when tracking lastDamage etc.
+				// Also, multi-hit moves must always deal the same damage as the first hit for any subsequent hits
+				let uncappedDamage = move.hit > 1 ? source.lastDamage : this.getDamage(source, target, move);
+				if (!uncappedDamage) return null;
+				uncappedDamage = this.runEvent('SubDamage', target, source, move, uncappedDamage);
+				if (!uncappedDamage) return uncappedDamage;
+				source.lastDamage = uncappedDamage;
+				target.volatiles['substitute'].hp -= uncappedDamage > target.volatiles['substitute'].hp ?
+					target.volatiles['substitute'].hp : uncappedDamage;
+				if (target.volatiles['substitute'].hp <= 0) {
+					target.removeVolatile('substitute');
+					target.subFainted = true;
+				} else {
+					this.add('-activate', target, 'Substitute', '[damage]');
+				}
+				// Drain/recoil does not happen if the substitute breaks
+				if (target.volatiles['substitute']) {
+					if (move.recoil) {
+						this.damage(Math.round(uncappedDamage * move.recoil[0] / move.recoil[1]), source, target, 'recoil');
+					}
+					if (move.drain) {
+						this.heal(Math.ceil(uncappedDamage * move.drain[0] / move.drain[1]), source, target, 'drain');
+					}
+				}
+				this.runEvent('AfterSubDamage', target, source, move, uncappedDamage);
+				// Add here counter damage
+				const lastAttackedBy = target.getLastAttackedBy();
+				if (!lastAttackedBy) {
+					target.attackedBy.push({source: source, move: move.id, damage: uncappedDamage, thisTurn: true});
+				} else {
+					lastAttackedBy.move = move.id;
+					lastAttackedBy.damage = uncappedDamage;
+				}
+				return 0;
+			},
+			onEnd(target) {
+				this.add('-end', target, 'Substitute');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		flags: {},
 	},
 	superfang: {
 		inherit: true,
