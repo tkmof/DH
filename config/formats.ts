@@ -244,7 +244,7 @@ export const Formats: FormatList = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-1-burgundy-version-slate-3-new-moves-voting.3711525/">Burgundy Version on Smogon Forums</a>`,
 	   ],
       mod: 'gen1burgundy',
-      ruleset: ['Standard', 'Data Mod', 'Allow Tradeback'],
+      ruleset: ['Standard With Dig and Fly', 'Data Mod', 'Allow Tradeback'],
 		banlist: ['Uber'],
 		unbanlist: ['Anorith', 'Armaldo', 'Meditite', 'Medicham', 'Fletchling', 'Fletchinder', 'Talonflame', 'Sneasel-Hisui', 'Sneasler', 'Snover', 'Abomasnow',
 					  ],
