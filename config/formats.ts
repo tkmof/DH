@@ -238,6 +238,18 @@ export const Formats: FormatList = [
 		mod: 'bookofenigmas',
 	},
 	{
+	name: "[Gen 1] Burgundy Version",
+	   desc: `<b>[Gen 1] Burgundy Version</b>: An expansion of the Gen 1 OU metagame that changes some mechanics and adds new Pokemon and moves, both original and from later gens.`,
+	   threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-1-burgundy-version-slate-3-new-moves-voting.3711525/">Burgundy Version on Smogon Forums</a>`,
+	   ],
+      mod: 'gen1burgundy',
+      ruleset: ['Standard', 'Data Mod', 'Allow Tradeback'],
+		banlist: ['Uber'],
+		unbanlist: ['Anorith', 'Armaldo', 'Meditite', 'Medicham', 'Fletchling', 'Fletchinder', 'Talonflame', 'Sneasel-Hisui', 'Sneasler', 'Snover', 'Abomasnow',
+					  ],
+    },
+	{
 		name: "[Gen 8] Bust A Move",
     desc: [
 		"<b>Bust A Move</b>: A Pet Mod where previously competitively useless moves are given much needed makeovers.",
