@@ -360,11 +360,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		}
 
 		if (move.selfdestruct) {
-			if (!target.subFainted) {
 				this.faint(pokemon, pokemon, move);
-			} else {
-				this.hint(`In Gen 1, the user of ${move.name} will not take damage if it breaks a Substitute.`);
-			}
 		}
 
 		// The move missed.
