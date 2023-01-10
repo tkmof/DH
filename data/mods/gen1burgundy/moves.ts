@@ -465,20 +465,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 					this.debug('Nothing to leech into');
 					return;
 				}
-				// We check if leeched Pokémon has Toxic to increase leeched damage.
-				let toxicCounter = 1;
-				const residualdmg = pokemon.volatiles['residualdmg'];
-				if (residualdmg) {
-					residualdmg.counter++;
-					toxicCounter = residualdmg.counter;
-				}
-				const toLeech = this.clampIntRange(Math.floor(pokemon.baseMaxhp / 16), 1) * toxicCounter;
-				const damage = this.damage(toLeech, pokemon, leecher);
-				if (residualdmg) this.hint("In Gen 1, Leech Seed's damage is affected by Toxic's counter.", true);
-				if (!damage || toLeech > damage) {
-					this.hint("In Gen 1, Leech Seed recovery is not limited by the remaining HP of the seeded Pokemon.", true);
-				}
-				this.heal(toLeech, leecher, pokemon);
 			},
 		},
 	},
