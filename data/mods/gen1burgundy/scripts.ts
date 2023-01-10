@@ -861,9 +861,23 @@ export const Scripts: ModdedBattleScriptsData = {
 		// And we are done.
 		return Math.floor(damage);
 	},
-/*
 	init: function () {
-
+		this.modData('Learnsets', 'flareon').learnset.jumpkick = ['1L1'];
+		this.modData('Learnsets', 'flareon').learnset.thunder = ['1L1'];
+		this.modData('Learnsets', 'dewgong').learnset.reflect = ['1L1'];
+		this.modData('Learnsets', 'dewgong').learnset.amnesia = ['1L1'];
+		this.modData('Learnsets', 'onix').learnset.blizzard = ['1L1'];
+		this.modData('Learnsets', 'onix').learnset.icebeam = ['1L1'];
+		this.modData('Learnsets', 'onix').learnset.surf = ['1L1'];
+		this.modData('Learnsets', 'onix').learnset.bubblebeam = ['1L1'];
+		this.modData('Learnsets', 'onix').learnset.acidarmor = ['1L1'];
+		this.modData('Learnsets', 'onix').learnset.watergun = ['1L1'];
+		this.modData('Learnsets', 'aerodactyl').learnset.rockslide = ['1L1'];
+		this.modData('Learnsets', 'aerodactyl').learnset.drillpeck = ['1L1'];
+		this.modData('Learnsets', 'machamp').learnset.glare = ['1L1'];
+		this.modData('Learnsets', 'beedrill').learnset.earthquake = ['1L1'];
+		delete this.modData('Learnsets', 'onix').learnset.earthquake;
+		delete this.modData('Learnsets', 'onix').learnset.dig;
+		delete this.modData('Learnsets', 'onix').learnset.fissure;
 	},
-        */
 };
