@@ -44,6 +44,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('cant', pokemon, 'par');
 				pokemon.removeVolatile('bide');
 				pokemon.removeVolatile('twoturnmove');
+				pokemon.removeVolatile('dig');
+				pokemon.removeVolatile('fly');
 				pokemon.removeVolatile('solarbeam');
 				pokemon.removeVolatile('skullbash');
 				pokemon.removeVolatile('partialtrappinglock');
@@ -63,8 +65,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			} else {
 				this.add('-status', target, 'slp');
 			}
-			// 1-5 turns
-			this.effectData.startTime = this.random(1, 5);
+			// 1-3 turns
+			this.effectData.startTime = this.random(1, 4);
 			this.effectData.time = this.effectData.startTime;
 		},
 		onBeforeMovePriority: 10,
@@ -85,16 +87,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 		effectType: 'Status',
 		onStart(target) {
 			this.add('-status', target, 'frz');
-			//1-5 turns
-			this.effectData.startTime = this.random(1, 5);
-			this.effectData.time = this.effectData.startTime;
 		},
 		onBeforeMovePriority: 10,
 		onBeforeMove(pokemon, target, move) {
-			pokemon.statusData.time--;
-			if (pokemon.statusData.time > 0) {
-				this.add('cant', pokemon, 'frz');
-			}
+			this.add('cant', pokemon, 'frz');
 			pokemon.lastMove = null;
 			return false;
 		},
@@ -102,6 +98,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (move.secondary && move.secondary.status === 'brn') {
 				target.cureStatus();
 			}
+		},
+		onResidual(pokemon) {
+			if (this.randomChance(25, 256)) pokemon.cureStatus();
 		},
 	},
 	psn: {
@@ -113,13 +112,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onAfterMoveSelfPriority: 2,
 		onAfterMoveSelf(pokemon) {
 			const toxicCounter = pokemon.volatiles['residualdmg'] ? pokemon.volatiles['residualdmg'].counter : 1;
-			this.damage(this.clampIntRange(Math.floor(pokemon.maxhp / 16), 1) * toxicCounter, pokemon);
+			this.damage(this.clampIntRange(Math.floor(pokemon.maxhp / 8), 1) * toxicCounter, pokemon);
 			if (pokemon.volatiles['residualdmg']) {
 				this.hint("In Gen 1, Toxic's counter is retained after Rest and applies to PSN/BRN.", true);
 			}
 		},
 		onAfterSwitchInSelf(pokemon) {
-			this.damage(this.clampIntRange(Math.floor(pokemon.maxhp / 16), 1));
+			this.damage(this.clampIntRange(Math.floor(pokemon.maxhp / 8), 1));
 		},
 	},
 	tox: {
@@ -200,7 +199,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 	partialtrappinglock: {
 		name: 'partialtrappinglock',
 		durationCallback() {
-			const duration = this.sample([2, 2, 2, 2, 3, 3, 3, 3]); //edited duration to 2-3
+			const duration = this.sample([3, 3, 3, 3, 3, 3, 3, 3]); //edited duration to 2-3
 			return duration;
 		},
 		onResidual(target) {
