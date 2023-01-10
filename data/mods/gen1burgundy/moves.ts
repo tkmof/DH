@@ -680,7 +680,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		forceSwitch: true,
 		onTryHit() {},
-		priority: 0,
+		priority: -1,
 	},
 	rockslide: {
 		inherit: true,
