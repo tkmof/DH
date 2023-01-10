@@ -692,7 +692,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	roar: {
 		inherit: true,
-		forceSwitch: false,
+		forceSwitch: true,
 		onTryHit() {},
 		priority: 0,
 	},
@@ -798,52 +798,69 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			}
 		},
 		condition: {
-			onStart: function (target) {
+			onStart(target) {
 				this.add('-start', target, 'Substitute');
-				this.effectData.hp = Math.floor(target.maxhp / 4) + 1;
+				this.effectData.hp = Math.floor(target.maxhp / 4);
 				delete target.volatiles['partiallytrapped'];
 			},
-			onTryHitPriority: -1,
-			onTryHit: function (target, source, move) {
+			onTryPrimaryHitPriority: -1,
+			onTryPrimaryHit(target, source, move) {
+				if (move.stallingMove) {
+					this.add('-fail', source);
+					return null;
+				}
+				if (target === source) {
+					this.debug('sub bypass: self hit');
+					return;
+				}
+				if (move.id === 'twineedle') {
+					move.secondaries = move.secondaries!.filter(p => !p.kingsrock);
+				}
+				if (move.drain) {
+					this.add('-miss', source);
+					this.hint("In Gen 2, draining moves always miss against Substitute.");
+					return null;
+				}
 				if (move.category === 'Status') {
-					// In gen 1 it only blocks:
-					// poison, confusion, secondary effect confusion, stat reducing moves and Leech Seed.
-					let SubBlocked = ['lockon', 'meanlook', 'mindreader', 'nightmare'];
-					if (move.status === 'psn' || move.status === 'tox' || (move.boosts && target !== source) || move.volatileStatus === 'confusion' || SubBlocked.includes(move.id)) {
-						return false;
+					const SubBlocked = ['leechseed'];
+					if (move.id === 'swagger') {
+						// this is safe, move is a copy
+						delete move.volatileStatus;
+					}
+					if (
+						move.status || (move.boosts && move.id !== 'swagger') ||
+						move.volatileStatus === 'confusion' || SubBlocked.includes(move.id)
+					) {
+						this.add('-activate', target, 'Substitute', '[block] ' + move.name);
+						return null;
 					}
 					return;
 				}
-				if (move.volatileStatus && target === source) return;
 				let damage = this.getDamage(source, target, move);
-				if (!damage) return null;
+				if (!damage) {
+					return null;
+				}
 				damage = this.runEvent('SubDamage', target, source, move, damage);
-				if (!damage) return damage;
+				if (!damage) {
+					return damage;
+				}
+				if (damage > target.volatiles['substitute'].hp) {
+					damage = target.volatiles['substitute'].hp as number;
+				}
 				target.volatiles['substitute'].hp -= damage;
 				source.lastDamage = damage;
 				if (target.volatiles['substitute'].hp <= 0) {
 					target.removeVolatile('substitute');
-					target.subFainted = true;
 				} else {
 					this.add('-activate', target, 'Substitute', '[damage]');
 				}
-				// Drain/recoil does not happen if the substitute breaks
-				if (target.volatiles['substitute']) {
-					if (move.recoil) {
-						this.damage(Math.round(damage * move.recoil[0] / move.recoil[1]), source, target, 'recoil');
-					}
-					if (move.drain) {
-						this.heal(Math.ceil(damage * move.drain[0] / move.drain[1]), source, target, 'drain');
-					}
+				if (move.recoil) {
+					this.damage(1, source, target, 'recoil');
 				}
 				this.runEvent('AfterSubDamage', target, source, move, damage);
-				// Add here counter damage
-				if (!target.lastAttackedBy) target.lastAttackedBy = {pokemon: source, thisTurn: true};
-				target.lastAttackedBy.move = move.id;
-				target.lastAttackedBy.damage = damage;
-				return 0;
+				return this.HIT_SUBSTITUTE;
 			},
-			onEnd: function (target) {
+			onEnd(target) {
 				this.add('-end', target, 'Substitute');
 			},
 		},
@@ -882,7 +899,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	whirlwind: {
 		inherit: true,
 		accuracy: 85,
-		forceSwitch: false,
+		forceSwitch: true,
 		onTryHit() {},
 		priority: 0,
 	},
