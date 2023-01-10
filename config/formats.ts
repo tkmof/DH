@@ -3172,13 +3172,13 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-        name: "[Gen 9] Duomod Randbats",
+        name: "Gen 9 Duomod Randbats",
         desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
         threads: [
             `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
         ],
         team: 'random',
-        mod: 'gen9duomod',
+        mod: 'g9duomod',
         ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Subscribe For More Content', 'Duomod Data Mod'],
         onSwitchIn(pokemon) {
             this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
@@ -3735,12 +3735,12 @@ export const Formats: FormatList = [
 	},
 	
 	{
-        name: "[Gen 9] Duomod",
+        name: "Gen 9 Duomod",
         desc: `<b>Duomod</b>: back and better than ever baybeeeeee`,
         threads: [
             `&bullet; <a href="https://docs.google.com/spreadsheets/d/1lguyF31tjV8f-Gv3uLxmZXGAlg23k2fkF_nBqevJouM/edit?usp=sharing">Spreadsheet</a>`,
         ],
-        mod: 'gen9duomod',
+        mod: 'g9duomod',
         ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Baton Pass Clause', 'OHKO Clause', 'Subscribe For More Content', 'Duomod Data Mod'],
         banlist: ['All Pokemon', 'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z',],
         unbanlist: [

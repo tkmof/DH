@@ -249,7 +249,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		shortDesc: "Hits 4 times. High crit ratio.",
 		pp: 15,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, contact: 1, punch: 1},
+		flags: {protect: 1, mirror: 1, contact: 1},
 		multihit: 4,
 		critRatio: 2,
 		secondary: null,
@@ -285,7 +285,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	onetrillionarrows: {
 		num: 9013,
 		accuracy: 100,
-		basePower: 40,
+		basePower: 75,
 		category: "Physical",
 		name: "One Trillion Arrows",
 		shortDesc: "Removes target's immunities.",
@@ -391,7 +391,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	polarpounce: {
 		num: 9016,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 90,
 		category: "Physical",
 		name: "Polar Pounce",
 		shortDesc: "Sets Hail.",
@@ -413,7 +413,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	remotemine: {
 		num: 9017,
 		accuracy: 100,
-		basePower: 130,
+		basePower: 180,
 		onBeforeMovePriority: 6,
 		onTryMove(pokemon, target, move) {
 			const callerMoveId = move.sourceEffect || move.id;
@@ -485,7 +485,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			else if (target.hp * 2 <= target.maxhp) {return this.chainModify(2);}
 			else if (target.hp * 4 <= target.maxhp) {return this.chainModify(3);}
 			else if (target.hp * 10 <= target.maxhp) {return this.chainModify(10);}
-			else {return this.chainModify(1);}
+			else {
+				this.boost({def: -1});
+				return this.chainModify(1);
+			}
 		},
 		secondary: null,
 		target: "normal",

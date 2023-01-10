@@ -460,6 +460,7 @@ export class RandomTeams {
 			'iceshard', 'machpunch', 'pluck', 'pursuit', 'quickattack', 'selfdestruct', 'skydrop', 'suckerpunch', 'watershuriken', 'jetpunch', 
 
 			'clearsmog', 'eruption', 'icywind', 'incinerate', 'meteorbeam', 'snarl', 'vacuumwave', 'voltswitch', 'waterspout', 'gigatonhammer', 'uturn', 'onetrillionarrows',
+			'Remote Mine', 'Gigaton Hammer', 'One Trillion Arrows', 
 		];
 
 		// Iterate through all moves we've chosen so far and keep track of what they do:
@@ -1282,13 +1283,11 @@ export class RandomTeams {
 			}
 		} else if (species.evos.length) {
 			item = (ability === 'Technician' && counter.Physical >= 4) ? 'Choice Band' : 'Eviolite';
-		} else if (hasMove['conversion'] && !teamDetails.zMove) {
-			item = 'Normalium Z';
 		} else if (hasMove['bellydrum']) {
 			if (ability === 'Gluttony') {
 				item = this.sample(['Aguav', 'Figy', 'Iapapa', 'Mago', 'Wiki']) + ' Berry';
 			} else if (species.baseStats.spe <= 50 && !teamDetails.zMove && this.randomChance(1, 2)) {
-				item = 'Normalium Z';
+				item = 'Sitrus Berry';
 			} else {
 				item = (!!counter['priority'] || !hasMove['substitute']) ? 'Sitrus Berry' : 'Salac Berry';
 			}

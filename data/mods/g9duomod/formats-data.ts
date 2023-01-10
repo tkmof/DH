@@ -18,7 +18,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     spirox: {
-		randomBattleMoves: ["extremebeam", "remotemine", "makeitrain", "infernalparade", "nastyplot", "recover", "thunderbolt", "voltswitch", "calmmind", "trick", "spikes", "memento", "willowisp", "haze", "shadowball", "flashcannon"],
+		randomBattleMoves: ["extremebeam", "remotemine", "makeitrain", "infernalparade", "nastyplot", "recover", "thunderbolt", "voltswitch", "calmmind", "trick", "spikes", "memento", "willowisp", "shadowball", "flashcannon"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -100,7 +100,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     commanto: {
-		randomBattleMoves: ["remotemine", "vacuumwave", "bugbuzz", "focusblast", "earthpower", "darkpulse", "fireblast", "psychic", "megahorn", "closecombat", "stoneedge", "skillswap", "stealthrock", "outburst"],
+		randomBattleMoves: ["remotemine", "vacuumwave", "bugbuzz", "focusblast", "earthpower", "knockoff", "fireblast", "psychic", "megahorn", "closecombat", "stoneedge", "skillswap", "stealthrock", "outburst"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -136,7 +136,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     sanbatter: {
-		randomBattleMoves: ["poltergeist", "closecombat", "shadowsneak", "machpunch", "drainpunch", "swordsdance", "bulkup", "bellydrum", "shadowscratch"],
+		randomBattleMoves: ["poltergeist", "closecombat", "shadowsneak", "machpunch", "drainpunch", "swordsdance", "shadowscratch"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
