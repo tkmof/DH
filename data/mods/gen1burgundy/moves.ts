@@ -752,105 +752,81 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		onModifyMove() {},
 	},
 	substitute: {
-		num: 164,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		desc: "The user takes 1/4 of its maximum HP, rounded down, and puts it into a substitute to take its place in battle. The substitute is removed once enough damage is inflicted on it, or if the user switches out or faints. Until the substitute is broken, it receives damage from all attacks made by other Pokemon and shields the user from poison status and some stat stage changes caused by other Pokemon. The user still takes normal damage from status effects while behind its substitute. If the substitute breaks during a multi-hit attack, the user will take damage from any remaining hits. This move fails if the user already has a substitute.",
-		shortDesc: "User takes 1/4 its max HP to put in a Substitute.",
-		id: "substitute",
-		isViable: true,
-		name: "Substitute",
-		pp: 10,
-		priority: 0,
-		volatileStatus: 'Substitute',
-		onTryHit: function (target) {
+		inherit: true,
+		onTryHit(target) {
 			if (target.volatiles['substitute']) {
 				this.add('-fail', target, 'move: Substitute');
 				return null;
 			}
-			// We only prevent when hp is less than one quarter.
-			// If you use substitute at exactly one quarter, you faint.
-			if (target.hp === target.maxhp / 4) target.faint();
-			if (target.hp < target.maxhp / 4) {
+			// Stadium fixes the 25% = you die gag
+			if (target.hp <= target.maxhp / 4) {
 				this.add('-fail', target, 'move: Substitute', '[weak]');
 				return null;
-			}
-		},
-		onHit: function (target) {
-			// If max HP is 3 or less substitute makes no damage
-			if (target.maxhp > 3) {
-				this.directDamage(target.maxhp / 4, target, target);
 			}
 		},
 		condition: {
 			onStart(target) {
 				this.add('-start', target, 'Substitute');
-				this.effectData.hp = Math.floor(target.maxhp / 4);
+				this.effectState.hp = Math.floor(target.maxhp / 4);
 				delete target.volatiles['partiallytrapped'];
 			},
-			onTryPrimaryHitPriority: -1,
-			onTryPrimaryHit(target, source, move) {
-				if (move.stallingMove) {
-					this.add('-fail', source);
-					return null;
-				}
+			onTryHitPriority: -1,
+			onTryHit(target, source, move) {
 				if (target === source) {
 					this.debug('sub bypass: self hit');
 					return;
 				}
-				if (move.id === 'twineedle') {
-					move.secondaries = move.secondaries!.filter(p => !p.kingsrock);
-				}
 				if (move.drain) {
 					this.add('-miss', source);
-					this.hint("In Gen 2, draining moves always miss against Substitute.");
 					return null;
 				}
 				if (move.category === 'Status') {
-					const SubBlocked = ['leechseed'];
-					if (move.id === 'swagger') {
-						// this is safe, move is a copy
-						delete move.volatileStatus;
-					}
-					if (
-						move.status || (move.boosts && move.id !== 'swagger') ||
-						move.volatileStatus === 'confusion' || SubBlocked.includes(move.id)
-					) {
+					const SubBlocked = ['leechseed', 'lockon', 'mindreader', 'nightmare'];
+					if (move.status || move.boosts || move.volatileStatus === 'confusion' || SubBlocked.includes(move.id)) {
 						this.add('-activate', target, 'Substitute', '[block] ' + move.name);
 						return null;
 					}
 					return;
 				}
-				let damage = this.getDamage(source, target, move);
-				if (!damage) {
-					return null;
+				if (move.volatileStatus && target === source) return;
+				let damage = this.actions.getDamage(source, target, move);
+				if (damage && damage > target.volatiles['substitute'].hp) {
+					damage = target.volatiles['substitute'].hp;
 				}
+				if (!damage && damage !== 0) return null;
 				damage = this.runEvent('SubDamage', target, source, move, damage);
-				if (!damage) {
-					return damage;
-				}
-				if (damage > target.volatiles['substitute'].hp) {
-					damage = target.volatiles['substitute'].hp as number;
-				}
+				if (!damage && damage !== 0) return damage;
 				target.volatiles['substitute'].hp -= damage;
-				source.lastDamage = damage;
+				this.lastDamage = damage;
 				if (target.volatiles['substitute'].hp <= 0) {
+					this.debug('Substitute broke');
 					target.removeVolatile('substitute');
+					target.subFainted = true;
 				} else {
 					this.add('-activate', target, 'Substitute', '[damage]');
 				}
-				if (move.recoil) {
-					this.damage(1, source, target, 'recoil');
+				// Drain/recoil does not happen if the substitute breaks
+				if (target.volatiles['substitute']) {
+					if (move.recoil) {
+						this.damage(this.clampIntRange(Math.floor(damage * move.recoil[0] / move.recoil[1]), 1), source, target, 'recoil');
+					}
 				}
 				this.runEvent('AfterSubDamage', target, source, move, damage);
-				return this.HIT_SUBSTITUTE;
+				// Add here counter damage
+				const lastAttackedBy = target.getLastAttackedBy();
+				if (!lastAttackedBy) {
+					target.attackedBy.push({source: source, move: move.id, damage: damage, slot: source.getSlot(), thisTurn: true});
+				} else {
+					lastAttackedBy.move = move.id;
+					lastAttackedBy.damage = damage;
+				}
+				return 0;
 			},
 			onEnd(target) {
 				this.add('-end', target, 'Substitute');
 			},
 		},
-		secondary: false,
+		secondary: null,
 		target: "self",
 		type: "Normal",
 	},
