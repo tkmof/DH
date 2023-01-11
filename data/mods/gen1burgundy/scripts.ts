@@ -309,7 +309,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		if (move.target === 'self' && accuracy !== true) accuracy++;
 		if (move.target === 'self' && accuracy !== true) accuracy++; //this extra one removes the self-heal glitch
 		// 1/256 chance of missing always, no matter what. Besides the aforementioned exceptions.
-		if (accuracy !== true && !this.randomChance(accuracy, 256)) {
+		if (accuracy !== true && !this.randomChance(accuracy, 255)) {
 			this.attrLastMove('[miss]');
 			this.add('-miss', pokemon);
 			if (accuracy === 257) this.hint("This move missed because of the 1/256 glitch.");
