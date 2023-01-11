@@ -308,7 +308,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		// Moves that target the user do not suffer from the 1/256 miss chance.
 		if (move.target === 'self' && accuracy !== true) accuracy++;
 		if (move.target === 'self' && accuracy !== true) accuracy++; //this extra one removes the self-heal glitch
-		/*
 		// 1/256 chance of missing always, no matter what. Besides the aforementioned exceptions.
 		if (accuracy !== true && !this.randomChance(accuracy, 256)) {
 			this.attrLastMove('[miss]');
@@ -316,7 +315,6 @@ export const Scripts: ModdedBattleScriptsData = {
 			if (accuracy === 257) this.hint("This move missed because of the 1/256 glitch.");
 			damage = false;
 		}
-		*/
 
 		// If damage is 0 and not false it means it didn't miss, let's calc.
 		if (damage !== false) {
