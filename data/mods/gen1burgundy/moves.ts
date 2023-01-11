@@ -4,6 +4,129 @@
  */
 
 export const Moves: {[k: string]: ModdedMoveData} = {
+// New Moves
+	focuspunch: {
+		num: 264,
+		accuracy: 100,
+		basePower: 150,
+		category: "Physical",
+		name: "Focus Punch",
+		pp: 20,
+		priority: -3,
+		flags: {contact: 1, protect: 1, punch: 1},
+		beforeTurnCallback(pokemon) {
+			pokemon.addVolatile('focuspunch');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.volatiles['focuspunch'] && pokemon.volatiles['focuspunch'].lostFocus) {
+				this.add('cant', pokemon, 'Focus Punch', 'Focus Punch');
+				return true;
+			}
+		},
+		condition: {
+			duration: 1,
+			onStart(pokemon) {
+				this.add('-singleturn', pokemon, 'move: Focus Punch');
+			},
+			onHit(pokemon, source, move) {
+				if (move.category !== 'Status') {
+					pokemon.volatiles['focuspunch'].lostFocus = true;
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Tough",
+		gen: 1,
+	},	
+	blastburn: {
+		num: 307,
+		accuracy: 90,
+		basePower: 150,
+		category: "Special",
+		name: "Blast Burn",
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		self: null,
+		onHit(target, source) {
+			if (target.hp) {
+				source.addVolatile('mustrecharge');
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Beautiful",
+		gen: 1,
+	},	
+	frenzyplant: {
+		num: 338,
+		accuracy: 90,
+		basePower: 150,
+		category: "Special",
+		name: "Frenzy Plant",
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		self: null,
+		onHit(target, source) {
+			if (target.hp) {
+				source.addVolatile('mustrecharge');
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		contestType: "Beautiful",
+		gen: 1,
+	},
+	hydrocannon: {
+		num: 308,
+		accuracy: 90,
+		basePower: 150,
+		category: "Special",
+		name: "Hydro Cannon",
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		self: null,
+		onHit(target, source) {
+			if (target.hp) {
+				source.addVolatile('mustrecharge');
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
+		gen: 1,
+	},	
+	dracometeor: {
+		num: 434,
+		shortDesc: "Lowers the user's Special by 2 stages after use.",
+		accuracy: 90,
+		basePower: 150,
+		category: "Special",
+		name: "Draco Meteor",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		self: {
+			boosts: {
+				spa: -2,
+				spd: -2,
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Cool",
+		gen: 1,
+	},
+	
+// Old Moves	
 	acid: {
 		inherit: true,
 		category: "Physical",
