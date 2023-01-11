@@ -879,5 +879,27 @@ export const Scripts: ModdedBattleScriptsData = {
 		delete this.modData('Learnsets', 'onix').learnset.earthquake;
 		delete this.modData('Learnsets', 'onix').learnset.dig;
 		delete this.modData('Learnsets', 'onix').learnset.fissure;
+		this.modData('Learnsets', 'charmander').learnset.blastburn = ['1L1'];
+		this.modData('Learnsets', 'charmeleon').learnset.blastburn = ['1L1'];
+		this.modData('Learnsets', 'charizard').learnset.blastburn = ['1L1'];
+		this.modData('Learnsets', 'squirtle').learnset.hydrocannon = ['1L1'];
+		this.modData('Learnsets', 'wartortle').learnset.hydrocannon = ['1L1'];
+		this.modData('Learnsets', 'blastoise').learnset.hydrocannon = ['1L1'];
+		this.modData('Learnsets', 'bulbasaur').learnset.frenzyplant = ['1L1'];
+		this.modData('Learnsets', 'ivysaur').learnset.frenzyplant = ['1L1'];
+		this.modData('Learnsets', 'venusaur').learnset.frenzyplant = ['1L1'];
+		this.modData('Learnsets', 'dratini').learnset.dracometeor = ['1L1'];
+		this.modData('Learnsets', 'dragonair').learnset.dracometeor = ['1L1'];
+		this.modData('Learnsets', 'dragonite').learnset.dracometeor = ['1L1'];
+		this.modData('Learnsets', 'mew').learnset.dracometeor = ['1L1'];
+		this.modData('Learnsets', 'machop').learnset.focuspunch = ['1L1'];
+		this.modData('Learnsets', 'machoke').learnset.focuspunch = ['1L1'];
+		this.modData('Learnsets', 'machamp').learnset.focuspunch = ['1L1'];
+		this.modData('Learnsets', 'mankey').learnset.focuspunch = ['1L1'];
+		this.modData('Learnsets', 'primeape').learnset.focuspunch = ['1L1'];
+		this.modData('Learnsets', 'poliwrath').learnset.focuspunch = ['1L1'];
+		this.modData('Learnsets', 'pinsir').learnset.focuspunch = ['1L1'];
+		this.modData('Learnsets', 'grimer').learnset.focuspunch = ['1L1'];
+		this.modData('Learnsets', 'muk').learnset.focuspunch = ['1L1'];
 	},
 };
