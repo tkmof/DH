@@ -1223,3 +1223,20 @@ Require stack:
     at ChildProcess.<anonymous> (C:\Users\lukas\Documents\GitHub\AGE\.lib-dist\process-manager.js:470:48)
     at ChildProcess.emit (node:events:526:28)
     at ChildProcess.emit (node:domain:475:12)
+
+Error: The SSL settings are misconfigured:
+Error: error:0909006C:PEM routines:get_name:no start line
+    at node:internal/tls/secure-context:65:13
+    at Array.forEach (<anonymous>)
+    at setCerts (node:internal/tls/secure-context:63:3)
+    at configSecureContext (node:internal/tls/secure-context:152:5)
+    at Object.createSecureContext (node:_tls_common:116:3)
+    at Server.setSecureContext (node:_tls_wrap:1344:27)
+    at Server (node:_tls_wrap:1203:8)
+    at new Server (node:https:69:3)
+    at Object.createServer (node:https:105:10)
+    at new ServerStream (C:\Users\aahfk\Documents\GitHub\DH\.server-dist\sockets.js:211:29)
+    at new ServerStream (C:\Users\aahfk\Documents\GitHub\DH\.server-dist\sockets.js:213:44)
+    at RawProcessManager.setupChild [as _setupChild] (C:\Users\aahfk\Documents\GitHub\DH\.server-dist\sockets.js:553:20)
+    at Immediate._onImmediate (C:\Users\aahfk\Documents\GitHub\DH\.lib-dist\process-manager.js:712:29)
+    at processImmediate (node:internal/timers:464:21)

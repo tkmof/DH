@@ -85,4 +85,46 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		gen: 8,
 		desc: "If held by a Heliolisk, this item allows it to Mega Evolve in battle.",
 	},
+	escavalite: {
+		name: "Escavalite",
+		spritenum: 578,
+		megaStone: "Escavalier-Mega",
+		megaEvolves: "Escavalier",
+		itemUser: ["Escavalier"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1007,
+		gen: 8,
+		desc: "If held by an Escavalier, this item allows it to Mega Evolve in battle.",
+	},
+	haxorite: {
+		name: "Haxorite",
+		spritenum: 578,
+		megaStone: "Haxorus-Mega",
+		megaEvolves: "Haxorus",
+		itemUser: ["Haxorus"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1008,
+		gen: 8,
+		desc: "If held by a Haxorus, this item allows it to Mega Evolve in battle.",
+	},
+	mienshaonite: {
+		name: "Mienshaonite",
+		spritenum: 578,
+		megaStone: "Mienshao-Mega",
+		megaEvolves: "Mienshao",
+		itemUser: ["Mienshao"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1009,
+		gen: 8,
+		desc: "If held by a Mienshao, this item allows it to Mega Evolve in battle.",
+	},
 };
