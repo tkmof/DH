@@ -266,16 +266,16 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 
 	persistence: { 
+	/*
 		onBeforeMove(target, source, move) {
 			if (!source || source === target || move.category === 'Status' || move.name === "Counter") return;
 			const moveType = move.id === 'hiddenpower' ? target.hpType : move.type;
-			/*if (move.flags['charge'] && !target.volatiles['twoturnmove']) {
+			if (move.flags['charge'] && !target.volatiles['twoturnmove']) {
 				this.boost({atk: 1});
 			} else if (!this.dex.getImmunity(moveType, source)) {
 				this.boost({atk: 1});
 			}
 			(move as any).persistence = true;
-			*/
 		},
 		onAfterMove(source, target, move) {
 			if (!source || source === target || move.category === 'Status' || move.name === "Counter") return;
@@ -286,9 +286,10 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			} else if(target.moveThisTurnResult) {
 			}
 		},
+*/
 		name: "Persistence",
 		desc: "If the user chooses an attacking move but doesn't damage the target on the same turn, raises the user's Attack by 1 stage. This effect doesn't occur if this Pokemon is charging.",
-		shortDesc: "If the user doesn't damage the target with an attacking move, raises user's Attack by 1 stage.",
+		shortDesc: "(Non-functional placeholder) If the user doesn't damage the target with an attacking move, raises user's Attack by 1 stage.",
 		num: -111,
 	},
 		
