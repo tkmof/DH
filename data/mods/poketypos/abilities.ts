@@ -63,5 +63,5 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
     name: "Guard Dog",
     rating: 2,
     num: 301,
-    },
+	},
 };
