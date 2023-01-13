@@ -1,50 +1,50 @@
 export const FormatsData: {[k: string]: SpeciesFormatsData} = {
    soaperior: {
-      tier: "Paleomons",
-      doublesTier: "Paleomons", 
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
    starizard: {
-      tier: "Paleomons",
-      doublesTier: "Paleomons", 
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
    smoninja: {
-      tier: "Paleomons",
-      doublesTier: "Paleomons", 
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	sapras: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	furant: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	urthwyrm: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	mud: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	fweezing: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	arcamine: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	aurodactyl: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	eelix: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 	appleton: {
-		tier: "Paleomons",
-      doublesTier: "Paleomons", 
+		tier: "Poketypos",
+      doublesTier: "Poketypos", 
    }, 
 };
