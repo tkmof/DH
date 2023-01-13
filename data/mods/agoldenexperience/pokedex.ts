@@ -3952,7 +3952,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		weightkg: 92,
 		eggGroups: ["Amorphous"],
 	},
-	/*straightasani: {
+	straightasani: {
 		num: 2065,
 		name: "Straightasan-i",
 		types: ["Dark", "Flying"],
@@ -3961,7 +3961,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		heightm: 0.4,
 		weightkg: 9,
 		eggGroups: ["Flying"],
-	},*/
+	},
 	nopainnogain: {
 		num: 2066,
 		name: "Nopainnogain",

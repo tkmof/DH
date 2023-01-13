@@ -3599,7 +3599,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			earthquake: ["8L1"],
 		},
 	},
-	/*straightasani: {
+	straightasani: {
 		learnset: {
 			knockoff: ["8L1"],
 			darkpulse: ["8L1"],
@@ -3613,7 +3613,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			acrobatics: ["8L1"],
 			roost: ["8L1"],
 		},
-	},*/
+	},
 	nopainnogain: {
 		learnset: {
 			mistyexplosion: ["8L1"],
