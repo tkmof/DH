@@ -722,7 +722,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	aerodactyl: {
 		inherit: true,
-		baseStats: {hp: 80, atk: 125, def: 75, spa: 70, spd: 70, spe: 135},
+		baseStats: {hp: 80, atk: 105, def: 75, spa: 70, spd: 70, spe: 130},
 	},
 	snorlax: {
 		inherit: true,
