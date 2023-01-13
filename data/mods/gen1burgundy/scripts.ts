@@ -871,7 +871,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'onix').learnset.acidarmor = ['1L1'];
 		this.modData('Learnsets', 'onix').learnset.watergun = ['1L1'];
 		this.modData('Learnsets', 'aerodactyl').learnset.rockslide = ['1L1'];
-		this.modData('Learnsets', 'aerodactyl').learnset.drillpeck = ['1L1'];
 		this.modData('Learnsets', 'machamp').learnset.glare = ['1L1'];
 		this.modData('Learnsets', 'beedrill').learnset.earthquake = ['1L1'];
 		delete this.modData('Learnsets', 'onix').learnset.earthquake;
