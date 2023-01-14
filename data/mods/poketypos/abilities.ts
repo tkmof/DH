@@ -40,7 +40,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Thermal Exchange",
 		shortDesc: "This Pokemon's Attack is raised by 1 when damaged by Fire moves; can't be burned.",
 		rating: 2.5,
-		num: 270,
+		num: 301,
 	},
 	guarddog: {
 		onDragOutPriority: 1,
@@ -57,6 +57,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Guard Dog",
 		shortDesc: "Immune to Intimidate. Intimidated: +1 Attack. Cannot be forced to switch out.",
 		rating: 2,
-		num: 275,
+		num: 302,
+	},
+	snowwarning: {
+		onStart(source) {
+			this.field.setWeather('snow');
+		},
+		name: "Snow Warning",
+		rating: 4,
+		num: 303,
 	},
 };
