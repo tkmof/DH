@@ -30,12 +30,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.boost({atk: 1});
 			}
 		},
-		onUpdate(pokemon) {
-			if (pokemon.status === 'brn') {
-				this.add('-activate', pokemon, 'ability: Thermal Exchange');
-				pokemon.cureStatus();
-			}
-		},
 		onSetStatus(status, target, source, effect) {
 			if (status.id !== 'brn') return;
 			if ((effect as Move)?.status) {
@@ -44,24 +38,23 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			return false;
 		},
 		name: "Thermal Exchange",
-		rating: 3,
-		num: 300,
+		rating: 2.5,
+		num: 270,
 	},
-  guarddog: {
+	guarddog: {
 		onDragOutPriority: 1,
 		onDragOut(pokemon) {
 			this.add('-activate', pokemon, 'ability: Guard Dog');
 			return null;
-			}
 		},
 		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate') {
-				this.boost({atk: 1});
-				this.add('-immune', target, '[from] ability: Guard Dog');
+			if (effect.name === 'Intimidate') {
+				delete boost.atk;
+				this.boost({atk: 1}, target, target, null, false, true);
 			}
 		},
-    name: "Guard Dog",
-    rating: 2,
-    num: 301,
+		name: "Guard Dog",
+		rating: 2,
+		num: 275,
 	},
 };
