@@ -194,13 +194,14 @@ export const Formats: FormatList = [
 	},
 	{
 		name: "[Gen 8] Book of Enigmas",
+		mod: 'bookofenigmas',
 		desc: [
 			"<b>Book of Enigmas</b>: A Pet Mod that aims to create new Paradox Pokemon based on Ho-oh and Lugia - the sky and the sea, respectively.",
 		],
 		threads: [
 			`&bullet: <a href="https://www.smogon.com/forums/threads/book-of-enigmas-slate-0-the-beginning-custom-abilities-names.3711490/">Thread on Smogon.`,
 		],
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod',],
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
 		banlist: [
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 			'Sceptilite', 'Blazikenite', 'Swampertite', 'Gardevoirite', 'Galladite', 'Alakazite', 'Gyaradosite',
@@ -209,11 +210,12 @@ export const Formats: FormatList = [
 			'Garchompite', 'Steelixite', 'Beedrillite', 'Pidgeotite', 
 			'Blue Orb', 'Red Orb', //this is just copied from ANL's lol
 			'Beedrill-Mega', 'Pidgeot-Mega', //?????
+			'Weavile', 'Mewtwo', 'Ho-oh', 'Lugia',
 		],
 		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}} */
+			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
-			let allowedTiers = ['BoE OU', "BoE NFE", "BoE LC"];
+			let allowedTiers = ['BoE Uber', 'BoE OU', "BoE NFE", "BoE LC"];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
@@ -235,7 +237,6 @@ export const Formats: FormatList = [
 				return null;
 			}
 		},
-		mod: 'bookofenigmas',
 	},
 	{
 		name: "[Gen 8] Bust A Move",

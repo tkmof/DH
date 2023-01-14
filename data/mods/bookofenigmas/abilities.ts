@@ -1,3 +1,5 @@
+import { consoleips } from "../../../config/config-example";
+
 const slicing = [
 	'cut', 'razorleaf', 'slash', 'furycutter', 'aircutter', 'aerialace',
 	'leafblade', 'nightslash', 'airslash', 'xscissor', 'psychocutter',
@@ -6,6 +8,30 @@ const slicing = [
 	'aquacutter'
 ];
 export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
+	//Paradoxes abilities
+	cleansingfire: {
+		onAnyFaintPriority: 1,
+		onAnyFaint(pokemon) {
+			this.debug('cleansingfire');
+			this.add('-activate', this.effectData.target, 'ability: Cleansing Fire');
+			this.effectData.target.cureStatus();
+		},
+		name: "Cleansing Fire",
+		rating: 3.5,
+		num: -1,
+	},
+	corruptingstorm: {
+		name: "Corrupting Storm",
+		onFaint(target, source, effect) {
+			this.add('-activate', target, 'ability: Corrupting Storm');
+			source.addVolatile('storm');
+		},
+		rating: 2.5,
+		num: -2,
+	},
+
+
+	//Gen 9 abilities
 	sharpness: {
 		onBasePowerPriority: 19,
 		onBasePower(basePower, attacker, defender, move) {
