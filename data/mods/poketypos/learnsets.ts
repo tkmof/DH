@@ -316,7 +316,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			dragondance: ["8M", "7E", "6E", "5E", "4E", "3E"],
 			dragonpulse: ["8M", "8V", "7T", "7E", "6T", "6E", "5T", "5E", "4M"],
 			dragonrage: ["7V"],
-			dreameater: ["8V", "7M", "7V", "6M", "5M", "4M", "3T"],
+		   dreameater: ["8V", "7M", "7V", "6M", "5M", "4M", "3T"],
 			drillrun: ["8M", "8V", "7T", "6T", "5T"],
 			echoedvoice: ["7M", "6M", "5M"],
 			endure: ["8M", "7V", "4M", "3T"],
@@ -381,7 +381,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			aurasphere: ["8L1"],
 			closecombat: ["8L1"],
 			doubleedge: ["8L1"],
-			/*drainingfur: ["8L1"],*/
+			drainingfur: ["8L1"],
 			extremespeed: ["8L1"],
 			knockoff: ["8L1"],
 			leafblade: ["8L1"],
@@ -587,10 +587,10 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	},
 	fweezing: {
 		learnset: {
-		   /*mountaingale: ["8L1"],*/
+		   mountaingale: ["8L1"],
 			defog: ["8L1"],
 			recover: ["8L1"],
-			/*chillyreception: ["8L1"],*/
+			chillyreception: ["8L1"],
 			psychicfangs: ["8L1"],
 			thunderfang: ["8L1"],
 			iceshard: ["8L1"],
@@ -837,7 +837,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			surf: ["8L1"],
 			scald: ["8L1"],
 			hydropump: ["8L1"],
-			/*wavecrash: ["8L1"],*/
+			wavecrash: ["8L1"],
 			liquidation: ["8L1"],
 			wildcharge: ["8L1"],
 			thunderbolt: ["8L1"],
@@ -846,7 +846,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			healbell: ["8L1"],
 			icebeam: ["8L1"],
 			blizzard: ["8L1"],
-			/*snowscape: ["8L1"],*/
+			snowscape: ["8L1"],
 			paraboliccharge: ["8L1"],
 			magnetrise: ["8L1"],
 			lifedew: ["8L1"],
