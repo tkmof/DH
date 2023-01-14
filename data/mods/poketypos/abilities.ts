@@ -38,6 +38,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			return false;
 		},
 		name: "Thermal Exchange",
+		shortDesc: "This Pokemon's Attack is raised by 1 when damaged by Fire moves; can't be burned.",
 		rating: 2.5,
 		num: 270,
 	},
@@ -54,6 +55,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Guard Dog",
+		shortDesc: "Immune to Intimidate. Intimidated: +1 Attack. Cannot be forced to switch out.",
 		rating: 2,
 		num: 275,
 	},
