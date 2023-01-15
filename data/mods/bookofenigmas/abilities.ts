@@ -17,15 +17,17 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			this.effectData.target.cureStatus();
 		},
 		name: "Cleansing Fire",
+		shortDesc: "When a Pokemon faints, this Pokemon's status is cured.",
 		rating: 3.5,
 		num: -1,
 	},
 	corruptingstorm: {
-		name: "Corrupting Storm",
 		onFaint(target, source, effect) {
 			this.add('-activate', target, 'ability: Corrupting Storm');
 			source.addVolatile('storm');
 		},
+		name: "Corrupting Storm",
+		shortDesc: "When this Pokemon is KOed by another Pokemon, the attacker loses 1/8 max HP every turn until it switches out.",
 		rating: 2.5,
 		num: -2,
 	},
@@ -40,6 +42,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Sharpness",
+		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
 		rating: 3,
 		num: 178,
 	},
@@ -58,6 +61,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Mycelium Might",
+		shortDesc: "This Pokemon's Status moves go last in their priority bracket and ignore Abilities.",
 		rating: 2,
 		num: 298,
 	},
