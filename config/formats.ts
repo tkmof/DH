@@ -3185,7 +3185,7 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-        name: "Gen 9 Duomod Randbats",
+        name: "[Gen 8] Gen 9 Duomod Randbats",
         desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
         threads: [
             `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
@@ -3748,7 +3748,7 @@ export const Formats: FormatList = [
 	},
 	
 	{
-        name: "Gen 9 Duomod",
+        name: "[Gen 8] Gen 9 Duomod",
         desc: `<b>Duomod</b>: back and better than ever baybeeeeee`,
         threads: [
             `&bullet; <a href="https://docs.google.com/spreadsheets/d/1lguyF31tjV8f-Gv3uLxmZXGAlg23k2fkF_nBqevJouM/edit?usp=sharing">Spreadsheet</a>`,
