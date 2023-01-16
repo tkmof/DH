@@ -1,5 +1,5 @@
 export const Conditions: {[k: string]: ConditionData} = {
-	snow: {
+	/*snow: {
 		name: 'Snow',
 		effectType: 'Weather',
 		duration: 5,
@@ -33,5 +33,5 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onEnd() {
 			this.add('-weather', 'none');
 		},
-	},
+	},*/
 };
