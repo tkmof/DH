@@ -42,6 +42,62 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     gen: 8,
     init: function() {
 
+    //PLA stuff to match SV
+    this.modData('Learnsets', 'arcaninehisui').learnset.headsmash = ['8L1'];
+    this.modData('Learnsets', 'samurott').learnset.drillrun = ['8L1'];
+    this.modData('Learnsets', 'samurotthisui').learnset.drillrun = ['8L1'];
+    this.modData('Learnsets', 'samurotthisui').learnset.suckerpunch = ['8L1'];
+    this.modData('Learnsets', 'lilliganthisui').learnset.defog = ['8L1'];
+    this.modData('Learnsets', 'zoroarkhisui').learnset.bodyslam = ['8L1'];
+    this.modData('Learnsets', 'zoroarkhisui').learnset.focusblast = ['8L1'];
+    this.modData('Learnsets', 'zoroarkhisui').learnset.trick = ['8L1'];
+    this.modData('Learnsets', 'goodrahisui').learnset.bodypress = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.swordsdance = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.acrobatics = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.fakeout = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.uturn = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.rockslide = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.firepunch = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.rockslide = ['8L1'];
+    this.modData('Learnsets', 'overqwil').learnset.swordsdance = ['8L1'];
+    this.modData('Learnsets', 'overqwil').learnset.crunch = ['8L1'];
+    this.modData('Learnsets', 'overqwil').learnset.aquajet = ['8L1'];
+    this.modData('Learnsets', 'overqwil').learnset.liquidation = ['8L1'];
+    this.modData('Learnsets', 'overqwil').learnset.waterfall = ['8L1'];
+    this.modData('Learnsets', 'overqwil').learnset.taunt = ['8L1'];
+    this.modData('Learnsets', 'enamorus').learnset.focusblast = ['8L1'];
+    this.modData('Learnsets', 'avalugg').learnset.iciclecrash = ['8L1'];
+    this.modData('Learnsets', 'avalugghisui').learnset.iciclecrash = ['8L1'];
+    this.modData('Learnsets', 'scyther').learnset.closecombat = ['8L1'];
+
+    // distrib for PLA moves
+
+    // headlongrush 
+    this.modData('Learnsets', 'hariyama').learnset.headlongrush = ['8L1'];
+    this.modData('Learnsets', 'torterra').learnset.headlongrush = ['8L1'];
+    this.modData('Learnsets', 'copperajah').learnset.headlongrush = ['8L1'];
+    this.modData('Learnsets', 'donphan').learnset.headlongrush = ['8L1'];
+    this.modData('Learnsets', 'bouffalant').learnset.headlongrush = ['8L1'];
+    this.modData('Learnsets', 'mamoswine').learnset.headlongrush = ['8L1'];
+
+    // ragingfury 
+    this.modData('Learnsets', 'arcanine').learnset.ragingfury = ['8L1'];
+    this.modData('Learnsets', 'infernape').learnset.ragingfury = ['8L1'];
+    this.modData('Learnsets', 'emboar').learnset.ragingfury = ['8L1'];
+    this.modData('Learnsets', 'darmanitan').learnset.ragingfury = ['8L1'];
+    this.modData('Learnsets', 'baskiron').learnset.ragingfury = ['8L1'];
+
+    // wavecrash 
+    this.modData('Learnsets', 'basculin').learnset.wavecrash = ['8L1'];
+    this.modData('Learnsets', 'empoleon').learnset.wavecrash = ['8L1'];
+    this.modData('Learnsets', 'kabutops').learnset.wavecrash = ['8L1'];
+    this.modData('Learnsets', 'poliwrath').learnset.wavecrash = ['8L1'];
+    this.modData('Learnsets', 'sharpedo').learnset.wavecrash = ['8L1'];
+    this.modData('Learnsets', 'walrein').learnset.wavecrash = ['8L1'];
+    this.modData('Learnsets', 'carracosta').learnset.wavecrash = ['8L1'];
+
+    //
+
     // underdog 
     this.modData('Learnsets', 'lillipup').learnset.underdog = ['8L1'];
     this.modData('Learnsets', 'herdier').learnset.underdog = ['8L1'];
@@ -86,6 +142,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'braixen').learnset.flamingsphere = ['8T'];
     this.modData('Learnsets', 'delphox').learnset.flamingsphere = ['8T'];
     this.modData('Learnsets', 'cinderace').learnset.flamingsphere = ['8T'];
+    this.modData('Learnsets', 'scizorgalar').learnset.flamingsphere = ['8T'];
 
     // fireball 
     this.modData('Learnsets', 'charizard').learnset.fireball = ['8T'];
@@ -323,6 +380,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'copperajah').learnset.golemstrike = ['8T'];
     this.modData('Learnsets', 'urshifu').learnset.golemstrike = ['8T'];
     this.modData('Learnsets', 'urshifurapidstrike').learnset.golemstrike = ['8T'];
+    this.modData('Learnsets', 'kleavor').learnset.golemstrike = ['8T'];
     this.modData('Learnsets', 'ledian').learnset.golemstrike = ['8T'];
     this.modData('Learnsets', 'ledixy').learnset.golemstrike = ['8T'];
     this.modData('Learnsets', 'mosquitox').learnset.golemstrike = ['8T'];
