@@ -104,7 +104,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onAnyTryMove(target, source, effect) {
 			if (['teleport', 'chillyreception', 'voltswitch', 'uturn', 'flipturn', 'batonpass', 'shedtail'].includes(effect.id)) {
 				this.attrLastMove('[still]');
-				this.add('cant', this.effectData.target, 'ability: Sticky Starch', effect, '[of] ' + source);
+				this.add('cant', this.effectData.target, 'ability: Sticky Starch', effect, '[of] ' + target);
 				target.addVolatile('partiallytrapped');
 				target.volatiles['partiallytrapped'].duration = 2;
 				return false;
@@ -252,16 +252,19 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	
 	conduction: {
-		onAfterMoveSecondary(target, source, move) {
-			if ((source.species.id === 'gelsius' || source.species.id === 'Gelsius') && source.hp && move.type === 'Ice') {
-				this.add('-message', source.name + " is beginning to rapidly cool!");
-				source.formeChange('Gelsius-Subzero', this.effect, true);
-				this.add('-message', source.name + " transformed!");
+		onModifyMove(move, attacker) {
+			if (attacker.baseSpecies.baseSpecies !== 'gelsius' && attacker.baseSpecies.baseSpecies !== 'Gelsius') {
+				return;
 			}
-			else if ((source.species.id === 'gelsius' || source.species.id === 'Gelsius') && source.hp && move.type === 'Fire') {
-				this.add('-message', source.name + " is beginning to rapidly heat up!");
-				source.formeChange('Gelsius-Hundred', this.effect, true);
-				this.add('-message', source.name + " transformed!");
+			if (attacker.hp && move.type === 'Ice') {
+				this.add('-message', attacker.name + " is beginning to rapidly cool!");
+				attacker.formeChange('Gelsius-Subzero', this.effect, true);
+				this.add('-message', attacker.name + " transformed!");
+			}
+			else if (attacker.hp && move.type === 'Fire') {
+				this.add('-message', attacker.name + " is beginning to rapidly heat up!");
+				attacker.formeChange('Gelsius-Hundred', this.effect, true);
+				this.add('-message', attacker.name + " transformed!");
 			}
 		},
 		name: "Conduction",
@@ -439,15 +442,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	
 	swordofruin: {
-		onStart(pokemon) {
-			if (this.suppressingAbility(pokemon)) return;
-			this.add('-ability', pokemon, 'Sword of Ruin');
-		},
-		onAnyModifyDef(def, source, target, move) {
-			if (this.effectState.target === source) return;
-			this.debug('Sword of Ruin Def drop');
-			// TODO Placeholder
-			return this.chainModify(0.75);
+		onBasePowerPriority: 7,
+		onBasePower(basePower, attacker, defender, move) {
+			return this.chainModify([0x14CD, 0x1000]);
 		},
 		name: "Sword of Ruin",
 		rating: 3,
