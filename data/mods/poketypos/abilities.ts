@@ -41,7 +41,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "This Pokemon's Attack is raised by 1 when damaged by Fire moves; can't be burned.",
 		rating: 2.5,
 	},
-	/*guarddog: {
+	guarddog: {
 		onDragOutPriority: 1,
 		onDragOut(pokemon) {
 			this.add('-activate', pokemon, 'ability: Guard Dog');
@@ -56,7 +56,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Guard Dog",
 		shortDesc: "Immune to Intimidate. Intimidated: +1 Attack. Cannot be forced to switch out.",
 		rating: 2,
-	},*/
+	},
 	snowwarning: {
 		onStart(source) {
 			this.field.setWeather('snow');
