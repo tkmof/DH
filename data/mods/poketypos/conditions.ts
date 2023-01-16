@@ -1,4 +1,4 @@
-export const Conditions: {[k: string]: ConditionData} = {
+/*export const Conditions: {[k: string]: ConditionData} = {
 	snow: {
 		name: 'Snow',
 		effectType: 'Weather',
@@ -34,4 +34,4 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-weather', 'none');
 		},
 	},
-};
+};*/
