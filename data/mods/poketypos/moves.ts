@@ -46,7 +46,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, distance: 1, heal: 1},
 		drain: [3, 4],
-		useSourceDefensiveAsOffensive: true,
+		overrideOffensiveStat: 'spd',
 		secondary: null,
 		target: "any",
 		type: "Normal",
