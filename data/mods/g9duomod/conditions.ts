@@ -63,7 +63,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (this.field.isWeather('hail')) this.eachEvent('Weather');
 		},		
 		onAnyModifyDamage(damage, source, target, move) {
-			if (target.hasType('Ice')) return this.chainModify(0.67);
+			if (move.category === 'Physical' && target.hasType('Ice')) {return this.chainModify(0.67);}
 		},
 		onEnd() {
 			this.add('-weather', 'none');
