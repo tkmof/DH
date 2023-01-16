@@ -12,7 +12,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		// This should be applied directly to the stat before any of the other modifiers are chained
 		// So we give it increased priority.
 		onModifyDefPriority: 10,
-		onModifyDef(spd, pokemon) {
+		onModifyDef(def, pokemon) {
 			if (pokemon.hasType('Ice') && this.field.isWeather('snow')) {
 				return this.modify(def, 1.5);
 			}
