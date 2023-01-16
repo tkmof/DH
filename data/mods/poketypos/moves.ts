@@ -35,7 +35,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Flying",
 		contestType: "Cool",
 	},
-	/*drainingfur: {
+	drainingfur: {
 		num: 302,
 		accuracy: 100,
 		basePower: 50,
@@ -51,7 +51,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "any",
 		type: "Normal",
 		contestType: "Cool",
-	},*/
+	},
 	mountaingale: {
 		num: 303,
 		accuracy: 85,
