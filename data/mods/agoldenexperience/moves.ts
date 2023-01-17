@@ -126,7 +126,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		num: -6,
 		accuracy: 100,
 		basePower: 60,
-		category: "Special",
+		category: "Physical",
 		name: "Toxic Sting",
 		pp: 10,
 		priority: 0,
@@ -848,12 +848,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				}
 			}
 			return success;
-		},
-		secondary: {
-			chance: 100,
-			boosts: {
-				spe: -1,
-			},
 		},
 		target: "normal",
 		type: "Ground",
@@ -1870,7 +1864,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {basePower: 160},
 		contestType: "Clever",
 	},
-	ceaselessedge: {
+	/*ceaselessedge: {
 		num: -1463,
 		accuracy: 90,
 		basePower: 80,
@@ -1885,6 +1879,26 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Dark",
 		contestType: "Tough",
+	},*/
+	ceaselessedge: {
+		shortDesc: "Sets Spikes after damage. High critical hit ratio.",
+		num: -1006,
+		accuracy: 90,
+		basePower: 65,
+		category: "Physical",
+		name: "Ceaseless Edge",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
+		sideCondition: 'spikes',
+		secondary: null,
+		target: "adjacentFoe",
+		type: "Dark",
+		contestType: "Cool",
 	},
 	victorydance: {
 		num: -1483,
@@ -2054,7 +2068,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Fighting",
 		contestType: "Tough",
 	},
-	psyshieldbash: {
+	/*psyshieldbash: {
 		num: -1776,
 		accuracy: 100,
 		basePower: 70,
@@ -2088,6 +2102,53 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Rock",
 		contestType: "Clever",
+	},*/
+	psyshieldbash: {
+		shortDesc: "100% chance to raise the user's Defense by 1.",
+		num: -1013,
+		accuracy: 90,
+		basePower: 70,
+		category: "Physical",
+		name: "Psyshield Bash",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Zen Headbutt", target);
+		},
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					def: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Psychic",
+		contestType: "Clever",
+	},
+	stoneaxe: {
+		shortDesc: "Sets Stealth Rock after damage. High critical hit ratio.",
+		num: -1014,
+		accuracy: 90,
+		basePower: 65,
+		category: "Physical",
+		name: "Stone Axe",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stone Edge", target);
+		},
+		critRatio: 2,
+		sideCondition: 'stealthrock',
+		secondary: null,
+		target: "adjacentFoe",
+		type: "Rock",
+		contestType: "Tough",
 	},
 	headlongrush: {
 		num: -1370,

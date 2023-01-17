@@ -194,13 +194,14 @@ export const Formats: FormatList = [
 	},
 	{
 		name: "[Gen 8] Book of Enigmas",
+		mod: 'bookofenigmas',
 		desc: [
 			"<b>Book of Enigmas</b>: A Pet Mod that aims to create new Paradox Pokemon based on Ho-oh and Lugia - the sky and the sea, respectively.",
 		],
 		threads: [
 			`&bullet: <a href="https://www.smogon.com/forums/threads/book-of-enigmas-slate-0-the-beginning-custom-abilities-names.3711490/">Thread on Smogon.`,
 		],
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod',],
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
 		banlist: [
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 			'Sceptilite', 'Blazikenite', 'Swampertite', 'Gardevoirite', 'Galladite', 'Alakazite', 'Gyaradosite',
@@ -209,11 +210,12 @@ export const Formats: FormatList = [
 			'Garchompite', 'Steelixite', 'Beedrillite', 'Pidgeotite', 
 			'Blue Orb', 'Red Orb', //this is just copied from ANL's lol
 			'Beedrill-Mega', 'Pidgeot-Mega', //?????
+			'Weavile', 'Mewtwo', 'Ho-oh', 'Lugia',
 		],
 		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}} */
+			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
-			let allowedTiers = ['BoE OU', "BoE NFE", "BoE LC"];
+			let allowedTiers = ['BoE Uber', 'BoE OU', "BoE NFE", "BoE LC"];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
@@ -235,8 +237,19 @@ export const Formats: FormatList = [
 				return null;
 			}
 		},
-		mod: 'bookofenigmas',
 	},
+	{
+	name: "[Gen 1] Burgundy Version",
+	   desc: `<b>[Gen 1] Burgundy Version</b>: An expansion of the Gen 1 OU metagame that changes some mechanics and adds new Pokemon and moves, both original and from later gens.`,
+	   threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-1-burgundy-version-slate-3-new-moves-voting.3711525/">Burgundy Version on Smogon Forums</a>`,
+	   ],
+      mod: 'gen1burgundy',
+      ruleset: ['Standard With Dig and Fly', 'Data Mod', 'Allow Tradeback'],
+		banlist: ['Uber'],
+		unbanlist: ['Anorith', 'Armaldo', 'Meditite', 'Medicham', 'Fletchling', 'Fletchinder', 'Talonflame', 'Sneasel-Hisui', 'Sneasler', 'Snover', 'Abomasnow',
+					  ],
+    },
 	{
 		name: "[Gen 8] Bust A Move",
     desc: [
@@ -731,6 +744,22 @@ export const Formats: FormatList = [
 			}
 		},
 		mod: 'm4akalos',
+	},
+	{
+		name: "[Gen 6] Megas Revisited",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-6-megas-revisited-slate-2-submissions.3713949/">Megas Revisited on Smogon Forums</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1wK11cPHnPCmH7JFss6leKW6_-cumn3DuZA-YMzrzF-U/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'gen6megasrevisited',
+		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+					"Venusaurite", "Blastoisinite", "Charizardite Y", "Charizardite X", "Beedrillite", "Pidgeotite", "Alakazite", "Slowbronite", "Gengarite", 
+					"Kangaskhanite", "Pinsirite", "Gyaradosite", "Aerodactylite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Steelixite", "Scizorite",
+					"Heracronite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
+					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Banettite", "Absolite", "Glalitite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Lopunnite", "Garchompite", "Abomasite", "Galladite", "Diancite"
+					],
 	},
 	/*
 	{
@@ -3172,7 +3201,7 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-        name: "Gen 9 Duomod Randbats",
+        name: "[Gen 8] Gen 9 Duomod Randbats",
         desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
         threads: [
             `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
@@ -3735,7 +3764,7 @@ export const Formats: FormatList = [
 	},
 	
 	{
-        name: "Gen 9 Duomod",
+        name: "[Gen 8] Gen 9 Duomod",
         desc: `<b>Duomod</b>: back and better than ever baybeeeeee`,
         threads: [
             `&bullet; <a href="https://docs.google.com/spreadsheets/d/1lguyF31tjV8f-Gv3uLxmZXGAlg23k2fkF_nBqevJouM/edit?usp=sharing">Spreadsheet</a>`,
@@ -4377,6 +4406,24 @@ export const Formats: FormatList = [
 		mod: 'gen6',
 		ruleset: ['Standard', 'Swagger Clause'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass'],
+	},
+	{
+		name: "[Gen 6] OU (No Megas)",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/dex/xy/tags/ou/">ORAS OU Banlist</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/posts/8133793/">ORAS OU Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3623399/">ORAS OU Viability Rankings</a>`,
+		],
+
+		mod: 'gen6',
+		ruleset: ['Standard', 'Swagger Clause'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+					"Venusaurite", "Blastoisinite", "Charizardite Y", "Charizardite X", "Beedrillite", "Pidgeotite", "Alakazite", "Slowbronite", "Gengarite", 
+					"Kangaskhanite", "Pinsirite", "Gyaradosite", "Aerodactylite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Steelixite", "Scizorite",
+					"Heracronite", "Houndoominite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
+					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Banettite", "Absolite", "Glalitite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Lopunnite", "Garchompite", "Lucarionite", "Abomasite", "Galladite", "Audinite", "Diancite"
+					],
 	},
 	{
 		name: "[Gen 5] OU",

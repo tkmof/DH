@@ -1,4 +1,9 @@
 export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
+	teambuilderConfig: {
+		excludeStandardTiers: true,
+		customTiers: ['BoE OU', 'BoE NFE', 'BoE LC', 'BoE Uber'],
+	},
+
 	init() {
 		//stolen from optimons x
 		const addNewMoves = (pokemonid: string, moveids: string[]) => {
