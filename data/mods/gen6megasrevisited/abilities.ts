@@ -160,5 +160,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Merciless",
 		rating: 1.5,
 		num: 196,
+		gen: 6,
 	},
 };
