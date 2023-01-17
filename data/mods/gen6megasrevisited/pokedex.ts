@@ -1,8 +1,25 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
-	charizardmegax: {
+// New Stuff	
+	audinomega: {
 		inherit: true,
-		color: "Red",
-	},
+		types: ["Normal", "Electric"],
+		baseStats: {hp: 103, atk: 60, def: 130, spa: 100, spd: 97, spe: 55},
+		abilities: {0: "Regenerator"},
+	},	
+	houndoommega: {
+		inherit: true,
+		types: ["Dark", "Fire"],
+		baseStats: {hp: 75, atk: 90, def: 90, spa: 140, spd: 90, spe: 115},
+		abilities: {0: "Merciless"},
+	},	
+	lucariomega: {
+		inherit: true,
+		types: ["Fighting", "Steel"],
+		baseStats: {hp: 70, atk: 125, def: 70, spa: 140, spd: 105, spe: 115},
+		abilities: {0: "Limber"},
+	},	
+	
+// Gen 6 Stuff
 	arbok: {
 		inherit: true,
 		baseStats: {hp: 60, atk: 85, def: 69, spa: 65, spd: 79, spe: 80},
@@ -14,10 +31,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	dugtrio: {
 		inherit: true,
 		baseStats: {hp: 35, atk: 80, def: 50, spa: 50, spd: 70, spe: 120},
-	},
-	alakazammega: {
-		inherit: true,
-		baseStats: {hp: 55, atk: 50, def: 65, spa: 175, spd: 95, spe: 150},
 	},
 	farfetchd: {
 		inherit: true,
@@ -133,14 +146,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		baseStats: {hp: 65, atk: 50, def: 70, spa: 95, spd: 80, spe: 65},
 	},
-	latiasmega: {
-		inherit: true,
-		color: "Red",
-	},
-	latiosmega: {
-		inherit: true,
-		color: "Blue",
-	},
 	burmy: {
 		inherit: true,
 		color: "Gray",
@@ -248,10 +253,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	woobat: {
 		inherit: true,
 		baseStats: {hp: 55, atk: 45, def: 43, spa: 55, spd: 43, spe: 72},
-	},
-	audinomega: {
-		inherit: true,
-		color: "Pink",
 	},
 	darmanitanzen: {
 		inherit: true,
