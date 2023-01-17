@@ -745,6 +745,22 @@ export const Formats: FormatList = [
 		},
 		mod: 'm4akalos',
 	},
+	{
+		name: "[Gen 6] Megas Revisited",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-6-megas-revisited-slate-2-submissions.3713949/">Megas Revisited on Smogon Forums</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1wK11cPHnPCmH7JFss6leKW6_-cumn3DuZA-YMzrzF-U/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'gen6megasrevisited',
+		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+					"Venusaurite", "Blastoisinite", "Charizardite Y", "Charizardite X", "Beedrillite", "Pidgeotite", "Alakazite", "Slowbronite", "Gengarite", 
+					"Kangaskhanite", "Pinsirite", "Gyaradosite", "Aerodactylite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Steelixite", "Scizorite",
+					"Heracronite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
+					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Banettite", "Absolite", "Glalitite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Lopunnite", "Garchompite", "Abomasite", "Galladite", "Diancite"
+					],
+	},
 	/*
 	{
 		name: "[Gen 8] Metamorphosis",
@@ -4390,6 +4406,24 @@ export const Formats: FormatList = [
 		mod: 'gen6',
 		ruleset: ['Standard', 'Swagger Clause'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass'],
+	},
+	{
+		name: "[Gen 6] OU (No Megas)",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/dex/xy/tags/ou/">ORAS OU Banlist</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/posts/8133793/">ORAS OU Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3623399/">ORAS OU Viability Rankings</a>`,
+		],
+
+		mod: 'gen6',
+		ruleset: ['Standard', 'Swagger Clause'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+					"Venusaurite", "Blastoisinite", "Charizardite Y", "Charizardite X", "Beedrillite", "Pidgeotite", "Alakazite", "Slowbronite", "Gengarite", 
+					"Kangaskhanite", "Pinsirite", "Gyaradosite", "Aerodactylite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Steelixite", "Scizorite",
+					"Heracronite", "Houndoominite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
+					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Banettite", "Absolite", "Glalitite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Lopunnite", "Garchompite", "Lucarionite", "Abomasite", "Galladite", "Audinite", "Diancite"
+					],
 	},
 	{
 		name: "[Gen 5] OU",
