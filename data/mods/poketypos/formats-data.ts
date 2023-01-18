@@ -45,6 +45,22 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
    }, 
 	appleton: {
 		tier: "Poketypos",
+      doublesTier: "Poketypos",
+   }, 
+	crowhat: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+   }, 
+	beavor: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+   }, 
+	judowoodo: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+   }, 
+	roseroast: {
+      tier: "Poketypos",
       doublesTier: "Poketypos", 
    }, 
 };
