@@ -95,5 +95,36 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Heavy Metal", 1: "Gluttony", H: "Thick Fat"},
 		weightkg: 400,
 	},
+	crowhat: {
+		num: 13,
+		name: "Crowhat",
+		types: ["Grass", "Dark"],
+		baseStats: {hp: 95, atk: 95, def: 80, spa: 70, spd: 80, spe: 115},
+		abilities: {0: "Wind Rider", 1: "Unnerve", H: "Intimidate"},
+		weightkg: 28,
+	},
+	beavor: {
+		num: 14,
+		name: "Beavor",
+		types: ["Normal", "Water"],
+		baseStats: {hp: 70, atk: 130, def: 75, spa: 45, spd: 95, spe: 85},
+		abilities: {0: "Cheek Pouch", 1: "Pickup", H: "Carpenter"},
+		weightkg: 59,
+	},
+	judowoodo: {
+		num: 15,
+		name: "Judowoodo",
+		types: ["Fighting"],
+		baseStats: {hp: 70, atk: 55, def: 115, spa: 30, spd: 55, spe: 85},
+		abilities: {0: "Sturdy", 1: "Iron Fist", H: "Pure Power"},
+		weightkg: 38, 
+	},
+	roseroast: {
+		num: 16,
+		name: "Roseroast",
+		types: ["Grass", "Fire"],
+		baseStats: {hp: 70, atk: 60, def: 65, spa: 125, spd: 90, spe: 105},
+		abilities: {0: "White Smoke", 1: "Infiltrator", H: "Flame Body"},
+		weightkg: 14.5,
+	},
 };
-
