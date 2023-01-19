@@ -1,5 +1,12 @@
-Starizard, Soaperior and Smoninja front sprites provided by lavari
+  The list of contributors are as follows: 
+- lavari:
+ + Front: Starizard, Smoninja, Soaperior
+ + Back: Smoninja
+- Lapzaplerq (Tempest on Discord)
+ + Front: Furant, Sapras
+ + Back: Furant, Sapras
+ + Front (Shiny): Furant, Sapras
+ + Back: (Shiny): Furant, Sapras
+ + Icons: Smoninja, Furant, Sapras
 
-Smoninja icon and all Furant sprites provided by Lapzaplerq (Tempest on Discord)
-
-hope i didn't miss anyone:)
+P/s: I thought this was a more systematic way to view the contributors and much easier to edit too. Hope I didn't forget anyone!:D
