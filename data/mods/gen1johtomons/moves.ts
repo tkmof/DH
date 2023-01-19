@@ -69,6 +69,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		gen: 1,
 	},
+	milkdrink: {
+		inherit: true,
+		gen: 1, 
+	} 
 // Old Moves	
 	acid: {
 		inherit: true,
