@@ -193,8 +193,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "LC",
 	},
 	golbat: {
-		tier: "UU",
-		rank: "New",
+		tier: "NFE",
+		rank: "NFE",
 	},
 	crobat: {
 		randomBattleMoves: ["aerialace", "haze", "hiddenpowerground", "shadowball", "sludgebomb", "taunt", "toxic"],
@@ -238,8 +238,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "New",
 	},
 	diglett: {
-		tier: "UU",
-		rank: "New",
+		tier: "LC",
+		rank: "LC",
 	},
 	dugtrio: {
 		randomBattleMoves: ["aerialace", "earthquake", "hiddenpowerbug", "rockslide", "substitute"],
@@ -1695,8 +1695,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "LC",
 	},
 	shelgon: {
-		tier: "UU",
-		rank: "New",
+		tier: "NFE",
+		rank: "NFE",
 	},
 	salamence: {
 		randomBattleMoves: ["brickbreak", "dragondance", "earthquake", "fireblast", "hiddenpowerflying", "rockslide"],
@@ -1708,8 +1708,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "LC",
 	},
 	metang: {
-		tier: "UU",
-		rank: "New",
+		tier: "NFE",
+		rank: "NFE",
 	},
 	metagross: {
 		randomBattleMoves: ["agility", "earthquake", "explosion", "meteormash", "psychic", "rockslide"],
