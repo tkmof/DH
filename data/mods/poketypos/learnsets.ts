@@ -1247,7 +1247,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			woodhammer: ["8L1", "7L1", "6L1", "5L1", "4L1"],
 		},
 	},
-	roserade: {
+	roseroast: {
 		learnset: {
 			combustion: ["8L1"],
 			ember: ["8L1"],
