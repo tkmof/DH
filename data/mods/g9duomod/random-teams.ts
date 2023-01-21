@@ -1271,8 +1271,16 @@ export class RandomTeams {
 			item = 'Sitrus Berry';
 		} else if (ability === 'Gluttony') {
 			item = this.sample(['Aguav', 'Figy', 'Iapapa', 'Mago', 'Wiki']) + ' Berry';
+		} else if (hasMove['nuzzle'] || hasMove['rapidspin']) {
+			item = 'Leftovers';
+		} else if (ability === 'Power Outage' || ability === 'poweroutage') {
+			item = 'Life Orb';
+		} else if (hasMove['shedtail']) {
+			item = 'Sitrus Berry';
 		} else if (ability === 'Gorilla Tactics' && hasMove['skillswap']) {
 			item = 'Expert Belt';
+		} else if (ability === 'Gorilla Tactics' && hasMove['vacuumwave']) {
+			item = 'Choice Specs';
 		} else if (ability === 'Gorilla Tactics' || ability === 'Imposter' || (ability === 'Magnet Pull' && hasMove['bodypress'] && !isDoubles)) {
 			item = 'Choice Scarf';
 		} else if (hasMove['trick'] || hasMove['switcheroo'] && !isDoubles) {
@@ -1312,7 +1320,7 @@ export class RandomTeams {
 		} else if (ability === 'blazingspirit' || ability === 'Blazing Spirit') {
 			item = 'Leftovers';
 		} else if (ability === 'Update') {
-			item = this.sample(['Stone', 'Splash', 'Zap', 'Earth', 'Dread']) + ' Plate';
+			item = this.sample(['Stone', 'Splash', 'Zap', 'Dread']) + ' Plate';
 		} else if (ability === 'Unburden') {
 			item = (hasMove['closecombat'] || hasMove['curse'] || hasMove['overheat'] || hasMove['leafstorm'] || hasMove['fleurcannon'] || hasMove['dracometeor'] || hasMove['psychoboost']) ? 'White Herb' : 'Sitrus Berry';
 		} else if (hasMove['acrobatics']) {
@@ -1452,6 +1460,10 @@ export class RandomTeams {
 			ivs.spe = 0;
 		}
 
+		if (hasMove['exobash']) {
+			evs.def = 0;
+		}		
+
 		return {
 			name: species.baseSpecies,
 			species: forme,
@@ -1462,7 +1474,7 @@ export class RandomTeams {
 			ivs: ivs,
 			item: item,
 			level: level,
-			shiny: this.randomChance(1, 1024),
+			shiny: this.randomChance(1, 128),
 			gigantamax: gmax,
 		};
 	}

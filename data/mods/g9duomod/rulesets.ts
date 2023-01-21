@@ -62,7 +62,7 @@ export const Formats: {[k: string]: FormatData} = {
 				for (const target of this.sides[0].pokemon) {
 				if (target.isActive) {
 					this.useMove("Transform", target);
-          this.boost({spe: 1}, target);
+       					this.boost({spe: 1}, target);
 				}
 				}
 			}
@@ -77,11 +77,22 @@ export const Formats: {[k: string]: FormatData} = {
 		}
         
 		else if (result === 4) {
-			this.hint("Roulette Wheel Result 5 - Everyone gets a Sub!");
-			for (const pokemon of this.getAllActive()) {
-				pokemon.addVolatile('substitute');
+			this.hint("Roulette Wheel Result 5 - Someone gets a Substitute.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					target.addVolatile('substitute');
+				}
+				}
 			}
-		}   
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					target.addVolatile('substitute');
+				}
+				}
+			}	
+		}
         
 		else if (result === 5) {
 			this.hint("Roulette Wheel Result 6 - Both Pokemon get Encored.");
@@ -125,14 +136,14 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 9) {
 			this.hint("Roulette Wheel Result 10 - How do you like THIS one, Game Freak?");
 			for (const pokemon of this.getAllActive()) {
-				this.heal(pokemon.maxhp / 2, pokemon);
-      	}
-    	} 
+				this.useMove("Recover", pokemon);
+			}
+		}   
 		
 		else if (result === 10) { 
 			this.hint("Roulette Wheel Result 11 - lmao x2");
 			for (const pokemon of this.getAllActive()) {
-				this.useMove("Pound", pokemon);
+				this.damage(1, pokemon);
 			}
 		}  	
 		
@@ -196,11 +207,22 @@ export const Formats: {[k: string]: FormatData} = {
 		}  
 		
 		else if (result === 15) { 
-			this.hint("Roulette Wheel Result 16 - Both Pokemon click Destiny Bond.");
-			for (const pokemon of this.getAllActive()) {
-				this.useMove("Destiny Bond", pokemon);
+			this.hint("Roulette Wheel Result 16 - your boosts are mine");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Heart Swap", target);
+				}
+				}
 			}
-		}  
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Heart Swap", target);
+				}
+				}
+			}
+		} 
 		
 		else if (result === 16) {
 			this.hint("Roulette Wheel Result 17 - One side sets webs.");
@@ -561,11 +583,22 @@ export const Formats: {[k: string]: FormatData} = {
 		}
         
 		else if (result === 4) {
-			this.hint("Roulette Wheel Result 5 - Everyone gets a Sub!");
-			for (const pokemon of this.getAllActive()) {
-				pokemon.addVolatile('substitute');
+			this.hint("Roulette Wheel Result 5 - Someone gets a Substitute.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					target.addVolatile('substitute');
+				}
+				}
 			}
-		}   
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					target.addVolatile('substitute');
+				}
+				}
+			}	
+		}
         
 		else if (result === 5) {
 			this.hint("Roulette Wheel Result 6 - Both Pokemon get Encored.");
@@ -609,14 +642,14 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 9) {
 			this.hint("Roulette Wheel Result 10 - How do you like THIS one, Game Freak?");
 			for (const pokemon of this.getAllActive()) {
-				this.heal(pokemon.maxhp / 2, pokemon);
-      	}
-    	} 
+				this.useMove("Recover", pokemon);
+			}
+		}   
 		
 		else if (result === 10) { 
 			this.hint("Roulette Wheel Result 11 - lmao x2");
 			for (const pokemon of this.getAllActive()) {
-				this.useMove("Pound", pokemon);
+				this.damage(1, pokemon);
 			}
 		}  	
 		
@@ -680,11 +713,22 @@ export const Formats: {[k: string]: FormatData} = {
 		}  
 		
 		else if (result === 15) { 
-			this.hint("Roulette Wheel Result 16 - Both Pokemon click Destiny Bond.");
-			for (const pokemon of this.getAllActive()) {
-				this.useMove("Destiny Bond", pokemon);
+			this.hint("Roulette Wheel Result 16 - your boosts are mine");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Heart Swap", target);
+				}
+				}
 			}
-		}  
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Heart Swap", target);
+				}
+				}
+			}
+		} 
 		
 		else if (result === 16) {
 			this.hint("Roulette Wheel Result 17 - One side sets webs.");
@@ -722,14 +766,14 @@ export const Formats: {[k: string]: FormatData} = {
 		}  
 			
 		else if (result === 18) { 
-			this.hint("Roulette Wheel Result 19 - Everyone gets Beast Boost.");
+			this.hint("Roulette Wheel Result 19 - MISTERRRRRRRR BEAAAAAAAAAAAAST");
 			for (const s1 of this.sides[0].active) {
 				for (const s2 of this.sides[1].active) {
-					const oldAbility1 = s1.setAbility('Beast Boost');
+					const oldAbility1 = s1.setAbility('beastboost', s1);
 					if (oldAbility1) {
 						this.add('-ability', s1, 'Beast Boost', '[from] move: Roulette Spin');
 					}
-					const oldAbility2 = s2.setAbility('Beast Boost');
+					const oldAbility2 = s2.setAbility('beastboost', s2);
 					if (oldAbility2) {
 						this.add('-ability', s2, 'Beast Boost', '[from] move: Roulette Spin');
 					}
@@ -970,9 +1014,13 @@ export const Formats: {[k: string]: FormatData} = {
 				this.useMove("Ultranome", pokemon);
 			}
 		}
-		
+
+			for (const pokemon of this.getAllActive()) {
+				delete pokemon.volatiles['flinch'];
+			}
+			
 		},
-	},		
+	},
 	
 	duomoddatamod: {
 		effectType: 'Rule',
