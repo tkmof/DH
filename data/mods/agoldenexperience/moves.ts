@@ -1881,7 +1881,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Tough",
 	},*/
 	ceaselessedge: {
-		shortDesc: "Sets Spikes after damage. High critical hit ratio.",
+		shortDesc: "Sets Spikes after damage.",
 		num: -1006,
 		accuracy: 90,
 		basePower: 65,
@@ -1944,7 +1944,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {basePower: 160},
 		contestType: "Clever",
 	},
-	esperwing: {
+	/*esperwing: {
 		num: -1094,
 		accuracy: 100,
 		basePower: 95,
@@ -1983,6 +1983,45 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Ice",
 		contestType: "Beautiful",
+	},*/
+	esperwing: {
+		num: 840,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Esper Wing",
+		shortDesc: "100% chance to raise user Speed by 1. High crit.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					spe: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Psychic",
+	},
+	mountaingale: {
+		num: 836,
+		accuracy: 85,
+		basePower: 100,
+		category: "Physical",
+		name: "Mountain Gale",
+		shortDesc: "30% chance to make the target flinch.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'flinch',
+		},
+		target: "normal",
+		type: "Ice",
 	},
 	shelter: {
 		num: -1661,
@@ -2042,7 +2081,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Tough",
 		shortDesc: "Protects from moves. Contact: resets opponent's stat boosts.",
 	},
-	triplearrows: {
+	/*triplearrows: {
 		num: -1612,
 		accuracy: 100,
 		basePower: 50,
@@ -2067,6 +2106,31 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Fighting",
 		contestType: "Tough",
+	},*/
+	triplearrows: {
+		num: 843,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
+		name: "Triple Arrows",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		secondaries: [
+			{
+				chance: 50,
+				boosts: {
+					def: -1,
+				},
+			}, {
+				chance: 30,
+				volatileStatus: 'flinch',
+			},
+		],
+		target: "normal",
+		type: "Fighting",
 	},
 	/*psyshieldbash: {
 		num: -1776,
@@ -2130,7 +2194,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Clever",
 	},
 	stoneaxe: {
-		shortDesc: "Sets Stealth Rock after damage. High critical hit ratio.",
+		shortDesc: "Sets Stealth Rock after damage.",
 		num: -1014,
 		accuracy: 90,
 		basePower: 65,
@@ -2143,7 +2207,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stone Edge", target);
 		},
-		critRatio: 2,
 		sideCondition: 'stealthrock',
 		secondary: null,
 		target: "adjacentFoe",
@@ -2227,13 +2290,11 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		secondary: {
-			chance: 30,
+			chance: 50,
 			status: 'psn',
 		},
 		target: "normal",
 		type: "Poison",
-		zMove: {basePower: 160},
-		contestType: "Clever",
 	},
 	hiddenpower: {
 		num: 237,
@@ -2549,12 +2610,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "self",
 		type: "Normal",
 	},
-	weneedawall: {
+	zawall: {
 		num: -1800,
 		accuracy: 90,
 		basePower: 120,
 		category: "Physical",
-		name: "We Need A Wall",
+		name: "Za Wall",
 		shortDesc: "Raises user's Atk by 1 on turn 1. Hits turn 2.",
 		pp: 10,
 		priority: 0,
