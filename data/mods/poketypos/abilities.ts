@@ -75,6 +75,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Earth Eater",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
+		rating: 3.5,
+	},
+	carpenter: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Grass') {
+				this.debug('Carpenter boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Grass') {
+				this.debug('Carpenter boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Carpenter",
+		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Grass-type attack.",
 		rating: 3.5,
 	},
 };
