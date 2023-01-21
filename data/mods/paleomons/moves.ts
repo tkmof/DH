@@ -929,14 +929,14 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			}
 		},
 	},
-	recrystalize: {
+	recrystallize: {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
 		desc: "Heals up to 50% of the user's max HP; Ice-types recover 67% in Hail and Rock-types recover 67% in Sandstorm.",
 		shortDesc: "Heals up to 50% of the user's max HP; Ice-types recover 67% in Hail and Rock-types recover 67% in Sandstorm.",
 		isViable: true,
-		name: "Recrystalize",
+		name: "Recrystallize",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
