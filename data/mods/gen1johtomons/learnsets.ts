@@ -2918,5 +2918,5 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			skullbash: ["1M"],
 			substitute: ["1M"],
 		},
-			
+	},			
 };
