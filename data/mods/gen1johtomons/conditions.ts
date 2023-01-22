@@ -66,7 +66,7 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 				this.add('-status', target, 'slp');
 			}
 			// 1-3 turns
-			this.effectData.startTime = this.random(1, 4);
+			this.effectData.startTime = this.random(1, 8);
 			this.effectData.time = this.effectData.startTime;
 		},
 		onBeforeMovePriority: 10,
@@ -98,9 +98,6 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 			if (move.secondary && move.secondary.status === 'brn') {
 				target.cureStatus();
 			}
-		},
-		onResidual(pokemon) {
-			if (this.randomChance(25, 256)) pokemon.cureStatus();
 		},
 	},
 	psn: {
