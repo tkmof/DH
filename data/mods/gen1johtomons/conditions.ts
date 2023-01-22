@@ -8,7 +8,7 @@
  * under certain conditions and re-applied under other conditions.
  */
 
-export const Conditions: {[k: string]: ConditionData} = {
+export const Conditions: {[id: string]: ModdedConditionData} = {
 	brn: {
 		name: 'brn',
 		effectType: 'Status',
