@@ -3,71 +3,248 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	
 	
 // Future Mons	
-	armaldo: {
+	chikorita: {
+		tier: "LC",
+	},
+	bayleef: {
+		tier: "NFE",
+	},
+	meganium: {
 		tier: "OU",
-		randomBattleMoves: ["swordsdance", "lowkick", "rockslide", "earthquake"],
-		isNonstandard: null,
-		gen: 1,
 	},
-	anorith: {
-		tier: "UU",
-		randomBattleMoves: ["swordsdance", "slash", "rockslide", "bodyslam"],
-		isNonstandard: null,
-		gen: 1,
+	cyndaquil: {
+		tier: "LC",
 	},
-	abomasnow: {
-		tier: "OU",
-		randomBattleMoves: ["razorleaf", "blizzard", "rockslide", "earthquake"],
-		isNonstandard: null,
-		gen: 1,
+	quilava: {
+		tier: "NFE",
 	},
-	snover: {
-		tier: "UU",
-		randomBattleMoves: ["razorleaf", "blizzard", "rockslide", "rest"],
-		isNonstandard: null,
-		gen: 1,
+	typhlosion: {
+		tier: "UUBL",
 	},
-	medicham: {
-		tier: "OU",
-		randomBattleMoves: ["recover", "highjumpkick", "psychic", "icepunch"],
-		isNonstandard: null,
-		gen: 1,
+	totodile: {
+		tier: "LC",
 	},
-	meditite: {
-		tier: "UU",
-		randomBattleMoves: ["recover", "highjumpkick", "psychic", "thunderpunch"],
-		isNonstandard: null,
-		gen: 1,
+	croconaw: {
+		tier: "NFE",
 	},
-	sneasler: {
-		tier: "OU",
-		randomBattleMoves: ["swordsdance", "sludge", "hyperbeam", "submission"],
-		isNonstandard: null,
-		gen: 1,
+	feraligatr: {
+		tier: "NUBL",
 	},
-	sneaselhisui: {
-		tier: "UU",
-		randomBattleMoves: ["swordsdance", "sludge", "slash", "submission"],
-		isNonstandard: null,
-		gen: 1,
+	sentret: {
+		tier: "LC",
 	},
-	talonflame: {
-		tier: "OU",
-		randomBattleMoves: ["swordsdance", "fireblast", "hyperbeam", "drillpeck"],
-		isNonstandard: null,
-		gen: 1,
-	},
-	fletchinder: {
-		tier: "UU",
-		randomBattleMoves: ["swordsdance", "fireblast", "quickattack", "drillpeck"],
-		isNonstandard: null,
-		gen: 1,
-	},
-	fletchling: {
+	furret: {
 		tier: "NU",
-		randomBattleMoves: ["swordsdance", "doubleedge", "quickattack", "drillpeck"],
-		isNonstandard: null,
-		gen: 1,
+	},
+	hoothoot: {
+		tier: "LC",
+	},
+	noctowl: {
+		tier: "NU",
+	},
+	ledyba: {
+		tier: "LC",
+	},
+	ledian: {
+		tier: "NU",
+	},
+	spinarak: {
+		tier: "LC",
+	},
+	ariados: {
+		tier: "NU",
+	},
+	chinchou: {
+		tier: "LC",
+	},
+	lanturn: {
+		tier: "UU",
+	},
+	togepi: {
+		tier: "LC",
+	},
+	togetic: {
+		tier: "NU",
+	},
+	natu: {
+		tier: "LC",
+	},
+	xatu: {
+		tier: "NU",
+	},
+	mareep: {
+		tier: "LC",
+	},
+	flaaffy: {
+		tier: "NFE",
+	},
+	ampharos: {
+		tier: "UU",
+	},
+	marill: {
+		tier: "LC",
+	},
+	azumarill: {
+		tier: "NU",
+	},
+	sudowoodo: {
+		tier: "NU",
+	},
+	hoppip: {
+		tier: "LC",
+	},
+	skiploom: {
+		tier: "NFE",
+	},
+	jumpluff: {
+		tier: "UU",
+	},
+	aipom: {
+		tier: "NU",
+	},
+	sunkern: {
+		tier: "LC",
+	},
+	sunflora: {
+		tier: "NU",
+	},
+	yanma: {
+		tier: "NU",
+	},
+	wooper: {
+		tier: "LC",
+	},
+	quagsire: {
+		tier: "UU",
+	},
+	murkrow: {
+		tier: "NU",
+	},
+	misdreavus: {
+		tier: "OU",
+	},
+	unown: {
+		tier: "NU",
+	},
+	wobbuffet: {
+		tier: "NU",
+	},
+	girafarig: {
+		tier: "UU",
+	},
+	pineco: {
+		tier: "LC",
+	},
+	forretress: {
+		tier: "OU",
+	},
+	dunsparce: {
+		tier: "NU",
+	},
+	gligar: {
+		tier: "UU",
+	},
+	snubbull: {
+		tier: "LC",
+	},
+	granbull: {
+		tier: "UU",
+	},
+	qwilfish: {
+		tier: "UU",
+	},
+	shuckle: {
+		tier: "NU",
+	},
+	heracross: {
+		tier: "OU",
+	},
+	sneasel: {
+		tier: "NU",
+	},
+	teddiursa: {
+		tier: "LC",
+	},
+	ursaring: {
+		tier: "UUBL",
+	},
+	slugma: {
+		tier: "LC",
+	},
+	magcargo: {
+		tier: "NU",
+	},
+	swinub: {
+		tier: "LC",
+	},
+	piloswine: {
+		tier: "UU",
+	},
+	corsola: {
+		tier: "NU",
+	},
+	remoraid: {
+		tier: "LC",
+	},
+	octillery: {
+		tier: "NU",
+	},
+	delibird: {
+		tier: "NU",
+	},
+	mantine: {
+		tier: "NU",
+	},
+	skarmory: {
+		tier: "OU",
+	},
+	houndour: {
+		tier: "LC",
+	},
+	houndoom: {
+		tier: "UUBL",
+	},
+	phanpy: {
+		tier: "LC",
+	},
+	donphan: {
+		tier: "UUBL",
+	},
+	stantler: {
+		tier: "NU",
+	},
+	smeargle: {
+		tier: "UUBL",
+	},
+	miltank: {
+		tier: "OU",
+	},
+	raikou: {
+		tier: "OU",
+	},
+	entei: {
+		tier: "UUBL",
+	},
+	suicune: {
+		tier: "OU",
+	},
+	larvitar: {
+		tier: "LC",
+	},
+	pupitar: {
+		tier: "NFE",
+	},
+	tyranitar: {
+		tier: "OU",
+	},
+	lugia: {
+		tier: "Uber",
+	},
+	hooh: {
+		tier: "Uber",
+	},
+	celebi: {
+		tier: "Uber",
 	},
 	
 // Old Mons	
