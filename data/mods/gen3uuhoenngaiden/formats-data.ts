@@ -282,6 +282,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 		rank: "New",
 	},
+	arcaninehisui: {
+	},
 	poliwag: {
 		tier: "LC",
 		rank: "LC",
@@ -794,6 +796,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 		rank: "New",
 	},
+	typhlosionhisui: {
+	},
 	totodile: {
 		tier: "LC",
 		rank: "LC",
@@ -1004,6 +1008,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 		rank: "New",
 	},
+	qwilfishhisui: {
+	},
 	shuckle: {
 		randomBattleMoves: ["encore", "protect", "rest", "sleeptalk", "toxic", "wrap"],
 		tier: "UU",
@@ -1018,6 +1024,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleMoves: ["brickbreak", "doubleedge", "hiddenpowerflying", "shadowball", "substitute", "swordsdance"],
 		tier: "UU",
 		rank: "New",
+	},
+	sneaselhisui: {
 	},
 	teddiursa: {
 		tier: "LC",
