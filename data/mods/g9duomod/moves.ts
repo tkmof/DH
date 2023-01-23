@@ -1055,7 +1055,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Crush Claw", target);
 		},
 		onModifyType(move, pokemon) {
-			if (source.ability !== "unstableclaws") return;
+			if (pokemon.ability !== "unstableclaws") return;
 			let type = pokemon.types[0];
 			if (type === "Bird") type = "???";
 			move.type = type;
