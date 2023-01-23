@@ -127,7 +127,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "BoE NFE",
 	},
 	raichu: {
-		tier: "BoE NFE",
+		tier: "BoE OU",
 	},
 	raichualola: {
 		tier: "BoE OU",
@@ -278,7 +278,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "BoE OU",
 	},
 	arcaninehisui: {
-		tier: "BoE NFE",
+		tier: "BoE OU",
 	},
 	poliwag: {
 		tier: "BoE LC",
@@ -459,7 +459,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "BoE OU",
 	},
 	electrodehisui: {
-		tier: "BoE NFE",
+		tier: "BoE OU",
 	},
 	exeggcute: {
 		tier: "BoE LC",
@@ -519,7 +519,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "BoE LC",
 	},
 	chansey: {
-		tier: "BoE NFE",
+		tier: "BoE OU",
 	},
 	blissey: {
 		tier: "BoE OU",
@@ -736,7 +736,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "BoE OU",
 	},
 	typhlosionhisui: {
-		tier: "BoE NFE",
+		tier: "BoE OU",
 	},
 	totodile: {
 		tier: "BoE LC",
@@ -957,7 +957,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "BoE OU",
 	},
 	corsola: {
-		tier: "BoE LC",
+		tier: "BoE OU",
 	},
 	corsolagalar: {
 		tier: "BoE LC",

@@ -745,6 +745,22 @@ export const Formats: FormatList = [
 		},
 		mod: 'm4akalos',
 	},
+	{
+		name: "[Gen 6] Megas Revisited",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-6-megas-revisited-slate-2-submissions.3713949/">Megas Revisited on Smogon Forums</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1wK11cPHnPCmH7JFss6leKW6_-cumn3DuZA-YMzrzF-U/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'gen6megasrevisited',
+		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+					"Venusaurite", "Blastoisinite", "Charizardite Y", "Charizardite X", "Beedrillite", "Pidgeotite", "Alakazite", "Slowbronite", "Gengarite", 
+					"Kangaskhanite", "Pinsirite", "Gyaradosite", "Aerodactylite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Steelixite", "Scizorite",
+					"Heracronite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
+					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Banettite", "Absolite", "Glalitite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Lopunnite", "Garchompite", "Abomasite", "Galladite", "Diancite"
+					],
+	},
 	/*
 	{
 		name: "[Gen 8] Metamorphosis",
@@ -2431,50 +2447,18 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 3] Hoenn Gaiden Uber",
-		desc: ["<b>Hoenn Gaiden</b>: A Gen 3 pet mod that aims to devamp Gen 4-8 Pokemon, moves and items into the Gen 3 mechanics."],
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-the-gen-3-pet-mod-round-1-discussion.3681339/">Hoenn Gaiden on Smogon Forums</a>`,
-		],
-
-		mod: 'gen3hoenngaiden',
-		searchShow: false,
-		ruleset: ['Standard', 'Data Mod', 'Hoenn Gaiden Mod'],
-		banlist: ['Wobbuffet + Leftovers'],
-		unbanlist: [
-		],
-		teambuilderFormat: 'Uber',
-	},
-	{
 		name: "[Gen 3] Hoenn Gaiden UU",
 		desc: ["<b>Hoenn Gaiden</b>: A Gen 3 pet mod that aims to devamp Gen 4-8 Pokemon, moves and items into the Gen 3 mechanics."],
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-the-gen-3-pet-mod-round-1-discussion.3681339/">Hoenn Gaiden on Smogon Forums</a>`,
 		],
 
-		mod: 'gen3hoenngaiden',
+		mod: 'gen3uuhoenngaiden',
 		searchShow: false,
-		ruleset: ['[Gen 3] Hoenn Gaiden'],
-		banlist: ['OU', 'UUBL'],
-		unbanlist: [
-		],
-		teambuilderFormat: 'OU',
+		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod'],
+		banlist: ['Uber', 'OU', 'UUBL'],
+		unbanlist: [],
 	},
-	/*{
-		name: "[Gen 3] Hoenn Gaiden Uber",
-		desc: ["<b>Hoenn Gaiden</b>: A Gen 3 pet mod that aims to devamp Gen 4-8 Pokemon, moves and items into the Gen 3 mechanics."],
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-the-gen-3-pet-mod-round-1-discussion.3681339/">Hoenn Gaiden on Smogon Forums</a>`,
-		],
-
-		mod: 'gen3hoenngaiden',
-		searchShow: false,
-		ruleset: ['Standard', 'Data Mod', 'Hoenn Gaiden Mod'],
-		banlist: ['Wobbuffet + Leftovers'],
-		unbanlist: [
-		],
-		teambuilderFormat: 'Uber',
-	},*/
 	{
 		name: "[Gen 8] JolteMons 1v1",
 		desc: [
@@ -3926,6 +3910,23 @@ export const Formats: FormatList = [
    },
 	*/
 	{
+	name: "[Gen 1] JohtoMons",
+	desc: '<b>[Gen 1] JohtoMons</b>: Adding the Johto mons to RBY',
+	threads: [
+		`&bullet; <a href="https://www.smogon.com/forums/threads/gen-1-futureproofing-slate-1-discussion.3703375/">FutureProofing on Smogon Forums</a>`,
+	],
+    mod: 'gen1johtomons',
+    ruleset: ['Standard', 'Data Mod'],
+	banlist: ['Uber'],
+	unbanlist: ['Aeroblast', 'Sacred Fire', 'Sketch', 'Present', 'Megahorn', 'Steel Wing', 'Milk Drink', 'Metal Claw', 'Spider Web', 'Hidden Power', 'Octazooka', 'Triple Kick', 'Vital Throw', 'Extreme Speed', 'Mach Punch', 'Outrage', 'Morning Sun',
+		'Chikorita', 'Bayleef', 'Meganium', 'Cyndaquil', 'Quilava', 'Typhlosion', 'Sentret', 'Furret', 'Hoothoot', 'Noctowl', 'Ledyba', 'Ledian', 'Spinarak', 'Ariados', 'Crobat', 'Chinchou', 'Lanturn', 'Pichu', 'Cleffa', 'Igglybuff', 'Togepi', 'Togetic',
+		'Natu', 'Xatu', 'Mareep', 'Flaaffy', 'Ampharos', 'Bellossom', 'Marill', 'Azumarill', 'Sudowoodo', 'Politoed', 'Hoppip', 'Skiploom', 'Jumpluff', 'Aipom', 'Sunkern', 'Sunflora', 'Yanma', 'Wooper', 'Quagsire', 'Espeon', 'Umbreon', 'Murkrow', 'Slowking', 
+		'Misdreavus', 'Unown', 'Wobbuffet', 'Girafarig', 'Pineco', 'Forretress', 'Dunsparce', 'Gligar', 'Steelix', 'Snubbull', 'Granbull', 'Qwilfish', 'Scizor', 'Shuckle', 'Heracross', 'Sneasel', 'Teddiursa', 'Ursaring', 'Slugma', 'Magcargo', 'Swinub', 
+		'Piloswine', 'Corsola', 'Remoraid', 'Octillery', 'Delibird', 'Mantine', 'Skarmory', 'Houndour', 'Houndoom', 'Kingdra', 'Phanpy', 'Donphan', 'Porygon2', 'Stantler', 'Smeargle', 'Tyrogue', 'Hitmontop', 'Smoochum', 'Elekid', 'Magby', 'Miltank', 
+		'Blissey', 'Raikou', 'Entei', 'Suicune', 'Larvitar', 'Pupitar', 'Tyranitar', 'Lugia', 'Ho-Oh', 'Celebi',
+		],
+    },
+	{
 		name: "[Gen 8] Journey to Kilirthy",
 		desc: '<b>Journey to Kilirthy</b>: A solomod, where Fakemons are added as if it was a new game.',
     threads: [
@@ -4390,6 +4391,24 @@ export const Formats: FormatList = [
 		mod: 'gen6',
 		ruleset: ['Standard', 'Swagger Clause'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass'],
+	},
+	{
+		name: "[Gen 6] OU (No Megas)",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/dex/xy/tags/ou/">ORAS OU Banlist</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/posts/8133793/">ORAS OU Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3623399/">ORAS OU Viability Rankings</a>`,
+		],
+
+		mod: 'gen6',
+		ruleset: ['Standard', 'Swagger Clause'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+					"Venusaurite", "Blastoisinite", "Charizardite Y", "Charizardite X", "Beedrillite", "Pidgeotite", "Alakazite", "Slowbronite", "Gengarite", 
+					"Kangaskhanite", "Pinsirite", "Gyaradosite", "Aerodactylite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Steelixite", "Scizorite",
+					"Heracronite", "Houndoominite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
+					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Banettite", "Absolite", "Glalitite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Lopunnite", "Garchompite", "Lucarionite", "Abomasite", "Galladite", "Audinite", "Diancite"
+					],
 	},
 	{
 		name: "[Gen 5] OU",
