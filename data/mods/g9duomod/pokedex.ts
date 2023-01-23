@@ -114,7 +114,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       num: 11.5,
       species: "Jewelode",
       types: ["Rock", "Fairy"],
-      baseStats: {hp: 70, atk: 61, def: 80, spa: 136, spd: 70, spe: 106},
+      baseStats: {hp: 80, atk: 61, def: 80, spa: 126, spd: 70, spe: 106},
       abilities: {0: "Neutralizing Gas"},
       height: 5,
       weightkg: 21,

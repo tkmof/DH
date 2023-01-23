@@ -483,7 +483,6 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		onModifyMove(move, pokemon) {
 			if (pokemon.abilityData.choiceLock || move.isZOrMaxPowered || move.id === 'struggle') return;
-			if (!pokemon.hasMove(this.effectData.move)) return;
 			pokemon.abilityData.choiceLock = move.id;
 		},
 		onModifyAtkPriority: 1,
@@ -495,6 +494,10 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		onDisableMove(pokemon) {
 			if (!pokemon.abilityData.choiceLock) return;
+			if (!pokemon.hasMove(pokemon.abilityData.choiceLock)) {
+				pokemon.abilityData.choiceLock = "";
+				return;
+			}
 			if (pokemon.volatiles['dynamax']) return;
 			for (const moveSlot of pokemon.moveSlots) {
 				if (moveSlot.id !== pokemon.abilityData.choiceLock) {
