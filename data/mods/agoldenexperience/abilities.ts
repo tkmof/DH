@@ -1389,6 +1389,30 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3,
 		num: -1153,
 	},
+	unconcerned: {
+        name: "Unconcerned",
+        onAnyModifyBoost(boosts, pokemon) {
+            const unconcernedUser = this.effectData.target;
+            if (unconcernedUser === this.activePokemon) {
+                boosts['atk'] = 0;
+                boosts['def'] = 0;
+                boosts['spa'] = 0;
+                boosts['spd'] = 0;
+                //boosts['spe'] = 0;
+                boosts['accuracy'] = 0;
+                boosts['evasion'] = 0;
+            }
+            if (pokemon === this.activePokemon && unconcernedUser === this.activeTarget) {
+                boosts['atk'] = 0;
+                boosts['def'] = 0;
+                boosts['spa'] = 0;
+                boosts['accuracy'] = 0;
+            }
+        },
+        shortDesc: "This Pokemon ignores its own stat stages when taking or doing damage.",
+        rating: 4,
+        num: -1109,
+    },
 	hydrophilic: {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {

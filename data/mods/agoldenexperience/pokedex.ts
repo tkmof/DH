@@ -158,6 +158,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		types: ["Water", "Psychic"],
 		baseStats: {hp: 80, atk: 62, def: 78, spa: 105, spd: 80, spe: 95},
+		abilities: {0: "Neuroforce", 1: "Cloud Nine", H: "Swift Swim"},
 	},
 	primeape: {
 		inherit: true,
@@ -197,7 +198,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Fire", "Rock"],
 		genderRatio: {M: 0.75, F: 0.25},
 		baseStats: {hp: 95, atk: 115, def: 80, spa: 85, spd: 80, spe: 100},
-		abilities: {0: "Intimidate", 1: "Flash Fire", H: "Justified"},
+		abilities: {0: "Intimidate", 1: "Flash Fire", H: "Rock Head"},
 		heightm: 2,
 		weightkg: 168,
 		color: "Brown",
@@ -254,6 +255,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	golemalola: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 120, def: 140, spa: 45, spd: 65, spe: 45},
+		abilities: {0: "Magnet Pull", 1: "Deadly Blasts", H: "Galvanize"},
 	},
 	rapidash: {
 		inherit: true,
@@ -267,6 +269,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	slowbromega: {
 		inherit: true,
 		abilities: {0: "Invincible"},
+	},
+	slowbrogalar: {
+		inherit: true,
+		abilities: {0: "Quick Draw", 1: "Deadly Blasts", H: "Regenerator"},
 	},
 	doduo: {
 		inherit: true,
@@ -507,7 +513,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Fire", "Ghost"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 73, atk: 84, def: 78, spa: 119, spd: 85, spe: 95},
-		abilities: {0: "Blaze", H: "Flame Body"},
+		abilities: {0: "Blaze", H: "Frisk"},
 		heightm: 1.6,
 		weightkg: 69.8,
 		color: "Yellow",
@@ -674,6 +680,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	girafarig: {
 		inherit: true,
 		evos: ["Girafatak"],
+		abilities: {0: "Inner Focus", 1: "Early Bird", H: "Neuroforce"},
 	},
 	granbull: {
 		inherit: true,
@@ -1215,6 +1222,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Hard Rock", 1: "Rock Head", H: "Sturdy"},
 	},
+	beldum: {
+		inherit: true,
+		abilities: {0: "Clear Body", 1: "Neuroforce", H: "Light Metal"},
+	},
+	metang: {
+		inherit: true,
+		abilities: {0: "Clear Body", 1: "Neuroforce", H: "Light Metal"},
+	},
+	metagross: {
+		inherit: true,
+		abilities: {0: "Clear Body", 1: "Neuroforce", H: "Light Metal"},
+	},
 	metagrossmega: {
 		inherit: true,
 		abilities: {0: "Cosmic Energy"},
@@ -1541,7 +1560,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Grass", "Dragon"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 80, atk: 60, def: 75, spa: 105, spd: 95, spe: 113},
-		abilities: {0: "Overgrow", H: "Queenly Majesty"},
+		abilities: {0: "Overgrow", H: "Unconcerned"},
 		heightm: 3.5,
 		weightkg: 60,
 		color: "Green",
@@ -1595,7 +1614,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Dark"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 85, atk: 113, def: 75, spa: 80, spd: 60, spe: 115},
-		abilities: {0: "Torrent", H: "Shell Armor"},
+		abilities: {0: "Torrent", H: "Swordsmanship"},
 		heightm: 1.5,
 		weightkg: 58.2,
 		color: "Blue",
@@ -1952,6 +1971,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	beheeyem: {
 		inherit: true,
 		baseStats: {hp: 95, atk: 55, def: 95, spa: 125, spd: 95, spe: 30},
+		abilities: {0: "Telepathy", 1: "Neuroforce", H: "Analytic"},
 	},
 	litwick: {
 		inherit: true,
@@ -1964,6 +1984,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	chandelure: {
 		inherit: true,
 		abilities: {0: "Flash Fire", 1: "Flame Body", H: "Shadow Tag"},
+	},
+	haxorus: {
+		inherit: true,
+		abilities: {0: "Rivalry", 1: "Mold Breaker", H: "Unconcerned"},
 	},
 	beartic: {
 		inherit: true,
@@ -2017,7 +2041,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Psychic", "Flying"],
 		gender: "M",
 		baseStats: {hp: 110, atk: 63, def: 70, spa: 112, spd: 70, spe: 85},
-		abilities: {0: "Keen Eye", 1: "Sheer Force", H: "Defiant"},
+		abilities: {0: "Keen Eye", 1: "Sheer Force", H: "Tinted Lens"},
 		heightm: 1.7,
 		weightkg: 43.4,
 		color: "Red",
@@ -2230,7 +2254,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		forme: "Hisui",
 		types: ["Dragon", "Steel"],
 		baseStats: {hp: 58, atk: 75, def: 83, spa: 83, spd: 113, spe: 40},
-		abilities: {0: "Sap Sipper", 1: "Overcoat", H: "Gooey"},
+		abilities: {0: "Sap Sipper", 1: "Shell Armor", H: "Gooey"},
 		heightm: 0.7,
 		weightkg: 68.5,
 		color: "Purple",
@@ -2252,7 +2276,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		forme: "Hisui",
 		types: ["Dragon", "Steel"],
 		baseStats: {hp: 80, atk: 100, def: 100, spa: 110, spd: 150, spe: 60},
-		abilities: {0: "Sap Sipper", 1: "Overcoat", H: "Gooey"},
+		abilities: {0: "Sap Sipper", 1: "Shell Armor", H: "Gooey"},
 		heightm: 1.7,
 		weightkg: 334.1,
 		color: "Purple",
@@ -2389,7 +2413,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Grass", "Fighting"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 88, atk: 112, def: 80, spa: 95, spd: 95, spe: 60},
-		abilities: {0: "Overgrow", H: "Long Reach"},
+		abilities: {0: "Overgrow", H: "Scrappy"},
 		heightm: 1.6,
 		weightkg: 37,
 		color: "Brown",
@@ -2515,7 +2539,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	oranguru: {
 		inherit: true,
 		baseStats: {hp: 100, atk: 50, def: 90, spa: 90, spd: 110, spe: 50},
-		abilities: {0: "Inner Focus", 1: "Gorilla Tactics", H: "Divination"},
+		abilities: {0: "Inner Focus", 1: "Neuroforce", H: "Divination"},
 	},
 	passimian: {
 		inherit: true,
@@ -2917,15 +2941,15 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	sobble: {
 		inherit: true,
-		abilities: {0: "Torrent", H: "Quick Draw"},
+		abilities: {0: "Torrent", H: "Deadly Blasts"},
 	},
 	drizzile: {
 		inherit: true,
-		abilities: {0: "Torrent", H: "Quick Draw"},
+		abilities: {0: "Torrent", H: "Deadly Blasts"},
 	},
 	inteleon: {
 		inherit: true,
-		abilities: {0: "Torrent", H: "Quick Draw"},
+		abilities: {0: "Torrent", H: "Deadly Blasts"},
 	},
 	greedent: {
 		inherit: true,
@@ -2933,7 +2957,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	orbeetle: {
 		inherit: true,
-		abilities: {0: "Swarm", 1: "Regenerator", H:"Psychic Surge"},
+		abilities: {0: "Neuroforce", 1: "Regenerator", H: "Psychic Surge"},
 	},
 	thievul: {
 		inherit: true,
@@ -3149,7 +3173,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Kleavor",
 		types: ["Bug", "Rock"],
 		baseStats: {hp: 70, atk: 135, def: 95, spa: 45, spd: 70, spe: 85},
-		abilities: {0: "Swarm", 1: "Sheer Force", H: "Steadfast"},
+		abilities: {0: "Swarm", 1: "Sheer Force", H: "Swordsmanship"},
 		heightm: 1.8,
 		weightkg: 89,
 		color: "Brown",
@@ -3212,7 +3236,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Sneasler",
 		types: ["Fighting", "Poison"],
 		baseStats: {hp: 80, atk: 130, def: 60, spa: 40, spd: 80, spe: 120},
-		abilities: {0: "Pressure", H: "Poison Touch"},
+		abilities: {0: "Pressure", 1: "Unburden", H: "Poison Touch"},
 		heightm: 1.3,
 		weightkg: 43,
 		color: "Gray",
@@ -4059,6 +4083,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
         num: 2074,
         name: "Parafgufa",
         types: ["Water", "Grass"],
+		gender: "N",
         baseStats: {hp: 110, atk: 80, def: 110, spa: 105, spd: 110, spe: 85},
         abilities: {0: "Microclimate"},
         heightm: 15,
@@ -4068,6 +4093,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 2075,
 		name: "Infarmatem",
 		types: ["Rock", "Fairy"],
+		gender: "N",
 		baseStats: {hp: 150, atk: 100, def: 50, spa: 100, spd: 50, spe: 50},
 		abilities: {0: "Prism Armor"},
 		heightm: 1.60,
@@ -4082,6 +4108,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseSpecies: "Infarmatem",
 		forme: "Mega",
 		types: ["Steel", "Fairy"],
+		gender: "N",
 		baseStats: {hp: 150, atk: 120, def: 70, spa: 120, spd: 70, spe: 70},
 		abilities: {0: "Magic Bounce"},
 		heightm: 2,
@@ -4093,6 +4120,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 2076,
 		name: "Grimillia",
 		types: ["Steel", "Dark"],
+		gender: "N",
 		baseStats: {hp: 80, atk: 110, def: 100, spa: 145, spd: 100, spe: 65},
 		abilities: {0: "Void-Heart"},
 		heightm: 1,

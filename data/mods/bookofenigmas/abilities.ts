@@ -11,7 +11,8 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	//Paradoxes abilities
 	cleansingfire: {
 		onAnyFaintPriority: 1,
-		onAnyFaint(pokemon) {
+		onAnyFaint() {
+			if(!this.effectData.target.hp) return;
 			this.debug('cleansingfire');
 			this.add('-activate', this.effectData.target, 'ability: Cleansing Fire');
 			this.effectData.target.cureStatus();

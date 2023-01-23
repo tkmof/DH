@@ -11,6 +11,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power Gem", target);
+		},
 		onHit(target) {
 			if (target.getAbility().isPermanent) return;
 			if (target.status || target.hasAbility('comatose')){
