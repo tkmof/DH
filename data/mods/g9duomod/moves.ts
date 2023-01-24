@@ -406,18 +406,20 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: -3,
 		flags: {protect: 1, mirror: 1},
 		onPrepareHit: function(target, source, move) {
-		    this.attrLastMove('[still]');
-		    this.add('-anim', source, "Fusion Flare", target);
+			if (!source.volatiles['pharaohshot']) {
+				move.basePower = 140;
+				this.attrLastMove('[still]');
+				this.add('-anim', source, "Fusion Flare", target);
+			}
+			else {
+				this.attrLastMove('[still]');
+				this.add('-anim', source, "Incinerate", target);
+			}	
 		},
 		beforeTurnCallback(pokemon) {
+			this.add('-message', "The temperature is rising...");
 			pokemon.addVolatile('pharaohshot');
 		},
-/*		beforeMoveCallback(pokemon) {
-			if (pokemon.volatiles['pharaohshot'] && pokemon.volatiles['pharaohshot'].lostFocus) {
-				this.add('cant', pokemon, 'Pharaoh Shot', 'Pharaoh Shot');
-				return true;
-			}
-		},*/
 		condition: {
 			duration: 1,
 			onStart(pokemon) {
@@ -425,8 +427,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onHit(pokemon, source, move) {
 				if (move.flags['contact']) {
-					this.add('-message', "The attack hit the charging flame!");
-					this.useMove("Pharaoh Shot", pokemon);
+					this.add('-message', "The attack hit a charging flame!");
+					pokemon.removeVolatile('pharaohshot');
 				}
 			},
 		},
@@ -1053,12 +1055,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Crush Claw", target);
-		},
-		onModifyType(move, pokemon) {
-			if (source.ability !== "unstableclaws") return;
-			let type = pokemon.types[0];
-			if (type === "Bird") type = "???";
-			move.type = type;
 		},
 		critRatio: 2,
 		secondary: {
