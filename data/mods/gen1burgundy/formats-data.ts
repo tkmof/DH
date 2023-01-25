@@ -240,7 +240,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	nidoking: {
 		randomBattleMoves: ["blizzard", "bodyslam"],
 		essentialMove: "earthquake",
-		exclusiveMoves: ["thunder", "thunderbolt", "rockslide"],
+		exclusiveMoves: ["focusenergy", "thunderbolt", "rockslide"],
 		tier: "UU",
 	},
 	clefairy: {
@@ -752,8 +752,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	jolteon: {
-		randomBattleMoves: ["thunderwave", "bodyslam", "thunderbolt"],
-		exclusiveMoves: ["pinmissile", "pinmissile", "doublekick", "agility", "agility"],
+		randomBattleMoves: ["thunderwave", "focusenergy", "thunderbolt"],
+		exclusiveMoves: ["pinmissile", "pinmissile", "doublekick"],
 		tier: "OU",
 	},
 	flareon: {
