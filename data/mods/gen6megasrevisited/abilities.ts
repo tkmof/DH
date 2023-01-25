@@ -162,4 +162,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		num: 196,
 		gen: 6,
 	},
+	pocketdimension: {
+	  shortDesc: "This Pokemon switches out after using a status move.",
+	  onModifyMove(move, pokemon) {
+			if (move.category === 'Status') {
+			  move.selfSwitch = true;
+			  this.add('-ability', pokemon, 'Pocket Dimension');
+			}
+	  },
+	  name: "Pocket Dimension",
+	  rating: 4.5,
+    },
 };
