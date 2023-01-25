@@ -41,7 +41,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	sneasler: {
 		tier: "OU",
-		randomBattleMoves: ["swordsdance", "sludge", "hyperbeam", "submission"],
+		randomBattleMoves: ["swordsdance", "sludge", "slash", "submission"],
 		isNonstandard: null,
 		gen: 1,
 	},
@@ -790,7 +790,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	aerodactyl: {
-		randomBattleMoves: ["drillpeck", "rockslide", "earthquake", "hyperbeam"],
+		randomBattleMoves: ["fireblast", "rockslide", "earthquake", "hyperbeam"],
 		tier: "UU",
 	},
 	snorlax: {
