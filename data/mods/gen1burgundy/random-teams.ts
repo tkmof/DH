@@ -128,7 +128,7 @@ export class RandomGen1Teams extends RandomGen2Teams {
 		let pokemonLeft = 0;
 		const pokemon = [];
 
-		const handicapMons = ['magikarp', 'weedle', 'kakuna', 'caterpie', 'metapod', 'ralts'];
+		const handicapMons = ['magikarp', 'weedle', 'kakuna', 'caterpie', 'metapod'];
 		const nuTiers = ['UU', 'UUBL', 'NFE', 'LC', 'NU', 'PU'];
 		const uuTiers = ['NFE', 'UU', 'UUBL', 'NU', 'PU'];
 
@@ -362,8 +362,7 @@ export class RandomGen1Teams extends RandomGen2Teams {
 
 		const customScale: {[k: string]: number} = {
 			Mewtwo: 62,
-      	Yveltal: 64,
-			Caterpie: 99, Metapod: 99, Weedle: 99, Kakuna: 99, Magikarp: 99, Ralts: 99, Milcery: 90, Kirlia: 84,
+			Caterpie: 99, Metapod: 99, Weedle: 99, Kakuna: 99, Magikarp: 99,
 			Ditto: 88,
 		};
 		let level = levelScale[species.tier] || 80;

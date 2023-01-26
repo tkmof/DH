@@ -231,7 +231,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			counter: ["1L1"],
 			dig: ["1L1"],
 			doublekick: ["1L1"],
-			hyperbeam: ["1L1"],
 			jumpkick: ["1L1"],
 			leer: ["1L1"],
 			lowkick: ["1L1"],

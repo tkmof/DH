@@ -95,7 +95,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 903,
 		name: "Sneasler",
 		types: ["Fighting", "Poison"],
-		baseStats: {hp: 80, atk: 130, def: 60, spa: 80, spd: 80, spe: 120},
+		baseStats: {hp: 80, atk: 100, def: 60, spa: 80, spd: 80, spe: 115},
 		abilities: {},
 		heightm: 1.3,
 		weightkg: 43,
