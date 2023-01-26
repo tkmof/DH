@@ -5,246 +5,327 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 // Future Mons	
 	chikorita: {
 		tier: "LC",
+		gen: 1,
 	},
 	bayleef: {
 		tier: "NFE",
+		gen: 1,
 	},
 	meganium: {
 		tier: "OU",
+		gen: 1,
 	},
 	cyndaquil: {
 		tier: "LC",
+		gen: 1,
 	},
 	quilava: {
 		tier: "NFE",
+		gen: 1,
 	},
 	typhlosion: {
 		tier: "UUBL",
+		gen: 1,
 	},
 	totodile: {
 		tier: "LC",
+		gen: 1,
 	},
 	croconaw: {
 		tier: "NFE",
+		gen: 1,
 	},
 	feraligatr: {
 		tier: "NUBL",
+		gen: 1,
 	},
 	sentret: {
 		tier: "LC",
+		gen: 1,
 	},
 	furret: {
 		tier: "NU",
+		gen: 1,
 	},
 	hoothoot: {
 		tier: "LC",
+		gen: 1,
 	},
 	noctowl: {
 		tier: "NU",
+		gen: 1,
 	},
 	ledyba: {
 		tier: "LC",
+		gen: 1,
 	},
 	ledian: {
 		tier: "NU",
+		gen: 1,
 	},
 	spinarak: {
 		tier: "LC",
+		gen: 1,
 	},
 	ariados: {
 		tier: "NU",
+		gen: 1,
 	},
 	chinchou: {
 		tier: "LC",
+		gen: 1,
 	},
 	lanturn: {
 		tier: "UU",
+		gen: 1,
 	},
 	togepi: {
 		tier: "LC",
+		gen: 1,
 	},
 	togetic: {
 		tier: "NU",
+		gen: 1,
 	},
 	natu: {
 		tier: "LC",
+		gen: 1,
 	},
 	xatu: {
 		tier: "NU",
+		gen: 1,
 	},
 	mareep: {
 		tier: "LC",
+		gen: 1,
 	},
 	flaaffy: {
 		tier: "NFE",
+		gen: 1,
 	},
 	ampharos: {
 		tier: "UU",
+		gen: 1,
 	},
 	marill: {
 		tier: "LC",
+		gen: 1,
 	},
 	azumarill: {
 		tier: "NU",
+		gen: 1,
 	},
 	sudowoodo: {
 		tier: "NU",
+		gen: 1,
 	},
 	hoppip: {
 		tier: "LC",
+		gen: 1,
 	},
 	skiploom: {
 		tier: "NFE",
+		gen: 1,
 	},
 	jumpluff: {
 		tier: "UU",
+		gen: 1,
 	},
 	aipom: {
 		tier: "NU",
+		gen: 1,
 	},
 	sunkern: {
 		tier: "LC",
+		gen: 1,
 	},
 	sunflora: {
 		tier: "NU",
+		gen: 1,
 	},
 	yanma: {
 		tier: "NU",
+		gen: 1,
 	},
 	wooper: {
 		tier: "LC",
+		gen: 1,
 	},
 	quagsire: {
 		tier: "UU",
+		gen: 1,
 	},
 	murkrow: {
 		tier: "NU",
+		gen: 1,
 	},
 	misdreavus: {
 		tier: "OU",
+		gen: 1,
 	},
 	unown: {
 		tier: "NU",
+		gen: 1,
 	},
 	wobbuffet: {
 		tier: "NU",
+		gen: 1,
 	},
 	girafarig: {
 		tier: "UU",
+		gen: 1,
 	},
 	pineco: {
 		tier: "LC",
+		gen: 1,
 	},
 	forretress: {
 		tier: "OU",
+		gen: 1,
 	},
 	dunsparce: {
 		tier: "NU",
+		gen: 1,
 	},
 	gligar: {
 		tier: "UU",
+		gen: 1,
 	},
 	snubbull: {
 		tier: "LC",
+		gen: 1,
 	},
 	granbull: {
 		tier: "UU",
+		gen: 1,
 	},
 	qwilfish: {
 		tier: "UU",
+		gen: 1,
 	},
 	shuckle: {
 		tier: "NU",
+		gen: 1,
 	},
 	heracross: {
 		tier: "OU",
+		gen: 1,
 	},
 	sneasel: {
 		tier: "NU",
+		gen: 1,
 	},
 	teddiursa: {
 		tier: "LC",
+		gen: 1,
 	},
 	ursaring: {
-		tier: "UUBL",
+		tier: "OU",
+		gen: 1,
 	},
 	slugma: {
 		tier: "LC",
+		gen: 1,
 	},
 	magcargo: {
 		tier: "NU",
+		gen: 1,
 	},
 	swinub: {
 		tier: "LC",
+		gen: 1,
 	},
 	piloswine: {
-		tier: "UU",
+		tier: "OU",
+		gen: 1,
 	},
 	corsola: {
 		tier: "NU",
+		gen: 1,
 	},
 	remoraid: {
 		tier: "LC",
+		gen: 1,
 	},
 	octillery: {
 		tier: "NU",
+		gen: 1,
 	},
 	delibird: {
 		tier: "NU",
+		gen: 1,
 	},
 	mantine: {
 		tier: "NU",
+		gen: 1,
 	},
 	skarmory: {
 		tier: "OU",
+		gen: 1,
 	},
 	houndour: {
 		tier: "LC",
+		gen: 1,
 	},
 	houndoom: {
 		tier: "UUBL",
+		gen: 1,
 	},
 	phanpy: {
 		tier: "LC",
+		gen: 1,
 	},
 	donphan: {
 		tier: "UUBL",
+		gen: 1,
 	},
 	stantler: {
 		tier: "NU",
+		gen: 1,
 	},
 	smeargle: {
 		tier: "UUBL",
+		gen: 1,
 	},
 	miltank: {
 		tier: "OU",
+		gen: 1,
 	},
 	raikou: {
 		tier: "OU",
+		gen: 1,
 	},
 	entei: {
 		tier: "UUBL",
+		gen: 1,
 	},
 	suicune: {
 		tier: "OU",
+		gen: 1,
 	},
 	larvitar: {
 		tier: "LC",
+		gen: 1,
 	},
 	pupitar: {
 		tier: "NFE",
+		gen: 1,
 	},
 	tyranitar: {
 		tier: "OU",
+		gen: 1,
 	},
 	lugia: {
 		tier: "Uber",
+		gen: 1,
 	},
 	hooh: {
 		tier: "Uber",
+		gen: 1,
 	},
 	celebi: {
 		tier: "Uber",
+		gen: 1,
 	},
 	
 // Old Mons	
