@@ -180,7 +180,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       num: 17.5,
       species: "Eneryth",
       types: ["Electric"],
-      baseStats: {hp: 73, atk: 51, def: 51, spa: 111, spd: 73, spe: 171},
+      baseStats: {hp: 73, atk: 51, def: 51, spa: 121, spd: 73, spe: 171},
       abilities: {0: "Power Outage"},
       weightkg: 63,
     },
