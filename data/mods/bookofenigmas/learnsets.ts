@@ -807,7 +807,6 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			highhorsepower: ["8L1"],
 			uturn: ["8L1"],
 			axekick: ["8L1"],
-			tripleaxel: ["8L1"],
 			stealthrock: ["8L1"],
 			courtchange: ["8L1"],
 			rapidspin: ["8L1"],

@@ -79,11 +79,11 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	tripledrill: {
 		num: -4,
-		shortDesc: "Hits three times. Each hit increases in BP by 25, but they have separate accuracy checks.",
+		shortDesc: "Hits three times. Each hit increases in BP by 20, but they have separate accuracy checks.",
 		accuracy: 90,
-		basePower: 25,
+		basePower: 20,
 		basePowerCallback(pokemon, target, move) {
-			return 25 + move.hit;
+			return 20 * move.hit;
 		},
 		category: "Physical",
 		name: "Triple Drill",
