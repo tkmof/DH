@@ -693,7 +693,7 @@ sucabra: {
 	num: 77.5,
 	species: "Sucabra",
 	types: ["Psychic", "Flying"],
-	baseStats: {hp: 72, atk: 85, def: 65, spa: 115, spd: 75, spe: 101},
+	baseStats: {hp: 72, atk: 85, def: 75, spa: 105, spd: 75, spe: 94},
 	abilities: {0: "Berserk", 1: "Infiltrator", H: "Leecher"},
 	weightkg: 90.2,
 	prevo: "likaba",
