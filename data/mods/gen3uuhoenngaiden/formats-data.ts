@@ -283,6 +283,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "New",
 	},
 	arcaninehisui: {
+		isNonstandard: "Future",
+		tier: "Illegal",
 	},
 	poliwag: {
 		tier: "LC",
@@ -797,6 +799,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "New",
 	},
 	typhlosionhisui: {
+		isNonstandard: "Future",
+		tier: "Illegal",
 	},
 	totodile: {
 		tier: "LC",
@@ -1009,6 +1013,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "New",
 	},
 	qwilfishhisui: {
+		isNonstandard: "Future",
+		tier: "Illegal",
 	},
 	shuckle: {
 		randomBattleMoves: ["encore", "protect", "rest", "sleeptalk", "toxic", "wrap"],
@@ -1026,6 +1032,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "New",
 	},
 	sneaselhisui: {
+		isNonstandard: "Future",
+		tier: "Illegal",
 	},
 	teddiursa: {
 		tier: "LC",

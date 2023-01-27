@@ -757,8 +757,8 @@ export const Formats: FormatList = [
 					"Venusaurite", "Blastoisinite", "Charizardite Y", "Charizardite X", "Beedrillite", "Pidgeotite", "Alakazite", "Slowbronite", "Gengarite", 
 					"Kangaskhanite", "Pinsirite", "Gyaradosite", "Aerodactylite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Steelixite", "Scizorite",
 					"Heracronite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
-					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Banettite", "Absolite", "Glalitite", "Salamencite",
-					"Metagrossite", "Latiasite", "Latiosite", "Lopunnite", "Garchompite", "Abomasite", "Galladite", "Diancite"
+					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Absolite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Abomasite", "Galladite", "Diancite"
 					],
 	},
 	/*
@@ -3156,6 +3156,16 @@ export const Formats: FormatList = [
 		ruleset: ['OHKO Clause', 'Obtainable', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause', 'Data Mod', 'Mega Data Mod', 'Cancel Mod',],
 	},
 	{
+		name: "[Gen 1] Burgundy Version Random Battle",
+	   desc: `<b>[Gen 1] Burgundy Version</b>: An expansion of the Gen 1 OU metagame that changes some mechanics and adds new Pokemon and moves, both original and from later gens.`,
+	   threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-1-burgundy-version-slate-3-new-moves-voting.3711525/">Burgundy Version on Smogon Forums</a>`,
+	   ],
+		mod: 'gen1burgundy',
+		team: 'random',
+      ruleset: ['Standard With Dig and Fly', 'Data Mod', 'Allow Tradeback'],
+	},
+	{
 		name: "[Gen 8] Duomod Randbats",
 		desc: `<b>Duomod</b>: Legendary YouTuber and professional Smash player DuoM2's solomod, build around the idea where nobody is ever truly losing.`,
         threads: [
@@ -3577,7 +3587,7 @@ export const Formats: FormatList = [
 			'Moody', 'Bright Powder', 'Lax Incense', 'Quick Claw', 'Razor Fang', 'King\'s Rock',
 			'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Pikanium Z', 'Pikashunium Z', 'Aloraichium Z', 'Eevium Z', 'Snorlium Z', 'Mewnium Z', 'Decidium Z', 'Incinium Z', 'Primarium Z', 'Lycanium Z', 'Mimikium Z', 'Kommonium Z', 'Tapunium Z', 'Solganium Z', 'Lunalium Z', 'Ultranecrozium Z', 'Marshadium Z', 
 		],
-		teambuilderFormat: 'National Dex',
+		//teambuilderFormat: 'National Dex AG',
 	},
 
 

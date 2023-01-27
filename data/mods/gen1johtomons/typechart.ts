@@ -6,7 +6,7 @@
  */
 
 export const TypeChart: {[k: string]: ModdedTypeData} = {
-	bug: {
+	Bug: {
 		damageTaken: {
 			Bug: 0,
 			Dragon: 0,
@@ -27,7 +27,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Dark: 0,
 		},
 	},
-	dragon: {
+	Dragon: {
 		damageTaken: {
 			Bug: 0,
 			Dark: 0,
@@ -48,7 +48,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 2,
 		},
 	},
-	electric: {
+	Electric: {
 		damageTaken: {
 			Bug: 0,
 			Dark: 0,
@@ -69,7 +69,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 0,
 		},
 	},
-	fighting: {
+	Fighting: {
 		damageTaken: {
 			Bug: 2,
 			Dark: 2,
@@ -90,7 +90,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 0,
 		},
 	},
-	fire: {
+	Fire: {
 		damageTaken: {
 			Bug: 2,
 			Dragon: 0,
@@ -111,7 +111,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Dark: 0,
 		},
 	},
-	flying: {
+	Flying: {
 		damageTaken: {
 			Bug: 2,
 			Dark: 0,
@@ -132,7 +132,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 0,
 		},
 	},
-	ghost: {
+	Ghost: {
 		damageTaken: {
 			Bug: 2,
 			Dragon: 0,
@@ -153,7 +153,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Dark: 1,
 		},
 	},
-	grass: {
+	Grass: {
 		damageTaken: {
 			Bug: 1,
 			Dark: 0,
@@ -174,7 +174,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 2,
 		},
 	},
-	ground: {
+	Ground: {
 		damageTaken: {
 			Bug: 0,
 			Dark: 0,
@@ -195,7 +195,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 1,
 		},
 	},
-	ice: {
+	Ice: {
 		damageTaken: {
 			Bug: 0,
 			Dark: 0,
@@ -217,7 +217,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 0,
 		},
 	},
-	normal: {
+	Normal: {
 		damageTaken: {
 			Bug: 0,
 			Dark: 0,
@@ -239,7 +239,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 0,
 		},
 	},
-	poison: {
+	Poison: {
 		damageTaken: {
 			psn: 3,
 			tox: 3,
@@ -262,7 +262,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Dark: 0,
 		},
 	},
-	psychic: {
+	Psychic: {
 		damageTaken: {
 			Bug: 1,
 			Dragon: 0,
@@ -283,7 +283,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Dark: 1,
 		},
 	},
-	rock: {
+	Rock: {
 		damageTaken: {
 			Bug: 0,
 			Dark: 0,
@@ -304,7 +304,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 1,
 		},
 	},
-	water: {
+	Water: {
 		damageTaken: {
 			Bug: 0,
 			Dark: 0,
@@ -325,8 +325,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Water: 2,
 		},
 	},
-	dark: {
-		isNonstandard: null,
+	Dark: {
 		damageTaken: {
 			Bug: 1,
 			Dragon: 0,
@@ -347,8 +346,7 @@ export const TypeChart: {[k: string]: ModdedTypeData} = {
 			Dark: 2,
 		},
 	},
-	steel: {
-		isNonstandard: null,
+	Steel: {
 		damageTaken: {
 			Bug: 2,
 			Dragon: 2,

@@ -18,6 +18,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 70, atk: 125, def: 70, spa: 140, spd: 105, spe: 115},
 		abilities: {0: "Limber"},
 	},	
+	banettemega: {
+		inherit: true,
+		types: ["Ghost", "Steel"],
+		baseStats: {hp: 64, atk: 125, def: 95, spa: 87, spd: 83, spe: 101},
+		abilities: {0: "Pocket Dimension"},
+	},	
+	glaliemega: {
+		inherit: true,
+		types: ["Ice", "Steel"],
+		baseStats: {hp: 80, atk: 125, def: 100, spa: 80, spd: 80, spe: 115},
+		abilities: {0: "Strong Jaw"},
+	},	
 	
 // Gen 6 Stuff
 	arbok: {

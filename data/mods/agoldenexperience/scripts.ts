@@ -69,6 +69,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'avalugg').learnset.iciclecrash = ['8L1'];
     this.modData('Learnsets', 'avalugghisui').learnset.iciclecrash = ['8L1'];
     this.modData('Learnsets', 'scyther').learnset.closecombat = ['8L1'];
+    this.modData('Learnsets', 'arcaninehisui').learnset.extremespeed = ['8L1'];
 
     // distrib for PLA moves
 
@@ -95,6 +96,15 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'sharpedo').learnset.wavecrash = ['8L1'];
     this.modData('Learnsets', 'walrein').learnset.wavecrash = ['8L1'];
     this.modData('Learnsets', 'carracosta').learnset.wavecrash = ['8L1'];
+
+    // mountaingale 
+    this.modData('Learnsets', 'avalugg').learnset.mountaingale = ['8L1'];
+    this.modData('Learnsets', 'abomasnow').learnset.mountaingale = ['8L1'];
+    this.modData('Learnsets', 'crabominable').learnset.mountaingale = ['8L1'];
+    this.modData('Learnsets', 'beartic').learnset.mountaingale = ['8L1'];
+    this.modData('Learnsets', 'snobawcus').learnset.mountaingale = ['8L1'];
+    this.modData('Learnsets', 'glastrier').learnset.mountaingale = ['8L1'];
+    this.modData('Learnsets', 'mamoswine').learnset.mountaingale = ['8L1'];
 
     //
 
@@ -1066,7 +1076,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'necrozma').learnset.aurasphere = ['8L1'];
     delete this.modData('Learnsets', 'magearna').learnset.drainingkiss;
     delete this.modData('Learnsets', 'magearna').learnset.storedpower;
-    this.modData('Learnsets', 'stakataka').learnset.weneedawall = ['8T'];
+    this.modData('Learnsets', 'stakataka').learnset.zawall = ['8T'];
 
     //gen 8 :
     this.modData('Learnsets', 'cinderace').learnset.willowisp = ['8M'];

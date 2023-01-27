@@ -11,5 +11,10 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "audino").learnset.chargebeam = ["6L1"];
 		this.modData("Learnsets", "audino").learnset.charge = ["6L1"];
 		this.modData("Learnsets", "audino").learnset.zapcannon = ["6L1"];
+		this.modData("Learnsets", "glalie").learnset.thunderfang = ["6L1"];
+		this.modData("Learnsets", "glalie").learnset.partingshot = ["6L1"];
+		this.modData("Learnsets", "banette").learnset.ironhead = ["6L1"];
+		this.modData("Learnsets", "banette").learnset.metalsound = ["6L1"];
+
 	},
 };
