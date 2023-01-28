@@ -1,3 +1,28 @@
+/*
+List of flags and their descriptions:
+authentic: Ignores a target's substitute.
+bite: Power is multiplied by 1.5 when used by a Pokemon with the Strong Jaw Ability.
+bullet: Has no effect on Pokemon with the Bulletproof Ability.
+charge: The user is unable to make a move between turns.
+contact: Makes contact.
+dance: When used by a Pokemon, other Pokemon with the Dancer Ability can attempt to execute the same move.
+defrost: Thaws the user if executed successfully while the user is frozen.
+distance: Can target a Pokemon positioned anywhere in a Triple Battle.
+gravity: Prevented from being executed or selected during Gravity's effect.
+heal: Prevented from being executed or selected during Heal Block's effect.
+mirror: Can be copied by Mirror Move.
+mystery: Unknown effect.
+nonsky: Prevented from being executed or selected in a Sky Battle.
+powder: Has no effect on Grass-type Pokemon, Pokemon with the Overcoat Ability, and Pokemon holding Safety Goggles.
+protect: Blocked by Detect, Protect, Spiky Shield, and if not a Status move, King's Shield.
+pulse: Power is multiplied by 1.5 when used by a Pokemon with the Mega Launcher Ability.
+punch: Power is multiplied by 1.2 when used by a Pokemon with the Iron Fist Ability.
+recharge: If this move is successful, the user must recharge on the following turn and cannot make a move.
+reflectable: Bounced back to the original user by Magic Coat or the Magic Bounce Ability.
+snatch: Can be stolen from the original user and instead used by another Pokemon using Snatch.
+sound: Has no effect on Pokemon with the Soundproof Ability.
+*/
+
 export const Moves: {[moveid: string]: MoveData} = {
 	chillingwater: {
 		num: 300,
@@ -155,7 +180,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Fire",
 	},
-	/*Old move changes (mostly Snow-related)*/
+	/*Old move changes*/
 	auroraveil: {
 		num: 694,
 		accuracy: true,
@@ -215,7 +240,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		shortDesc: "10% chance to freeze foe(s). Can't miss in Snow.",
 		pp: 5,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, wind: 1},
 		onModifyMove(move) {
 			if (this.field.isWeather(['hail', 'snow'])) move.accuracy = true;
 		},
@@ -465,5 +490,281 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Ice",
 		zMove: {boost: {spe: 1}},
 		contestType: "Beautiful",
+	},
+	aircutter: {
+		num: 314,
+		accuracy: 95,
+		basePower: 60,
+		category: "Special",
+		name: "Air Cutter",
+		pp: 25,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		critRatio: 2,
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Flying",
+		contestType: "Cool",
+	},
+	bleakwindstorm: {
+		num: 846,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		name: "Bleakwind Storm",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: {
+			chance: 30,
+			boosts: {
+				spe: -1,
+			},
+		},
+		target: "allAdjacentFoes",
+		type: "Flying",
+	},
+	fairywind: {
+		num: 584,
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		name: "Fairy Wind",
+		pp: 30,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Beautiful",
+	},
+	gust: {
+		num: 16,
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		name: "Gust",
+		pp: 35,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, distance: 1, wind: 1},
+		secondary: null,
+		target: "any",
+		type: "Flying",
+		contestType: "Clever",
+	},
+	heatwave: {
+		num: 257,
+		accuracy: 90,
+		basePower: 95,
+		category: "Special",
+		name: "Heat Wave",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: {
+			chance: 10,
+			status: 'brn',
+		},
+		target: "allAdjacentFoes",
+		type: "Fire",
+		contestType: "Beautiful",
+	},
+	hurricane: {
+		num: 542,
+		accuracy: 70,
+		basePower: 110,
+		category: "Special",
+		name: "Hurricane",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, distance: 1, wind: 1},
+		onModifyMove(move, pokemon, target) {
+			switch (target?.effectiveWeather()) {
+			case 'raindance':
+			case 'primordialsea':
+				move.accuracy = true;
+				break;
+			case 'sunnyday':
+			case 'desolateland':
+				move.accuracy = 50;
+				break;
+			}
+		},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'confusion',
+		},
+		target: "any",
+		type: "Flying",
+		contestType: "Tough",
+	},
+	icywind: {
+		num: 196,
+		accuracy: 95,
+		basePower: 55,
+		category: "Special",
+		name: "Icy Wind",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spe: -1,
+			},
+		},
+		target: "allAdjacentFoes",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
+	petalblizzard: {
+		num: 572,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Petal Blizzard",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: null,
+		target: "allAdjacent",
+		type: "Grass",
+		contestType: "Beautiful",
+	},
+	sandsearstorm: {
+		num: 848,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		name: "Sandsear Storm",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: {
+			chance: 20,
+			status: 'brn',
+		},
+		target: "allAdjacentFoes",
+		type: "Ground",
+	},
+	sandstorm: {
+		num: 201,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Sandstorm",
+		pp: 10,
+		priority: 0,
+		flags: {wind: 1},
+		weather: 'Sandstorm',
+		secondary: null,
+		target: "all",
+		type: "Rock",
+		zMove: {boost: {spe: 1}},
+		contestType: "Tough",
+	},
+	springtidestorm: {
+		num: 831,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		name: "Springtide Storm",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: {
+			chance: 30,
+			boosts: {
+				atk: -1,
+			},
+		},
+		target: "allAdjacentFoes",
+		type: "Fairy",
+	},
+	tailwind: {
+		num: 366,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Tailwind",
+		pp: 15,
+		priority: 0,
+		flags: {snatch: 1, wind: 1},
+		sideCondition: 'tailwind',
+		condition: {
+			duration: 4,
+			durationCallback(target, source, effect) {
+				if (source?.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					return 6;
+				}
+				return 4;
+			},
+			onStart(side) {
+				this.add('-sidestart', side, 'move: Tailwind');
+			},
+			onModifySpe(spe, pokemon) {
+				return this.chainModify(2);
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 4,
+			onEnd(side) {
+				this.add('-sideend', side, 'move: Tailwind');
+			},
+		},
+		secondary: null,
+		target: "allySide",
+		type: "Flying",
+		zMove: {effect: 'crit2'},
+		contestType: "Cool",
+	},
+	twister: {
+		num: 239,
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		name: "Twister",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: {
+			chance: 20,
+			volatileStatus: 'flinch',
+		},
+		target: "allAdjacentFoes",
+		type: "Dragon",
+		contestType: "Cool",
+	},
+	whirlwind: {
+		num: 18,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Whirlwind",
+		pp: 20,
+		priority: -6,
+		flags: {reflectable: 1, mirror: 1, authentic: 1, mystery: 1, wind: 1},
+		forceSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		zMove: {boost: {spd: 1}},
+		contestType: "Clever",
+	},
+	wildboltstorm: {
+		num: 847,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		name: "Wildbolt Storm",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: {
+			chance: 20,
+			status: 'par',
+		},
+		target: "allAdjacentFoes",
+		type: "Electric",
 	},
 };
