@@ -97,4 +97,27 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Grass-type attack.",
 		rating: 3.5,
 	},
+	windrider: {
+		onStart(pokemon) {
+			if (pokemon.side.sideConditions['tailwind']) {
+				this.boost({atk: 1}, pokemon, pokemon);
+			}
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.flags['wind']) {
+				if (!this.boost({atk: 1}, target, target)) {
+					this.add('-immune', target, '[from] ability: Wind Rider');
+				}
+				return null;
+			}
+		},
+		onAllySideConditionStart(target, source, sideCondition) {
+			const pokemon = this.effectState.target;
+			if (sideCondition.id === 'tailwind') {
+				this.boost({atk: 1}, pokemon, pokemon);
+			}
+		},
+		name: "Wind Rider",
+		rating: 3.5,
+	},
 };
