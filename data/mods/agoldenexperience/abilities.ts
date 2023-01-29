@@ -2214,12 +2214,30 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 208,
 	},
 	grasspelt: {
-		onModifySpDPriority: 6,
-		onModifySpD(pokemon) {
-			if (this.field.isTerrain('grassyterrain')) return this.chainModify(1.5);
+		onStart(pokemon) {
+			if (
+				!this.field.setTerrain('grassyterrain') &&
+				this.field.isTerrain('grassyterrain') && pokemon.isGrounded()
+			) {
+				this.add('-activate', pokemon, 'ability: Grass Pelt');
+			}
 		},
+		onTerrainChange(pokemon) {
+			if (pokemon === this.field.weatherState.source) return;
+			if (this.field.isTerrain('grassyterrain') && pokemon.isGrounded()) {
+				this.add('-activate', pokemon, 'ability: Grass Pelt');
+			}
+		},
+		onModifyDefPriority: 5,
+		onModifyDef(def, attacker, defender, move) {
+			if (this.field.isTerrain('grassyterrain') && attacker.isGrounded()) {
+				this.debug('Grass Pelt boost');
+				return this.chainModify([5461, 4096]);
+			}
+		},
+		shortDesc: "On switch-in, summons Grassy Terrain. During Grassy Terrain, Def is 1.3333x.",
 		name: "Grass Pelt",
-		rating: 0.5,
+		rating: 4,
 		num: 179,
 	},
 	flowergift: {

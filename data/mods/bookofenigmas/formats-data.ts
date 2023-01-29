@@ -35,6 +35,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	spindleclaw: {
 		tier: "BoE OU",
 	},
+	tripoddrill: {
+		tier: "BoE OU",
+	},
+	twintoxin: {
+		tier: "BoE OU",
+	},
 
 
 
