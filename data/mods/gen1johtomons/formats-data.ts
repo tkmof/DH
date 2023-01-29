@@ -191,6 +191,10 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 		gen: 1,
 	},
+	steelix: {
+		tier: "OU",
+		gen: 1,
+	},
 	snubbull: {
 		tier: "LC",
 		gen: 1,
