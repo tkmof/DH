@@ -15,7 +15,7 @@ export const Formats: {[k: string]: FormatData} = {
 		const pickSide = this.random(2);
 
 		for (const allPokemon of this.getAllActive()) {
-			if (allPokemon.hasAbility('obtrusive')) {
+			if (allPokemon.volatiles['obtrusive']) {
 				return;
 			}
 		} 

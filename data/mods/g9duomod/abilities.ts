@@ -1,6 +1,6 @@
 export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	obtrusive: {
-		shortDesc: "Blocks the Roulette Wheel for 5 turns; also wears off when switching out.",
+		shortDesc: "Blocks the Roulette Wheel for 3 turns; also wears off when switching out.",
 		onStart(pokemon) {
 			pokemon.addVolatile('obtrusive');
 		},
@@ -9,7 +9,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			this.add('-end', pokemon, 'Obtrusive', '[silent]');
 		},
 		condition: {
-			duration: 5,
+			duration: 3,
 			onStart(target) {
 				this.add('-start', target, 'ability: Obtrusive');
 			},
@@ -320,7 +320,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			},			
 		},
 		name: "Respawn Punisher",
-		shortDesc: "If an enemy switches or faints, raises Atk by 1 for one turn.",
+		shortDesc: "If an enemy switches or faints, raises Atk/Sp. Atk by 1.3x.",
 		rating: 3.5,
 		num: 9011,
 	},
