@@ -1921,6 +1921,109 @@ export const Formats: FormatList = [
      ruleset: ['Standard', 'Dynamax Clause']
 
 	},
+
+	{
+		section: "Duomod Randbats Tournament",
+		column: 2,
+	},
+
+	{
+        name: "[Gen 8] Gen 9 Duomod Randbats",
+        desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
+        threads: [
+            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
+        ],
+        team: 'random',
+        mod: 'g9duomod',
+        ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Subscribe For More Content', 'Duomod Data Mod'],
+        onSwitchIn(pokemon) {
+            this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+        },
+   },
+
+	{
+        name: "[Gen 8] Gen 9 Duomod Randbats (CAMOMONS)",
+        desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
+        threads: [
+            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
+        ],
+        team: 'random',
+        mod: 'g9duomod',
+        ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Subscribe For More Content', 'Duomod Data Mod'],
+		onModifySpecies(species, target, source, effect) {
+			if (!target) return; // Chat command
+			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
+			const types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.dex.getMove(move.id).type))];
+			return {...species, types: types};
+		},
+		onSwitchIn(pokemon) {
+			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
+		},
+		onAfterMega(pokemon) {
+			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
+		},
+   },
+
+	{
+        name: "[Gen 8] Gen 9 Duomod Randbats (TWO SPINS)",
+        desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
+        threads: [
+            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
+        ],
+        team: 'random',
+        mod: 'g9duomod',
+        ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Subscribe For More Content', 'Duomod Data Mod', 'Second Spin'],
+        onSwitchIn(pokemon) {
+            this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+        },
+   },
+
+	{
+        name: "[Gen 8] Gen 9 Duomod Randbats (INVERSE)",
+        desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
+        threads: [
+            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
+        ],
+        team: 'random',
+        mod: 'g9duomod',
+        ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Subscribe For More Content', 'Duomod Data Mod', 'Inverse Mod'],
+        onSwitchIn(pokemon) {
+            this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+        },
+   },
+
+	{
+        name: "[Gen 8] Gen 9 Duomod Randbats (1/4 BANNED)",
+        desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
+        threads: [
+            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
+        ],
+        team: 'random',
+        mod: 'g9duomod',
+        ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Subscribe For More Content', 'Duomod Data Mod', 'Inverse Mod'],
+	banlist: ['Sanbatter', 'Fauxster', 'Mantelec', 'Spirox', 'Shroominesce', 'Capsaken', 'Fluxtape-Stereo', 'Kuribandit'],
+        onSwitchIn(pokemon) {
+            this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+        },
+   },
+
+	{
+        name: "[Gen 8] Gen 9 Duomod Challenge Cup 1v1",
+        desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
+        threads: [
+            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
+        ],
+        team: 'randomCC',
+		teamLength: {
+			battle: 1,
+		},
+        mod: 'g9duomod',
+        ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Subscribe For More Content', 'Duomod Data Mod'],
+        onSwitchIn(pokemon) {
+            this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+        },
+   },
+
 	// Pet Mod Secondary Formats ////////////////////////////////////////////////////////////////
 	{
 		section: "Pet Mods Bonus Formats",
@@ -3178,19 +3281,7 @@ export const Formats: FormatList = [
 			this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
 		},
 	},
-	{
-        name: "[Gen 8] Gen 9 Duomod Randbats",
-        desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
-        threads: [
-            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit?usp=sharing">Spreadsheet</a>`,
-        ],
-        team: 'random',
-        mod: 'g9duomod',
-        ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Subscribe For More Content', 'Duomod Data Mod'],
-        onSwitchIn(pokemon) {
-            this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
-        },
-   },
+
 	{
 		name: "[Gen 8] Fusion Evolution UU Random Battle",
 		threads: [

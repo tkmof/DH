@@ -103,6 +103,7 @@ export class RandomTeams {
 	// 	const firstForme = this.dex.getSpecies(species.otherFormes[0]);
 	// 	return !!firstForme.isMega;
 	// }
+
 	randomCCTeam(): RandomTeamsTypes.RandomSet[] {
 		const dex = this.dex;
 		const team = [];
@@ -161,7 +162,7 @@ export class RandomTeams {
 					return !(move.isNonstandard || move.isZ || move.isMax || move.realMove);
 				});
 			} else {
-				let learnset = this.dex.data.Learnsets[species.id] && this.dex.data.Learnsets[species.id].learnset && !['gastrodoneast', 'pumpkaboosuper', 'zygarde10'].includes(species.id) ?
+				let learnset = this.dex.data.Learnsets[species.id] && this.dex.data.Learnsets[species.id].learnset && !['pumpkaboosuper', 'zygarde10'].includes(species.id) ?
 					this.dex.data.Learnsets[species.id].learnset :
 					this.dex.data.Learnsets[this.dex.getSpecies(species.baseSpecies).id].learnset;
 				if (learnset) {
@@ -172,8 +173,8 @@ export class RandomTeams {
 				if (species.changesFrom) {
 					learnset = this.dex.data.Learnsets[toID(species.changesFrom)].learnset;
 					const basePool = Object.keys(learnset!).filter(
-						moveid => learnset![moveid].find(learned => learned.startsWith(String(this.gen)))
-					);
+						moveid => learnset![moveid].find(learned => learned.startsWith(String(this.gen))) 
+					); 
 					pool = [...new Set(pool.concat(basePool))];
 				}
 			}
@@ -389,7 +390,7 @@ export class RandomTeams {
 			const happiness = this.random(256);
 
 			// Random shininess
-			const shiny = this.randomChance(1, 1024);
+			const shiny = this.randomChance(1, 64);
 
 			team.push({
 				name: species.baseSpecies,
