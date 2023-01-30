@@ -77,10 +77,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       tier: "Duomod",
       doublesTier: "Duomod",
     },
-    impsaustor: {
-      tier: "Illegal",
-      doublesTier: "Illegal",
-    },
     capsaken: {
 		randomBattleMoves: ["chillyreception", "ceaselessedge", "knockoff", "flareblitz", "willowisp"],
 		randomBattleLevel: 100,
@@ -166,7 +162,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     temporand: {
-		randomBattleMoves: ["scorchingsands", "calmmind", "recover", "psychic", "pharaohshot", "hyperwind"],
+		randomBattleMoves: ["scorchingsands", "calmmind", "recover", "psychic", "pharaohshot", "hyperwind", "earthpower"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -194,6 +190,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Illegal",
     },
     gelsiushundred: {
+      tier: "Illegal",
+      doublesTier: "Illegal",
+    },
+    impsaustor: {
       tier: "Illegal",
       doublesTier: "Illegal",
     },

@@ -1959,7 +1959,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			duration: 2,
 			onStart(target, source) {
 				this.add('-start', target, 'move: Yawn', '[of] ' + source);
-				if (source.lastMove.id != 'yawn') {this.effectData.duration = 1;} 
+				if (source.lastMove) {
+					if (source.lastMove.id != 'yawn') {this.effectData.duration = 1;}
+				} 
 			},
 			onResidualOrder: 19,
 			onEnd(target) {
