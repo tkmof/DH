@@ -40,7 +40,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.damage(pokemon.baseMaxhp / 8);
 		},
 		onEnd(pokemon) {
-			this.add('-end', pokemon, 'Salt Cure');
+			this.add('-end', pokemon, 'storm');
 		},
 	},
 };
