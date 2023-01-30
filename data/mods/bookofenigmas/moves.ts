@@ -147,14 +147,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Cool",
 	},
 	direclaw: {
-		shortDesc: "50% chance to paralyze or poison or sleep target. High critical hit ratio.",
+		shortDesc: "50% chance to paralyze or poison or sleep target.",
 		num: -1005,
 		accuracy: 100,
-		basePower: 60,
+		basePower: 80,
 		category: "Physical",
 		name: "Dire Claw",
 		desc: "Has a higher chance for a critical hit. Has a 50% chance to cause the target to either fall asleep, become poisoned, or become paralyzed.",
-		shortDesc: "High critical hit ratio. 50% chance to slp/psn/par target.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -162,7 +161,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Crush Claw", target);
 		},
-		critRatio: 2,
+		//critRatio: 2,
 		secondary: {
 			chance: 50,
 			onHit(target, source) {
