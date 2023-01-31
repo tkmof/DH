@@ -1897,4 +1897,82 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {spd: 1}},
 		contestType: "Clever",
 	},
+
+	laserfocus: {
+		num: 673,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Laser Focus",
+		pp: 30,
+		priority: 0,
+		flags: {snatch: 1},
+		volatileStatus: 'laserfocus',
+		condition: {
+			duration: 2,
+			durationCallback(source, effect) {
+				if (!source.hasMove('laserfocus')) {return 1;}
+				return 2;
+			},
+			onStart(pokemon, source, effect) {
+				if (effect && (['imposter', 'psychup', 'transform'].includes(effect.id))) {
+					this.add('-start', pokemon, 'move: Laser Focus', '[silent]');
+				} else {
+					this.add('-start', pokemon, 'move: Laser Focus');
+				}
+			},
+			onRestart(pokemon) {
+				this.effectData.duration = 2;
+				this.add('-start', pokemon, 'move: Laser Focus');
+			},
+			onModifyCritRatio(critRatio) {
+				return 5;
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'move: Laser Focus', '[silent]');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {boost: {atk: 1}},
+		contestType: "Cool",
+	},
+
+	yawn: {
+		num: 281,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Yawn",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		volatileStatus: 'yawn',
+		onTryHit(target) {
+			if (target.status || !target.runStatusImmunity('slp')) {
+				return false;
+			}
+		},
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			duration: 2,
+			onStart(target, source) {
+				this.add('-start', target, 'move: Yawn', '[of] ' + source);
+				if (source.lastMove) {
+					if (source.lastMove.id != 'yawn') {this.effectData.duration = 1;}
+				} 
+			},
+			onResidualOrder: 19,
+			onEnd(target) {
+				this.add('-end', target, 'move: Yawn', '[silent]');
+				target.trySetStatus('slp', this.effectData.source);
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		zMove: {boost: {spe: 1}},
+		contestType: "Cute",
+	},
 };
