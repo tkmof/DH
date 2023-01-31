@@ -1276,7 +1276,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	mamoswine: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	corsola: {
@@ -2358,7 +2358,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	phione: {
-		tier: "PU",
+		tier: "RU",
 		doublesTier: "DOU",
 	},
 	manaphy: {
@@ -3962,8 +3962,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	meltan: {
-		tier: "(PU)",
-		doublesTier: "(DUU)",
+		tier: "LC",
 	},
 	melmetal: {
 		tier: "OU",
