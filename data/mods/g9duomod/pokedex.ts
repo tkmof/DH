@@ -269,7 +269,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       num: 29.5,
       species: "Mantelec",
       types: ["Bug", "Electric"],
-      baseStats: {hp: 70, atk: 120, def: 30, spa: 70, spd: 170, spe: 70},
+      baseStats: {hp: 130, atk: 120, def: 10, spa: 40, spd: 110, spe: 70},
       abilities: {0: "Sword of Ruin"},
       weightkg: 53,
     },
