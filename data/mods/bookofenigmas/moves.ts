@@ -77,6 +77,27 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Bug",
 	},
+	tripledrill: {
+		num: -4,
+		shortDesc: "Hits three times. Each hit increases in BP by 20, but they have separate accuracy checks.",
+		accuracy: 90,
+		basePower: 20,
+		basePowerCallback(pokemon, target, move) {
+			return 20 * move.hit;
+		},
+		category: "Physical",
+		name: "Triple Drill",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		multihit: 3,
+		multiaccuracy: true,
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		zMove: {basePower: 120},
+		maxMove: {basePower: 140},
+	},
 	
 	//Gen 9 moves
 	spicyextract: {
