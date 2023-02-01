@@ -1,5 +1,7 @@
 export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	baloon: {learnset: {
+		revivalblessingsorta: ["8L1"],
+
 		acupressure: ["8L1"],
 		amnesia: ["8L1"],
 		anchorshot: ["8L1"],

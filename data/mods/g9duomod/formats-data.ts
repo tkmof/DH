@@ -114,7 +114,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     gelsius: {
-		randomBattleMoves: ["scald", "fireblast", "icebeam", "pharaohshot", "chillyreception", "calmmind", "recover"],
+		randomBattleMoves: ["scald", "fireblast", "icebeam", "pharaohshot", "chillyreception", "calmmind", "recover", "hydropump"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",

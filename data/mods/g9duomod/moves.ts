@@ -1975,4 +1975,175 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {spe: 1}},
 		contestType: "Cute",
 	},
+
+	sickhacks: {
+		num: 3021,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Sick Hacks",
+		pp: 1,
+		shortDesc: "User and target switch HP.",
+		noPPBoosts: true,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+		    this.attrLastMove('[still]');
+		    this.add('-anim', source, "Heart Swap", target);
+		},
+		onHit(target, source, move) {
+			const pokHP = (source.hp / source.maxhp);
+			const tarHP = (target.hp / target.maxhp);
+			source.sethp(tarHP * source.maxhp);
+			target.sethp(pokHP * target.maxhp);
+			this.add('-message', "The Pokemon swapped HP!");
+		},
+		target: "normal",
+		type: "Dark",
+		contestType: "Tough",
+	},
+
+	guardingroom: {
+		num: 12345,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Guarding Room",
+		pp: 10,
+		shortDesc: "All Pokemon are blocked from indirect damage.",
+		priority: 0,
+		flags: {mirror: 1},
+		pseudoWeather: 'guardingroom',
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					return 7;
+				}
+				if (!source.hasMove('guardingroom')) {return 4;}
+				return 5;
+			},
+			onStart(target, source) {
+				this.add('-fieldstart', 'move: Guarding Room', '[of] ' + source);
+			},
+			onRestart(target, source) {
+				this.field.removePseudoWeather('guardingroom');
+			},
+			onDamage(damage, target, source, effect) {
+				if (effect.effectType !== 'Move') {
+					if (effect.effectType === 'Ability') this.add('-activate', source, 'ability: ' + effect.name);
+					return false;
+				}
+			},
+			onResidualOrder: 25,
+			onEnd() {
+				this.add('-fieldend', 'move: Guarding Room', '[of] ' + this.effectData.source);
+			},
+		},
+		secondary: null,
+		target: "all",
+		type: "Psychic",
+		zMove: {boost: {spd: 1}},
+		contestType: "Clever",
+	},
+
+	metrogrown: {
+		num: 67890,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Metrogrown",
+		pp: 1,
+		shortDesc: "Teaches the user Metronome.",
+		noPPBoosts: true,
+		priority: -7,
+		flags: {mirror: 1, authentic: 1, mystery: 1},
+		onPrepareHit: function(target, source, move) {
+		    this.attrLastMove('[still]');
+		    this.add('-anim', source, "Acupressure", target);
+		},
+		onHit (target) {
+			if (target.moveSlots.length >= 8) {return;}
+			const ms = {
+				move: "Metronome",
+				id: "metronome",
+				pp: 64,
+				maxpp: 64,
+				target: "self",
+				disabled: false,
+				used: false,
+				virtual: true,
+			};
+			target.moveSlots[target.moveSlots.length] = ms;
+			target.baseMoveSlots[target.moveSlots.length - 1] = ms;
+			this.add('-message', target.name + " learned Metronome!");
+		},
+		secondary: null,
+		target: "self",
+		type: "Dark",
+		contestType: "Cool",
+	},
+
+	torchsong: {
+		num: 552,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Torch Song",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, authentic: 1, sound: 1},
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					spa: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Fire",
+		contestType: "Beautiful",
+	},
+
+	revivalblessingsorta: {
+		num: -1025,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Revival Blessing (Sorta)",
+		shortDesc: "Revives a fainted Pokemon.",
+		pp: 1,
+		noPPBoosts: true,
+		priority: 0,
+		flags: {snatch: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wish", target);
+		},
+/*		onTry(pokemon) {
+			if (pokemon.side.mostRecentKO && pokemon.side.mostRecentKO.fainted) return;
+			this.add('-fail', pokemon, 'move: Revival Blessing');
+			this.hint("There was nothing to revive!");
+			return null;
+		},
+*/		onHit(pokemon) {
+			if (!pokemon.side.pokemon.filter(pokemon.fainted)) {
+				this.hint("There was nothing to revive!");
+				return;
+			}
+			const revived = this.sample(pokemon.side.pokemon.filter(pokemon.fainted));
+			if (!revived) return false;
+			revived.fainted = null;
+			revived.faintQueued = null;
+			revived.hp = 1;
+			revived.status = '';
+				this.add('-message', `${revived.name} was revived!`);
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		contestType: "Clever",
+	},
 };

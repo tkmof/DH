@@ -197,7 +197,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       num: 20.5,
       species: "Hydread",
       types: ["Ghost", "Dragon"],
-      baseStats: {hp: 75, atk: 57, def: 140, spa: 77, spd: 105, spe: 57},
+      baseStats: {hp: 75, atk: 57, def: 120, spa: 77, spd: 105, spe: 57},
       abilities: {0: "Obtrusive"},
       weightkg: 10,
     },
