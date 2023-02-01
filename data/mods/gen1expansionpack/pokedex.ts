@@ -722,16 +722,31 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		baseStats: {hp: 50, atk: 65, def: 65, spa: 90, spd: 90, spe: 100},
 	},
-	taurospaldea: {
+	taurospaldeacombat: {
 		inherit: true,
+		num: 128,
+		name: "Tauros-Paldea-Combat",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Combat",
+		types: ["Fighting"],
 		baseStats: {hp: 75, atk: 110, def: 105, spa: 70, spd: 70, spe: 100},
 	},
-	taurospaldeafire: {
+	taurospaldeablaze: {
 		inherit: true,
+		num: 128,
+		name: "Tauros-Paldea-Blaze",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Blaze",
+		types: ["Fighting", "Fire"],
 		baseStats: {hp: 75, atk: 110, def: 105, spa: 70, spd: 70, spe: 100},
 	},
-	taurospaldeawater: {
+	taurospaldeaaqua: {
 		inherit: true,
+		num: 128,
+		name: "Tauros-Paldea-Aqua",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Aqua",
+		types: ["Fighting", "Water"],
 		baseStats: {hp: 75, atk: 110, def: 105, spa: 70, spd: 70, spe: 100},
 	},
 	articunogalar: {
