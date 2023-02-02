@@ -7,7 +7,7 @@ export const Formats: {[k: string]: FormatData} = {
 			this.add(`raw|<img src="https://media.discordapp.net/attachments/575738724680204329/909632559036629022/talkinchu.png" height="454" width="411">`);
 			this.add('-message', "Welcome to the Gen 9 version of Duomod!");		
 			this.add('-message', "A lot of crazy stuff can happen in this meta. For more information, please check this spreadsheet - ");	
-			this.add('-message', "https://docs.google.com/spreadsheets/d/1FO4wuxSQnquV5vubEHNVwEwrzZWjtR6gCt4RZRXBqdM/edit#gid=768503844");	
+			this.add('-message', "https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit#gid=1817102816");	
 		},
 		
 		onResidual(pokemon) {
