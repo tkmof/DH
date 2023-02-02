@@ -359,7 +359,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				this.debug('Multi Antlers weaken');
 				return this.chainModify(0.5);
 			}
-			else if (target.hp >= target.maxhp) {
+			if (target.hp >= target.maxhp) {
 				this.debug('Multi Antlers weaken');
 				return this.chainModify(0.5);
 			}
