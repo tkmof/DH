@@ -1537,6 +1537,14 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		types: ["Psychic", "Fairy"],
 	},
+	phione: {
+		inherit: true,
+		evos: ["Manaphy"],
+	},
+	manaphy: {
+		inherit: true,
+		prevo: "Phione",
+	},
 	shayminsky: {
 		inherit: true,
 		abilities: {0: "Natural Cure"},
@@ -2194,6 +2202,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	slurpuff: {
 		inherit: true,
 		baseStats: {hp: 82, atk: 90, def: 86, spa: 75, spd: 75, spe: 72},
+	},
+	malamar: {
+		inherit: true,
+		baseStats: {hp: 86, atk: 92, def: 88, spa: 68, spd: 75, spe: 103},
 	},
 	barbaracle: {
 		inherit: true,
@@ -2935,6 +2947,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 
 	//gen 8 :
+	meltan: {
+		inherit: true,
+		evos: ["Melmetal"],
+	},
+	melmetal: {
+		inherit: true,
+		prevo: "Meltan",
+		evoType: "levelMove",
+		evoCondition: "while holding Meltan Candy",
+	},
 	cinderace: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 101, def: 80, spa: 80, spd: 80, spe: 109},
@@ -3054,6 +3076,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		color: "Red",
 		eggGroups: ["Bug"],
 		requiredItem: "Centiskorchite Y",
+	},
+	hatterene: {
+		inherit: true,
+		baseStats: {hp: 77, atk: 70, def: 95, spa: 136, spd: 103, spe: 29},
 	},
 	grimmsnarl: {
 		inherit: true,
