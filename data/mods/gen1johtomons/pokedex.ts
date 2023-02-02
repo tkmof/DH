@@ -8,7 +8,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	bayleef: {
 		inherit: true,
-		baseStats: {hp: 60, atk: 62, def: 80, spa: 63, spd: 53, spe: 60},
+		baseStats: {hp: 60, atk: 62, def: 80, spa: 63, spd: 63, spe: 60},
 	},
 	meganium: {
 		inherit: true,
@@ -164,7 +164,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	sunflora: {
 		inherit: true,
-		baseStats: {hp: 75, atk: 75, def: 55, spa: 105, spd: 85, spe: 45},
+		baseStats: {hp: 75, atk: 75, def: 55, spa: 105, spd: 105, spe: 45},
 	},
 	yanma: {
 		inherit: true,
