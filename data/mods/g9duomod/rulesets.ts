@@ -18,9 +18,11 @@ export const Formats: {[k: string]: FormatData} = {
 
 		for (const allPokemon of this.getAllActive()) {
 			if (allPokemon.volatiles['queenofroulette']) {loopNum = 3;}
-			if (allPokemon.volatiles['obtrusive']) {loopNum = -1;}
 		} 
-
+			
+		for (const allPokemon of this.getAllActive()) {
+			if (allPokemon.volatiles['obtrusive']) {return;}
+		} 
 		while (loopNum > 0) {
 		--loopNum;
 
@@ -680,12 +682,22 @@ export const Formats: {[k: string]: FormatData} = {
 	        }
 
 		else if (result === 44) {
-			this.hint("Roulette Wheel Result 45 - Both Pokemon get Protected for 1 turn.");
-			for (const pokemon of this.getAllActive()) {
-	                	this.useMove("Protect", pokemon);
-	        	}
-	        }
-
+			this.hint("Roulette Wheel Result 45 - One side gets hit with Embargo.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Embargo", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Embargo", target);
+				}
+				}
+			}
+		}
 		else if (result === 45) {
 			this.hint("Roulette Wheel Result 46 - Everything becomes immune to indirect damage for a few turns.");
 			if (pickSide === 0) {
@@ -707,7 +719,7 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 46) {
 			this.hint("Roulette Wheel Result 47 - heard you like metronome");
 			for (const pokemon of this.getAllActive()) {
-	                	this.useMove("Metrogrown", pokemon);
+	                	this.useMove("TM080", pokemon);
 	        	}
 	        }
 
@@ -1410,11 +1422,22 @@ export const Formats: {[k: string]: FormatData} = {
 	        }
 
 		else if (result === 44) {
-			this.hint("Roulette Wheel Result 45 - Both Pokemon get Protected for 1 turn.");
-			for (const pokemon of this.getAllActive()) {
-	                	this.useMove("Protect", pokemon);
-	        	}
-	        }
+			this.hint("Roulette Wheel Result 45 - One side gets hit with Embargo.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Embargo", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Embargo", target);
+				}
+				}
+			}
+		}
 
 		else if (result === 45) {
 			this.hint("Roulette Wheel Result 46 - Everything becomes immune to indirect damage for a few turns.");

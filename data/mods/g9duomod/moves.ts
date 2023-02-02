@@ -256,7 +256,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 					this.add(`raw|<ul class="utilichart"><li class="result"><span class="col pokemonnamecol" style="white-space: nowrap">` + species.name + `</span> <span class="col typecol"><img src="https://${Config.routes.client}/sprites/types/${type}.png" alt="${type}" height="14" width="32"></span> <span style="float: left ; min-height: 26px"><span class="col abilitycol">` + abilities[0] + `</span><span class="col abilitycol"></span></span><span style="float: left ; min-height: 26px"><span class="col statcol"><em>HP</em><br>` + baseStats.hp + `</span> <span class="col statcol"><em>Atk</em><br>` + baseStats.atk + `</span> <span class="col statcol"><em>Def</em><br>` + baseStats.def + `</span> <span class="col statcol"><em>SpA</em><br>` + baseStats.spa + `</span> <span class="col statcol"><em>SpD</em><br>` + baseStats.spd + `</span> <span class="col statcol"><em>Spe</em><br>` + baseStats.spe + `</span> </span></li><li style="clear: both"></li></ul>`);
 				}
 				this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
-				this.hint("This Pokemon can now use Impostor Blade without drawback.");
 			}
 			else {
 				this.add('-message', "VOTE 'EM OUT!!!");
@@ -2048,12 +2047,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Clever",
 	},
 
-	metrogrown: {
+	tm080: {
 		num: 67890,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		name: "Metrogrown",
+		name: "TM080",
 		pp: 1,
 		shortDesc: "Teaches the user Metronome.",
 		noPPBoosts: true,
@@ -2081,7 +2080,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		secondary: null,
 		target: "self",
-		type: "Dark",
+		type: "Normal",
 		contestType: "Cool",
 	},
 
@@ -2114,7 +2113,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Status",
 		name: "Revival Blessing (Sorta)",
 		shortDesc: "Revives a fainted Pokemon.",
-		pp: 1,
+		pp: 10,
 		noPPBoosts: true,
 		priority: 0,
 		flags: {snatch: 1},
@@ -2122,28 +2121,54 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Wish", target);
 		},
-/*		onTry(pokemon) {
-			if (pokemon.side.mostRecentKO && pokemon.side.mostRecentKO.fainted) return;
-			this.add('-fail', pokemon, 'move: Revival Blessing');
-			this.hint("There was nothing to revive!");
-			return null;
-		},
-*/		onHit(pokemon) {
-			if (!pokemon.side.pokemon.filter(pokemon.fainted)) {
+		onHit(pokemon) {
+			if (!pokemon.side.pokemon.filter(ally => ally.fainted).length) {
 				this.hint("There was nothing to revive!");
 				return;
 			}
-			const revived = this.sample(pokemon.side.pokemon.filter(pokemon.fainted));
+			const revived = this.sample(pokemon.side.pokemon.filter(ally => ally.fainted));
 			if (!revived) return false;
 			revived.fainted = null;
 			revived.faintQueued = null;
-			revived.hp = 1;
+			revived.hp = Math.round(revived.maxhp * (2 / 10));
 			revived.status = '';
 				this.add('-message', `${revived.name} was revived!`);
 		},
 		secondary: null,
 		target: "self",
 		type: "Normal",
+		contestType: "Clever",
+	},
+
+	embargo: {
+		num: 373,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Embargo",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		volatileStatus: 'embargo',
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (!source.hasMove('embargo')) {return 4;}
+				return 5;
+			},
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'Embargo');
+			},
+			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
+			onResidualOrder: 18,
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Embargo');
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		zMove: {boost: {spa: 1}},
 		contestType: "Clever",
 	},
 };
