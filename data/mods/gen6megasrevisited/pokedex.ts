@@ -30,6 +30,24 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 80, atk: 125, def: 100, spa: 80, spd: 80, spe: 115},
 		abilities: {0: "Strong Jaw"},
 	},	
+	venusaurmega: {
+		inherit: true,
+		types: ["Grass", "Poison"],
+		baseStats: {hp: 80, atk: 82, def: 123, spa: 120, spd: 120, spe: 100},
+		abilities: {0: "Grassy Surge"},
+	},	
+	blastoisemega: {
+		inherit: true,
+		types: ["Water", "Fairy"],
+		baseStats: {hp: 79, atk: 83, def: 130, spa: 135, spd: 105, spe: 98},
+		abilities: {0: "Misty Surge"},
+	},	
+	charizardmegay: {
+		inherit: true,
+		types: ["Fire", "Flying"],
+		baseStats: {hp: 78, atk: 109, def: 103, spa: 134, spd: 110, spe: 100},
+		abilities: {0: "Delta Stream"},
+	},	
 	
 // Gen 6 Stuff
 	arbok: {
