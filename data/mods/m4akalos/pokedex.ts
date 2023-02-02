@@ -12,19 +12,6 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		megaCreator: "ausma",
 	},
 
-	pyroar: {
-		inherit: true,
-		mega: "pyroarmega",
-		megaName: "Pyroar-Mega",
-		megaType: ["Fire", "Normal"],
-		megaAbility: {0: "Pounce"},
-		megaStats: {hp: 86, atk: 78, def: 119, spa: 139, spd: 66, spe: 119},
-		megaWeightkg: 40.8,
-		megaStone: "Pyroarite",
-		movepoolAdditions: ["courtchange"],
-		megaCreator: "Rosiario",
-	},
-
 	clawitzer: {
 		inherit: true,
 		mega: "clawitzermega",
@@ -104,6 +91,41 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		megaStone: "Mienshaonite",
 		movepoolAdditions: ["flipturn", "scald", "whirlpool"],
 		megaCreator: "Paulluxx and Sticky Fingaa",
+	},
+
+	// slate 4
+
+	espeon: {
+		inherit: true,
+		mega: "espeonmega",
+		megaName: "Espeon-Mega",
+		megaAbility: {0: "Mana Gate"},
+		megaStats: {hp: 65, atk: 90, def: 85, spa: 160, spd: 105, spe: 120},
+		megaStone: "Espeonite",
+		movepoolAdditions: ["magicpowder", "speedswap"],
+		megaCreator: "XtheGAMEmaster",
+	},
+
+	umbreon: {
+		inherit: true,
+		mega: "umbreonmega",
+		megaName: "Umbreon-Mega",
+		megaAbility: {0: "Partial Eclipse"},
+		megaStats: {hp: 95, atk: 115, def: 115, spa: 60, spd: 155, spe: 85},
+		megaStone: "Umbreonite",
+		movepoolAdditions: ["mirrorcoat"],
+		megaCreator: "Albatross and Paulluxx",
+	},
+
+	sylveon: {
+		inherit: true,
+		mega: "sylveonmega",
+		megaName: "Sylveon-Mega",
+		megaAbility: {0: "Tough Claws"},
+		megaStats: {hp: 95, atk: 100, def: 100, spa: 140, spd: 120, spe: 70},
+		megaStone: "Sylveonite",
+		movepoolAdditions: ["grassknot", "stompingtantrum"],
+		megaCreator: "Snowdrops and zxgzxg",
 	},
 
 };
