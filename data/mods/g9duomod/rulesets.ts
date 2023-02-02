@@ -7,22 +7,28 @@ export const Formats: {[k: string]: FormatData} = {
 			this.add(`raw|<img src="https://media.discordapp.net/attachments/575738724680204329/909632559036629022/talkinchu.png" height="454" width="411">`);
 			this.add('-message', "Welcome to the Gen 9 version of Duomod!");		
 			this.add('-message', "A lot of crazy stuff can happen in this meta. For more information, please check this spreadsheet - ");	
-			this.add('-message', "https://docs.google.com/spreadsheets/d/1FO4wuxSQnquV5vubEHNVwEwrzZWjtR6gCt4RZRXBqdM/edit#gid=768503844");	
+			this.add('-message', "https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit#gid=1817102816");	
 		},
 		
 		onResidual(pokemon) {
 		var result: number;
+		var loopNum: number;
 		const pickSide = this.random(2);
+		loopNum = 1;
 
 		for (const allPokemon of this.getAllActive()) {
-			if (allPokemon.volatiles['obtrusive']) {
-				return;
-			}
+			if (allPokemon.volatiles['queenofroulette']) {loopNum = 3;}
 		} 
+			
+		for (const allPokemon of this.getAllActive()) {
+			if (allPokemon.volatiles['obtrusive']) {return;}
+		} 
+		while (loopNum > 0) {
+		--loopNum;
 
 		this.add('-message', "Time for the Roulette Wheel!");
 		
-		result = this.random(35);
+		result = this.random(50);
 
 		if (result === 0) {
 			this.hint("Roulette Wheel Result 1 - Both Pokemon trade Speed stats.");
@@ -496,19 +502,253 @@ export const Formats: {[k: string]: FormatData} = {
 		}
 
 		else if (result === 33) {
-			this.hint("Roulette Wheel Result 34 - Both active Pokemon use Metronome.");
+			this.hint("Roulette Wheel Result 34 - Set a random weather and terrain.");
+			const result2 = this.random(4);
+			const result3 = this.random(4);
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+					if (target.isActive) {
+					if (result2 === 0) {
+						this.useMove("Grassy Terrain", target);
+					} else if (result2 === 1) {
+						this.useMove("Electric Terrain", target);
+					} else if (result2 === 2) {
+						this.useMove("Psychic Terrain", target);
+					} else {
+						this.useMove("Misty Terrain", target);
+					}
+					if (result3 === 0) {
+						this.useMove("Sunny Day", target);
+					} else if (result3 === 1) {
+						this.useMove("Rain Dance", target);
+					} else if (result3 === 2) {
+						this.useMove("Rain Dance", target);
+					} else {
+						this.useMove("Sandstorm", target);
+					}
+					}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+					if (target.isActive) {
+					if (result2 === 0) {
+						this.useMove("Grassy Terrain", target);
+					} else if (result2 === 1) {
+						this.useMove("Electric Terrain", target);
+					} else {
+						this.useMove("Misty Terrain", target);
+					}
+					if (result3 === 0) {
+						this.useMove("Sunny Day", target);
+					} else if (result3 === 1) {
+						this.useMove("Rain Dance", target);
+					} else {
+						this.useMove("Sandstorm", target);
+					}
+					}
+				}
+			}
+		}
+
+		else if (result === 34) {
+			this.hint("Roulette Wheel Result 35 - Sick Hacks");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Sick Hacks", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Sick Hacks", target);
+				}
+				}
+			}
+		} 
+
+		else if (result === 35) {
+			this.hint("Roulette Wheel Result 36 - Minimize every stat of one Pokemon.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive && target.hasAbility('contrary')) {
+					this.boost({atk: 12, def: 12, spa: 12, spd: 12, spe: 12}, target, target, null, true);
+				}
+				else if (target.isActive) {
+					this.boost({atk: -12, def: -12, spa: -12, spd: -12, spe: -12}, target, target, null, true);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive && target.hasAbility('contrary')) {
+					this.boost({atk: 12, def: 12, spa: 12, spd: 12, spe: 12}, target, target, null, true);
+				}
+				else if (target.isActive) {
+					this.boost({atk: -12, def: -12, spa: -12, spd: -12, spe: -12}, target, target, null, true);
+				}
+				}
+			}
+	   } 
+
+
+		else if (result === 36) {
+			this.hint("Roulette Wheel Result 37 - Raise both active Pokemons' attacking stats.");
+			for (const pokemon of this.getAllActive()) {
+		                this.boost({atk: 2, spa: 2}, pokemon);
+			}
+	        }
+
+		else if (result === 37) {
+			this.hint("Roulette Wheel Result 38 - wahoo");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Celebrate", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Celebrate", target);
+				}
+				}
+			}	
+		}
+
+		else if (result === 38) {
+			this.hint("Roulette Wheel Result 39 - Sets up Aqua Ring for both sides.");
+			for (const pokemon of this.getAllActive()) {
+				this.useMove("Aqua Ring", pokemon);
+			}
+		}
+
+		else if (result === 39) {
+			this.hint("Roulette Wheel Result 40 - Both active Pokemon share a type combination.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Reflect Type", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Reflect Type", target);
+				}
+				}
+			}
+		}
+
+		else if (result === 40) {
+			this.hint("Roulette Wheel Result 41 - One active Pokemon becomes way faster than the other.");
+			for (const pokemon of this.sides[0].active) {
+				for (const target of this.sides[1].active) {
+					if (pickSide === 0) {
+						this.boost({spe: 12}, pokemon, pokemon, null, true);
+						this.boost({spe: -12}, target, target, null, true);
+					}
+					else if (pickSide === 1) {
+						this.boost({spe: 12}, target, target, null, true);
+						this.boost({spe: -12}, pokemon, pokemon, null, true);
+					}
+				}
+			}
+		}
+
+		else if (result === 41) {
+			this.hint("Roulette Wheel Result 42 - Make both Pokemon use Camouflage.");
+			for (const pokemon of this.getAllActive()) {
+				this.useMove("Camouflage", pokemon);
+			}
+		}
+
+		else if (result === 42) {
+			this.hint("Roulette Wheel Result 43 - Make both Pokemon set Safeguard.");
+			for (const pokemon of this.getAllActive()) {
+	                	this.useMove("Safeguard", pokemon);
+	        	}
+	        }
+
+		else if (result === 43) {
+			this.hint("Roulette Wheel Result 44 - i felt like being nice today");
+			for (const pokemon of this.getAllActive()) {
+	                	this.useMove("Revival Blessing (Sorta)", pokemon);
+	        	}
+	        }
+
+		else if (result === 44) {
+			this.hint("Roulette Wheel Result 45 - One side gets hit with Embargo.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Embargo", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Embargo", target);
+				}
+				}
+			}
+		}
+		else if (result === 45) {
+			this.hint("Roulette Wheel Result 46 - Everything becomes immune to indirect damage for a few turns.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Guarding Room", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Guarding Room", target);
+				}
+				}
+			}	
+		}
+
+		else if (result === 46) {
+			this.hint("Roulette Wheel Result 47 - heard you like metronome");
+			for (const pokemon of this.getAllActive()) {
+	                	this.useMove("TM080", pokemon);
+	        	}
+	        }
+
+		else if (result === 47) {
+			this.hint("Roulette Wheel Result 48 - Both Pokemon use Acupressure.");
+			for (const pokemon of this.getAllActive()) {
+	                	this.useMove("Acupressure", pokemon);
+	        	}
+	        }
+
+		else if (result === 48) {
+			this.hint("Roulette Wheel Result 49 - Both active Pokemon use Metronome.");
 			for (const pokemon of this.getAllActive()) {
 				this.useMove("Metronome", pokemon);
 			}
 		}
 		
 		else {
-			this.hint("Roulette Wheel Result 35 - THE ULTIMATE EFFECT!!!");
+			this.hint("Roulette Wheel Result 50 - THE ULTIMATE EFFECT!!!");
 			for (const pokemon of this.getAllActive()) {
 				this.useMove("Ultranome", pokemon);
 			}
 		}
+
+			for (const pokemon of this.getAllActive()) {
+				delete pokemon.volatiles['flinch'];
+			}
 			
+		}
 		},
 	},		
 	
@@ -526,9 +766,9 @@ export const Formats: {[k: string]: FormatData} = {
 			}
 		} 
 
-		this.add('-message', "Time for the SECOND Roulette Wheel!");
+		this.add('-message', "...and time for the bonus spin!");
 		
-		result = this.random(35);
+		result = this.random(50);
 
 		if (result === 0) {
 			this.hint("Roulette Wheel Result 1 - Both Pokemon trade Speed stats.");
@@ -568,7 +808,7 @@ export const Formats: {[k: string]: FormatData} = {
 				for (const target of this.sides[0].pokemon) {
 				if (target.isActive) {
 					this.useMove("Transform", target);
-          this.boost({spe: 1}, target);
+       					this.boost({spe: 1}, target);
 				}
 				}
 			}
@@ -766,14 +1006,14 @@ export const Formats: {[k: string]: FormatData} = {
 		}  
 			
 		else if (result === 18) { 
-			this.hint("Roulette Wheel Result 19 - MISTERRRRRRRR BEAAAAAAAAAAAAST");
+			this.hint("Roulette Wheel Result 19 - Everyone gets Beast Boost.");
 			for (const s1 of this.sides[0].active) {
 				for (const s2 of this.sides[1].active) {
-					const oldAbility1 = s1.setAbility('beastboost', s1);
+					const oldAbility1 = s1.setAbility('Beast Boost');
 					if (oldAbility1) {
 						this.add('-ability', s1, 'Beast Boost', '[from] move: Roulette Spin');
 					}
-					const oldAbility2 = s2.setAbility('beastboost', s2);
+					const oldAbility2 = s2.setAbility('Beast Boost');
 					if (oldAbility2) {
 						this.add('-ability', s2, 'Beast Boost', '[from] move: Roulette Spin');
 					}
@@ -1002,14 +1242,244 @@ export const Formats: {[k: string]: FormatData} = {
 		}
 
 		else if (result === 33) {
-			this.hint("Roulette Wheel Result 34 - Both active Pokemon use Metronome.");
+			this.hint("Roulette Wheel Result 34 - Set a random weather and terrain.");
+			const result2 = this.random(4);
+			const result3 = this.random(4);
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+					if (target.isActive) {
+					if (result2 === 0) {
+						this.useMove("Grassy Terrain", target);
+					} else if (result2 === 1) {
+						this.useMove("Electric Terrain", target);
+					} else if (result2 === 2) {
+						this.useMove("Psychic Terrain", target);
+					} else {
+						this.useMove("Misty Terrain", target);
+					}
+					if (result3 === 0) {
+						this.useMove("Sunny Day", target);
+					} else if (result3 === 1) {
+						this.useMove("Rain Dance", target);
+					} else if (result3 === 2) {
+						this.useMove("Rain Dance", target);
+					} else {
+						this.useMove("Sandstorm", target);
+					}
+					}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+					if (target.isActive) {
+					if (result2 === 0) {
+						this.useMove("Grassy Terrain", target);
+					} else if (result2 === 1) {
+						this.useMove("Electric Terrain", target);
+					} else {
+						this.useMove("Misty Terrain", target);
+					}
+					if (result3 === 0) {
+						this.useMove("Sunny Day", target);
+					} else if (result3 === 1) {
+						this.useMove("Rain Dance", target);
+					} else {
+						this.useMove("Sandstorm", target);
+					}
+					}
+				}
+			}
+		}
+
+		else if (result === 34) {
+			this.hint("Roulette Wheel Result 35 - Sick Hacks");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Sick Hacks", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Sick Hacks", target);
+				}
+				}
+			}
+		} 
+
+		else if (result === 35) {
+			this.hint("Roulette Wheel Result 36 - Minimize every stat of one Pokemon.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive && target.hasAbility('contrary')) {
+					this.boost({atk: 12, def: 12, spa: 12, spd: 12, spe: 12}, target, target, null, true);
+				}
+				else if (target.isActive) {
+					this.boost({atk: -12, def: -12, spa: -12, spd: -12, spe: -12}, target, target, null, true);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive && target.hasAbility('contrary')) {
+					this.boost({atk: 12, def: 12, spa: 12, spd: 12, spe: 12}, target, target, null, true);
+				}
+				else if (target.isActive) {
+					this.boost({atk: -12, def: -12, spa: -12, spd: -12, spe: -12}, target, target, null, true);
+				}
+				}
+			}
+	   } 
+
+
+		else if (result === 36) {
+			this.hint("Roulette Wheel Result 37 - Raise both active Pokemons' attacking stats.");
+			for (const pokemon of this.getAllActive()) {
+		                this.boost({atk: 2, spa: 2}, pokemon);
+			}
+	        }
+
+		else if (result === 37) {
+			this.hint("Roulette Wheel Result 38 - wahoo");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Celebrate", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Celebrate", target);
+				}
+				}
+			}	
+		}
+
+		else if (result === 38) {
+			this.hint("Roulette Wheel Result 39 - Sets up Aqua Ring for both sides.");
+			for (const pokemon of this.getAllActive()) {
+				this.useMove("Aqua Ring", pokemon);
+			}
+		}
+
+		else if (result === 39) {
+			this.hint("Roulette Wheel Result 40 - Both active Pokemon share a type combination.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Reflect Type", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Reflect Type", target);
+				}
+				}
+			}
+		}
+
+		else if (result === 40) {
+			this.hint("Roulette Wheel Result 41 - One active Pokemon becomes way faster than the other.");
+			for (const pokemon of this.sides[0].active) {
+				for (const target of this.sides[1].active) {
+					if (pickSide === 0) {
+						this.boost({spe: 12}, pokemon, pokemon, null, true);
+						this.boost({spe: -12}, target, target, null, true);
+					}
+					else if (pickSide === 1) {
+						this.boost({spe: 12}, target, target, null, true);
+						this.boost({spe: -12}, pokemon, pokemon, null, true);
+					}
+				}
+			}
+		}
+
+		else if (result === 41) {
+			this.hint("Roulette Wheel Result 42 - Make both Pokemon use Camouflage.");
+			for (const pokemon of this.getAllActive()) {
+				this.useMove("Camouflage", pokemon);
+			}
+		}
+
+		else if (result === 42) {
+			this.hint("Roulette Wheel Result 43 - Make both Pokemon set Safeguard.");
+			for (const pokemon of this.getAllActive()) {
+	                	this.useMove("Safeguard", pokemon);
+	        	}
+	        }
+
+		else if (result === 43) {
+			this.hint("Roulette Wheel Result 44 - i felt like being nice today");
+			for (const pokemon of this.getAllActive()) {
+	                	this.useMove("Revival Blessing", pokemon);
+	        	}
+	        }
+
+		else if (result === 44) {
+			this.hint("Roulette Wheel Result 45 - One side gets hit with Embargo.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Embargo", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Embargo", target);
+				}
+				}
+			}
+		}
+
+		else if (result === 45) {
+			this.hint("Roulette Wheel Result 46 - Everything becomes immune to indirect damage for a few turns.");
+			if (pickSide === 0) {
+				for (const target of this.sides[0].pokemon) {
+				if (target.isActive) {
+					this.useMove("Guarding Room", target);
+				}
+				}
+			}
+			else if (pickSide === 1) {
+				for (const target of this.sides[1].pokemon) {
+				if (target.isActive) {
+					this.useMove("Guarding Room", target);
+				}
+				}
+			}	
+		}
+
+		else if (result === 46) {
+			this.hint("Roulette Wheel Result 47 - heard you like metronome");
+			for (const pokemon of this.getAllActive()) {
+	                	this.useMove("Metrogrown", pokemon);
+	        	}
+	        }
+
+		else if (result === 47) {
+			this.hint("Roulette Wheel Result 48 - Both Pokemon use Acupressure.");
+			for (const pokemon of this.getAllActive()) {
+	                	this.useMove("Acupressure", pokemon);
+	        	}
+	        }
+
+		else if (result === 48) {
+			this.hint("Roulette Wheel Result 49 - Both active Pokemon use Metronome.");
 			for (const pokemon of this.getAllActive()) {
 				this.useMove("Metronome", pokemon);
 			}
 		}
 		
 		else {
-			this.hint("Roulette Wheel Result 35 - THE ULTIMATE EFFECT!!!");
+			this.hint("Roulette Wheel Result 50 - THE ULTIMATE EFFECT!!!");
 			for (const pokemon of this.getAllActive()) {
 				this.useMove("Ultranome", pokemon);
 			}
