@@ -284,14 +284,14 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			if (attacker.species.name === 'Gelsius-Subzero' || attacker.species.name === 'gelsiussubzero') {return;}
 			if (attacker.species.name === 'Gelsius-Hundred' || attacker.species.name === 'gelsiushundred') {return;}
 			if (attacker.hp && move.type === 'Ice') {
-				this.add('-message', attacker.name + " is beginning to rapidly cool!");
+				this.add('-message', `${attacker.name} is beginning to rapidly cool!`);
 				attacker.formeChange('Gelsius-Subzero', this.effect, true);
-				this.add('-message', attacker.name + " transformed!");
+				this.add('-message', `${attacker.name} transformed!`);
 			}
 			else if (attacker.hp && move.type === 'Fire') {
-				this.add('-message', attacker.name + " is beginning to rapidly heat up!");
+				this.add('-message', `${attacker.name} is beginning to rapidly heat up!`);
 				attacker.formeChange('Gelsius-Hundred', this.effect, true);
-				this.add('-message', attacker.name + " transformed!");
+				this.add('-message', `${attacker.name} transformed!`);
 			}
 		},
 		isPermanent: true,
@@ -348,7 +348,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			if (!lastAttackedBy) return;
 			const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
 			if (target.hp <= target.maxhp / 10 && target.hp + damage > target.maxhp / 10) {
-				this.add('-message', target.name + " is gonna Vent!");
+				this.add('-message', `${target.name} is gonna vent!`);
 				target.switchFlag = true;
 				this.heal(target.baseMaxhp);
 			}
@@ -527,5 +527,35 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		name: "Gorilla Tactics",
 		rating: 4.5,
 		num: 255,
+	},
+
+	prankster: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.category === 'Status') {
+				return priority + 1;
+			}
+		},
+		name: "Prankster",
+		rating: 4,
+		num: 158,
+	},
+
+	dazzling: {
+		onFoeTryMove(target, source, move) {
+			const targetAllExceptions = ['perishsong', 'flowershield', 'rototiller'];
+			if (move.target === 'foeSide' || (move.target === 'all' && !targetAllExceptions.includes(move.id))) {
+				return;
+			}
+
+			const dazzlingHolder = this.effectData.target;
+			if ((source.side === dazzlingHolder.side || move.target === 'all') && (move.priority > 0.1) {
+				this.attrLastMove('[still]');
+				this.add('cant', dazzlingHolder, 'ability: Dazzling', move, '[of] ' + target);
+				return false;
+			}
+		},
+		name: "Dazzling",
+		rating: 2.5,
+		num: 219,
 	},
 };
