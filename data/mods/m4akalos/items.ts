@@ -15,20 +15,6 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		gen: 8,
 		desc: "If held by a Gogoat, this item allows it to Mega Evolve in battle.",
 	},
-	pyroarite: {
-		name: "Pyroarite",
-		spritenum: 578,
-		megaStone: "Pyroar-Mega",
-		megaEvolves: "Pyroar",
-		itemUser: ["Pyroar"],
-		onTakeItem(item, source) {
-			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
-			return true;
-		},
-		num: -1002,
-		gen: 8,
-		desc: "If held by a Pyroar, this item allows it to Mega Evolve in battle.",
-	},
 	clawitzerite: {
 		name: "Clawitzerite",
 		spritenum: 578,
@@ -39,7 +25,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: -1003,
+		num: -1002,
 		gen: 8,
 		desc: "If held by a Clawitzer, this item allows it to Mega Evolve in battle.",
 	},
@@ -53,7 +39,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (source.species.name.startsWith('Wormadam-Sandy')) return false;
 			return true;
 		},
-		num: -1004,
+		num: -1003,
 		gen: 8,
 		desc: "If held by a Wormadam-Sandy, this item allows it to Mega Evolve in battle.",
 	},
@@ -67,7 +53,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: -1005,
+		num: -1004,
 		gen: 8,
 		desc: "If held by a Drifblim, this item allows it to Mega Evolve in battle.",
 	},
@@ -81,7 +67,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: -1006,
+		num: -1005,
 		gen: 8,
 		desc: "If held by a Heliolisk, this item allows it to Mega Evolve in battle.",
 	},
@@ -95,7 +81,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: -1007,
+		num: -1006,
 		gen: 8,
 		desc: "If held by an Escavalier, this item allows it to Mega Evolve in battle.",
 	},
@@ -109,7 +95,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: -1008,
+		num: -1007,
 		gen: 8,
 		desc: "If held by a Haxorus, this item allows it to Mega Evolve in battle.",
 	},
@@ -123,8 +109,50 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
-		num: -1009,
+		num: -1008,
 		gen: 8,
 		desc: "If held by a Mienshao, this item allows it to Mega Evolve in battle.",
+	},
+	espeonite: {
+		name: "Espeonite",
+		spritenum: 578,
+		megaStone: "Espeon-Mega",
+		megaEvolves: "Espeon",
+		itemUser: ["Espeon"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1009,
+		gen: 8,
+		desc: "If held by an Espeon, this item allows it to Mega Evolve in battle.",
+	},
+	umbreonite: {
+		name: "Umbreonite",
+		spritenum: 578,
+		megaStone: "Umbreon-Mega",
+		megaEvolves: "Umbreon",
+		itemUser: ["Umbreon"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1010,
+		gen: 8,
+		desc: "If held by an Umbreon, this item allows it to Mega Evolve in battle.",
+	},
+	sylveonite: {
+		name: "Sylveonite",
+		spritenum: 578,
+		megaStone: "Sylveon-Mega",
+		megaEvolves: "Sylveon",
+		itemUser: ["Sylveon"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1011,
+		gen: 8,
+		desc: "If held by a Sylveon, this item allows it to Mega Evolve in battle.",
 	},
 };
