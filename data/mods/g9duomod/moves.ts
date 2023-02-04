@@ -165,7 +165,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (this.suppressingAttackEvents(pokemon) || !pokemon.hp || pokemon.item === 'stickybarb') return;
 				if (!this.activeMove) throw new Error("Battle.activeMove is null");
 				if (source && source !== pokemon || this.activeMove.id === 'knockoff' || this.activeMove.id === 'trick' || this.activeMove.id === 'switcheroo' || this.activeMove.id === 'bugbite' || this.activeMove.id === 'pluck' || this.activeMove.id === 'thief' || this.activeMove.id === 'poltergeist') {
-					this.add('-message', pokemon.name + " was kept alert thanks to Incense!");
+					this.add('-message', `${pokemon.name} was kept alert thanks to Incense!`);
 					return false;
 				}
 			},
@@ -235,7 +235,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onAfterMoveSecondarySelf(pokemon, target, move) {
 			if (pokemon.species.id === 'impsaustor') {return;}
 			if (!target || target.fainted || target.hp <= 0) {
-				this.add('-message', pokemon.name + "'s been acting pretty sus lately...");
+				this.add('-message', `${pokemon.name} has been acting kiiiiiinda sus lately...`);
 				pokemon.formeChange('Impsaustor', this.effect, true);
 				const oldAbility = pokemon.setAbility('Vent');
 				if (oldAbility) {
@@ -244,7 +244,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					return;
 				}
 				this.add('-start', pokemon, 'typechange', target.getTypes(true).join('/'), '[silent]');
-				this.add('-message', pokemon.name + " was the Impsaustor!");
+				this.add('-message', `${pokemon.name} was the Impsaustor!`);
 				const species = this.dex.getSpecies(pokemon.species.name);
 				const abilities = species.abilities;
 				const baseStats = species.baseStats;
@@ -474,7 +474,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			const moveSlot = callerMoveId === 'instruct' ? pokemon.getMoveData(move.id) : pokemon.getMoveData(callerMoveId);
 			if (!moveSlot) {return false;}
 			if (moveSlot.pp % 2 === 1) {
-				this.add('-message', "It readied a mine!");
+				this.add('-message', `It readied a mine!`);
 				return false;
 			}
 			return true;
@@ -495,7 +495,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			}
 			else {
 				this.attrLastMove('[still]');
-				this.add('-anim', target, "Explosion", target);
+				this.add('-anim', target, "Seed Bomb", target);
 			}
 
 		},
@@ -1981,11 +1981,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 0,
 		category: "Status",
 		name: "Sick Hacks",
-		pp: 1,
-		shortDesc: "User and target switch HP.",
-		noPPBoosts: true,
+		pp: 40,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1},
 		onPrepareHit: function(target, source, move) {
 		    this.attrLastMove('[still]');
 		    this.add('-anim', source, "Heart Swap", target);
@@ -1994,8 +1992,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 			const pokHP = (source.hp / source.maxhp);
 			const tarHP = (target.hp / target.maxhp);
 			source.sethp(tarHP * source.maxhp);
+			this.add('-sethp', source, target.getHealth, '[from] move: Pain Split', '[silent]');
 			target.sethp(pokHP * target.maxhp);
-			this.add('-message', "The Pokemon swapped HP!");
+			this.add('-sethp', target, target.getHealth, '[from] move: Pain Split', '[silent]');
+			this.add('-message', "The Pokemon traded HP bars!");
+			this.add('-message', `also the statuses swapping is a visual bug idk how to fix it yet LOL`);
 		},
 		target: "normal",
 		type: "Dark",
@@ -2076,7 +2077,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			};
 			target.moveSlots[target.moveSlots.length] = ms;
 			target.baseMoveSlots[target.moveSlots.length - 1] = ms;
-			this.add('-message', target.name + " learned Metronome!");
+			this.add('-message', `${target.name} learned Metronome!`);
 		},
 		secondary: null,
 		target: "self",
@@ -2132,7 +2133,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			revived.faintQueued = null;
 			revived.hp = Math.round(revived.maxhp * (2 / 10));
 			revived.status = '';
-				this.add('-message', `${revived.name} was revived!`);
+			this.add('-message', `${revived.name} was revived!`);
 		},
 		secondary: null,
 		target: "self",
@@ -2170,5 +2171,41 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Dark",
 		zMove: {boost: {spa: 1}},
 		contestType: "Clever",
+	},
+
+	recover: {
+		num: 105,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Recover",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 2],
+		secondary: null,
+		target: "self",
+		type: "Electric",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+
+	swordsdance: {
+		num: 14,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Swords Dance",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1, dance: 1},
+		boosts: {
+			atk: 2,
+		},
+		secondary: null,
+		target: "self",
+		type: "Steel",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
 	},
 };

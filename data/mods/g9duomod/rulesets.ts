@@ -677,7 +677,7 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 43) {
 			this.hint("Roulette Wheel Result 44 - i felt like being nice today");
 			for (const pokemon of this.getAllActive()) {
-	                	this.useMove("Revival Blessing (Sorta)", pokemon);
+	                	this.useMove("Heal Bell", pokemon);
 	        	}
 	        }
 
@@ -1417,7 +1417,7 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 43) {
 			this.hint("Roulette Wheel Result 44 - i felt like being nice today");
 			for (const pokemon of this.getAllActive()) {
-	                	this.useMove("Revival Blessing", pokemon);
+	                	this.useMove("Heal Bell", pokemon);
 	        	}
 	        }
 
