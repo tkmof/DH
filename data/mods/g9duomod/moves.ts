@@ -1996,6 +1996,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			target.sethp(pokHP * target.maxhp);
 			this.add('-sethp', target, target.getHealth, '[from] move: Pain Split', '[silent]');
 			this.add('-message', "The Pokemon traded HP bars!");
+			this.add('-message', `also the statuses swapping is a visual bug idk how to fix it yet LOL`);
 		},
 		target: "normal",
 		type: "Dark",
@@ -2170,5 +2171,41 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Dark",
 		zMove: {boost: {spa: 1}},
 		contestType: "Clever",
+	},
+
+	recover: {
+		num: 105,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Recover",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 2],
+		secondary: null,
+		target: "self",
+		type: "Electric",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+
+	swordsdance: {
+		num: 14,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Swords Dance",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1, dance: 1},
+		boosts: {
+			atk: 2,
+		},
+		secondary: null,
+		target: "self",
+		type: "Steel",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
 	},
 };

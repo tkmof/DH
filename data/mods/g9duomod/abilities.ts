@@ -548,7 +548,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 
 			const dazzlingHolder = this.effectData.target;
-			if ((source.side === dazzlingHolder.side || move.target === 'all') && (move.priority > 0.1) {
+			if ((source.side === dazzlingHolder.side || move.target === 'all') && (move.priority > 0.1)) {
 				this.attrLastMove('[still]');
 				this.add('cant', dazzlingHolder, 'ability: Dazzling', move, '[of] ' + target);
 				return false;

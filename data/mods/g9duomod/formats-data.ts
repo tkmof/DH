@@ -28,7 +28,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     pokat: {
-		randomBattleMoves: ["stupidcannon", "synthesis", "gigadrain", "incense"],
+		randomBattleMoves: ["toxic", "synthesis", "gigadrain", "incense"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
