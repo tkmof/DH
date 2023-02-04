@@ -77,10 +77,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       tier: "Duomod",
       doublesTier: "Duomod",
     },
-    impsaustor: {
-      tier: "Illegal",
-      doublesTier: "Illegal",
-    },
     capsaken: {
 		randomBattleMoves: ["chillyreception", "ceaselessedge", "knockoff", "flareblitz", "willowisp"],
 		randomBattleLevel: 100,
@@ -118,7 +114,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     gelsius: {
-		randomBattleMoves: ["scald", "fireblast", "icebeam", "pharaohshot", "chillyreception", "calmmind", "recover"],
+		randomBattleMoves: ["scald", "fireblast", "icebeam", "pharaohshot", "chillyreception", "calmmind", "recover", "hydropump"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -136,7 +132,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     sanbatter: {
-		randomBattleMoves: ["poltergeist", "closecombat", "shadowsneak", "machpunch", "drainpunch", "swordsdance", "shadowscratch"],
+		randomBattleMoves: ["poltergeist", "closecombat", "machpunch", "swordsdance", "shadowscratch"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -160,13 +156,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     gargitect: {
-		randomBattleMoves: ["stoneedge", "dragonhammer", "knockoff", "swordsdance", "stoneaxe", "accelerock", "onetrillionarrows"],
+		randomBattleMoves: ["stoneedge", "dragonhammer", "knockoff", "swordsdance", "stoneaxe", "accelerock", "onetrillionarrows", "superpower"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     temporand: {
-		randomBattleMoves: ["scorchingsands", "calmmind", "recover", "psychic", "pharaohshot", "hyperwind"],
+		randomBattleMoves: ["scorchingsands", "calmmind", "recover", "psychic", "pharaohshot", "hyperwind", "earthpower"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -184,7 +180,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     noxinobi: {
-		randomBattleMoves: ["direclaw", "zingzap", "zenheadbutt", "bulkup", "waterfall", "impostorblade", "inkbrush"],
+		randomBattleMoves: ["direclaw", "zingzap", "zenheadbutt", "bulkup", "waterfall", "impostorblade", "inkbrush", "polarpounce"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -194,6 +190,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Illegal",
     },
     gelsiushundred: {
+      tier: "Illegal",
+      doublesTier: "Illegal",
+    },
+    impsaustor: {
       tier: "Illegal",
       doublesTier: "Illegal",
     },

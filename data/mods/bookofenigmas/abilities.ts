@@ -23,9 +23,12 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: -1,
 	},
 	corruptingstorm: {
-		onFaint(target, source, effect) {
-			this.add('-activate', target, 'ability: Corrupting Storm');
-			source.addVolatile('storm');
+		onDamagingHitOrder: 2,
+		onDamagingHit(damage, target, source, move) {
+			if (!target.hp) {
+				this.add('-activate', target, 'ability: Corrupting Storm');
+				source.addVolatile('storm');
+			}
 		},
 		name: "Corrupting Storm",
 		shortDesc: "When this Pokemon is KOed by another Pokemon, the attacker loses 1/8 max HP every turn until it switches out.",

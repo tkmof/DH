@@ -101,7 +101,33 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		color: "Red",
 		eggGroups: ["Water 3"],
 	},
-	
+
+	//https://www.smogon.com/forums/threads/book-of-enigmas-slate-3-same-but-different-maybe.3711490/post-9485641
+
+	tripoddrill: {
+		num: -9,
+		name: "Tripod Drill",
+		types: ["Normal", "Ground"],
+		gender: "N",
+		baseStats: {hp: 65, atk: 107, def: 95, spa: 61, spd: 109, spe: 133},
+		abilities: {0: "Cleansing Fire"},
+		heightm: 1.8,
+		weightkg: 85.2,
+		color: "Brown",
+		eggGroups: ["Flying"],
+	},
+	twintoxin: {
+		num: -10,
+		name: "Twin Toxin",
+		types: ["Poison", "Fairy"],
+		gender: "N",
+		baseStats: {hp: 50, atk: 110, def: 130, spa: 90, spd: 130, spe: 80},
+		abilities: {0: "Corrupting Storm"},
+		heightm: 1,
+		weightkg: 23.5,
+		color: "Black",
+		eggGroups: ["Field", "Fairy"],
+	},
 
 	// canon pokemon start here
 

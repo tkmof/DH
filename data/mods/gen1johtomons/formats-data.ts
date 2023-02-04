@@ -191,6 +191,10 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 		gen: 1,
 	},
+	steelix: {
+		tier: "OU",
+		gen: 1,
+	},
 	snubbull: {
 		tier: "LC",
 		gen: 1,
@@ -325,6 +329,78 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	celebi: {
 		tier: "Uber",
+		gen: 1,
+	},
+	pichu: {
+		tier: "LC",
+		gen: 1,
+	},
+	cleffa: {
+		tier: "LC",
+		gen: 1,
+	},
+	igglybuff: {
+		tier: "LC",
+		gen: 1,
+	},
+	crobat: {
+		tier: "UU",
+		gen: 1,
+	},
+	bellossom: {
+		tier: "UU",
+		gen: 1,
+	},
+	politoed: {
+		tier: "UU",
+		gen: 1,
+	},
+	slowking: {
+		tier: "UU",
+		gen: 1,
+	},
+	hitmontop: {
+		tier: "UU",
+		gen: 1,
+	},
+	tyrogue: {
+		tier: "LC",
+		gen: 1,
+	},
+	blissey: {
+		tier: "OU",
+		gen: 1,
+	},
+	kingdra: {
+		tier: "UU",
+		gen: 1,
+	},
+	scizor: {
+		tier: "OU",
+		gen: 1,
+	},
+	smoochum: {
+		tier: "LC",
+		gen: 1,
+	},
+	elekid: {
+		tier: "LC",
+		gen: 1,
+	},
+	magby: {
+		tier: "LC",
+		gen: 1,
+	},
+	espeon: {
+		tier: "UU",
+		gen: 1,
+	},
+	umbreon: {
+		tier: "LC",
+		gen: 1,
+	},
+	porygon2: {
+		tier: "OU",
 		gen: 1,
 	},
 	

@@ -1,6 +1,6 @@
 export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	obtrusive: {
-		shortDesc: "Blocks the Roulette Wheel for 5 turns; also wears off when switching out.",
+		shortDesc: "Blocks the Roulette Wheel for 3 turns; also wears off when switching out.",
 		onStart(pokemon) {
 			pokemon.addVolatile('obtrusive');
 		},
@@ -9,7 +9,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			this.add('-end', pokemon, 'Obtrusive', '[silent]');
 		},
 		condition: {
-			duration: 5,
+			duration: 4,
 			onStart(target) {
 				this.add('-start', target, 'ability: Obtrusive');
 			},
@@ -24,10 +24,22 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	
 	queenofroulette: {
 		shortDesc: "Spins the Roulette Wheel two additional times.",
-		onResidual (pokemon) {
-			this.useMove("Roulette Spin", pokemon);
-			this.useMove("Roulette Spin", pokemon);
+		onStart(pokemon) {
+			pokemon.addVolatile('queenofroulette');
 		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['queenofroulette'];
+			this.add('-end', pokemon, 'Queen of Roulette', '[silent]');
+		},
+		condition: {
+			onStart(target) {
+				this.add('-start', target, 'ability: Queen of Roulette');
+			},
+			onEnd(target) {
+				this.add('-end', target, 'Queen of Roulette');
+			},
+		},
+		isPermanent: true,
 		name: "Queen of Roulette",
 		rating: 1,
 		num: 3009,
@@ -268,9 +280,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	
 	conduction: {
 		onModifyMove(move, attacker) {
-			if (attacker.baseSpecies.baseSpecies !== 'gelsius' && attacker.baseSpecies.baseSpecies !== 'Gelsius') {
-				return;
-			}
+			if (attacker.baseSpecies.baseSpecies !== 'gelsius' && attacker.baseSpecies.baseSpecies !== 'Gelsius') {return;}
+			if (attacker.species.name === 'Gelsius-Subzero' || attacker.species.name === 'gelsiussubzero') {return;}
+			if (attacker.species.name === 'Gelsius-Hundred' || attacker.species.name === 'gelsiushundred') {return;}
 			if (attacker.hp && move.type === 'Ice') {
 				this.add('-message', attacker.name + " is beginning to rapidly cool!");
 				attacker.formeChange('Gelsius-Subzero', this.effect, true);
@@ -282,12 +294,12 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				this.add('-message', attacker.name + " transformed!");
 			}
 		},
+		isPermanent: true,
 		name: "Conduction",
 		shortDesc: "If the user uses Ice or Fire move, transforms. Only works once.",
 		rating: 2,
 		num: 9010,
 	},	
-	//  && source.side.foe.pokemonLeft
 
 	respawnpunisher: {
 		onAfterMoveSecondarySelf(pokemon, target, move) {
@@ -320,12 +332,16 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			},			
 		},
 		name: "Respawn Punisher",
-		shortDesc: "If an enemy switches or faints, raises Atk by 1 for one turn.",
+		shortDesc: "If an enemy switches or faints, raises Atk/Sp. Atk by 1.3x.",
 		rating: 3.5,
 		num: 9011,
 	},
 	
 	vent: {
+		onStart(target) {
+			this.add('-start', target, 'ability: Vent');
+			this.hint("This Pokemon can now use Impostor Blade without drawback.");
+		},
 		onAfterMoveSecondary(target, source, move) {
 			if (!source || source === target || !target.hp || !move.totalDamage) return;
 			const lastAttackedBy = target.getLastAttackedBy();
