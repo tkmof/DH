@@ -4155,7 +4155,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			{generation: 1, level: 50},
 		],
 	},
-	taurospaldea: {
+	taurospaldeacombat: {
 		learnset: {
 			doublekick: ["1L1"],
 			rollingkick: ["1L21"],
@@ -4191,7 +4191,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			{generation: 1, level: 5},
 		],
 	},
-	taurospaldeafire: {
+	taurospaldeablaze: {
 		learnset: {
 			doublekick: ["1L1"],
 			lowkick: ["1L21"],
@@ -4227,7 +4227,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			{generation: 1, level: 5},
 		],
 	},
-	taurospaldeafire: {
+	taurospaldeaaqua: {
 		learnset: {
 			doublekick: ["1L1"],
 			lowkick: ["1L21"],
