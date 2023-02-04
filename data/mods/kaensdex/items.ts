@@ -1,5 +1,63 @@
 export const Items: {[itemid: string]: ItemData} = {
-
+abomigorite: {
+		name: "Abomigorite",
+		spritenum: 575,
+		megaStone: "Abomigo-Mega",
+		megaEvolves: "Abomigo",
+		itemUser: ["Abomigo"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 674,
+		gen: 6,
+		desc: "If held by an Abomigo, this item allows it to Mega Evolve in battle.",
+	},
+	
+	vizcarite: {
+		name: "Vizcarite",
+		spritenum: 596,
+		megaStone: "Vizcachu-Mega",
+		megaEvolves: "Vizcachu",
+		itemUser: ["Vizcachu"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 674,
+		gen: 6,
+		desc: "If held by a Vizcachu, this item allows it to Mega Evolve in battle.",
+	},
+	
+	porcusrite: {
+		name: "Porcusrite",
+		spritenum: 576,
+		megaStone: "Porcusquill-Mega",
+		megaEvolves: "Porcusquill",
+		itemUser: ["Porcusquill"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 674,
+		gen: 6,
+		desc: "If held by a Porcusquill, this item allows it to Mega Evolve in battle.",
+	},
+	
+	grussgurite: {
+		name: "Grussgurite",
+		spritenum: 608,
+		megaStone: "Grussgu-Mega",
+		megaEvolves: "Grussgu",
+		itemUser: ["Grussgu"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 674,
+		gen: 6,
+		desc: "If held by a Grussgu, this item allows it to Mega Evolve in battle.",
+	},
 
 //gen9 stuff
 
@@ -18,7 +76,8 @@ abilityshield: {
 		},
 		// Mold Breaker protection implemented in Battle.suppressingAbility() within sim/battle.ts
 		num: 1881,
-		gen: 9,
+		gen: 8,
+		desc: "Holder's Ability cannot be changed by any effect.",
 	},
 	
 	clearamulet: {
@@ -39,7 +98,8 @@ abilityshield: {
 			}
 		},
 		num: 1882,
-		gen: 9,
+		gen: 8,
+		desc: "Prevents other Pokemon from lowering the holder's stat stages.",
 	},
 	
 	covertcloak: {
@@ -53,7 +113,8 @@ abilityshield: {
 			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
 		},
 		num: 1885,
-		gen: 9,
+		gen: 8,
+		desc: "Holder is not affected by the secondary effect of another Pokemon's attack.",
 	},
 	
 	loadeddice: {
@@ -66,7 +127,8 @@ abilityshield: {
 			}
 		},
 		num: 1886,
-		gen: 9,
+		gen: 8,
+		desc: "Holder's moves that hit 2-5 times hit 4-5 times; Population Bomb hits 4-10 times.",
 	},
 	
 	mirrorherb: {
@@ -92,7 +154,8 @@ abilityshield: {
 			this.boost(boostPlus, pokemon);
 		},
 		num: 1883,
-		gen: 9,
+		gen: 8,
+		desc: "When an opposing Pokemon raises a stat stage, the holder copies it. Single use.",
 	},
 	
 	punchingglove: {
@@ -110,6 +173,7 @@ abilityshield: {
 			if (move.flags['punch']) delete move.flags['contact'];
 		},
 		num: 1884,
-		gen: 9,
+		gen: 8,
+		desc: "Holder's punch-based attacks have 1.1x power and do not make contact.",
 	},
 }
