@@ -173,4 +173,22 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  name: "Pocket Dimension",
 	  rating: 4.5,
     },
+	grassysurge: {
+		onStart(source) {
+			this.field.setTerrain('grassyterrain');
+		},
+		name: "Grassy Surge",
+		rating: 4,
+		num: 229,
+		gen: 6,
+	},
+	mistysurge: {
+		onStart(source) {
+			this.field.setTerrain('mistyterrain');
+		},
+		name: "Misty Surge",
+		rating: 3.5,
+		num: 228,
+		gen: 6,
+	},
 };
