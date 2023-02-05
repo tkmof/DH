@@ -2574,8 +2574,8 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			thunderbolt: ["3L1"],
 			thunderwave: ["3L1"],
 			tickle: ["3L1"],
-			trick: ["3L1"],
-			uproar: ["3L1"],
+			// trick: ["3L1"],
+			// uproar: ["3L1"],
 		},
 	},
 	mrrime: {
