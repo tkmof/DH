@@ -1136,7 +1136,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	entei: {
 		randomBattleMoves: ["bodyslam", "calmmind", "fireblast", "flamethrower", "hiddenpowergrass", "hiddenpowerice", "solarbeam", "substitute", "sunnyday"],
 		tier: "OU",
-		rank: "New",
+		rank: "OU",
 	},
 	suicune: {
 		randomBattleMoves: ["calmmind", "hydropump", "icebeam", "rest", "sleeptalk", "substitute", "surf", "toxic"],
