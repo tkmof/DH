@@ -1736,7 +1736,7 @@ shuckle: {
 		types: ["Normal"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 95, atk: 60, def: 65, spa: 65, spd: 130, spe: 110},
-		abilities: {0: "Pixilate", 1:"Normalize" H: "Huge Power"},
+		abilities: {0: "Pixilate", 1:"Normalize", H: "Huge Power"},
 		heightm: 0.8,
 		weightkg: 20.5,
 		color: "Pink",
