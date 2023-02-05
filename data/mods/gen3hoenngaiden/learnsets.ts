@@ -3855,6 +3855,7 @@ weezinggalar: {
         learnset: {
             aromatherapy: ["3L1"],
             attract: ["3L1"],
+			bubblebeam: ["3L1"],
             destinybond: ["3L1"],
             doubleteam: ["3L1"],
             endure: ["3L1"],
