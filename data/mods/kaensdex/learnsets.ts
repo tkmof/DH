@@ -2934,6 +2934,7 @@ abomigo: {learnset: {
 	destinybond: ["7L1"],
 	extrasensory: ["7L1"],
 	facade: ["7L1"],
+	freezedry: ["7L1"],
 	frustration: ["7L1"],
 	hail: ["7L1"],
 	hammerarm: ["7L1"],
@@ -4009,7 +4010,7 @@ eeveecile: {learnset: {
 	curse: ["7L1"],
 	dig: ["7L1"],
 	doubleedge: ["7L1"],
-	doublekick: ["7L1"],
+	doublekick:: ["7L1"],
 	encore: ["7L1"],
 	facade: ["7L1"],
 	fakeout: ["7L1"],
@@ -4054,6 +4055,7 @@ vaporeoncile: {learnset: {
 	weatherball: ["7L1"],
 	whirlwind: ["7L1"],
 }},
+};
 
 jolteoncile: {learnset: {
 	buzzybuzz: ["7L1"],
@@ -4151,7 +4153,7 @@ umbreoncile: {learnset: {
 	venoshock: ["7L1"],
 }},
 
-lefeoncile: {learnset: {
+leafeoncile: {learnset: {
 	airslash: ["7L1"],
 	aquacutter: ["7L1"],
 	aurasphere: ["7L1"],

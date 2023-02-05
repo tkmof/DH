@@ -1,6 +1,6 @@
 export const Pokedex: {[nameid: string]: nameData} = {
 woodite: {
-	num: 1.5,
+	num: 1,
 	name: "Woodite",
 	types: ["Grass", "Bug"],
 	baseStats: {hp: 64, atk: 53, def: 65, spa: 44, spd: 55, spe: 37},
@@ -9,7 +9,7 @@ woodite: {
 	evos: ["manteaf"],
 },
 manteaf: {
-	num: 2.5,
+	num: 2,
 	name: "Manteaf",
 	types: ["Grass", "Bug"],
 	baseStats: {hp: 68, atk: 85, def: 70, spa: 50, spd: 57, spe: 75},
@@ -19,7 +19,7 @@ manteaf: {
 	evos: ["fasmiwood"],
 },
 fasmiwood: {
-	num: 3.5,
+	num: 3,
 	name: "Fasmiwood",
 	types: ["Grass", "Bug"],
 	baseStats: {hp: 84, atk: 92, def: 85, spa: 75, spd: 80, spe: 119},
@@ -28,7 +28,7 @@ fasmiwood: {
 	prevo: "manteaf",
 },
 smice: {
-	num: 4.5,
+	num: 4,
 	name: "Smice",
 	types: ["Fire", "Dark"],
 	baseStats: {hp: 38, atk: 65, def: 34, spa: 65, spd: 46, spe: 60},
@@ -37,7 +37,7 @@ smice: {
 	evos: ["ratevil"],
 },
 ratevil: {
-	num: 5.5,
+	num: 5,
 	name: "Ratevil",
 	types: ["Fire", "Dark"],
 	baseStats: {hp: 55, atk: 75, def: 53, spa: 70, spd: 57, spe: 95},
@@ -47,7 +47,7 @@ ratevil: {
 	evos: ["burstrat"],
 },
 burstrat: {
-	num: 6.5,
+	num: 6,
 	name: "Burstrat",
 	types: ["Fire", "Dark"],
 	baseStats: {hp: 68, atk: 115, def: 72, spa: 99, spd: 78, spe: 103},
@@ -56,7 +56,7 @@ burstrat: {
 	prevo: "ratevil",
 },
 doplash: {
-	num: 7.5,
+	num: 7,
 	name: "Doplash",
 	types: ["Water"],
 	baseStats: {hp: 62, atk: 52, def: 49, spa: 55, spd: 52, spe: 45},
@@ -65,7 +65,7 @@ doplash: {
 	evos: ["makid"],
 },
 makid: {
-	num: 8.5,
+	num: 8,
 	name: "Makid",
 	types: ["Water"],
 	baseStats: {hp: 70, atk: 60, def: 55, spa: 80, spd: 85, spe: 55},
@@ -75,7 +75,7 @@ makid: {
 	evos: ["merdolph"],
 },
 merdolph: {
-	num: 9.5,
+	num: 9,
 	name: "Merdolph",
 	types: ["Water", "Psychic"],
 	baseStats: {hp: 86, atk: 80, def: 78, spa: 100, spd: 105, spe: 86},
@@ -84,7 +84,7 @@ merdolph: {
 	prevo: "makid",
 },
 princeguin: {
-	num: 10.5,
+	num: 10,
 	name: "Princeguin",
 	types: ["Ice", "Flying"],
 	baseStats: {hp: 48, atk: 35, def: 38, spa: 55, spd: 34, spe: 45},
@@ -93,7 +93,7 @@ princeguin: {
 	evos: ["kinguin"],
 },
 kinguin: {
-	num: 11.5,
+	num: 11,
 	name: "Kinguin",
 	types: ["Ice", "Flying"],
 	baseStats: {hp: 76, atk: 45, def: 80, spa: 90, spd: 90, spe: 101},
@@ -102,7 +102,7 @@ kinguin: {
 	prevo: "princeguin",
 },
 ekidna: {
-	num: 12.5,
+	num: 12,
 	name: "Ekidna",
 	types: ["Normal"],
 	baseStats: {hp: 52, atk: 31, def: 65, spa: 23, spd: 31, spe: 60},
@@ -118,8 +118,8 @@ porcusquill: {
 	abilities: {0: "Iron Barbs", 1: "Protective Pelt", H: "Weak Armor"},
 	weightkg: 110.5,
 	prevo: "ekidna",
-otherFormes: ["Grussgu-Mega"],
-	formeOrder: ["Grussgu", "Grussgu-Mega"],
+	otherFormes: ["Porcusquill-Mega"],
+	formeOrder: ["Porcusquill", "Porcusquill-Mega"],
 },
 porcusquillmega: {
 	num: 13,
@@ -151,7 +151,7 @@ mopper: {
 	prevo: "mop",
 },
 puppessum: {
-	num: 16.5,
+	num: 16,
 	name: "Puppessum",
 	types: ["Dark"],
 	baseStats: {hp: 51, atk: 32, def: 38, spa: 58, spd: 38, spe: 62},
@@ -160,7 +160,7 @@ puppessum: {
 	evos: ["grimssum"],
 },
 grimssum: {
-	num: 17.5,
+	num: 17,
 	name: "Grimssum",
 	types: ["Dark", "Ghost"],
 	baseStats: {hp: 65, atk: 84, def: 58, spa: 104, spd: 58, spe: 90},
@@ -169,7 +169,7 @@ grimssum: {
 	prevo: "puppessum",
 },
 spiball: {
-	num: 18.5,
+	num: 18,
 	name: "Spiball",
 	types: ["Bug", "Dark"],
 	baseStats: {hp: 55, atk: 45, def: 34, spa: 26, spd: 42, spe: 48},
@@ -178,7 +178,7 @@ spiball: {
 	evos: ["scopiball"],
 },
 scopiball: {
-	num: 19.5,
+	num: 19,
 	name: "Scopiball",
 	types: ["Bug", "Dark"],
 	baseStats: {hp: 82, atk: 118, def: 75, spa: 43, spd: 95, spe: 75},
@@ -187,7 +187,7 @@ scopiball: {
 	prevo: "spiball",
 },
 navird: {
-	num: 20.5,
+	num: 20,
 	name: "Navird",
 	types: ["Flying", "Water"],
 	baseStats: {hp: 32, atk: 48, def: 28, spa: 48, spd: 28, spe: 85},
@@ -196,7 +196,7 @@ navird: {
 	evos: ["peckbeard"],
 },
 peckbeard: {
-	num: 21.5,
+	num: 21,
 	name: "Peckbeard",
 	types: ["Flying", "Dark"],
 	baseStats: {hp: 82, atk: 105, def: 70, spa: 55, spd: 75, spe: 109},
@@ -205,7 +205,7 @@ peckbeard: {
 	prevo: "navird",
 },
 bask: {
-	num: 22.5,
+	num: 22,
 	name: "Bask",
 	types: ["Dark", "Flying"],
 	baseStats: {hp: 32, atk: 45, def: 35, spa: 66, spd: 35, spe: 67},
@@ -214,7 +214,7 @@ bask: {
 	evos: ["peayes"],
 },
 peayes: {
-	num: 23.5,
+	num: 23,
 	name: "Peayes",
 	types: ["Dark", "Flying"],
 	baseStats: {hp: 75, atk: 90, def: 75, spa: 100, spd: 60, spe: 96},
@@ -223,7 +223,7 @@ peayes: {
 	prevo: "bask",
 },
 weaworm: {
-	num: 24.5,
+	num: 24,
 	name: "Weaworm",
 	types: ["Bug"],
 	baseStats: {hp: 45, atk: 40, def: 35, spa: 50, spd: 45, spe: 45},
@@ -232,7 +232,7 @@ weaworm: {
 	evos: ["lilfly"],
 },
 lilfly: {
-	num: 25.5,
+	num: 25,
 	name: "Lilfly",
 	types: ["Bug", "Flying"],
 	baseStats: {hp: 50, atk: 50, def: 60, spa: 80, spd: 65, spe: 70},
@@ -242,7 +242,7 @@ lilfly: {
 	evos: ["koafly"],
 },
 koafly: {
-	num: 26.5,
+	num: 26,
 	name: "Koafly",
 	types: ["Bug", "Fighting"],
 	baseStats: {hp: 65, atk: 111, def: 80, spa: 60, spd: 75, spe: 109},
@@ -251,7 +251,7 @@ koafly: {
 	prevo: "lilfly",
 },
 puptwin: {
-	num: 27.5,
+	num: 27,
 	name: "Puptwin",
 	types: ["Normal"],
 	baseStats: {hp: 47, atk: 65, def: 34, spa: 30, spd: 36, spe: 60},
@@ -260,7 +260,7 @@ puptwin: {
 	evos: ["duog"],
 },
 duog: {
-	num: 28.5,
+	num: 28,
 	name: "Duog",
 	types: ["Normal"],
 	baseStats: {hp: 67, atk: 105, def: 74, spa: 55, spd: 76, spe: 105},
@@ -269,7 +269,7 @@ duog: {
 	prevo: "puptwin",
 },
 bureep: {
-	num: 29.5,
+	num: 29,
 	name: "Bureep",
 	types: ["Fairy", "Fire"],
 	baseStats: {hp: 67, atk: 33, def: 62, spa: 33, spd: 78, spe: 42},
@@ -278,7 +278,7 @@ bureep: {
 	evos: ["parllama"],
 },
 parllama: {
-	num: 30.5,
+	num: 30,
 	name: "Parllama",
 	types: ["Fairy", "Fire"],
 	baseStats: {hp: 85, atk: 74, def: 82, spa: 74, spd: 95, spe: 71},
@@ -287,7 +287,7 @@ parllama: {
 	prevo: "bureep",
 },
 debi: {
-	num: 31.5,
+	num: 31,
 	name: "Debi",
 	types: ["Water"],
 	baseStats: {hp: 20, atk: 10, def: 45, spa: 30, spd: 15, spe: 80},
@@ -296,7 +296,7 @@ debi: {
 	evos: ["deecrust"],
 },
 deecrust: {
-	num: 32.5,
+	num: 32,
 	name: "Deecrust",
 	types: ["Water", "Dragon"],
 	baseStats: {hp: 98, atk: 111, def: 88, spa: 90, spd: 84, spe: 69},
@@ -305,7 +305,7 @@ deecrust: {
 	prevo: "debi",
 },
 pickynest: {
-	num: 33.5,
+	num: 33,
 	name: "Pickynest",
 	types: ["Normal"],
 	baseStats: {hp: 38, atk: 45, def: 50, spa: 35, spd: 60, spe: 35},
@@ -314,7 +314,7 @@ pickynest: {
 	evos: ["vulcdor"],
 },
 vulcdor: {
-	num: 34.5,
+	num: 34,
 	name: "Vulcdor",
 	types: ["Normal", "Fire"],
 	baseStats: {hp: 78, atk: 110, def: 80, spa: 65, spd: 65, spe: 99},
@@ -323,7 +323,7 @@ vulcdor: {
 	prevo: "pickynest",
 },
 buroach: {
-	num: 35.5,
+	num: 35,
 	name: "Buroach",
 	types: ["Bug", "Psychic"],
 	baseStats: {hp: 46, atk: 42, def: 45, spa: 63, spd: 52, spe: 47},
@@ -332,7 +332,7 @@ buroach: {
 	evos: ["bugler", "roamai"],
 },
 bugler: {
-	num: 36.5,
+	num: 36,
 	name: "Bugler",
 	types: ["Bug", "Psychic"],
 	gender: "M",
@@ -342,7 +342,7 @@ bugler: {
 	prevo: "buroach",
 },
 roamai: {
-	num: 37.5,
+	num: 37,
 	name: "Roamai",
 	types: ["Bug", "Psychic"],
 	gender: "F",
@@ -352,7 +352,7 @@ roamai: {
 	prevo: "buroach",
 },
 rack: {
-	num: 38.5,
+	num: 38,
 	name: "Rack",
 	types: ["Rock", "Ground"],
 	baseStats: {hp: 60, atk: 45, def: 90, spa: 15, spd: 25, spe: 65},
@@ -361,7 +361,7 @@ rack: {
 	evos: ["mountse"],
 },
 mountse: {
-	num: 39.5,
+	num: 39,
 	name: "Mountse",
 	types: ["Rock", "Ground"],
 	baseStats: {hp: 90, atk: 100, def: 115, spa: 35, spd: 65, spe: 90},
@@ -370,7 +370,7 @@ mountse: {
 	prevo: "rack",
 },
 lacorn: {
-	num: 40.5,
+	num: 40,
 	name: "Lacorn",
 	types: ["Bug", "Fairy"],
 	baseStats: {hp: 70, atk: 31, def: 80, spa: 70, spd: 65, spe: 60},
@@ -379,7 +379,7 @@ lacorn: {
 	evos: ["antney"],
 },
 antney: {
-	num: 41.5,
+	num: 41,
 	name: "Antney",
 	types: ["Bug", "Fairy"],
 	baseStats: {hp: 85, atk: 31, def: 105, spa: 90, spd: 85, spe: 80},
@@ -388,7 +388,7 @@ antney: {
 	prevo: "lacorn",
 },
 hairpu: {
-	num: 42.5,
+	num: 42,
 	name: "Hairpu",
 	types: ["Bug", "Poison"],
 	baseStats: {hp: 55, atk: 65, def: 50, spa: 40, spd: 70, spe: 65},
@@ -397,7 +397,7 @@ hairpu: {
 	evos: ["sockorm"],
 },
 sockorm: {
-	num: 43.5,
+	num: 43,
 	name: "Sockorm",
 	types: ["Bug", "Poison"],
 	baseStats: {hp: 90, atk: 98, def: 90, spa: 42, spd: 100, spe: 78},
@@ -406,7 +406,7 @@ sockorm: {
 	prevo: "hairpu",
 },
 kibaion: {
-	num: 44.5,
+	num: 44,
 	name: "Kibaion",
 	types: ["Grass"],
 	baseStats: {hp: 45, atk: 25, def: 30, spa: 60, spd: 50, spe: 70},
@@ -415,7 +415,7 @@ kibaion: {
 	evos: ["kibasol"],
 },
 kibasol: {
-	num: 45.5,
+	num: 45,
 	name: "Kibasol",
 	types: ["Grass", "Fire"],
 	baseStats: {hp: 62, atk: 75, def: 82, spa: 95, spd: 95, spe: 75},
@@ -424,7 +424,7 @@ kibasol: {
 	prevo: "kibaion",
 },
 gnodog: {
-	num: 46.5,
+	num: 46,
 	name: "Gnodog",
 	types: ["Ground", "Fairy"],
 	baseStats: {hp: 60, atk: 31, def: 65, spa: 70, spd: 80, spe: 70},
@@ -433,7 +433,7 @@ gnodog: {
 	evos: ["dressog"],
 },
 dressog: {
-	num: 47.5,
+	num: 47,
 	name: "Dressog",
 	types: ["Ground", "Fairy"],
 	baseStats: {hp: 80, atk: 31, def: 85, spa: 90, spd: 105, spe: 85},
@@ -442,7 +442,7 @@ dressog: {
 	prevo: "gnodog",
 },
 tigle: {
-	num: 48.5,
+	num: 48,
 	name: "Tigle",
 	types: ["Bug"],
 	baseStats: {hp: 55, atk: 25, def: 45, spa: 25, spd: 35, spe: 15},
@@ -451,7 +451,7 @@ tigle: {
 	evos: ["biitora"],
 },
 biitora: {
-	num: 49.5,
+	num: 49,
 	name: "Biitora",
 	types: ["Bug", "Normal"],
 	baseStats: {hp: 80, atk: 105, def: 85, spa: 60, spd: 85, spe: 125},
@@ -460,7 +460,7 @@ biitora: {
 	prevo: "tigle",
 },
 psyguana: {
-	num: 50.5,
+	num: 50,
 	name: "Psyguana",
 	types: ["Psychic", "Dragon"],
 	baseStats: {hp: 35, atk: 35, def: 62, spa: 80, spd: 90, spe: 52},
@@ -469,7 +469,7 @@ psyguana: {
 	evos: ["forguana"],
 },
 forguana: {
-	num: 51.5,
+	num: 51,
 	name: "Forguana",
 	types: ["Psychic", "Dragon"],
 	baseStats: {hp: 80, atk: 65, def: 85, spa: 100, spd: 120, spe: 60},
@@ -478,7 +478,7 @@ forguana: {
 	prevo: "psyguana",
 },
 timk: {
-	num: 52.5,
+	num: 52,
 	name: "Timk",
 	types: ["Bug", "Fire"],
 	baseStats: {hp: 65, atk: 35, def: 45, spa: 35, spd: 50, spe: 30},
@@ -487,7 +487,7 @@ timk: {
 	evos: ["dynabite"],
 },
 dynabite: {
-	num: 53.5,
+	num: 53,
 	name: "Dynabite",
 	types: ["Bug", "Fire"],
 	baseStats: {hp: 105, atk: 95, def: 82, spa: 60, spd: 120, spe: 48},
@@ -496,7 +496,7 @@ dynabite: {
 	prevo: "timk",
 },
 positt: {
-	num: 54.5,
+	num: 54,
 	name: "Positt",
 	types: ["Poison", "Dark"],
 	baseStats: {hp: 25, atk: 45, def: 20, spa: 95, spd: 20, spe: 80},
@@ -505,7 +505,7 @@ positt: {
 	evos: ["frogassin"],
 },
 frogassin: {
-	num: 55.5,
+	num: 55,
 	name: "Frogassin",
 	types: ["Poison", "Dark"],
 	baseStats: {hp: 75, atk: 102, def: 60, spa: 100, spd: 60, spe: 102},
@@ -514,7 +514,7 @@ frogassin: {
 	prevo: "positt",
 },
 jaklove: {
-	num: 56.5,
+	num: 56,
 	name: "Jaklove",
 	types: ["Normal", "Fairy"],
 	baseStats: {hp: 62, atk: 73, def: 60, spa: 80, spd: 60, spe: 121},
@@ -522,7 +522,7 @@ jaklove: {
 	weightkg: 26.2,
 },
 wospark: {
-	num: 57.5,
+	num: 57,
 	name: "Wospark",
 	types: ["Bug", "Electric"],
 	baseStats: {hp: 60, atk: 55, def: 50, spa: 65, spd: 50, spe: 45},
@@ -531,7 +531,7 @@ wospark: {
 	evos: ["ravesp"],
 },
 ravesp: {
-	num: 58.5,
+	num: 58,
 	name: "Ravesp",
 	types: ["Bug", "Electric"],
 	baseStats: {hp: 74, atk: 60, def: 65, spa: 110, spd: 80, spe: 104},
@@ -540,7 +540,7 @@ ravesp: {
 	prevo: "wospark",
 },
 cabbitt: {
-	num: 59.5,
+	num: 59,
 	name: "Cabbitt",
 	types: ["Grass", "Ground"],
 	baseStats: {hp: 60, atk: 45, def: 52, spa: 52, spd: 55, spe: 78},
@@ -549,7 +549,7 @@ cabbitt: {
 	evos: ["haresprout"],
 },
 haresprout: {
-	num: 60.5,
+	num: 60,
 	name: "Haresprout",
 	types: ["Grass", "Ground"],
 	baseStats: {hp: 102, atk: 65, def: 80, spa: 65, spd: 80, spe: 124},
@@ -558,7 +558,7 @@ haresprout: {
 	prevo: "cabbitt",
 },
 seerd: {
-	num: 61.5,
+	num: 61,
 	name: "Seerd",
 	types: ["Grass"],
 	baseStats: {hp: 44, atk: 51, def: 45, spa: 55, spd: 50, spe: 65},
@@ -567,7 +567,7 @@ seerd: {
 	evos: ["evialden"],
 },
 evialden: {
-	num: 62.5,
+	num: 62,
 	name: "Evialden",
 	types: ["Grass", "Dark"],
 	baseStats: {hp: 68, atk: 63, def: 53, spa: 67, spd: 63, spe: 91},
@@ -577,7 +577,7 @@ evialden: {
 	evos: ["ostranch"],
 },
 ostranch: {
-	num: 63.5,
+	num: 63,
 	name: "Ostranch",
 	types: ["Grass", "Dark"],
 	baseStats: {hp: 95, atk: 90, def: 82, spa: 73, spd: 85, spe: 110},
@@ -655,7 +655,7 @@ unimount: {
 	num: 70,
 	name: "Unimount",
 	types: ["Grass", "Ice"],
-	baseStats: {hp: 145, atk: 85, def: 80, spa: 85, spd: 80, spe: 25},
+	baseStats: {hp: 145, atk: 70, def: 80, spa: 85, spd: 80, spe: 25},
 	abilities: {0: "Thick Fat", 1: "Snow Warning", H: "Huge Power"},
 	weightkg: 650,
 	prevo: "higarden",
@@ -817,7 +817,7 @@ toxtaur: {
 	evos: ["venotauro"],
 },
 venotauro: {
-	num: 88.5,
+	num: 88,
 	name: "Venotauro",
 	types: ["Poison", "Fighting"],
 	gender: "M",
@@ -827,7 +827,7 @@ venotauro: {
 	prevo: "toxtaur",
 },
 helmdillo: {
-	num: 89.5,
+	num: 89,
 	name: "Helmdillo",
 	types: ["Ground", "Electric"],
 	baseStats: {hp: 67, atk: 54, def: 72, spa: 50, spd: 80, spe: 35},
@@ -836,7 +836,7 @@ helmdillo: {
 	evos: ["rescurer"],
 },
 rescurer: {
-	num: 90.5,
+	num: 90,
 	name: "Rescurer",
 	types: ["Ground", "Electric"],
 	baseStats: {hp: 92, atk: 74, def: 95, spa: 70, spd: 115, spe: 40},
@@ -845,7 +845,7 @@ rescurer: {
 	prevo: "helmdillo",
 },
 crimske: {
-	num: 91.5,
+	num: 91,
 	name: "Crimske",
 	types: ["Fire"],
 	baseStats: {hp: 34, atk: 51, def: 45, spa: 65, spd: 50, spe: 60},
@@ -854,7 +854,7 @@ crimske: {
 	evos: ["snagant"],
 },
 snagant: {
-	num: 92.5,
+	num: 92,
 	name: "Snagant",
 	types: ["Fire"],
 	baseStats: {hp: 60, atk: 65, def: 65, spa: 80, spd: 70, spe: 65},
@@ -864,7 +864,7 @@ snagant: {
 	evos: ["zhulong"],
 },
 zhulong: {
-	num: 93.5,
+	num: 93,
 	name: "Zhulong",
 	types: ["Fire", "Dragon"],
 	baseStats: {hp: 80, atk: 85, def: 76, spa: 105, spd: 100, spe: 88},
@@ -873,7 +873,7 @@ zhulong: {
 	prevo: "snagant",
 },
 yufo: {
-	num: 94.5,
+	num: 94,
 	name: "Yufo",
 	types: ["Psychic", "Steel"],
 	gender: "N",
@@ -883,7 +883,7 @@ yufo: {
 	evos: ["spavader"],
 },
 spavader: {
-	num: 95.5,
+	num: 95,
 	name: "Spavader",
 	types: ["Psychic", "Steel"],
 	gender: "N",
@@ -893,7 +893,7 @@ spavader: {
 	prevo: "yufo",
 },
 grichick: {
-	num: 96.5,
+	num: 96,
 	name: "Grichick",
 	types: ["Fire", "Electric"],
 	baseStats: {hp: 54, atk: 76, def: 46, spa: 60, spd: 46, spe: 65},
@@ -902,7 +902,7 @@ grichick: {
 	evos: ["grileo"],
 },
 grileo: {
-	num: 97.5,
+	num: 97,
 	name: "Grileo",
 	types: ["Fire", "Electric"],
 	baseStats: {hp: 75, atk: 115, def: 65, spa: 92, spd: 70, spe: 92},
@@ -911,7 +911,7 @@ grileo: {
 	prevo: "grichick",
 },
 sbusho: {
-	num: 98.5,
+	num: 98,
 	name: "Sbusho",
 	types: ["Rock", "Grass"],
 	baseStats: {hp: 80, atk: 55, def: 65, spa: 55, spd: 65, spe: 35},
@@ -920,7 +920,7 @@ sbusho: {
 	evos: ["pangearth"],
 },
 pangearth: {
-	num: 99.5,
+	num: 99,
 	name: "Pangearth",
 	types: ["Rock", "Grass"],
 	baseStats: {hp: 130, atk: 85, def: 100, spa: 65, spd: 70, spe: 45},
@@ -929,7 +929,7 @@ pangearth: {
 	prevo: "sbusho",
 },
 ankylonite: {
-	num: 100.5,
+	num: 100,
 	name: "Ankylonite",
 	types: ["Rock", "Fighting"],
 	baseStats: {hp: 70, atk: 95, def: 70, spa: 35, spd: 35, spe: 50},
@@ -938,7 +938,7 @@ ankylonite: {
 	evos: ["champkylo"],
 },
 champkylo: {
-	num: 101.5,
+	num: 101,
 	name: "Champkylo",
 	types: ["Rock", "Fighting"],
 	baseStats: {hp: 90, atk: 145, def: 90, spa: 45, spd: 65, spe: 60},
@@ -947,7 +947,7 @@ champkylo: {
 	prevo: "ankylonite",
 },
 slomoss: {
-	num: 102.5,
+	num: 102,
 	name: "Slomoss",
 	types: ["Rock", "Grass"],
 	baseStats: {hp: 95, atk: 85, def: 60, spa: 55, spd: 25, spe: 35},
@@ -956,7 +956,7 @@ slomoss: {
 	evos: ["milomoss"],
 },
 milomoss: {
-	num: 103.5,
+	num: 103,
 	name: "Milomoss",
 	types: ["Rock", "Grass"],
 	baseStats: {hp: 140, atk: 132, def: 74, spa: 62, spd: 52, spe: 35},
@@ -965,7 +965,7 @@ milomoss: {
 	prevo: "slomoss",
 },
 rampeck: {
-	num: 104.5,
+	num: 104,
 	name: "Rampeck",
 	types: ["Rock", "Fighting"],
 	baseStats: {hp: 45, atk: 61, def: 48, spa: 61, spd: 45, spe: 95},
@@ -974,7 +974,7 @@ rampeck: {
 	evos: ["terroccer"],
 },
 terroccer: {
-	num: 105.5,
+	num: 105,
 	name: "Terroccer",
 	types: ["Rock", "Fighting"],
 	baseStats: {hp: 70, atk: 100, def: 75, spa: 70, spd: 60, spe: 120},
@@ -1031,7 +1031,7 @@ paramer: {
 	evos: ["toolsaur"],
 },
 toolsaur: {
-	num: 110.5,
+	num: 110,
 	name: "Toolsaur",
 	types: ["Steel", "Dragon"],
 	baseStats: {hp: 84, atk: 85, def: 110, spa: 60, spd: 85, spe: 70},
@@ -1040,7 +1040,7 @@ toolsaur: {
 	prevo: "paramer",
 },
 neuro: {
-	num: 111.5,
+	num: 111,
 	name: "Neuro",
 	types: ["Psychic", "Electric"],
 	baseStats: {hp: 60, atk: 35, def: 45, spa: 70, spd: 75, spe: 55},
@@ -1049,7 +1049,7 @@ neuro: {
 	evos: ["brancell"],
 },
 brancell: {
-	num: 112.5,
+	num: 112,
 	name: "Brancell",
 	types: ["Psychic", "Electric"],
 	baseStats: {hp: 85, atk: 45, def: 75, spa: 110, spd: 125, spe: 65},
@@ -1058,7 +1058,7 @@ brancell: {
 	prevo: "neuro",
 },
 freezegon: {
-	num: 113.5,
+	num: 113,
 	name: "Freezegon",
 	types: ["Dragon", "Ice"],
 	baseStats: {hp: 50, atk: 60, def: 50, spa: 55, spd: 50, spe: 35},
@@ -1067,7 +1067,7 @@ freezegon: {
 	evos: ["snoak"],
 },
 snoak: {
-	num: 114.5,
+	num: 114,
 	name: "Snoak",
 	types: ["Dragon", "Ice"],
 	baseStats: {hp: 80, atk: 70, def: 80, spa: 80, spd: 85, spe: 25},
@@ -1077,7 +1077,7 @@ snoak: {
 	evos: ["coldrake"],
 },
 coldrake: {
-	num: 115.5,
+	num: 115,
 	name: "Coldrake",
 	types: ["Dragon", "Ice"],
 	baseStats: {hp: 100, atk: 120, def: 90, spa: 110, spd: 95, spe: 85},
@@ -1086,7 +1086,7 @@ coldrake: {
 	prevo: "snoak",
 },
 capowt: {
-	num: 116.5,
+	num: 116,
 	name: "Capowt",
 	types: ["Fighting", "Fire"],
 	baseStats: {hp: 34, atk: 70, def: 40, spa: 65, spd: 45, spe: 85},
@@ -1095,7 +1095,7 @@ capowt: {
 	evos: ["capoedar"],
 },
 capoedar: {
-	num: 117.5,
+	num: 117,
 	name: "Capoedar",
 	types: ["Fighting", "Fire"],
 	baseStats: {hp: 64, atk: 90, def: 60, spa: 95, spd: 70, spe: 116},
@@ -1104,7 +1104,7 @@ capoedar: {
 	prevo: "capowt",
 },
 warcon: {
-	num: 118.5,
+	num: 118,
 	name: "Warcon",
 	types: ["Normal", "Flying"],
 	baseStats: {hp: 60, atk: 80, def: 60, spa: 45, spd: 55, spe: 70},
@@ -1113,7 +1113,7 @@ warcon: {
 	evos: ["istrebitel"],
 },
 istrebitel: {
-	num: 119.5,
+	num: 119,
 	name: "Istrebitel",
 	types: ["Fighting", "Flying"],
 	baseStats: {hp: 75, atk: 110, def: 75, spa: 55, spd: 70, spe: 95},
@@ -1122,7 +1122,7 @@ istrebitel: {
 	prevo: "warcon",
 },
 voltcro: {
-	num: 120.5,
+	num: 120,
 	name: "Voltcro",
 	types: ["Electric", "Dragon"],
 	baseStats: {hp: 62, atk: 70, def: 55, spa: 48, spd: 62, spe: 50},
@@ -1131,7 +1131,7 @@ voltcro: {
 	evos: ["wirechomp"],
 },
 wirechomp: {
-	num: 121.5,
+	num: 121,
 	name: "Wirechomp",
 	types: ["Electric", "Dragon"],
 	baseStats: {hp: 72, atk: 105, def: 75, spa: 64, spd: 62, spe: 65},
@@ -1141,7 +1141,7 @@ wirechomp: {
 	evos: ["thungator"],
 },
 thungator: {
-	num: 122.5,
+	num: 122,
 	name: "Thungator",
 	types: ["Electric", "Dragon"],
 	baseStats: {hp: 82, atk: 124, def: 80, spa: 102, spd: 82, spe: 65},
@@ -1150,7 +1150,7 @@ thungator: {
 	prevo: "wirechomp",
 },
 scalpick: {
-	num: 123.5,
+	num: 123,
 	name: "Scalpick",
 	types: ["Flying", "Dragon"],
 	baseStats: {hp: 55, atk: 50, def: 40, spa: 60, spd: 35, spe: 80},
@@ -1159,7 +1159,7 @@ scalpick: {
 	evos: ["roostlax"],
 },
 roostlax: {
-	num: 124.5,
+	num: 124,
 	name: "Roostlax",
 	types: ["Flying", "Dragon"],
 	baseStats: {hp: 72, atk: 80, def: 70, spa: 68, spd: 60, spe: 60},
@@ -1169,7 +1169,7 @@ roostlax: {
 	evos: ["eagatrice"],
 },
 eagatrice: {
-	num: 125.5,
+	num: 125,
 	name: "Eagatrice",
 	types: ["Flying", "Dragon"],
 	baseStats: {hp: 101, atk: 116, def: 81, spa: 82, spd: 74, spe: 86},
@@ -1178,7 +1178,7 @@ eagatrice: {
 	prevo: "roostlax",
 },
 theri: {
-	num: 126.5,
+	num: 126,
 	name: "Theri",
 	types: ["Dark", "Steel"],
 	baseStats: {hp: 70, atk: 95, def: 65, spa: 35, spd: 46, spe: 46},
@@ -1187,7 +1187,7 @@ theri: {
 	evos: ["theriscyno"],
 },
 theriscyno: {
-	num: 127.5,
+	num: 127,
 	name: "Theriscyno",
 	types: ["Dark", "Steel"],
 	baseStats: {hp: 102, atk: 112, def: 84, spa: 63, spd: 88, spe: 66},
@@ -1196,7 +1196,7 @@ theriscyno: {
 	prevo: "theri",
 },
 ghoca: {
-	num: 128.5,
+	num: 128,
 	name: "Ghoca",
 	types: ["Ghost", "Psychic"],
 	baseStats: {hp: 44, atk: 65, def: 35, spa: 105, spd: 96, spe: 124},
@@ -1300,7 +1300,7 @@ abomigomega: {
 	basename: "Abomigo",
 	forme: "Mega",
 	types: ["Dark", "Ice"],
-	baseStats: {hp: 95, atk: 163, def: 89, spa: 100, spd: 89, spe: 74},
+	baseStats: {hp: 95, atk: 153, def: 89, spa: 100, spd: 89, spe: 74},
 	abilities: {0: "Slush Rush"},
 	weightkg: 182.4,
 	requiredItem: "Abomigorite",
@@ -1315,7 +1315,7 @@ chillma: {
 	evos: ["wintber"],
 },
 wintber: {
-	num: 140.5,
+	num: 140,
 	name: "Wintber",
 	types: ["Water", "Ice"],
 	baseStats: {hp: 84, atk: 75, def: 60, spa: 65, spd: 61, spe: 60},
@@ -1325,7 +1325,7 @@ wintber: {
 	evos: ["evergrowl"],
 },
 evergrowl: {
-	num: 141.5,
+	num: 141,
 	name: "Evergrowl",
 	types: ["Water", "Ice"],
 	baseStats: {hp: 94, atk: 122, def: 82, spa: 75, spd: 82, spe: 81},
@@ -1334,7 +1334,7 @@ evergrowl: {
 	prevo: "wintber",
 },
 stontler: {
-	num: 142.5,
+	num: 142,
 	name: "Stontler",
 	types: ["Rock"],
 	baseStats: {hp: 80, atk: 62, def: 110, spa: 33, spd: 23, spe: 15},
@@ -1343,7 +1343,7 @@ stontler: {
 	evos: ["balatone"],
 },
 balatone: {
-	num: 143.5,
+	num: 143,
 	name: "Balatone",
 	types: ["Rock"],
 	baseStats: {hp: 100, atk: 82, def: 150, spa: 64, spd: 64, spe: 15},
@@ -1352,7 +1352,7 @@ balatone: {
 	prevo: "stontler",
 },
 coayena: {
-	num: 144.5,
+	num: 144,
 	name: "Coayena",
 	types: ["Fire", "Poison"],
 	baseStats: {hp: 35, atk: 70, def: 35, spa: 55, spd: 35, spe: 55},
@@ -1361,7 +1361,7 @@ coayena: {
 	evos: ["pherosmoke"],
 },
 pherosmoke: {
-	num: 145.5,
+	num: 145,
 	name: "Pherosmoke",
 	types: ["Fire", "Poison"],
 	gender: "F",
@@ -1371,7 +1371,7 @@ pherosmoke: {
 	prevo: "coayena",
 },
 octovase: {
-	num: 146.5,
+	num: 146,
 	name: "Octovase",
 	types: ["Water", "Ground"],
 	baseStats: {hp: 55, atk: 38, def: 80, spa: 52, spd: 52, spe: 48},
@@ -1380,7 +1380,7 @@ octovase: {
 	evos: ["cthulhurn"],
 },
 cthulhurn: {
-	num: 147.5,
+	num: 147,
 	name: "Cthulhurn",
 	types: ["Water", "Ground"],
 	baseStats: {hp: 75, atk: 45, def: 110, spa: 86, spd: 80, spe: 59},
@@ -1389,7 +1389,7 @@ cthulhurn: {
 	prevo: "octovase",
 },
 shahood: {
-	num: 148.5,
+	num: 148,
 	name: "Shahood",
 	types: ["Ghost", "Dark"],
 	baseStats: {hp: 56, atk: 85, def: 56, spa: 65, spd: 65, spe: 70},
@@ -1398,7 +1398,7 @@ shahood: {
 	evos: ["karakasa"],
 },
 karakasa: {
-	num: 149.5,
+	num: 149,
 	name: "Karakasa",
 	types: ["Ghost", "Dark"],
 	baseStats: {hp: 85, atk: 110, def: 85, spa: 70, spd: 90, spe: 75},
@@ -1407,7 +1407,7 @@ karakasa: {
 	prevo: "shahood",
 },
 grag: {
-	num: 150.5,
+	num: 150,
 	name: "Grag",
 	types: ["Poison", "Ghost"],
 	gender: "F",
@@ -1417,7 +1417,7 @@ grag: {
 	evos: ["kimokus"],
 },
 kimokus: {
-	num: 151.5,
+	num: 151,
 	name: "Kimokus",
 	types: ["Poison", "Ghost"],
 	gender: "F",
@@ -1427,7 +1427,7 @@ kimokus: {
 	prevo: "grag",
 },
 toknight: {
-	num: 152.5,
+	num: 152,
 	name: "Toknight",
 	types: ["Ghost", "Steel"],
 	gender: "N",
@@ -1436,7 +1436,7 @@ toknight: {
 	weightkg: 4.7,
 },
 cowpy: {
-	num: 153.5,
+	num: 153,
 	name: "Cowpy",
 	types: ["Fire"],
 	baseStats: {hp: 70, atk: 60, def: 40, spa: 50, spd: 40, spe: 50},
@@ -1445,7 +1445,7 @@ cowpy: {
 	evos: ["cowork"],
 },
 cowork: {
-	num: 154.5,
+	num: 154,
 	name: "Cowork",
 	types: ["Fire"],
 	baseStats: {hp: 75, atk: 95, def: 50, spa: 55, spd: 50, spe: 80},
@@ -1455,7 +1455,7 @@ cowork: {
 	evos: ["barbecow"],
 },
 barbecow: {
-	num: 155.5,
+	num: 155,
 	name: "Barbecow",
 	types: ["Fire", "Ground"],
 	baseStats: {hp: 90, atk: 95, def: 95, spa: 90, spd: 80, spe: 86},
@@ -1736,7 +1736,7 @@ shuckle: {
 		types: ["Normal"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 95, atk: 60, def: 65, spa: 65, spd: 130, spe: 110},
-		abilities: {0: "Pixilate", 1:"Normalize", H: "Huge Power"},
+		abilities: {0: "Pixilate", 1:"Normalize" H: "Huge Power"},
 		heightm: 0.8,
 		weightkg: 20.5,
 		color: "Pink",
