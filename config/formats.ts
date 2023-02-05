@@ -2653,7 +2653,7 @@ export const Formats: FormatList = [
 		mod: 'gen3uuhoenngaiden',
 		searchShow: false,
 		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod'],
-		banlist: ['Uber', 'OU', 'UUBL'],
+		banlist: ['Uber', 'OU', 'UUBL', 'Air Balloon'],
 		unbanlist: [],
 	},
 	{
