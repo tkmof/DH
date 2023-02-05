@@ -4009,7 +4009,7 @@ eeveecile: {learnset: {
 	curse: ["7L1"],
 	dig: ["7L1"],
 	doubleedge: ["7L1"],
-	doublekick:: ["7L1"],
+	doublekick: ["7L1"],
 	encore: ["7L1"],
 	facade: ["7L1"],
 	fakeout: ["7L1"],
@@ -4054,7 +4054,6 @@ vaporeoncile: {learnset: {
 	weatherball: ["7L1"],
 	whirlwind: ["7L1"],
 }},
-};
 
 jolteoncile: {learnset: {
 	buzzybuzz: ["7L1"],

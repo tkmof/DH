@@ -949,6 +949,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		ignoreImmunity: true,
 		basePower: 1,
 	},
+	surf: {
+		inherit: true,
+		gen: 1,
+	},
 	sweetkiss: {
 		inherit: true,
 		category: "Status",

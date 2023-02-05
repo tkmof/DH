@@ -510,15 +510,15 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 		gen: 1,
 	},
-	taurospaldea: {
+	taurospaldeacombat: {
 		tier: "New",
 		gen: 1,
 	},
-	taurospaldeafire: {
+	taurospaldeablaze: {
 		tier: "New",
 		gen: 1,
 	},
-	taurospaldeawater: {
+	taurospaldeaaqua: {
 		tier: "New",
 		gen: 1,
 	},
