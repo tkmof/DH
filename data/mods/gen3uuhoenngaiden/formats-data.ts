@@ -277,6 +277,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "LC",
 		rank: "LC",
 	},
+	growlithehisui: {
+		isNonstandard: "Future",
+		tier: "Illegal",
+		gen: 8,
+	},
 	arcanine: {
 		randomBattleMoves: ["fireblast", "flamethrower", "extremespeed", "hiddenpowergrass", "rest", "sleeptalk", "toxic"],
 		tier: "UU",
@@ -2407,19 +2412,23 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "OU",
 	},
 	scrafty: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "OU",
+		gen: 3,
+		tier: "OU",
 	},
 	yanmega: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "OU",
+		gen: 3,
+		tier: "OU",
 	},
 	weavile: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "OU",
+		gen: 3,
+		tier: "OU",
 	},
 	simipour: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "OU",
+		gen: 3,
+		tier: "OU",
 	},
 };
