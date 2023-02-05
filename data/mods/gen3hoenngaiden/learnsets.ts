@@ -2509,8 +2509,8 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			tickle: ["3L1"],
 			torment: ["3L1"],
 			toxic: ["3L1"],
-			trick: ["3L1"],
-			uproar: ["3L1"],
+			// trick: ["3L1"],
+			// uproar: ["3L1"],
 		},
 	},
 	mrmimegalar: {
