@@ -2558,19 +2558,23 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "OU",
 	},
 	scrafty: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "New",
+		gen: 3,
+		tier: "OU",
 	},
 	yanmega: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "New",
+		gen: 3,
+		tier: "OU",
 	},
 	weavile: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "New",
+		gen: 3,
+		tier: "OU",
 	},
 	simipour: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "New",
+		gen: 3,
+		tier: "OU",
 	},
 };

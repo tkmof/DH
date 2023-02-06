@@ -780,6 +780,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "cramorant").learnset.mimic = ["3L1"];
 		this.modData("Learnsets", "cramorant").learnset.return = ["3L1"];
 		this.modData("Learnsets", "cramorant").learnset.frustration = ["3L1"];
+		this.modData("Learnsets", "cramorant").learnset.doubleedge = ["3L1"];
 
 		this.modData("Learnsets", "jellicent").learnset.hydropump = ["3L1"];
 		this.modData("Learnsets", "jellicent").learnset.waterpulse = ["3L1"];
@@ -1018,6 +1019,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "sirfetchd").learnset.skyattack = ["3L1"];
 		this.modData("Learnsets", "sirfetchd").learnset.rocksmash = ["3L1"];
 		this.modData("Learnsets", "sirfetchd").learnset.knockoff = ["3L1"];
+		this.modData("Learnsets", "sirfetchd").learnset.bulkup = ["3L1"];
 
 		this.modData("Learnsets", "talonflame").learnset.skyattack = ["3L1"];	
 		this.modData("Learnsets", "talonflame").learnset.doubleedge = ["3L1"];
@@ -1052,6 +1054,8 @@ export const Scripts: ModdedBattleScriptsData = {
 
 		delete this.modData('Learnsets', 'dugtrioalola').learnset.headbutt;
 		delete this.modData('Learnsets', 'dugtrioalola').learnset.reversal;
+
+		delete this.modData('Learnsets', 'weavile').learnset.calmmind;
 
 		// Keep this at the bottom of the init function
 		// for (const species in this.data.pokedex) {
