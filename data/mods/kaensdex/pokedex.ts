@@ -673,7 +673,7 @@ yeagle: {
 	num: 72,
 	name: "Yeagle",
 	types: ["Normal", "Flying"],
-	baseStats: {hp: 83, atk: 65, def: 70, spa: 85, spd: 75, spe: 95},
+	baseStats: {hp: 83, atk: 65, def: 70, spa: 85, spd: 75, spe: 98},
 	abilities: {0: "Frisk", 1: "Pressure", H: "Adaptability"},
 	weightkg: 55.4,
 	prevo: "birnal",
@@ -1518,7 +1518,7 @@ nohtyp: {
 	prevo: "arbok",
 },
 skyradise: {
-	num: 180,
+	num: 182,
 	name: "Skyradise",
 	types: ["Flying"],
 	gender: "N",
@@ -1544,7 +1544,7 @@ shuckle: {
 	},	
 	
 	ironsun: {
-	num: 178,
+	num: 180,
 	name: "Iron Sun",
 	types: ["Rock", "Fire"],
 	gender: "N",
@@ -1554,7 +1554,7 @@ shuckle: {
 	},
 	
 	crazymoon: {
-	num: 179,
+	num: 181,
 	name: "Crazy Moon",
 	types: ["Rock", "Fairy"],
 	gender: "N",
@@ -1608,7 +1608,7 @@ shuckle: {
 		heightm: 0.3,
 		weightkg: 6.5,
 		color: "Brown",
-		evos: ["Vaporeon-Cile", "Jolteon-Cile", "Flareon-Cile", "Espeon-Cile", "Umbreon-Cile", "Leafeon-Cile", "Glaceon-Cile", "Sylveon-Cile"],
+		evos: ["Vaporeon-Cile", "Jolteon-Cile", "Flareon-Cile", "Espeon-Cile", "Umbreon-Cile", "Leafeon-Cile", "Glaceon-Cile", "Sylveon-Cile", "Qilineon", "Fossileon"],
 		eggGroups: ["Field"],
 	},
 	vaporeoncile: {
@@ -1743,6 +1743,38 @@ shuckle: {
 		prevo: "Eevee-Cile",
 		evoType: "levelExtra",
 		evoCondition: "with a Fairy-type move and two levels of Affection",
+		eggGroups: ["Field"],
+	},
+	
+	qilineon: {
+		num: 178,
+		name: "Qilineon",
+		types: ["Dragon"],
+		genderRatio: {M: 0.875, F: 0.125},
+		baseStats: {hp: 95, atk: 65, def: 130, spa: 110, spd: 60, spe: 65},
+		abilities: {0: "Berserk", 1:"Wonder Skin", H: "Levitate"},
+		heightm: 2,
+		weightkg: 60.5,
+		color: "Blue",
+		prevo: "Eevee-Cile",
+		evoType: "useItem",
+		evoItem: "Draco Stone",
+		eggGroups: ["Field"],
+	},
+	
+	fossileon: {
+		num: 179,
+		name: "Fossileon",
+		types: ["Ground"],
+		genderRatio: {M: 0.875, F: 0.125},
+		baseStats: {hp: 60, atk: 110, def: 65, spa: 95, spd: 65, spe: 130},
+		abilities: {0: "Sand Veil", 1:"Intimidate", H: "Unnerve"},
+		heightm: 1.6,
+		weightkg: 35.5,
+		color: "Brown",
+		prevo: "Eevee-Cile",
+		evoType: "useItem",
+		evoItem: "Ancient Stone",
 		eggGroups: ["Field"],
 	},
 };

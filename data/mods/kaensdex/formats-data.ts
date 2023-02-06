@@ -716,4 +716,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	qilineon: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	fossileon: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 };
