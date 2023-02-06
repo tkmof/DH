@@ -146,6 +146,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 70,
 		category: "Physical",
 		name: "Aqua Cutter",
+		shortDesc: "High critical hit ratio.",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -179,6 +180,121 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: null,
 		target: "normal",
 		type: "Fire",
+	},
+   silktrap: {
+		num: 309,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Silk Trap",
+		shortDesc: "Protects from damaging attacks. Contact: -1 Spe.",
+		pp: 10,
+		priority: 4,
+		flags: {},
+		stallingMove: true,
+		volatileStatus: 'silktrap',
+		onTryHit(pokemon) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
+		},
+		condition: {
+			duration: 1,
+			onStart(target) {
+				this.add('-singleturn', target, 'Protect');
+			},
+			onTryHitPriority: 3,
+			onTryHit(target, source, move) {
+				if (!move.flags['protect'] || move.category === 'Status') {
+					if (move.isZ || (move.isMax && !move.breaksProtect)) target.getMoveHitData(move).zBrokeProtect = true;
+					return;
+				}
+				if (move.smartTarget) {
+					move.smartTarget = false;
+				} else {
+					this.add('-activate', target, 'move: Protect');
+				}
+				const lockedmove = source.getVolatile('lockedmove');
+				if (lockedmove) {
+					// Outrage counter is reset
+					if (source.volatiles['lockedmove'].duration === 2) {
+						delete source.volatiles['lockedmove'];
+					}
+				}
+				if (move.flags['contact']) {
+					this.boost({spe: -1}, source, target, this.dex.getActiveMove("Silk Trap"));
+				}
+				return this.NOT_FAIL;
+			},
+			onHit(target, source, move) {
+				if (move.isZOrMaxPowered && move.flags['contact']) {
+					this.boost({spe: -1}, source, target, this.dex.getActiveMove("Silk Trap"));
+				}
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Bug",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cool",
+	},
+	torchsong: {
+		num: 310,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Torch Song",
+		shortDesc: "100% chance to raise the user's Sp. Atk by 1.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+		self: {
+			boosts: {
+				spa: 1,
+			},
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Fire",
+		contestType: "Tough",
+	},
+	trashtalk: {
+		accuracy: 100,
+		basePower: 85,
+		category: "Special",
+		name: "Trash Talk",
+      shortDesc: "Prevents the target from using status moves for 1 turn.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Confide", target);
+		  this.add('-anim', source, "Gunk Shot", target);
+		},
+		volatileStatus: 'trashtalk',
+		condition: {
+			duration: 1,
+			onStart(target) {
+				this.add('-singleturn', target, 'move: Trash Talk');
+			},
+			onResidualOrder: 12,
+			onEnd(target) {
+				this.add('-end', target, 'move: Trash Talk');
+			},
+			onBeforeMovePriority: 5,
+			onBeforeMove(attacker, defender, move) {
+				if (!move.isZ && !move.isMax && move.category === 'Status' && move.id !== 'mefirst') {
+					this.add('cant', attacker, 'move: Trash Talk', move);
+					return false;
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Poison",
+		contestType: "Cool",
 	},
 	/*Old move changes*/
 	auroraveil: {
@@ -766,5 +882,34 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		target: "allAdjacentFoes",
 		type: "Electric",
+	},
+	tarshot: {
+		num: 749,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Tar Shot",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		volatileStatus: 'tarshot',
+		condition: {
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'Tar Shot');
+			},
+			onEffectivenessPriority: -2,
+			onEffectiveness(typeMod, target, type, move) {
+				if (move.type !== 'Fire') return;
+				if (!target) return;
+				if (type !== target.getTypes()[0]) return;
+				return typeMod + 1;
+			},
+		},
+		boosts: {
+			spe: -1,
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
 	},
 };
