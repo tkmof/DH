@@ -140,6 +140,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water"],
 		baseStats: {hp: 120, atk: 100, def: 85, spa: 30, spd: 85, spe: 45},
 		abilities: {0: "Poison Heal", 1: "Steadfast", H: "Mold Breaker"},
+		weightkg: 30,
 	},
 	kazuumarill: {
 		num: 19,
@@ -147,5 +148,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Fire", "Poison"],
 		baseStats: {hp: 80, atk: 40, def: 70, spa: 100, spd: 80, spe: 50},
 		abilities: {0: "Punk Rock", 1: "Soundproof", H: "Klutz"},
+		weightkg: 28.5,
 	},
 };
