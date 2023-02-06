@@ -21,7 +21,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	banettemega: {
 		inherit: true,
 		types: ["Ghost", "Steel"],
-		baseStats: {hp: 64, atk: 125, def: 95, spa: 87, spd: 83, spe: 101},
+		baseStats: {hp: 64, atk: 149, def: 75, spa: 83, spd: 83, spe: 101},
 		abilities: {0: "Pocket Dimension"},
 	},	
 	glaliemega: {
