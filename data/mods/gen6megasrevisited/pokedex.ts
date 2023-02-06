@@ -27,7 +27,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	glaliemega: {
 		inherit: true,
 		types: ["Ice", "Steel"],
-		baseStats: {hp: 80, atk: 125, def: 100, spa: 80, spd: 80, spe: 115},
+		baseStats: {hp: 80, atk: 175, def: 70, spa: 80, spd: 70, spe: 105},
 		abilities: {0: "Strong Jaw"},
 	},	
 	venusaurmega: {
