@@ -5852,7 +5852,7 @@ export const Learnsets: {["8L1"]: LearnsetData} = {
 			workup: ["7M"],
 		},
 	},
-	greninjaash: {
+	greninjaronin: {
 		learnset: {
 			aquacutter: ["8M"],
 			shadowclaw: ["8M"],
