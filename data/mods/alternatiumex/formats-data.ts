@@ -375,7 +375,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},
-	dudunsparce: {
+	dududunsparce: {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},
