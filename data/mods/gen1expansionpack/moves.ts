@@ -506,8 +506,17 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		willCrit: true,
 		type: "Normal",
 	},
-	kowtowcleave: { // unused but will definitely consider
+	kowtowcleave: { // filled in manually
+		num: -100,
 		inherit: true,
+		basePower: 85,
+		accuracy: true,
+		pp: 10,
+		type: "Dark",
+		target: "normal",
+		secondary: null,
+		priority: 0,
+		name: "Kowtow Cleave",
 	},
 	leechseed: {
 		inherit: true,
@@ -781,10 +790,21 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		accuracy: 65,
 	},
-	ruination: { // unused
+	ruination: { // unused; filled in manually
+		num: -101,
 		inherit: true,
 		ignoreImmunity: true,
 		basePower: 1,
+		accuracy: 90,
+		damageCallback(pokemon, target) {
+			return this.clampIntRange(target.getUndynamaxedHP() / 2, 1);
+		},
+		pp: 10,
+		type: "Dark",
+		target: "normal",
+		secondary: null,
+		priority: 0,
+		name: "Ruination",
 	},
 	sandattack: {
 		inherit: true,
@@ -801,11 +821,19 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 130,
 		target: "normal",
 	},
-	shelter: { // unused
+	shelter: { // unused; filled in manually
 		inherit: true,
 		category: "Status",
 		type: "Steel",
 		gen: 1,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Shelter",
+		pp: 10,
+		secondary: null,
+		target: "self",
+		type: "Steel",
 	},
 	skullbash: {
 		inherit: true,
