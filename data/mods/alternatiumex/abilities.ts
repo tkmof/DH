@@ -601,4 +601,21 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 292,
 	},
+	hadronengine: {
+		onStart(pokemon) {
+			if (!this.field.setTerrain('electricterrain') && this.field.isTerrain('electricterrain')) {
+				this.add('-activate', pokemon, 'ability: Hadron Engine');
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (this.field.isTerrain('electricterrain')) {
+				this.debug('Hadron Engine boost');
+				return this.chainModify([5461, 4096]);
+			}
+		},
+		name: "Hadron Engine",
+		rating: 4.5,
+		num: 289,
+	},
 };
