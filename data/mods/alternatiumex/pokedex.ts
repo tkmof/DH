@@ -962,7 +962,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Greninja-Ronin",
 		types: ["Water", "Ghost"],
 		baseStats: {hp: 92, atk: 92, def: 72, spa: 105, spd: 71, spe: 103},
-		abilities: {0: "Sharpness", , 1: "Shed Skin", H: "Protean"},
+		abilities: {0: "Sharpness", 1: "Shed Skin", H: "Protean"},
 		heightm: 1.5,
 		weightkg: 40,
 	},
