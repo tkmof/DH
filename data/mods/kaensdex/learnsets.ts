@@ -4040,6 +4040,7 @@ vaporeoncile: {learnset: {
 	airslash: ["7L1"],
 	bouncybubble: ["7L1"],
 	clearsmog: ["7L1"],
+	defog: ["7L1"],
 	flipturn: ["7L1"],
 	haze: ["7L1"],
 	heatwave: ["7L1"],
@@ -4276,4 +4277,5 @@ fossileon: {learnset: {
 	stoneedge: ["7L1"],
 	uturn: ["7L1"],
 }},
+
 };

@@ -268,6 +268,19 @@ stickyseeds: {
 		rating: 0,
 		num: 10015,
 	},
+	
+	airborne: {
+		onUpdate(pokemon) {
+			if (pokemon.hasType('Flying')) return false;
+			if (!pokemon.addType('Flying')) return false;
+			this.add('-start', pokemon, 'typeadd', 'Flying', '[from] move: Airborne');
+		},
+		name: "Airborne",
+		desc: "Takes fly and become Flying-Type.",
+		rating: 3.5,
+		num: 200,
+	},
+	
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,

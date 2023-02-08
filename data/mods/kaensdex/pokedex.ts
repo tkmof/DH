@@ -1518,7 +1518,7 @@ nohtyp: {
 	prevo: "arbok",
 },
 skyradise: {
-	num: 182,
+	num: 185,
 	name: "Skyradise",
 	types: ["Flying"],
 	gender: "N",
@@ -1544,7 +1544,7 @@ shuckle: {
 	},	
 	
 	ironsun: {
-	num: 180,
+	num: 183,
 	name: "Iron Sun",
 	types: ["Rock", "Fire"],
 	gender: "N",
@@ -1554,7 +1554,7 @@ shuckle: {
 	},
 	
 	crazymoon: {
-	num: 181,
+	num: 184,
 	name: "Crazy Moon",
 	types: ["Rock", "Fairy"],
 	gender: "N",
@@ -1567,7 +1567,6 @@ shuckle: {
 	num: 168,
 	name: "Jumpfurr",
 	types: ["Grass", "Fairy"],
-	gender: "N",
 	baseStats: {hp: 75, atk: 25, def: 70, spa: 95, spd: 85, spe: 110},
 	abilities: {0: "Chlorophyll", 1: "Sticky Seeds", H: "Unburden"},
 	weightkg: 3,
@@ -1758,7 +1757,7 @@ shuckle: {
 		color: "Blue",
 		prevo: "Eevee-Cile",
 		evoType: "useItem",
-		evoItem: "Draco Stone",
+		evoItem: "Sun Stone",
 		eggGroups: ["Field"],
 	},
 	
@@ -1774,7 +1773,26 @@ shuckle: {
 		color: "Brown",
 		prevo: "Eevee-Cile",
 		evoType: "useItem",
-		evoItem: "Ancient Stone",
+		evoItem: "Dusk Stone",
 		eggGroups: ["Field"],
 	},
+	
+crobat: {
+		inherit: true,
+		num: 182,
+		otherFormes: ["Crobat-Mega"],
+	formeOrder: ["Crobat", "Crobat-Mega"],
+	},	
+
+crobatmega: {
+	num: 182,
+	name: "Crobat-Mega",
+	basename: "Crobat",
+	forme: "Mega",
+	types: ["Poison", "Dark"],
+	baseStats: {hp: 85, atk: 80, def: 100, spa: 120, spd: 100, spe: 150},
+	abilities: {0: "Airborne"},
+	weightkg: 80,
+	requiredItem: "Crobatite",
+},
 };

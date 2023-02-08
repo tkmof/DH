@@ -58,6 +58,21 @@ abomigorite: {
 		gen: 6,
 		desc: "If held by a Grussgu, this item allows it to Mega Evolve in battle.",
 	},
+	
+	crobatite: {
+		name: "Crobatite",
+		spritenum: 608,
+		megaStone: "Crobat-Mega",
+		megaEvolves: "Crobat",
+		itemUser: ["Crobat"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 674,
+		gen: 6,
+		desc: "If held by a Crobat, this item allows it to Mega Evolve in battle.",
+	},
 
 //gen9 stuff
 
