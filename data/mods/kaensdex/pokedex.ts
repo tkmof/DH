@@ -673,7 +673,7 @@ yeagle: {
 	num: 72,
 	name: "Yeagle",
 	types: ["Normal", "Flying"],
-	baseStats: {hp: 83, atk: 65, def: 70, spa: 85, spd: 75, spe: 95},
+	baseStats: {hp: 83, atk: 65, def: 70, spa: 85, spd: 75, spe: 98},
 	abilities: {0: "Frisk", 1: "Pressure", H: "Adaptability"},
 	weightkg: 55.4,
 	prevo: "birnal",
@@ -1518,7 +1518,7 @@ nohtyp: {
 	prevo: "arbok",
 },
 skyradise: {
-	num: 180,
+	num: 185,
 	name: "Skyradise",
 	types: ["Flying"],
 	gender: "N",
@@ -1544,7 +1544,7 @@ shuckle: {
 	},	
 	
 	ironsun: {
-	num: 178,
+	num: 183,
 	name: "Iron Sun",
 	types: ["Rock", "Fire"],
 	gender: "N",
@@ -1554,7 +1554,7 @@ shuckle: {
 	},
 	
 	crazymoon: {
-	num: 179,
+	num: 184,
 	name: "Crazy Moon",
 	types: ["Rock", "Fairy"],
 	gender: "N",
@@ -1567,7 +1567,6 @@ shuckle: {
 	num: 168,
 	name: "Jumpfurr",
 	types: ["Grass", "Fairy"],
-	gender: "N",
 	baseStats: {hp: 75, atk: 25, def: 70, spa: 95, spd: 85, spe: 110},
 	abilities: {0: "Chlorophyll", 1: "Sticky Seeds", H: "Unburden"},
 	weightkg: 3,
@@ -1608,7 +1607,7 @@ shuckle: {
 		heightm: 0.3,
 		weightkg: 6.5,
 		color: "Brown",
-		evos: ["Vaporeon-Cile", "Jolteon-Cile", "Flareon-Cile", "Espeon-Cile", "Umbreon-Cile", "Leafeon-Cile", "Glaceon-Cile", "Sylveon-Cile"],
+		evos: ["Vaporeon-Cile", "Jolteon-Cile", "Flareon-Cile", "Espeon-Cile", "Umbreon-Cile", "Leafeon-Cile", "Glaceon-Cile", "Sylveon-Cile", "Qilineon", "Fossileon"],
 		eggGroups: ["Field"],
 	},
 	vaporeoncile: {
@@ -1745,4 +1744,55 @@ shuckle: {
 		evoCondition: "with a Fairy-type move and two levels of Affection",
 		eggGroups: ["Field"],
 	},
+	
+	qilineon: {
+		num: 178,
+		name: "Qilineon",
+		types: ["Dragon"],
+		genderRatio: {M: 0.875, F: 0.125},
+		baseStats: {hp: 95, atk: 65, def: 130, spa: 110, spd: 60, spe: 65},
+		abilities: {0: "Berserk", 1:"Wonder Skin", H: "Levitate"},
+		heightm: 2,
+		weightkg: 60.5,
+		color: "Blue",
+		prevo: "Eevee-Cile",
+		evoType: "useItem",
+		evoItem: "Sun Stone",
+		eggGroups: ["Field"],
+	},
+	
+	fossileon: {
+		num: 179,
+		name: "Fossileon",
+		types: ["Ground"],
+		genderRatio: {M: 0.875, F: 0.125},
+		baseStats: {hp: 60, atk: 110, def: 65, spa: 95, spd: 65, spe: 130},
+		abilities: {0: "Sand Veil", 1:"Intimidate", H: "Unnerve"},
+		heightm: 1.6,
+		weightkg: 35.5,
+		color: "Brown",
+		prevo: "Eevee-Cile",
+		evoType: "useItem",
+		evoItem: "Dusk Stone",
+		eggGroups: ["Field"],
+	},
+	
+crobat: {
+		inherit: true,
+		num: 182,
+		otherFormes: ["Crobat-Mega"],
+	formeOrder: ["Crobat", "Crobat-Mega"],
+	},	
+
+crobatmega: {
+	num: 182,
+	name: "Crobat-Mega",
+	basename: "Crobat",
+	forme: "Mega",
+	types: ["Poison", "Dark"],
+	baseStats: {hp: 85, atk: 80, def: 100, spa: 120, spd: 100, spe: 150},
+	abilities: {0: "Airborne"},
+	weightkg: 80,
+	requiredItem: "Crobatite",
+},
 };

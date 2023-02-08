@@ -4121,7 +4121,7 @@ export const Formats: FormatList = [
 		mod: "kaensdex",
 		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Data Mod', 'Mega Data Mod'],
 		banlist: ['All Pokemon'],
-		unbanlist: ['Luvdisc', 'Hypno','Arbok','Shuckle','Woodite','Manteaf','Fasmiwood','Smice','Ratevil','Burstrat','Doplash','Makid','Merdolph','Princeguin',
+		unbanlist: ['Luvdisc', 'Hypno','Arbok','Shuckle','Crobat','Woodite','Manteaf','Fasmiwood','Smice','Ratevil','Burstrat','Doplash','Makid','Merdolph','Princeguin',
 						'Kinguin','Ekidna','Porcusquill','Mop','Mopper','Puppessum','Grimssum','Spiball','Scopiball','Navird','Peckbeard','Bask','Peayes','Weaworm',
 						'Lilfly','Koafly','Puptwin','Duog','Bureep','Parllama','Debi','Deecrust','Pickynest','Vulcdor','Buroach','Bugler','Roamai','Rack','Mountse',
 						'Lacorn','Antney','Hairpu','Sockorm','Kibaion','Kibasol','Gnodog','Dressog','Tigle','Biitora','Psyguana','Forguana','Timk','Dynabite','Positt',
@@ -4134,7 +4134,7 @@ export const Formats: FormatList = [
 						'Tamantula','Spideth','Abomigo','Chillma','Wintber','Evergrowl','Stontler','Balatone','Coayena','Pherosmoke','Octovase','Cthulhurn','Shahood',
 						'Karakasa','Grag','Kimokus','Toknight','Cowpy','Cowork','Barbecow','Hoorel','Baishark','Luviu','Shucklony','Dreamer','Nohtyp','Abomigo-Mega',
 						'Vizcachu-Mega','Iron Sun','Crazy Moon','Grussgu-Mega','Porcusquill-Mega','Jumpfurr','SurivExe','Eevee-Cile','Vaporeon-Cile','Jolteon-Cile',
-						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile']
+						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile','Qilineon','Fossileon','Crobat-Mega']
 	},
 	{
 		name: "[Gen 8] Kantodex",

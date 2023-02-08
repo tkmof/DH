@@ -677,6 +677,105 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
+	draconicaura: {
+		num: 100033,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Draconic Aura",
+		shortDesc: "Sets Safeguard. Pulse move.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, pulse: 1},
+		self: {
+			sideCondition: 'safeguard',
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Cool",
+	},
+	
+	earthforce: {
+		num: 100034,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Earth Force",
+		shortDesc: "Sets Gravity.",
+		pp: 10,
+		priority: 0,
+		flags: {nonsky: 1, protect: 1, mirror: 1},
+		pseudoWeather: 'gravity',
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					return 7;
+				}
+				return 5;
+			},
+			onStart() {
+				this.add('-fieldstart', 'move: Gravity');
+				for (const pokemon of this.getAllActive()) {
+					let applies = false;
+					if (pokemon.removeVolatile('bounce') || pokemon.removeVolatile('fly')) {
+						applies = true;
+						this.queue.cancelMove(pokemon);
+						pokemon.removeVolatile('twoturnmove');
+					}
+					if (pokemon.volatiles['skydrop']) {
+						applies = true;
+						this.queue.cancelMove(pokemon);
+
+						if (pokemon.volatiles['skydrop'].source) {
+							this.add('-end', pokemon.volatiles['twoturnmove'].source, 'Sky Drop', '[interrupt]');
+						}
+						pokemon.removeVolatile('skydrop');
+						pokemon.removeVolatile('twoturnmove');
+					}
+					if (pokemon.volatiles['magnetrise']) {
+						applies = true;
+						delete pokemon.volatiles['magnetrise'];
+					}
+					if (pokemon.volatiles['telekinesis']) {
+						applies = true;
+						delete pokemon.volatiles['telekinesis'];
+					}
+					if (applies) this.add('-activate', pokemon, 'move: Gravity');
+				}
+			},
+			onModifyAccuracy(accuracy) {
+				if (typeof accuracy !== 'number') return;
+				return accuracy * 5 / 3;
+			},
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (this.dex.getMove(moveSlot.id).flags['gravity']) {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			// groundedness implemented in battle.engine.js:BattlePokemon#isGrounded
+			onBeforeMovePriority: 6,
+			onBeforeMove(pokemon, target, move) {
+				if (move.flags['gravity']) {
+					this.add('cant', pokemon, 'move: Gravity', move);
+					return false;
+				}
+			},
+			onResidualOrder: 22,
+			onEnd() {
+				this.add('-fieldend', 'move: Gravity');
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		contestType: "Clever",
+	},
+	
 	//gen9 stuff
 	ceaselessedge: {
 		num: 845,
