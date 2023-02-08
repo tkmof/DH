@@ -361,11 +361,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	toedscruel: {
-		tier: "New",
+		tier: "Uber",
 		gen: 1,
 	},
 	screamtail: {
-		tier: "New",
+		tier: "Uber",
 		gen: 1,
 	},
 	sandyshocks: {
