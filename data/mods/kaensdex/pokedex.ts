@@ -738,7 +738,7 @@ donter: {
 	name: "Donter",
 	types: ["Fairy"],
 	baseStats: {hp: 100, atk: 84, def: 85, spa: 70, spd: 92, spe: 53},
-	abilitie s: {0: "Thick Fat", 1: "Well-Baked Body", H: "Gluttony"},
+	abilities: {0: "Thick Fat", 1: "Well-Baked Body", H: "Gluttony"},
 	weightkg: 80.5,
 	prevo: "mousse",
 },
