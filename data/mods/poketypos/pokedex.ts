@@ -134,9 +134,9 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 110, atk: 75, def: 100, spa: 134, spd: 100, spe: 81},
 		abilities: {0: "Gooey", 1: "Flash Fire", H: "Flame Body"},
 	},
-	phrohg: {
+	throh: {
 		num: 18,
-		name: "Phrohg",
+		name: "Throg",
 		types: ["Water"],
 		baseStats: {hp: 120, atk: 100, def: 85, spa: 30, spd: 85, spe: 45},
 		abilities: {0: "Poison Heal", 1: "Steadfast", H: "Mold Breaker"},
