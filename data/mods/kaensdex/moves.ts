@@ -1622,4 +1622,124 @@ chillyreception: {
 		zMove: {boost: {spd: 1}},
 		contestType: "Clever",
 	},
+	
+	buzzybuzz: {
+		num: 734,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Buzzy Buzz",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1},
+		secondary: {
+			chance: 100,
+			status: 'par',
+		},
+		target: "normal",
+		type: "Electric",
+		contestType: "Clever",
+	},
+	
+	glitzyglow: {
+		num: 736,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Glitzy Glow",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1},
+		self: {
+			sideCondition: 'lightscreen',
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Clever",
+	},
+	
+	sizzlyslide: {
+		num: 735,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Sizzly Slide",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, defrost: 1},
+		secondary: {
+			chance: 100,
+			status: 'brn',
+		},
+		target: "normal",
+		type: "Fire",
+		contestType: "Clever",
+	},
+	
+	freezyfrost: {
+		num: 739,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Freezy Frost",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onHit() {
+			this.add('-clearallboost');
+			for (const pokemon of this.getAllActive()) {
+				pokemon.clearBoosts();
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		contestType: "Clever",
+	},
+	
+	sappyseed: {
+		num: 738,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Sappy Seed",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1},
+		onHit(target, source) {
+			if (target.hasType('Grass')) return null;
+			target.addVolatile('leechseed', source);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		contestType: "Clever",
+	},
+	
+	sparklyswirl: {
+		num: 740,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Sparkly Swirl",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1},
+		self: {
+			onHit(pokemon, source, move) {
+				this.add('-activate', source, 'move: Aromatherapy');
+				for (const ally of source.side.pokemon) {
+					if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+						continue;
+					}
+					ally.cureStatus();
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Clever",
+	},
 };

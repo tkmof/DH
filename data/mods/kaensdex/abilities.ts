@@ -114,6 +114,12 @@ eternalice: {
 		num: 10005,
 	},
 leecher: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['heal']) {
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
 		onTryHealPriority: 1,
 		onTryHeal(damage, target, source, effect) {
 			const heals = ['drain', 'leechseed', 'ingrain', 'aquaring', 'strengthsap'];
@@ -122,7 +128,7 @@ leecher: {
 			}
 		},
 		name: "Leecher",
-		desc: "Gains 1.3x HP from draining moves, Aqua Ring, Ingrain, Leech Seed and Strength Sap.",
+		desc: "Healing moves Heal for 1.3x HP and Draining moves are 1.3 stronger.",
 		rating: 3.5,
 		num: 10006,
 	},

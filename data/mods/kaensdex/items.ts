@@ -75,25 +75,6 @@ abomigorite: {
 	},
 
 //gen9 stuff
-
-abilityshield: {
-		name: "Ability Shield",
-		spritenum: 0, // TODO
-		ignoreKlutz: true,
-		// Neutralizing Gas protection implemented in Pokemon.ignoringAbility() within sim/pokemon.ts
-		// and in Neutralizing Gas itself within data/abilities.ts
-		onSetAbility(ability, target, source, effect) {
-			if (effect && effect.effectType === 'Ability' && effect.name !== 'Trace') {
-				this.add('-ability', source, effect);
-			}
-			this.add('-block', target, 'item: Ability Shield');
-			return null;
-		},
-		// Mold Breaker protection implemented in Battle.suppressingAbility() within sim/battle.ts
-		num: 1881,
-		gen: 8,
-		desc: "Holder's Ability cannot be changed by any effect.",
-	},
 	
 	clearamulet: {
 		name: "Clear Amulet",
@@ -130,20 +111,6 @@ abilityshield: {
 		num: 1885,
 		gen: 8,
 		desc: "Holder is not affected by the secondary effect of another Pokemon's attack.",
-	},
-	
-	loadeddice: {
-		name: "Loaded Dice",
-		spritenum: 0, // TODO
-		// partially implemented in sim/battle-actions.ts:BattleActions#hitStepMoveHitLoop
-		onModifyMove(move) {
-			if (move.multiaccuracy) {
-				delete move.multiaccuracy;
-			}
-		},
-		num: 1886,
-		gen: 8,
-		desc: "Holder's moves that hit 2-5 times hit 4-5 times; Population Bomb hits 4-10 times.",
 	},
 	
 	mirrorherb: {
