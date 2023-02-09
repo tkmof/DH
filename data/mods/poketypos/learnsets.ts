@@ -1441,7 +1441,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			whirlpool: ["8M", "4M"],
 		},
 	},
-	phrohg: {
+	throg: {
 		learnset: {
 			liquidation: ["8L1"],
 			surf: ["8L1"],
@@ -1509,7 +1509,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			zenheadbutt: ["8M", "7T", "6T"],
 		},
 	},
-	azumarill: {
+	kazuumarill: {
 		learnset: {
 			ember: ["8L1"],
 			poisonsting: ["8L1"],
