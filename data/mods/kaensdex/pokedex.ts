@@ -1795,4 +1795,14 @@ crobatmega: {
 	weightkg: 80,
 	requiredItem: "Crobatite",
 },
+
+cupida: {
+	num: 186,
+	name: "Cupida",
+	types: ["Fairy", "Ghost"],
+	gender: "F",
+	baseStats: {hp: 104, atk: 110, def: 70, spa: 110, spd: 130, spe: 76},
+	abilities: {0: "Cute Charm", 1: "Serene Grace", H: "Archery"},
+	weightkg: 0.5,
+},
 };

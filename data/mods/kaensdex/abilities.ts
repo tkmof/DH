@@ -284,7 +284,22 @@ stickyseeds: {
 		name: "Airborne",
 		desc: "Takes fly and become Flying-Type.",
 		rating: 3.5,
-		num: 200,
+		num: 10016,
+	},
+	
+	archery: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (!move.flags['contact']) {
+				if (move.category === 'Physical'){
+				return this.chainModify([0x14CD, 0x1000]);
+				}
+			} 			
+		},
+		name: "Archery",
+		desc: "Non-contact Physical moves have 1.3x power.",
+		rating: 3.5,
+		num: 10017,
 	},
 	
 	//gen 9 stuff

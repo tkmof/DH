@@ -776,6 +776,176 @@ acidjuice: {
 		contestType: "Clever",
 	},
 	
+	lovearrow: {
+		num: 100035,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Love Arrow",
+		shortDesc: "A target of the opposite gender gets infatuated. 30% Confusion chance.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		volatileStatus: 'attract',
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(pokemon, source, effect) {
+				if (effect.id === 'cutecharm') {
+					this.add('-start', pokemon, 'Attract', '[from] ability: Cute Charm', '[of] ' + source);
+				} else if (effect.id === 'destinyknot') {
+					this.add('-start', pokemon, 'Attract', '[from] item: Destiny Knot', '[of] ' + source);
+				} else {
+					this.add('-start', pokemon, 'Attract');
+				}
+			},
+			onUpdate(pokemon) {
+				if (this.effectData.source && !this.effectData.source.isActive && pokemon.volatiles['attract']) {
+					this.debug('Removing Attract volatile on ' + pokemon);
+					pokemon.removeVolatile('attract');
+				}
+			},
+			onBeforeMovePriority: 2,
+			onBeforeMove(pokemon, target, move) {
+				this.add('-activate', pokemon, 'move: Attract', '[of] ' + this.effectData.source);
+				if (this.randomChance(1, 2)) {
+					this.add('cant', pokemon, 'Attract');
+					return false;
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Attract', '[silent]');
+			},
+		},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'confusion',
+		},
+		target: "normal",
+		type: "Fairy",
+		contestType: "Beautiful",
+	},
+	
+	//eevee moves back to their original values
+	buzzybuzz: {
+		num: 734,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Buzzy Buzz",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1},
+		secondary: {
+			chance: 100,
+			status: 'par',
+		},
+		target: "normal",
+		type: "Electric",
+		contestType: "Clever",
+	},
+	
+	glitzyglow: {
+		num: 736,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Glitzy Glow",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1},
+		self: {
+			sideCondition: 'lightscreen',
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Clever",
+	},
+	
+	sizzlyslide: {
+		num: 735,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Sizzly Slide",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, defrost: 1},
+		secondary: {
+			chance: 100,
+			status: 'brn',
+		},
+		target: "normal",
+		type: "Fire",
+		contestType: "Clever",
+	},
+	
+	freezyfrost: {
+		num: 739,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Freezy Frost",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onHit() {
+			this.add('-clearallboost');
+			for (const pokemon of this.getAllActive()) {
+				pokemon.clearBoosts();
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		contestType: "Clever",
+	},
+	
+	sappyseed: {
+		num: 738,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Sappy Seed",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1},
+		onHit(target, source) {
+			if (target.hasType('Grass')) return null;
+			target.addVolatile('leechseed', source);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		contestType: "Clever",
+	},
+	
+	sparklyswirl: {
+		num: 740,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Sparkly Swirl",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1},
+		self: {
+			onHit(pokemon, source, move) {
+				this.add('-activate', source, 'move: Aromatherapy');
+				for (const ally of source.side.pokemon) {
+					if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+						continue;
+					}
+					ally.cureStatus();
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Clever",
+	},
+	
 	//gen9 stuff
 	ceaselessedge: {
 		num: 845,
@@ -1622,124 +1792,31 @@ chillyreception: {
 		zMove: {boost: {spd: 1}},
 		contestType: "Clever",
 	},
-	
-	buzzybuzz: {
-		num: 734,
-		accuracy: 100,
-		basePower: 90,
-		category: "Special",
-		name: "Buzzy Buzz",
-		pp: 20,
-		priority: 0,
-		flags: {protect: 1},
-		secondary: {
-			chance: 100,
-			status: 'par',
-		},
-		target: "normal",
-		type: "Electric",
-		contestType: "Clever",
-	},
-	
-	glitzyglow: {
-		num: 736,
-		accuracy: 100,
-		basePower: 90,
-		category: "Special",
-		name: "Glitzy Glow",
-		pp: 15,
-		priority: 0,
-		flags: {protect: 1},
-		self: {
-			sideCondition: 'lightscreen',
-		},
-		secondary: null,
-		target: "normal",
-		type: "Psychic",
-		contestType: "Clever",
-	},
-	
-	sizzlyslide: {
-		num: 735,
+		
+	triplearrows: {
+		num: 843,
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		name: "Sizzly Slide",
-		pp: 20,
-		priority: 0,
-		flags: {contact: 1, protect: 1, defrost: 1},
-		secondary: {
-			chance: 100,
-			status: 'brn',
-		},
-		target: "normal",
-		type: "Fire",
-		contestType: "Clever",
-	},
-	
-	freezyfrost: {
-		num: 739,
-		accuracy: 100,
-		basePower: 90,
-		category: "Special",
-		name: "Freezy Frost",
+		isNonstandard: "Unobtainable",
+		name: "Triple Arrows",
+		shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1},
-		onHit() {
-			this.add('-clearallboost');
-			for (const pokemon of this.getAllActive()) {
-				pokemon.clearBoosts();
-			}
-		},
-		secondary: null,
-		target: "normal",
-		type: "Ice",
-		contestType: "Clever",
-	},
-	
-	sappyseed: {
-		num: 738,
-		accuracy: 100,
-		basePower: 90,
-		category: "Physical",
-		name: "Sappy Seed",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, reflectable: 1},
-		onHit(target, source) {
-			if (target.hasType('Grass')) return null;
-			target.addVolatile('leechseed', source);
-		},
-		secondary: null,
-		target: "normal",
-		type: "Grass",
-		contestType: "Clever",
-	},
-	
-	sparklyswirl: {
-		num: 740,
-		accuracy: 100,
-		basePower: 90,
-		category: "Special",
-		name: "Sparkly Swirl",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1},
-		self: {
-			onHit(pokemon, source, move) {
-				this.add('-activate', source, 'move: Aromatherapy');
-				for (const ally of source.side.pokemon) {
-					if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
-						continue;
-					}
-					ally.cureStatus();
-				}
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		secondaries: [
+			{
+				chance: 50,
+				boosts: {
+					def: -1,
+				},
+			}, {
+				chance: 30,
+				volatileStatus: 'flinch',
 			},
-		},
-		secondary: null,
+		],
 		target: "normal",
-		type: "Fairy",
-		contestType: "Clever",
+		type: "Fighting",
 	},
 };
