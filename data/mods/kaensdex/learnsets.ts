@@ -2780,6 +2780,7 @@ plesioskul: {learnset: {
 	dragondance: ["7L1"],
 	dragonpulse: ["7L1"],
 	dragonrush: ["7L1"],
+	dreadfulscreech: ["7L1"],
 	fireblast: ["7L1"],
 	firefang: ["7L1"],
 	flamethrower: ["7L1"],

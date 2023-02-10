@@ -899,6 +899,22 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
+	dreadfulscreech: {
+		num: 410,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Dreadful Screech",
+		shortDesc: "Usually goes first. Sound Move.",
+		pp: 30,
+		priority: 1,
+		flags: {protect: 1, mirror: 1, sound: 1},
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+		contestType: "Cool",
+	},
+	
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,
