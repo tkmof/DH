@@ -302,6 +302,29 @@ stickyseeds: {
 		num: 10017,
 	},
 	
+	insectmovement: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.type === 'Bug' && pokemon.hp === pokemon.maxhp) return priority + 2;
+		},
+		name: "Insect Movement",
+		desc: "Bug-Type moves have +2 priority while at full HP.",
+		rating: 3,
+		num: 10018,
+	},
+	
+	cockatricedominance: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['par'].includes(defender.status)) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Cockatrice Dominance",
+		desc: "Deals 1.5x damage against paralyzed opponents.",
+		rating: 1.5,
+		num: 10019,
+	},
+	
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,
