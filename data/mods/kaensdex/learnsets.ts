@@ -2131,6 +2131,7 @@ champkylo: {learnset: {
 	bulkup: ["7L1"],
 	dragonhammer: ["7L1"],
 	drainpunch: ["7L1"],
+	fightingspirit: ["7L1"],
 	firepunch: ["7L1"],
 	hammerarm: ["7L1"],
 	heatcrash: ["7L1"],
@@ -2383,6 +2384,7 @@ neuro: {learnset: {
 	zenheadbutt: ["7L1"],
 }},
 brancell: {learnset: {
+	mindshock: ["7L1"],
 	risingvoltage: ["7L1"],
 	zapcannon: ["7L1"],
 }},

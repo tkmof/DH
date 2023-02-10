@@ -948,6 +948,57 @@ acidjuice: {
 		contestType: "Beautiful",
 	},
 	
+	mindshock: {
+		num: 100040,
+		accuracy: 100,
+		basePower: 60,
+		basePowerCallback(pokemon, target, move) {
+			if (target.status || target.hasAbility('comatose')) return move.basePower * 2;
+			return move.basePower;
+		},
+		category: "Special",
+		name: "Mind Shock",
+		shortDesc: "30% paralyze. 2x power if target is already statused.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			status: 'par',
+		},
+		target: "normal",
+		type: "Psychic",
+	},
+	
+	fightingspirit: {
+		num: 100041,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Fighting Spirit",
+		shortDesc: "Burns the user. +1 Spe.",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		onTryMove(pokemon) {
+			if (pokemon.status === 'slp' || pokemon.hasAbility('comatose')) {
+				this.add('-fail', pokemon);
+				return null;
+			}
+		},
+		onHit(target, source, move) {
+			if (!target.setStatus('brn', source, move)) return false;
+		},
+		boosts: {
+			spe: 1,
+		},
+		secondary: null,
+		target: "self",
+		type: "Fighting",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cool",
+	},
+	
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,
