@@ -992,6 +992,8 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		abilities: {0: "Unaware"},
 		heightm: 3,
 		weightkg: 325,
+		otherFormes: null,
+		formeOrder: null,
 	},
 	kyuremblack: {
 		num: 646,
@@ -1001,6 +1003,10 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		abilities: {0: "Teravolt", H: "Hadron Engine"},
 		heightm: 3.3,
 		weightkg: 325,
+		otherFormes: null,
+		formeOrder: null,
+		baseSpecies: null,
+		changesFrom: null,
 	},
 	kyuremwhite: {
 		num: 646,
@@ -1010,6 +1016,10 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		abilities: {0: "Turboblaze"},
 		heightm: 3.3,
 		weightkg: 325,
+		otherFormes: null,
+		formeOrder: null,
+		baseSpecies: null,
+		changesFrom: null,
 	},
 	xerneasdormant: {
 		num: 716,
