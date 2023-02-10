@@ -900,7 +900,7 @@ acidjuice: {
 	},
 	
 	dreadfulscreech: {
-		num: 410,
+		num: 100038,
 		accuracy: 100,
 		basePower: 60,
 		category: "Special",
@@ -913,6 +913,39 @@ acidjuice: {
 		target: "normal",
 		type: "Ghost",
 		contestType: "Cool",
+	},
+	
+	flammabletoxin: {
+		num: 100039,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Flammable Toxin",
+		shortDesc: "30% poison/tox/burn. 2x power if target is already burned.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1},
+		onBasePower(basePower, pokemon, target) {
+			if (target.status === 'brn') {
+				return this.chainModify(2);
+			}
+		},
+		secondary: {
+			chance: 30,
+			onHit(target, source) {
+				const result = this.random(3);
+				if (result === 0) {
+					target.trySetStatus('brn', source);
+				} else if (result === 1) {
+					target.trySetStatus('psn', source);
+				} else {
+					target.trySetStatus('tox', source);
+				}
+			},
+		},
+		target: "normal",
+		type: "Poison",
+		contestType: "Beautiful",
 	},
 	
 	//eevee moves back to their original values

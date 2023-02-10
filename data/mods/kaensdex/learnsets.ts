@@ -3106,6 +3106,7 @@ coayena: {learnset: {
 }},
 pherosmoke: {learnset: {
 	closecombat: ["7L1"],
+	flammabletoxin: ["7L1"],
 }},
 octovase: {learnset: {
 	ancientpower: ["7L1"],
