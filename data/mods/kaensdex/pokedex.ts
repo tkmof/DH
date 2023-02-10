@@ -840,7 +840,7 @@ rescurer: {
 	name: "Rescurer",
 	types: ["Ground", "Electric"],
 	baseStats: {hp: 92, atk: 74, def: 95, spa: 70, spd: 115, spe: 40},
-	abilities: {0: "Battle Armor", 1: "Rock Head", H: "Bulletproof"},
+	abilities: {0: "Life Jacket", 1: "Rock Head", H: "Bulletproof"},
 	weightkg: 30.9,
 	prevo: "helmdillo",
 },

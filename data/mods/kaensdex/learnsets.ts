@@ -2220,6 +2220,7 @@ terroccer: {learnset: {
 	gyroball: ["7L1"],
 	headsmash: ["7L1"],
 	hunt: ["7L1"],
+	passingtheball: ["7L1"],
 	pyroball: ["7L1"],
 	rapidspin: ["7L1"],
 	rockblast: ["7L1"],

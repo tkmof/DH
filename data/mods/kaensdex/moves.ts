@@ -1002,7 +1002,7 @@ acidjuice: {
 	},
 	
 	airvibration: {
-		num: 542,
+		num: 100042,
 		accuracy: 100,
 		basePower: 40,
 		category: "Special",
@@ -1015,6 +1015,28 @@ acidjuice: {
 		target: "any",
 		type: "Flying",
 		contestType: "Tough",
+	},
+	
+	passingtheball: {
+		num: 100043,
+		accuracy: 90,
+		basePower: 20,
+		basePowerCallback(pokemon, target, move) {
+			return 20 * move.hit;
+		},
+		category: "Physical",
+		name: "Passing the Ball",
+		shortDesc: "Hits 3 times. Each hit can miss, but power rises.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: 3,
+		multiaccuracy: true,
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		zMove: {basePower: 120},
+		maxMove: {basePower: 140},
 	},
 	
 	//eevee moves back to their original values

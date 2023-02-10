@@ -341,6 +341,22 @@ stickyseeds: {
 		num: 10020,
 	},
 	
+	lifejacket: {
+		onCriticalHit: false,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.boost({spd: 1})) {
+					this.add('-immune', target, '[from] ability: Life Jacket');
+				}
+				return null;
+			}
+		},
+		name: "Life Jacket",
+		desc: "Prevents crits and Water-Type moves. +1 SpD if hit by a Water move.",
+		rating: 3,
+		num: 10021,
+	},
+	
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,
