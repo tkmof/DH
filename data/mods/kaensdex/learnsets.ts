@@ -1542,6 +1542,7 @@ birnal: {learnset: {
 	whirlwind: ["7L1"],
 }},
 yeagle: {learnset: {
+	airvibration: ["7L1"],
 	block: ["7L1"],
 	boomburst: ["7L1"],
 	nastyplot: ["7L1"],

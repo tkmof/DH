@@ -976,7 +976,7 @@ acidjuice: {
 		basePower: 0,
 		category: "Status",
 		name: "Fighting Spirit",
-		shortDesc: "Burns the user. +1 Spe.",
+		shortDesc: "Burns the user. +1SpD, +1Spe, +1Acc.",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1},
@@ -990,13 +990,31 @@ acidjuice: {
 			if (!target.setStatus('brn', source, move)) return false;
 		},
 		boosts: {
+			spd: 1,
 			spe: 1,
+			accuracy: 1,
 		},
 		secondary: null,
 		target: "self",
 		type: "Fighting",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Cool",
+	},
+	
+	airvibration: {
+		num: 542,
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		name: "Air Vibration",
+		shortDesc: "Usually goes first. Sound and Wind move.",
+		pp: 10,
+		priority: 1,
+		flags: {protect: 1, mirror: 1, distance: 1, sound: 1, wind: 1},
+		secondary: null,
+		target: "any",
+		type: "Flying",
+		contestType: "Tough",
 	},
 	
 	//eevee moves back to their original values
