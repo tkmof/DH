@@ -1035,7 +1035,7 @@ toolsaur: {
 	name: "Toolsaur",
 	types: ["Steel", "Dragon"],
 	baseStats: {hp: 84, atk: 85, def: 110, spa: 60, spd: 85, spe: 70},
-	abilities: {0: "Mirror Armor", 1: "Sheer Force", H: "Battle Armor"},
+	abilities: {0: "Mirror Armor", 1: "Sheer Force", H: "Indestructible"},
 	weightkg: 204.4,
 	prevo: "paramer",
 },

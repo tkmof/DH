@@ -325,6 +325,22 @@ stickyseeds: {
 		num: 10019,
 	},
 	
+	indestructible: {
+		onCriticalHit: false,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Fighting') {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] ability: Indestructible');
+				}
+				return null;
+			}
+		},
+		name: "Indestructible",
+		desc: "Can't be struck by a crit or Fighting-Type move. +1 Atk if hit by a Fighting move.",
+		rating: 1,
+		num: 10020,
+	},
+	
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,
