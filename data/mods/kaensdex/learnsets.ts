@@ -462,6 +462,7 @@ bask: {learnset: {
 peayes: {learnset: {
 	aurorabeam: ["7L1"],
 	blazekick: ["7L1"],
+	fearthenight: ["7L1"],
 	focusblast: ["7L1"],
 	highjumpkick: ["7L1"],
 	hunt: ["7L1"],

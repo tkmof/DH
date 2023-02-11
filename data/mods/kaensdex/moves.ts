@@ -1085,6 +1085,27 @@ acidjuice: {
 		type: "Fire",
 	},
 	
+	fearthenight: {
+		num: 100045,
+		accuracy: 85,
+		basePower: 100,
+		category: "Special",
+		name: "Fear the Night",
+		shortDesc: "100% chance to lower the target's Atk by 2.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			boosts: {
+				atk: -2,
+			},
+		},
+		target: "normal",
+		type: "Dark",
+		contestType: "Cool",
+	},
+	
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,
