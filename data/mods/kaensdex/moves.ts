@@ -1221,6 +1221,115 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
+	draconicrelease: {
+		num: 100049,
+		accuracy: 100,
+		basePower: 85,
+		basePowerCallback(pokemon, target, move) {
+			if (target.status === 'par') return move.basePower * 2;
+			return move.basePower;
+		},
+		category: "Physical",
+		name: "Draconic Release",
+		shortDesc: "Power doubles if target is paralyze, and heals it.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onHit(target) {
+			if (target.status === 'par') target.cureStatus();
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Tough",
+	},
+	
+	spidertrap: {
+		num: 100050,
+		accuracy: 100,
+		basePower: 95,
+		category: "Physical",
+		name: "Spider Trap",
+		shortDesc: "Sets Sticky Web.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		self: {
+			onHit(source) {
+				for (const side of source.side.foeSidesWithConditions()) {
+					side.addSideCondition('stickyweb');
+				}
+			},
+		},
+		secondary: {}, // allows sheer force to trigger
+		target: "normal",
+		type: "Bug",
+	},
+	
+	misfortune: {
+		num: 100051,
+		accuracy: 100,
+		basePower: 110,
+		category: "Special",
+		name: "Misfortune",
+		shortDesc: "Hits a turn after being used.",
+		pp: 10,
+		priority: 0,
+		flags: {},
+		ignoreImmunity: true,
+		isFutureMove: true,
+		onTry(source, target) {
+			if (!target.side.addSlotCondition(target, 'futuremove')) return false;
+			Object.assign(target.side.slotConditions[target.position]['futuremove'], {
+				duration: 2,
+				move: 'misfortune',
+				source: source,
+				moveData: {
+					id: 'misfortune',
+					name: "Misfortune",
+					accuracy: 100,
+					basePower: 110,
+					category: "Special",
+					priority: 0,
+					flags: {},
+					ignoreImmunity: false,
+					effectType: 'Move',
+					isFutureMove: true,
+					type: 'Dragon',
+				},
+			});
+			this.add('-start', source, 'move: Misfortune');
+			return null;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Clever",
+	},
+	
+	coldmedicine: {
+		num: 100052,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Cold Medicine",
+		shortDesc: "User restores 1/2 its max HP; 2/3 in Hail.",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onHit(pokemon) {
+			let factor = 0.5;
+			if (this.field.isWeather('hail')) {
+				factor = 0.667;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+		secondary: null,
+		target: "self",
+		type: "Ice",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
+	},
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,
@@ -1348,7 +1457,6 @@ acidjuice: {
 		accuracy: 90,
 		basePower: 65,
 		category: "Physical",
-		isNonstandard: "Unobtainable",
 		name: "Ceaseless Edge",
 		shortDesc: "Sets a layer of Spikes on the opposing side.",
 		pp: 15,

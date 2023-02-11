@@ -393,6 +393,24 @@ stickyseeds: {
 		num: 10023,
 	},
 	
+	toxicreaction: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['psn'].includes(defender.status)) {
+				return this.chainModify(1.7);
+			}
+		},
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['tox'].includes(defender.status)) {
+				return this.chainModify(1.4);
+			}
+		},
+		name: "Toxic Reaction",
+		desc: "Deals 1.7x damage against poisoned opponents. Only 1.4x if Badly poison.",
+		rating: 1.5,
+		num: 10024,
+	},
+	
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,

@@ -822,7 +822,7 @@ venotauro: {
 	types: ["Poison", "Fighting"],
 	gender: "M",
 	baseStats: {hp: 105, atk: 120, def: 90, spa: 50, spd: 85, spe: 54},
-	abilities: {0: "Moxie", 1: "Poison Touch", H: "Defiant"},
+	abilities: {0: "Toxic Reaction", 1: "Poison Touch", H: "Defiant"},
 	weightkg: 134.5,
 	prevo: "toxtaur",
 },

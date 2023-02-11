@@ -1034,6 +1034,7 @@ forguana: {learnset: {
 	lightscreen: ["7L1"],
 	memento: ["7L1"],
 	meteorbeam: ["7L1"],
+	misfortune: ["7L1"],
 	rapidspin: ["7L1"],
 	reflect: ["7L1"],
 	thunder: ["7L1"],
@@ -1825,6 +1826,7 @@ smolle: {learnset: {
 molvel: {learnset: {
 	auroraveil: ["7L1"],
 	chillyreception: ["7L1"],
+	coldmedicine: ["7L1"],
 	icespinner: ["7L1"],
 	meteorbeam: ["7L1"],
 	meteormash: ["7L1"],
@@ -2578,6 +2580,7 @@ wirechomp: {learnset: {
 }},
 thungator: {learnset: {
 	ancientpower: ["7L1"],
+	draconicrelease: ["7L1"],
 	meteorbeam: ["7L1"],
 	plasmafists: ["7L1"],
 	roar: ["7L1"],
@@ -2933,6 +2936,7 @@ spideth: {learnset: {
 	memento: ["7L1"],
 	nastyplot: ["7L1"],
 	silktrap: ["7L1"],
+	spidertrap: ["7L1"],
 	spikes: ["7L1"],
 	spiritbreak: ["7L1"],
 	suckerpunch: ["7L1"],
