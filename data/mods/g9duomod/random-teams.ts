@@ -683,6 +683,12 @@ export class RandomTeams {
 					if (movePool.includes('sleeptalk')) rejected = true;
 					if (!hasMove['sleeptalk'] && (movePool.includes('bulkup') || movePool.includes('calmmind') || movePool.includes('coil') || movePool.includes('curse'))) rejected = true;
 					break;
+//				case 'bulkup':
+//					if (hasMove['dragondance']) rejected = true;
+//					break;
+//				case 'reflect':
+//					if (!hasMove['lightscreen']) rejected = true;
+//					break;
 				case 'sleeptalk':
 					if (!hasMove['rest']) rejected = true;
 					if (movePool.length > 1 && !hasAbility['Contrary']) {
@@ -1280,6 +1286,8 @@ export class RandomTeams {
 			item = 'Sitrus Berry';
 		} else if (ability === 'Gorilla Tactics' && hasMove['skillswap']) {
 			item = 'Expert Belt';
+		} else if (ability === 'conduction' || ability === 'Conduction') {
+			item = 'Heavy-Duty Boots';
 		} else if (ability === 'Gorilla Tactics' && hasMove['vacuumwave']) {
 			item = 'Choice Specs';
 		} else if (ability === 'Gorilla Tactics' || ability === 'Imposter' || (ability === 'Magnet Pull' && hasMove['bodypress'] && !isDoubles)) {

@@ -221,7 +221,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	impostorblade: {
 		num: 9010,
 		accuracy: 100,
-		basePower: 120,
+		basePower: 140, // TEMPORARY FOR DUOMOD TOUR
 		category: "Physical",
 		name: "Impostor Blade",
 		shortDesc: "kill with this move or you die (pretty sus)",
@@ -2207,5 +2207,32 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Steel",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
+	},
+
+	doubleshock: {
+		num: 892,
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		name: "Double Shock",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryMove(pokemon, target, move) {
+			if (pokemon.hasType('Electric')) return;
+			this.add('-fail', pokemon, 'move: Double Shock');
+			this.attrLastMove('[still]');
+			return null;
+		},
+		self: {
+			onHit(pokemon) {
+				pokemon.setType(pokemon.getTypes(true).map(type => type === "Electric" ? "???" : type));
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes().join('/'), '[from] move: Double Shock');
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Electric",
+		contestType: "Clever",
 	},
 };
