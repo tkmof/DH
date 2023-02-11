@@ -213,7 +213,7 @@ royalhoney: {
 		},
 		isBreakable: true,
 		name: "Royal Honey",
-		desc:  "Halves the damage from moves that would be super effective on Bug-Type. Heals 1/16 HP each turn.",
+		desc:  "Halves the damage from moves super effective on Bug-Type. Heals 1/16 HP each turn.",
 		rating: 3.5,
 		num: 10012,
 	},	
@@ -355,6 +355,42 @@ stickyseeds: {
 		desc: "Prevents crits and Water-Type moves. +1 SpD if hit by a Water move.",
 		rating: 3,
 		num: 10021,
+	},
+	
+	thermalfrenzy: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water'|| target !== source && move.type === 'Ice' || target !== source && move.type === 'Fire') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Thermal Frenzy');
+				}
+				return null;
+			}
+		},
+		name: "Thermal Frenzy",
+		desc: "This Pokemon heals 1/4 of its max HP when hit by Water/Ice/Fire moves and is immune to them.",
+		rating: 3.5,
+		num: 10022,
+	},
+	
+	boast: {
+		onTryHit(target, source, move) {
+			if (move.target !== 'self' && move.flags['sound']) {
+				this.add('-immune', target, '[from] ability: Boast');
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (move.flags['sound']) {
+				this.add('-immune', this.effectData.target, '[from] ability: Boast');
+			}
+		},
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.flags['sound']) return priority + 1;
+		},
+		name: "Boast",
+		desc: "This Pokemon's sound moves have their priority increased by 1. Sound immunity.",
+		rating: 3.5,
+		num: 10023,
 	},
 	
 	//gen 9 stuff
