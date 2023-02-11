@@ -1106,6 +1106,121 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
+	armwhip: {
+		num: 100046,
+		accuracy: 100,
+		basePower: 60,
+		onModifyPriority(priority, source, target, move) {
+			if (!pokemon.item) {
+				return priority +1;
+			}
+		},
+		category: "Physical",
+		name: "Arm Whip",
+		shortDesc: "+1 priority if the user has no held item.",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: null,
+		target: "any",
+		type: "Grass",
+		contestType: "Cool",
+	},
+	
+	lovescent: {
+		num: 100047,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Love Scent",
+		shortDesc: "Badly poisons the target. It also falls in love. Wind move.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1, wind: 1},
+		status: 'tox',
+		volatileStatus: 'attract',
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(pokemon, source, effect) {
+				if (!(pokemon.gender === 'M' && source.gender === 'F') && !(pokemon.gender === 'F' && source.gender === 'M')) {
+					this.debug('incompatible gender');
+					return false;
+				}
+				if (!this.runEvent('Attract', pokemon, source)) {
+					this.debug('Attract event failed');
+					return false;
+				}
+
+				if (effect.id === 'cutecharm') {
+					this.add('-start', pokemon, 'Attract', '[from] ability: Cute Charm', '[of] ' + source);
+				} else if (effect.id === 'destinyknot') {
+					this.add('-start', pokemon, 'Attract', '[from] item: Destiny Knot', '[of] ' + source);
+				} else {
+					this.add('-start', pokemon, 'Attract');
+				}
+			},
+			onUpdate(pokemon) {
+				if (this.effectData.source && !this.effectData.source.isActive && pokemon.volatiles['attract']) {
+					this.debug('Removing Attract volatile on ' + pokemon);
+					pokemon.removeVolatile('attract');
+				}
+			},
+			onBeforeMovePriority: 2,
+			onBeforeMove(pokemon, target, move) {
+				this.add('-activate', pokemon, 'move: Attract', '[of] ' + this.effectData.source);
+				if (this.randomChance(1, 2)) {
+					this.add('cant', pokemon, 'Attract');
+					return false;
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Attract', '[silent]');
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Poison",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cute",
+	},
+	
+	replaceableteeth: {
+		num: 1000048,
+		accuracy: 100,
+		basePower: 60,
+		category: "Physical",
+		name: "Replaceable Teeth",
+		shortDesc: "Set Steel hazards.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1},
+		self: {
+			onHit(source) {
+				source.side.foe.addSideCondition('gmaxsteelsurge');
+			},
+		},
+		condition: {
+			onStart(side) {
+				this.add('-sidestart', side, 'move: G-Max Steelsurge');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('heavydutyboots')) return;
+				// Ice Face and Disguise correctly get typed damage from Stealth Rock
+				// because Stealth Rock bypasses Substitute.
+				// They don't get typed damage from Steelsurge because Steelsurge doesn't,
+				// so we're going to test the damage of a Steel-type Stealth Rock instead.
+				const steelHazard = this.dex.getActiveMove('Stealth Rock');
+				steelHazard.type = 'Steel';
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+		contestType: "Cool",
+	},
+	
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,

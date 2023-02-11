@@ -1780,6 +1780,7 @@ lovefume: {learnset: {
 	grassknot: ["7L1"],
 	haze: ["7L1"],
 	hex: ["7L1"],
+	lovescent: ["7L1"],
 	psyshock: ["7L1"],
 	sludgebomb: ["7L1"],
 	sludgewave: ["7L1"],
@@ -2181,6 +2182,7 @@ slomoss: {learnset: {
 	yawn: ["7L1"],
 }},
 milomoss: {learnset: {
+	armwhip: ["7L1"],
 	bellydrum: ["7L1"],
 	bulkup: ["7L1"],
 	drainpunch: ["7L1"],
@@ -3382,6 +3384,7 @@ baishark: {learnset: {
 	poisonfang: ["7L1"],
 	psychicfangs: ["7L1"],
 	rapidspin: ["7L1"],
+	replaceableteeth: ["7L1"],
 	scald: ["7L1"],
 	thunderfang: ["7L1"],
 }},
