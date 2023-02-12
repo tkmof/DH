@@ -4,12 +4,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 //////// THE POKEMON BELOW IS TEMPORARY FOR THE DUOMOD TOURNAMENT. IT WILL BE REMOVED AFTER ROUND 1. ////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-    pajantom: {
-		randomBattleMoves: ["spiritshackle", "earthquake", "outrage", "icepunch", "toxic"],
-		randomBattleLevel: 100,
-      tier: "Duomod",
-      doublesTier: "Duomod",
-    },
+// nothing here yet lmao
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +17,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     fluxtapestereo: {
-		randomBattleMoves: ["flareblitz", "earthquake", "wildcharge", "dragondance", "bulkup", "impostorblade"],
+		randomBattleMoves: ["flareblitz", "earthquake", "wildcharge", "dragondance", "impostorblade"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",

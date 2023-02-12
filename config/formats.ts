@@ -1958,7 +1958,7 @@ export const Formats: FormatList = [
         ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Baton Pass Clause', 'OHKO Clause', 'Subscribe For More Content', 'Duomod Data Mod'],
         banlist: ['All Pokemon', 'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z',],
         unbanlist: [
-             'Baloon', 'Fluxtape-Stereo', 'Pokat', 'Spirox', 'Badgearth', 'Bittle', 'Fairydisc', 'Shroominesce', 'Abysseil', 'Draxplosion', 'Jewelode', 'Treemu', 'Capsaken', 'Cephalopire', 'Chemiclysm', 'Commanto', 'Eneryth', 'Falcola', 'Gelsius', 'Hydread', 'Mountough', 'Sanbatter', 'Antestar', 'Escarglace', 'Fauxster', 'Gargitect', 'Temporand', 'Kuribandit', 'Mantelec', 'Noxinobi', 'Fluidrake', 'Pajantom',
+             'Baloon', 'Fluxtape-Stereo', 'Pokat', 'Spirox', 'Badgearth', 'Bittle', 'Fairydisc', 'Shroominesce', 'Abysseil', 'Draxplosion', 'Jewelode', 'Treemu', 'Capsaken', 'Cephalopire', 'Chemiclysm', 'Commanto', 'Eneryth', 'Falcola', 'Gelsius', 'Hydread', 'Mountough', 'Sanbatter', 'Antestar', 'Escarglace', 'Fauxster', 'Gargitect', 'Temporand', 'Kuribandit', 'Mantelec', 'Noxinobi', 'Fluidrake',
 			],	
 			onSwitchIn(pokemon) {
         		this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
@@ -1989,7 +1989,7 @@ export const Formats: FormatList = [
         ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Baton Pass Clause', 'OHKO Clause', 'Subscribe For More Content', 'Duomod Data Mod', 'Second Spin'],
         banlist: ['All Pokemon', 'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z',],
         unbanlist: [
-             'Baloon', 'Fluxtape-Stereo', 'Pokat', 'Spirox', 'Badgearth', 'Bittle', 'Fairydisc', 'Shroominesce', 'Abysseil', 'Draxplosion', 'Jewelode', 'Treemu', 'Capsaken', 'Cephalopire', 'Chemiclysm', 'Commanto', 'Eneryth', 'Falcola', 'Gelsius', 'Hydread', 'Mountough', 'Sanbatter', 'Antestar', 'Escarglace', 'Fauxster', 'Gargitect', 'Temporand', 'Kuribandit', 'Mantelec', 'Noxinobi', 'Fluidrake', 'Pajantom',
+             'Baloon', 'Fluxtape-Stereo', 'Pokat', 'Spirox', 'Badgearth', 'Bittle', 'Fairydisc', 'Shroominesce', 'Abysseil', 'Draxplosion', 'Jewelode', 'Treemu', 'Capsaken', 'Cephalopire', 'Chemiclysm', 'Commanto', 'Eneryth', 'Falcola', 'Gelsius', 'Hydread', 'Mountough', 'Sanbatter', 'Antestar', 'Escarglace', 'Fauxster', 'Gargitect', 'Temporand', 'Kuribandit', 'Mantelec', 'Noxinobi', 'Fluidrake',
 			],	
 			onSwitchIn(pokemon) {
         		this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
@@ -2029,7 +2029,7 @@ export const Formats: FormatList = [
         ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Baton Pass Clause', 'OHKO Clause', 'Subscribe For More Content', 'Duomod Data Mod'],
         banlist: ['All Pokemon', 'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z',],
         unbanlist: [
-             'Baloon', 'Fluxtape-Stereo', 'Pokat', 'Spirox', 'Badgearth', 'Bittle', 'Fairydisc', 'Shroominesce', 'Abysseil', 'Draxplosion', 'Jewelode', 'Treemu', 'Capsaken', 'Cephalopire', 'Chemiclysm', 'Commanto', 'Eneryth', 'Falcola', 'Gelsius', 'Hydread', 'Mountough', 'Sanbatter', 'Antestar', 'Escarglace', 'Fauxster', 'Gargitect', 'Temporand', 'Kuribandit', 'Mantelec', 'Noxinobi', 'Fluidrake', 'Pajantom',
+             'Baloon', 'Fluxtape-Stereo', 'Pokat', 'Spirox', 'Badgearth', 'Bittle', 'Fairydisc', 'Shroominesce', 'Abysseil', 'Draxplosion', 'Jewelode', 'Treemu', 'Capsaken', 'Cephalopire', 'Chemiclysm', 'Commanto', 'Eneryth', 'Falcola', 'Gelsius', 'Hydread', 'Mountough', 'Sanbatter', 'Antestar', 'Escarglace', 'Fauxster', 'Gargitect', 'Temporand', 'Kuribandit', 'Mantelec', 'Noxinobi', 'Fluidrake',
 			],	
 		onModifySpecies(species, target, source, effect) {
 			if (!target) return; // Chat command
@@ -2069,7 +2069,7 @@ export const Formats: FormatList = [
         ruleset: ['Standard NatDex', 'Dynamax Clause', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Baton Pass Clause', 'OHKO Clause', 'Subscribe For More Content', 'Duomod Data Mod', 'Inverse Mod'],
         banlist: ['All Pokemon', 'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z',],
         unbanlist: [
-             'Baloon', 'Fluxtape-Stereo', 'Pokat', 'Spirox', 'Badgearth', 'Bittle', 'Fairydisc', 'Shroominesce', 'Abysseil', 'Draxplosion', 'Jewelode', 'Treemu', 'Capsaken', 'Cephalopire', 'Chemiclysm', 'Commanto', 'Eneryth', 'Falcola', 'Gelsius', 'Hydread', 'Mountough', 'Sanbatter', 'Antestar', 'Escarglace', 'Fauxster', 'Gargitect', 'Temporand', 'Kuribandit', 'Mantelec', 'Noxinobi', 'Fluidrake', 'Pajantom',
+             'Baloon', 'Fluxtape-Stereo', 'Pokat', 'Spirox', 'Badgearth', 'Bittle', 'Fairydisc', 'Shroominesce', 'Abysseil', 'Draxplosion', 'Jewelode', 'Treemu', 'Capsaken', 'Cephalopire', 'Chemiclysm', 'Commanto', 'Eneryth', 'Falcola', 'Gelsius', 'Hydread', 'Mountough', 'Sanbatter', 'Antestar', 'Escarglace', 'Fauxster', 'Gargitect', 'Temporand', 'Kuribandit', 'Mantelec', 'Noxinobi', 'Fluidrake',
 			],	
 			onSwitchIn(pokemon) {
         		this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
