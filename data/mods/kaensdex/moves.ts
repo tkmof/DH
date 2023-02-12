@@ -1231,7 +1231,7 @@ acidjuice: {
 		},
 		category: "Physical",
 		name: "Draconic Release",
-		shortDesc: "Power doubles if target is paralyze, and heals it.",
+		shortDesc: "Power doubles if target is paralyzed, and heals it.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -1329,6 +1329,46 @@ acidjuice: {
 		type: "Ice",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
+	},
+	
+	alienabduction: {
+		num: 100053,
+		accuracy: 100,
+		basePower: 85,
+		category: "Special",
+		name: "Alien Abduction",
+		shortDesc: "User recovers 50% of the damage dealt.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, heal: 1},
+		drain: [1, 2],
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+		contestType: "Clever",
+	},
+	
+	icebreakinghug: {
+		num: 100054,
+		accuracy: 100,
+		basePower: 90,
+		basePowerCallback(pokemon, target, move) {
+			if (target.status === 'frz') return move.basePower * 2;
+			return move.basePower;
+		},
+		category: "Physical",
+		name: "Ice-Breaking Hug",
+		shortDesc: "Power doubles if target is frozen, and heals it.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onHit(target) {
+			if (target.status === 'frz') target.cureStatus();
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		contestType: "Tough",
 	},
 	//eevee moves back to their original values
 	buzzybuzz: {

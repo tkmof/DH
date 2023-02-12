@@ -1995,6 +1995,7 @@ yufo: {learnset: {
 }},
 spavader: {learnset: {
 	agility: ["7L1"],
+	alienabduction: ["7L1"],
 	allyswitch: ["7L1"],
 	doomdesire: ["7L1"],
 	energyball: ["7L1"],
@@ -2959,6 +2960,7 @@ abomigo: {learnset: {
 	hornleech: ["7L1"],
 	hyperbeam: ["7L1"],
 	icebeam: ["7L1"],
+	icebreakinghug: ["7L1"],
 	icefang: ["7L1"],
 	icepunch: ["7L1"],
 	iceshard: ["7L1"],
