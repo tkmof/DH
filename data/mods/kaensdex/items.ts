@@ -1,4 +1,91 @@
 export const Items: {[itemid: string]: ItemData} = {
+magicwood: {
+		name: "Magic Wood",
+		spritenum: 491,
+		fling: {
+			basePower: 90,
+		},
+		onModifyDefPriority: 1,
+		onModifyDef(def, pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Jaklove') {
+				return this.chainModify(2);
+			}
+		},
+		itemUser: ["Jaklove"],
+		num: 100000,
+		gen: 2,
+		desc: "If held by a Jaklove, its Defense is doubled."
+	},
+	
+	volcanicrock: {
+		name: "Volcanic Rock",
+		spritenum: 438,
+		fling: {
+			basePower: 30,
+		},
+		onAfterMoveSecondarySelfPriority: -1,
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (move.category !== 'Status') {
+				if (pokemon.baseSpecies.baseSpecies === 'Vulcdor') {
+					this.heal(pokemon.lastDamage / 2, pokemon);
+				}				
+			}
+		},
+		onBasePowerPriority: 16,
+		onBasePower(basePower, user, target, move) {
+			if (pokemon.baseSpecies.baseSpecies === 'Vulcdor') {
+				return this.chainModify(1.2);
+			}
+		},
+		itemUser: ["Vulcdor"],
+		num: 100001,
+		gen: 3,
+		desc: "If held by a Vulcdor, gains 50% drain and 1.2x power."
+	},
+
+cookies: {
+		name: "Cookies",
+		spritenum: 242,
+		fling: {
+			basePower: 10,
+		},
+		onResidualOrder: 5,
+		onResidualSubOrder: 5,
+		onResidual(pokemon) {
+			if (this.field.isTerrain('grassyterrain')) return;
+			if (pokemon.baseSpecies.baseSpecies === 'Donter') {
+				this.heal(pokemon.baseMaxhp / 8);
+			}			
+		},
+		onTerrain(pokemon) {
+			if (!this.field.isTerrain('grassyterrain')) return;
+			if (pokemon.baseSpecies.baseSpecies === 'Donter') {
+				this.heal(pokemon.baseMaxhp / 8);
+			}		
+		},
+		itemUser: ["Donter"],
+		num: 100002,
+		gen: 2,
+		desc: "If held by a Donter, is healed by 1/8 of its max HP each turn.",
+	},
+	
+toysword: {
+		name: "Toy Sword",
+		spritenum: 491,
+		fling: {
+			basePower: 90,
+		},
+		onModifyAtkPriority: 1,
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Toknight') {
+				return this.chainModify(1.7);
+			}
+		},
+		itemUser: ["Toknight"],
+		num: 100003,
+		gen: 2,
+		desc: "If held by a Toknight, it gains 1.7x Attack.",
+	},
 abomigorite: {
 		name: "Abomigorite",
 		spritenum: 575,
@@ -75,25 +162,6 @@ abomigorite: {
 	},
 
 //gen9 stuff
-
-abilityshield: {
-		name: "Ability Shield",
-		spritenum: 0, // TODO
-		ignoreKlutz: true,
-		// Neutralizing Gas protection implemented in Pokemon.ignoringAbility() within sim/pokemon.ts
-		// and in Neutralizing Gas itself within data/abilities.ts
-		onSetAbility(ability, target, source, effect) {
-			if (effect && effect.effectType === 'Ability' && effect.name !== 'Trace') {
-				this.add('-ability', source, effect);
-			}
-			this.add('-block', target, 'item: Ability Shield');
-			return null;
-		},
-		// Mold Breaker protection implemented in Battle.suppressingAbility() within sim/battle.ts
-		num: 1881,
-		gen: 8,
-		desc: "Holder's Ability cannot be changed by any effect.",
-	},
 	
 	clearamulet: {
 		name: "Clear Amulet",
@@ -130,20 +198,6 @@ abilityshield: {
 		num: 1885,
 		gen: 8,
 		desc: "Holder is not affected by the secondary effect of another Pokemon's attack.",
-	},
-	
-	loadeddice: {
-		name: "Loaded Dice",
-		spritenum: 0, // TODO
-		// partially implemented in sim/battle-actions.ts:BattleActions#hitStepMoveHitLoop
-		onModifyMove(move) {
-			if (move.multiaccuracy) {
-				delete move.multiaccuracy;
-			}
-		},
-		num: 1886,
-		gen: 8,
-		desc: "Holder's moves that hit 2-5 times hit 4-5 times; Population Bomb hits 4-10 times.",
 	},
 	
 	mirrorherb: {

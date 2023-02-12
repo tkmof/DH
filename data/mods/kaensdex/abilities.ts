@@ -114,6 +114,12 @@ eternalice: {
 		num: 10005,
 	},
 leecher: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['heal']) {
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
 		onTryHealPriority: 1,
 		onTryHeal(damage, target, source, effect) {
 			const heals = ['drain', 'leechseed', 'ingrain', 'aquaring', 'strengthsap'];
@@ -122,7 +128,7 @@ leecher: {
 			}
 		},
 		name: "Leecher",
-		desc: "Gains 1.3x HP from draining moves, Aqua Ring, Ingrain, Leech Seed and Strength Sap.",
+		desc: "Healing moves Heal for 1.3x HP and Draining moves are 1.3 stronger.",
 		rating: 3.5,
 		num: 10006,
 	},
@@ -207,7 +213,7 @@ royalhoney: {
 		},
 		isBreakable: true,
 		name: "Royal Honey",
-		desc:  "Halves the damage from moves that would be super effective on Bug-Type. Heals 1/16 HP each turn.",
+		desc:  "Halves the damage from moves super effective on Bug-Type. Heals 1/16 HP each turn.",
 		rating: 3.5,
 		num: 10012,
 	},	
@@ -278,7 +284,131 @@ stickyseeds: {
 		name: "Airborne",
 		desc: "Takes fly and become Flying-Type.",
 		rating: 3.5,
-		num: 200,
+		num: 10016,
+	},
+	
+	archery: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (!move.flags['contact']) {
+				if (move.category === 'Physical'){
+				return this.chainModify([0x14CD, 0x1000]);
+				}
+			} 			
+		},
+		name: "Archery",
+		desc: "Non-contact Physical moves have 1.3x power.",
+		rating: 3.5,
+		num: 10017,
+	},
+	
+	insectmovement: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.type === 'Bug' && pokemon.hp === pokemon.maxhp) return priority + 2;
+		},
+		name: "Insect Movement",
+		desc: "Bug-Type moves have +2 priority while at full HP.",
+		rating: 3,
+		num: 10018,
+	},
+	
+	cockatricedominance: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['par'].includes(defender.status)) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Cockatrice Dominance",
+		desc: "Deals 1.5x damage against paralyzed opponents.",
+		rating: 1.5,
+		num: 10019,
+	},
+	
+	indestructible: {
+		onCriticalHit: false,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Fighting') {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] ability: Indestructible');
+				}
+				return null;
+			}
+		},
+		name: "Indestructible",
+		desc: "Can't be struck by a crit or Fighting-Type move. +1 Atk if hit by a Fighting move.",
+		rating: 1,
+		num: 10020,
+	},
+	
+	lifejacket: {
+		onCriticalHit: false,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.boost({spd: 1})) {
+					this.add('-immune', target, '[from] ability: Life Jacket');
+				}
+				return null;
+			}
+		},
+		name: "Life Jacket",
+		desc: "Prevents crits and Water-Type moves. +1 SpD if hit by a Water move.",
+		rating: 3,
+		num: 10021,
+	},
+	
+	thermalfrenzy: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water'|| target !== source && move.type === 'Ice' || target !== source && move.type === 'Fire') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Thermal Frenzy');
+				}
+				return null;
+			}
+		},
+		name: "Thermal Frenzy",
+		desc: "This Pokemon heals 1/4 of its max HP when hit by Water/Ice/Fire moves and is immune to them.",
+		rating: 3.5,
+		num: 10022,
+	},
+	
+	boast: {
+		onTryHit(target, source, move) {
+			if (move.target !== 'self' && move.flags['sound']) {
+				this.add('-immune', target, '[from] ability: Boast');
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (move.flags['sound']) {
+				this.add('-immune', this.effectData.target, '[from] ability: Boast');
+			}
+		},
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.flags['sound']) return priority + 1;
+		},
+		name: "Boast",
+		desc: "This Pokemon's sound moves have their priority increased by 1. Sound immunity.",
+		rating: 3.5,
+		num: 10023,
+	},
+	
+	toxicreaction: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['psn'].includes(defender.status)) {
+				return this.chainModify(1.7);
+			}
+		},
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['tox'].includes(defender.status)) {
+				return this.chainModify(1.4);
+			}
+		},
+		name: "Toxic Reaction",
+		desc: "Deals 1.7x damage against poisoned opponents. Only 1.4x if Badly poison.",
+		rating: 1.5,
+		num: 10024,
 	},
 	
 	//gen 9 stuff

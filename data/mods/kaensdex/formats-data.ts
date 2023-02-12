@@ -724,4 +724,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	crobat: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	cupida: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 };
