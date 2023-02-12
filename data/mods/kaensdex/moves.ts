@@ -1370,6 +1370,28 @@ acidjuice: {
 		type: "Dark",
 		contestType: "Tough",
 	},
+	
+	focusedmind: {
+		num: 100055,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Focused Mind",
+		shortDesc: "+1SpD, +1Spe, +1Acc.",
+		pp: 15,
+		priority: 0,
+		flags: {snatch: 1},
+		boosts: {
+			spd: 1,
+			spe: 1,
+			accuracy: 1,
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		zMove: {boost: {atk: 1}},
+		contestType: "Cute",
+	},
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,
