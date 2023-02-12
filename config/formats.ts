@@ -637,7 +637,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen3hoenngaiden',
 		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod'],
-		banlist: ['Uber', 'Air Balloon'],
+		banlist: ['Uber', 'Air Balloon', 'Baton Pass + Block', 'Baton Pass + Mean Look', 'Baton Pass + Spider Web', 'Baton Pass + Ingrain'],
 		unbanlist: [
 			//Abilities
 			'Sand Veil',
@@ -2659,8 +2659,8 @@ export const Formats: FormatList = [
 
 		mod: 'gen3uuhoenngaiden',
 		searchShow: false,
-		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod'],
-		banlist: ['Uber', 'OU', 'UUBL', 'Air Balloon'],
+		ruleset: ['[Gen 3] Hoenn Gaiden'],
+		banlist: ['OU', 'UUBL', 'Snow Warning'],
 		unbanlist: [],
 	},
 	{
