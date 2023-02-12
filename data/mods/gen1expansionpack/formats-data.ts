@@ -361,11 +361,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	toedscruel: {
-		tier: "New",
+		tier: "Uber",
 		gen: 1,
 	},
 	screamtail: {
-		tier: "New",
+		tier: "Uber",
 		gen: 1,
 	},
 	sandyshocks: {
@@ -510,15 +510,15 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 		gen: 1,
 	},
-	taurospaldea: {
+	taurospaldeacombat: {
 		tier: "New",
 		gen: 1,
 	},
-	taurospaldeafire: {
+	taurospaldeablaze: {
 		tier: "New",
 		gen: 1,
 	},
-	taurospaldeawater: {
+	taurospaldeaaqua: {
 		tier: "New",
 		gen: 1,
 	},

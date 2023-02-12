@@ -302,7 +302,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.galvanizeBoosted) return this.chainModify(1.2);
 		},
-		inherit: true,
 		isNonstandard: null,
 		gen: 3,
 		name: "Galvanize",

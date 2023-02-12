@@ -277,6 +277,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "LC",
 		rank: "LC",
 	},
+	growlithehisui: {
+		isNonstandard: "Future",
+		tier: "Illegal",
+		gen: 8,
+	},
 	arcanine: {
 		randomBattleMoves: ["fireblast", "flamethrower", "extremespeed", "hiddenpowergrass", "rest", "sleeptalk", "toxic"],
 		tier: "UU",
@@ -285,6 +290,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	arcaninehisui: {
 		isNonstandard: "Future",
 		tier: "Illegal",
+		gen: 8,
 	},
 	poliwag: {
 		tier: "LC",
@@ -801,6 +807,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	typhlosionhisui: {
 		isNonstandard: "Future",
 		tier: "Illegal",
+		gen: 8,
 	},
 	totodile: {
 		tier: "LC",
@@ -1015,6 +1022,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	qwilfishhisui: {
 		isNonstandard: "Future",
 		tier: "Illegal",
+		gen: 8,
 	},
 	shuckle: {
 		randomBattleMoves: ["encore", "protect", "rest", "sleeptalk", "toxic", "wrap"],
@@ -1034,6 +1042,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	sneaselhisui: {
 		isNonstandard: "Future",
 		tier: "Illegal",
+		gen: 8,
 	},
 	teddiursa: {
 		tier: "LC",
@@ -1131,8 +1140,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	entei: {
 		randomBattleMoves: ["bodyslam", "calmmind", "fireblast", "flamethrower", "hiddenpowergrass", "hiddenpowerice", "solarbeam", "substitute", "sunnyday"],
-		tier: "UU",
-		rank: "New",
+		tier: "OU",
+		rank: "OU",
 	},
 	suicune: {
 		randomBattleMoves: ["calmmind", "hydropump", "icebeam", "rest", "sleeptalk", "substitute", "surf", "toxic"],
@@ -2112,11 +2121,6 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},
-	// marowakalolatotem: {
-	// 	rank: "Unranked",
-	// 	gen: 3,
-	// 	tier: "UU",
-	// },
 	dracovish: {
 		rank: "New",
 		gen: 3,
@@ -2152,11 +2156,6 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},
-	/*dusknoir: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},*/
 	leafeon: {
 		rank: "New",
 		gen: 3,
@@ -2202,98 +2201,21 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "LC",
 	},
-	/*ambipom: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	weavile: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	porygonz: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	lickilicky: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	rhyperior: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "Uber",
-	},*/
 	tangrowth: {
 		rank: "OU",
 		gen: 3,
 		tier: "OU",
 	},
-	/*
-	electivire: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "Uber",
-	},*/
 	magmortar: {
 		rank: "New",
 		gen: 3,
 		tier: "UU",
 	},
-	/*togekiss: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	yanmega: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	gallade: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-
-	raticatealola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	rattataalola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "LC",
-	},*/
 	raichualola: {
 		rank: "OU",
 		gen: 3,
 		tier: "OU",
 	},
-	/*sandshrewalola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "LC",
-	},
-	sandslashalola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},	
-	vulpixalola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "LC",
-	},
-	ninetalesalola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},*/
 	diglettalola: {
 		rank: "LC",
 		gen: 3,
@@ -2304,16 +2226,6 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},
-	/*persianalola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	meowthalola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "LC",
-	},*/
 	meowthgalar: {
 		rank: "LC",
 		gen: 3,
@@ -2324,31 +2236,6 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},
-	/*mukalola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	grimeralola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "LC",
-	},
-	exeggutoralola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	ponytagalar: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "LC",
-	},
-	rapidashgalar: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},*/
 	farfetchdgalar: {
 		rank: "LC",
 		gen: 3,
@@ -2359,16 +2246,6 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},
-	/*cursola: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	corsolagalar: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},*/
 	weezinggalar: {
 		rank: "OU",
 		gen: 3,
@@ -2479,41 +2356,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},
-	/*wyrdeer: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},*/
 	kleavor: {
 		rank: "OU",
 		gen: 3,
 		tier: "OU",
 	},
-	/*ursaluna: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "Uber",
-	},
-	sneaselhisui: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},
-	sneasler: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "Uber",
-	},
-	qwilfishhisui: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "NFE",
-	},
-	overqwil: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},*/
 	voltorbhisui: {
 		rank: "LC",
 		gen: 3,
@@ -2524,16 +2371,6 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},
-	/*growlithehisui: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "LC",
-	},
-	arcaninehisui: {
-		rank: "Unranked",
-		gen: 3,
-		tier: "UU",
-	},*/
 	froslass: {
 		rank: "OU",
 		gen: 3,
@@ -2575,19 +2412,23 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "OU",
 	},
 	scrafty: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "OU",
+		gen: 3,
+		tier: "OU",
 	},
 	yanmega: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "OU",
+		gen: 3,
+		tier: "OU",
 	},
 	weavile: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "OU",
+		gen: 3,
+		tier: "OU",
 	},
 	simipour: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "OU",
+		gen: 3,
+		tier: "OU",
 	},
 };
