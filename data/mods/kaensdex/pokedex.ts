@@ -1549,7 +1549,7 @@ shuckle: {
 	types: ["Rock", "Fire"],
 	gender: "N",
 	baseStats: {hp: 100, atk: 114, def: 110, spa: 70, spd: 80, spe: 96},
-	abilities: {0: "Quark Drive"},
+	abilities: {0: "Meteor Power"},
 	weightkg: 308,
 	},
 	
@@ -1559,7 +1559,7 @@ shuckle: {
 	types: ["Rock", "Fairy"],
 	gender: "N",
 	baseStats: {hp: 99, atk: 71, def: 81, spa: 113, spd: 111, spe: 95},
-	abilities: {0: "Protosynthesis"},
+	abilities: {0: "Primal Mind"},
 	weightkg: 336,
 	},
 	

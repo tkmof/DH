@@ -584,7 +584,7 @@ acidjuice: {
 		contestType: "Clever",
 	},
 	
-	saberfangs: {
+saberfangs: {
 		num: 100028,
 		accuracy: 100,
 		basePower: 80,
@@ -601,7 +601,7 @@ acidjuice: {
 		contestType: "Tough",
 	},
 	
-	meteorimpact: {
+meteorimpact: {
 		num: 100029,
 		accuracy: 100,
 		basePower: 120,
@@ -621,7 +621,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	gravitationalwave: {
+gravitationalwave: {
 		num: 100030,
 		accuracy: 100,
 		basePower: 90,
@@ -642,7 +642,7 @@ acidjuice: {
 		contestType: "Beautiful",
 	},
 	
-	sharpblade: {
+sharpblade: {
 		num: 100031,
 		accuracy: 100,
 		basePower: 90,
@@ -659,7 +659,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	maliciousprogram: {
+maliciousprogram: {
 		num: 100032,
 		accuracy: 100,
 		basePower: 80,
@@ -677,7 +677,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	draconicaura: {
+draconicaura: {
 		num: 100033,
 		accuracy: 100,
 		basePower: 90,
@@ -696,7 +696,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	earthforce: {
+earthforce: {
 		num: 100034,
 		accuracy: 100,
 		basePower: 90,
@@ -776,7 +776,7 @@ acidjuice: {
 		contestType: "Clever",
 	},
 	
-	lovearrow: {
+lovearrow: {
 		num: 100035,
 		accuracy: 100,
 		basePower: 80,
@@ -825,7 +825,7 @@ acidjuice: {
 		contestType: "Beautiful",
 	},
 	
-	penguindance: {
+penguindance: {
 		num: 100036,
 		accuracy: true,
 		basePower: 0,
@@ -848,7 +848,7 @@ acidjuice: {
 		contestType: "Beautiful",
 	},
 	
-	floorcleaning: {
+floorcleaning: {
 		num: 100037,
 		accuracy: 100,
 		basePower: 50,
@@ -899,7 +899,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	dreadfulscreech: {
+dreadfulscreech: {
 		num: 100038,
 		accuracy: 100,
 		basePower: 60,
@@ -915,7 +915,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	flammabletoxin: {
+flammabletoxin: {
 		num: 100039,
 		accuracy: 100,
 		basePower: 80,
@@ -948,7 +948,7 @@ acidjuice: {
 		contestType: "Beautiful",
 	},
 	
-	mindshock: {
+mindshock: {
 		num: 100040,
 		accuracy: 100,
 		basePower: 60,
@@ -970,7 +970,7 @@ acidjuice: {
 		type: "Psychic",
 	},
 	
-	fightingspirit: {
+fightingspirit: {
 		num: 100041,
 		accuracy: true,
 		basePower: 0,
@@ -1001,7 +1001,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	airvibration: {
+airvibration: {
 		num: 100042,
 		accuracy: 100,
 		basePower: 40,
@@ -1017,7 +1017,7 @@ acidjuice: {
 		contestType: "Tough",
 	},
 	
-	passingtheball: {
+passingtheball: {
 		num: 100043,
 		accuracy: 90,
 		basePower: 20,
@@ -1026,7 +1026,7 @@ acidjuice: {
 		},
 		category: "Physical",
 		name: "Passing the Ball",
-		shortDesc: "Hits 3 times. Each hit can miss, but power rises. Bullet move.",
+		shortDesc: "Hits 3 times. Power doubles on each hit. Bullet move.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, bullet: 1},
@@ -1039,7 +1039,7 @@ acidjuice: {
 		maxMove: {basePower: 140},
 	},
 	
-	blazingspin: {
+blazingspin: {
 		num: 100044,
 		accuracy: 100,
 		basePower: 30,
@@ -1085,7 +1085,7 @@ acidjuice: {
 		type: "Fire",
 	},
 	
-	fearthenight: {
+fearthenight: {
 		num: 100045,
 		accuracy: 85,
 		basePower: 100,
@@ -1106,7 +1106,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	armwhip: {
+armwhip: {
 		num: 100046,
 		accuracy: 100,
 		basePower: 60,
@@ -1127,7 +1127,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	lovescent: {
+lovescent: {
 		num: 100047,
 		accuracy: 100,
 		basePower: 0,
@@ -1184,16 +1184,16 @@ acidjuice: {
 		contestType: "Cute",
 	},
 	
-	replaceableteeth: {
+replaceableteeth: {
 		num: 1000048,
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
 		name: "Replaceable Teeth",
-		shortDesc: "Set Steel hazards.",
+		shortDesc: "Set Steel hazards. Biting move.",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1},
+		flags: {bite: 1, contact: 1, protect: 1},
 		self: {
 			onHit(source) {
 				source.side.foe.addSideCondition('gmaxsteelsurge');
@@ -1221,7 +1221,7 @@ acidjuice: {
 		contestType: "Cool",
 	},
 	
-	draconicrelease: {
+draconicrelease: {
 		num: 100049,
 		accuracy: 100,
 		basePower: 85,
@@ -1244,7 +1244,7 @@ acidjuice: {
 		contestType: "Tough",
 	},
 	
-	spidertrap: {
+spidertrap: {
 		num: 100050,
 		accuracy: 100,
 		basePower: 95,
@@ -1254,11 +1254,9 @@ acidjuice: {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		self: {
+		self:{
 			onHit(source) {
-				for (const side of source.side.foeSidesWithConditions()) {
-					side.addSideCondition('stickyweb');
-				}
+				source.side.foe.addSideCondition('stickyweb');
 			},
 		},
 		secondary: {}, // allows sheer force to trigger
@@ -1266,7 +1264,7 @@ acidjuice: {
 		type: "Bug",
 	},
 	
-	misfortune: {
+misfortune: {
 		num: 100051,
 		accuracy: 100,
 		basePower: 110,
@@ -1307,7 +1305,7 @@ acidjuice: {
 		contestType: "Clever",
 	},
 	
-	coldmedicine: {
+coldmedicine: {
 		num: 100052,
 		accuracy: true,
 		basePower: 0,
@@ -1331,7 +1329,7 @@ acidjuice: {
 		contestType: "Beautiful",
 	},
 	
-	alienabduction: {
+alienabduction: {
 		num: 100053,
 		accuracy: 100,
 		basePower: 85,
@@ -1348,7 +1346,7 @@ acidjuice: {
 		contestType: "Clever",
 	},
 	
-	icebreakinghug: {
+icebreakinghug: {
 		num: 100054,
 		accuracy: 100,
 		basePower: 90,
@@ -1371,7 +1369,7 @@ acidjuice: {
 		contestType: "Tough",
 	},
 	
-	focusedmind: {
+focusedmind: {
 		num: 100055,
 		accuracy: true,
 		basePower: 0,
@@ -1524,11 +1522,9 @@ acidjuice: {
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-		self: {
+		self:{
 			onHit(source) {
-				for (const side of source.side.foeSidesWithConditions()) {
-					side.addSideCondition('spikes');
-				}
+				source.side.foe.addSideCondition('spikes');
 			},
 		},
 		secondary: {}, // allows sheer force to trigger
