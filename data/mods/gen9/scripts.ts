@@ -1,25 +1,24 @@
-const pokemonModifyFunctions = {
-	getBestStat(unboosted?: boolean, unmodified?: boolean): StatIDExceptHP {
-		let statName: StatIDExceptHP = 'atk';
-		let bestStat = 0;
-		const stats: StatIDExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
-		for (const i of stats) {
-			if (this.getStat(i, unboosted, unmodified) > bestStat) {
-				statName = i;
-				bestStat = this.getStat(i, unboosted, unmodified);
-			}
-		}
-
-		return statName;
-	},
-},
-
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
 	side: {
 		totalFainted:0,
 	},
 	init: function() {
+		const pokemonModifyFunctions = {
+			getBestStat(unboosted?: boolean, unmodified?: boolean): StatIDExceptHP {
+				let statName: StatIDExceptHP = 'atk';
+				let bestStat = 0;
+				const stats: StatIDExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
+				for (const i of stats) {
+					if (this.getStat(i, unboosted, unmodified) > bestStat) {
+						statName = i;
+						bestStat = this.getStat(i, unboosted, unmodified);
+					}
+				}
+
+				return statName;
+			},
+		};
 		for (const side of this.sides) {
 			for (const pokemon of side.pokemon) {
 				for (const funcName in pokemonModifyFunctions) {
