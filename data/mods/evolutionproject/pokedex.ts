@@ -2107,7 +2107,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		movepoolAdditions: ["charge", "electroball", "electroweb", "flash"],
 		movepoolDeletions: ["calmmind", "hypnosis"],
 
-		prevo: "Dottler-Variant",
+		prevo: "Blipbug",
 		evoLevel: 10,
 		creator: "Magmajudis",
 	},
