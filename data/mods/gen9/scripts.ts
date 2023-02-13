@@ -15,7 +15,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 		}
 		return statName;
-	}
+	},
 	// For Supreme Overlord, Last Respects, counting fainted pokemon.
 	faintMessages(lastFirst = false) {
 		if (this.ended) return;
