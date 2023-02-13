@@ -2435,8 +2435,8 @@ export class Battle {
 				this.add('faint', pokemon);
 				pokemon.side.pokemonLeft--;
 				// Gen 9 stuff
-					if (!pokemon.side.totalFainted) pokemon.side.totalFainted = 0;
-					if (pokemon.side.totalFainted < 100) pokemon.side.totalFainted++;
+				if (!pokemon.side.totalFainted) pokemon.side.totalFainted = 0;
+				if (pokemon.side.totalFainted < 100) pokemon.side.totalFainted++;
 				//
 				this.runEvent('Faint', pokemon, faintData.source, faintData.effect);
 				this.singleEvent('End', pokemon.getAbility(), pokemon.abilityData, pokemon);
