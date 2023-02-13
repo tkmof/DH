@@ -639,7 +639,20 @@ export class Pokemon {
 	nearbyFoes(): Pokemon[] {
 		return this.foes().filter(foe => this.battle.isAdjacent(this, foe));
 	}
-
+	// Gen 9 Stuff
+	isAdjacent(pokemon2: Pokemon) {
+		return this.battle.isAdjacent( this, Pokemon);
+	}
+	
+	adjacentFoes(): Pokemon[] {
+		// if (this.battle.activePerHalf <= 2) return this.side.foes();
+		return this.side.foes().filter(foe => this.isAdjacent(foe));
+	}
+	
+	isAlly(pokemon: Pokemon | null) {
+		return !!pokemon && (this.side === pokemon.side || this.side.allySide === pokemon.side);
+	}
+	//
 	getUndynamaxedHP(amount?: number) {
 		const hp = amount || this.hp;
 		if (this.volatiles['dynamax']) {
