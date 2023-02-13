@@ -1261,6 +1261,12 @@ export const Formats: FormatList = [
 						'Vizcachu-Mega','Iron Sun','Crazy Moon','Grussgu-Mega','Porcusquill-Mega','Jumpfurr','SurivExe','Eevee-Cile','Vaporeon-Cile','Jolteon-Cile',
 						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile','Qilineon','Fossileon','Crobat-Mega','Cupida']
 	},
+    {
+		name: "[Gen 3] Inverse OU",
+        mod: 'gen3inverse',
+		ruleset: ['Standard', 'One Boost Passer Clause', 'Freeze Clause Mod', 'Data Mod'],
+		banlist: ['Uber', 'Soundproof', 'Assist', 'Baton Pass + Block', 'Baton Pass + Mean Look', 'Baton Pass + Spider Web', 'Smeargle + Ingrain', 'Jolteon', 'Alakazam', 'Sceptile', 'Starmie', 'Raikou', 'Espeon', 'Gengar'],
+	},
 	{
 		name: "[Gen 1] Kanto Expansion Pak OU",
 		threads: [
@@ -1282,6 +1288,18 @@ export const Formats: FormatList = [
 		],
 		onSwitchIn(pokemon) {
 			this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+		},
+	},
+    {
+		name: "[Gen 3] OU Sample Team Randbats",
+		team: 'random',
+		mod: 'gen3sampleteamrandbats',
+		ruleset: ['Standard', 'One Boost Passer Clause', 'Freeze Clause Mod'],
+		onBegin() {
+			for (const pokemon of this.getAllPokemon()) {
+				var side = pokemon.side;
+				this.hint(side.team[0].sampleTeamName, true, pokemon.side);
+			}
 		},
 	},
 	{
