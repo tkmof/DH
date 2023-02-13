@@ -288,7 +288,12 @@ export class Battle {
 	resetRNG() {
 		this.prng = new PRNG(this.prng.startingSeed);
 	}
-
+	//Gen 9 stuff
+	suppressingAbility(target?: Pokemon) {
+		return this.activePokemon && this.activePokemon.isActive && (this.activePokemon !== target || this.gen < 8) &&
+			this.activeMove && this.activeMove.ignoreAbility && !target?.hasItem('Ability Shield');
+	}
+	//
 	suppressingAttackEvents(target?: Pokemon) {
 		return this.activePokemon && this.activePokemon.isActive && this.activePokemon !== target &&
 			this.activeMove && this.activeMove.ignoreAbility;
@@ -1040,7 +1045,18 @@ export class Battle {
 			eventHandlers.push(eventHandler);
 		}
 	}
-
+	
+	checkMoveMakesContact(move: ActiveMove, attacker: Pokemon, defender: Pokemon, announcePads = false) {
+		if (move.flags['contact'] && attacker.hasItem('protectivepads')) {
+			if (announcePads) {
+				this.add('-activate', defender, this.effect.fullname);
+				this.add('-activate', attacker, 'item: Protective Pads');
+			}
+			return false;
+		}
+		return move.flags['contact'];
+	}
+	
 	getPokemon(fullname: string | Pokemon) {
 		if (typeof fullname !== 'string') fullname = fullname.fullname;
 		for (const side of this.sides) {
@@ -2429,6 +2445,10 @@ export class Battle {
 					this.runEvent('BeforeFaint', pokemon, faintData.source, faintData.effect)) {
 				this.add('faint', pokemon);
 				pokemon.side.pokemonLeft--;
+				// Gen 9 stuff
+				if (!pokemon.side.totalFainted) pokemon.side.totalFainted = 0;
+				if (pokemon.side.totalFainted < 100) pokemon.side.totalFainted++;
+				//
 				this.runEvent('Faint', pokemon, faintData.source, faintData.effect);
 				this.singleEvent('End', pokemon.getAbility(), pokemon.abilityData, pokemon);
 				pokemon.clearVolatile(false);
