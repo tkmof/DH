@@ -15,6 +15,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "glalie").learnset.partingshot = ["6L1"];
 		this.modData("Learnsets", "banette").learnset.ironhead = ["6L1"];
 		this.modData("Learnsets", "banette").learnset.metalsound = ["6L1"];
+		this.modData("Learnsets", "banette").learnset.powder = ["6L1"];
 		this.modData("Learnsets", "venusaur").learnset.psychic = ["6L1"];
 		this.modData("Learnsets", "venusaur").learnset.calmmind = ["6L1"];
 		this.modData("Learnsets", "venusaur").learnset.earthpower = ["6L1"];

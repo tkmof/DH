@@ -209,8 +209,77 @@ royalhoney: {
 		name: "Royal Honey",
 		desc:  "Halves the damage from moves that would be super effective on Bug-Type. Heals 1/16 HP each turn.",
 		rating: 3.5,
-		num: 218,
+		num: 10012,
 	},	
+	
+revitalizingrain: {
+		onStart(source) {
+			for (const action of this.queue) {
+				if (action.choice === 'runPrimal' && action.pokemon === source && source.species.id === 'kyogre') return;
+				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
+			}
+			this.field.setWeather('raindance');
+		},
+		onWeather(target, source, effect) {
+			if (target.hasItem('utilityumbrella')) return;
+			if (effect.id === 'raindance' || effect.id === 'primordialsea') {
+				this.heal(target.baseMaxhp / 8);
+			}
+		},
+		name: "Revitalizing Rain",
+		desc:  "On switch-in, this Pokemon summons Rain Dance. During Rain, Heals 1/8 HP each turn.",
+		rating: 4,
+		num: 10013,
+	},
+	
+stickyseeds: {
+		onDamagingHitOrder: 1,
+		onDamagingHit(damage, target, source, move) {
+				this.damage(source.baseMaxhp / 8, source, target);
+				this.heal(source.baseMaxhp / 8, target, source);
+		},
+		name: "Sticky Seeds",
+		desc: "Drains 1/8 HP on being hit.",
+		rating: 2.5,
+		num: 10014,
+	},
+	
+	malware: {
+		onResidualOrder: 27,
+		onResidual(pokemon) {
+			if (pokemon.baseSpecies.baseSpecies !== 'SurivExe' || pokemon.transformed) {
+				return;
+			}
+			if (pokemon.hp <= pokemon.maxhp / 2 && !['Virus'].includes(pokemon.species.forme)) {
+				pokemon.addVolatile('malware');
+			} else if (pokemon.hp > pokemon.maxhp / 2 && ['Virus'].includes(pokemon.species.forme)) {
+				pokemon.addVolatile('malware');
+				pokemon.removeVolatile('malware');
+			}
+		},
+		condition: {
+			onStart(pokemon) {
+					if (pokemon.species.id !== 'surivexevirus') pokemon.formeChange('SurivExe-Virus');
+					},
+		},
+		isPermanent: true,
+		name: "Malware",
+		desc: "If SurivExe, at end of turn changes Mode to Virus if < 1/2 max HP.",
+		rating: 0,
+		num: 10015,
+	},
+	
+	airborne: {
+		onUpdate(pokemon) {
+			if (pokemon.hasType('Flying')) return false;
+			if (!pokemon.addType('Flying')) return false;
+			this.add('-start', pokemon, 'typeadd', 'Flying', '[from] move: Airborne');
+		},
+		name: "Airborne",
+		desc: "Takes fly and become Flying-Type.",
+		rating: 3.5,
+		num: 200,
+	},
 	
 	//gen 9 stuff
 	sharpness: {
@@ -222,6 +291,7 @@ royalhoney: {
 			}
 		},
 		name: "Sharpness",
+		desc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
 		rating: 3.5,
 		num: 292,
 	},
@@ -237,6 +307,7 @@ royalhoney: {
 		},
 		isBreakable: true,
 		name: "Earth Eater",
+		desc: "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
 		rating: 3.5,
 		num: 297,
 	},
@@ -262,6 +333,7 @@ royalhoney: {
 			}
 		},
 		name: "Wind Rider",
+		desc: "Attack raised by 1 if hit by a wind move or Tailwind begins. Wind move immunity.",
 		rating: 3.5,
 		// We do not want Brambleghast to get Infiltrator in Randbats
 		num: 274,
@@ -278,6 +350,7 @@ royalhoney: {
 		},
 		isBreakable: true,
 		name: "Well-Baked Body",
+		desc: "This Pokemon's Defense is raised 2 stages if hit by a Fire move; Fire immunity.",
 		rating: 3.5,
 		num: 273,
 	},
@@ -314,6 +387,7 @@ royalhoney: {
 			}
 		},
 		name: "Anger Shell",
+		desc: "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and -1 Def, Sp. Def.",
 		rating: 4,
 		num: 271,
 	},
@@ -332,6 +406,7 @@ royalhoney: {
 			}
 		},
 		name: "Lingering Aroma",
+		desc: "Making contact with this Pokemon has the attacker's Ability become Lingering Aroma.",
 		rating: 2,
 		num: 268,
 	},
@@ -349,6 +424,7 @@ royalhoney: {
 			}
 		},
 		name: "Guard Dog",
+		desc: "Immune to Intimidate. Intimidated: +1 Attack. Cannot be forced to switch out.",
 		rating: 2,
 		num: 275,
 	},
@@ -383,7 +459,145 @@ royalhoney: {
 			},
 		},
 		name: "Cud Chew",
+		desc: "If this Pokemon eats a Berry, it will eat that Berry again at the end of the next turn.",
 		rating: 2,
 		num: 291,
+	},
+	
+	quarkdrive: {
+		onStart(pokemon) {
+			this.singleEvent('TerrainChange', this.effect, this.effectState, pokemon);
+		},
+		onTerrainChange(pokemon) {
+			if (pokemon.transformed) return;
+			if (this.field.isTerrain('electricterrain')) {
+				pokemon.addVolatile('quarkdrive');
+			} else if (!pokemon.volatiles['quarkdrive']?.fromBooster) {
+				pokemon.removeVolatile('quarkdrive');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['quarkdrive'];
+			this.add('-end', pokemon, 'Quark Drive', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectState.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Quark Drive', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Quark Drive');
+				}
+				this.effectState.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'quarkdrive' + this.effectState.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectState.bestStat !== 'atk') return;
+				this.debug('Quark Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectState.bestStat !== 'def') return;
+				this.debug('Quark Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectState.bestStat !== 'spa') return;
+				this.debug('Quark Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectState.bestStat !== 'spd') return;
+				this.debug('Quark Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectState.bestStat !== 'spe') return;
+				this.debug('Quark Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Quark Drive');
+			},
+		},
+		isPermanent: true,
+		name: "Quark Drive",
+		desc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 282,
+	},
+	
+	protosynthesis: {
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
+		},
+		onWeatherChange(pokemon) {
+			if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isWeather('sunnyday')) {
+				pokemon.addVolatile('protosynthesis');
+			} else if (!pokemon.volatiles['protosynthesis']?.fromBooster) {
+				pokemon.removeVolatile('protosynthesis');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['protosynthesis'];
+			this.add('-end', pokemon, 'Protosynthesis', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectState.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Protosynthesis', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Protosynthesis');
+				}
+				this.effectState.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'protosynthesis' + this.effectState.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectState.bestStat !== 'atk') return;
+				this.debug('Protosynthesis atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectState.bestStat !== 'def') return;
+				this.debug('Protosynthesis def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectState.bestStat !== 'spa') return;
+				this.debug('Protosynthesis spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectState.bestStat !== 'spd') return;
+				this.debug('Protosynthesis spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectState.bestStat !== 'spe') return;
+				this.debug('Protosynthesis spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Protosynthesis');
+			},
+		},
+		isPermanent: true,
+		name: "Protosynthesis",
+		desc: "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 281,
 	},
 };

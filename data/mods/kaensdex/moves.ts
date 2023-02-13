@@ -257,7 +257,7 @@ bullhorns: {
 sweetwater: {
 		num: 10011,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 70,
 		category: "Special",
 		name: "Sweet Water",
 		shortDesc: "User recovers 50% of the damage dealt.",
@@ -601,6 +601,181 @@ acidjuice: {
 		contestType: "Tough",
 	},
 	
+	meteorimpact: {
+		num: 100029,
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		name: "Meteor Impact",
+		shortDesc: "1/3 recoil. 10% chance to burn the target.",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, defrost: 1},
+		recoil: [33, 100],
+		secondary: {
+			chance: 10,
+			status: 'brn',
+		},
+		target: "normal",
+		type: "Rock",
+		contestType: "Cool",
+	},
+	
+	gravitationalwave: {
+		num: 100030,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Gravitational Wave",
+		shortDesc: "Drops Speed by 1 stage.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spe: -1,
+			},
+		},
+		target: "allAdjacentFoes",
+		type: "Rock",
+		contestType: "Beautiful",
+	},
+	
+	sharpblade: {
+		num: 100031,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Sharp Blade",
+		shortDesc: "High critical hit ratio. Slicing move.",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		critRatio: 2,
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+		contestType: "Cool",
+	},
+	
+	maliciousprogram: {
+		num: 100032,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Malicious Program",
+		shortDesc: "Steals target's boosts before dealing damage.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, authentic: 1},
+		stealsBoosts: true,
+		// Boost stealing implemented in scripts.js
+		secondary: null,
+		target: "normal",
+		type: "Electric",
+		contestType: "Cool",
+	},
+	
+	draconicaura: {
+		num: 100033,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Draconic Aura",
+		shortDesc: "Sets Safeguard. Pulse move.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, pulse: 1},
+		self: {
+			sideCondition: 'safeguard',
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Cool",
+	},
+	
+	earthforce: {
+		num: 100034,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Earth Force",
+		shortDesc: "Sets Gravity.",
+		pp: 10,
+		priority: 0,
+		flags: {nonsky: 1, protect: 1, mirror: 1},
+		pseudoWeather: 'gravity',
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					return 7;
+				}
+				return 5;
+			},
+			onStart() {
+				this.add('-fieldstart', 'move: Gravity');
+				for (const pokemon of this.getAllActive()) {
+					let applies = false;
+					if (pokemon.removeVolatile('bounce') || pokemon.removeVolatile('fly')) {
+						applies = true;
+						this.queue.cancelMove(pokemon);
+						pokemon.removeVolatile('twoturnmove');
+					}
+					if (pokemon.volatiles['skydrop']) {
+						applies = true;
+						this.queue.cancelMove(pokemon);
+
+						if (pokemon.volatiles['skydrop'].source) {
+							this.add('-end', pokemon.volatiles['twoturnmove'].source, 'Sky Drop', '[interrupt]');
+						}
+						pokemon.removeVolatile('skydrop');
+						pokemon.removeVolatile('twoturnmove');
+					}
+					if (pokemon.volatiles['magnetrise']) {
+						applies = true;
+						delete pokemon.volatiles['magnetrise'];
+					}
+					if (pokemon.volatiles['telekinesis']) {
+						applies = true;
+						delete pokemon.volatiles['telekinesis'];
+					}
+					if (applies) this.add('-activate', pokemon, 'move: Gravity');
+				}
+			},
+			onModifyAccuracy(accuracy) {
+				if (typeof accuracy !== 'number') return;
+				return accuracy * 5 / 3;
+			},
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (this.dex.getMove(moveSlot.id).flags['gravity']) {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			// groundedness implemented in battle.engine.js:BattlePokemon#isGrounded
+			onBeforeMovePriority: 6,
+			onBeforeMove(pokemon, target, move) {
+				if (move.flags['gravity']) {
+					this.add('cant', pokemon, 'move: Gravity', move);
+					return false;
+				}
+			},
+			onResidualOrder: 22,
+			onEnd() {
+				this.add('-fieldend', 'move: Gravity');
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		contestType: "Clever",
+	},
+	
 	//gen9 stuff
 	ceaselessedge: {
 		num: 845,
@@ -609,6 +784,7 @@ acidjuice: {
 		category: "Physical",
 		isNonstandard: "Unobtainable",
 		name: "Ceaseless Edge",
+		shortDesc: "Sets a layer of Spikes on the opposing side.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
@@ -630,6 +806,7 @@ acidjuice: {
 		basePower: 70,
 		category: "Physical",
 		name: "Aqua Cutter",
+		shortDesc: "High critical hit ratio.",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, slicing: 1},
@@ -646,6 +823,7 @@ acidjuice: {
 		basePower: 30,
 		category: "Physical",
 		name: "Mortal Spin",
+		shortDesc: "Poisons foes, frees user from hazards/bind/leech.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -691,6 +869,7 @@ acidjuice: {
 		basePower: 80,
 		category: "Physical",
 		name: "Ice Spinner",
+		shortDesc: "Ends the effects of terrain.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -710,8 +889,8 @@ acidjuice: {
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
-		isNonstandard: "Unobtainable",
 		name: "Barb Barrage",
+		shortDesc: "50% psn. 2x power if target already poisoned.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -734,12 +913,13 @@ chillyreception: {
 		basePower: 0,
 		category: "Status",
 		name: "Chilly Reception",
+		shortDesc: "Starts Hail. User switches out.",
 		pp: 10,
 		priority: 0,
 		flags: {},
 		// TODO show prepare message before the "POKEMON used MOVE!" message
 		// This happens even before sleep shows its "POKEMON is fast asleep." message
-		weather: 'snow',
+		weather: 'hail',
 		selfSwitch: true,
 		secondary: null,
 		target: "all",
@@ -755,8 +935,8 @@ chillyreception: {
 			return move.basePower;
 		},
 		category: "Special",
-		isNonstandard: "Unobtainable",
 		name: "Infernal Parade",
+		shortDesc: "30% burn. 2x power if target is already statused.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -773,8 +953,8 @@ chillyreception: {
 		accuracy: 90,
 		basePower: 70,
 		category: "Special",
-		isNonstandard: "Unobtainable",
 		name: "Mystical Power",
+		shortDesc: "100% chance to raise the user's Sp. Atk by 1.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -796,6 +976,7 @@ chillyreception: {
 		basePower: 0,
 		category: "Status",
 		name: "Silk Trap",
+		shortDesc: "Protects from damaging attacks. Contact: -1 Spe.",
 		pp: 10,
 		priority: 4,
 		flags: {},
@@ -850,8 +1031,8 @@ chillyreception: {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
-		isNonstandard: "Unobtainable",
 		name: "Dire Claw",
+		shortDesc: "50% chance to sleep, poison, or paralyze target.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -878,6 +1059,7 @@ chillyreception: {
 		basePower: 20,
 		category: "Physical",
 		name: "Population Bomb",
+		shortDesc: "Hits 10 times. Each hit can miss.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
@@ -893,8 +1075,8 @@ chillyreception: {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		isNonstandard: "Unobtainable",
 		name: "Victory Dance",
+		shortDesc: "Raises the user's Attack, Defense, Speed by 1.",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, dance: 1},
@@ -913,8 +1095,8 @@ chillyreception: {
 		accuracy: 95,
 		basePower: 150,
 		category: "Special",
-		isNonstandard: "Unobtainable",
 		name: "Chloroblast",
+		shortDesc: "User loses 50% max HP.",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -938,8 +1120,8 @@ chillyreception: {
 		accuracy: 90,
 		basePower: 65,
 		category: "Physical",
-		isNonstandard: "Unobtainable",
 		name: "Stone Axe",
+		shortDesc: "Sets Stealth Rock on the target's side.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
@@ -961,6 +1143,7 @@ chillyreception: {
 		basePower: 50,
 		category: "Physical",
 		name: "Trailblaze",
+		shortDesc: "100% chance to raise the user's Speed by 1.",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -983,6 +1166,7 @@ chillyreception: {
 		basePower: 160,
 		category: "Physical",
 		name: "Gigaton Hammer",
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},

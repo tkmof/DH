@@ -127,4 +127,27 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "White Smoke", 1: "Infiltrator", H: "Flame Body"},
 		weightkg: 14.5,
 	},
+	taranitar: {
+		num: 17, 
+		name: "Taranitar",
+		types: ["Bug", "Fire"],
+		baseStats: {hp: 110, atk: 75, def: 100, spa: 134, spd: 100, spe: 81},
+		abilities: {0: "Gooey", 1: "Flash Fire", H: "Flame Body"},
+	},
+	phrohg: {
+		num: 18,
+		name: "Phrohg",
+		types: ["Water"],
+		baseStats: {hp: 120, atk: 100, def: 85, spa: 30, spd: 85, spe: 45},
+		abilities: {0: "Poison Heal", 1: "Steadfast", H: "Mold Breaker"},
+		weightkg: 30,
+	},
+	kazuumarill: {
+		num: 19,
+		name: "Kazuumarill",
+		types: ["Fire", "Poison"],
+		baseStats: {hp: 80, atk: 40, def: 70, spa: 100, spd: 80, spe: 50},
+		abilities: {0: "Punk Rock", 1: "Soundproof", H: "Klutz"},
+		weightkg: 28.5,
+	},
 };
