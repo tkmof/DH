@@ -1419,19 +1419,6 @@ export const Formats: FormatList = [
 		ruleset: ['Standard', 'Dynamax Clause', 'Data Mod'],
 		banlist: ['Uber', 'Moody', 'Shadow Tag', 'Baton Pass', 'Kyurem', 'Slowking-Base', 'Slowbro-Base'],
 	},
-	{
-		name: "[Gen 9] YBGC Series 2",
-
-		mod: 'gen9ybgc',
-		gameType: 'doubles',
-		forcedLevel: 50,
-		teamLength: {
-			validate: [4, 6],
-			battle: 4,
-		},
-		ruleset: ['Gen 9 GBU', 'Paldea Pokedex', 'Min Source Gen = 9', 'VGC Timer',  'Dynamax Clause', 'Data Mod'],
-		banlist: ['Sub-Legendary'],
-	},
 	
 	// Past Gens OU
 	///////////////////////////////////////////////////////////////////
