@@ -1,22 +1,33 @@
+const pokemonModifyFunctions = {
+	getBestStat(unboosted?: boolean, unmodified?: boolean): StatIDExceptHP {
+		let statName: StatIDExceptHP = 'atk';
+		let bestStat = 0;
+		const stats: StatIDExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
+		for (const i of stats) {
+			if (this.getStat(i, unboosted, unmodified) > bestStat) {
+				statName = i;
+				bestStat = this.getStat(i, unboosted, unmodified);
+			}
+		}
+
+		return statName;
+	},
+},
+
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
 	side: {
 		totalFainted:0,
 	},
 	init: function() {
-		// For Protosynthesis, Quark Drive
-		this.pokemon.getBestStat = function(unboosted?: boolean, unmodified?: boolean): StatIDExceptHP {
-			let statName: StatIDExceptHP = 'atk';
-			let bestStat = 0;
-			const stats: StatIDExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
-			for (const i of stats) {
-				if (this.getStat(i, unboosted, unmodified) > bestStat) {
-					statName = i;
-					bestStat = this.getStat(i, unboosted, unmodified);
+		for (const side of this.sides) {
+			for (const pokemon of side.pokemon) {
+				for (const funcName in pokemonModifyFunctions) {
+					pokemon[funcName] = pokemonModifyFunctions[funcName];
 				}
 			}
-			return statName;
-		};
+		}
+		
 		// For Ruin Abilities
 		this.suppressingAbility = function(target?: Pokemon) {
 		return this.activePokemon && this.activePokemon.isActive && (this.activePokemon !== target || this.gen < 8) &&
