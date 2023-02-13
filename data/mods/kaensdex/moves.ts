@@ -782,7 +782,7 @@ acidjuice: {
 		basePower: 80,
 		category: "Physical",
 		name: "Love Arrow",
-		shortDesc: "A target of the opposite gender gets infatuated. 30% Confusion chance.",
+		shortDesc: "Makes the opponent fall in love. 30% Confusion chance.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
