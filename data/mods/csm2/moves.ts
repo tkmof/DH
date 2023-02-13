@@ -19,7 +19,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				}
 			}
 			this.boost({[statName]: length}, source);
-		}
+		},
 		secondary: null,
 		hasSheerForce: true,
 		target: "normal",
