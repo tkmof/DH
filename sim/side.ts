@@ -190,6 +190,12 @@ export class Side {
 		return this.battle.sample(actives);
 	}
 
+	foeSidesWithConditions() {
+		if (this.battle.gameType === 'freeforall') return this.battle.sides.filter(side => side !== this);
+
+		return [this.foe];
+	}
+
 	addSideCondition(
 		status: string | Condition, source: Pokemon | 'debug' | null = null, sourceEffect: Effect | null = null
 	): boolean {
