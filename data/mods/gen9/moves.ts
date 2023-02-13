@@ -389,6 +389,35 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Grass",
 	},
+	saltcure: {
+		num: 864,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		name: "Salt Cure",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		condition: {
+			noCopy: true,
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'Salt Cure');
+			},
+			onResidualOrder: 13,
+			onResidual(pokemon) {
+				this.damage(pokemon.baseMaxhp / (pokemon.hasType(['Water', 'Steel']) ? 4 : 8));
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Salt Cure');
+			},
+		},
+		secondary: {
+			chance: 100,
+			volatileStatus: 'saltcure',
+		},
+		target: "normal",
+		type: "Rock",
+	},
 	terablast: {
 		num: 851,
 		accuracy: 100,
