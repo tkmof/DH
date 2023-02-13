@@ -1,5 +1,8 @@
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
+	teambuilderConfig: {
+        excludeStandardTiers: true,
+	},
 	init: function(){
 		this.modData('Moves', 'aerialace').flags.slicing = 1;
 		this.modData('Moves', 'aircutter').flags.slicing = 1;
