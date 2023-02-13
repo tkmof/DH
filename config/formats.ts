@@ -4405,7 +4405,7 @@ export const Formats: FormatList = [
 	},
 	{
 		name: "[Gen 9] Scoop Test Gen 9",
-		mod: 'gen8',
+		mod: 'gen9',
 		ruleset: ['Standard', 'Dynamax Clause'],
 		banlist: ['Uber', 'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass'],
 	},
