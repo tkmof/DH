@@ -19,6 +19,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				return statName;
 			},
 		};
+		console.log(this.sides);
 		for (const side of this.sides) {
 			for (const pokemon of side.pokemon) {
 				for (const funcName in pokemonModifyFunctions) {
@@ -29,7 +30,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		
 		// For Ruin Abilities
 		this.suppressingAbility = function(target?: Pokemon) {
-		return this.activePokemon && this.activePokemon.isActive && (this.activePokemon !== target || this.gen < 8) &&
+			return this.activePokemon && this.activePokemon.isActive && (this.activePokemon !== target || this.gen < 8) &&
 			this.activeMove && this.activeMove.ignoreAbility && !target?.hasItem('Ability Shield');
 		};
 		// For Supreme Overlord, Last Respects, counting fainted pokemon.
