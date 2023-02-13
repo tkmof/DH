@@ -1462,7 +1462,7 @@ export const Formats: FormatList = [
 	},
 	{
 		section: "Non-Pet Mod Bonus Formats",
-		column: 3,
+		column: 2,
 	},
 	// Littlest Cup
 	///////////////////////////////////////////////////////////////////
