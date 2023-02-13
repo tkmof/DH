@@ -178,7 +178,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			const ally = pokemon.allies()[0];
 			if (!ally) return;
 
-			let i: BoostID;
+			let i: BoostName;
 			for (i in ally.boosts) {
 				pokemon.boosts[i] = ally.boosts[i];
 			}
@@ -336,7 +336,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (effect?.name === 'Opportunist' || effect?.name === 'Mirror Herb') return;
 			const pokemon = this.effectData.target;
 			const positiveBoosts: Partial<BoostsTable> = {};
-			let i: BoostID;
+			let i: BoostName;
 			for (i in boost) {
 				if (boost[i]! > 0) {
 					positiveBoosts[i] = boost[i];

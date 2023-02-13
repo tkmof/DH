@@ -15,7 +15,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return this.modify(def, 1.5);
 			}
 		},
-		onFieldStart(field, source, effect) {
+		onStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Snow', '[from] ability: ' + effect.name, '[of] ' + source);
@@ -23,12 +23,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-weather', 'Snow');
 			}
 		},
-		onFieldResidualOrder: 1,
-		onFieldResidual() {
+		onResidualOrder: 1,
+		onResidual() {
 			this.add('-weather', 'Snow', '[upkeep]');
 			if (this.field.isWeather('snow')) this.eachEvent('Weather');
 		},
-		onFieldEnd() {
+		onEnd() {
 			this.add('-weather', 'none');
 		},
 	},
