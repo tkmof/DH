@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "lib": ["es2019"],
+        "lib": ["es2015", "es2016.array.include", "es2017.object"],
         "noEmit": true,
         "target": "esnext",
         "module": "commonjs",
@@ -16,14 +16,11 @@
     "include": [
         "./config/*.ts",
         "./data/*",
-        "./data/text/*",
         "./data/mods/*/*",
         "./dev-tools/*.ts",
         "./lib/*",
         "./server/**/*.ts",
         "./sim/**/*",
-        "./tools/set-import/*.ts",
-        "./tools/modlog/*.ts",
-        "./translations/**/*.ts",
+        "./tools/set-import/*.ts"
     ]
 }
