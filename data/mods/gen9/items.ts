@@ -55,7 +55,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 				}
 			}
 			if (!statsRaised) return;
-			const pokemon: Pokemon = this.effectState.target;
+			const pokemon: Pokemon = this.effectData.target;
 			pokemon.useItem();
 			this.boost(boostPlus, pokemon);
 		},
