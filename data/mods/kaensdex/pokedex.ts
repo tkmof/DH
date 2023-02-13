@@ -941,7 +941,7 @@ champkylo: {
 	num: 101,
 	name: "Champkylo",
 	types: ["Rock", "Fighting"],
-	baseStats: {hp: 90, atk: 145, def: 90, spa: 44, spd: 65, spe: 61},
+	baseStats: {hp: 90, atk: 125, def: 90, spa: 64, spd: 65, spe: 61},
 	abilities: {0: "Guts", 1: "Battle Armor", H: "Intimidate"},
 	weightkg: 206.9,
 	prevo: "ankylonite",
