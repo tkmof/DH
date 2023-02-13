@@ -17,6 +17,11 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 			return statName;
 		};
+		// For Ruin Abilities
+		this.suppressingAbility = function(target?: Pokemon) {
+		return this.activePokemon && this.activePokemon.isActive && (this.activePokemon !== target || this.gen < 8) &&
+			this.activeMove && this.activeMove.ignoreAbility && !target?.hasItem('Ability Shield');
+		};
 		// For Supreme Overlord, Last Respects, counting fainted pokemon.
 		this.faintMessages = function(lastFirst = false) {
 			if (this.ended) return;
