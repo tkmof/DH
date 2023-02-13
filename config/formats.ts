@@ -582,6 +582,19 @@ export const Formats: FormatList = [
 		teambuilderFormat: 'OU',
 	},
 	{
+		name: "[Gen 3] Hoenn Gaiden UU",
+		desc: ["<b>Hoenn Gaiden</b>: A Gen 3 pet mod that aims to devamp Gen 4-8 Pokemon, moves and items into the Gen 3 mechanics."],
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-the-gen-3-pet-mod-round-1-discussion.3681339/">Hoenn Gaiden on Smogon Forums</a>`,
+		],
+
+		mod: 'gen3uuhoenngaiden',
+		searchShow: false,
+		ruleset: ['[Gen 3] Hoenn Gaiden'],
+		banlist: ['OU', 'UUBL', 'Snow Warning'],
+		unbanlist: [],
+	},
+	{
 		name: "[Gen 8] JolteMons",
 		desc: [
 			"<b>JolteMons</b>: A sequel to SylveMons where Pokemon, items, abilities and moves are redesigned for OU (and new items, abilities and moves are added) without changing base stats.",
@@ -631,6 +644,19 @@ export const Formats: FormatList = [
 				}
 			}
 		},
+	},
+	{
+		name: "[Gen 8] M4A OU (Natdex)",
+		desc: ["<b>Megas for All</b>: A Pet Mod that aims to create unique Mega Evolutions for every fully evolved Pokémon. Plays like National Dex, just with more Megas.",
+		      ],
+		threads: [
+				`&bullet; <a href="https://www.smogon.com/forums/threads/megas-for-all-v7-slate-33-electrode-golurk-and-silvally-please-read-the-first-post-fully-playable-through-slate-32.3671140/">Megas for All v7 on Smogon Forums</a>`,
+				`&bullet; <a href="https://docs.google.com/spreadsheets/d/1TdeAUUtjh0f_tcIBllbF_imgepwV-dV2YomoTCRlPgI/edit?usp=sharing">Spreadsheet</a>`,
+				`&bullet; <a href="http://megasforall.wikidot.com/">Wiki</a>`
+		      ],
+		ruleset: ['Standard NatDex', 'Standard M4A', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Freeze Clause Mod', 'Mega Data Mod'],
+		mod: 'm4av6',
+		// teambuilderFormat: 'OU',
 	},
 	{
 		name: "[Gen 8] Megas for All: Kalos",
@@ -1163,7 +1189,7 @@ export const Formats: FormatList = [
 
 	{
 		section: "Randomized Metas",
-		column: 2,
+		column: 3,
 	},
 	{
 		name: "[Gen 8] Branched Potential Random Battle",
@@ -1462,7 +1488,7 @@ export const Formats: FormatList = [
 	},
 	{
 		section: "Non-Pet Mod Bonus Formats",
-		column: 4,
+		column: 3,
 	},
 	// Littlest Cup
 	///////////////////////////////////////////////////////////////////
