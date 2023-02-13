@@ -458,7 +458,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	starmie: {
 		randomBattleMoves: ["hydropump", "icebeam", "psychic", "recover", "surf", "thunderbolt"],
-		tier: "OU",
+		tier: "Uber",
 	},
 	mrmime: {
 		randomBattleMoves: ["barrier", "batonpass", "calmmind", "encore", "firepunch", "hypnosis", "psychic", "substitute", "thunderbolt"],
@@ -866,7 +866,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	raikou: {
 		randomBattleMoves: ["calmmind", "crunch", "hiddenpowergrass", "hiddenpowerice", "rest", "sleeptalk", "substitute", "thunderbolt"],
-		tier: "UUBL",
+		tier: "Uber",
 	},
 	entei: {
 		randomBattleMoves: ["bodyslam", "calmmind", "fireblast", "flamethrower", "hiddenpowergrass", "hiddenpowerice", "solarbeam", "substitute", "sunnyday"],
