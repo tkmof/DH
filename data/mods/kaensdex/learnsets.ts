@@ -3840,6 +3840,7 @@ learnset: {
 			painsplit: ["7L1"],
 			protect: ["7L1"],
 			psychic: ["7L1"],
+			psychicterrain: ["7L1"],
 			psychup: ["7L1"],
 			psyshock: ["7L1"],
 			rapidspin: ["7L1"],
@@ -3917,6 +3918,7 @@ learnset: {
 			powergem: ["7L1"],
 			protect: ["7L1"],
 			psychic: ["7L1"],
+			psychicterrain: ["7L1"],
 			psychup: ["7L1"],
 			psyshock: ["7L1"],
 			raindance: ["7L1"],
@@ -4331,6 +4333,9 @@ cupida: {learnset: {
 	charm: ["7L1"],
 	dazzlinggleam: ["7L1"],
 	drainingkiss: ["7L1"],
+	healbell: ["7L1"],
+	healingwish: ["7L1"],
+	healpulse: ["7L1"],
 	hex: ["7L1"],
 	moonblast: ["7L1"],
 	mysticalfire: ["7L1"],
@@ -4347,6 +4352,7 @@ cupida: {learnset: {
 	spiritshackle: ["7L1"],
 	triplearrows: ["7L1"],
 	thousandarrows: ["7L1"],
+	wish: ["7L1"],
 }},
 
 };
