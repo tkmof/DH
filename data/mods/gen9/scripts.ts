@@ -19,11 +19,13 @@ export const Scripts: ModdedBattleScriptsData = {
 				return statName;
 			},
 		};
-		console.log(this.sides);
-		for (const side of this.sides) {
-			for (const pokemon of side.pokemon) {
-				for (const funcName in pokemonModifyFunctions) {
-					pokemon[funcName] = pokemonModifyFunctions[funcName];
+
+		if (this.sides) {
+			for (const side of this.sides) {
+				for (const pokemon of side.pokemon) {
+					for (const funcName in pokemonModifyFunctions) {
+						pokemon[funcName] = pokemonModifyFunctions[funcName];
+					}
 				}
 			}
 		}
