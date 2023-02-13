@@ -1163,7 +1163,7 @@ export const Formats: FormatList = [
 
 	{
 		section: "Randomized Metas",
-		column: 2,
+		column: 3,
 	},
 	{
 		name: "[Gen 8] Branched Potential Random Battle",
@@ -1462,7 +1462,7 @@ export const Formats: FormatList = [
 	},
 	{
 		section: "Non-Pet Mod Bonus Formats",
-		column: 2,
+		column: 3,
 	},
 	// Littlest Cup
 	///////////////////////////////////////////////////////////////////
