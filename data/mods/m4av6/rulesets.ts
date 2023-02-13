@@ -48,7 +48,7 @@ export const Formats: {[k: string]: FormatData} = {
 		onAfterMega(pokemon) {
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 			const species = this.dex.getSpecies(pokemon.species);
-			const abilities = species.abilities;
+			const abilities = this.dex.getAbility(species.abilities[0]).name;
 			const baseStats = species.baseStats;
 			const type = species.types[0];
 			if (species.types[1]) {
