@@ -288,7 +288,12 @@ export class Battle {
 	resetRNG() {
 		this.prng = new PRNG(this.prng.startingSeed);
 	}
-
+	//Gen 9 stuff
+	suppressingAbility(target?: Pokemon) {
+		return this.activePokemon && this.activePokemon.isActive && (this.activePokemon !== target || this.gen < 8) &&
+			this.activeMove && this.activeMove.ignoreAbility && !target?.hasItem('Ability Shield');
+	}
+	//
 	suppressingAttackEvents(target?: Pokemon) {
 		return this.activePokemon && this.activePokemon.isActive && this.activePokemon !== target &&
 			this.activeMove && this.activeMove.ignoreAbility;
