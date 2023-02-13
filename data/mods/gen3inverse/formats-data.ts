@@ -906,7 +906,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	sceptile: {
 		randomBattleMoves: ["focuspunch", "hiddenpowerice", "leafblade", "leechseed", "substitute", "thunderpunch"],
-		tier: "UUBL",
+		tier: "Uber",
 	},
 	torchic: {
 		tier: "LC",
