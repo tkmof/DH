@@ -41,7 +41,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		inherit: true,
 		shortDesc: "This Pokemon's Flying-type moves have their priority increased by 1.",
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move && move.type === 'Flying' &&  && !target.hasAbility('neutralizinggas')) return priority + 1;
+			if (move && move.type === 'Flying' && !target.hasAbility('neutralizinggas')) return priority + 1;
 		},
 		rating: 4,
 	},
