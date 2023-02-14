@@ -556,4 +556,30 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			}
 		},
 	},
+	
+// for ngas
+	neutralizinggas: {
+		num: 356,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Neutralizing Gas",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		pseudoWeather: 'neutralizinggas',
+		condition: {
+			onStart() {
+				this.add('-fieldstart', 'ability: Neutralizing Gas');
+			},
+			onEnd() {
+				this.add('-fieldend', 'ability: Neutralizing Gas');
+			},
+		},
+		secondary: null,
+		target: "all",
+		type: "Ghost",
+		zMove: {boost: {spa: 1}},
+		contestType: "Clever",
+	},
 };
