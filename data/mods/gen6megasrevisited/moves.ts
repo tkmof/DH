@@ -556,7 +556,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			}
 		},
 	},
-	
+	/*
 // for ngas
 	neutralizinggas: {
 		num: 356,
@@ -582,4 +582,5 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {boost: {spa: 1}},
 		contestType: "Clever",
 	},
+*/
 };
