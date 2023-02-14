@@ -48,6 +48,24 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 78, atk: 109, def: 103, spa: 134, spd: 110, spe: 100},
 		abilities: {0: "Delta Stream"},
 	},	
+	alakazammega: {
+		inherit: true,
+		types: ["Psychic", "Ice"],
+		baseStats: {hp: 55, atk: 50, def: 75, spa: 155, spd: 125, spe: 140},
+		abilities: {0: "Magic Guard"},
+	},	
+	pinsirmega: {
+		inherit: true,
+		types: ["Bug", "Ice"],
+		baseStats: {hp: 65, atk: 160, def: 110, spa: 55, spd: 85, spe: 125},
+		abilities: {0: "Mountaineer"},
+	},	
+	gengarmega: {
+		inherit: true,
+		types: ["Ghost", "Poison"],
+		baseStats: {hp: 65, atk: 60, def: 105, spa: 155, spd: 105, spe: 110},
+		abilities: {0: "Neutralizing Gas"},
+	},	
 	
 // Gen 6 Stuff
 	arbok: {
