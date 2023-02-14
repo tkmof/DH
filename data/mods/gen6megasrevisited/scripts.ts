@@ -24,5 +24,21 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "blastoise").learnset.taunt = ["6L1"];
 		this.modData("Learnsets", "blastoise").learnset.drainingkiss = ["6L1"];
 		this.modData("Learnsets", "blastoise").learnset.dazzlinggleam = ["6L1"];
+		this.modData("Learnsets", "gengar").learnset.reflecttype = ["6L1"];
+		this.modData("Learnsets", "gengar").learnset.calmmind = ["6L1"];
+		this.modData("Learnsets", "alakazam").learnset.blizzard = ["6L1"];
+		this.modData("Learnsets", "alakazam").learnset.flashcannon = ["6L1"];
+		this.modData("Learnsets", "alakazam").learnset.icebeam = ["6L1"];
+		this.modData("Learnsets", "alakazam").learnset.hail = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.hail = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.megahorn = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.uturn = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.iceshard = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.iciclecrash = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.icebeam = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.blizzard = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.roost = ["6L1"];
+		this.modData("Learnsets", "pinsir").learnset.iciclespear = ["6L1"];
+
 	},
 };
