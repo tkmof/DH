@@ -5,7 +5,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		desc: "This Pokemon's Normal-type moves become Flying-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Normal-type moves become Flying type and have 1.3x power.",
 		onBasePower(basePower, pokemon, target, move) {
-			if (move.aerilateBoosted && !target.hasAbility('neutralizinggas')) return this.chainModify([0x14CD, 0x1000]);
+			if (move.aerilateBoosted /* && !target.hasAbility('neutralizinggas') */) return this.chainModify([0x14CD, 0x1000]);
 		},
 		rating: 4.5,
 	},
@@ -25,7 +25,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		inherit: true,
 		desc: "If this Pokemon has a stat stage raised it is lowered instead, and vice versa.",
 		onBoost(boost, target, source, effect) {
-			if (effect && effect.id === 'zpower' && !this.field.getPseudoWeather('neutralizinggas')) return;
+			if (effect && effect.id === 'zpower' /* && !this.field.getPseudoWeather('neutralizinggas') */) return;
 			let i: BoostName;
 			for (i in boost) {
 				boost[i]! *= -1;
@@ -41,7 +41,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		inherit: true,
 		shortDesc: "This Pokemon's Flying-type moves have their priority increased by 1.",
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move && move.type === 'Flying' && !target.hasAbility('neutralizinggas')) return priority + 1;
+			if (move && move.type === 'Flying' /* && !target.hasAbility('neutralizinggas') */) return priority + 1;
 		},
 		rating: 4,
 	},
@@ -89,7 +89,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		shortDesc: "This Pokemon's moves are changed to be Normal type.",
 		onModifyMovePriority: 1,
 		onModifyMove(move) {
-			if (move.id !== 'struggle' && this.dex.getMove(move.id).type !== 'Normal' && !this.field.getPseudoWeather('neutralizinggas')) {
+			if (move.id !== 'struggle' && this.dex.getMove(move.id).type !== 'Normal' /* && !this.field.getPseudoWeather('neutralizinggas') */) {
 				move.type = 'Normal';
 			}
 		},
@@ -100,7 +100,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		desc: "This Pokemon's damaging moves become multi-hit moves that hit twice. The second hit has its damage halved. Does not affect multi-hit moves or moves that have multiple targets.",
 		shortDesc: "This Pokemon's damaging moves hit twice. The second hit has its damage halved.",
 		onBasePower(basePower, pokemon, target, move) {
-			if (move.multihitType === 'parentalbond' && move.hit > 1  && !target.hasAbility('neutralizinggas')) return this.chainModify(0.5);
+			if (move.multihitType === 'parentalbond' && move.hit > 1 /* && !target.hasAbility('neutralizinggas') */) return this.chainModify(0.5);
 		},
 		rating: 5,
 	},
@@ -109,7 +109,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		desc: "This Pokemon's Normal-type moves become Fairy-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.3x power.",
 		onBasePower(basePower, pokemon, target, move) {
-			if (move.pixilateBoosted && !target.hasAbility('neutralizinggas')) return this.chainModify([0x14CD, 0x1000]);
+			if (move.pixilateBoosted /* && !target.hasAbility('neutralizinggas') */) return this.chainModify([0x14CD, 0x1000]);
 		},
 		rating: 4.5,
 	},
@@ -117,7 +117,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		inherit: true,
 		shortDesc: "This Pokemon's non-damaging moves have their priority increased by 1.",
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move?.category === 'Status' && !target.hasAbility('neutralizinggas')) {
+			if (move?.category === 'Status' /* && !target.hasAbility('neutralizinggas') */) {
 				move.pranksterBoosted = true;
 				return priority + 1;
 			}
@@ -131,7 +131,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		desc: "This Pokemon's Normal-type moves become Ice-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Normal-type moves become Ice type and have 1.3x power.",
 		onBasePower(basePower, pokemon, target, move) {
-			if (move.refrigerateBoosted && !target.hasAbility('neutralizinggas')) return this.chainModify([0x14CD, 0x1000]);
+			if (move.refrigerateBoosted /* && !target.hasAbility('neutralizinggas') */) return this.chainModify([0x14CD, 0x1000]);
 		},
 		rating: 4.5,
 	},
@@ -147,7 +147,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		inherit: true,
 		desc: "When this Pokemon's stat stages are raised or lowered, the effect is doubled instead.",
 		onBoost(boost, target, source, effect) {
-			if (effect && effect.id === 'zpower' && !this.field.getPseudoWeather('neutralizinggas')) return;
+			if (effect && effect.id === 'zpower' /* && !this.field.getPseudoWeather('neutralizinggas') */) return;
 			let i: BoostName;
 			for (i in boost) {
 				boost[i]! *= 2;
@@ -178,7 +178,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	merciless: {
 		shortDesc: "This Pokemon's attacks are critical hits if the target is statused.",
 		onModifyCritRatio(critRatio, source, target) {
-			if (target && ['psn', 'tox', 'brn', 'frz', 'slp', 'par'].includes(target.status) && !target.hasAbility('neutralizinggas')) return 5;
+			if (target && ['psn', 'tox', 'brn', 'frz', 'slp', 'par'].includes(target.status) /* && !target.hasAbility('neutralizinggas') */) return 5;
 		},
 		name: "Merciless",
 		rating: 1.5,
@@ -188,7 +188,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	pocketdimension: {
 	  shortDesc: "This Pokemon switches out after using a status move.",
 	  onModifyMove(move, pokemon) {
-			if (move.category === 'Status' && !this.field.getPseudoWeather('neutralizinggas')) {
+			if (move.category === 'Status' /* && !this.field.getPseudoWeather('neutralizinggas') */) {
 			  move.selfSwitch = true;
 			  this.add('-ability', pokemon, 'Pocket Dimension');
 			}
@@ -216,18 +216,22 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	},
 	neutralizinggas: {
 		// let's get silly
+	  shortDesc: "(Non-functional placeholder) While this Pokemon is active, opposing Pokemon's moves and their effects ignore its own Ability.",
+		/*
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'Neutralizing Gas');
 			this.field.addPseudoWeather('neutralizinggas', pokemon, pokemon.ability);
 			this.add('-message', `Neutralizing gas filled the area!`);			
 		},
 		// actual effects are coded into other abilities themselves
+		*/
 		name: "Neutralizing Gas",
 		rating: 4,
 		num: 256,
 		gen: 6,
 	},
 	
+/*	
 // ngas is so cringe
 	analytic: {
 		onBasePowerPriority: 21,
@@ -615,4 +619,5 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 2,
 		num: 138,
 	},
+*/
 };
