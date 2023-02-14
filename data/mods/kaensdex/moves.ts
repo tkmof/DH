@@ -276,7 +276,7 @@ drinkjuice: {
 		basePower: 0,
 		category: "Status",
 		name: "Drink Juice",
-		shortDesc: "Heals the user by 50% its max HP and cures its Burn, Paralysis or Poison.",
+		shortDesc: "Heals by 50% HP and cures its Burn, Paralysis or Poison.",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
@@ -782,7 +782,7 @@ lovearrow: {
 		basePower: 80,
 		category: "Physical",
 		name: "Love Arrow",
-		shortDesc: "Makes the opponent fall in love. 30% Confusion chance.",
+		shortDesc: "Makes the opponent fall in love. 10% Confusion chance.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -817,7 +817,7 @@ lovearrow: {
 			},
 		},
 		secondary: {
-			chance: 30,
+			chance: 10,
 			volatileStatus: 'confusion',
 		},
 		target: "normal",
@@ -1610,7 +1610,7 @@ puppetmasters: {
 		basePower: 45,
 		category: "Special",
 		name: "Puppet Masters",
-		shortDesc: "Traps target. Hits twice."
+		shortDesc: "Traps target. Hits twice.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -1643,6 +1643,115 @@ fangclaws: {
 		contestType: "Tough",
 	},
 	
+bonebreaker: {
+	num: 100066,
+	accuracy: 100,
+	basePower: 95,
+	category: "Physical",
+	name: "Bone Breaker",
+	shortDesc: "Set Toxic Spikes on hit.",
+	pp: 10,
+	priority: 0,
+	flags: {contact: 1,protect: 1, mirror: 1},
+	self:{
+		onHit(source) {
+			source.side.foe.addSideCondition('toxicspikes');
+		},
+	},
+	target: "normal",
+	type: "Poison",
+	contestType: "Clever",
+ },
+ 
+ectoplasm: {
+		num: 100067,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Ectoplasm",
+		shortDesc: "30% to badly poison the target.",
+		pp: 10,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			status: 'tox',
+		},
+		target: "normal",
+		type: "Ghost",
+		contestType: "Tough",
+	},
+	
+surprise: {
+		num: 100068,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Surprise",
+		shortDesc: "User switches out after damaging the target.",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Cute",
+	},
+	
+hailblast: {
+		num: 100069,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		name: "Hail Blast",
+		shortDesc: "Summons a hailstorm.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		weather: 'hail',
+		secondary: null,
+		target: "allAdjacent",
+		type: "Ice",
+	},
+	
+concert: {
+		num: 100070,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Concert",
+		shortDesc: "The target's Ability becomes Dancer. Sound. Mega Only.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, sound: 1, mirror: 1},
+		onTryMove(pokemon, target, move) {
+			if (pokemon.species.name === 'Vizcachu-Mega' || move.hasBounced) {
+				return;
+			}
+			this.add('-fail', pokemon, 'move: Concert');
+			this.hint("Only a Pokemon whose form is Vizcachu-Mega can use this move.");
+			return null;
+		},
+		onTryHit(target) {
+			if (target.getAbility().isPermanent || target.ability === 'dancer' || target.ability === 'truant') {
+				return false;
+			}
+		},
+		onHit(pokemon) {
+			const oldAbility = pokemon.setAbility('dancer');
+			if (oldAbility) {
+				this.add('-ability', pokemon, 'Dancer', '[from] move: Concert');
+				return;
+			}
+			return false;
+		},
+		secondary: null,
+		target: "allAdjacent",
+		type: "Electric",
+		zMove: {boost: {spa: 1}},
+		contestType: "Cool",
+	},
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,
