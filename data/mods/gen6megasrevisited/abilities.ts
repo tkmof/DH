@@ -215,16 +215,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		gen: 6,
 	},
 	neutralizinggas: {
-		// let's get silly
-	  shortDesc: "(Non-functional placeholder) While this Pokemon is active, opposing Pokemon's moves and their effects ignore its own Ability.",
-		/*
-		onStart(pokemon) {
-			this.add('-ability', pokemon, 'Neutralizing Gas');
-			this.field.addPseudoWeather('neutralizinggas', pokemon, pokemon.ability);
-			this.add('-message', `Neutralizing gas filled the area!`);			
-		},
-		// actual effects are coded into other abilities themselves
-		*/
+	  	shortDesc: "(Non-functional placeholder) While this Pokemon is active, opposing Pokemon's moves and their effects ignore its own Ability.",
 		name: "Neutralizing Gas",
 		rating: 4,
 		num: 256,
