@@ -37,13 +37,29 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		desc: "While this Pokemon is active, Explosion, Self-Destruct, and the Aftermath Ability are prevented from having an effect.",
 		shortDesc: "Prevents Explosion/Self-Destruct/Aftermath while this Pokemon is active.",
 	},
+	/*
 	galewings: {
 		inherit: true,
 		shortDesc: "This Pokemon's Flying-type moves have their priority increased by 1.",
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move && move.type === 'Flying' /* && !target.hasAbility('neutralizinggas') */) return priority + 1;
+			if (move && move.type === 'Flying') return priority + 1;
 		},
 		rating: 4,
+	},
+	*/
+	galewings: {
+		// for ngas
+		inherit: true,
+		shortDesc: "This Pokemon's Flying-type moves have their priority increased by 1.",
+		onModifyPriority(priority, pokemon, target, move) {
+			for (const poke of this.getAllActive()) {
+				if (poke.hasAbility('neutralizinggas') && poke.side.id !== pokemon.side.id &&
+					!poke.volatiles['gastroacid'] && !poke.transformed) {
+					return;
+				}
+			}
+			if (move?.type === 'Flying') return priority + 1;
+		},
 	},
 	infiltrator: {
 		inherit: true,
@@ -114,17 +130,20 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 4.5,
 	},
 	prankster: {
+		// for ngas
 		inherit: true,
-		shortDesc: "This Pokemon's non-damaging moves have their priority increased by 1.",
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move?.category === 'Status' /* && !target.hasAbility('neutralizinggas') */) {
+			for (const poke of this.getAllActive()) {
+				if (poke.hasAbility('neutralizinggas') && poke.side.id !== pokemon.side.id &&
+					!poke.volatiles['gastroacid'] && !poke.transformed) {
+					return;
+				}
+			}
+			if (move?.category === 'Status') {
 				move.pranksterBoosted = true;
 				return priority + 1;
 			}
 		},
-		name: "Prankster",
-		rating: 4,
-		num: 158,
 	},
 	refrigerate: {
 		inherit: true,
@@ -215,11 +234,28 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		gen: 6,
 	},
 	neutralizinggas: {
-	  	shortDesc: "(Non-functional placeholder) While this Pokemon is active, opposing Pokemon's moves and their effects ignore its own Ability.",
-		name: "Neutralizing Gas",
-		rating: 4,
-		num: 256,
+		inherit: true,
+		// Ability suppression cancelled in scripts.ts
+		// new Ability suppression implemented in scripts.ts
+		onPreStart(pokemon) {},
+		onEnd(source) {},
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Neutralizing Gas');
+		},
+		// onModifyPriority implemented in relevant abilities
+		onFoeBeforeMovePriority: 13,
+		onFoeBeforeMove(attacker, defender, move) {
+			attacker.addVolatile('neutralizinggas');
+		},
+		condition: {
+			onAfterMove(pokemon) {
+				pokemon.removeVolatile('neutralizinggas');
+			},
+		},
+		desc: "While this Pokemon is active, opposing Pokemon's moves and their effects ignore its own Ability. Does not affect the As One, Battle Bond, Comatose, Disguise, Gulp Missile, Ice Face, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, or Zen Mode Abilities.",
+		shortDesc: "While this Pokemon is active, opposing Pokemon's Ability has no effect when it uses moves.",
 		gen: 6,
+		num: 256,
 	},
 	
 /*	
