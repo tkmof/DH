@@ -276,7 +276,7 @@ drinkjuice: {
 		basePower: 0,
 		category: "Status",
 		name: "Drink Juice",
-		shortDesc: "Heals the user by 50% its max HP and cures its Burn, Paralysis or Poison.",
+		shortDesc: "Heals by 50% HP and cures its Burn, Paralysis or Poison.",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
@@ -782,7 +782,7 @@ lovearrow: {
 		basePower: 80,
 		category: "Physical",
 		name: "Love Arrow",
-		shortDesc: "Makes the opponent fall in love. 30% Confusion chance.",
+		shortDesc: "Makes the opponent fall in love. 10% Confusion chance.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -817,7 +817,7 @@ lovearrow: {
 			},
 		},
 		secondary: {
-			chance: 30,
+			chance: 10,
 			volatileStatus: 'confusion',
 		},
 		target: "normal",
@@ -1389,6 +1389,368 @@ focusedmind: {
 		type: "Psychic",
 		zMove: {boost: {atk: 1}},
 		contestType: "Cute",
+	},
+	
+wonderfulservice: {
+		num: 100056,
+		accuracy: 100,
+		basePower: 60,
+		category: "Physical",
+		name: "Wonderful Service",
+		shortDesc: "Sets Wonder Room.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		pseudoWeather: 'wonderroom',
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					return 7;
+				}
+				return 5;
+			},
+			onStart(side, source) {
+				this.add('-fieldstart', 'move: Wonder Room', '[of] ' + source);
+			},
+			// Swapping defenses implemented in sim/pokemon.js:Pokemon#calculateStat and Pokemon#getStat
+			onResidualOrder: 24,
+			onEnd() {
+				this.add('-fieldend', 'move: Wonder Room');
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Clever",
+	},
+	
+incredibleservice: {
+		num: 100057,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Incredible Service",
+		shortDesc: "Sets Magic Room.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		pseudoWeather: 'magicroom',
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					return 7;
+				}
+				return 5;
+			},
+			onStart(target, source) {
+				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
+			},
+			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
+			onResidualOrder: 25,
+			onEnd() {
+				this.add('-fieldend', 'move: Magic Room', '[of] ' + this.effectData.source);
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Clever",
+	},
+	
+call: {
+		num: 100058,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Call",
+		shortDesc: "Curses the target.",
+		pp: 10,
+		priority: 0,
+		flags: {authentic: 1},
+		volatileStatus: 'curse',
+		onTryHit(target, source, move) {
+			if (move.volatileStatus && target.volatiles['curse']) {
+				return false;
+			}
+		},
+		onHit(target, source) {
+			this.directDamage(source.maxhp / 2, source, source);
+		},
+		condition: {
+			onStart(pokemon, source) {
+				this.add('-start', pokemon, 'Curse', '[of] ' + source);
+			},
+			onResidualOrder: 10,
+			onResidual(pokemon) {
+				this.damage(pokemon.baseMaxhp / 4);
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		zMove: {effect: 'curse'},
+		contestType: "Tough",
+	},
+	
+rockcrash: {
+		num: 1000059,
+		accuracy: 100,
+		basePower: 0,
+		basePowerCallback(pokemon, target) {
+			const targetWeight = target.getWeight();
+			const pokemonWeight = pokemon.getWeight();
+			if (pokemonWeight > targetWeight * 5) {
+				return 120;
+			}
+			if (pokemonWeight > targetWeight * 4) {
+				return 100;
+			}
+			if (pokemonWeight > targetWeight * 3) {
+				return 80;
+			}
+			if (pokemonWeight > targetWeight * 2) {
+				return 60;
+			}
+			return 40;
+		},
+		category: "Physical",
+		name: "Rock Crash",
+		shortDesc: "More power the heavier the user than the target.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, nonsky: 1},
+		onTryHit(target, pokemon, move) {
+			if (target.volatiles['dynamax']) {
+				this.add('-fail', pokemon, 'Dynamax');
+				this.attrLastMove('[still]');
+				return null;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		zMove: {basePower: 160},
+		maxMove: {basePower: 130},
+		contestType: "Tough",
+	},
+	
+dancebattle: {
+		num: 100060,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Dance Battle",
+		shortDesc: "Raises all stats by 1 (not acc/eva) of both user and target.",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1, dance: 1},
+		boosts: {
+			atk: 1,
+			def: 1,
+			spa: 1,
+			spd: 1,
+			spe: 1,
+		},
+		self: {
+				boosts: {
+					atk: 1,
+					def: 1,
+					spa: 1,
+					spd: 1,
+					spe: 1,
+				},
+			},
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cool",
+	},
+	
+froghop: {
+		num: 100061,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Frog Hop",
+		shortDesc: "User switches out after damaging the target.",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Poison",
+	},
+	
+aerialassault: {
+		num: 100062,
+		accuracy: true,
+		basePower: 70,
+		category: "Physical",
+		name: "Aerial Assault",
+		shortDesc: "Always results in a critical hit; no accuracy check.",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		willCrit: true,
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+		contestType: "Cool",
+	},
+	
+puppetmasters: {
+		num: 100064,
+		accuracy: 100,
+		basePower: 45,
+		category: "Special",
+		name: "Puppet Masters",
+		shortDesc: "Traps target. Hits twice.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: 2,
+		secondary: {
+			chance: 100,
+			onHit(target, source, move) {
+				if (source.isActive) target.addVolatile('trapped', source, move, 'trapper');
+			},
+		},
+		target: "normal",
+		type: "Ghost",
+		contestType: "Tough",
+	},
+	
+fangclaws: {
+		num: 100065,
+		accuracy: 75,
+		basePower: 100,
+		category: "Physical",
+		name: "Fang-Claws",
+		shortDesc: "Traps and damages the target for 4-5 turns.",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		volatileStatus: 'partiallytrapped',
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		contestType: "Tough",
+	},
+	
+bonebreaker: {
+	num: 100066,
+	accuracy: 100,
+	basePower: 95,
+	category: "Physical",
+	name: "Bone Breaker",
+	shortDesc: "Set Toxic Spikes on hit.",
+	pp: 10,
+	priority: 0,
+	flags: {contact: 1,protect: 1, mirror: 1},
+	self:{
+		onHit(source) {
+			source.side.foe.addSideCondition('toxicspikes');
+		},
+	},
+	target: "normal",
+	type: "Poison",
+	contestType: "Clever",
+ },
+ 
+ectoplasm: {
+		num: 100067,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Ectoplasm",
+		shortDesc: "30% to badly poison the target.",
+		pp: 10,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			status: 'tox',
+		},
+		target: "normal",
+		type: "Ghost",
+		contestType: "Tough",
+	},
+	
+surprise: {
+		num: 100068,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Surprise",
+		shortDesc: "User switches out after damaging the target.",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Cute",
+	},
+	
+hailblast: {
+		num: 100069,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		name: "Hail Blast",
+		shortDesc: "Summons a hailstorm.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		weather: 'hail',
+		secondary: null,
+		target: "allAdjacent",
+		type: "Ice",
+	},
+	
+concert: {
+		num: 100070,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Concert",
+		shortDesc: "The target's Ability becomes Dancer. Sound. Mega Only.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, sound: 1, mirror: 1},
+		onTryMove(pokemon, target, move) {
+			if (pokemon.species.name === 'Vizcachu-Mega' || move.hasBounced) {
+				return;
+			}
+			this.add('-fail', pokemon, 'move: Concert');
+			this.hint("Only a Pokemon whose form is Vizcachu-Mega can use this move.");
+			return null;
+		},
+		onTryHit(target) {
+			if (target.getAbility().isPermanent || target.ability === 'dancer' || target.ability === 'truant') {
+				return false;
+			}
+		},
+		onHit(pokemon) {
+			const oldAbility = pokemon.setAbility('dancer');
+			if (oldAbility) {
+				this.add('-ability', pokemon, 'Dancer', '[from] move: Concert');
+				return;
+			}
+			return false;
+		},
+		secondary: null,
+		target: "allAdjacent",
+		type: "Electric",
+		zMove: {boost: {spa: 1}},
+		contestType: "Cool",
 	},
 	//eevee moves back to their original values
 	buzzybuzz: {

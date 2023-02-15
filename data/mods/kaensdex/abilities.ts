@@ -445,6 +445,28 @@ meteorpower: {
 		num: 10026,
 	},
 	
+miceadaptation: {
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Grass' || target !== source && move.type === 'Water') {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] ability: Mice Adaptation');
+				}
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (target === this.effectData.target || target.side !== source.side) return;
+			if (move.type === 'Grass' || move.type === 'Water') {
+				this.boost({atk: 1}, this.effectData.target);
+			}
+		},
+		name: "Mice Adaptation",
+		desc: "+1 Atk if hit by a Grass or Water move; Grass and Water immunity.",
+		rating: 3,
+		num: 157,
+	},
+	
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,

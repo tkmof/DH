@@ -17,7 +17,7 @@ magicwood: {
 		desc: "If held by a Jaklove, its Defense is doubled."
 	},
 	
-	volcanicrock: {
+volcanicrock: {
 		name: "Volcanic Rock",
 		spritenum: 438,
 		fling: {
@@ -86,6 +86,48 @@ toysword: {
 		gen: 2,
 		desc: "If held by a Toknight, it gains 1.7x Attack.",
 	},
+	
+catnail: {
+		name: "Cat Nail",
+		fling: {
+			basePower: 60,
+		},
+		spritenum: 0,
+		onModifyCritRatio(critRatio, user) {
+			if (["Ghoca"].includes(this.toID(user.baseSpecies.baseSpecies))) {
+				return critRatio + 2;
+			}
+		},
+		itemUser: ["Ghoca"],
+		num: 100004,
+		gen: 8,
+		desc: "If held by a Ghoca, its critical hit ratio is raised by 2 stages.",
+	},
+	
+fertilizer: {
+		name: "Fertilizer",
+		spritenum: 0,
+		fling: {
+			basePower: 90,
+		},
+		onModifyDefPriority: 1,
+		onModifyDef(def, pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Kibasol') {
+				return this.chainModify(1.3);
+			}
+		},
+		onModifySpDPriority: 1,
+		onModifySpD(spd, pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Kibasol') {
+				return this.chainModify(1.3);
+			}
+		},
+		itemUser: ["Kibasol"],
+		num: 100005,
+		gen: 2,
+		desc: "If held by a Kibasol, its gets 1.3x Def/SpD."
+	},
+	
 abomigorite: {
 		name: "Abomigorite",
 		spritenum: 575,
@@ -101,7 +143,7 @@ abomigorite: {
 		desc: "If held by an Abomigo, this item allows it to Mega Evolve in battle.",
 	},
 	
-	vizcarite: {
+vizcarite: {
 		name: "Vizcarite",
 		spritenum: 596,
 		megaStone: "Vizcachu-Mega",
@@ -116,7 +158,7 @@ abomigorite: {
 		desc: "If held by a Vizcachu, this item allows it to Mega Evolve in battle.",
 	},
 	
-	porcusrite: {
+porcusrite: {
 		name: "Porcusrite",
 		spritenum: 576,
 		megaStone: "Porcusquill-Mega",
@@ -131,7 +173,7 @@ abomigorite: {
 		desc: "If held by a Porcusquill, this item allows it to Mega Evolve in battle.",
 	},
 	
-	grussgurite: {
+grussgurite: {
 		name: "Grussgurite",
 		spritenum: 608,
 		megaStone: "Grussgu-Mega",
@@ -146,7 +188,7 @@ abomigorite: {
 		desc: "If held by a Grussgu, this item allows it to Mega Evolve in battle.",
 	},
 	
-	crobatite: {
+crobatite: {
 		name: "Crobatite",
 		spritenum: 608,
 		megaStone: "Crobat-Mega",
