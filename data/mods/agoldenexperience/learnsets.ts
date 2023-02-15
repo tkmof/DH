@@ -111,7 +111,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 		},
 	},
 	//PLA Pokemons
-	growlithehisui: {
+	/*growlithehisui: {
 		learnset: {
 			aerialace: ["8M"],
 			bite: ["8L9"],
@@ -821,7 +821,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			//additions
 			superpower: ["8M"],
 		},
-	},
+	},*/
 	//Fakemons
 	tentarcolh: {
         learnset: {
