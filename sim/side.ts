@@ -58,6 +58,7 @@ export class Side {
 
 	faintedLastTurn: Pokemon | null;
 	faintedThisTurn: Pokemon | null;
+	totalFainted: number;
 	/** only used by Gen 1 Counter */
 	lastSelectedMove: ID = '';
 
@@ -106,6 +107,7 @@ export class Side {
 		this.pokemonLeft = this.pokemon.length;
 		this.faintedLastTurn = null;
 		this.faintedThisTurn = null;
+		this.totalFainted = 0;
 		this.zMoveUsed = false;
 
 		this.sideConditions = {};
@@ -186,6 +188,12 @@ export class Side {
 		const actives = this.active.filter(active => active && !active.fainted);
 		if (!actives.length) return null;
 		return this.battle.sample(actives);
+	}
+
+	foeSidesWithConditions() {
+		if (this.battle.gameType === 'freeforall') return this.battle.sides.filter(side => side !== this);
+
+		return [this.foe];
 	}
 
 	addSideCondition(

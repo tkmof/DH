@@ -1,5 +1,14 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 // New Mons
+	plucks: {
+		num: 1152,
+		name: "Plucks",
+		types: ["Bug", "Normal"],
+		baseStats: {hp: 75, atk: 110, def: 115, spa: 75, spd: 75, spe: 55},
+		abilities: {},
+		prevo: "Pinsir",
+		evoType: "trade",
+	},
 
 // Future Mons
 	anorith: {
@@ -662,6 +671,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	pinsir: {
 		inherit: true,
 		baseStats: {hp: 65, atk: 125, def: 100, spa: 55, spd: 55, spe: 85},
+		evos: ["Plucks"],
 	},
 	tauros: {
 		inherit: true,

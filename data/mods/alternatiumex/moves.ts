@@ -916,6 +916,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (target.status || target.hasAbility('comatose')) return move.basePower * 2;
 			return move.basePower;
 		},
+		shortDesc: "Power doubles if the target has a status ailment.",
 	},
 	barbbarrage: {
 		num: -19,
@@ -1316,6 +1317,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		name: "Tera Blast",
 		pp: 10,
 		priority: 0,
