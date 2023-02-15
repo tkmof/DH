@@ -4,10 +4,9 @@ export const Scripts: ModdedBattleScriptsData = {
 		// for neutralizing gas
 		ignoringAbility() {
 			if (this.battle.gen >= 5 && !this.isActive) return true;
-			if (this.getAbility().isPermanent) return false;
+			if (this.dex.getAbility().isPermanent) return false;
 			if (this.volatiles['gastroacid']) return true;
-
-			if (this.hasItem('Ability Shield') || this.ability === ('neutralizinggas' as ID)) return false;
+			if (this.ability === ('neutralizinggas' as ID)) return false;
 			if (this.volatiles['neutralizinggas']) return true;
 
 			return false;
