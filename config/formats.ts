@@ -65,7 +65,7 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 8] Book of Enigmas",
+		name: "[Gen 9] Book of Enigmas",
 		mod: 'bookofenigmas',
 		desc: [
 			"<b>Book of Enigmas</b>: A Pet Mod that aims to create new Paradox Pokemon based on Ho-oh and Lugia - the sky and the sea, respectively.",

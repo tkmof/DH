@@ -98,9 +98,32 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {basePower: 120},
 		maxMove: {basePower: 140},
 	},
+	cleansingwater: {
+		num: -5,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Cleansing Water",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onHit(pokemon) {
+			let factor = 1/3;
+			if (pokemon.status) {
+				factor = 1/6;
+				pokemon.cureStatus();
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+		secondary: null,
+		target: "self",
+		type: "Water",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
+	},
 	
 	//Gen 9 moves
-	spicyextract: {
+	/*spicyextract: {
 		num: 858,
 		accuracy: true,
 		basePower: 0,
