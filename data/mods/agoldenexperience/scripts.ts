@@ -668,7 +668,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 
     //New movepool changes :
 
-    //gen 1 : 
+    //gen 1: 
     this.modData('Learnsets', 'pidgeot').learnset.focusblast = ['8L1'];
     this.modData('Learnsets', 'spearow').learnset.bravebird = ['8L1'];
     this.modData('Learnsets', 'arbok').learnset.meanlook = ['8L1'];
@@ -736,7 +736,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'articuno').learnset.focusblast = ['8L1'];
     this.modData('Learnsets', 'articuno').learnset.calmmind = ['8L1'];
 
-    //gen 2 :
+    //gen 2:
     this.modData('Learnsets', 'meganium').learnset.playrough = ['8L1'];
     this.modData('Learnsets', 'meganium').learnset.dazzlinggleam = ['8L1'];
     this.modData('Learnsets', 'meganium').learnset.dragondance = ['8L1'];
@@ -770,7 +770,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'octillery').learnset.terrainpulse = ['8L1'];
     this.modData('Learnsets', 'mantine').learnset.flipturn = ['8L1'];
 
-    //gen 3 :
+    //gen 3:
     this.modData('Learnsets', 'mightyena').learnset.pursuit = ['8L1'];
     this.modData('Learnsets', 'mightyena').learnset.bulkup = ['8L1'];
     this.modData('Learnsets', 'beautifly').learnset.smartstrike = ['8L1'];
@@ -814,7 +814,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'relicanth').learnset.flipturn = ['8L1'];
     this.modData('Learnsets', 'regirock').learnset.shoreup = ['8L1'];
 
-    //gen 4 :
+    //gen 4:
     this.modData('Learnsets', 'torterra').learnset.bodypress = ['8L1'];
     this.modData('Learnsets', 'torterra').learnset.weatherball = ['8L1'];
     this.modData('Learnsets', 'empoleon').learnset.flipturn = ['8T'];
@@ -915,7 +915,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'regigigas').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'giratina').learnset.teleport = ['8L1'];
 
-    //gen 5 :
+    //gen 5:
     this.modData('Learnsets', 'serperior').learnset.mudshot = ['8L1'];
     this.modData('Learnsets', 'serperior').learnset.hurricane = ['8L1'];
     this.modData('Learnsets', 'samurotthisui').learnset.flipturn = ['8L1'];
@@ -1011,7 +1011,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'thundurus').learnset.acrobatics = ['8L1'];
     this.modData('Learnsets', 'reshiram').learnset.calmmind = ['8L1'];
 
-    //gen 6 :
+    //gen 6:
     //this.modData('Learnsets', 'delphox').learnset.nastyplot = ['8L1'];
     this.modData('Learnsets', 'delphox').learnset.recover = ['8L1'];
     this.modData('Learnsets', 'delphox').learnset.speedswap = ['8L1'];
@@ -1037,7 +1037,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'gourgeist').learnset.strengthsap = ['8L1'];
     this.modData('Learnsets', 'noivern').learnset.snarl = ['8L1'];
 
-    //gen 7 :
+    //gen 7:
     this.modData('Learnsets', 'incineroar').learnset.rapidspin = ['8L1'];
     this.modData('Learnsets', 'popplio').learnset.sonicboom = ['8L1'];
     this.modData('Learnsets', 'brionne').learnset.sonicboom = ['8L1'];
@@ -1083,7 +1083,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     delete this.modData('Learnsets', 'magearna').learnset.storedpower;
     this.modData('Learnsets', 'stakataka').learnset.zawall = ['8T'];
 
-    //gen 8 :
+    //gen 8:
     //this.modData('Learnsets', 'cinderace').learnset.willowisp = ['8M'];
     this.modData('Learnsets', 'inteleon').learnset.calmmind = ['8M'];
     this.modData('Learnsets', 'inteleon').learnset.aurasphere = ['8M'];
@@ -1147,7 +1147,227 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'calyrexice').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'calyrexice').learnset.tripleaxel = ['8L1'];
 
+    //gen 9:
 
+    this.modData('Learnsets', 'tatsugiri').learnset.icebeam = ['8L1'];
+    this.modData('Learnsets', 'screamtail').learnset.followme = ['8L1'];
+
+
+    // return 
+    this.modData('Learnsets', 'meltan').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'melmetal').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'grookey').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'thwackey').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'rillaboom').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'scorbunny').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'raboot').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'cinderace').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'sobble').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'drizzile').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'inteleon').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'skwovet').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'greedent').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'rookidee').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'corvispire').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'corviknight').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'blipbug').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'dottler').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'orbeetle').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'nickit').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'thievul').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'gossifleur').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'eldegoss').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'wooloo').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'dubwool').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'chewtle').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'drednaw').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'yamper').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'boltund').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'rolycoly').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'carkoal').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'coalossal').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'applin').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'flapple').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'appletun').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'silicobra').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'sandaconda').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'cramorant').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'arrokuda').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'barraskewda').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'toxel').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'toxtricityamped').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'toxtricitylowkey').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'sizzlipede').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'centiskorch').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'clobbopus').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'grapploct').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'sinistea').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'polteageist').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'hatenna').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'hattrem').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'hatterene').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'impidimp').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'morgrem').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'grimmsnarl').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'obstagoon').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'perrserker').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'cursola').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'sirfetchd').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'mr.rime').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'runerigus').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'milcery').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'alcremie').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'falinks').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'pincurchin').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'snom').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'frosmoth').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'stonjourner').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'eiscue').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'indeedeemale').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'indeedeefemale').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'morpeko').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'cufant').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'copperajah').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'dracozolt').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'arctozolt').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'dracovish').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'arctovish').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'duraludon').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'dreepy').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'drakloak').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'dragapult').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'zacian').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'zaciancrowned').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'zamazenta').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'zamazentacrowned').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'eternatus').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'zarude').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'kubfu').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'urshifu').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'urshifurapidstrike').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'regieleki').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'regidrago').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'glastrier').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'spectrier').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'calyrex').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'calyrexicerider').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'calyrexshadowrider').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'wyrdeer').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'kleavor').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'ursaluna').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'basculegion').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'basculegionfemale').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'overqwil').learnset.return = ['8L1'];
+    this.modData('Learnsets', 'enamorus').learnset.return = ['8L1'];
+
+    // frustration 
+    this.modData('Learnsets', 'meltan').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'melmetal').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'grookey').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'thwackey').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'rillaboom').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'scorbunny').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'raboot').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'cinderace').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'sobble').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'drizzile').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'inteleon').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'skwovet').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'greedent').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'rookidee').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'corvispire').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'corviknight').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'blipbug').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'dottler').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'orbeetle').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'nickit').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'thievul').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'gossifleur').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'eldegoss').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'wooloo').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'dubwool').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'chewtle').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'drednaw').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'yamper').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'boltund').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'rolycoly').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'carkoal').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'coalossal').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'applin').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'flapple').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'appletun').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'silicobra').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'sandaconda').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'cramorant').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'arrokuda').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'barraskewda').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'toxel').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'toxtricityamped').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'toxtricitylowkey').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'sizzlipede').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'centiskorch').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'clobbopus').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'grapploct').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'sinistea').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'polteageist').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'hatenna').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'hattrem').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'hatterene').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'impidimp').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'morgrem').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'grimmsnarl').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'obstagoon').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'perrserker').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'cursola').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'sirfetchd').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'mr.rime').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'runerigus').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'milcery').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'alcremie').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'falinks').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'pincurchin').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'snom').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'frosmoth').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'stonjourner').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'eiscue').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'indeedeemale').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'indeedeefemale').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'morpeko').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'cufant').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'copperajah').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'dracozolt').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'arctozolt').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'dracovish').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'arctovish').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'duraludon').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'dreepy').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'drakloak').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'dragapult').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'zacian').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'zaciancrowned').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'zamazenta').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'zamazentacrowned').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'eternatus').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'zarude').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'kubfu').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'urshifu').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'urshifurapidstrike').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'regieleki').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'regidrago').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'glastrier').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'spectrier').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'calyrex').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'calyrexicerider').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'calyrexshadowrider').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'wyrdeer').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'kleavor').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'ursaluna').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'basculegion').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'basculegionfemale').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'sneasler').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'overqwil').learnset.frustration = ['8L1'];
+    this.modData('Learnsets', 'enamorus').learnset.frustration = ['8L1'];
 
 
 
