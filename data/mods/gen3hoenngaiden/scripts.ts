@@ -208,13 +208,15 @@ export const Scripts: ModdedBattleScriptsData = {
 		// this.modData('Learnsets', 'ledian').learnset.firepunch = ['3L1'];
 		this.modData('Learnsets', 'ledian').learnset.lunge = ['3L1'];
 		this.modData('Learnsets', 'ledian').learnset.aeroblast = ['3L1'];
-		this.modData('Learnsets', 'ledian').learnset.bellydrum = ['3L1'];
+		// this.modData('Learnsets', 'ledian').learnset.bellydrum = ['3L1'];
 		this.modData('Learnsets', 'ledian').learnset.calmmind = ['3L1'];
 
 		delete this.modData('Learnsets', 'ledian').learnset.brickbreak;
 		delete this.modData('Learnsets', 'ledian').learnset.focuspunch;
+		delete this.modData('Learnsets', 'ledian').learnset.swordsdance;
 		delete this.modData('Learnsets', 'ledyba').learnset.brickbreak;
 		delete this.modData('Learnsets', 'ledyba').learnset.focuspunch;
+		delete this.modData('Learnsets', 'ledyba').learnset.swordsdance;
 		
 		this.modData('Learnsets', 'sableye').learnset.yawn = ['3L1'];
 		
