@@ -532,6 +532,8 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			thunderwave: ["3L1"],
 			toxic: ["3L1"],
 			triattack: ["3L1"],
+			mimic: ["3L1"],
+			secretpower: ["3L1"],
 		},
 	},
 	silvally: {
