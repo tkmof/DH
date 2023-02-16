@@ -983,7 +983,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "regidrago").learnset.counter = ["3L1"];
 		this.modData("Learnsets", "regidrago").learnset.earthquake = ["3L1"];
 
-		this.modData("Learnsets", "uxie").learnset.wish = ["3L1"];
+		// this.modData("Learnsets", "uxie").learnset.wish = ["3L1"];
 
 		this.modData("Learnsets", "stunfisk").learnset.mimic = ["3L1"];
 		this.modData("Learnsets", "stunfisk").learnset.secretpower = ["3L1"];
@@ -1026,6 +1026,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "talonflame").learnset.mimic = ["3L1"];	
 		this.modData("Learnsets", "talonflame").learnset.mudslap = ["3L1"];	
 
+		//quick fix
 
 		delete this.modData('Learnsets', 'sirfetchd').learnset.featherdance;
 		delete this.modData('Learnsets', 'sirfetchd').learnset.wish;
