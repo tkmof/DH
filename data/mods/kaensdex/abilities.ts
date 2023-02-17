@@ -464,9 +464,112 @@ miceadaptation: {
 		name: "Mice Adaptation",
 		desc: "+1 Atk if hit by a Grass or Water move; Grass and Water immunity.",
 		rating: 3,
-		num: 157,
+		num: 10027,
 	},
 	
+scary: {
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Scary', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({atk: -1, spa: -1, spe:-1}, target, pokemon, null, true);
+				}
+			}
+		},
+		name: "Scary",
+		desc: "On switch-in, this Pokémon lowers the Atk/SpA/Spe of opponents by 1 stage.",
+		rating: 3.5,
+		num: 10028,
+	},
+
+guardianoftheswamp: {
+		onUpdate(pokemon) {
+			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
+				this.add('-activate', pokemon, 'ability: Guardian of the Swamp');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'psn' && status.id !== 'tox') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Guardian of the Swamp');
+			}
+			return false;
+		},		
+		onModifyCritRatio(critRatio, user) {
+		if (['raindance', 'primordialsea'].includes(user.effectiveWeather())) {
+				return critRatio + 3;
+			}			
+		},
+		name: "Guardian of the Swamp",
+		desc: "Can't be poisoned. Always Crit in Rain.",
+		rating: 2,
+		num: 10029,
+	},
+	
+guardianofthewoods: {
+onUpdate(pokemon) {
+			if (pokemon.status === 'brn') {
+				this.add('-activate', pokemon, 'ability: Guardian of the Woods');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Guardian of the Woods');
+			}
+			return false;
+		},	
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Guardian of the Woods",
+		desc: "Can't be burned. 1.5x Atk in Sunny Day.",
+		rating: 2,
+		num: 10030,
+	},
+	
+guardianoftheruins: {
+	onUpdate(pokemon) {
+			if (pokemon.status === 'frz') {
+				this.add('-activate', pokemon, 'ability: Guardian of the Ruins');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'frz') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Guardian of the Ruins');
+			}
+			return false;
+		},	
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (['sandstorm'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(1.2);
+			}
+		},
+		onModifyCritRatio(critRatio, user) {
+		if (['sandstorm'].includes(user.effectiveWeather())) {
+				return critRatio + 2;
+			}			
+		},
+		name: "Guardian of the Ruins",
+		desc: "Can't be frozen. 1.2x Atk and +2 Crit in Sandstorm.",
+		rating: 2,
+		num: 10031,
+	},
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,
