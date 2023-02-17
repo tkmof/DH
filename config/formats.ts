@@ -1377,18 +1377,6 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 3] Sample Team Randbats",
-		team: 'random',
-		mod: 'gen3sampleteamrandbats',
-		ruleset: ['Standard', 'One Boost Passer Clause', 'Freeze Clause Mod'],
-		onBegin() {
-			for (const pokemon of this.getAllPokemon()) {
-				var side = pokemon.side;
-				this.hint(side.team[0].sampleTeamName, true, pokemon.side);
-			}
-		},
-	},
-	{
 		name: "[Gen 8] Scootopia",
 		desc: "A solomod consisting of Scoopapa's first 30 sprited fakemons!",
 		threads: [
@@ -1743,6 +1731,16 @@ export const Formats: FormatList = [
 		ruleset: ['Dynamax Clause', 'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Freeze Clause Mod', 'Mega Data Mod', 'Mega Hint Mod'],
 	},
 	{
+      name: "[Gen 8] OU Theorymons Random Battle",
+      threads: [ 
+          `&bullet; <a href="https://www.smogon.com/forums/threads/ss-ou-theorymon.3695574/">OU Theorymons on Smogon Forums</a>`,
+          `&bullet; <a href="https://docs.google.com/spreadsheets/d/1AgqKo8IiXky8apuu0FUgx4MJRVtsVwtuhg_Wj_ACgao/edit#gid=0">Spreadsheet</a>`,
+      ],
+      team: 'random',
+		mod: 'outheorymons', 
+		ruleset: ['Dynamax Clause', 'Data Mod', 'Species Clause'],
+	},
+	{
 		name: "[Gen 8] Roulettemons Random",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3649106/">Roulettemons on Smogon Forums</a>`,
@@ -1763,16 +1761,6 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-      name: "[Gen 8] OU Theorymons Random Battle",
-      threads: [ 
-          `&bullet; <a href="https://www.smogon.com/forums/threads/ss-ou-theorymon.3695574/">OU Theorymons on Smogon Forums</a>`,
-          `&bullet; <a href="https://docs.google.com/spreadsheets/d/1AgqKo8IiXky8apuu0FUgx4MJRVtsVwtuhg_Wj_ACgao/edit#gid=0">Spreadsheet</a>`,
-      ],
-      team: 'random',
-		mod: 'outheorymons', 
-		ruleset: ['Dynamax Clause', 'Data Mod', 'Species Clause'],
-	},
-	{
 		name: "[Gen 8] Roulettemons Random Doubles",
 		threads: [
 		   `&bullet; <a href="https://www.smogon.com/forums/threads/3649106/">Roulettemons on Smogon Forums</a>`,
@@ -1789,6 +1777,18 @@ export const Formats: FormatList = [
 		onChangeSet(set) {
 			if (set.species === 'Chillyte-Mega') {
 				set.species = 'Chillyte';
+			}
+		},
+	},
+	{
+		name: "[Gen 3] Sample Team Randbats",
+		team: 'random',
+		mod: 'gen3sampleteamrandbats',
+		ruleset: ['Standard', 'One Boost Passer Clause', 'Freeze Clause Mod'],
+		onBegin() {
+			for (const pokemon of this.getAllPokemon()) {
+				var side = pokemon.side;
+				this.hint(side.team[0].sampleTeamName, true, pokemon.side);
 			}
 		},
 	},
