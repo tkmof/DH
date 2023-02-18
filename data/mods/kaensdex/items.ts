@@ -202,4 +202,19 @@ crobatite: {
 		gen: 6,
 		desc: "If held by a Crobat, this item allows it to Mega Evolve in battle.",
 	},
+
+mightite: {
+		name: "Mightite",
+		spritenum: 608,
+		megaStone: "Mightyena-Mega",
+		megaEvolves: "Mightyena",
+		itemUser: ["Mightyena"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 674,
+		gen: 6,
+		desc: "If held by a Mightyena, this item allows it to Mega Evolve in battle.",
+	},
 }

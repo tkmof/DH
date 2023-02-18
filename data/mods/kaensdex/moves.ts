@@ -151,7 +151,7 @@ windblade: {
 self: {
 			onHit(source) {
 				for (const pokemon of source.side.active) {
-					pokemon.addVolatile('gmaxchistrike');
+					pokemon.addVolatile('windblade');
 				}
 			},
 		},
@@ -585,7 +585,7 @@ acidjuice: {
 	},
 	
 saberfangs: {
-		num: 100028,
+		num: 10028,
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
@@ -602,7 +602,7 @@ saberfangs: {
 	},
 	
 meteorimpact: {
-		num: 100029,
+		num: 10029,
 		accuracy: 100,
 		basePower: 120,
 		category: "Physical",
@@ -622,7 +622,7 @@ meteorimpact: {
 	},
 	
 gravitationalwave: {
-		num: 100030,
+		num: 10030,
 		accuracy: 100,
 		basePower: 90,
 		category: "Special",
@@ -643,7 +643,7 @@ gravitationalwave: {
 	},
 	
 sharpblade: {
-		num: 100031,
+		num: 10031,
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
@@ -660,7 +660,7 @@ sharpblade: {
 	},
 	
 maliciousprogram: {
-		num: 100032,
+		num: 10032,
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
@@ -678,7 +678,7 @@ maliciousprogram: {
 	},
 	
 draconicaura: {
-		num: 100033,
+		num: 10033,
 		accuracy: 100,
 		basePower: 90,
 		category: "Special",
@@ -697,7 +697,7 @@ draconicaura: {
 	},
 	
 earthforce: {
-		num: 100034,
+		num: 10034,
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
@@ -777,7 +777,7 @@ earthforce: {
 	},
 	
 lovearrow: {
-		num: 100035,
+		num: 10035,
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
@@ -826,7 +826,7 @@ lovearrow: {
 	},
 	
 penguindance: {
-		num: 100036,
+		num: 10036,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -849,7 +849,7 @@ penguindance: {
 	},
 	
 floorcleaning: {
-		num: 100037,
+		num: 10037,
 		accuracy: 100,
 		basePower: 50,
 		category: "Physical",
@@ -900,7 +900,7 @@ floorcleaning: {
 	},
 	
 dreadfulscreech: {
-		num: 100038,
+		num: 10038,
 		accuracy: 100,
 		basePower: 60,
 		category: "Special",
@@ -916,7 +916,7 @@ dreadfulscreech: {
 	},
 	
 flammabletoxin: {
-		num: 100039,
+		num: 10039,
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
@@ -949,7 +949,7 @@ flammabletoxin: {
 	},
 	
 mindshock: {
-		num: 100040,
+		num: 10040,
 		accuracy: 100,
 		basePower: 60,
 		basePowerCallback(pokemon, target, move) {
@@ -971,7 +971,7 @@ mindshock: {
 	},
 	
 fightingspirit: {
-		num: 100041,
+		num: 10041,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -1002,7 +1002,7 @@ fightingspirit: {
 	},
 	
 airvibration: {
-		num: 100042,
+		num: 10042,
 		accuracy: 100,
 		basePower: 40,
 		category: "Special",
@@ -1018,7 +1018,7 @@ airvibration: {
 	},
 	
 passingtheball: {
-		num: 100043,
+		num: 10043,
 		accuracy: 90,
 		basePower: 20,
 		basePowerCallback(pokemon, target, move) {
@@ -1040,7 +1040,7 @@ passingtheball: {
 	},
 	
 blazingspin: {
-		num: 100044,
+		num: 10044,
 		accuracy: 100,
 		basePower: 30,
 		category: "Special",
@@ -1086,7 +1086,7 @@ blazingspin: {
 	},
 	
 fearthenight: {
-		num: 100045,
+		num: 10045,
 		accuracy: 85,
 		basePower: 100,
 		category: "Special",
@@ -1107,7 +1107,7 @@ fearthenight: {
 	},
 	
 armwhip: {
-		num: 100046,
+		num: 10046,
 		accuracy: 100,
 		basePower: 60,
 		onModifyPriority(priority, source, target, move) {
@@ -1128,7 +1128,7 @@ armwhip: {
 	},
 	
 lovescent: {
-		num: 100047,
+		num: 10047,
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
@@ -1185,7 +1185,7 @@ lovescent: {
 	},
 	
 replaceableteeth: {
-		num: 1000048,
+		num: 10048,
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
@@ -1222,7 +1222,7 @@ replaceableteeth: {
 	},
 	
 draconicrelease: {
-		num: 100049,
+		num: 10049,
 		accuracy: 100,
 		basePower: 85,
 		basePowerCallback(pokemon, target, move) {
@@ -1245,7 +1245,7 @@ draconicrelease: {
 	},
 	
 spidertrap: {
-		num: 100050,
+		num: 10050,
 		accuracy: 100,
 		basePower: 95,
 		category: "Physical",
@@ -1265,7 +1265,7 @@ spidertrap: {
 	},
 	
 misfortune: {
-		num: 100051,
+		num: 10051,
 		accuracy: 100,
 		basePower: 110,
 		category: "Special",
@@ -1306,7 +1306,7 @@ misfortune: {
 	},
 	
 coldmedicine: {
-		num: 100052,
+		num: 10052,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -1330,7 +1330,7 @@ coldmedicine: {
 	},
 	
 alienabduction: {
-		num: 100053,
+		num: 10053,
 		accuracy: 100,
 		basePower: 85,
 		category: "Special",
@@ -1347,7 +1347,7 @@ alienabduction: {
 	},
 	
 icebreakinghug: {
-		num: 100054,
+		num: 10054,
 		accuracy: 100,
 		basePower: 90,
 		basePowerCallback(pokemon, target, move) {
@@ -1370,7 +1370,7 @@ icebreakinghug: {
 	},
 	
 focusedmind: {
-		num: 100055,
+		num: 10055,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -1392,7 +1392,7 @@ focusedmind: {
 	},
 	
 wonderfulservice: {
-		num: 100056,
+		num: 10056,
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
@@ -1427,7 +1427,7 @@ wonderfulservice: {
 	},
 	
 incredibleservice: {
-		num: 100057,
+		num: 10057,
 		accuracy: 100,
 		basePower: 60,
 		category: "Special",
@@ -1462,7 +1462,7 @@ incredibleservice: {
 	},
 	
 call: {
-		num: 100058,
+		num: 10058,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -1497,7 +1497,7 @@ call: {
 	},
 	
 rockcrash: {
-		num: 1000059,
+		num: 10059,
 		accuracy: 100,
 		basePower: 0,
 		basePowerCallback(pokemon, target) {
@@ -1539,7 +1539,7 @@ rockcrash: {
 	},
 	
 dancebattle: {
-		num: 100060,
+		num: 10060,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -1572,7 +1572,7 @@ dancebattle: {
 	},
 	
 froghop: {
-		num: 100061,
+		num: 10061,
 		accuracy: 100,
 		basePower: 70,
 		category: "Physical",
@@ -1588,7 +1588,7 @@ froghop: {
 	},
 	
 aerialassault: {
-		num: 100062,
+		num: 10062,
 		accuracy: true,
 		basePower: 70,
 		category: "Physical",
@@ -1605,7 +1605,7 @@ aerialassault: {
 	},
 	
 puppetmasters: {
-		num: 100064,
+		num: 10064,
 		accuracy: 100,
 		basePower: 45,
 		category: "Special",
@@ -1627,7 +1627,7 @@ puppetmasters: {
 	},
 	
 fangclaws: {
-		num: 100065,
+		num: 10065,
 		accuracy: 75,
 		basePower: 100,
 		category: "Physical",
@@ -1635,7 +1635,7 @@ fangclaws: {
 		shortDesc: "Traps and damages the target for 4-5 turns.",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, bite: 1},
 		volatileStatus: 'partiallytrapped',
 		secondary: null,
 		target: "normal",
@@ -1644,7 +1644,7 @@ fangclaws: {
 	},
 	
 bonebreaker: {
-	num: 100066,
+	num: 10066,
 	accuracy: 100,
 	basePower: 95,
 	category: "Physical",
@@ -1664,7 +1664,7 @@ bonebreaker: {
  },
  
 ectoplasm: {
-		num: 100067,
+		num: 10067,
 		accuracy: 100,
 		basePower: 90,
 		category: "Special",
@@ -1683,7 +1683,7 @@ ectoplasm: {
 	},
 	
 surprise: {
-		num: 100068,
+		num: 10068,
 		accuracy: 100,
 		basePower: 70,
 		category: "Physical",
@@ -1700,7 +1700,7 @@ surprise: {
 	},
 	
 hailblast: {
-		num: 100069,
+		num: 10069,
 		accuracy: 100,
 		basePower: 85,
 		category: "Physical",
@@ -1716,7 +1716,7 @@ hailblast: {
 	},
 	
 concert: {
-		num: 100070,
+		num: 10070,
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
@@ -1751,6 +1751,135 @@ concert: {
 		type: "Electric",
 		zMove: {boost: {spa: 1}},
 		contestType: "Cool",
+	},
+	
+vampbite: {
+		num: 10071,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Vamp Bite",
+		shortDesc: "User recovers 50% of the damage dealt. Biting move.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, heal: 1, bite: 1},
+		drain: [1, 2],
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		contestType: "Clever",
+	},
+	
+divinebreeze: {
+		num: 10072,
+		accuracy: 100,
+		basePower: 85,
+		category: "Special",
+		name: "Divine Breeze",
+		shortDesc: "-1 evasion; clears terrain and hazards on both sides. Wind move.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, authentic: 1, wind: 1},
+		onHit(target, source, move) {
+			let success = false;
+			if (!target.volatiles['substitute'] || move.infiltrates) success = !!this.boost({evasion: -1});
+			const removeTarget = [
+				'reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge',
+			];
+			const removeAll = [
+				'spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge',
+			];
+			for (const targetCondition of removeTarget) {
+				if (target.side.removeSideCondition(targetCondition)) {
+					if (!removeAll.includes(targetCondition)) continue;
+					this.add('-sideend', target.side, this.dex.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + source);
+					success = true;
+				}
+			}
+			for (const sideCondition of removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.dex.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					success = true;
+				}
+			}
+			this.field.clearTerrain();
+			return success;
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Flying",
+		zMove: {boost: {accuracy: 1}},
+		contestType: "Cool",
+	},
+
+dragonscurse: {
+		num: 10073,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		name: "Dragon's Curse",
+		shortDesc: "Adds Dragon to the target's type(s).",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, contact: 1, mirror: 1},
+		onHit(target) {
+			if (target.hasType('Dragon')) return false;
+			if (!target.addType('Dragon')) return false;
+			this.add('-start', target, 'typeadd', 'Dragon', '[from] move: Dragon\'s Curse');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		zMove: {boost: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}},
+		contestType: "Clever",
+	},
+	
+cursedtail: {
+		num: 10074,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		name: "Cursed Tail",
+		shortDesc: "All active Pokemon will faint in 3 turns.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onHit(target, source, move) {
+			let result = false;
+			let message = false;
+			for (const pokemon of this.getAllActive()) {
+				if (this.runEvent('Invulnerability', pokemon, source, move) === false) {
+					this.add('-miss', source, pokemon);
+					result = true;
+				} else if (this.runEvent('TryHit', pokemon, source, move) === null) {
+					result = true;
+				} else if (!pokemon.volatiles['perishsong']) {
+					pokemon.addVolatile('perishsong');
+					this.add('-start', pokemon, 'perish3', '[silent]');
+					result = true;
+					message = true;
+				}
+			}
+			if (!result) return false;
+			if (message) this.add('-fieldactivate', 'move: Perish Song');
+		},
+		condition: {
+			duration: 4,
+			onEnd(target) {
+				this.add('-start', target, 'perish0');
+				target.faint();
+			},
+			onResidualOrder: 20,
+			onResidual(pokemon) {
+				const duration = pokemon.volatiles['perishsong'].duration;
+				this.add('-start', pokemon, 'perish' + duration);
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
 	},
 	//eevee moves back to their original values
 	buzzybuzz: {
