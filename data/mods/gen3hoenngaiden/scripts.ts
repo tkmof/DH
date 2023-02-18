@@ -208,13 +208,15 @@ export const Scripts: ModdedBattleScriptsData = {
 		// this.modData('Learnsets', 'ledian').learnset.firepunch = ['3L1'];
 		this.modData('Learnsets', 'ledian').learnset.lunge = ['3L1'];
 		this.modData('Learnsets', 'ledian').learnset.aeroblast = ['3L1'];
-		this.modData('Learnsets', 'ledian').learnset.bellydrum = ['3L1'];
+		// this.modData('Learnsets', 'ledian').learnset.bellydrum = ['3L1'];
 		this.modData('Learnsets', 'ledian').learnset.calmmind = ['3L1'];
 
 		delete this.modData('Learnsets', 'ledian').learnset.brickbreak;
 		delete this.modData('Learnsets', 'ledian').learnset.focuspunch;
+		delete this.modData('Learnsets', 'ledian').learnset.swordsdance;
 		delete this.modData('Learnsets', 'ledyba').learnset.brickbreak;
 		delete this.modData('Learnsets', 'ledyba').learnset.focuspunch;
+		delete this.modData('Learnsets', 'ledyba').learnset.swordsdance;
 		
 		this.modData('Learnsets', 'sableye').learnset.yawn = ['3L1'];
 		
@@ -983,7 +985,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "regidrago").learnset.counter = ["3L1"];
 		this.modData("Learnsets", "regidrago").learnset.earthquake = ["3L1"];
 
-		this.modData("Learnsets", "uxie").learnset.wish = ["3L1"];
+		// this.modData("Learnsets", "uxie").learnset.wish = ["3L1"];
 
 		this.modData("Learnsets", "stunfisk").learnset.mimic = ["3L1"];
 		this.modData("Learnsets", "stunfisk").learnset.secretpower = ["3L1"];
@@ -1026,6 +1028,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "talonflame").learnset.mimic = ["3L1"];	
 		this.modData("Learnsets", "talonflame").learnset.mudslap = ["3L1"];	
 
+		//quick fix
 
 		delete this.modData('Learnsets', 'sirfetchd').learnset.featherdance;
 		delete this.modData('Learnsets', 'sirfetchd').learnset.wish;
