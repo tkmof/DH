@@ -129,9 +129,36 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		eggGroups: ["Field", "Fairy"],
 	},
 
+	//https://www.smogon.com/forums/threads/book-of-enigmas-slate-3-same-but-different-maybe.3711490/post-9508940
+
+	oraclehelix: {
+		num: -11,
+		name: "Oracle Helix",
+		types: ["Water", "Steel"],
+		gender: "N",
+		baseStats: {hp: 95, atk: 85, def: 85, spa: 115, spd: 115, spe: 55},
+		abilities: {0: "Cleansing Fire"},
+		heightm: 1,
+		weightkg: 35,
+		color: "Blue",
+		eggGroups: ["Water 1", "Water 3"],
+	},
+	wittykitty: {
+		num: -12,
+		name: "Witty Kitty",
+		types: ["Water", "Fairy"],
+		gender: "N",
+		baseStats: {hp: 124, atk: 106, def: 88, spa: 100, spd: 80, spe: 72},
+		abilities: {0: "Corrupting Storm"},
+		heightm: 0.9,
+		weightkg: 23.6,
+		color: "Blue",
+		eggGroups: ["Water 2"],
+	},
+
 	// canon pokemon start here
 
-	gallade: {
+	/*gallade: {
 		inherit: true,
 		abilities: {0: "Steadfast", 1: "Sharpness", H: "Justified"},
 	},
@@ -734,5 +761,5 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		prevo: "Wiglett",
 		evoLevel: 26,
 		eggGroups: ["Water 3"],
-	},
+	},*/
 };

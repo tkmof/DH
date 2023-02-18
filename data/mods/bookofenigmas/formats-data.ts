@@ -41,6 +41,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	twintoxin: {
 		tier: "BoE OU",
 	},
+	oraclehelix: {
+		tier: "BoE OU",
+	},
+	wittykitty: {
+		tier: "BoE OU",
+	},
 
 
 
