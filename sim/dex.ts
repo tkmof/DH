@@ -141,9 +141,10 @@ export class ModdedDex {
 		this.dataCache = null;
 		this.textCache = null;
 		this.formatsCache = null;
-
+	
 		if (!isOriginal) {
-			try {
+			console.log("hi");
+			try { // to make life a lot easier for the client
 				const original = dexes['base'].mod(mod).includeData();
 				this.currentMod = original.currentMod;
 
