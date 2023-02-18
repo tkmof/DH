@@ -196,7 +196,11 @@ export class ModdedDex {
 
 	modData(dataType: DataType, id: string) {
 		if (this.isBase) return this.data[dataType][id];
-		if (this.data[dataType][id] !== dexes[this.parentMod].data[dataType][id]) return this.data[dataType][id];
+		try {
+			if (this.data[dataType][id] !== dexes[this.parentMod].data[dataType][id]) return this.data[dataType][id];
+		} catch(err) {
+			console.log("Warning: attempt to mod invalid data: " + err);
+		}
 		return (this.data[dataType][id] = Utils.deepClone(this.data[dataType][id]));
 	}
 
