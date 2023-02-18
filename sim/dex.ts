@@ -143,20 +143,26 @@ export class ModdedDex {
 		this.formatsCache = null;
 
 		if (!isOriginal) {
-			const original = dexes['base'].mod(mod).includeData();
-			this.currentMod = original.currentMod;
+			try {
+				const original = dexes['base'].mod(mod).includeData();
+				this.currentMod = original.currentMod;
 
-			this.gen = original.gen;
-			this.parentMod = original.parentMod;
+				this.gen = original.gen;
+				this.parentMod = original.parentMod;
 
-			this.abilityCache = original.abilityCache;
-			this.itemCache = original.itemCache;
-			this.learnsetCache = original.learnsetCache;
-			this.moveCache = original.moveCache;
-			this.speciesCache = original.speciesCache;
+				this.abilityCache = original.abilityCache;
+				this.itemCache = original.itemCache;
+				this.learnsetCache = original.learnsetCache;
+				this.moveCache = original.moveCache;
+				this.speciesCache = original.speciesCache;
 
-			this.dataCache = original.dataCache;
-			this.formatsCache = original.formatsCache;
+				this.dataCache = original.dataCache;
+				this.formatsCache = original.formatsCache;
+			} catch (err){
+				console.log("Warning! Data for the mod " + mod + " failed to load because of the following error:");
+				console.log(err);
+				console.log("Your mod will probably not work as a result");
+			}
 		}
 	}
 
@@ -196,11 +202,7 @@ export class ModdedDex {
 
 	modData(dataType: DataType, id: string) {
 		if (this.isBase) return this.data[dataType][id];
-		try {
-			if (this.data[dataType][id] !== dexes[this.parentMod].data[dataType][id]) return this.data[dataType][id];
-		} catch(err) {
-			console.log("Warning: attempt to mod invalid data: " + err);
-		}
+		if (this.data[dataType][id] !== dexes[this.parentMod].data[dataType][id]) return this.data[dataType][id];
 		return (this.data[dataType][id] = Utils.deepClone(this.data[dataType][id]));
 	}
 
