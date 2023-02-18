@@ -1847,7 +1847,7 @@ granjaguar: {
 	name: "Granjaguar",
 	types: ["Ground", "Dark"],
 	baseStats: {hp: 85, atk: 115, def: 110, spa: 100, spd: 105, spe: 55},
-	abilities: {0: "Infiltrator", 1: "Super Luck", H: "Guardian of the Ruins"},
+	abilities: {0: "Infiltrator", 1: "Intimidate", H: "Guardian of the Ruins"},
 	weightkg: 247.9,
 },
 };
