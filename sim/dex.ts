@@ -141,29 +141,22 @@ export class ModdedDex {
 		this.dataCache = null;
 		this.textCache = null;
 		this.formatsCache = null;
-	
+
 		if (!isOriginal) {
-			console.log("hi");
-			try { // to make life a lot easier for the client
-				const original = dexes['base'].mod(mod).includeData();
-				this.currentMod = original.currentMod;
+			const original = dexes['base'].mod(mod).includeData();
+			this.currentMod = original.currentMod;
 
-				this.gen = original.gen;
-				this.parentMod = original.parentMod;
+			this.gen = original.gen;
+			this.parentMod = original.parentMod;
 
-				this.abilityCache = original.abilityCache;
-				this.itemCache = original.itemCache;
-				this.learnsetCache = original.learnsetCache;
-				this.moveCache = original.moveCache;
-				this.speciesCache = original.speciesCache;
+			this.abilityCache = original.abilityCache;
+			this.itemCache = original.itemCache;
+			this.learnsetCache = original.learnsetCache;
+			this.moveCache = original.moveCache;
+			this.speciesCache = original.speciesCache;
 
-				this.dataCache = original.dataCache;
-				this.formatsCache = original.formatsCache;
-			} catch (err){
-				console.log("Warning! Data for the mod " + mod + " failed to load because of the following error:");
-				console.log(err);
-				console.log("Your mod will probably not work as a result");
-			}
+			this.dataCache = original.dataCache;
+			this.formatsCache = original.formatsCache;
 		}
 	}
 
