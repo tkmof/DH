@@ -240,8 +240,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		num: 225,
 	},
 	sandveil: {
-		desc: "If Sandstorm is active, this Pokemon's defence is multiplied by 1.1. This Pokemon takes no damage from Sandstorm.",
-		shortDesc: "If Sandstorm is active, this Pokemon's defence is 1.1x; immunity to Sandstorm.",
+		desc: "This Pokemon can not be damaged by sandstorm.",
+		shortDesc: "This Pokemon can not be damaged by sandstorm.",
 		onImmunity(type, pokemon) {
 			if (type === 'sandstorm') return false;
 		},
@@ -255,6 +255,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (type === 'hail') return false;
 		},
 		isNonstandard: null,
+		desc: "This Pokemon can not be damaged by hail.",
+		shortDesc: "This Pokemon can not be damaged by hail.",
 		gen: 3,
 		name: "Ice Body",
 		rating: 1,
