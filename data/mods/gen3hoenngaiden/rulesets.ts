@@ -20,5 +20,14 @@ export const Formats: {[k: string]: FormatData} = {
 	hgouteambuilder: {
 		effectType: 'Rule',
 		name: 'HG OU Teambuilder',
-	}
+	},
+	illegalbatonpassclause: {
+		effectType: 'ValidatorRule',
+		name: 'Illegal Baton Pass Clause',
+		desc: "Stops teams from having a Pok&eacute;mon with Baton Pass and Mean Look/Spider Web/Block/Ingrain",
+		banlist: ['Baton Pass + Block', 'Baton Pass + Mean Look', 'Baton Pass + Spider Web', 'Baton Pass + Ingrain'],
+		onBegin() {
+			this.add('rule', 'Illegal Baton Pass Clause: Do not allow Baton Pass with the combination of Mean Look/Spider Web/Block/Ingrain');
+		},
+	},
 };
