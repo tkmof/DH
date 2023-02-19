@@ -118,9 +118,9 @@ export const Formats: FormatList = [
 		],
 		mod: 'csm2',
 		ruleset: ['Standard', 'Dynamax Clause'],
-		onSwitchIn(pokemon) {
-			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
-		},
+		// onSwitchIn(pokemon) {
+			// this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
+		// },
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
 			let speciesTable = {};
