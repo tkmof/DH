@@ -553,7 +553,21 @@ export class Pokemon {
 		}
 		return this.battle.trunc(speed, 13);
 	}
+	// For Gen 9
+	getBestStat(unboosted?: boolean, unmodified?: boolean): StatIDExceptHP {
+		let statName: StatIDExceptHP = 'atk';
+		let bestStat = 0;
+		const stats: StatIDExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
+		for (const i of stats) {
+			if (this.getStat(i, unboosted, unmodified) > bestStat) {
+				statName = i;
+				bestStat = this.getStat(i, unboosted, unmodified);
+			}
+		}
 
+		return statName;
+	},
+	//
 	/* Commented out for now until a use for Combat Power is found in Let's Go
 	getCombatPower() {
 		let statSum = 0;
@@ -625,7 +639,20 @@ export class Pokemon {
 	nearbyFoes(): Pokemon[] {
 		return this.foes().filter(foe => this.battle.isAdjacent(this, foe));
 	}
-
+	// Gen 9 Stuff
+	isAdjacent(pokemon2: Pokemon) {
+		return this.battle.isAdjacent( this, Pokemon);
+	}
+	
+	adjacentFoes(): Pokemon[] {
+		// if (this.battle.activePerHalf <= 2) return this.side.foes();
+		return this.side.foes().filter(foe => this.isAdjacent(foe));
+	}
+	
+	isAlly(pokemon: Pokemon | null) {
+		return !!pokemon && (this.side === pokemon.side || this.side.allySide === pokemon.side);
+	}
+	//
 	getUndynamaxedHP(amount?: number) {
 		const hp = amount || this.hp;
 		if (this.volatiles['dynamax']) {

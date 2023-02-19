@@ -364,9 +364,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	alakazammega: {
-		randomBattleMoves: ["calmmind", "psyshock", "focusblast", "shadowball", "encore", "substitute"],
+		randomBattleMoves: ["calmmind", "psyshock", "focusblast", "icebeam"],
 		randomDoubleBattleMoves: ["protect", "psychic", "psyshock", "focusblast", "shadowball", "encore", "substitute", "dazzlinggleam"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	machop: {
@@ -516,7 +516,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	gengarmega: {
 		randomBattleMoves: ["shadowball", "sludgewave", "focusblast", "taunt", "destinybond", "disable", "perishsong", "protect"],
 		randomDoubleBattleMoves: ["shadowball", "sludgebomb", "focusblast", "substitute", "disable", "taunt", "hypnosis", "willowisp", "dazzlinggleam", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	onix: {
@@ -765,9 +765,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	pinsirmega: {
-		randomBattleMoves: ["swordsdance", "earthquake", "closecombat", "quickattack", "return"],
+		randomBattleMoves: ["swordsdance", "earthquake", "closecombat", "iceshard", "iciclecrash"],
 		randomDoubleBattleMoves: ["feint", "protect", "swordsdance", "earthquake", "closecombat", "substitute", "quickattack", "return", "rockslide"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	tauros: {

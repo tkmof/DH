@@ -1,6 +1,11 @@
 export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 // New Mons
-	
+	plucks: {
+		tier: "OU",
+		randomBattleMoves: ["slash", "swordsdance", "hyperbeam", "earthquake"],
+		isNonstandard: null,
+		gen: 1,
+	},
 	
 // Future Mons	
 	armaldo: {

@@ -803,7 +803,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 4,
 		num: -36,
 	},
-	swordsmanship: {
+	/*swordsmanship: {
 		shortDesc: "Boosts the power of sword, cut, slash, and blade moves by 1.3x",
 		onBasePowerPriority: 8,
 		onBasePower(basePower, attacker, defender, move) {
@@ -812,7 +812,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Swordsmanship",
-	},
+	},*/
 	striker: {
 		shortDesc: "Boosts the power of kicking moves by 1.3x",
 		onBasePowerPriority: 8,
@@ -2360,5 +2360,237 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		name: "Quick Draw",
 		rating: 3,
 		num: -46,
+	},
+	battlebond: {
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect?.effectType !== 'Move') {
+				return;
+			}
+			if (source.species.id === 'greninja' && source.hp && !source.transformed && source.side.foe.pokemonLeft) {
+				this.add('-activate', source, 'ability: Battle Bond');
+				source.formeChange('Greninja-Ash', this.effect, true);
+			}
+		},
+		onModifyMovePriority: -1,
+		onModifyMove(move, attacker) {
+			if (move.id === 'watershuriken' && attacker.species.name === 'Greninja-Ash') {
+				move.multihit = 3;
+			}
+		},
+		isPermanent: true,
+		name: "Battle Bond",
+		rating: 4,
+		num: 210,
+	},
+	protean: {
+		onPrepareHit(source, target, move) {
+			if (move.hasBounced) return;
+			const type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+				this.add('-start', source, 'typechange', type, '[from] ability: Protean');
+			}
+		},
+		name: "Protean",
+		rating: 4.5,
+		num: 168,
+	},
+	lingeringaroma: {
+		onDamagingHit(damage, target, source, move) {
+			const sourceAbility = source.getAbility();
+			if (sourceAbility.isPermanent || sourceAbility.id === 'lingeringaroma') {
+				return;
+			}
+			if (this.checkMoveMakesContact(move, source, target, !source.isAlly(target))) {
+				const oldAbility = source.setAbility('lingeringaroma', target);
+				if (oldAbility) {
+					this.add('-activate', target, 'ability: Lingering Aroma', this.dex.getAbility(oldAbility).name, '[of] ' + source);
+				}
+			}
+		},
+		name: "Lingering Aroma",
+		rating: 2,
+		num: 268,
+	},
+	protosynthesis: {
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onWeatherChange(pokemon) {
+			if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (!pokemon.volatiles['protosynthesis']?.fromBooster) {
+				pokemon.removeVolatile('protosynthesis');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['protosynthesis'];
+			this.add('-end', pokemon, 'Protosynthesis', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Protosynthesis', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Protosynthesis');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'protosynthesis' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Protosynthesis atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Protosynthesis def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Protosynthesis spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Protosynthesis spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Protosynthesis spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Protosynthesis');
+			},
+		},
+		isPermanent: true,
+		name: "Protosynthesis",
+		rating: 3,
+		num: 281,
+	},
+	quarkdrive: {
+		onStart(pokemon) {
+			this.singleEvent('TerrainChange', this.effect, this.effectData, pokemon);
+		},
+		onTerrainChange(pokemon) {
+			if (!pokemon.volatiles['quarkdrive']?.fromBooster) {
+				pokemon.removeVolatile('quarkdrive');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['quarkdrive'];
+			this.add('-end', pokemon, 'Quark Drive', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Quark Drive', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Quark Drive');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'quarkdrive' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Quark Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Quark Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Quark Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Quark Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Quark Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Quark Drive');
+			},
+		},
+		isPermanent: true,
+		name: "Quark Drive",
+		rating: 3,
+		num: 282,
+	},
+	angershell: {
+		onDamage(damage, target, source, effect) {
+			if (
+				effect.effectType === "Move" &&
+				!effect.multihit &&
+				(!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility('sheerforce')))
+			) {
+				this.effectData.checkedAngerShell = false;
+			} else {
+				this.effectData.checkedAngerShell = true;
+			}
+		},
+		onTryEatItem(item) {
+			const healingItems = [
+				'aguavberry', 'enigmaberry', 'figyberry', 'iapapaberry', 'magoberry', 'sitrusberry', 'wikiberry', 'oranberry', 'berryjuice',
+			];
+			if (healingItems.includes(item.id)) {
+				return this.effectData.checkedAngerShell;
+			}
+			return true;
+		},
+		onAfterMoveSecondary(target, source, move) {
+			this.effectData.checkedAngerShell = true;
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			const lastAttackedBy = target.getLastAttackedBy();
+			if (!lastAttackedBy) return;
+			const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+				this.boost({atk: 1, spa: 1, spe: 1, def: -1, spd: -1}, target, target);
+			}
+		},
+		name: "Anger Shell",
+		rating: 4,
+		num: 271,
+	},
+	sharpness: {
+		shortDesc: "Boosts the power of sword, cut, slash, and blade moves by 1.3x",
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (bladeMoves.includes(move.id)) {
+				return this.chainModify(1.3);
+			}
+		},
+		name: "Sharpness",
+	},
+	seedsower: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setTerrain('grassyterrain');
+		},
+		name: "Seed Sower",
+		rating: 2.5,
+		num: 269,
 	},
 }

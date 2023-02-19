@@ -114,6 +114,12 @@ eternalice: {
 		num: 10005,
 	},
 leecher: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['heal']) {
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
 		onTryHealPriority: 1,
 		onTryHeal(damage, target, source, effect) {
 			const heals = ['drain', 'leechseed', 'ingrain', 'aquaring', 'strengthsap'];
@@ -122,7 +128,7 @@ leecher: {
 			}
 		},
 		name: "Leecher",
-		desc: "Gains 1.3x HP from draining moves, Aqua Ring, Ingrain, Leech Seed and Strength Sap.",
+		desc: "Healing moves Heal for 1.3x HP and Draining moves are 1.3 stronger.",
 		rating: 3.5,
 		num: 10006,
 	},
@@ -207,7 +213,7 @@ royalhoney: {
 		},
 		isBreakable: true,
 		name: "Royal Honey",
-		desc:  "Halves the damage from moves that would be super effective on Bug-Type. Heals 1/16 HP each turn.",
+		desc:  "Halves the damage from moves super effective on Bug-Type. Heals 1/16 HP each turn.",
 		rating: 3.5,
 		num: 10012,
 	},	
@@ -244,7 +250,7 @@ stickyseeds: {
 		num: 10014,
 	},
 	
-	malware: {
+malware: {
 		onResidualOrder: 27,
 		onResidual(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies !== 'SurivExe' || pokemon.transformed) {
@@ -269,7 +275,7 @@ stickyseeds: {
 		num: 10015,
 	},
 	
-	airborne: {
+airborne: {
 		onUpdate(pokemon) {
 			if (pokemon.hasType('Flying')) return false;
 			if (!pokemon.addType('Flying')) return false;
@@ -278,9 +284,292 @@ stickyseeds: {
 		name: "Airborne",
 		desc: "Takes fly and become Flying-Type.",
 		rating: 3.5,
-		num: 200,
+		num: 10016,
 	},
 	
+archery: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (!move.flags['contact']) {
+				if (move.category === 'Physical'){
+				return this.chainModify([0x14CD, 0x1000]);
+				}
+			} 			
+		},
+		name: "Archery",
+		desc: "Non-contact Physical moves have 1.3x power.",
+		rating: 3.5,
+		num: 10017,
+	},
+	
+insectmovement: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.type === 'Bug' && pokemon.hp === pokemon.maxhp) return priority + 2;
+		},
+		name: "Insect Movement",
+		desc: "Bug-Type moves have +2 priority while at full HP.",
+		rating: 3,
+		num: 10018,
+	},
+	
+cockatricedominance: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['par'].includes(defender.status)) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Cockatrice Dominance",
+		desc: "Deals 1.5x damage against paralyzed opponents.",
+		rating: 1.5,
+		num: 10019,
+	},
+	
+indestructible: {
+		onCriticalHit: false,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Fighting') {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] ability: Indestructible');
+				}
+				return null;
+			}
+		},
+		name: "Indestructible",
+		desc: "Can't be struck by a crit or Fighting-Type move. +1 Atk if hit by a Fighting move.",
+		rating: 1,
+		num: 10020,
+	},
+	
+lifejacket: {
+		onCriticalHit: false,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.boost({spd: 1})) {
+					this.add('-immune', target, '[from] ability: Life Jacket');
+				}
+				return null;
+			}
+		},
+		name: "Life Jacket",
+		desc: "Prevents crits and Water-Type moves. +1 SpD if hit by a Water move.",
+		rating: 3,
+		num: 10021,
+	},
+	
+thermalfrenzy: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water'|| target !== source && move.type === 'Ice' || target !== source && move.type === 'Fire') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Thermal Frenzy');
+				}
+				return null;
+			}
+		},
+		name: "Thermal Frenzy",
+		desc: "Heals 1/4 max HP when hit by Water/Ice/Fire moves and is immune to them.",
+		rating: 3.5,
+		num: 10022,
+	},
+	
+boast: {
+		onTryHit(target, source, move) {
+			if (move.target !== 'self' && move.flags['sound']) {
+				this.add('-immune', target, '[from] ability: Boast');
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (move.flags['sound']) {
+				this.add('-immune', this.effectData.target, '[from] ability: Boast');
+			}
+		},
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.flags['sound']) return priority + 1;
+		},
+		name: "Boast",
+		desc: "This Pokemon's sound moves have their priority increased by 1. Sound immunity.",
+		rating: 3.5,
+		num: 10023,
+	},
+	
+toxicreaction: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['psn'].includes(defender.status)) {
+				return this.chainModify(1.7);
+			}
+		},
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender && ['tox'].includes(defender.status)) {
+				return this.chainModify(1.4);
+			}
+		},
+		name: "Toxic Reaction",
+		desc: "Deals 1.7x damage against poisoned opponents. Only 1.4x if Badly poison.",
+		rating: 1.5,
+		num: 10024,
+	},
+	
+primalmind: {
+		onModifySpD(spd) {
+			if (this.field.isTerrain('psychicterrain')) {
+				return this.chainModify(1.2);
+			}
+		},
+		onModifySpA(spa) {
+			if (this.field.isTerrain('psychicterrain')) {
+				return this.chainModify(1.2);
+			}
+		},
+		name: "Primal Mind",
+		desc: "If Psychic Terrain is active, this Pokemon gets 1.2 SpA and SpD.",
+		rating: 3,
+		num: 10025,
+	},
+	
+meteorpower: {
+		onModifyDef(def) {
+			if (this.field.isWeather('sandstorm')) {
+				return this.chainModify(1.2);
+			}
+		},
+		onModifyAtk(atk) {
+			if (this.field.isWeather('sandstorm')) {
+				return this.chainModify(1.2);
+			}
+		},
+		name: "Meteor Power",
+		desc: "This Pokémon gets 1.2 Atk and Def during a Sandstorm.",
+		rating: 3,
+		num: 10026,
+	},
+	
+miceadaptation: {
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Grass' || target !== source && move.type === 'Water') {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] ability: Mice Adaptation');
+				}
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (target === this.effectData.target || target.side !== source.side) return;
+			if (move.type === 'Grass' || move.type === 'Water') {
+				this.boost({atk: 1}, this.effectData.target);
+			}
+		},
+		name: "Mice Adaptation",
+		desc: "+1 Atk if hit by a Grass or Water move; Grass and Water immunity.",
+		rating: 3,
+		num: 10027,
+	},
+	
+scary: {
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Scary', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({atk: -1, spa: -1, spe:-1}, target, pokemon, null, true);
+				}
+			}
+		},
+		name: "Scary",
+		desc: "On switch-in, this Pokémon lowers the Atk/SpA/Spe of opponents by 1 stage.",
+		rating: 3.5,
+		num: 10028,
+	},
+
+guardianoftheswamp: {
+		onUpdate(pokemon) {
+			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
+				this.add('-activate', pokemon, 'ability: Guardian of the Swamp');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'psn' && status.id !== 'tox') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Guardian of the Swamp');
+			}
+			return false;
+		},		
+		onModifyCritRatio(critRatio, user) {
+		if (['raindance', 'primordialsea'].includes(user.effectiveWeather())) {
+				return critRatio + 3;
+			}			
+		},
+		name: "Guardian of the Swamp",
+		desc: "Can't be poisoned. Always Crit in Rain.",
+		rating: 2,
+		num: 10029,
+	},
+	
+guardianofthewoods: {
+onUpdate(pokemon) {
+			if (pokemon.status === 'brn') {
+				this.add('-activate', pokemon, 'ability: Guardian of the Woods');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Guardian of the Woods');
+			}
+			return false;
+		},	
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Guardian of the Woods",
+		desc: "Can't be burned. 1.5x Atk in Sunny Day.",
+		rating: 2,
+		num: 10030,
+	},
+	
+guardianoftheruins: {
+	onUpdate(pokemon) {
+			if (pokemon.status === 'frz') {
+				this.add('-activate', pokemon, 'ability: Guardian of the Ruins');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'frz') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Guardian of the Ruins');
+			}
+			return false;
+		},	
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (['sandstorm'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(1.2);
+			}
+		},
+		onModifyCritRatio(critRatio, user) {
+		if (['sandstorm'].includes(user.effectiveWeather())) {
+				return critRatio + 2;
+			}			
+		},
+		name: "Guardian of the Ruins",
+		desc: "Can't be frozen. 1.2x Atk and +2 Crit in Sandstorm.",
+		rating: 2,
+		num: 10031,
+	},
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,
@@ -462,142 +751,5 @@ stickyseeds: {
 		desc: "If this Pokemon eats a Berry, it will eat that Berry again at the end of the next turn.",
 		rating: 2,
 		num: 291,
-	},
-	
-	quarkdrive: {
-		onStart(pokemon) {
-			this.singleEvent('TerrainChange', this.effect, this.effectState, pokemon);
-		},
-		onTerrainChange(pokemon) {
-			if (pokemon.transformed) return;
-			if (this.field.isTerrain('electricterrain')) {
-				pokemon.addVolatile('quarkdrive');
-			} else if (!pokemon.volatiles['quarkdrive']?.fromBooster) {
-				pokemon.removeVolatile('quarkdrive');
-			}
-		},
-		onEnd(pokemon) {
-			delete pokemon.volatiles['quarkdrive'];
-			this.add('-end', pokemon, 'Quark Drive', '[silent]');
-		},
-		condition: {
-			noCopy: true,
-			onStart(pokemon, source, effect) {
-				if (effect?.id === 'boosterenergy') {
-					this.effectState.fromBooster = true;
-					this.add('-activate', pokemon, 'ability: Quark Drive', '[fromitem]');
-				} else {
-					this.add('-activate', pokemon, 'ability: Quark Drive');
-				}
-				this.effectState.bestStat = pokemon.getBestStat(false, true);
-				this.add('-start', pokemon, 'quarkdrive' + this.effectState.bestStat);
-			},
-			onModifyAtkPriority: 5,
-			onModifyAtk(atk, source, target, move) {
-				if (this.effectState.bestStat !== 'atk') return;
-				this.debug('Quark Drive atk boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifyDefPriority: 6,
-			onModifyDef(def, target, source, move) {
-				if (this.effectState.bestStat !== 'def') return;
-				this.debug('Quark Drive def boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpAPriority: 5,
-			onModifySpA(relayVar, source, target, move) {
-				if (this.effectState.bestStat !== 'spa') return;
-				this.debug('Quark Drive spa boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpDPriority: 6,
-			onModifySpD(relayVar, target, source, move) {
-				if (this.effectState.bestStat !== 'spd') return;
-				this.debug('Quark Drive spd boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpe(spe, pokemon) {
-				if (this.effectState.bestStat !== 'spe') return;
-				this.debug('Quark Drive spe boost');
-				return this.chainModify(1.5);
-			},
-			onEnd(pokemon) {
-				this.add('-end', pokemon, 'Quark Drive');
-			},
-		},
-		isPermanent: true,
-		name: "Quark Drive",
-		desc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
-		rating: 3,
-		num: 282,
-	},
-	
-	protosynthesis: {
-		onStart(pokemon) {
-			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
-		},
-		onWeatherChange(pokemon) {
-			if (pokemon.transformed) return;
-			// Protosynthesis is not affected by Utility Umbrella
-			if (this.field.isWeather('sunnyday')) {
-				pokemon.addVolatile('protosynthesis');
-			} else if (!pokemon.volatiles['protosynthesis']?.fromBooster) {
-				pokemon.removeVolatile('protosynthesis');
-			}
-		},
-		onEnd(pokemon) {
-			delete pokemon.volatiles['protosynthesis'];
-			this.add('-end', pokemon, 'Protosynthesis', '[silent]');
-		},
-		condition: {
-			noCopy: true,
-			onStart(pokemon, source, effect) {
-				if (effect?.id === 'boosterenergy') {
-					this.effectState.fromBooster = true;
-					this.add('-activate', pokemon, 'ability: Protosynthesis', '[fromitem]');
-				} else {
-					this.add('-activate', pokemon, 'ability: Protosynthesis');
-				}
-				this.effectState.bestStat = pokemon.getBestStat(false, true);
-				this.add('-start', pokemon, 'protosynthesis' + this.effectState.bestStat);
-			},
-			onModifyAtkPriority: 5,
-			onModifyAtk(atk, source, target, move) {
-				if (this.effectState.bestStat !== 'atk') return;
-				this.debug('Protosynthesis atk boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifyDefPriority: 6,
-			onModifyDef(def, target, source, move) {
-				if (this.effectState.bestStat !== 'def') return;
-				this.debug('Protosynthesis def boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpAPriority: 5,
-			onModifySpA(relayVar, source, target, move) {
-				if (this.effectState.bestStat !== 'spa') return;
-				this.debug('Protosynthesis spa boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpDPriority: 6,
-			onModifySpD(relayVar, target, source, move) {
-				if (this.effectState.bestStat !== 'spd') return;
-				this.debug('Protosynthesis spd boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpe(spe, pokemon) {
-				if (this.effectState.bestStat !== 'spe') return;
-				this.debug('Protosynthesis spe boost');
-				return this.chainModify(1.5);
-			},
-			onEnd(pokemon) {
-				this.add('-end', pokemon, 'Protosynthesis');
-			},
-		},
-		isPermanent: true,
-		name: "Protosynthesis",
-		desc: "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
-		rating: 3,
-		num: 281,
-	},
+	},	
 };
