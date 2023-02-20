@@ -149,16 +149,16 @@ airionizer: {
 deepsea: {
 		onModifyDef(def, pokemon) {
 			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
-				return this.chainModify(2);
+				return this.chainModify(1.5);
 			}
 		},
             onModifySpD(spd, pokemon) {
 			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
-				return this.chainModify(2);
+				return this.chainModify(1.5);
 			}
 		},
 		name: "Deep Sea",
-		desc: "If Rain is active, this Pokemon's Defense and Special defense is doubled.",
+		desc: "If Rain is active, this Pokemon's Defense and Special defense are 1.5x.",
 		rating: 3,
 		num: 10008,
 	},
