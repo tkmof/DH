@@ -500,6 +500,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Inner Focus",
+		shortDesc: "This Pokemon cannot be made to flinch. Immune to Intimidate.",
 		rating: 1.5,
 		num: 39,
 	},
@@ -525,6 +526,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Own Tempo",
+		shortDesc: "This Pokemon cannot be confused. Immune to Intimidate.",
 		rating: 1.5,
 		num: 20,
 	},
@@ -552,6 +554,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Oblivious",
+		shortDesc: "This Pokemon cannot be infatuated. Immune to Intimidate.",
 		rating: 1.5,
 		num: 12,
 	},
