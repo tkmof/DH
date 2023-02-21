@@ -172,10 +172,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onHit(target) {
 			if (target.status) target.cureStatus();
 		},
-		onAfterHit(target, pokemon) {
-			if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
-				this.add('-end', pokemon, 'Leech Seed', '[from] move: Combustion', '[of] ' + pokemon);
-			}
+		onHit(target, source) {
+			if (target.volatiles['leechseed']) target.removeVolatile('leechseed', source);
 		},
 		secondary: null,
 		target: "normal",
