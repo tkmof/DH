@@ -1660,7 +1660,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			solarbeam: ["8M"],
 			substitute: ["8M"],
 			sunnyday: ["8M"],
-			terablast: ["8M"],
 		},
 	},
 	witherwing: {
