@@ -67,7 +67,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       tier: "Poketypos",
       doublesTier: "Poketypos", 
 	},
-	phrohg: {
+	throg: {
       tier: "Poketypos",
       doublesTier: "Poketypos", 
 	}, 
