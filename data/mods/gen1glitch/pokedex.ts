@@ -4,7 +4,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     name: 'MissingNo. (RB)',
     types: [ 'Bird', 'Normal' ],
     baseStats: { hp: 33, atk: 136, def: 0, spa: 6, spd: 6, spe: 29 },
-    prevos: [ 'E2 (226 RB)', 'DF (223 RB)', 'F4 (244 RB)' ]
+    // prevos: [ 'E2 (226 RB)', 'DF (223 RB)', 'F4 (244 RB)' ]
   },
   mrb: {
     num: -1,
@@ -12,21 +12,21 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 33, atk: 136, def: 0, spa: 6, spd: 6, spe: 29 },
     types: [ 'Bird', 'Normal' ],
     evos: [ 'Kangaskhan', 'Clefairy' ],
-    prevos: [ 'E1 (225 RB)', 'FC (252 RB)', 'E7 (231 RB)', 'F5 (245 RB)' ]
+    // prevos: [ 'E1 (225 RB)', 'FC (252 RB)', 'E7 (231 RB)', 'F5 (245 RB)' ]
   },
   bf191rb: {
     num: -2,
     name: 'BF (191 RB)',
     baseStats: { hp: 37, atk: 0, def: 40, spa: 19, spd: 19, spe: 178 },
     types: [ 'Normal' ],
-    prevos: [ 'Chikorita' ]
+    // prevos: [ 'Chikorita' ]
   },
   c0192rb: {
     num: -3,
     name: 'C0 (192 RB)',
     baseStats: { hp: 65, atk: 65, def: 65, spa: 50, spd: 50, spe: 90 },
     types: [ 'Water' ],
-    prevos: [ 'Bayleef' ]
+    // prevos: [ 'Bayleef' ]
   },
   c1193rb: {
     num: -4,
@@ -34,35 +34,35 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 232, atk: 147, def: 145, spa: 128, spd: 128, spe: 136 },
     types: [ 'Normal', 'Ground' ],
     evos: [ 'Spearow' ],
-    prevos: [ 'Meganium' ]
+    // prevos: [ 'Meganium' ]
   },
   c2194rb: {
     num: -5,
     name: 'C2 (194 RB)',
     baseStats: { hp: 179, atk: 96, def: 209, spa: 21, spd: 21, spe: 96 },
     types: [ 'Bird' ],
-    prevos: [ 'Cyndaquil' ]
+    // prevos: [ 'Cyndaquil' ]
   },
   c3195rb: {
     num: -6,
     name: 'C3 (195 RB)',
     baseStats: { hp: 60, atk: 65, def: 60, spa: 130, spd: 130, spe: 110 },
     types: [ 'Ghost', 'Poison' ],
-    prevos: [ 'Quilava' ]
+    // prevos: [ 'Quilava' ]
   },
   c4196rb: {
     num: -7,
     name: 'C4 (196 RB)',
     baseStats: { hp: 232, atk: 147, def: 145, spa: 136, spd: 136, spe: 128 },
     types: [ 'Normal', 'Ground' ],
-    prevos: [ 'Typhlosion' ]
+    // prevos: [ 'Typhlosion' ]
   },
   c5197rb: {
     num: -8,
     name: 'C5 (197 RB)',
     baseStats: { hp: 37, atk: 0, def: 40, spa: 19, spd: 19, spe: 178 },
     types: [ 'Normal' ],
-    prevos: [ 'Totodile' ]
+    // prevos: [ 'Totodile' ]
   },
   c6198rb: {
     num: -9,
@@ -70,21 +70,21 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 90, atk: 85, def: 95, spa: 70, spd: 70, spe: 70 },
     types: [ 'Water', 'Fighting' ],
     evos: [ 'Clefairy', 'Nidoking' ],
-    prevos: [ 'Croconaw' ]
+    // prevos: [ 'Croconaw' ]
   },
   c7199rb: {
     num: -10,
     name: 'C7 (199 RB)',
     baseStats: { hp: 232, atk: 147, def: 145, spa: 136, spd: 136, spe: 128 },
     types: [ 'Normal', 'Ground' ],
-    prevos: [ 'Feraligatr' ]
+    // prevos: [ 'Feraligatr' ]
   },
   c8200rb: {
     num: -11,
     name: 'C8 (200 RB)',
     baseStats: { hp: 179, atk: 96, def: 209, spa: 21, spd: 21, spe: 96 },
     types: [ 'Bird' ],
-    prevos: [ 'Sentret' ]
+    // prevos: [ 'Sentret' ]
   },
   c9201rb: {
     num: -12,
@@ -92,7 +92,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 35, atk: 45, def: 160, spa: 30, spd: 30, spe: 70 },
     types: [ 'Rock', 'Ground' ],
     evos: [ 'E5 (229 RB)', 'Charizard' ],
-    prevos: [ 'Furret' ]
+    // prevos: [ 'Furret' ]
   },
   ca202rb: {
     num: -13,
@@ -100,35 +100,35 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 232, atk: 147, def: 145, spa: 128, spd: 128, spe: 136 },
     types: [ 'Normal', 'Ground' ],
     evos: [ 'Graveler' ],
-    prevos: [ 'Hoothoot' ]
+    // prevos: [ 'Hoothoot' ]
   },
   cb203rb: {
     num: -14,
     name: 'CB (203 RB)',
     baseStats: { hp: 63, atk: 60, def: 55, spa: 50, spd: 50, spe: 71 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Noctowl' ]
+    // prevos: [ 'Noctowl' ]
   },
   cc204rb: {
     num: -15,
     name: 'CC (204 RB)',
     baseStats: { hp: 40, atk: 80, def: 35, spa: 35, spd: 35, spe: 70 },
     types: [ 'Fighting' ],
-    prevos: [ 'Ledyba' ]
+    // prevos: [ 'Ledyba' ]
   },
   cd205rb: {
     num: -16,
     name: 'CD (205 RB)',
     baseStats: { hp: 25, atk: 35, def: 70, spa: 95, spd: 95, spe: 45 },
     types: [ 'Electric' ],
-    prevos: [ 'Ledian' ]
+    // prevos: [ 'Ledian' ]
   },
   ce206rb: {
     num: -17,
     name: 'CE (206 RB)',
     baseStats: { hp: 60, atk: 85, def: 69, spa: 65, spd: 65, spe: 80 },
     types: [ 'Poison' ],
-    prevos: [ 'Spinarak' ]
+    // prevos: [ 'Spinarak' ]
   },
   cf207rb: {
     num: -18,
@@ -136,63 +136,63 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 65, atk: 80, def: 40, spa: 45, spd: 45, spe: 75 },
     types: [ 'Bug', 'Poison' ],
     evos: [ 'Gengar', 'Spearow' ],
-    prevos: [ 'Ariados' ]
+    // prevos: [ 'Ariados' ]
   },
   d0208rb: {
     num: -19,
     name: 'D0 (208 RB)',
     baseStats: { hp: 37, atk: 0, def: 40, spa: 19, spd: 19, spe: 178 },
     types: [ 'Normal' ],
-    prevos: [ 'FB (251 RB)', 'Crobat' ]
+    // prevos: [ 'FB (251 RB)', 'Crobat' ]
   },
   d1209rb: {
     num: -20,
     name: 'D1 (209 RB)',
     baseStats: { hp: 90, atk: 85, def: 95, spa: 70, spd: 70, spe: 70 },
     types: [ 'Water', 'Fighting' ],
-    prevos: [ 'Chinchou' ]
+    // prevos: [ 'Chinchou' ]
   },
   d2210rb: {
     num: -21,
     name: 'D2 (210 RB)',
     baseStats: { hp: 232, atk: 147, def: 145, spa: 136, spd: 136, spe: 128 },
     types: [ 'Normal', 'Ground' ],
-    prevos: [ 'Lanturn' ]
+    // prevos: [ 'Lanturn' ]
   },
   d3211rb: {
     num: -22,
     name: 'D3 (211 RB)',
     baseStats: { hp: 187, atk: 105, def: 217, spa: 29, spd: 29, spe: 104 },
     types: [ 'Bird' ],
-    prevos: [ 'Pichu' ]
+    // prevos: [ 'Pichu' ]
   },
   d4212rb: {
     num: -23,
     name: 'D4 (212 RB)',
     baseStats: { hp: 60, atk: 65, def: 60, spa: 130, spd: 130, spe: 110 },
     types: [ 'Normal' ],
-    prevos: [ 'Cleffa' ]
+    // prevos: [ 'Cleffa' ]
   },
   d5213rb: {
     num: -24,
     name: 'D5 (213 RB)',
     baseStats: { hp: 232, atk: 147, def: 145, spa: 136, spd: 136, spe: 128 },
     types: [ 'Normal', 'Ground' ],
-    prevos: [ 'Igglybuff' ]
+    // prevos: [ 'Igglybuff' ]
   },
   d6214rb: {
     num: -25,
     name: 'D6 (214 RB)',
     baseStats: { hp: 37, atk: 0, def: 40, spa: 19, spd: 19, spe: 178 },
     types: [ 'Normal' ],
-    prevos: [ 'Togepi' ]
+    // prevos: [ 'Togepi' ]
   },
   d7215rb: {
     num: -26,
     name: 'D7 (215 RB)',
     baseStats: { hp: 65, atk: 65, def: 65, spa: 50, spd: 50, spe: 90 },
     types: [ 'Water' ],
-    prevos: [ 'Togetic' ]
+    // prevos: [ 'Togetic' ]
   },
   d8216rb: {
     num: -27,
@@ -200,49 +200,49 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 232, atk: 147, def: 145, spa: 136, spd: 136, spe: 128 },
     types: [ 'Normal', 'Ground' ],
     evos: [ 'D1 (209 RB)' ],
-    prevos: [ 'Natu' ]
+    // prevos: [ 'Natu' ]
   },
   d9217rb: {
     num: -28,
     name: 'D9 (217 RB)',
     baseStats: { hp: 179, atk: 96, def: 209, spa: 21, spd: 21, spe: 96 },
     types: [ 'Bird' ],
-    prevos: [ 'Xatu' ]
+    // prevos: [ 'Xatu' ]
   },
   da218rb: {
     num: -29,
     name: 'DA (218 RB)',
     baseStats: { hp: 35, atk: 45, def: 160, spa: 30, spd: 30, spe: 70 },
     types: [ 'Rock', 'Ground' ],
-    prevos: [ 'Mareep' ]
+    // prevos: [ 'Mareep' ]
   },
   db219rb: {
     num: -30,
     name: 'DB (219 RB)',
     baseStats: { hp: 232, atk: 147, def: 145, spa: 128, spd: 128, spe: 136 },
     types: [ 'Normal', 'Ground' ],
-    prevos: [ 'Flaaffy' ]
+    // prevos: [ 'Flaaffy' ]
   },
   dc220rb: {
     num: -31,
     name: 'DC (220 RB)',
     baseStats: { hp: 63, atk: 60, def: 55, spa: 50, spd: 50, spe: 71 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Ampharos' ]
+    // prevos: [ 'Ampharos' ]
   },
   dd221rb: {
     num: -32,
     name: 'DD (221 RB)',
     baseStats: { hp: 80, atk: 70, def: 65, spa: 80, spd: 80, spe: 100 },
     types: [ 'Water', 'Poison' ],
-    prevos: [ 'Bellossom' ]
+    // prevos: [ 'Bellossom' ]
   },
   de222rb: {
     num: -33,
     name: 'DE (222 RB)',
     baseStats: { hp: 25, atk: 35, def: 70, spa: 95, spd: 95, spe: 45 },
     types: [ 'Electric' ],
-    prevos: [ 'Marill' ]
+    // prevos: [ 'Marill' ]
   },
   df223rb: {
     num: -34,
@@ -250,14 +250,14 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 37, atk: 0, def: 40, spa: 19, spd: 19, spe: 178 },
     types: [ 'Normal' ],
     evos: [ 'MissingNo. (RB)' ],
-    prevos: [ 'Azumarill' ]
+    // prevos: [ 'Azumarill' ]
   },
   e0224rb: {
     num: -35,
     name: 'E0 (224 RB)',
     baseStats: { hp: 60, atk: 110, def: 70, spa: 60, spd: 60, spe: 100 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Sudowoodo' ]
+    // prevos: [ 'Sudowoodo' ]
   },
   e1225rb: {
     num: -36,
@@ -272,7 +272,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       'Slowpoke',
       'Rhydon'
     ],
-    prevos: [ 'Politoed' ]
+    // prevos: [ 'Politoed' ]
   },
   e2226rb: {
     num: -37,
@@ -280,7 +280,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 21, atk: 33, def: 176, spa: 19, spd: 19, spe: 0 },
     types: [ 'Bird' ],
     evos: [ 'MissingNo. (RB)', 'Spearow' ],
-    prevos: [ 'Hoppip' ]
+    // prevos: [ 'Hoppip' ]
   },
   e3227rb: {
     num: -38,
@@ -288,28 +288,28 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 19, atk: 114, def: 114, spa: 20, spd: 20, spe: 0 },
     types: [ 'Bird' ],
     evos: [ 'Electabuzz' ],
-    prevos: [ 'Skiploom' ]
+    // prevos: [ 'Skiploom' ]
   },
   e4228rb: {
     num: -39,
     name: 'E4 (228 RB)',
     baseStats: { hp: 14, atk: 0, def: 12, spa: 254, spd: 254, spe: 121 },
     types: [ 'Bug', 'Bird' ],
-    prevos: [ 'Jumpluff' ]
+    // prevos: [ 'Jumpluff' ]
   },
   e5229rb: {
     num: -40,
     name: 'E5 (229 RB)',
     baseStats: { hp: 21, atk: 33, def: 176, spa: 19, spd: 19, spe: 0 },
     types: [ 'Bird' ],
-    prevos: [ 'C9 (201 RB)', 'Aipom' ]
+    // prevos: [ 'C9 (201 RB)', 'Aipom' ]
   },
   e6230rb: {
     num: -41,
     name: 'E6 (230 RB)',
     baseStats: { hp: 19, atk: 114, def: 114, spa: 20, spd: 20, spe: 0 },
     types: [ 'Bird' ],
-    prevos: [ 'Sunkern' ]
+    // prevos: [ 'Sunkern' ]
   },
   e7231rb: {
     num: -42,
@@ -317,49 +317,49 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 30, atk: 182, def: 32, spa: 54, spd: 54, spe: 2 },
     types: [ 'Fighting', 'Bird' ],
     evos: [ "'M (RB)" ],
-    prevos: [ 'Sunflora' ]
+    // prevos: [ 'Sunflora' ]
   },
   e8232rb: {
     num: -43,
     name: 'E8 (232 RB)',
     baseStats: { hp: 21, atk: 33, def: 176, spa: 19, spd: 19, spe: 0 },
     types: [ 'Bird' ],
-    prevos: [ 'Yanma' ]
+    // prevos: [ 'Yanma' ]
   },
   e9233rb: {
     num: -44,
     name: 'E9 (233 RB)',
     baseStats: { hp: 14, atk: 0, def: 12, spa: 254, spd: 254, spe: 121 },
     types: [ 'Bug', 'Bird' ],
-    prevos: [ 'Wooper' ]
+    // prevos: [ 'Wooper' ]
   },
   ea234rb: {
     num: -45,
     name: 'EA (234 RB)',
     baseStats: { hp: 179, atk: 96, def: 209, spa: 21, spd: 21, spe: 96 },
     types: [ 'Bird' ],
-    prevos: [ 'Quagsire' ]
+    // prevos: [ 'Quagsire' ]
   },
   eb235rb: {
     num: -46,
     name: 'EB (235 RB)',
     baseStats: { hp: 60, atk: 110, def: 70, spa: 60, spd: 60, spe: 100 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Espeon' ]
+    // prevos: [ 'Espeon' ]
   },
   ec236rb: {
     num: -47,
     name: 'EC (236 RB)',
     baseStats: { hp: 58, atk: 80, def: 47, spa: 82, spd: 82, spe: 42 },
     types: [ 'Bird', 'Normal' ],
-    prevos: [ 'Umbreon' ]
+    // prevos: [ 'Umbreon' ]
   },
   ed237rb: {
     num: -48,
     name: 'ED (237 RB)',
     baseStats: { hp: 33, atk: 129, def: 218, spa: 3, spd: 3, spe: 24 },
     types: [ 'Bird' ],
-    prevos: [ 'Murkrow' ]
+    // prevos: [ 'Murkrow' ]
   },
   ee238rb: {
     num: -49,
@@ -367,35 +367,35 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 14, atk: 0, def: 12, spa: 254, spd: 254, spe: 121 },
     types: [ 'Bug', 'Bird' ],
     evos: [ 'Spearow' ],
-    prevos: [ 'Slowking' ]
+    // prevos: [ 'Slowking' ]
   },
   ef239rb: {
     num: -50,
     name: 'EF (239 RB)',
     baseStats: { hp: 33, atk: 129, def: 218, spa: 3, spd: 3, spe: 24 },
     types: [ 'Bird' ],
-    prevos: [ 'Misdreavus' ]
+    // prevos: [ 'Misdreavus' ]
   },
   f0240rb: {
     num: -51,
     name: 'F0 (240 RB)',
     baseStats: { hp: 30, atk: 182, def: 32, spa: 54, spd: 54, spe: 2 },
     types: [ 'Fighting', 'Bird' ],
-    prevos: [ 'Unown' ]
+    // prevos: [ 'Unown' ]
   },
   f1241rb: {
     num: -52,
     name: 'F1 (241 RB)',
     baseStats: { hp: 142, atk: 142, def: 139, spa: 145, spd: 145, spe: 147 },
     types: [ 'Normal', 'Ghost' ],
-    prevos: [ 'Wobbuffet' ]
+    // prevos: [ 'Wobbuffet' ]
   },
   f2242rb: {
     num: -53,
     name: 'F2 (242 RB)',
     baseStats: { hp: 146, atk: 152, def: 130, spa: 136, spd: 136, spe: 135 },
     types: [ 'Flying', 'Bird' ],
-    prevos: [ 'Girafarig' ]
+    // prevos: [ 'Girafarig' ]
   },
   f3243rb: {
     num: -54,
@@ -403,7 +403,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 60, atk: 90, def: 55, spa: 90, spd: 90, spe: 100 },
     types: [ 'Electric' ],
     evos: [ 'Hypno', 'Lickitung', 'Graveler' ],
-    prevos: [ 'Pineco' ]
+    // prevos: [ 'Pineco' ]
   },
   f4244rb: {
     num: -55,
@@ -411,7 +411,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 34, atk: 0, def: 19, spa: 106, spd: 106, spe: 169 },
     types: [ 'Bird' ],
     evos: [ 'MissingNo. (RB)' ],
-    prevos: [ 'Forretress' ]
+    // prevos: [ 'Forretress' ]
   },
   f5245rb: {
     num: -56,
@@ -419,42 +419,42 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 55, atk: 143, def: 55, spa: 0, spd: 0, spe: 13 },
     types: [ 'Bird' ],
     evos: [ "'M (RB)" ],
-    prevos: [ 'Dunsparce' ]
+    // prevos: [ 'Dunsparce' ]
   },
   f6246rb: {
     num: -57,
     name: 'F6 (246 RB)',
     baseStats: { hp: 140, atk: 70, def: 45, spa: 75, spd: 75, spe: 45 },
     types: [ 'Normal' ],
-    prevos: [ 'Gligar' ]
+    // prevos: [ 'Gligar' ]
   },
   f7247rb: {
     num: -58,
     name: 'F7 (247 RB)',
     baseStats: { hp: 83, atk: 80, def: 75, spa: 70, spd: 70, spe: 91 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Steelix' ]
+    // prevos: [ 'Steelix' ]
   },
   f8248rb: {
     num: -59,
     name: 'F8 (248 RB)',
     baseStats: { hp: 30, atk: 56, def: 36, spa: 25, spd: 25, spe: 72 },
     types: [ 'Normal' ],
-    prevos: [ 'Snubbull' ]
+    // prevos: [ 'Snubbull' ]
   },
   f9249rb: {
     num: -60,
     name: 'F9 (249 RB)',
     baseStats: { hp: 142, atk: 142, def: 139, spa: 145, spd: 145, spe: 147 },
     types: [ 'Normal', 'Ghost' ],
-    prevos: [ 'Granbull' ]
+    // prevos: [ 'Granbull' ]
   },
   fa250rb: {
     num: -61,
     name: 'FA (250 RB)',
     baseStats: { hp: 61, atk: 72, def: 57, spa: 55, spd: 55, spe: 65 },
     types: [ 'Poison' ],
-    prevos: [ 'FE (254 RB)', 'Qwilfish' ]
+    // prevos: [ 'FE (254 RB)', 'Qwilfish' ]
   },
   fb251rb: {
     num: -62,
@@ -501,7 +501,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     name: "'M (Y)",
     baseStats: { hp: 33, atk: 233, def: 206, spa: 236, spd: 236, spe: 17 },
     types: [ 'Bird', 'Normal' ],
-    prevos: [ 'CC (204 Y)', 'DB (219 Y)', 'DF (223 Y)', 'F5 (245 Y)' ],
+    // prevos: [ 'CC (204 Y)', 'DB (219 Y)', 'DF (223 Y)', 'F5 (245 Y)' ],
     evos: [ 'Kangaskhan', 'Clefairy' ]
   },
   bf191y: {
@@ -510,7 +510,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 14, atk: 116, def: 108, spa: 18, spd: 18, spe: 0 },
     types: [ 'Bird', 'Normal' ],
     evos: [ 'D6 (214 Y)' ],
-    prevos: [ 'Chikorita' ]
+    // prevos: [ 'Chikorita' ]
   },
   c0192y: {
     num: -69,
@@ -518,14 +518,14 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 95, atk: 75, def: 110, spa: 100, spd: 100, spe: 30 },
     types: [ 'Water', 'Psychic' ],
     evos: [ 'FF (255 Y)', 'FA (250 Y)', 'CA (202 Y)' ],
-    prevos: [ 'Bayleef' ]
+    // prevos: [ 'Bayleef' ]
   },
   c1193y: {
     num: -70,
     name: 'C1 (193 Y)',
     baseStats: { hp: 134, atk: 139, def: 132, spa: 80, spd: 80, spe: 145 },
     types: [ 'Normal' ],
-    prevos: [ 'Meganium' ]
+    // prevos: [ 'Meganium' ]
   },
   c2194y: {
     num: -71,
@@ -533,7 +533,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 2, atk: 2, def: 104, spa: 1, spd: 1, spe: 3 },
     types: [ 'Bird', 'Poison' ],
     evos: [ 'Snorlax' ],
-    prevos: [ 'Cyndaquil' ]
+    // prevos: [ 'Cyndaquil' ]
   },
   c3195y: {
     num: -72,
@@ -541,21 +541,21 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 65, atk: 80, def: 40, spa: 45, spd: 45, spe: 75 },
     types: [ 'Bug', 'Poison' ],
     evos: [ 'Squirtle' ],
-    prevos: [ 'Quilava' ]
+    // prevos: [ 'Quilava' ]
   },
   c4196y: {
     num: -73,
     name: 'C4 (196 Y)',
     baseStats: { hp: 132, atk: 145, def: 140, spa: 141, spd: 141, spe: 128 },
     types: [ 'Bird', 'Normal' ],
-    prevos: [ 'Typhlosion' ]
+    // prevos: [ 'Typhlosion' ]
   },
   c5197y: {
     num: -74,
     name: 'C5 (197 Y)',
     baseStats: { hp: 80, atk: 82, def: 78, spa: 95, spd: 95, spe: 85 },
     types: [ 'Water' ],
-    prevos: [ 'Totodile' ]
+    // prevos: [ 'Totodile' ]
   },
   c6198y: {
     num: -75,
@@ -563,7 +563,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 90, atk: 65, def: 65, spa: 40, spd: 40, spe: 15 },
     types: [ 'Water', 'Psychic' ],
     evos: [ 'Cubone', 'F0 (240 Y)' ],
-    prevos: [ 'Croconaw' ]
+    // prevos: [ 'Croconaw' ]
   },
   c7199y: {
     num: -76,
@@ -571,7 +571,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 78, atk: 84, def: 78, spa: 85, spd: 85, spe: 100 },
     types: [ 'Fire', 'Flying' ],
     evos: [ 'Geodude' ],
-    prevos: [ 'Feraligatr' ]
+    // prevos: [ 'Feraligatr' ]
   },
   c8200y: {
     num: -77,
@@ -579,7 +579,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 178, atk: 19, def: 11, spa: 23, spd: 23, spe: 0 },
     types: [ 'Normal', 'Bird' ],
     evos: [ 'FA (250 Y)' ],
-    prevos: [ 'Sentret' ]
+    // prevos: [ 'Sentret' ]
   },
   c9201y: {
     num: -78,
@@ -587,21 +587,21 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 61, atk: 72, def: 57, spa: 55, spd: 55, spe: 65 },
     types: [ 'Poison' ],
     evos: [ 'FE (254 Y)', 'EA (234 Y)', 'CA (202 Y)' ],
-    prevos: [ 'Furret' ]
+    // prevos: [ 'Furret' ]
   },
   ca202y: {
     num: -79,
     name: 'CA (202 Y)',
     baseStats: { hp: 53, atk: 3, def: 2, spa: 3, spd: 3, spe: 126 },
     types: [ 'Poison', 'Bird' ],
-    prevos: [ 'C0 (192 Y)', 'C9 (201 Y)', 'DE (222 Y)', 'Hoothoot' ]
+    // prevos: [ 'C0 (192 Y)', 'C9 (201 Y)', 'DE (222 Y)', 'Hoothoot' ]
   },
   cb203y: {
     num: -80,
     name: 'CB (203 Y)',
     baseStats: { hp: 25, atk: 35, def: 70, spa: 95, spd: 95, spe: 45 },
     types: [ 'Electric' ],
-    prevos: [ 'Noctowl' ]
+    // prevos: [ 'Noctowl' ]
   },
   cc204y: {
     num: -81,
@@ -609,21 +609,21 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 79, atk: 83, def: 100, spa: 85, spd: 85, spe: 78 },
     types: [ 'Water' ],
     evos: [ "'M (Y)" ],
-    prevos: [ 'Ledyba' ]
+    // prevos: [ 'Ledyba' ]
   },
   cd205y: {
     num: -82,
     name: 'CD (205 Y)',
     baseStats: { hp: 79, atk: 83, def: 100, spa: 85, spd: 85, spe: 78 },
     types: [ 'Water' ],
-    prevos: [ 'Ledian' ]
+    // prevos: [ 'Ledian' ]
   },
   ce206y: {
     num: -83,
     name: 'CE (206 Y)',
     baseStats: { hp: 79, atk: 83, def: 100, spa: 85, spd: 85, spe: 78 },
     types: [ 'Water' ],
-    prevos: [ 'Spinarak' ]
+    // prevos: [ 'Spinarak' ]
   },
   cf207y: {
     num: -84,
@@ -631,21 +631,21 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 79, atk: 83, def: 100, spa: 85, spd: 85, spe: 78 },
     types: [ 'Water' ],
     evos: [ 'Nidoking' ],
-    prevos: [ 'Ariados' ]
+    // prevos: [ 'Ariados' ]
   },
   d0208y: {
     num: -85,
     name: 'D0 (208 Y)',
     baseStats: { hp: 45, atk: 50, def: 45, spa: 115, spd: 115, spe: 95 },
     types: [ 'Ghost', 'Poison' ],
-    prevos: [ 'Crobat' ]
+    // prevos: [ 'Crobat' ]
   },
   d1209y: {
     num: -86,
     name: 'D1 (209 Y)',
     baseStats: { hp: 35, atk: 85, def: 45, spa: 35, spd: 35, spe: 75 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Chinchou' ]
+    // prevos: [ 'Chinchou' ]
   },
   d2210y: {
     num: -87,
@@ -653,14 +653,14 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 61, atk: 72, def: 57, spa: 55, spd: 55, spe: 65 },
     types: [ 'Poison' ],
     evos: [ 'EA (234 Y)', 'Magnemite', 'Geodude' ],
-    prevos: [ 'Lanturn' ]
+    // prevos: [ 'Lanturn' ]
   },
   d3211y: {
     num: -88,
     name: 'D3 (211 Y)',
     baseStats: { hp: 75, atk: 100, def: 95, spa: 40, spd: 40, spe: 110 },
     types: [ 'Normal' ],
-    prevos: [ 'Pichu' ]
+    // prevos: [ 'Pichu' ]
   },
   d4212y: {
     num: -89,
@@ -668,28 +668,28 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 160, atk: 110, def: 65, spa: 65, spd: 65, spe: 30 },
     types: [ 'Normal' ],
     evos: [ 'Machoke', 'Psyduck' ],
-    prevos: [ 'Cleffa' ]
+    // prevos: [ 'Cleffa' ]
   },
   d5213y: {
     num: -90,
     name: 'D5 (213 Y)',
     baseStats: { hp: 45, atk: 49, def: 49, spa: 65, spd: 65, spe: 45 },
     types: [ 'Grass', 'Poison' ],
-    prevos: [ 'Igglybuff' ]
+    // prevos: [ 'Igglybuff' ]
   },
   d6214y: {
     num: -91,
     name: 'D6 (214 Y)',
     baseStats: { hp: 39, atk: 52, def: 43, spa: 60, spd: 60, spe: 65 },
     types: [ 'Fire' ],
-    prevos: [ 'BF (191 Y)', 'Togepi' ]
+    // prevos: [ 'BF (191 Y)', 'Togepi' ]
   },
   d7215y: {
     num: -92,
     name: 'D7 (215 Y)',
     baseStats: { hp: 40, atk: 45, def: 40, spa: 35, spd: 35, spe: 56 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Togetic' ]
+    // prevos: [ 'Togetic' ]
   },
   d8216y: {
     num: -93,
@@ -697,21 +697,21 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 134, atk: 139, def: 132, spa: 80, spd: 80, spe: 145 },
     types: [ 'Normal' ],
     evos: [ 'Machoke', 'Psyduck' ],
-    prevos: [ 'Natu' ]
+    // prevos: [ 'Natu' ]
   },
   d9217y: {
     num: -94,
     name: 'D9 (217 Y)',
     baseStats: { hp: 77, atk: 185, def: 38, spa: 19, spd: 19, spe: 0 },
     types: [ 'Bird' ],
-    prevos: [ 'Xatu' ]
+    // prevos: [ 'Xatu' ]
   },
   da218y: {
     num: -95,
     name: 'DA (218 Y)',
     baseStats: { hp: 40, atk: 60, def: 30, spa: 31, spd: 31, spe: 70 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Mareep' ]
+    // prevos: [ 'Mareep' ]
   },
   db219y: {
     num: -96,
@@ -719,21 +719,21 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 14, atk: 116, def: 108, spa: 18, spd: 18, spe: 0 },
     types: [ 'Bird', 'Normal' ],
     evos: [ "'M (Y)" ],
-    prevos: [ 'Flaaffy' ]
+    // prevos: [ 'Flaaffy' ]
   },
   dc220y: {
     num: -97,
     name: 'DC (220 Y)',
     baseStats: { hp: 148, atk: 145, def: 134, spa: 128, spd: 128, spe: 139 },
     types: [ 'Normal', 'Bird' ],
-    prevos: [ 'Ampharos' ]
+    // prevos: [ 'Ampharos' ]
   },
   dd221y: {
     num: -98,
     name: 'DD (221 Y)',
     baseStats: { hp: 130, atk: 136, def: 132, spa: 147, spd: 147, spe: 141 },
     types: [ 'Ghost', 'Normal' ],
-    prevos: [ 'Bellossom' ]
+    // prevos: [ 'Bellossom' ]
   },
   de222y: {
     num: -99,
@@ -741,7 +741,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 16, atk: 112, def: 123, spa: 0, spd: 0, spe: 112 },
     types: [ 'Fire', 'Bird' ],
     evos: [ 'FF (255 Y)', 'FA (250 Y)', 'CA (202 Y)' ],
-    prevos: [ 'Marill' ]
+    // prevos: [ 'Marill' ]
   },
   df223y: {
     num: -100,
@@ -749,7 +749,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 90, atk: 85, def: 95, spa: 70, spd: 70, spe: 70 },
     types: [ 'Water', 'Fighting' ],
     evos: [ "'M (Y)", 'FA (250 Y)', "'M (Y)" ],
-    prevos: [ 'Azumarill' ]
+    // prevos: [ 'Azumarill' ]
   },
   e0224y: {
     num: -101,
@@ -757,7 +757,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 24, atk: 92, def: 58, spa: 20, spd: 20, spe: 0 },
     types: [ 'Normal' ],
     evos: [ 'Spearow' ],
-    prevos: [ 'Sudowoodo' ]
+    // prevos: [ 'Sudowoodo' ]
   },
   e1225y: {
     num: -102,
@@ -765,42 +765,42 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 2, atk: 94, def: 0, spa: 1, spd: 1, spe: 47 },
     types: [ 'Fighting' ],
     evos: [ 'F1 (241 Y)', 'Growlithe' ],
-    prevos: [ 'Politoed' ]
+    // prevos: [ 'Politoed' ]
   },
   e2226y: {
     num: -103,
     name: 'E2 (226 Y)',
     baseStats: { hp: 148, atk: 145, def: 134, spa: 128, spd: 128, spe: 139 },
     types: [ 'Normal', 'Bird' ],
-    prevos: [ 'Hoppip' ]
+    // prevos: [ 'Hoppip' ]
   },
   e3227y: {
     num: -104,
     name: 'E3 (227 Y)',
     baseStats: { hp: 130, atk: 136, def: 132, spa: 147, spd: 147, spe: 141 },
     types: [ 'Ghost', 'Normal' ],
-    prevos: [ 'Skiploom' ]
+    // prevos: [ 'Skiploom' ]
   },
   e4228y: {
     num: -105,
     name: 'E4 (228 Y)',
     baseStats: { hp: 14, atk: 116, def: 108, spa: 18, spd: 18, spe: 0 },
     types: [ 'Bird', 'Normal' ],
-    prevos: [ 'Jumpluff' ]
+    // prevos: [ 'Jumpluff' ]
   },
   e5229y: {
     num: -106,
     name: 'E5 (229 Y)',
     baseStats: { hp: 65, atk: 70, def: 60, spa: 65, spd: 65, spe: 115 },
     types: [ 'Normal' ],
-    prevos: [ 'Aipom' ]
+    // prevos: [ 'Aipom' ]
   },
   e6230y: {
     num: -107,
     name: 'E6 (230 Y)',
     baseStats: { hp: 4, atk: 40, def: 6, spa: 78, spd: 78, spe: 62 },
     types: [ 'Normal' ],
-    prevos: [ 'Sunkern' ]
+    // prevos: [ 'Sunkern' ]
   },
   e7231y: {
     num: -108,
@@ -808,49 +808,49 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 132, atk: 145, def: 140, spa: 141, spd: 141, spe: 128 },
     types: [ 'Bird', 'Normal' ],
     evos: [ "'M (Y)" ],
-    prevos: [ 'Sunflora' ]
+    // prevos: [ 'Sunflora' ]
   },
   e8232y: {
     num: -109,
     name: 'E8 (232 Y)',
     baseStats: { hp: 80, atk: 92, def: 65, spa: 65, spd: 65, spe: 68 },
     types: [ 'Water' ],
-    prevos: [ 'Yanma' ]
+    // prevos: [ 'Yanma' ]
   },
   e9233y: {
     num: -110,
     name: 'E9 (233 Y)',
     baseStats: { hp: 61, atk: 72, def: 57, spa: 55, spd: 55, spe: 65 },
     types: [ 'Poison' ],
-    prevos: [ 'Wooper' ]
+    // prevos: [ 'Wooper' ]
   },
   ea234y: {
     num: -111,
     name: 'EA (234 Y)',
     baseStats: { hp: 160, atk: 110, def: 65, spa: 65, spd: 65, spe: 30 },
     types: [ 'Normal' ],
-    prevos: [ 'C9 (201 Y)', 'D2 (210 Y)', 'Quagsire' ]
+    // prevos: [ 'C9 (201 Y)', 'D2 (210 Y)', 'Quagsire' ]
   },
   eb235y: {
     num: -112,
     name: 'EB (235 Y)',
     baseStats: { hp: 0, atk: 48, def: 0, spa: 98, spd: 98, spe: 88 },
     types: [ 'Normal', 'Bird' ],
-    prevos: [ 'Espeon' ]
+    // prevos: [ 'Espeon' ]
   },
   ec236y: {
     num: -113,
     name: 'EC (236 Y)',
     baseStats: { hp: 63, atk: 60, def: 55, spa: 50, spd: 50, spe: 71 },
     types: [ 'Normal', 'Flying' ],
-    prevos: [ 'Umbreon' ]
+    // prevos: [ 'Umbreon' ]
   },
   ed237y: {
     num: -114,
     name: 'ED (237 Y)',
     baseStats: { hp: 192, atk: 0, def: 128, spa: 0, spd: 0, spe: 16 },
     types: [ 'Normal' ],
-    prevos: [ 'Murkrow' ]
+    // prevos: [ 'Murkrow' ]
   },
   ee238y: {
     num: -115,
@@ -858,7 +858,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 0, atk: 48, def: 0, spa: 98, spd: 98, spe: 88 },
     types: [ 'Normal', 'Bird' ],
     evos: [ 'Nidoking' ],
-    prevos: [ 'Slowking' ]
+    // prevos: [ 'Slowking' ]
   },
   ef239y: {
     num: -116,
@@ -866,28 +866,28 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 140, atk: 70, def: 45, spa: 50, spd: 50, spe: 45 },
     types: [ 'Normal' ],
     evos: [ 'FA (250 Y)' ],
-    prevos: [ 'Misdreavus' ]
+    // prevos: [ 'Misdreavus' ]
   },
   f0240y: {
     num: -117,
     name: 'F0 (240 Y)',
     baseStats: { hp: 78, atk: 84, def: 78, spa: 85, spd: 85, spe: 100 },
     types: [ 'Fire', 'Flying' ],
-    prevos: [ 'C6 (198 Y)', 'Unown' ]
+    // prevos: [ 'C6 (198 Y)', 'Unown' ]
   },
   f1241y: {
     num: -118,
     name: 'F1 (241 Y)',
     baseStats: { hp: 61, atk: 72, def: 57, spa: 55, spd: 55, spe: 65 },
     types: [ 'Poison' ],
-    prevos: [ 'E1 (225 Y)', 'FC (252 Y)', 'Wobbuffet' ]
+    // prevos: [ 'E1 (225 Y)', 'FC (252 Y)', 'Wobbuffet' ]
   },
   f2242y: {
     num: -119,
     name: 'F2 (242 Y)',
     baseStats: { hp: 65, atk: 125, def: 100, spa: 55, spd: 55, spe: 85 },
     types: [ 'Bug' ],
-    prevos: [ 'Girafarig' ]
+    // prevos: [ 'Girafarig' ]
   },
   f3243y: {
     num: -120,
@@ -895,7 +895,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 0, atk: 48, def: 0, spa: 98, spd: 98, spe: 88 },
     types: [ 'Normal', 'Bird' ],
     evos: [ 'Graveler' ],
-    prevos: [ 'Pineco' ]
+    // prevos: [ 'Pineco' ]
   },
   f4244y: {
     num: -121,
@@ -903,7 +903,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 63, atk: 60, def: 55, spa: 50, spd: 50, spe: 71 },
     types: [ 'Normal', 'Flying' ],
     evos: [ 'Rhydon' ],
-    prevos: [ 'Forretress' ]
+    // prevos: [ 'Forretress' ]
   },
   f5245y: {
     num: -122,
@@ -911,42 +911,42 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     baseStats: { hp: 160, atk: 110, def: 65, spa: 65, spd: 65, spe: 30 },
     types: [ 'Normal' ],
     evos: [ 'Exeggcute', "'M (Y)" ],
-    prevos: [ 'Dunsparce' ]
+    // prevos: [ 'Dunsparce' ]
   },
   f6246y: {
     num: -123,
     name: 'F6 (246 Y)',
     baseStats: { hp: 0, atk: 48, def: 0, spa: 98, spd: 98, spe: 88 },
     types: [ 'Normal', 'Bird' ],
-    prevos: [ 'Gligar' ]
+    // prevos: [ 'Gligar' ]
   },
   f7247y: {
     num: -124,
     name: 'F7 (247 Y)',
     baseStats: { hp: 45, atk: 49, def: 49, spa: 65, spd: 65, spe: 45 },
     types: [ 'Grass', 'Poison' ],
-    prevos: [ 'Steelix' ]
+    // prevos: [ 'Steelix' ]
   },
   f8248y: {
     num: -125,
     name: 'F8 (248 Y)',
     baseStats: { hp: 90, atk: 85, def: 100, spa: 125, spd: 125, spe: 85 },
     types: [ 'Ice', 'Flying' ],
-    prevos: [ 'Snubbull' ]
+    // prevos: [ 'Snubbull' ]
   },
   f9249y: {
     num: -126,
     name: 'F9 (249 Y)',
     baseStats: { hp: 178, atk: 19, def: 11, spa: 23, spd: 23, spe: 0 },
     types: [ 'Normal', 'Bird' ],
-    prevos: [ 'Granbull' ]
+    // prevos: [ 'Granbull' ]
   },
   fa250y: {
     num: -127,
     name: 'FA (250 Y)',
     baseStats: { hp: 65, atk: 95, def: 57, spa: 100, spd: 100, spe: 93 },
     types: [ 'Fire' ],
-    prevos: [ 'C0 (192 Y)', 'C8 (200 Y)', 'DE (222 Y)', 'DF (223 Y)', 'EF (239 Y)', 'Qwilfish' ]
+    // prevos: [ 'C0 (192 Y)', 'C8 (200 Y)', 'DE (222 Y)', 'DF (223 Y)', 'EF (239 Y)', 'Qwilfish' ]
   },
   fb251y: {
     num: -128,
@@ -973,14 +973,14 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     name: 'FE (254 Y)',
     baseStats: { hp: 50, atk: 25, def: 55, spa: 25, spd: 25, spe: 30 },
     types: [ 'Bug' ],
-    prevos: [ 'C9 (201 Y)' ]
+    // prevos: [ 'C9 (201 Y)' ]
   },
   ff255y: {
     num: -132,
     name: 'FF (255 Y)',
     baseStats: { hp: 60, atk: 75, def: 85, spa: 100, spd: 100, spe: 115 },
     types: [ 'Water', 'Psychic' ],
-    prevos: [ 'C0 (192 Y)', 'DE (222 Y)' ]
+    // prevos: [ 'C0 (192 Y)', 'DE (222 Y)' ]
   },
   missingnoy: {
     num: -133,
@@ -1010,12 +1010,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   charizard: {
     baseStats: { hp: 78, atk: 84, def: 78, spa: 85, spd: 85, spe: 100 },
-    prevos: [ 'C9 (201 RB)' ],
+    // prevos: [ 'C9 (201 RB)' ],
     inherit: true
   },
   squirtle: {
     baseStats: { hp: 44, atk: 48, def: 65, spa: 50, spd: 50, spe: 43 },
-    prevos: [ 'C3 (195 Y)' ],
+    // prevos: [ 'C3 (195 Y)' ],
     inherit: true
   },
   wartortle: {
@@ -1072,7 +1072,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   spearow: {
     baseStats: { hp: 40, atk: 60, def: 30, spa: 31, spd: 31, spe: 70 },
-    prevos: [ 'C1 (193 RB)', 'CF (207 RB)', 'E2 (226 RB)', 'EE (238 RB)', 'E0 (224 Y)' ],
+    // prevos: [ 'C1 (193 RB)', 'CF (207 RB)', 'E2 (226 RB)', 'EE (238 RB)', 'E0 (224 Y)' ],
     inherit: true
   },
   fearow: {
@@ -1105,7 +1105,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   nidoranf: {
     baseStats: { hp: 55, atk: 47, def: 52, spa: 40, spd: 40, spe: 41 },
-    prevos: [ 'FC (252 RB)', 'E1 (225 RB)' ],
+    // prevos: [ 'FC (252 RB)', 'E1 (225 RB)' ],
     inherit: true
   },
   nidorina: {
@@ -1126,12 +1126,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   nidoking: {
     baseStats: { hp: 81, atk: 92, def: 77, spa: 75, spd: 75, spe: 85 },
-    prevos: [ 'C6 (198 RB)', 'CF (207 Y)', 'EE (238 Y)' ],
+    // prevos: [ 'C6 (198 RB)', 'CF (207 Y)', 'EE (238 Y)' ],
     inherit: true
   },
   clefairy: {
     baseStats: { hp: 70, atk: 45, def: 48, spa: 60, spd: 60, spe: 35 },
-    prevos: [ "'M (RB)", 'C6 (198 RB)', "'M (Y)" ],
+    // prevos: [ "'M (RB)", 'C6 (198 RB)', "'M (Y)" ],
     inherit: true
   },
   clefable: {
@@ -1208,7 +1208,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   psyduck: {
     baseStats: { hp: 50, atk: 52, def: 48, spa: 50, spd: 50, spe: 55 },
-    prevos: [ 'D4 (212 Y)', 'D8 (216 Y)' ],
+    // prevos: [ 'D4 (212 Y)', 'D8 (216 Y)' ],
     inherit: true
   },
   golduck: {
@@ -1225,12 +1225,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   growlithe: {
     baseStats: { hp: 55, atk: 70, def: 45, spa: 50, spd: 50, spe: 60 },
-    prevos: [ 'E1 (225 Y)', 'FC (252 Y)' ],
+    // prevos: [ 'E1 (225 Y)', 'FC (252 Y)' ],
     inherit: true
   },
   arcanine: {
     baseStats: { hp: 90, atk: 110, def: 80, spa: 80, spd: 80, spe: 95 },
-    prevos: [ 'E1 (225 RB)', 'FC (252 RB)' ],
+    // prevos: [ 'E1 (225 RB)', 'FC (252 RB)' ],
     inherit: true
   },
   poliwag: {
@@ -1263,7 +1263,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   machoke: {
     baseStats: { hp: 80, atk: 100, def: 70, spa: 50, spd: 50, spe: 45 },
-    prevos: [ 'D4 (212 Y)', 'D8 (216 Y)' ],
+    // prevos: [ 'D4 (212 Y)', 'D8 (216 Y)' ],
     inherit: true
   },
   machamp: {
@@ -1292,12 +1292,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   geodude: {
     baseStats: { hp: 40, atk: 80, def: 100, spa: 30, spd: 30, spe: 20 },
-    prevos: [ 'C7 (199 Y)', 'D2 (210 Y)' ],
+    // prevos: [ 'C7 (199 Y)', 'D2 (210 Y)' ],
     inherit: true
   },
   graveler: {
     baseStats: { hp: 55, atk: 95, def: 115, spa: 45, spd: 45, spe: 35 },
-    prevos: [ 'CA (202 RB)', 'F3 (243 RB)', 'F3 (243 Y)' ],
+    // prevos: [ 'CA (202 RB)', 'F3 (243 RB)', 'F3 (243 Y)' ],
     inherit: true
   },
   golem: {
@@ -1314,7 +1314,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   slowpoke: {
     baseStats: { hp: 90, atk: 65, def: 65, spa: 40, spd: 40, spe: 15 },
-    prevos: [ 'E1 (225 RB)', 'FC (252 RB)' ],
+    // prevos: [ 'E1 (225 RB)', 'FC (252 RB)' ],
     inherit: true
   },
   slowbro: {
@@ -1323,7 +1323,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   magnemite: {
     baseStats: { hp: 25, atk: 35, def: 70, spa: 95, spd: 95, spe: 45 },
-    prevos: [ 'D2 (210 Y)' ],
+    // prevos: [ 'D2 (210 Y)' ],
     inherit: true
   },
   magneton: {
@@ -1376,7 +1376,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   gengar: {
     baseStats: { hp: 60, atk: 65, def: 60, spa: 130, spd: 130, spe: 110 },
-    prevos: [ 'CF (207 RB)' ],
+    // prevos: [ 'CF (207 RB)' ],
     inherit: true
   },
   onix: {
@@ -1389,7 +1389,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   hypno: {
     baseStats: { hp: 85, atk: 73, def: 70, spa: 115, spd: 115, spe: 67 },
-    prevos: [ 'F3 (243 RB)' ],
+    // prevos: [ 'F3 (243 RB)' ],
     inherit: true
   },
   krabby: {
@@ -1410,7 +1410,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   exeggcute: {
     baseStats: { hp: 60, atk: 40, def: 80, spa: 60, spd: 60, spe: 40 },
-    prevos: [ 'F5 (245 Y)' ],
+    // prevos: [ 'F5 (245 Y)' ],
     inherit: true
   },
   exeggutor: {
@@ -1419,7 +1419,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   cubone: {
     baseStats: { hp: 50, atk: 50, def: 95, spa: 40, spd: 40, spe: 35 },
-    prevos: [ 'E1 (225 RB)', 'FC (252 RB)', 'C6 (198 Y)' ],
+    // prevos: [ 'E1 (225 RB)', 'FC (252 RB)', 'C6 (198 Y)' ],
     inherit: true
   },
   marowak: {
@@ -1436,7 +1436,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   lickitung: {
     baseStats: { hp: 90, atk: 55, def: 75, spa: 60, spd: 60, spe: 30 },
-    prevos: [ 'F3 (243 RB)' ],
+    // prevos: [ 'F3 (243 RB)' ],
     inherit: true
   },
   koffing: {
@@ -1453,12 +1453,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   rhydon: {
     baseStats: { hp: 105, atk: 130, def: 120, spa: 45, spd: 45, spe: 40 },
-    prevos: [ 'E1 (225 RB)', 'FC (252 RB)', 'F4 (244 Y)' ],
+    // prevos: [ 'E1 (225 RB)', 'FC (252 RB)', 'F4 (244 Y)' ],
     inherit: true
   },
   chansey: {
     baseStats: { hp: 250, atk: 5, def: 5, spa: 105, spd: 105, spe: 50 },
-    prevos: [ 'FE (254 RB)' ],
+    // prevos: [ 'FE (254 RB)' ],
     inherit: true
   },
   tangela: {
@@ -1467,7 +1467,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   kangaskhan: {
     baseStats: { hp: 105, atk: 95, def: 80, spa: 40, spd: 40, spe: 90 },
-    prevos: [ "'M (RB)", "'M (Y)" ],
+    // prevos: [ "'M (RB)", "'M (Y)" ],
     inherit: true
   },
   horsea: {
@@ -1508,7 +1508,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   electabuzz: {
     baseStats: { hp: 65, atk: 83, def: 57, spa: 85, spd: 85, spe: 105 },
-    prevos: [ 'E3 (227 RB)' ],
+    // prevos: [ 'E3 (227 RB)' ],
     inherit: true
   },
   magmar: {
@@ -1581,7 +1581,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   snorlax: {
     baseStats: { hp: 160, atk: 110, def: 65, spa: 65, spd: 65, spe: 30 },
-    prevos: [ 'C2 (194 Y)' ],
+    // prevos: [ 'C2 (194 Y)' ],
     inherit: true
   },
   articuno: {
