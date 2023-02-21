@@ -166,9 +166,9 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Reckless"},
 	   weightkg: 108,
 	},
-	bullibolt: {
+	bullibot: {
 		num: 22,
-		name: "Bullibolt",
+		name: "Bullibot",
 		types: ["Fighting", "Steel"],
 		baseStats: {hp: 109, atk: 103, def: 91, spa: 64, spd: 83, spe: 45},
 		abilities: {0: "Volt Absorb", 1: "Iron Fist", H: "Long Reach"},
