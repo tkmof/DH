@@ -134,7 +134,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 110, atk: 75, def: 100, spa: 134, spd: 100, spe: 81},
 		abilities: {0: "Gooey", 1: "Flash Fire", H: "Flame Body"},
 	},
-	throh: {
+	throg: {
 		num: 18,
 		name: "Throg",
 		types: ["Water"],
@@ -149,5 +149,29 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 80, atk: 40, def: 70, spa: 100, spd: 80, spe: 50},
 		abilities: {0: "Punk Rock", 1: "Soundproof", H: "Klutz"},
 		weightkg: 28.5,
+	},
+	glimmaurora: {
+		num: 20,
+		name: "Glimmaurora",
+		types: ["Ice", "Fire"],
+		baseStats: {hp: 83, atk: 90, def: 55, spa: 81, spd: 86, spe: 130},
+		abilities: {0: "Levitate", H: "Magic Guard"},
+		weightkg: 15,
+	},
+	witherwing: {
+		num: 21,
+		name: "Wither Wing",
+		types: ["Dark", "Electric"],
+		baseStats: {hp: 85, atk: 117, def: 71, spa: 95, spd: 101, spe: 101},
+		abilities: {0: "Reckless"},
+	   weightkg: 108,
+	},
+	bullibolt: {
+		num: 22,
+		name: "Bullibolt",
+		types: ["Fighting", "Steel"],
+		baseStats: {hp: 109, atk: 103, def: 91, spa: 64, spd: 83, spe: 45},
+		abilities: {0: "Volt Absorb", 1: "Iron Fist", H: "Long Reach"},
+		weightkg: 280,
 	},
 };
