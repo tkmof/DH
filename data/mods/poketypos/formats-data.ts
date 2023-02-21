@@ -75,4 +75,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       tier: "Poketypos",
       doublesTier: "Poketypos", 
 	},
+	glimmaurora: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
+	witherwing: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
+	bullibot: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
 };
