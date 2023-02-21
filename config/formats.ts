@@ -1339,6 +1339,12 @@ export const Formats: FormatList = [
 		ruleset: ['Standard Doubles', 'Swagger Clause'],
 		banlist: ['Uber'],
 	},
+    {
+		name: "[Gen 1] Glitch OU",
+		mod: 'gen1glitch',
+		ruleset: ['Standard'],
+		banlist: ['Uber'],
+	},
 	{
 	name: "[Gen 1] JohtoMons",
 	desc: '<b>[Gen 1] JohtoMons</b>: Adding the Johto mons to RBY',
