@@ -257,6 +257,36 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		gen: 6,
 		num: 256,
 	},
+	nostalgiatrip: {
+      shortDesc: "This Pokemon's moves have the damage categories they would have in Gen 3. Fairy-type moves are Special.",
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Nostalgia Trip');
+			this.add('-message', `This Pokemon is experiencing a nostalgia trip!`);
+		},
+		onModifyMovePriority: 8,
+		onModifyMove(move, pokemon) {
+			if ((move.type === 'Fire' || move.type === 'Water' || move.type === 'Grass' || move.type === 'Electric' || move.type === 'Dark' || move.type === 'Psychic' || move.type === 'Dragon' || move.type === 'Fairy')  && move.category === 'Physical') move.category = 'Special';
+			if ((move.type === 'Normal' || move.type === 'Fighting' || move.type === 'Flying' || move.type === 'Ground' || move.type === 'Rock' || move.type === 'Bug' || move.type === 'Ghost' || move.type === 'Poison' || move.type === 'Steel')  && move.category === 'Special') move.category = 'Physical';
+		},
+		name: "Nostalgia Trip",
+		rating: 4,
+		gen: 6,
+	},
+	weatherreport: {
+      onBeforeMovePriority: 0.5,
+		onBeforeMove(target, source, move) {
+          if (move.type === 'Fire') {
+				this.field.setWeather('sunnyday');
+          }
+          else if (move.type === 'Water') {
+				this.field.setWeather('raindance');
+          }
+      },
+		name: "Weather Report",
+		shortDesc: "Before using a Water or Fire-type move, this Pokemon sets Rain Dance or Sunny Day respectively.",
+		rating: 4,
+		gen: 6,
+	},	
 	
 /*	
 // ngas is so cringe
