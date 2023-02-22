@@ -155,4 +155,46 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		gen: 8,
 		desc: "If held by a Sylveon, this item allows it to Mega Evolve in battle.",
 	},
+	zangoosite: {
+		name: "Zangoosite",
+		spritenum: 578,
+		megaStone: "Zangoose-Mega",
+		megaEvolves: "Zangoose",
+		itemUser: ["Zangoose"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1012,
+		gen: 8,
+		desc: "If held by a Zangoose, this item allows it to Mega Evolve in battle.",
+	},
+	seviperite: {
+		name: "Seviperite",
+		spritenum: 578,
+		megaStone: "Seviper-Mega",
+		megaEvolves: "Seviper",
+		itemUser: ["Seviper"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1013,
+		gen: 8,
+		desc: "If held by a Seviper, this item allows it to Mega Evolve in battle.",
+	},
+	solrockite: {
+		name: "Solrockite",
+		spritenum: 578,
+		megaStone: "Solrock-Mega",
+		megaEvolves: "Solrock",
+		itemUser: ["Solrock"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1014,
+		gen: 8,
+		desc: "If held by a Solrock, this item allows it to Mega Evolve in battle.",
+	},
 };
