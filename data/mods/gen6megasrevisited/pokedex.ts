@@ -77,6 +77,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Steel", "Ground"],
 		baseStats: {hp: 75, atk: 135, def: 210, spa: 55, spd: 105, spe: 30},
 		abilities: {0: "Heatproof"},
+		weightkg: 999.9,
 	},	
 	altariamega: {
 		inherit: true,
