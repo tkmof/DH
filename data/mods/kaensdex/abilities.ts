@@ -149,16 +149,16 @@ airionizer: {
 deepsea: {
 		onModifyDef(def, pokemon) {
 			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
-				return this.chainModify(2);
+				return this.chainModify(1.5);
 			}
 		},
             onModifySpD(spd, pokemon) {
 			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
-				return this.chainModify(2);
+				return this.chainModify(1.5);
 			}
 		},
 		name: "Deep Sea",
-		desc: "If Rain is active, this Pokemon's Defense and Special defense is doubled.",
+		desc: "If Rain is active, this Pokemon's Defense and Special defense are 1.5x.",
 		rating: 3,
 		num: 10008,
 	},
@@ -570,6 +570,27 @@ guardianoftheruins: {
 		rating: 2,
 		num: 10031,
 	},
+	
+greatshield: {
+		onCriticalHit: false,
+		onTryHit(pokemon, target, move) {
+			if (move.flags['bullet']) {
+				this.add('-immune', pokemon, '[from] ability: Great Shield');
+				return null;
+			}
+		},
+		onDamagingHitOrder: 1,
+		onDamagingHit(damage, target, source, move) {
+			if (move.flags['contact']) {
+				this.damage(source.baseMaxhp / 8, source, target);
+			}
+		},
+		name: "Great Shield",
+		desc: "Immune to Bullets and can't be crit. Deals 1/8 on contact.",
+		rating: 3,
+		num: 10032,
+	},
+	
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,
