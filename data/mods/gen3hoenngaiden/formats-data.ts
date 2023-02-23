@@ -2471,7 +2471,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	// 	rank: "A2",
 	// 	gen: 3,
 	// 	tier: "OU",
-	},
+	// },
 	/*ursaluna: {
 		rank: "Unranked",
 		gen: 3,
