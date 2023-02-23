@@ -2467,11 +2467,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},*/
-	kleavor: {
-		rank: "A2",
-		gen: 3,
-		tier: "OU",
-	},
+	// kleavor: {
+	// 	rank: "A2",
+	// 	gen: 3,
+	// 	tier: "OU",
+	// },
 	/*ursaluna: {
 		rank: "Unranked",
 		gen: 3,
