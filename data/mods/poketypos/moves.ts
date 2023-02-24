@@ -349,6 +349,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return this.clampIntRange(Math.floor(target.getUndynamaxedHP() / 2), 1);
 		},
 		category: "Special",
+      shortDesc: "Does damage equal to 1/2 target's current HP.",
 		name: "Ruination",
 		pp: 10,
 		priority: 0,
@@ -357,6 +358,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Dark",
 		contestType: "Tough",
+	},
+	icespinner: {
+		num: 314,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "Ends the effects of terrains.",
+		name: "Ice Spinner",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onHit() {
+			this.field.clearTerrain();
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
 	},
 	
 	/*Old move changes*/
