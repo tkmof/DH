@@ -1133,7 +1133,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "OU",
 	},
 	d4212rb: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	d5213rb: {
 		tier: "OU",
