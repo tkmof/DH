@@ -170,7 +170,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
     num: -23,
     name: 'D4 (212 RB)',
     baseStats: { hp: 60, atk: 65, def: 60, spa: 130, spd: 130, spe: 110 },
-    types: [ 'Normal' ],
+    types: [ 'Ghost', 'Poison' ],
     // prevos: [ 'Cleffa' ]
   },
   d5213rb: {
