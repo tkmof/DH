@@ -1,6 +1,34 @@
 import computeSourceMap from "sucrase/dist/types/computeSourceMap";
 
 export const Moves: {[k: string]: ModdedMoveData} = {
+	recover: {
+		inherit: true,
+		pp: 10,
+	},
+	softboiled: {
+		inherit: true,
+		pp: 10,
+	},
+	rest: {
+		inherit: true,
+		pp: 10,
+	},
+	milkdrink: {
+		inherit: true,
+		pp: 10,
+	},
+	slackoff: {
+		inherit: true,
+		pp: 10,
+	},
+	roost: {
+		inherit: true,
+		pp: 10,
+	},
+	shoreup: {
+		inherit: true,
+		pp: 10,
+	},
 	tentacatch: {
 		num: -1,
 		accuracy: 85,
@@ -1791,7 +1819,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Fairy",
 		contestType: "Clever",
 	},
-	ragingfury: {
+	/*ragingfury: {
 		num: -1200,
 		accuracy: 100,
 		basePower: 120,
@@ -1813,7 +1841,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "randomNormal",
 		type: "Fire",
 		contestType: "Cool",
-	},
+	},*/
 	chloroblast: {
 		desc: "This move has 50% recoil. Hits target for at least neutral damages.",
 		num: -1720,
@@ -1841,7 +1869,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Grass",
 		contestType: "Cool",
 	},
-	infernalparade: {
+	/*infernalparade: {
 		num: -1506,
 		accuracy: 100,
 		basePower: 60,
@@ -1863,7 +1891,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Ghost",
 		zMove: {basePower: 160},
 		contestType: "Clever",
-	},
+	},*/
 	/*ceaselessedge: {
 		num: -1463,
 		accuracy: 90,
@@ -1880,8 +1908,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Dark",
 		contestType: "Tough",
 	},*/
-	ceaselessedge: {
-		shortDesc: "Sets Spikes after damage. High critical hit ratio.",
+	/*ceaselessedge: {
+		shortDesc: "Sets Spikes after damage.",
 		num: -1006,
 		accuracy: 90,
 		basePower: 65,
@@ -1920,7 +1948,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Fighting",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
-	},
+	},*/
 	bittermalice: {
 		num: -1506,
 		accuracy: 100,
@@ -1944,7 +1972,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {basePower: 160},
 		contestType: "Clever",
 	},
-	esperwing: {
+	/*esperwing: {
 		num: -1094,
 		accuracy: 100,
 		basePower: 95,
@@ -1983,7 +2011,46 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Ice",
 		contestType: "Beautiful",
+	},*/
+	/*esperwing: {
+		num: 840,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Esper Wing",
+		shortDesc: "100% chance to raise user Speed by 1. High crit.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					spe: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Psychic",
 	},
+	mountaingale: {
+		num: 836,
+		accuracy: 85,
+		basePower: 100,
+		category: "Physical",
+		name: "Mountain Gale",
+		shortDesc: "30% chance to make the target flinch.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'flinch',
+		},
+		target: "normal",
+		type: "Ice",
+	},*/
 	shelter: {
 		num: -1661,
 		accuracy: true,
@@ -2042,7 +2109,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Tough",
 		shortDesc: "Protects from moves. Contact: resets opponent's stat boosts.",
 	},
-	triplearrows: {
+	/*triplearrows: {
 		num: -1612,
 		accuracy: 100,
 		basePower: 50,
@@ -2067,7 +2134,32 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Fighting",
 		contestType: "Tough",
-	},
+	},*/
+	/*triplearrows: {
+		num: 843,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
+		name: "Triple Arrows",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		secondaries: [
+			{
+				chance: 50,
+				boosts: {
+					def: -1,
+				},
+			}, {
+				chance: 30,
+				volatileStatus: 'flinch',
+			},
+		],
+		target: "normal",
+		type: "Fighting",
+	},*/
 	/*psyshieldbash: {
 		num: -1776,
 		accuracy: 100,
@@ -2103,7 +2195,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Rock",
 		contestType: "Clever",
 	},*/
-	psyshieldbash: {
+	/*psyshieldbash: {
 		shortDesc: "100% chance to raise the user's Defense by 1.",
 		num: -1013,
 		accuracy: 90,
@@ -2130,7 +2222,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Clever",
 	},
 	stoneaxe: {
-		shortDesc: "Sets Stealth Rock after damage. High critical hit ratio.",
+		shortDesc: "Sets Stealth Rock after damage.",
 		num: -1014,
 		accuracy: 90,
 		basePower: 65,
@@ -2143,7 +2235,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stone Edge", target);
 		},
-		critRatio: 2,
 		sideCondition: 'stealthrock',
 		secondary: null,
 		target: "adjacentFoe",
@@ -2193,7 +2284,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Water",
 		contestType: "Cool",
-	},
+	},*/
 	direclaw: {
 		num: -1398,
 		accuracy: 100,
@@ -2212,7 +2303,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Poison",
 		contestType: "Tough",
 	},
-	barbbarrage: {
+	/*barbbarrage: {
 		num: -1506,
 		accuracy: 100,
 		basePower: 70,
@@ -2227,14 +2318,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		secondary: {
-			chance: 30,
+			chance: 50,
 			status: 'psn',
 		},
 		target: "normal",
 		type: "Poison",
-		zMove: {basePower: 160},
-		contestType: "Clever",
-	},
+	},*/
 	hiddenpower: {
 		num: 237,
 		accuracy: 100,
@@ -2549,12 +2638,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "self",
 		type: "Normal",
 	},
-	weneedawall: {
+	zawall: {
 		num: -1800,
 		accuracy: 90,
 		basePower: 120,
 		category: "Physical",
-		name: "We Need A Wall",
+		name: "Za Wall",
 		shortDesc: "Raises user's Atk by 1 on turn 1. Hits turn 2.",
 		pp: 10,
 		priority: 0,
@@ -2662,7 +2751,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		name: "Brave Blade",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, slicing: 1},
 		onModifyMove(move, pokemon, target) {
 			if (!target) return;
 			const atk = pokemon.getStat('atk', false, true);
@@ -2689,6 +2778,276 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Psychic",
 	},
+	bleakwindstorm: {
+		num: 846,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		name: "Bleakwind Storm",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		secondary: {
+			chance: 20,
+			status: 'frz',
+		},
+		target: "allAdjacentFoes",
+		type: "Flying",
+	},
+	tidyup: {
+		num: 882,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Tidy Up",
+		pp: 10,
+		priority: 0,
+		flags: {},
+		onHit(pokemon) {
+			let success = false;
+			for (const active of this.getAllActive()) {
+				if (active.removeVolatile('substitute')) success = true;
+			}
+			const sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
+			for (const condition of sideConditions) {
+				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Rapid Spin', '[of] ' + pokemon);
+				}
+			}
+			if (success) this.add('-activate', pokemon, 'move: Tidy Up');
+			return !!this.boost({atk: 1, spe: 1, accuracy: 1}, pokemon, pokemon, null, false, true) || success;
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+	},
+	hyperdrill: {
+		num: 887,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		name: "Hyper Drill",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, mirror: 1},
+		secondary: {
+			chance: 50,
+			boosts: {
+				def: -2,
+			},
+		},
+		target: "normal",
+		type: "Normal",
+		contestType: "Clever",
+	},
+	filletaway: {
+		num: 868,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Fillet Away",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		onTry(source) {
+			if (source.hp <= source.maxhp / 2 || source.maxhp === 1) return false;
+		},
+		onTryHit(pokemon, target, move) {
+			if (!this.boost(move.boosts as SparseBoostsTable)) return null;
+			delete move.boosts;
+		},
+		onHit(pokemon) {
+			this.directDamage(pokemon.maxhp / 2);
+		},
+		boosts: {
+			atk: 3,
+			spa: 3,
+			spe: 3,
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+	},
+	blazingtorque: {
+		num: 896,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		isNonstandard: "Unobtainable",
+		name: "Blazing Torque",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		secondary: {
+			chance: 30,
+			status: 'brn',
+		},
+		target: "normal",
+		type: "Fire",
+	},
+	wickedtorque: {
+		num: 897,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		isNonstandard: "Unobtainable",
+		name: "Wicked Torque",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		secondary: {
+			chance: 30,
+			boosts: {
+				atk: -1,
+			},
+		},
+		target: "normal",
+		type: "Dark",
+	},
+	noxioustorque: {
+		num: 898,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		isNonstandard: "Unobtainable",
+		name: "Noxious Torque",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		secondary: {
+			chance: 30,
+			status: 'psn',
+		},
+		target: "normal",
+		type: "Poison",
+	},
+	combattorque: {
+		num: 899,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		isNonstandard: "Unobtainable",
+		name: "Combat Torque",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		secondary: {
+			chance: 30,
+			status: 'par',
+		},
+		target: "normal",
+		type: "Fighting",
+	},
+	magicaltorque: {
+		num: 900,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		isNonstandard: "Unobtainable",
+		name: "Magical Torque",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		secondary: {
+			chance: 30,
+			boosts: {
+				spa: -1,
+			},
+		},
+		target: "normal",
+		type: "Fairy",
+	},
+	lastrespects: {
+		num: 854,
+		accuracy: 100,
+		basePower: 50,
+		basePowerCallback(pokemon, target, move) {
+			return 50 + 25 * pokemon.side.totalFainted;
+		},
+		category: "Physical",
+		name: "Last Respects",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+	},
+	ragefist: {
+		num: 889,
+		accuracy: 100,
+		basePower: 50,
+		basePowerCallback(pokemon) {
+			return Math.min(350, 50 + 25 * pokemon.timesAttacked);
+		},
+		category: "Physical",
+		name: "Rage Fist",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+	},
+	gigatonhammer: {
+		num: 893,
+		accuracy: 100,
+		basePower: 160,
+		category: "Physical",
+		name: "Gigaton Hammer",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Steel') return 1;
+		},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'gigatonhammer') pokemon.disableMove('gigatonhammer');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'gigatonhammer') pokemon.addVolatile('gigatonhammer');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('gigatonhammer')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Gigaton Hammer again in a row.");
+			}
+		},
+		condition: {},
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+	},
+	saltcure: {
+		num: 864,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		name: "Salt Cure",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		condition: {
+			noCopy: true,
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'Salt Cure');
+			},
+			onResidualOrder: 13,
+			onResidual(pokemon) {
+				this.damage(pokemon.baseMaxhp / (pokemon.hasType(['Water', 'Steel']) ? 6 : 10));
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Salt Cure');
+			},
+		},
+		secondary: {
+			chance: 100,
+			volatileStatus: 'saltcure',
+		},
+		target: "normal",
+		type: "Rock",
+	},
+
+
 	// Endless Dream field
 	wakeupslap: {
 		num: 358,

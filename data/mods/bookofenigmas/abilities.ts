@@ -1,12 +1,12 @@
 import { consoleips } from "../../../config/config-example";
 
-const slicing = [
+/*const slicing = [
 	'cut', 'razorleaf', 'slash', 'furycutter', 'aircutter', 'aerialace',
 	'leafblade', 'nightslash', 'airslash', 'xscissor', 'psychocutter',
 	'crosspoison', 'sacredsword', 'razorshell', 'solarblade', 'behemothblade',
 	'stoneaxe', 'ceaselessedge', 'populationbomb', 'kowtowcleave', 'bitterblade',
 	'aquacutter'
-];
+];*/
 export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	//Paradoxes abilities
 	cleansingfire: {
@@ -23,9 +23,12 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: -1,
 	},
 	corruptingstorm: {
-		onFaint(target, source, effect) {
-			this.add('-activate', target, 'ability: Corrupting Storm');
-			source.addVolatile('storm');
+		onDamagingHitOrder: 2,
+		onDamagingHit(damage, target, source, move) {
+			if (!target.hp) {
+				this.add('-activate', target, 'ability: Corrupting Storm');
+				source.addVolatile('storm');
+			}
 		},
 		name: "Corrupting Storm",
 		shortDesc: "When this Pokemon is KOed by another Pokemon, the attacker loses 1/8 max HP every turn until it switches out.",
@@ -35,7 +38,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 
 
 	//Gen 9 abilities
-	sharpness: {
+	/*sharpness: {
 		onBasePowerPriority: 19,
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.flags['slicing']) {

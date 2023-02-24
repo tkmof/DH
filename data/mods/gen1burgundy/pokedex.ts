@@ -1,5 +1,14 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 // New Mons
+	plucks: {
+		num: 1152,
+		name: "Plucks",
+		types: ["Bug", "Normal"],
+		baseStats: {hp: 75, atk: 110, def: 115, spa: 75, spd: 75, spe: 55},
+		abilities: {},
+		prevo: "Pinsir",
+		evoType: "trade",
+	},
 
 // Future Mons
 	anorith: {
@@ -95,7 +104,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 903,
 		name: "Sneasler",
 		types: ["Fighting", "Poison"],
-		baseStats: {hp: 80, atk: 130, def: 60, spa: 80, spd: 80, spe: 120},
+		baseStats: {hp: 80, atk: 100, def: 60, spa: 80, spd: 80, spe: 115},
 		abilities: {},
 		heightm: 1.3,
 		weightkg: 43,
@@ -662,6 +671,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	pinsir: {
 		inherit: true,
 		baseStats: {hp: 65, atk: 125, def: 100, spa: 55, spd: 55, spe: 85},
+		evos: ["Plucks"],
 	},
 	tauros: {
 		inherit: true,

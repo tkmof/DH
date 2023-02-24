@@ -12,19 +12,6 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		megaCreator: "ausma",
 	},
 
-	pyroar: {
-		inherit: true,
-		mega: "pyroarmega",
-		megaName: "Pyroar-Mega",
-		megaType: ["Fire", "Normal"],
-		megaAbility: {0: "Pounce"},
-		megaStats: {hp: 86, atk: 78, def: 119, spa: 139, spd: 66, spe: 119},
-		megaWeightkg: 40.8,
-		megaStone: "Pyroarite",
-		movepoolAdditions: ["courtchange"],
-		megaCreator: "Rosiario",
-	},
-
 	clawitzer: {
 		inherit: true,
 		mega: "clawitzermega",
@@ -65,7 +52,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		megaName: "Heliolisk-Mega",
 		megaType: ["Electric", "Dragon"],
 		megaAbility: {0: "Solar Power"},
-		megaStats: {hp: 62, atk: 85, def: 62, spa: 129, spd: 124, spe: 129},
+		megaStats: {hp: 62, atk: 85, def: 62, spa: 129, spd: 114, spe: 129},
 		megaStone: "Heliolite",
 		movepoolAdditions: ["dragontail", "morningsun"],
 		megaCreator: "lydian",
@@ -104,6 +91,78 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		megaStone: "Mienshaonite",
 		movepoolAdditions: ["flipturn", "scald", "whirlpool"],
 		megaCreator: "Paulluxx and Sticky Fingaa",
+	},
+
+	// slate 4
+
+	espeon: {
+		inherit: true,
+		mega: "espeonmega",
+		megaName: "Espeon-Mega",
+		megaAbility: {0: "Mana Gate"},
+		megaStats: {hp: 65, atk: 90, def: 85, spa: 160, spd: 105, spe: 120},
+		megaStone: "Espeonite",
+		movepoolAdditions: ["magicpowder", "speedswap"],
+		megaCreator: "XtheGAMEmaster",
+	},
+
+	umbreon: {
+		inherit: true,
+		mega: "umbreonmega",
+		megaName: "Umbreon-Mega",
+		megaAbility: {0: "Partial Eclipse"},
+		megaStats: {hp: 95, atk: 115, def: 115, spa: 60, spd: 155, spe: 85},
+		megaStone: "Umbreonite",
+		movepoolAdditions: ["mirrorcoat"],
+		megaCreator: "Albatross and Paulluxx",
+	},
+
+	sylveon: {
+		inherit: true,
+		mega: "sylveonmega",
+		megaName: "Sylveon-Mega",
+		megaAbility: {0: "Tough Claws"},
+		megaStats: {hp: 95, atk: 100, def: 100, spa: 140, spd: 120, spe: 70},
+		megaStone: "Sylveonite",
+		movepoolAdditions: ["grassknot", "stompingtantrum"],
+		megaCreator: "Snowdrops and zxgzxg",
+	},
+
+	// slate 5
+
+	zangoose: {
+		inherit: true,
+		mega: "zangoosemega",
+		megaName: "Zangoose-Mega",
+		megaAbility: {0: "Magic Guard"},
+		megaStats: {hp: 73, atk: 145, def: 90, spa: 60, spd: 90, spe: 100},
+		megaStone: "Zangoosite",
+		movepoolAdditions: ["recover"],
+		megaCreator: "Paulluxx and Sticky Fingaa",
+	},
+
+	seviper: {
+		inherit: true,
+		mega: "sevipermega",
+		megaName: "Seviper-Mega",
+		megaType: ["Poison", "Dark"],
+		megaAbility: {0: "Dry Skin"},
+		megaStats: {hp: 73, atk: 131, def: 78, spa: 100, spd: 78, spe: 98},
+		megaStone: "Seviperite",
+		movepoolAdditions: ["gunkshot", "powertrip"],
+		megaCreator: "BlueRay",
+	},
+
+	solrock: {
+		inherit: true,
+		mega: "solrockmega",
+		megaName: "Solrock-Mega",
+		megaType: ["Rock", "Fire"],
+		megaAbility: {0: "Levitate"},
+		megaStats: {hp: 90, atk: 125, def: 95, spa: 55, spd: 90, spe: 105},
+		megaStone: "Solrockite",
+		movepoolAdditions: ["corrosivegas", "sacredfire", "uturn"],
+		megaCreator: "Paulluxx and XtheGAMEmaster",
 	},
 
 };

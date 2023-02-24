@@ -14,7 +14,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	venusaurmega: {
 		randomBattleMoves: ["gigadrain", "sludgebomb", "hiddenpowerfire", "synthesis", "leechseed", "earthquake"],
 		randomDoubleBattleMoves: ["sleeppowder", "gigadrain", "hiddenpowerfire", "hiddenpowerice", "sludgebomb", "powerwhip", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	charmander: {
@@ -36,9 +36,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	charizardmegay: {
-		randomBattleMoves: ["fireblast", "airslash", "roost", "solarbeam", "focusblast", "dragonpulse"],
+		randomBattleMoves: ["fireblast", "airslash", "roost", "hiddenpowergrass", "focusblast", "dragonpulse"],
 		randomDoubleBattleMoves: ["heatwave", "fireblast", "airslash", "roost", "solarbeam", "focusblast", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	squirtle: {
@@ -56,7 +56,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	blastoisemega: {
 		randomBattleMoves: ["icebeam", "hydropump", "rapidspin", "scald", "dragontail", "darkpulse", "aurasphere"],
 		randomDoubleBattleMoves: ["muddywater", "icebeam", "hydropump", "fakeout", "scald", "darkpulse", "aurasphere", "followme", "icywind", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	caterpie: {
@@ -364,9 +364,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	alakazammega: {
-		randomBattleMoves: ["calmmind", "psyshock", "focusblast", "shadowball", "encore", "substitute"],
+		randomBattleMoves: ["calmmind", "psyshock", "focusblast", "icebeam"],
 		randomDoubleBattleMoves: ["protect", "psychic", "psyshock", "focusblast", "shadowball", "encore", "substitute", "dazzlinggleam"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	machop: {
@@ -516,22 +516,22 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	gengarmega: {
 		randomBattleMoves: ["shadowball", "sludgewave", "focusblast", "taunt", "destinybond", "disable", "perishsong", "protect"],
 		randomDoubleBattleMoves: ["shadowball", "sludgebomb", "focusblast", "substitute", "disable", "taunt", "hypnosis", "willowisp", "dazzlinggleam", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	onix: {
 		tier: "LC",
 	},
 	steelix: {
-		randomBattleMoves: ["stealthrock", "earthquake", "ironhead", "roar", "toxic", "rockslide"],
+		randomBattleMoves: ["stealthrock", "earthquake", "ironhead", "roar", "toxic", "rapidspin"],
 		randomDoubleBattleMoves: ["stealthrock", "earthquake", "ironhead", "rockslide", "protect", "explosion"],
 		tier: "NU",
 		doublesTier: "(DUU)",
 	},
 	steelixmega: {
-		randomBattleMoves: ["stealthrock", "earthquake", "heavyslam", "roar", "toxic", "dragontail"],
+		randomBattleMoves: ["stealthrock", "earthquake", "heavyslam", "roar", "toxic", "heatcrash"],
 		randomDoubleBattleMoves: ["stealthrock", "earthquake", "heavyslam", "rockslide", "protect", "explosion"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	drowzee: {
@@ -765,9 +765,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	pinsirmega: {
-		randomBattleMoves: ["swordsdance", "earthquake", "closecombat", "quickattack", "return"],
+		randomBattleMoves: ["swordsdance", "earthquake", "closecombat", "iceshard", "iciclecrash"],
 		randomDoubleBattleMoves: ["feint", "protect", "swordsdance", "earthquake", "closecombat", "substitute", "quickattack", "return", "rockslide"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	tauros: {
@@ -887,9 +887,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	aerodactylmega: {
-		randomBattleMoves: ["honeclaws", "stoneedge", "aerialace", "aquatail", "earthquake", "firefang", "roost"],
+		randomBattleMoves: ["honeclaws", "stoneedge", "hurricane", "shadowball", "earthquake", "ironhead", "roost"],
 		randomDoubleBattleMoves: ["wideguard", "taunt", "stoneedge", "rockslide", "earthquake", "ironhead", "aerialace", "protect", "icefang", "skydrop", "tailwind"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	munchlax: {
@@ -1868,9 +1868,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	altariamega: {
-		randomBattleMoves: ["dragondance", "return", "hypervoice", "healbell", "earthquake", "roost", "fireblast"],
+		randomBattleMoves: ["roost", "moonblast", "dracometeor", "healbell", "hydropump", "agility", "fireblast"],
 		randomDoubleBattleMoves: ["dragondance", "return", "doubleedge", "dragonclaw", "earthquake", "protect", "fireblast"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	zangoose: {
@@ -1980,9 +1980,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	banettemega: {
-		randomBattleMoves: ["destinybond", "taunt", "shadowclaw", "suckerpunch", "willowisp", "knockoff"],
+		randomBattleMoves: ["screech", "ironhead", "shadowclaw", "taunt", "willowisp", "knockoff"],
 		randomDoubleBattleMoves: ["destinybond", "taunt", "shadowclaw", "suckerpunch", "willowisp", "knockoff", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	duskull: {
@@ -2034,9 +2034,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	glaliemega: {
-		randomBattleMoves: ["freezedry", "iceshard", "earthquake", "explosion", "return", "spikes"],
+		randomBattleMoves: ["ironhead", "iceshard", "earthquake", "thunderfang", "icefang", "spikes"],
 		randomDoubleBattleMoves: ["crunch", "iceshard", "freezedry", "earthquake", "explosion", "protect", "return"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	froslass: {
@@ -2416,7 +2416,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	lopunnymega: {
 		randomBattleMoves: ["return", "highjumpkick", "substitute", "fakeout", "icepunch"],
 		randomDoubleBattleMoves: ["return", "highjumpkick", "protect", "fakeout", "icepunch", "encore"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	glameow: {

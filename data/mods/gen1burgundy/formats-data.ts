@@ -1,6 +1,11 @@
 export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 // New Mons
-	
+	plucks: {
+		tier: "OU",
+		randomBattleMoves: ["slash", "swordsdance", "hyperbeam", "earthquake"],
+		isNonstandard: null,
+		gen: 1,
+	},
 	
 // Future Mons	
 	armaldo: {
@@ -41,7 +46,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	sneasler: {
 		tier: "OU",
-		randomBattleMoves: ["swordsdance", "sludge", "hyperbeam", "submission"],
+		randomBattleMoves: ["swordsdance", "sludge", "slash", "submission"],
 		isNonstandard: null,
 		gen: 1,
 	},
@@ -83,7 +88,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	venusaur: {
-		randomBattleMoves: ["sleeppowder", "swordsdance", "bodyslam", "hyperbeam"],
+		randomBattleMoves: ["sleeppowder", "swordsdance", "frenzyplant", "hyperbeam"],
 		essentialMove: "razorleaf",
 		tier: "UU",
 	},
@@ -102,9 +107,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	charizard: {
-		randomBattleMoves: ["earthquake", "bodyslam", "slash"],
-		essentialMove: "fireblast",
-		comboMoves: ["swordsdance", "hyperbeam"],
+		randomBattleMoves: ["earthquake", "fireblast", "slash", "blastburn"],
 		tier: "UU",
 	},
 	squirtle: {
@@ -113,7 +116,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "LC",
 	},
 	wartortle: {
-		randomBattleMoves: ["surf", "blizzard", "bodyslam", "hydropump"],
+		randomBattleMoves: ["hydrocannon", "blizzard", "bodyslam", "hydropump"],
 		exclusiveMoves: ["counter", "rest", "seismictoss"],
 		tier: "NFE",
 	},
@@ -242,7 +245,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	nidoking: {
 		randomBattleMoves: ["blizzard", "bodyslam"],
 		essentialMove: "earthquake",
-		exclusiveMoves: ["thunder", "thunderbolt", "rockslide"],
+		exclusiveMoves: ["focusenergy", "thunderbolt", "rockslide"],
 		tier: "UU",
 	},
 	clefairy: {
@@ -364,8 +367,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "LC",
 	},
 	primeape: {
-		randomBattleMoves: ["submission", "rockslide", "bodyslam"],
-		exclusiveMoves: ["counter", "hyperbeam", "hyperbeam"],
+		randomBattleMoves: ["submission", "rockslide", "bodyslam", "focuspunch"],
 		tier: "UU",
 	},
 	growlithe: {
@@ -422,8 +424,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	machamp: {
-		randomBattleMoves: ["glare", "earthquake", "lowkick"],
-		exclusiveMoves: ["counter", "rockslide", "rockslide", "hyperbeam"],
+		randomBattleMoves: ["glare", "earthquake", "substitute", "focuspunch"],
 		tier: "UU",
 	},
 	bellsprout: {
@@ -528,7 +529,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	muk: {
 		randomBattleMoves: ["sludge", "bodyslam"],
 		essentialMove: "explosion",
-		exclusiveMoves: ["megadrain", "megadrain", "fireblast", "hyperbeam"],
+		exclusiveMoves: ["megadrain", "megadrain", "fireblast", "hyperbeam", "focuspunch"],
 		tier: "UU",
 	},
 	shellder: {
@@ -756,8 +757,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	jolteon: {
-		randomBattleMoves: ["thunderwave", "bodyslam", "thunderbolt"],
-		exclusiveMoves: ["pinmissile", "pinmissile", "doublekick", "agility", "agility"],
+		randomBattleMoves: ["thunderwave", "focusenergy", "thunderbolt"],
+		exclusiveMoves: ["pinmissile", "pinmissile", "doublekick"],
 		tier: "OU",
 	},
 	flareon: {
@@ -790,7 +791,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	aerodactyl: {
-		randomBattleMoves: ["drillpeck", "rockslide", "earthquake", "hyperbeam"],
+		randomBattleMoves: ["fireblast", "rockslide", "earthquake", "hyperbeam"],
 		tier: "UU",
 	},
 	snorlax: {
@@ -826,7 +827,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	dragonite: {
-		randomBattleMoves: ["hyperbeam", "thunderbolt", "bodyslam", "thunderwave"],
+		randomBattleMoves: ["hyperbeam", "thunderbolt", "dracometeor", "thunderwave"],
 		essentialMove: "blizzard",
 		tier: "UU",
 	},

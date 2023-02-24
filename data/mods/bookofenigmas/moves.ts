@@ -77,9 +77,53 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Bug",
 	},
+	tripledrill: {
+		num: -4,
+		shortDesc: "Hits three times. Each hit increases in BP by 20, but they have separate accuracy checks.",
+		accuracy: 90,
+		basePower: 20,
+		basePowerCallback(pokemon, target, move) {
+			return 20 * move.hit;
+		},
+		category: "Physical",
+		name: "Triple Drill",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		multihit: 3,
+		multiaccuracy: true,
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		zMove: {basePower: 120},
+		maxMove: {basePower: 140},
+	},
+	cleansingwater: {
+		num: -5,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Cleansing Water",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onHit(pokemon) {
+			let factor = 1/3;
+			if (pokemon.status) {
+				factor = 1/6;
+				pokemon.cureStatus();
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+		secondary: null,
+		target: "self",
+		type: "Water",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
+	},
 	
 	//Gen 9 moves
-	spicyextract: {
+	/*spicyextract: {
 		num: 858,
 		accuracy: true,
 		basePower: 0,
@@ -126,14 +170,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Cool",
 	},
 	direclaw: {
-		shortDesc: "50% chance to paralyze or poison or sleep target. High critical hit ratio.",
+		shortDesc: "50% chance to paralyze or poison or sleep target.",
 		num: -1005,
 		accuracy: 100,
-		basePower: 60,
+		basePower: 80,
 		category: "Physical",
 		name: "Dire Claw",
 		desc: "Has a higher chance for a critical hit. Has a 50% chance to cause the target to either fall asleep, become poisoned, or become paralyzed.",
-		shortDesc: "High critical hit ratio. 50% chance to slp/psn/par target.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -141,7 +184,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Crush Claw", target);
 		},
-		critRatio: 2,
+		//critRatio: 2,
 		secondary: {
 			chance: 50,
 			onHit(target, source) {
@@ -577,6 +620,40 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: null,
 		target: "normal",
 		type: "Psychic",
+	},
+	axekick: {
+		num: 853,
+		accuracy: 90,
+		basePower: 120,
+		category: "Physical",
+		name: "Axe Kick",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		hasCrashDamage: true,
+		onMoveFail(target, source, move) {
+			this.damage(source.baseMaxhp / 2, source, source, this.dex.conditions.get('High Jump Kick'));
+		},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'confusion',
+		},
+		target: "normal",
+		type: "Fighting",
+	},
+	tripledive: {
+		num: 865,
+		accuracy: 95,
+		basePower: 30,
+		category: "Physical",
+		name: "Triple Dive",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		multihit: 3,
+		secondary: null,
+		target: "normal",
+		type: "Water",
 	},
 	// broke atm
 	/*

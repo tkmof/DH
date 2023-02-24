@@ -231,7 +231,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			counter: ["1L1"],
 			dig: ["1L1"],
 			doublekick: ["1L1"],
-			hyperbeam: ["1L1"],
 			jumpkick: ["1L1"],
 			leer: ["1L1"],
 			lowkick: ["1L1"],
@@ -323,6 +322,18 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			tackle: ["1L1"],
 			takedown: ["1L1"],
 			toxic: ["1L1"],
+		},
+	},
+	plucks: {
+		learnset: {
+			earthquake: ["1L1"],
+			lowkick: ["1L1"],
+			barrier: ["1L1"],
+			rockslide: ["1L1"],
+			twineedle: ["1L1"],
+			firepunch: ["1L1"],
+			icepunch: ["1L1"],
+			thunderpunch: ["1L1"],
 		},
 	},
 };

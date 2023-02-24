@@ -1,12 +1,21 @@
 export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	obtrusive: {
-		shortDesc: "Stops the Roulette Wheel while the user is active.",
-		onAnyTryMove(target, source, effect) {
-			if (['roulettespin'].includes(effect.id)) {
-				this.attrLastMove('[still]');
-				this.add('cant', this.effectData.target, 'ability: Obtrusive', effect, '[of] ' + target);
-				return false;
-			}
+		shortDesc: "Blocks the Roulette Wheel for 3 turns; also wears off when switching out.",
+		onStart(pokemon) {
+			pokemon.addVolatile('obtrusive');
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['obtrusive'];
+			this.add('-end', pokemon, 'Obtrusive', '[silent]');
+		},
+		condition: {
+			duration: 4,
+			onStart(target) {
+				this.add('-start', target, 'ability: Obtrusive');
+			},
+			onEnd(target) {
+				this.add('-end', target, 'Obtrusive');
+			},
 		},
 		name: "Obtrusive",
 		rating: 1,
@@ -15,10 +24,22 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	
 	queenofroulette: {
 		shortDesc: "Spins the Roulette Wheel two additional times.",
-		onResidual (pokemon) {
-			this.useMove("Roulette Spin", pokemon);
-			this.useMove("Roulette Spin", pokemon);
+		onStart(pokemon) {
+			pokemon.addVolatile('queenofroulette');
 		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['queenofroulette'];
+			this.add('-end', pokemon, 'Queen of Roulette', '[silent]');
+		},
+		condition: {
+			onStart(target) {
+				this.add('-start', target, 'ability: Queen of Roulette');
+			},
+			onEnd(target) {
+				this.add('-end', target, 'Queen of Roulette');
+			},
+		},
+		isPermanent: true,
 		name: "Queen of Roulette",
 		rating: 1,
 		num: 3009,
@@ -31,7 +52,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				move.secondaries = [];
 			} // the 3 rows below this get deleted if there's issues
 			for (const target of attacker.side.foe.active) {
-				if (target.hasType('Grass')) {return;}
+				if (target.hasType('Grass')) return;
+				if (target.hasAbility('goodasgold') || target.hasAbility('Good as Gold')) return;
+				if (target.hasAbility('magicabsorb') || target.hasAbility('Magic Absorb')) return;
 			}
 			move.secondaries.push({
 				chance: 100,
@@ -40,7 +63,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			});
 		},
 		name: "Host Absorb",
-		shortDesc: "Contact moves - 100% chance to Leech Seed.",
+		shortDesc: "Contact moves inflict Leech Seed.",
 		rating: 2,
 		num: 9002,
 	},
@@ -118,7 +141,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 
 	update: {
 		onStart(pokemon) {
-			this.add('-message', pokemon.name + " is currently holding a " + pokemon.item + "!", '[identify]');
+			this.add('-message', pokemon.name + "'s current item: " + pokemon.item + "!", '[identify]');
 			this.add('-activate', pokemon, 'ability: Update', this.dex.getItem(pokemon.item).name, '[silent]');
 		},
 		onTryHit(target, source, move) {
@@ -198,7 +221,6 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 9006,
 	},
 
-	// double check later
 	magicabsorb: {
 		onTryHit(target, source, move) {
 			if (move.category === 'Status' && target !== source && move.type !== 'Flying') {
@@ -206,6 +228,11 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				this.heal(target.baseMaxhp / 4);
 				return null;
 			}
+		},
+		onAfterMoveSecondary(target, source, move) {
+			if (move.flags['contact'] && (target.hp > 0) && (source.hasAbility('hostabsorb') || source.hasAbility('Host Absorb'))) {
+				this.heal(target.baseMaxhp / 4);
+			} 
 		},
 		name: "Magic Absorb",
 		shortDesc: "Blocks non-Flying status moves, heals the user for 25%.",
@@ -253,26 +280,26 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	
 	conduction: {
 		onModifyMove(move, attacker) {
-			if (attacker.baseSpecies.baseSpecies !== 'gelsius' && attacker.baseSpecies.baseSpecies !== 'Gelsius') {
-				return;
-			}
+			if (attacker.baseSpecies.baseSpecies !== 'gelsius' && attacker.baseSpecies.baseSpecies !== 'Gelsius') {return;}
+			if (attacker.species.name === 'Gelsius-Subzero' || attacker.species.name === 'gelsiussubzero') {return;}
+			if (attacker.species.name === 'Gelsius-Hundred' || attacker.species.name === 'gelsiushundred') {return;}
 			if (attacker.hp && move.type === 'Ice') {
-				this.add('-message', attacker.name + " is beginning to rapidly cool!");
+				this.add('-message', `${attacker.name} is beginning to rapidly cool!`);
 				attacker.formeChange('Gelsius-Subzero', this.effect, true);
-				this.add('-message', attacker.name + " transformed!");
+				this.add('-message', `${attacker.name} transformed!`);
 			}
 			else if (attacker.hp && move.type === 'Fire') {
-				this.add('-message', attacker.name + " is beginning to rapidly heat up!");
+				this.add('-message', `${attacker.name} is beginning to rapidly heat up!`);
 				attacker.formeChange('Gelsius-Hundred', this.effect, true);
-				this.add('-message', attacker.name + " transformed!");
+				this.add('-message', `${attacker.name} transformed!`);
 			}
 		},
+		isPermanent: true,
 		name: "Conduction",
 		shortDesc: "If the user uses Ice or Fire move, transforms. Only works once.",
 		rating: 2,
 		num: 9010,
 	},	
-	//  && source.side.foe.pokemonLeft
 
 	respawnpunisher: {
 		onAfterMoveSecondarySelf(pokemon, target, move) {
@@ -305,19 +332,23 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			},			
 		},
 		name: "Respawn Punisher",
-		shortDesc: "If an enemy switches or faints, raises Atk by 1 for one turn.",
+		shortDesc: "If an enemy switches or faints, raises Atk/Sp. Atk by 1.3x.",
 		rating: 3.5,
 		num: 9011,
 	},
 	
 	vent: {
+		onStart(pokemon) {
+			if (pokemon.baseSpecies.baseSpecies !== 'impsaustor' && attacker.baseSpecies.baseSpecies !== 'Impsaustor') {return;}
+			this.add('-message', `You can now use Impostor Blade without drawback.`);
+		},
 		onAfterMoveSecondary(target, source, move) {
 			if (!source || source === target || !target.hp || !move.totalDamage) return;
 			const lastAttackedBy = target.getLastAttackedBy();
 			if (!lastAttackedBy) return;
 			const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
 			if (target.hp <= target.maxhp / 10 && target.hp + damage > target.maxhp / 10) {
-				this.add('-message', target.name + " is gonna Vent!");
+				this.add('-message', `${target.name} is gonna vent!`);
 				target.switchFlag = true;
 				this.heal(target.baseMaxhp);
 			}
@@ -449,5 +480,82 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		name: "Sword of Ruin",
 		rating: 3,
 		num: 285,
+	},
+
+	gorillatactics: {
+		onStart(pokemon) {
+			pokemon.abilityData.choiceLock = "";
+		},
+		onBeforeMove(pokemon, target, move) {
+			if (move.isZOrMaxPowered || move.id === 'struggle') return;
+			if (pokemon.abilityData.choiceLock && pokemon.abilityData.choiceLock !== move.id) {
+				// Fails unless ability is being ignored (these events will not run), no PP lost.
+				this.addMove('move', pokemon, move.name);
+				this.attrLastMove('[still]');
+				this.debug("Disabled by Gorilla Tactics");
+				this.add('-fail', pokemon);
+				return false;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			if (pokemon.abilityData.choiceLock || move.isZOrMaxPowered || move.id === 'struggle') return;
+			pokemon.abilityData.choiceLock = move.id;
+		},
+		onModifyAtkPriority: 1,
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
+			// PLACEHOLDER
+			this.debug('Gorilla Tactics Atk Boost');
+			return this.chainModify(1.5);
+		},
+		onDisableMove(pokemon) {
+			if (!pokemon.abilityData.choiceLock) return;
+			if (!pokemon.hasMove(pokemon.abilityData.choiceLock)) {
+				pokemon.abilityData.choiceLock = "";
+				return;
+			}
+			if (pokemon.volatiles['dynamax']) return;
+			for (const moveSlot of pokemon.moveSlots) {
+				if (moveSlot.id !== pokemon.abilityData.choiceLock) {
+					pokemon.disableMove(moveSlot.id, false, this.effectData.sourceEffect);
+				}
+			}
+		},
+		onEnd(pokemon) {
+			pokemon.abilityData.choiceLock = "";
+		},
+		name: "Gorilla Tactics",
+		rating: 4.5,
+		num: 255,
+	},
+
+	prankster: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.category === 'Status') {
+				return priority + 1;
+			}
+		},
+		name: "Prankster",
+		rating: 4,
+		num: 158,
+	},
+
+	dazzling: {
+		onFoeTryMove(target, source, move) {
+			const targetAllExceptions = ['perishsong', 'flowershield', 'rototiller'];
+			if (move.target === 'foeSide' || (move.target === 'all' && !targetAllExceptions.includes(move.id))) {
+				return;
+			}
+
+			const dazzlingHolder = this.effectData.target;
+			if ((source.side === dazzlingHolder.side || move.target === 'all') && (move.priority > 0.1)) {
+				this.attrLastMove('[still]');
+				this.add('cant', dazzlingHolder, 'ability: Dazzling', move, '[of] ' + target);
+				return false;
+			}
+		},
+		name: "Dazzling",
+		rating: 2.5,
+		num: 219,
 	},
 };

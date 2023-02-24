@@ -103,6 +103,7 @@ export class RandomTeams {
 	// 	const firstForme = this.dex.getSpecies(species.otherFormes[0]);
 	// 	return !!firstForme.isMega;
 	// }
+
 	randomCCTeam(): RandomTeamsTypes.RandomSet[] {
 		const dex = this.dex;
 		const team = [];
@@ -161,7 +162,7 @@ export class RandomTeams {
 					return !(move.isNonstandard || move.isZ || move.isMax || move.realMove);
 				});
 			} else {
-				let learnset = this.dex.data.Learnsets[species.id] && this.dex.data.Learnsets[species.id].learnset && !['gastrodoneast', 'pumpkaboosuper', 'zygarde10'].includes(species.id) ?
+				let learnset = this.dex.data.Learnsets[species.id] && this.dex.data.Learnsets[species.id].learnset && !['pumpkaboosuper', 'zygarde10'].includes(species.id) ?
 					this.dex.data.Learnsets[species.id].learnset :
 					this.dex.data.Learnsets[this.dex.getSpecies(species.baseSpecies).id].learnset;
 				if (learnset) {
@@ -172,8 +173,8 @@ export class RandomTeams {
 				if (species.changesFrom) {
 					learnset = this.dex.data.Learnsets[toID(species.changesFrom)].learnset;
 					const basePool = Object.keys(learnset!).filter(
-						moveid => learnset![moveid].find(learned => learned.startsWith(String(this.gen)))
-					);
+						moveid => learnset![moveid].find(learned => learned.startsWith(String(this.gen))) 
+					); 
 					pool = [...new Set(pool.concat(basePool))];
 				}
 			}
@@ -215,9 +216,9 @@ export class RandomTeams {
 			mbst += (stats["spd"] * 2 + 31 + 21 + 100) + 5;
 			mbst += (stats["spe"] * 2 + 31 + 21 + 100) + 5;
 
-			let level = Math.floor(100 * mbstmin / mbst); // Initial level guess will underestimate
+			let level = Math.floor(100); 
 
-			while (level < 100) {
+			while (level < 101) {
 				mbst = Math.floor((stats["hp"] * 2 + 31 + 21 + 100) * level / 100 + 10);
 				mbst += Math.floor(((stats["atk"] * 2 + 31 + 21 + 100) * level / 100 + 5) * level / 100); // Since damage is roughly proportional to level
 				mbst += Math.floor((stats["def"] * 2 + 31 + 21 + 100) * level / 100 + 5);
@@ -389,7 +390,7 @@ export class RandomTeams {
 			const happiness = this.random(256);
 
 			// Random shininess
-			const shiny = this.randomChance(1, 1024);
+			const shiny = this.randomChance(1, 64);
 
 			team.push({
 				name: species.baseSpecies,
@@ -682,6 +683,12 @@ export class RandomTeams {
 					if (movePool.includes('sleeptalk')) rejected = true;
 					if (!hasMove['sleeptalk'] && (movePool.includes('bulkup') || movePool.includes('calmmind') || movePool.includes('coil') || movePool.includes('curse'))) rejected = true;
 					break;
+//				case 'bulkup':
+//					if (hasMove['dragondance']) rejected = true;
+//					break;
+//				case 'reflect':
+//					if (!hasMove['lightscreen']) rejected = true;
+//					break;
 				case 'sleeptalk':
 					if (!hasMove['rest']) rejected = true;
 					if (movePool.length > 1 && !hasAbility['Contrary']) {
@@ -1271,8 +1278,18 @@ export class RandomTeams {
 			item = 'Sitrus Berry';
 		} else if (ability === 'Gluttony') {
 			item = this.sample(['Aguav', 'Figy', 'Iapapa', 'Mago', 'Wiki']) + ' Berry';
+		} else if (hasMove['nuzzle'] || hasMove['rapidspin']) {
+			item = 'Leftovers';
+		} else if (ability === 'Power Outage' || ability === 'poweroutage') {
+			item = 'Life Orb';
+		} else if (hasMove['shedtail']) {
+			item = 'Sitrus Berry';
 		} else if (ability === 'Gorilla Tactics' && hasMove['skillswap']) {
 			item = 'Expert Belt';
+		} else if (ability === 'conduction' || ability === 'Conduction') {
+			item = 'Heavy-Duty Boots';
+		} else if (ability === 'Gorilla Tactics' && hasMove['vacuumwave']) {
+			item = 'Choice Specs';
 		} else if (ability === 'Gorilla Tactics' || ability === 'Imposter' || (ability === 'Magnet Pull' && hasMove['bodypress'] && !isDoubles)) {
 			item = 'Choice Scarf';
 		} else if (hasMove['trick'] || hasMove['switcheroo'] && !isDoubles) {
@@ -1312,7 +1329,7 @@ export class RandomTeams {
 		} else if (ability === 'blazingspirit' || ability === 'Blazing Spirit') {
 			item = 'Leftovers';
 		} else if (ability === 'Update') {
-			item = this.sample(['Stone', 'Splash', 'Zap', 'Earth', 'Dread']) + ' Plate';
+			item = this.sample(['Stone', 'Splash', 'Zap', 'Dread']) + ' Plate';
 		} else if (ability === 'Unburden') {
 			item = (hasMove['closecombat'] || hasMove['curse'] || hasMove['overheat'] || hasMove['leafstorm'] || hasMove['fleurcannon'] || hasMove['dracometeor'] || hasMove['psychoboost']) ? 'White Herb' : 'Sitrus Berry';
 		} else if (hasMove['acrobatics']) {
@@ -1452,6 +1469,10 @@ export class RandomTeams {
 			ivs.spe = 0;
 		}
 
+		if (hasMove['exobash']) {
+			evs.def = 0;
+		}		
+
 		return {
 			name: species.baseSpecies,
 			species: forme,
@@ -1462,7 +1483,7 @@ export class RandomTeams {
 			ivs: ivs,
 			item: item,
 			level: level,
-			shiny: this.randomChance(1, 1024),
+			shiny: this.randomChance(1, 128),
 			gigantamax: gmax,
 		};
 	}

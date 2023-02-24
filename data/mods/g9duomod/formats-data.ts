@@ -1,4 +1,15 @@
 export const FormatsData: {[k: string]: SpeciesFormatsData} = {
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////// THE POKEMON BELOW IS TEMPORARY FOR THE DUOMOD TOURNAMENT. IT WILL BE REMOVED AFTER ROUND 1. ////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+// nothing here yet lmao
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     baloon: {
 		randomBattleMoves: ["playrough", "healorder", "substitute", "protect"],
 		randomBattleLevel: 100,
@@ -6,31 +17,31 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     fluxtapestereo: {
-		randomBattleMoves: ["flareblitz", "earthquake", "wildcharge", "dragondance", "bulkup", "impostorblade"],
+		randomBattleMoves: ["flareblitz", "earthquake", "wildcharge", "dragondance", "impostorblade"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     pokat: {
-		randomBattleMoves: ["stupidcannon", "synthesis", "gigadrain", "willowisp", "incense"],
+		randomBattleMoves: ["toxic", "synthesis", "gigadrain", "incense"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     spirox: {
-		randomBattleMoves: ["extremebeam", "infernalparade", "calmmind", "recover", "spikes", "willowisp"],
+		randomBattleMoves: ["extremebeam", "infernalparade", "calmmind", "recover", "spikes", "makeitrain"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     badgearth: {
-		randomBattleMoves: ["earthquake", "uturn", "dragondance", "blueshell", "firstimpression", "poisonjab", "rapidspin", "shadowscratch", "impostorblade"],
+		randomBattleMoves: ["earthquake", "uturn", "blueshell", "firstimpression", "poisonjab", "rapidspin"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     bittle: {
-		randomBattleMoves: ["chillyreception", "defog", "roost", "haze", "knockoff", "stealthrock", "gigatonhammer", "thunderwave"],
+		randomBattleMoves: ["chillyreception", "defog", "roost", "haze", "knockoff", "gigatonhammer", "thunderwave"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -54,7 +65,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     draxplosion: {
-		randomBattleMoves: ["dragonhammer", "uturn", "firelash", "rapidspin", "onetrillionarrows", "impostorblade", "exobash"],
+		randomBattleMoves: ["dragonhammer", "uturn", "firelash", "rapidspin", "impostorblade", "onetrillionarrows"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -66,29 +77,25 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     jewelode: {
-		randomBattleMoves: ["powergem", "moonblast", "pharaohshot", "uturn", "stealthrock", "defog", "incense"],
+		randomBattleMoves: ["powergem", "moonblast", "icebeam", "uturn", "stealthrock", "incense"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     treemu: {
-		randomBattleMoves: ["leafblade", "knockoff", "bravebird", "boltbeak", "extremespeed", "roost", "impostorblade"],
+		randomBattleMoves: ["leafblade", "knockoff", "bravebird", "extremespeed", "roost", "impostorblade"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
-    impsaustor: {
-      tier: "Illegal",
-      doublesTier: "Illegal",
-    },
     capsaken: {
-		randomBattleMoves: ["chillyreception", "ceaselessedge", "knockoff", "flareblitz", "willowisp", "toxic", "uturn"],
+		randomBattleMoves: ["chillyreception", "ceaselessedge", "knockoff", "flareblitz", "willowisp"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     cephalopire: {
-		randomBattleMoves: ["aquajet", "flipturn", "nuzzle", "protect", "knockoff", "rapidspin", "waterfall", "inkbrush", "polarpounce"],
+		randomBattleMoves: ["flipturn", "nuzzle", "protect", "knockoff", "rapidspin", "waterfall", "polarpounce"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -100,7 +107,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     commanto: {
-		randomBattleMoves: ["remotemine", "vacuumwave", "bugbuzz", "focusblast", "earthpower", "fireblast", "psychic", "skillswap", "outburst"],
+		randomBattleMoves: ["remotemine", "vacuumwave", "bugbuzz", "focusblast", "earthpower", "fireblast", "psychic", "skillswap", "outburst", "knockoff"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -118,25 +125,25 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     gelsius: {
-		randomBattleMoves: ["scald", "fireblast", "icebeam", "willowisp", "chillyreception", "calmmind", "recover", "pharaohshot"],
+		randomBattleMoves: ["scald", "fireblast", "icebeam", "pharaohshot", "chillyreception", "calmmind", "recover", "hydropump"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     hydread: {
-		randomBattleMoves: ["nightshade", "willowisp", "recover", "rapidspin", "thunderwave", "toxic"],
+		randomBattleMoves: ["nightshade", "recover", "rapidspin", "toxic", "haze"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     mountough: {
-		randomBattleMoves: ["machpunch", "earthquake", "closecombat", "bulkup", "stealthrock", "poisonjab", "chillyreception", "impostorblade"],
+		randomBattleMoves: ["machpunch", "earthquake", "closecombat", "bulkup", "onetrillionarrows", "poisonjab", "impostorblade"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     sanbatter: {
-		randomBattleMoves: ["poltergeist", "closecombat", "shadowsneak", "machpunch", "drainpunch", "swordsdance", "shadowscratch"],
+		randomBattleMoves: ["poltergeist", "closecombat", "machpunch", "swordsdance", "shadowscratch"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -154,19 +161,19 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     fauxster: {
-		randomBattleMoves: ["wavecrash", "closecombat", "swordsdance", "earthquake", "knockoff", "jetpunch", "blueshell", "inkbrush", "polarpounce"],
+		randomBattleMoves: ["wavecrash", "closecombat", "swordsdance", "knockoff", "jetpunch", "blueshell", "inkbrush", "polarpounce"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     gargitect: {
-		randomBattleMoves: ["stoneedge", "dragonhammer", "knockoff", "swordsdance", "stoneaxe", "accelerock", "flareblitz"],
+		randomBattleMoves: ["stoneedge", "dragonhammer", "knockoff", "swordsdance", "stoneaxe", "accelerock", "onetrillionarrows", "superpower"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     temporand: {
-		randomBattleMoves: ["scorchingsands", "calmmind", "recover", "stealthrock", "haze", "psychic", "pharaohshot", "hyperwind", "dazzlinggleam"],
+		randomBattleMoves: ["scorchingsands", "calmmind", "recover", "psychic", "pharaohshot", "hyperwind", "earthpower"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -178,13 +185,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Duomod",
     },
     mantelec: {
-		randomBattleMoves: ["zingzap", "earthquake", "exobash", "swordsdance", "uturn", "shadowscratch"],
+		randomBattleMoves: ["zingzap", "crunch", "exobash", "swordsdance", "uturn", "shadowscratch"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
     },
     noxinobi: {
-		randomBattleMoves: ["direclaw", "wildcharge", "zenheadbutt", "bulkup", "waterfall", "impostorblade", "onetrillionarrows", "inkbrush"],
+		randomBattleMoves: ["direclaw", "zingzap", "zenheadbutt", "bulkup", "waterfall", "impostorblade", "inkbrush", "polarpounce"],
 		randomBattleLevel: 100,
       tier: "Duomod",
       doublesTier: "Duomod",
@@ -194,6 +201,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       doublesTier: "Illegal",
     },
     gelsiushundred: {
+      tier: "Illegal",
+      doublesTier: "Illegal",
+    },
+    impsaustor: {
       tier: "Illegal",
       doublesTier: "Illegal",
     },

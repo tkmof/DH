@@ -498,24 +498,24 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -19,
 	},
 	windupkey: {
-		onAnyFaintPriority: 1,
-		onAnyFaint(pokemon) {
-				const boosts: SparseBoostsTable = {};
-				let i: BoostName;
-				for (i in pokemon.boosts) {
-					if (pokemon.boosts[i] < 0) {
-						boosts[i] = 0;
-					}
-				}
-				pokemon.setBoost(boosts);
-				this.add('-clearnegativeboost', pokemon, '[silent]');
-				this.add('-message', pokemon.name + "'s negative stat changes were removed!");
-	    },
-		name: "Wind-up Key",
-		shortDesc: "This Pokemon's negative stat changes are removed when a Pokemon faints.",
-		rating: 3,
-		num: -20,
-	},
+        onAnyFaintPriority: 1,
+        onAnyFaint(target, source) {
+                const boosts: SparseBoostsTable = {};
+                let i: BoostName;
+                for (i in source.boosts) {
+                    if (source.boosts[i] < 0) {
+                        boosts[i] = 0;
+                    }
+                }
+                source.setBoost(boosts);
+                this.add('-clearnegativeboost', source, '[silent]');
+                this.add('-message', source.name + "'s negative stat changes were removed!");
+        },
+        name: "Wind-up Key",
+        shortDesc: "This Pokemon's negative stat changes are removed when a Pokemon faints.",
+        rating: 3,
+        num: -20,
+    },
 	mountaineer: {
 		onDamage(damage, target, source, effect) {
 			if (effect && effect.id === 'stealthrock') {
@@ -532,5 +532,93 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Mountaineer",
 		rating: 3,
 		num: -2,
+	},
+	zergrush: {
+		onPrepareHit(source, target, move) {
+			if (move.multihit) return;
+			if (move.flags['contact'] && !move.isZ && !move.isMax) {
+				move.multihit = 4;
+			}
+		},
+		onBasePowerPriority: 7,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.flags['contact']) return this.chainModify([0x0555, 0x1000]);
+		},
+		name: "Zerg Rush",
+		shortDesc: "This Pokemon's contact moves have 33% power but hit 4 times.",
+		rating: 4,
+		num: -22,
+	},
+	lingeringaroma: {
+		onDamagingHit(damage, target, source, move) {
+			const additionalBannedAbilities = ['hungerswitch', 'illusion', 'neutralizinggas', 'wonderguard'];
+			if (source.getAbility().isPermanent || additionalBannedAbilities.includes(source.ability) ||
+				target.volatiles['dynamax']
+			) {
+				return;
+			}
+
+			if (move.flags['contact']) {
+				const targetCanBeSet = this.runEvent('SetAbility', target, source, this.effect, source.ability);
+				if (!targetCanBeSet) return targetCanBeSet;
+				const sourceAbility = source.setAbility('lingeringaroma', target);
+				if (!sourceAbility) return;
+				if (target.side === source.side) {
+					this.add('-activate', target, 'Skill Swap', '', '', '[of] ' + source);
+				} else {
+					this.add('-activate', target, 'ability: Lingering Aroma', this.dex.getAbility(sourceAbility).name, 'Lingering Aroma', '[of] ' + source);
+				}
+				target.setAbility(sourceAbility);
+			}
+		},
+		name: "Lingering Aroma",
+		shortDesc: "Pokemon making contact with this Pokemon have their Ability swapped with this one.",
+		rating: 2.5,
+		num: -23,
+	},
+	toxicdebris: {
+		onDamagingHit(damage, target, source, move) {
+			const side = source.isAlly(target) ? source.side.foe : source.side;
+			const toxicSpikes = side.sideConditions['toxicspikes'];
+			if (move.category === 'Physical' && (!toxicSpikes || toxicSpikes.layers < 2)) {
+				this.add('-activate', target, 'ability: Toxic Debris');
+				side.addSideCondition('toxicspikes', target);
+			}
+		},
+		name: "Toxic Debris",
+		shortDesc: "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
+		rating: 3.5,
+		num: 295,
+	},
+	sharpness: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['slicing']) {
+				this.debug('Shapness boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Sharpness",
+		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
+		rating: 3.5,
+		num: 292,
+	},
+	hadronengine: {
+		onStart(pokemon) {
+			if (!this.field.setTerrain('electricterrain') && this.field.isTerrain('electricterrain')) {
+				this.add('-activate', pokemon, 'ability: Hadron Engine');
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (this.field.isTerrain('electricterrain')) {
+				this.debug('Hadron Engine boost');
+				return this.chainModify([5461, 4096]);
+			}
+		},
+		name: "Hadron Engine",
+		shortDesc: "On switch-in, summons Electric Terrain. During Electric Terrain, Sp. Atk is 1.3333x.",
+		rating: 4.5,
+		num: 289,
 	},
 };

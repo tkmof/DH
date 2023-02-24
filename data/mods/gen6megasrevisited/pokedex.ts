@@ -18,6 +18,73 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 70, atk: 125, def: 70, spa: 140, spd: 105, spe: 115},
 		abilities: {0: "Limber"},
 	},	
+	banettemega: {
+		inherit: true,
+		types: ["Ghost", "Steel"],
+		baseStats: {hp: 64, atk: 149, def: 75, spa: 83, spd: 83, spe: 101},
+		abilities: {0: "Pocket Dimension"},
+	},	
+	glaliemega: {
+		inherit: true,
+		types: ["Ice", "Steel"],
+		baseStats: {hp: 80, atk: 175, def: 70, spa: 80, spd: 70, spe: 105},
+		abilities: {0: "Strong Jaw"},
+	},	
+	venusaurmega: {
+		inherit: true,
+		types: ["Grass", "Poison"],
+		baseStats: {hp: 80, atk: 82, def: 123, spa: 120, spd: 120, spe: 100},
+		abilities: {0: "Grassy Surge"},
+	},	
+	blastoisemega: {
+		inherit: true,
+		types: ["Water", "Fairy"],
+		baseStats: {hp: 79, atk: 83, def: 130, spa: 135, spd: 105, spe: 98},
+		abilities: {0: "Misty Surge"},
+	},	
+	charizardmegay: {
+		inherit: true,
+		types: ["Fire", "Flying"],
+		baseStats: {hp: 78, atk: 109, def: 103, spa: 134, spd: 110, spe: 100},
+		abilities: {0: "Delta Stream"},
+	},	
+	alakazammega: {
+		inherit: true,
+		types: ["Psychic", "Ice"],
+		baseStats: {hp: 55, atk: 50, def: 75, spa: 155, spd: 125, spe: 140},
+		abilities: {0: "Magic Guard"},
+	},	
+	pinsirmega: {
+		inherit: true,
+		types: ["Bug", "Ice"],
+		baseStats: {hp: 65, atk: 160, def: 110, spa: 55, spd: 85, spe: 125},
+		abilities: {0: "Mountaineer"},
+	},	
+	gengarmega: {
+		inherit: true,
+		types: ["Ghost", "Poison"],
+		baseStats: {hp: 65, atk: 60, def: 105, spa: 155, spd: 105, spe: 110},
+		abilities: {0: "Neutralizing Gas"},
+	},	
+	aerodactylmega: {
+		inherit: true,
+		types: ["Rock", "Flying"],
+		baseStats: {hp: 80, atk: 140, def: 65, spa: 85, spd: 100, spe: 145},
+		abilities: {0: "Nostalgia Trip"},
+	},	
+	steelixmega: {
+		inherit: true,
+		types: ["Steel", "Ground"],
+		baseStats: {hp: 75, atk: 135, def: 210, spa: 55, spd: 105, spe: 30},
+		abilities: {0: "Heatproof"},
+		weightkg: 999.9,
+	},	
+	altariamega: {
+		inherit: true,
+		types: ["Dragon", "Fairy"],
+		baseStats: {hp: 75, atk: 70, def: 95, spa: 140, spd: 115, spe: 95},
+		abilities: {0: "Weather Report"},
+	},	
 	
 // Gen 6 Stuff
 	arbok: {

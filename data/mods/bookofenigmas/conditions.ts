@@ -1,5 +1,5 @@
 export const Conditions: {[k: string]: ConditionData} = {
-	hail: {
+	/*hail: {
 		name: 'Hail',
 		effectType: 'Weather',
 		duration: 5,
@@ -29,7 +29,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onEnd() {
 			this.add('-weather', 'none');
 		},
-	},
+	},*/
 	storm: {
 		name: 'storm',
 		onStart(pokemon) {
@@ -40,7 +40,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.damage(pokemon.baseMaxhp / 8);
 		},
 		onEnd(pokemon) {
-			this.add('-end', pokemon, 'Salt Cure');
+			this.add('-end', pokemon, 'storm');
 		},
 	},
 };

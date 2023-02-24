@@ -754,7 +754,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	dragonite: {
 		randomBattleMoves: ["doubleedge", "dragondance", "earthquake", "flamethrower", "healbell", "hiddenpowerflying", "icebeam", "substitute"],
-		tier: "UU",
+		tier: "UUBL",
 		rank: "E1",
 	},
 	mewtwo: {
@@ -1109,12 +1109,12 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	raikou: {
 		randomBattleMoves: ["calmmind", "crunch", "hiddenpowergrass", "hiddenpowerice", "rest", "sleeptalk", "substitute", "thunderbolt"],
-		tier: "UU",
+		tier: "UUBL",
 		rank: "E1",
 	},
 	entei: {
 		randomBattleMoves: ["bodyslam", "calmmind", "fireblast", "flamethrower", "hiddenpowergrass", "hiddenpowerice", "solarbeam", "substitute", "sunnyday"],
-		tier: "UU",
+		tier: "OU",
 		rank: "C2",
 	},
 	suicune: {
@@ -1783,7 +1783,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	snover: {
 		rank: "Unranked",
 		gen: 3,
-		tier: "LC",
+		tier: "UUBL",
 	},
 	abomasnow: {
 		rank: "B1",
@@ -2224,7 +2224,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	magmortar: {
 		rank: "C3",
 		gen: 3,
-		tier: "UU",
+		tier: "UUBL",
 	},
 	/*togekiss: {
 		rank: "Unranked",
@@ -2467,11 +2467,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 3,
 		tier: "UU",
 	},*/
-	kleavor: {
-		rank: "A2",
-		gen: 3,
-		tier: "OU",
-	},
+	// kleavor: {
+	// 	rank: "A2",
+	// 	gen: 3,
+	// 	tier: "OU",
+	// },
 	/*ursaluna: {
 		rank: "Unranked",
 		gen: 3,
@@ -2558,19 +2558,23 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "OU",
 	},
 	scrafty: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "New",
+		gen: 3,
+		tier: "OU",
 	},
 	yanmega: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "New",
+		gen: 3,
+		tier: "OU",
 	},
 	weavile: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "New",
+		gen: 3,
+		tier: "OU",
 	},
 	simipour: {
-		isNonstandard: "Future",
-		tier: "Illegal",
+		rank: "New",
+		gen: 3,
+		tier: "OU",
 	},
 };
