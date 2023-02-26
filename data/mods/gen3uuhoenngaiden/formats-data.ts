@@ -945,8 +945,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	yanma: {
 		randomBattleMoves: ["hiddenpowerflying", "hypnosis", "reversal", "shadowball", "substitute"],
-		tier: "UU",
-		rank: "New",
+		tier: "NFE",
+		rank: "NFE",
 	},
 	wooper: {
 		tier: "LC",
