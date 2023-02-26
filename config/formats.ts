@@ -1342,7 +1342,7 @@ export const Formats: FormatList = [
     {
 		name: "[Gen 1] Glitch OU",
 		mod: 'gen1glitch',
-		ruleset: ['Standard'],
+		ruleset: ['Standard', 'Data Mod'],
 		banlist: ['Uber'],
 	},
 	{
