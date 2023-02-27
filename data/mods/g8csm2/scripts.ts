@@ -82,15 +82,21 @@ export const Scripts: ModdedBattleScriptsData = {
 		delete this.modData('Learnsets', 'zangoose').learnset.closecombat;
 		delete this.modData('Learnsets', 'zangoose').learnset.lowkick;
 		// Chandelure
-		this.modData("Learnsets", "chandelure").learnset.scorchingsands = ["8L1"];
-		this.modData("Learnsets", "chandelure").learnset.blueflare = ["8L1"];
+		this.modData("Learnsets", "chandelure").learnset.scorchingsands = ["9L1"];
+		this.modData("Learnsets", "chandelure").learnset.blueflare = ["9L1"];
 		delete this.modData('Learnsets', 'chandelure').learnset.calmmind;
 		delete this.modData('Learnsets', 'chandelure').learnset.energyball;
 		delete this.modData('Learnsets', 'chandelure').learnset.solarbeam;
+		delete this.modData('Learnsets', 'litwick').learnset.calmmind;
+		delete this.modData('Learnsets', 'litwick').learnset.energyball;
+		delete this.modData('Learnsets', 'litwick').learnset.solarbeam;
+		delete this.modData('Learnsets', 'lampent').learnset.calmmind;
+		delete this.modData('Learnsets', 'lampent').learnset.energyball;
+		delete this.modData('Learnsets', 'lampent').learnset.solarbeam;
 		// Carracosta
-		this.modData("Learnsets", "carracosta").learnset.darkpulse = ["8L1"];
-		this.modData("Learnsets", "carracosta").learnset.spikes = ["8L1"];
-		this.modData("Learnsets", "carracosta").learnset.obstruct = ["8L1"];
+		this.modData("Learnsets", "carracosta").learnset.darkpulse = ["9L1"];
+		this.modData("Learnsets", "carracosta").learnset.spikes = ["9L1"];
+		this.modData("Learnsets", "carracosta").learnset.obstruct = ["9L1"];
 		delete this.modData('Learnsets', 'carracosta').learnset.ironhead;
 		delete this.modData('Learnsets', 'carracosta').learnset.stoneedge;
 		delete this.modData('Learnsets', 'carracosta').learnset.rockslide;
@@ -99,6 +105,14 @@ export const Scripts: ModdedBattleScriptsData = {
 		delete this.modData('Learnsets', 'carracosta').learnset.focusblast;
 		delete this.modData('Learnsets', 'carracosta').learnset.earthpower;
 		delete this.modData('Learnsets', 'carracosta').learnset.aquajet;
+		delete this.modData('Learnsets', 'carracosta').learnset.ironhead;
+		delete this.modData('Learnsets', 'tirtouga').learnset.stoneedge;
+		delete this.modData('Learnsets', 'tirtouga').learnset.rockslide;
+		delete this.modData('Learnsets', 'tirtouga').learnset.stealthrock;
+		delete this.modData('Learnsets', 'tirtouga').learnset.rockblast;
+		delete this.modData('Learnsets', 'tirtouga').learnset.focusblast;
+		delete this.modData('Learnsets', 'tirtouga').learnset.earthpower;
+		delete this.modData('Learnsets', 'tirtouga').learnset.aquajet;
 		// Overqwil
 		this.modData("Learnsets", "overqwil").learnset.knockoff = ["8L1"];
 		this.modData("Learnsets", "overqwil").learnset.flipturn = ["8L1"];
@@ -115,6 +129,12 @@ export const Scripts: ModdedBattleScriptsData = {
 		delete this.modData('Learnsets', 'omastar').learnset.stoneedge;
 		delete this.modData('Learnsets', 'omastar').learnset.rockslide;
 		delete this.modData('Learnsets', 'omastar').learnset.shellsmash;
+		delete this.modData('Learnsets', 'omanyte').learnset.stealthrock;
+		delete this.modData('Learnsets', 'omanyte').learnset.toxicspikes;
+		delete this.modData('Learnsets', 'omanyte').learnset.rockblast;
+		delete this.modData('Learnsets', 'omanyte').learnset.stoneedge;
+		delete this.modData('Learnsets', 'omanyte').learnset.rockslide;
+		delete this.modData('Learnsets', 'omanyte').learnset.shellsmash;
 		// Pichu
 		this.modData("Learnsets", "pichu").learnset.extremespeed = ["8L1"];
 		this.modData("Learnsets", "pichu").learnset.knockoff = ["8L1"];
@@ -138,6 +158,9 @@ export const Scripts: ModdedBattleScriptsData = {
 		// Talonflame
 		this.modData("Learnsets", "talonflame").learnset.lavaplume = ["8L1"];
 		delete this.modData('Learnsets', 'talonflame').learnset.uturn;
+		delete this.modData('Learnsets', 'fletchinder').learnset.uturn;
+		delete this.modData('Learnsets', 'fletchling').learnset.uturn;
+		
 		// Onix
 		this.modData("Learnsets", "onix").learnset.clangingscales = ["8L1"];
 		this.modData("Learnsets", "onix").learnset.dracometeor = ["8L1"];
