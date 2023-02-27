@@ -1,5 +1,5 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
-		solrock: {
+	solrock: {
 		inherit: true,
 		name: "Solrock",
 		types: ["Rock", "Fighting"],
