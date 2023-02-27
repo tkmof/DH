@@ -82,8 +82,8 @@ export const Scripts: ModdedBattleScriptsData = {
 		delete this.modData('Learnsets', 'zangoose').learnset.closecombat;
 		delete this.modData('Learnsets', 'zangoose').learnset.lowkick;
 		// Chandelure
-		this.modData("Learnsets", "chandelure").learnset.scorchingsands = ["9L1"];
-		this.modData("Learnsets", "chandelure").learnset.blueflare = ["9L1"];
+		this.modData("Learnsets", "chandelure").learnset.scorchingsands = ["8L1"];
+		this.modData("Learnsets", "chandelure").learnset.blueflare = ["8L1"];
 		delete this.modData('Learnsets', 'chandelure').learnset.calmmind;
 		delete this.modData('Learnsets', 'chandelure').learnset.energyball;
 		delete this.modData('Learnsets', 'chandelure').learnset.solarbeam;
@@ -94,9 +94,9 @@ export const Scripts: ModdedBattleScriptsData = {
 		delete this.modData('Learnsets', 'lampent').learnset.energyball;
 		delete this.modData('Learnsets', 'lampent').learnset.solarbeam;
 		// Carracosta
-		this.modData("Learnsets", "carracosta").learnset.darkpulse = ["9L1"];
-		this.modData("Learnsets", "carracosta").learnset.spikes = ["9L1"];
-		this.modData("Learnsets", "carracosta").learnset.obstruct = ["9L1"];
+		this.modData("Learnsets", "carracosta").learnset.darkpulse = ["8L1"];
+		this.modData("Learnsets", "carracosta").learnset.spikes = ["8L1"];
+		this.modData("Learnsets", "carracosta").learnset.obstruct = ["8L1"];
 		delete this.modData('Learnsets', 'carracosta').learnset.ironhead;
 		delete this.modData('Learnsets', 'carracosta').learnset.stoneedge;
 		delete this.modData('Learnsets', 'carracosta').learnset.rockslide;
