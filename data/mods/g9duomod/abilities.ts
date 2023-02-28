@@ -338,9 +338,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	
 	vent: {
-		onStart(target) {
-			this.add('-start', target, 'ability: Vent');
-			this.hint("This Pokemon can now use Impostor Blade without drawback.");
+		onStart(pokemon) {
+			if (pokemon.baseSpecies.baseSpecies !== 'impsaustor' && attacker.baseSpecies.baseSpecies !== 'Impsaustor') {return;}
+			this.add('-message', `You can now use Impostor Blade without drawback.`);
 		},
 		onAfterMoveSecondary(target, source, move) {
 			if (!source || source === target || !target.hp || !move.totalDamage) return;

@@ -66,6 +66,25 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 65, atk: 60, def: 105, spa: 155, spd: 105, spe: 110},
 		abilities: {0: "Neutralizing Gas"},
 	},	
+	aerodactylmega: {
+		inherit: true,
+		types: ["Rock", "Flying"],
+		baseStats: {hp: 80, atk: 140, def: 65, spa: 85, spd: 100, spe: 145},
+		abilities: {0: "Nostalgia Trip"},
+	},	
+	steelixmega: {
+		inherit: true,
+		types: ["Steel", "Ground"],
+		baseStats: {hp: 75, atk: 135, def: 210, spa: 55, spd: 105, spe: 30},
+		abilities: {0: "Heatproof"},
+		weightkg: 999.9,
+	},	
+	altariamega: {
+		inherit: true,
+		types: ["Dragon", "Fairy"],
+		baseStats: {hp: 75, atk: 70, def: 95, spa: 140, spd: 115, spe: 95},
+		abilities: {0: "Weather Report"},
+	},	
 	
 // Gen 6 Stuff
 	arbok: {

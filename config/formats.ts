@@ -111,16 +111,16 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 9] Clean Slate Micro 2",
+		name: "[Gen 8] Clean Slate Micro 2",
 		desc: `Clean Slate.`,
 		threads: [
 			`<a href="https://www.smogon.com/forums/threads/clean-slate-micro-2.3696166/">Clean Slate Micro 2</a>`,
 		],
-		mod: 'csm2',
+		mod: 'g8csm2',
 		ruleset: ['Standard', 'Dynamax Clause'],
-		onSwitchIn(pokemon) {
-			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
-		},
+		// onSwitchIn(pokemon) {
+			// this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
+		// },
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
 			let speciesTable = {};
@@ -573,13 +573,12 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen3hoenngaiden',
-		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod'],
-		banlist: ['Uber', 'Air Balloon', 'Baton Pass + Block', 'Baton Pass + Mean Look', 'Baton Pass + Spider Web', 'Baton Pass + Ingrain'],
+		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod', 'Illegal Baton Pass Clause'],
+		banlist: ['Uber', 'Air Balloon'],
 		unbanlist: [
 			//Abilities
 			'Sand Veil',
 		],
-		teambuilderFormat: 'OU',
 	},
 	{
 		name: "[Gen 3] Hoenn Gaiden UU",
@@ -590,8 +589,8 @@ export const Formats: FormatList = [
 
 		mod: 'gen3uuhoenngaiden',
 		searchShow: false,
-		ruleset: ['[Gen 3] Hoenn Gaiden'],
-		banlist: ['OU', 'UUBL', 'Snow Warning'],
+		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod', 'Illegal Baton Pass Clause'],
+		banlist: ['Uber', 'OU', 'UUBL', 'Snow Warning', 'Air Balloon'],
 		unbanlist: [],
 	},
 	{
@@ -761,9 +760,9 @@ export const Formats: FormatList = [
 		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
 					"Charizardite X", "Beedrillite", "Pidgeotite", "Slowbronite", 
-					"Kangaskhanite", "Gyaradosite", "Aerodactylite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Steelixite", "Scizorite",
+					"Kangaskhanite", "Gyaradosite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Scizorite",
 					"Heracronite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
-					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Altarianite", "Absolite", "Salamencite",
+					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Absolite", "Salamencite",
 					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Abomasite", "Galladite", "Diancite"
 					],
 	},
@@ -1338,6 +1337,12 @@ export const Formats: FormatList = [
 		mod: 'gen2doubles',
 		gameType: 'doubles',
 		ruleset: ['Standard Doubles', 'Swagger Clause'],
+		banlist: ['Uber'],
+	},
+    {
+		name: "[Gen 1] Glitch OU",
+		mod: 'gen1glitch',
+		ruleset: ['Standard', 'Data Mod'],
 		banlist: ['Uber'],
 	},
 	{

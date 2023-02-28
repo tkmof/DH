@@ -127,7 +127,7 @@ fireworks: {
 		category: "Special",
 		name: "Fire Works",
 		shortDesc: "50% chance to drop SpD.",
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		secondary: {
@@ -144,8 +144,8 @@ windblade: {
 		basePower: 70,
 		category: "Physical",
 		name: "Wind Blade",
-		shortDesc: "Rise Critical Hit Ratio 1 stage on hit.",
-		pp: 5,
+		shortDesc: "Rises Critical Hit Ratio 1 stage on hit.",
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, distance: 1,slicing: 1, wind: 1},
 self: {
@@ -239,7 +239,7 @@ snowslam: {
 bullhorns: {
 		num: 10010,
 		accuracy: 100,
-		basePower: 90,
+		basePower: 120,
 		category: "Physical",
 		name: "Bull Horns",
 		shortDesc: "10% chance to flinch target.",
@@ -444,12 +444,12 @@ elastictail: {
 		basePower: 120,
 		category: "Physical",
 		name: "Elastic Tail",
-		shortDesc: "30% chance to drop Defense.",
+		shortDesc: "50% chance to drop Defense.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		secondary: {
-			chance: 30,
+			chance: 50,
 			boosts: {
 				def: -1,
 			},
@@ -464,12 +464,12 @@ dualscissors: {
 		basePower: 95,
 		category: "Physical",
 		name: "Dual Scissors",
-		shortDesc: "50% chanse to rise Atk 1 stage.",
+		shortDesc: "Raises Atk 1 stage.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
 		secondary: {
-			chance: 50,
+			chance: 100,
 			self: {
 				boosts: {
 					atk: 1,
@@ -1544,7 +1544,7 @@ dancebattle: {
 		basePower: 0,
 		category: "Status",
 		name: "Dance Battle",
-		shortDesc: "Raises all stats by 1 (not acc/eva) of both user and target.",
+		shortDesc: "Raises all stats by 1 of both user and target.",
 		pp: 20,
 		priority: 0,
 		flags: {snatch: 1, dance: 1},

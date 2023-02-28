@@ -1460,14 +1460,14 @@ export const Formats: {[k: string]: FormatData} = {
 		else if (result === 46) {
 			this.hint("Roulette Wheel Result 47 - heard you like metronome");
 			for (const pokemon of this.getAllActive()) {
-	                	this.useMove("Metrogrown", pokemon);
+	                	this.useMove("TM080", pokemon);
 	        	}
 	        }
 
 		else if (result === 47) {
 			this.hint("Roulette Wheel Result 48 - Both Pokemon use Acupressure.");
 			for (const pokemon of this.getAllActive()) {
-	                	this.useMove("Acupressure", pokemon);
+	                	this.useMove("TM080", pokemon);
 	        	}
 	        }
 
