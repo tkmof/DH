@@ -759,9 +759,9 @@ export const Formats: FormatList = [
 		mod: 'gen6megasrevisited',
 		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
-					"Charizardite X", "Beedrillite", "Pidgeotite", "Slowbronite", 
+					"Beedrillite", "Pidgeotite", "Slowbronite", 
 					"Kangaskhanite", "Gyaradosite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Scizorite",
-					"Heracronite", "Tyranitarite", "Sceptilite", "Blazikenite", "Swampertite", "Gardevoirite", "Sablenite", "Mawilite",
+					"Heracronite", "Tyranitarite", "Blazikenite", "Gardevoirite", "Sablenite", "Mawilite",
 					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Absolite", "Salamencite",
 					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Abomasite", "Galladite", "Diancite"
 					],
