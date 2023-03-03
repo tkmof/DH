@@ -51,6 +51,23 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "pinsir").learnset.blizzard = ["6L1"];
 		this.modData("Learnsets", "pinsir").learnset.roost = ["6L1"];
 		this.modData("Learnsets", "pinsir").learnset.iciclespear = ["6L1"];
+		this.modData("Learnsets", "aerodactyl").learnset.powergem = ["6L1"];
+		this.modData("Learnsets", "aerodactyl").learnset.shadowball = ["6L1"];
+		this.modData("Learnsets", "aerodactyl").learnset.hurricane = ["6L1"];
+		this.modData("Learnsets", "steelix").learnset.heatcrash = ["6L1"];
+		this.modData("Learnsets", "steelix").learnset.rapidspin = ["6L1"];
+		this.modData("Learnsets", "steelix").learnset.smackdown = ["6L1"];
+		this.modData("Learnsets", "altaria").learnset.scald = ["6L1"];
+		this.modData("Learnsets", "altaria").learnset.hydropump = ["6L1"];
+		this.modData("Learnsets", "altaria").learnset.thunder = ["6L1"];
+		this.modData("Learnsets", "sceptile").learnset.calmmind = ["6L1"];
+		this.modData("Learnsets", "sceptile").learnset.sludgewave = ["6L1"];
+		this.modData("Learnsets", "swampert").learnset.sludgebomb = ["6L1"];
+		this.modData("Learnsets", "swampert").learnset.bulkup = ["6L1"];
+		this.modData("Learnsets", "swampert").learnset.toxicspikes = ["6L1"];
+		this.modData("Learnsets", "swampert").learnset.aquajet = ["6L1"];
+		this.modData("Learnsets", "swampert").learnset.gunkshot = ["6L1"];
+		this.modData("Learnsets", "swampert").learnset.poisonjab = ["6L1"];
 
 	},
 };

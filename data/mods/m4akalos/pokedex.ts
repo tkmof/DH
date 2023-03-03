@@ -128,4 +128,41 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		megaCreator: "Snowdrops and zxgzxg",
 	},
 
+	// slate 5
+
+	zangoose: {
+		inherit: true,
+		mega: "zangoosemega",
+		megaName: "Zangoose-Mega",
+		megaAbility: {0: "Magic Guard"},
+		megaStats: {hp: 73, atk: 145, def: 90, spa: 60, spd: 90, spe: 100},
+		megaStone: "Zangoosite",
+		movepoolAdditions: ["recover"],
+		megaCreator: "Paulluxx and Sticky Fingaa",
+	},
+
+	seviper: {
+		inherit: true,
+		mega: "sevipermega",
+		megaName: "Seviper-Mega",
+		megaType: ["Poison", "Dark"],
+		megaAbility: {0: "Dry Skin"},
+		megaStats: {hp: 73, atk: 131, def: 78, spa: 100, spd: 78, spe: 98},
+		megaStone: "Seviperite",
+		movepoolAdditions: ["gunkshot", "powertrip"],
+		megaCreator: "BlueRay",
+	},
+
+	solrock: {
+		inherit: true,
+		mega: "solrockmega",
+		megaName: "Solrock-Mega",
+		megaType: ["Rock", "Fire"],
+		megaAbility: {0: "Levitate"},
+		megaStats: {hp: 90, atk: 125, def: 95, spa: 55, spd: 90, spe: 105},
+		megaStone: "Solrockite",
+		movepoolAdditions: ["corrosivegas", "sacredfire", "uturn"],
+		megaCreator: "Paulluxx and XtheGAMEmaster",
+	},
+
 };
