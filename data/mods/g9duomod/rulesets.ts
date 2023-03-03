@@ -10,6 +10,21 @@ export const Formats: {[k: string]: FormatData} = {
 			this.add('-message', "https://docs.google.com/spreadsheets/d/1VZp8emRachS_ieusnF8FWKFqTcOUjrVyr393J-J17pY/edit#gid=1817102816");	
 		},
 		
+		canMegaEvo(pokemon) {
+			const altForme = pokemon.baseSpecies.otherFormes && this.dex.getSpecies(pokemon.baseSpecies.otherFormes[0]);
+			const item = pokemon.getItem();
+			if (
+				altForme?.isMega && altForme?.requiredMove &&
+				pokemon.baseMoves.includes(this.toID(altForme.requiredMove)) && !item.zMove
+			) {
+				return altForme.name;
+			}
+			if (pokemon.baseSpecies.name === "Iron Vessel" || pokemon.baseSpecies.name === "ironvessel") {
+				return "Modded Vessel";
+			}
+			return item.megaStone;
+		},
+		
 		onResidual(pokemon) {
 		var result: number;
 		var loopNum: number;
