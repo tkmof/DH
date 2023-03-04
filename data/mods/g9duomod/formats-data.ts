@@ -203,7 +203,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "Duomod",
 	},
 	cadbunny: {
-		randomBattleMoves: ["boomburst", "slackoff", "focusblast", "chillyreception", "nuzzle"],
+		randomBattleMoves: ["boomburst", "slackoff", "focusblast", "knockoff", "chillyreception", "nuzzle"],
 		randomBattleLevel: 100,
 		tier: "Duomod",
 		doublesTier: "Duomod",
