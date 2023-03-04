@@ -288,6 +288,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 96, atk: 76, def: 76, spa: 96, spd: 108, spe: 118},
 		abilities: {0: "Regenerator"},
 		weightkg: 5,
+		otherFormes: ["Modded Vessel"],
+		formeOrder: ["Iron Vessel", "Modded Vessel"],
 	},
 	cadbunny: {
 		num: 33.5,
