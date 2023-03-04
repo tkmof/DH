@@ -19,9 +19,14 @@ export const Formats: {[k: string]: FormatData} = {
 			) {
 				return altForme.name;
 			}
-			if (pokemon.baseSpecies.name === "Iron Vessel" || pokemon.baseSpecies.name === "ironvessel") {
+
+			if (pokemon.baseSpecies.name === "Iron Vessel") {
 				return "Modded Vessel";
 			}
+			if (pokemon.baseSpecies.name === "ironvessel") {
+				return "moddedvessel";
+			}
+
 			return item.megaStone;
 		},
 		
