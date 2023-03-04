@@ -765,8 +765,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	dragonite: {
 		randomBattleMoves: ["doubleedge", "dragondance", "earthquake", "flamethrower", "healbell", "hiddenpowerflying", "icebeam", "substitute"],
-		tier: "UU",
-		rank: "New",
+		tier: "UUBL",
+		rank: "UUBL",
 	},
 	mewtwo: {
 		randomBattleMoves: ["calmmind", "flamethrower", "icebeam", "psychic", "recover", "selfdestruct", "substitute", "thunderbolt"],
@@ -945,8 +945,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	yanma: {
 		randomBattleMoves: ["hiddenpowerflying", "hypnosis", "reversal", "shadowball", "substitute"],
-		tier: "UU",
-		rank: "New",
+		tier: "NFE",
+		rank: "NFE",
 	},
 	wooper: {
 		tier: "LC",
@@ -1135,8 +1135,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	raikou: {
 		randomBattleMoves: ["calmmind", "crunch", "hiddenpowergrass", "hiddenpowerice", "rest", "sleeptalk", "substitute", "thunderbolt"],
-		tier: "UU",
-		rank: "New",
+		tier: "UUBL",
+		rank: "UUBL",
 	},
 	entei: {
 		randomBattleMoves: ["bodyslam", "calmmind", "fireblast", "flamethrower", "hiddenpowergrass", "hiddenpowerice", "solarbeam", "substitute", "sunnyday"],
@@ -1807,9 +1807,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "OU",
 	},
 	snover: {
-		rank: "LC",
+		rank: "UUBL",
 		gen: 3,
-		tier: "LC",
+		tier: "UUBL",
 	},
 	abomasnow: {
 		rank: "OU",
@@ -2207,9 +2207,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "OU",
 	},
 	magmortar: {
-		rank: "New",
+		rank: "UUBL",
 		gen: 3,
-		tier: "UU",
+		tier: "UUBL",
 	},
 	raichualola: {
 		rank: "OU",

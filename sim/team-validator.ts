@@ -1946,7 +1946,7 @@ export class TeamValidator {
 							// available as egg move
 							learned = learnedGen + 'Eany';
 							// falls through to E check below
-						} else {
+						} else if (dex.currentMod != 'gen1glitch') {
 							// this move is unavailable, skip it
 							continue;
 						}

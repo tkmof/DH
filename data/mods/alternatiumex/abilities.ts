@@ -586,6 +586,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Toxic Debris",
+		shortDesc: "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
 		rating: 3.5,
 		num: 295,
 	},
@@ -598,6 +599,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Sharpness",
+		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
 		rating: 3.5,
 		num: 292,
 	},
@@ -615,6 +617,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Hadron Engine",
+		shortDesc: "On switch-in, summons Electric Terrain. During Electric Terrain, Sp. Atk is 1.3333x.",
 		rating: 4.5,
 		num: 289,
 	},

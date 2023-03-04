@@ -221,7 +221,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	impostorblade: {
 		num: 9010,
 		accuracy: 100,
-		basePower: 120, // TEMPORARY FOR DUOMOD TOUR
+		basePower: 120, 
 		category: "Physical",
 		name: "Impostor Blade",
 		shortDesc: "kill with this move or you die (pretty sus)",
