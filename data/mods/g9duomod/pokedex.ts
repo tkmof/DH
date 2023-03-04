@@ -341,6 +341,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Shed Skin"},
 		weightkg: 5,
 		battleOnly: "Iron Vessel",
+		requiredMove: "Core Enforcer",
 	},
     gelsiussubzero: {
       num: 19.5,
