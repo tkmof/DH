@@ -2892,6 +2892,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 		bodypress: ["8L1"],
 		breakingswipe: ["8L1"],
 		brutalswing: ["8L1"],
+		bulkup: ["8L1"],
 		confide: ["8L1"],
 		cut: ["8L1"],
 		doubleteam: ["8L1"],
