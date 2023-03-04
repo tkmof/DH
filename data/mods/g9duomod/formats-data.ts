@@ -227,7 +227,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "Duomod",
 	},
 	blockodile: {
-		randomBattleMoves: ["iciclecrash", "dragonclaw", "earthquake", "bulkup"],
+		randomBattleMoves: ["iciclecrash", "dragonclaw", "earthquake", "bulkup", "liquidation"],
 		randomBattleLevel: 100,
 		tier: "Duomod",
 		doublesTier: "Duomod",
