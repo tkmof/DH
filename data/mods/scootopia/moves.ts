@@ -59,28 +59,6 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Flying",
 		contestType: "Clever",
 	},
-	sacredbolt: {
-		accuracy: 95,
-		basePower: 100,
-		category: "Special",
-		name: "Sacred Bolt",
-		shortDesc: "50% chance to sharply raise Def.",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		self: {
-			chance: 50,
-			boosts: {
-				def: 2,
-			},
-		},
-		secondary: {
-			// Sheer Force negates the self even though it is not secondary
-		},
-		target: "allAdjacentFoes",
-		type: "Electric",
-		contestType: "Beautiful",
-	},
 	photongeyser: {
 		inherit: true,
 		category: "Physical",
@@ -360,4 +338,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 25,
 		accuracy: 80,
 	},
+	
+	
+	
 };
