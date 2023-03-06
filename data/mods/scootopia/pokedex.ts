@@ -236,7 +236,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Dolphena",
 		types: ["Water", "Dragon"],
 		baseStats: {hp: 95, atk: 125, def: 100, spa: 60, spd: 79, spe: 81},
-		abilities: {0: "Anger Point", H: "Mystical Presence"},
+		abilities: {0: "Anger Point", H: "mythical Presence"},
 		weightkg: 271,
 	},
 	elemadillo: {
@@ -291,7 +291,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Dracoil",
 		types: ["Dragon", "Flying"],
 		baseStats: {hp: 105, atk: 105, def: 85, spa: 95, spd: 60, spe: 80},
-		abilities: {0: "Mystical Presence", 1: "Gluttony", H: "Marvel Scale"},
+		abilities: {0: "mythical Presence", 1: "Gluttony", H: "Marvel Scale"},
 		weightkg: 428,
 	},
 	celespirit: {
