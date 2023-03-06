@@ -8,8 +8,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	init() {
 		console.log(this.sides);
 		for (const side in this.sides) {
-			sides[side].usedSuperType = false;
-			sides[side].superTypeUser = "";
+			this.sides[side].usedSuperType = false;
+			this.sides[side].superTypeUser = "";
 		}
 	},
 	pokemon: {
