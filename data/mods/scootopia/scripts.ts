@@ -20,6 +20,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			) return null;
 			if ('magnetrise' in this.volatiles) return false;
 			if ('telekinesis' in this.volatiles) return false;
+			if ('lodestone' in this.volatiles) return false;
 			return item !== 'airballoon';
 		}
 	}
