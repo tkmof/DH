@@ -7,7 +7,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser !== pokemon.id) return false;
 			if (pokemon.hasType('Crystal')) return false;
 			if (!pokemon.addType('Crystal')) return false;
-			pokemon.setType([pokemon.types[1],"Crystal"]);
+			pokemon.setType([pokemon.types[0],"Crystal"]);
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 			pokemon.side.usedSuperType = true;
 			pokemon.side.superTypeUser = pokemon.id;
@@ -35,7 +35,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser !== pokemon.id) return false;
 			if (pokemon.hasType('Feral')) return false;
 			if (!pokemon.addType('Feral')) return false;
-			pokemon.setType([pokemon.types[1],"Feral"]);
+			pokemon.setType([pokemon.types[0],"Feral"]);
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 			pokemon.side.usedSuperType = true;
 			pokemon.side.superTypeUser = pokemon.id;

@@ -188,8 +188,8 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onStart(pokemon) {
 			if (pokemon.hasType('Crystal')) return false;
 			if (!pokemon.addType('Crystal')) return false;
-			pokemon.setType([pokemon.types[1],"Crystal"]);
-			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			pokemon.setType(["Crystal"]);
+			this.add('-start', pokemon, 'typechange', 'Crystal', '[silent]');
 		},
 		onModifyDefPriority: 6,
 		onModifyDef(pokemon) {
@@ -205,8 +205,8 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onStart(pokemon) {
 			if (pokemon.hasType('Feral')) return false;
 			if (!pokemon.addType('Feral')) return false;
-			pokemon.setType([pokemon.types[1],"Feral"]);
-			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			pokemon.setType(["Feral"]);
+			this.add('-start', pokemon, 'typechange', "Feral", '[silent]');
 		},
 		onModifyDefPriority: 6,
 		onModifyDef(pokemon) {
