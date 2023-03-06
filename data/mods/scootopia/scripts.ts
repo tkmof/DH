@@ -6,9 +6,10 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
         // only to specify the order of custom tiers
 	},
 	init() {
-		for (const side of this.sides) {
-			side.usedSuperType = false;
-			side.superTypeUser = "";
+		console.log(this.sides);
+		for (const side in this.sides) {
+			sides[side].usedSuperType = false;
+			sides[side].superTypeUser = "";
 		}
 	},
 	pokemon: {
