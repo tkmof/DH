@@ -190,7 +190,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			if (pokemon.hasType('Crystal')) return false;
 			if (!pokemon.addType('Crystal')) return false;
 			pokemon.setType(["Crystal"]);
-			this.add('-start', pokemon, 'typechange', 'Crystal', '[silent]');
+			this.add('-start', pokemon, 'typechange', 'Crystal', '[from] ability: Crystal Heart');
 		},
 		onModifyDefPriority: 6,
 		onModifyDef(def, pokemon) {
@@ -207,7 +207,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			if (pokemon.hasType('Feral')) return false;
 			if (!pokemon.addType('Feral')) return false;
 			pokemon.setType(["Feral"]);
-			this.add('-start', pokemon, 'typechange', "Feral", '[silent]');
+			this.add('-start', pokemon, 'typechange', "Feral", '[from] ability: Wild Heart');
 		},
 		onModifyAtkPriority: 6,
 		onModifyAtk(atk, pokemon) {
