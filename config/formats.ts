@@ -1441,7 +1441,11 @@ export const Formats: FormatList = [
 		gen: 9,
 		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Data Mod'],
 		banlist: ['All Pokemon'],
-		unbanlist: ['Orchile', 'Dolphena', 'Scalaron', 'Rantler', 'Cobracotta', 'Albatrygon', 'Electangle', 'Torgeist', 'Platypad', 'Soleron', 'Nunopod', 'Zeploom', 'Brawnkey', 'Salamalix', 'Cinnastar', "Muab'Boa", 'Volvolpa', 'Harzodia', 'Cyllindrake', 'Kodokai', 'Jaegorm', 'Jaegorm-Collective', 'Faerenheit', 'Cellsius', 'Kelven', 'Salaos', 'Morndos', 'Pythos', 'Quadringo', 'Corundell', 'Flocura' ],
+		unbanlist: ['Orchile', 'Dolphena', 'Scalaron', 'Rantler', 'Cobracotta', 'Albatrygon', 'Electangle', 'Torgeist', 'Platypad', 'Soleron', 'Nunopod', 'Zeploom', 'Brawnkey', 'Salamalix', 
+			'Cinnastar', "Muab'Boa", 'Volvolpa', 'Harzodia', 'Cyllindrake', 'Kodokai', 'Jaegorm', 'Jaegorm-Collective', 'Faerenheit', 'Cellsius', 'Kelven', 'Salaos', 'Morndos', 'Pythos', 
+			'Quadringo', 'Corundell', 'Flocura', 'Arbrella', 'Woolora', 'Embuck', 'Cindoe', 'Minillow', 'Crossont', 'Torgeist', 'Platypad', 'Lumoth', 'Aurorowl', 'Carapex', 'Dojodo', 
+			'Elemadillo', 'Axolacred', 'Roscenti', 'Blunderbusk', 'Jamborai', 'Dracoil', 'Celespirit', 'Noxtrice', 'Saphor', 'Wolf'
+		],
 	},
 	{
 		name: "[Gen 9] Scoop Test Gen 9",
