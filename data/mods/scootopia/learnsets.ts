@@ -2105,6 +2105,7 @@ export const Learnsets = {
 			feralbreath: ["8L1"],
 			feralroar: ["8L1"],
 			feralresilience: ["8L1"],
+			feralspray: ["8L1"],
 		},
 	},
 	kodokai: {
@@ -2742,6 +2743,7 @@ export const Learnsets = {
 			energyball: ["8L1"],
 			weatherball: ["8L1"],
 			uturn: ["8L1"],
+			shedtail: ["8L1"],
 			calmmind: ["8L1"],
 			morningsun: ["8L1"],
 			recover: ["8L1"],
