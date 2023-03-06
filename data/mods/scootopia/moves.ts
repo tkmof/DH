@@ -398,7 +398,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Special",
-		pp: 24,
+		pp: 15,
 		type: "Crystal",
 		shortDesc: "30% to lower foe's SpA by 1",
 		priority: 0,
