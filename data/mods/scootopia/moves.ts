@@ -310,7 +310,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		secondaries: [
 			{
 				chance: 20,
-				boost: {
+				boosts: {
 					spe: -1,
 				},
 			}, {
@@ -352,7 +352,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		willCrit: true,
 		secondary: {
 			chance: 100,
-			boost: {
+			boosts: {
 				atk: -1,
 			},
 		},
@@ -370,7 +370,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: {
 			chance: 20,
-			boost: {
+			boosts: {
 				atk: -1,
 			},
 		},
@@ -388,7 +388,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: {
 			chance: 10,
-			boost: {
+			boosts: {
 				atk: -1,
 			},
 		},
@@ -406,7 +406,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: {
 			chance: 30,
-			boost: {
+			boosts: {
 				spa: -1,
 			},
 		},
@@ -425,7 +425,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: {
 			chance: 30,
-			boost: {
+			boosts: {
 				spa: -1,
 			},
 		},
@@ -540,7 +540,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: {
 			chance: 20,
-			boost: {
+			boosts: {
 				def: -1,
 			},
 		},
@@ -559,7 +559,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: {
 			chance: 100,
-			boost: {
+			boosts: {
 				def: -1,
 			},
 		},
@@ -578,7 +578,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: {
 			chance: 20,
-			boost: {
+			boosts: {
 				def: -1,
 			},
 		},
@@ -596,7 +596,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "allAdjacentFoes",
 		secondary: {
 			chance: 20,
-			boost: {
+			boosts: {
 				spd: -1,
 			},
 		},
@@ -633,7 +633,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "allAdjacentFoes",
 		secondary: {
 			chance: 50,
-			boost: {
+			boosts: {
 				spd: -1,
 			},
 		},
