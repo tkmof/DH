@@ -8,7 +8,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (!pokemon.addType('Crystal')) return false;
 			pokemon.setType([pokemon.types[1],"Crystal"]);
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
-		}
+		},
 		num: 275,
 		gen: 8,
 	},
@@ -21,7 +21,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			if (!pokemon.addType('Feral')) return false;
 			pokemon.setType([pokemon.types[1],"Feral"]);
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
-		}
+		},
 		num: 275,
 		gen: 8,
 	},
