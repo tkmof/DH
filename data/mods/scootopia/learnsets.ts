@@ -505,7 +505,7 @@ export const Learnsets = {
 			flareblitz: ["8L1"],
 			blazekick: ["8L1"],
 			closecombat: ["8L1"],
-			highhornsepower: ["8L1"],
+			highhorsepower: ["8L1"],
 			megahorn: ["8L1"],
 			uturn: ["8L1"],
 			morningsun: ["8L1"],
