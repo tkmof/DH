@@ -185,6 +185,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 211,
 	},
 	crystalheart: {
+		shortDesc: "User becomes Crystal type. While Crystal type, 33% boost to Def and SpD",
 		onStart(pokemon) {
 			if (pokemon.hasType('Crystal')) return false;
 			if (!pokemon.addType('Crystal')) return false;
@@ -217,6 +218,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			if (pokemon.hasType('Feral')) return this.chainModify(1 + (1/3));
 		},
 		name: "Wild Heart",
+		shortDesc: "User becomes Feral type. While Feral type, 33% boost to Atk and SpA",
 	},
 	schooling: {
 		onStart(pokemon) {
