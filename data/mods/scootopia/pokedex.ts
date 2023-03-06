@@ -379,7 +379,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Saphor",
 		types: ["Normal", "Ground"],
 		baseStats: {hp: 95, atk: 100, def: 105, spa: 100, spd: 105, spe: 95},
-		abilities: {0: "Sturdy", H: "Crystal Heart"},
+		abilities: {0: "Thick Fat", H: "Crystal Heart"},
 		weightkg: 638,
 	},
 	wolf: {
