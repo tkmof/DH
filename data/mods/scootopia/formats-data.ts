@@ -175,7 +175,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "Scoo",
 		doublesTier: "Scoo",
 	},
-	cellcius: {
+	cellsius: {
 		tier: "Scoo",
 		doublesTier: "Scoo",
 	},

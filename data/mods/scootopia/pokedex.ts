@@ -318,7 +318,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Beast Boost"},
 		weightkg: 2.1,
 	},
-	cellcius: {
+	cellsius: {
 		num: 1045,
 		name: "Cellcius",
 		types: ["Water", "Fairy"],
