@@ -12,6 +12,12 @@ export const Items: {[itemid: string]: ItemData} = {
 			pokemon.side.usedSuperType = true;
 			pokemon.side.superTypeUser = pokemon.id;
 		},
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 1130) || pokemon.baseSpecies.num === 1130) {
+				return false;
+			}
+			return true;
+		},
 		num: 275,
 		gen: 8,
 	},
@@ -27,6 +33,12 @@ export const Items: {[itemid: string]: ItemData} = {
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 			pokemon.side.usedSuperType = true;
 			pokemon.side.superTypeUser = pokemon.id;
+		},
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 1130) || pokemon.baseSpecies.num === 1130) {
+				return false;
+			}
+			return true;
 		},
 		num: 275,
 		gen: 8,
