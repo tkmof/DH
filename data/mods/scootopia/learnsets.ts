@@ -1125,7 +1125,7 @@ export const Learnsets = {
 			ragepowder: ["8L1"],
 			calmmind: ["8L1"],
 			expandingforce: ["8L1"],
-			tutormoves=allyswitch: ["8L1"],
+			allyswitch: ["8L1"],
 			bugbuzz: ["8L1"],
 			chargebeam: ["8L1"],
 			confide: ["8L1"],
