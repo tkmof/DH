@@ -436,6 +436,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		category: "Special",
 		name: "Crystal Burst",
 		pp: 5,
+		shortDesc: "Lower's user's SpA by 1",
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		self: {
@@ -455,6 +456,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		name: "Crystal Healing",
 		pp: 5,
 		priority: 0,
+		shortDesc: "Cures whole team's status conditions. 1/16 residual healing at the end of each turn.",
 		flags: {snatch: 1, distance: 1, authentic: 1},
 		onHit(pokemon, source) {
 			this.add('-activate', source, 'move: Crystal Healing');
@@ -487,6 +489,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		name: "Crystal Fortification",
 		pp: 20,
 		priority: 0,
+		shortDesc: "+1 Def, +1 SpD. Clears negative stat changes.",
 		flags: {snatch: 1},
 		onHit(pokemon, source) {
 			let b: BoostName;
@@ -511,6 +514,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		basePower: 0,
 		category: "Status",
 		name: "Crystal Shard",
+		shortDesc: "Sets a layer of Spikes. (Not a new kind of hazard)",
 		pp: 20,
 		priority: 0,
 		flags: {reflectable: 1, nonsky: 1},
@@ -604,6 +608,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		name: "Feral Power",
 		pp: 5,
 		priority: 0,
+		shortDesc: "Lowers user's Def by 1",
 		flags: {protect: 1, mirror: 1, authentic: 1},
 		selfBoost: {
 			boosts: {
@@ -639,6 +644,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		category: "Status",
 		name: "Feral Roar",
 		pp: 15,
+		shortDesc: "Forces the foe to switch to a random ally. +1 Atk, +1 SpA. -6 Priority",
 		priority: -6,
 		flags: {reflectable: 1, mirror: 1, sound: 1, authentic: 1, mystery: 1},
 		forceSwitch: true,
@@ -661,6 +667,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		name: "Feral Spray",
 		pp: 25,
 		priority: 0,
+		shortDesc: "+1 Atk, +1 SpA. Poisons the foe.",
 		flags: {protect: 1, reflectable: 1, mirror: 1},
 		selfBoost: {
 			boosts: {
@@ -683,6 +690,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 20,
 		priority: 0,
 		flags: {snatch: 1},
+		shortDesc: "+1 Atk, +1 SpA. Cures user's status conditions.",
 		onHit(pokemon) {
 			if (['', 'slp'].includes(pokemon.status)) return false;
 			pokemon.cureStatus();
