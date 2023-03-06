@@ -1448,8 +1448,8 @@ export const Formats: FormatList = [
 		],
 		onBeforeMove(pokemon, target, move) {
 			move = Dex.mod("scootopia").getMove(move);
-			if (move.type === "Crystal" && !pokemon.hasType("Crystal") return false;
-			if (move.type === "Feral" && !pokemon.hasType("Feral") return false;
+			if (move.type === "Crystal" && !pokemon.hasType("Crystal")) return false;
+			if (move.type === "Feral" && !pokemon.hasType("Feral")) return false;
 		},
 		onDisableMove(pokemon) {
 			for (const moveSlot of pokemon.moveSlots) {
