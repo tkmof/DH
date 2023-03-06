@@ -1446,6 +1446,19 @@ export const Formats: FormatList = [
 			'Quadringo', 'Corundell', 'Flocura', 'Arbrella', 'Woolora', 'Embuck', 'Cindoe', 'Minillow', 'Crossont', 'Torgeist', 'Platypad', 'Lumoth', 'Aurorowl', 'Carapex', 'Dojodo', 
 			'Elemadillo', 'Axolacred', 'Roscenti', 'Blunderbusk', 'Jamborai', 'Dracoil', 'Celespirit', 'Noxtrice', 'Saphor', 'Wolf'
 		],
+		onBeforeMove(pokemon, target, move) {
+			move = Dex.mod("scootopia").getMove(move);
+			if (move.type === "Crystal" && !pokemon.hasType("Crystal") return false;
+			if (move.type === "Feral" && !pokemon.hasType("Feral") return false;
+		},
+		onDisableMove(pokemon) {
+			for (const moveSlot of pokemon.moveSlots) {
+				move = Dex.mod("scootopia").getMove(moveSlot.id);
+				if ((move.type === "Crystal" && !pokemon.hasType("Crystal")) || (move.type === "Feral" && !pokemon.hasType("Feral"))) {
+					pokemon.disableMove(moveSlot.id, false);
+				}
+			}
+		},
 	},
 	{
 		name: "[Gen 9] Scoop Test Gen 9",

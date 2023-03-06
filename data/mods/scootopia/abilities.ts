@@ -184,6 +184,40 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 5,
 		num: 211,
 	},
+	crystalheart: {
+		onStart(pokemon) {
+			if (pokemon.hasType('Crystal')) return false;
+			if (!pokemon.addType('Crystal')) return false;
+			pokemon.setType([pokemon.types[1],"Crystal"]);
+			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+		},
+		onModifyDefPriority: 6,
+		onModifyDef(pokemon) {
+			if (pokemon.hasType('Crystal')) return this.chainModify(1 + (1/3));
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(pokemon) {
+			if (pokemon.hasType('Crystal')) return this.chainModify(1 + (1/3));
+		},
+		name: "Crystal Heart",
+	},
+	wildheart: {
+		onStart(pokemon) {
+			if (pokemon.hasType('Feral')) return false;
+			if (!pokemon.addType('Feral')) return false;
+			pokemon.setType([pokemon.types[1],"Feral"]);
+			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+		},
+		onModifyDefPriority: 6,
+		onModifyDef(pokemon) {
+			if (pokemon.hasType('Feral')) return this.chainModify(1 + (1/3));
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(pokemon) {
+			if (pokemon.hasType('Feral')) return this.chainModify(1 + (1/3));
+		},
+		name: "Wild Heart",
+	},
 	schooling: {
 		onStart(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies !== 'Jaegorm' || pokemon.transformed) return;

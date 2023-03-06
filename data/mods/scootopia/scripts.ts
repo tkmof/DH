@@ -5,6 +5,12 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
         excludeStandardTiers: true,
         // only to specify the order of custom tiers
 	},
+	init() {
+		for (const side of this.sides) {
+			side.usedSuperType = false;
+			side.superTypeUser = "";
+		}
+	},
 	pokemon: {
 		isGrounded(negateImmunity = false) {
 			if ('gravity' in this.battle.field.pseudoWeather) return true;
