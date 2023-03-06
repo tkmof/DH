@@ -634,6 +634,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 100,
 		category: "Special",
 		name: "Fire Ball",
+		shortDesc: "Ends all existing terrains.",
 		pp: 10,
 		priority: 0,
 		flags: {ballistic: 1, protect: 1, mirror: 1},
@@ -1819,7 +1820,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Fairy",
 		contestType: "Clever",
 	},
-	/*ragingfury: {
+	ragingfury: {
 		num: -1200,
 		accuracy: 100,
 		basePower: 120,
@@ -1841,7 +1842,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "randomNormal",
 		type: "Fire",
 		contestType: "Cool",
-	},*/
+	},
 	chloroblast: {
 		desc: "This move has 50% recoil. Hits target for at least neutral damages.",
 		num: -1720,
@@ -1869,7 +1870,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Grass",
 		contestType: "Cool",
 	},
-	/*infernalparade: {
+	infernalparade: {
 		num: -1506,
 		accuracy: 100,
 		basePower: 60,
@@ -1891,7 +1892,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Ghost",
 		zMove: {basePower: 160},
 		contestType: "Clever",
-	},*/
+	},
 	/*ceaselessedge: {
 		num: -1463,
 		accuracy: 90,
@@ -1908,7 +1909,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Dark",
 		contestType: "Tough",
 	},*/
-	/*ceaselessedge: {
+	ceaselessedge: {
 		shortDesc: "Sets Spikes after damage.",
 		num: -1006,
 		accuracy: 90,
@@ -1948,7 +1949,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Fighting",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
-	},*/
+	},
 	bittermalice: {
 		num: -1506,
 		accuracy: 100,
@@ -2012,7 +2013,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Ice",
 		contestType: "Beautiful",
 	},*/
-	/*esperwing: {
+	esperwing: {
 		num: 840,
 		accuracy: 100,
 		basePower: 80,
@@ -2050,7 +2051,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		target: "normal",
 		type: "Ice",
-	},*/
+	},
 	shelter: {
 		num: -1661,
 		accuracy: true,
@@ -2135,7 +2136,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Fighting",
 		contestType: "Tough",
 	},*/
-	/*triplearrows: {
+	triplearrows: {
 		num: 843,
 		accuracy: 100,
 		basePower: 90,
@@ -2159,7 +2160,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		],
 		target: "normal",
 		type: "Fighting",
-	},*/
+	},
 	/*psyshieldbash: {
 		num: -1776,
 		accuracy: 100,
@@ -2195,7 +2196,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Rock",
 		contestType: "Clever",
 	},*/
-	/*psyshieldbash: {
+	psyshieldbash: {
 		shortDesc: "100% chance to raise the user's Defense by 1.",
 		num: -1013,
 		accuracy: 90,
@@ -2284,7 +2285,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Water",
 		contestType: "Cool",
-	},*/
+	},
 	direclaw: {
 		num: -1398,
 		accuracy: 100,
@@ -2303,7 +2304,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Poison",
 		contestType: "Tough",
 	},
-	/*barbbarrage: {
+	barbbarrage: {
 		num: -1506,
 		accuracy: 100,
 		basePower: 70,
@@ -2323,7 +2324,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		target: "normal",
 		type: "Poison",
-	},*/
+	},
 	hiddenpower: {
 		num: 237,
 		accuracy: 100,
@@ -2778,7 +2779,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Psychic",
 	},
-	bleakwindstorm: {
+	/*bleakwindstorm: {
 		num: 846,
 		accuracy: 80,
 		basePower: 100,
@@ -3045,7 +3046,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		target: "normal",
 		type: "Rock",
-	},
+	},*/
 
 
 	// Endless Dream field

@@ -2361,7 +2361,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3,
 		num: -46,
 	},
-	battlebond: {
+	/*battlebond: {
 		onSourceAfterFaint(length, target, source, effect) {
 			if (effect?.effectType !== 'Move') {
 				return;
@@ -2446,7 +2446,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		name: "Anger Shell",
 		rating: 4,
 		num: 271,
-	},
+	},*/
 	sharpness: {
 		shortDesc: "Boosts the power of sword, cut, slash, and blade moves by 1.3x",
 		onBasePowerPriority: 19,
@@ -2457,12 +2457,12 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		name: "Sharpness",
 	},
-	seedsower: {
+	/*seedsower: {
 		onDamagingHit(damage, target, source, move) {
 			this.field.setTerrain('grassyterrain');
 		},
 		name: "Seed Sower",
 		rating: 2.5,
 		num: 269,
-	},
+	},*/
 };
