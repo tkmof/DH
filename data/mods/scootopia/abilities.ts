@@ -192,11 +192,11 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			this.add('-start', pokemon, 'typechange', 'Crystal', '[silent]');
 		},
 		onModifyDefPriority: 6,
-		onModifyDef(pokemon) {
+		onModifyDef(def, pokemon) {
 			if (pokemon.hasType('Crystal')) return this.chainModify(1 + (1/3));
 		},
 		onModifySpDPriority: 6,
-		onModifySpD(pokemon) {
+		onModifySpD(spd, pokemon) {
 			if (pokemon.hasType('Crystal')) return this.chainModify(1 + (1/3));
 		},
 		name: "Crystal Heart",
@@ -208,12 +208,12 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			pokemon.setType(["Feral"]);
 			this.add('-start', pokemon, 'typechange', "Feral", '[silent]');
 		},
-		onModifyDefPriority: 6,
-		onModifyDef(pokemon) {
+		onModifyAtkPriority: 6,
+		onModifyAtk(atk, pokemon) {
 			if (pokemon.hasType('Feral')) return this.chainModify(1 + (1/3));
 		},
-		onModifySpDPriority: 6,
-		onModifySpD(pokemon) {
+		onModifySpAPriority: 6,
+		onModifySpA(spa, pokemon) {
 			if (pokemon.hasType('Feral')) return this.chainModify(1 + (1/3));
 		},
 		name: "Wild Heart",
