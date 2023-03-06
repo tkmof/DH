@@ -18,6 +18,12 @@ export const Items: {[itemid: string]: ItemData} = {
 			}
 			return true;
 		},
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move && move.type === 'Crystal') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
 		num: 275,
 		gen: 8,
 	},
@@ -39,6 +45,12 @@ export const Items: {[itemid: string]: ItemData} = {
 				return false;
 			}
 			return true;
+		},
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move && move.type === 'Feral') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
 		},
 		num: 275,
 		gen: 8,
