@@ -514,7 +514,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 20,
 		priority: 0,
 		flags: {reflectable: 1, nonsky: 1},
-		onHit: (pokemon, source) {
+		onHit(pokemon, source) {
 			source.side.foe.addSideCondition("spikes");
 		},
 		secondary: null,
