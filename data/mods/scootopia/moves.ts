@@ -338,6 +338,21 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 25,
 		accuracy: 80,
 	},
+	spikebolt: {
+		num: 454,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Spike Bolt",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		secondary: null,
+		target: "normal",
+		type: "Bug",
+		contestType: "Clever",
+	},
 	crystalcutter: {
 		name: "Crystal Cutter",
 		accuracy: 100,
@@ -423,12 +438,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		flags: {protect: 1, mirror: 1},
 		volatileStatus: 'partiallytrapped',
 		target: "normal",
-		secondary: {
-			chance: 30,
-			boosts: {
-				spa: -1,
-			},
-		},
+		secondary: null,
 	},
 	crystalburst: {
 		accuracy: 100,
@@ -518,7 +528,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 20,
 		priority: 0,
 		flags: {reflectable: 1, nonsky: 1},
-		onHit(pokemon, source) {
+		onHitSide(side, source) {
 			source.side.foe.addSideCondition("spikes");
 		},
 		secondary: null,
