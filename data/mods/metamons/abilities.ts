@@ -22,8 +22,35 @@ Ratings and how they work:
 	  The sort of ability that defines metagames.
 	ex. Imposter, Shadow Tag
 */
-
 export const Abilities: {[abilityid: string]: AbilityData} = {
+/*Gen 7 MetaMons*/
+	berserk: {
+		onDamagingHit(damage, target, source, effect) {
+			this.boost({spa: 1});
+		},
+		name: "Berserk",
+		rating: 2,
+		num: 201,
+	},
+   chimera: {
+		shortDesc: "(Placeholder) User's type matches that of its first two moves (new type is displayed).",
+	   },
+		name: "Luster Swap",
+		rating: 3,
+		num: -29,
+	},
+	fortress: {
+		onSourceBasePowerPriority: 18,
+		onSourceBasePower(basePower, attacker, defender, move) {
+			if (move.type === 'Fighting' || move.type === 'Rock') {
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Heatproof",
+		rating: 2,
+		num: 85,
+	},
+/*Gen 8 MetaMons*/
 	unnerve: {
 		onStart(pokemon) {
 			let activated = false;
@@ -170,5 +197,33 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return;
 			}
 		},
+	},
+/*Gen 9 MetaMons*/
+	sharpness: {
+		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.name === 'Aerial Ace' || move.name === 'Air Cutter' || move.name === 'Air Slash' || move.name === 'Aerial Ace' || move.name === 'Aqua Cutter' || move.name === 'Behemoth Blade' || move.name === 'Cross Poison' || move.name === 'Cut' || move.name === 'Fury Cutter' || move.name === 'Leaf Blade' || move.name === 'Night Slash' || move.name === 'Psycho Cut' || move.name === 'Razor Leaf' || move.name === 'Razor Shell' || move.name === 'Sacred Sword' || move.name === 'Slash' || move.name === 'Solar Blade' || move.name === 'X-Scissor') {
+				this.debug('Shapness boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Sharpness",
+		rating: 3.5,
+		num: 292,
+	},
+	eartheater: {
+      shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Earth Eater');
+				}
+				return null;
+			}
+		},
+		name: "Earth Eater",
+		rating: 3.5,
+		num: 297,
 	},
 };
