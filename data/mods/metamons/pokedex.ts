@@ -970,7 +970,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	bellossom: {
 		num: 182,
 		name: "Bellossom",
-		types: ["Grass", "Electric],
+		types: ["Grass", "Electric"],
 		baseStats: {hp: 75, atk: 70, def: 90, spa: 85, spd: 110, spe: 70},
 		abilities: {0: "Flower Veil", 1: "Healer", H: "Regenerator"},
 		heightm: 0.4,
