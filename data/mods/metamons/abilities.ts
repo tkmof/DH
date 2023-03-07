@@ -34,8 +34,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
    chimera: {
 		shortDesc: "(Placeholder) User's type matches that of its first two moves (new type is displayed).",
-	   },
-		name: "Luster Swap",
+		name: "Chimera",
 		rating: 3,
 		num: -29,
 	},
@@ -46,9 +45,59 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return this.chainModify(0.5);
 			}
 		},
-		name: "Heatproof",
+		name: "Fortress",
 		rating: 2,
 		num: 85,
+	},
+	infiltrator: {
+		onModifyMove(move) {
+			move.infiltrates = true;
+		},
+		onDamage(damage, target, source, effect) {
+			if (effect.id === 'gmaxsteelsurge' || effect.id === 'spikes' || effect.id === 'stealthrock' || effect.id === 'stickyweb' || effect.id === 'toxicspikes') {
+				return false;
+			}
+		},
+		name: "Infiltrator",
+		rating: 2.5,
+		num: 151,
+	},
+	lightrunner: {
+		onSourceBasePowerPriority: 18,
+		onSourceBasePower(basePower, attacker, defender, move) {
+			if (move.type === 'Ground') {
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Light Runner",
+		rating: 2,
+		num: 85,
+	},
+	persistence: {
+		shortDesc: "1.5x Defense when statused.",		
+		onModifyDefPriority: 6,
+		onModifyDef(def, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Persistence",
+		rating: 2.5,
+		num: 63,
+	},
+	purepower: {
+		onBasePowerPriority: 30,
+		onBasePower(basePower, attacker, defender, move) {
+			const basePowerAfterMultiplier = this.modify(basePower, this.event.modifier);
+			this.debug('Base Power: ' + basePowerAfterMultiplier);
+			if (basePowerAfterMultiplier <= 60) {
+				this.debug('Pure Power boost');
+				return this.chainModify(2);
+			}
+		},
+		name: "Pure Power",
+		rating: 5,
+		num: 74,
 	},
 /*Gen 8 MetaMons*/
 	unnerve: {
