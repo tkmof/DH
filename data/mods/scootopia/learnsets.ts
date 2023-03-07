@@ -9,7 +9,7 @@ export const Learnsets = {
 			razorleaf: ["8L1"],
 			vinewhip: ["8L1"],
 			earthquake: ["8L1"],
-			buldoze: ["8L1"],
+			bulldoze: ["8L1"],
 			stoneedge: ["8L1"],
 			rockslide: ["8L1"],
 			rocktomb: ["8L1"],
@@ -3936,6 +3936,7 @@ export const Learnsets = {
 	saphor: {
 		learnset: {
 			doubleedge: ["8L1"],
+			headlongrush: ["8L1"],
 			bodyslam: ["8L1"],
 			earthquake: ["8L1"],
 			stoneedge: ["8L1"],
@@ -4051,6 +4052,7 @@ export const Learnsets = {
 			feralspray: ["8L1"],
 			feralbreath: ["8L1"],
 			feralresilience: ["8L1"],
+			feralroar: ["8L1"],
 		},
 	},
 	flocura: {
