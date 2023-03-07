@@ -3,14 +3,22 @@ export const Items: {[itemid: string]: ItemData} = {
 		name: "Crystal Orb",
 		num: 1001,
 		desc: "The holder's secondary type is replaced with Crystal. 20% boost to Crystal attacks.",
-		onStart(pokemon) {
-			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser !== pokemon.id) return false;
+		onBeforeSwitchIn(pokemon) {
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser !== pokemon.fullname) return false;
 			if (pokemon.hasType('Crystal')) return false;
 			if (!pokemon.addType('Crystal')) return false;
 			pokemon.setType([pokemon.types[0],"Crystal"]);
-			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[from] item: Crystal Orb');
 			pokemon.side.usedSuperType = true;
-			pokemon.side.superTypeUser = pokemon.id;
+			pokemon.side.superTypeUser = "first_switch";
+		},
+		onStart(pokemon) {
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === "first_switch"){
+				this.add('-message',pokemon.name + " is a Crystal type!");
+				pokemon.side.superTypeUser = pokemon.fullname;
+			}
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === pokemon.fullname) {
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			}
 		},
 		onTakeItem(item, pokemon, source) {
 			if ((source && source.baseSpecies.num === 1130) || pokemon.baseSpecies.num === 1130) {
@@ -31,14 +39,22 @@ export const Items: {[itemid: string]: ItemData} = {
 		name: "Feral Orb",
 		num: 1001,
 		desc: "The holder's secondary type is replaced with Feral. 20% boost to Feral attacks.",
-		onStart(pokemon) {
-			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser !== pokemon.id) return false;
+		onBeforeSwitchIn(pokemon) {
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser !== pokemon.fullname) return false;
 			if (pokemon.hasType('Feral')) return false;
 			if (!pokemon.addType('Feral')) return false;
 			pokemon.setType([pokemon.types[0],"Feral"]);
-			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[from] item: Feral Orb');
 			pokemon.side.usedSuperType = true;
-			pokemon.side.superTypeUser = pokemon.id;
+			pokemon.side.superTypeUser = "first_switch";
+		},
+		onStart(pokemon) {
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === "first_switch"){
+				this.add('-message',pokemon.name + " is a Feral type!");
+				pokemon.side.superTypeUser = pokemon.fullname;
+			}
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === pokemon.fullname) {
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			}
 		},
 		onTakeItem(item, pokemon, source) {
 			if ((source && source.baseSpecies.num === 1130) || pokemon.baseSpecies.num === 1130) {

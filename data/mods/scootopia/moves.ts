@@ -1,4 +1,21 @@
 export const Moves: {[moveid: string]: ModdedMoveData} = {
+	stealthrock: {
+		inherit: true,
+		sideCondition: 'stealthrock',
+		condition: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'move: Stealth Rock');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('heavydutyboots')) return;
+				let typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
+				if (pokemon.hasAbility("crystalline")) typeMod = typeMod / 2;
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+	},
+	
 	darkfang: {
 		accuracy: 100,
 		basePower: 50,

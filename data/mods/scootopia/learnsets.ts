@@ -3371,6 +3371,7 @@ export const Learnsets = {
 	},
 	faerenheit: {
 		learnset: {
+			temperatureburst: ["8L1"],
 			acrobatics: ["8L1"],
 			aerialace: ["8L1"],
 			allyswitch: ["8L1"],
@@ -3441,6 +3442,7 @@ export const Learnsets = {
 	},
 	cellsius: {
 		learnset: {
+			temperatureburst: ["8L1"],
 			hydropump: ["8L1"],
 			scald: ["8L1"],
 			surf: ["8L1"],
@@ -3510,6 +3512,7 @@ export const Learnsets = {
 	},
 	kelven: {
 		learnset: {
+			temperatureburst: ["8L1"],
 			tripleaxel: ["8L1"],
 			iciclecrash: ["8L1"],
 			iceshard: ["8L1"],
@@ -3783,6 +3786,12 @@ export const Learnsets = {
 	corundell: {
 		learnset: {
 			stoneedge: ["8L1"],
+			energyball: ["8L1"],
+			solarbeam: ["8L1"],
+			solarblade: ["8L1"],
+			overheat: ["8L1"],
+			flareblitz: ["8L1"],
+			flamecharge: ["8L1"],
 			rockslide: ["8L1"],
 			rockblast: ["8L1"],
 			smackdown: ["8L1"],
