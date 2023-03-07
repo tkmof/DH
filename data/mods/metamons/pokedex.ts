@@ -273,7 +273,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Rapidash",
 		types: ["Fire", "Ground"],
 		baseStats: {hp: 85, atk: 100, def: 70, spa: 80, spd: 60, spe: 110},
-		abilities: {0: "Flame Body", 1: "Rattled", H: "Dazzling},
+		abilities: {0: "Flame Body", 1: "Rattled", H: "Dazzling"},
 		heightm: 1.7,
 		weightkg: 95,
 		color: "Yellow",
