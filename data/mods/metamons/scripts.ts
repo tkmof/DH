@@ -3,7 +3,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		// for micrometas to only show custom tiers
 		excludeStandardTiers: true,
 		// only to specify the order of custom tiers
-		customTiers: ['MetaMons', 'Gen 8 MetaMons', 'ULTRA MetaMons'],
+		customTiers: ['MetaMons', 'Gen 8 MetaMons', 'Gen 7 MetaMons'],
 		},
 		init: function () {
 			this.modData("Learnsets", "whimsicott").learnset.bodypress = ["8L1"];
