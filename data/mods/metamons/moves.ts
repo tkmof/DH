@@ -25,12 +25,12 @@ sound: Has no effect on Pokemon with the Soundproof Ability.
 
 export const Moves: {[moveid: string]: MoveData} = {
 	/*Gen 7 MetaMons*/
-	aurasphere: {
+	auraspheregen7: {
 		num: 396,
 		accuracy: true,
 		basePower: 90,
 		category: "Special",
-		name: "Aura Sphere",
+		name: "Aura Sphere-Gen 7",
 		pp: 20,
 		priority: 0,
 		flags: {bullet: 1, protect: 1, pulse: 1, mirror: 1, distance: 1},
@@ -39,13 +39,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fighting",
 		contestType: "Beautiful",
 	},
-	explosion: {
+	explosiongen7: {
 		num: 153,
 		accuracy: 100,
 		basePower: 500,
 		category: "Physical",
 		shortDesc: "Target's Def halved during damage. User faints.",
-		name: "Explosion",
+		name: "Explosion-Gen 7",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -55,13 +55,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Normal",
 		contestType: "Beautiful",
 	},
-	fellstinger: {
+	fellstingergen7: {
 		num: 565,
 		accuracy: 100,
 		basePower: 500,
 		category: "Physical",
 		shortDesc: "Target's Def halved during damage. User faints.",
-		name: "Fell Stinger",
+		name: "Fell Stinger-Gen 7",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -76,7 +76,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 85,
 		category: "Physical",
-		name: "Icicle Crash",
+		name: "Icicle Crash-Gen 7",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -88,12 +88,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Ice",
 		contestType: "Beautiful",
 	},
-	moonlight: {
+	moonlightgen7: {
 		num: 236,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		name: "Moonlight",
+		name: "Moonlight-Gen 7",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
@@ -119,12 +119,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
 	},
-	playrough: {
+	playroughgen7: {
 		num: 583,
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		name: "Play Rough",
+		name: "Play Rough-Gen 7",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -138,12 +138,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fairy",
 		contestType: "Cute",
 	},
-	rockslide: {
+	rockslidegen7: {
 		num: 157,
 		accuracy: 100,
 		basePower: 75,
 		category: "Physical",
-		name: "Rock Slide",
+		name: "Rock Slide-Gen 7",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -155,13 +155,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Rock",
 		contestType: "Tough",
 	},
-	shadowclaw: {
+	shadowclawgen7: {
 		num: 421,
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
       shortDesc: "20% chance to lower foe's Defense.",
-		name: "Shadow Claw",
+		name: "Shadow Claw-Gen 7",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -176,13 +176,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Ghost",
 		contestType: "Cool",
 	},
-	shelltrap: {
+	shelltrapgen7: {
 		num: 704,
 		accuracy: 75,
 		basePower: 100,
 		category: "Physical",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
-		name: "Shell Trap",
+		name: "Shell Trap-Gen 7",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -192,14 +192,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Dragon",
 		contestType: "Tough",
 	},
-	sketch: {
+	sketchgen7: {
 		num: 166,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
       shortDesc: "(Placeholder) Copied move reverts back to Sketch after battle.",	
-		isNonstandard: "Past",
-		name: "Sketch",
+		name: "Sketch-Gen 7",
 		pp: 1,
 		noPPBoosts: true,
 		priority: 0,
