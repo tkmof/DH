@@ -7,9 +7,9 @@
 - Lapzaplerq (Tempest on Discord)
   + Front: Furant, Sapras, Mud, Starizard, Arcamine, Fweezing
   + Back: Furant, Sapras, Starizard, Arcamine, Fweezing
-  + Front (Shiny): Furant, Sapras, Mud, Starizard, Soaperior, Smoninja
-  + Back (Shiny): Furant, Sapras, Starizard, Soaperior, Smoninja
-  + Icons: Smoninja, Furant, Sapras, Mud, Starizard, Soaperior
+  + Front (Shiny): Furant, Sapras, Mud, Starizard, Soaperior, Smoninja, Arcamine, Fweezing
+  + Back (Shiny): Furant, Sapras, Starizard, Soaperior, Smoninja, Arcamine, Fweezing
+  + Icons: Smoninja, Furant, Sapras, Mud, Starizard, Soaperior, Arcamine, Fweezing
   
 - jrdyo p:
   + Front: Wither Wing
