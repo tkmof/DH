@@ -133,6 +133,31 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 9] MetaMons",
+	   desc: [
+			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
+		],
+		threads: [
+			'&bullet; <a href="https://www.smogon.com/forums/threads/metamons.3717049/">MetaMons</a>',
+			'&bullet; <a href="https://docs.google.com/spreadsheets/d/1NdaNGlKMHAAzxQNXMN7R44j4pPjyED3xJ7hs_TbcOs8/edit#gid=79027504">Spreadsheet</a>',
+		],
+		mod: 'metamons', 
+		ruleset:['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Z-Move Clause'],
+		banlist: [
+			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
+		],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}} */
+			let speciesTable = {};
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (template.tier !== 'MetaMons') {
+					return [set.species + ' is not usable in MetaMons.'];
+				}
+			}
+		},
+	},
+	{
 		name: "[Gen 8] More Balanced Hackmons",
 		desc: `<b>More Balanced Hackmons</b>: A National Dex mod of Balanced Hackmons with new pokemon, moves, and abilities, as well as some additional bans.`,
 		threads: [
@@ -1407,6 +1432,36 @@ export const Formats: FormatList = [
 		],
 		mod: 'gen1expansionpack',
 		ruleset: ['Standard', 'Data Mod', 'Welcome Message'],
+	},
+	{
+		name: "[Gen 8] MetaMons Expanded",
+	   desc: [
+			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
+		],
+		threads: [
+			'&bullet; <a href="https://www.smogon.com/forums/threads/metamons-slate-3-galarian-slowbro-sableye-grapploct.3703361/">MetaMons</a>',
+			'&bullet; <a href="https://docs.google.com/spreadsheets/d/142lxuFtTgQCY56Wz_ZjAGaqlk7HgJj0CVKMChQcei1U/edit#gid=0">Spreadsheet</a>',
+		],
+		mod: 'metamons', 
+		ruleset:['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Z-Move Clause'],
+		banlist: [
+			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
+		],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}} */
+			let speciesTable = {};
+			let allowedTiers = ['Gen 7 MetaMons', 'Gen 8 MetaMons', 'MetaMons'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (template.tier !== 'Gen 7 MetaMons' && template.tier !== 'Gen 8 MetaMons' && template.tier !== 'MetaMons') {
+					return [set.species + ' is not legal in the MetaMons format.'];
+				}
+			}
+		},
+	 },
+	{
+		section: "Gen 8 Mods",
+		column: 1,
 	},
 	{
 		name: "[Gen 8] Patratdex",
