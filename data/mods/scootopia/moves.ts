@@ -596,14 +596,14 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		shortDesc: "+1 Def, +1 SpD. Clears negative stat changes.",
 		flags: {snatch: 1},
 		onHit(pokemon, source) {
-			console.log(pokemon.name + " " + source.name);
 			let b: BoostName;
 			let negBoosts = {};
 			for (b in source.boosts) {
-				console.log(b);
 				if (source.boosts[b] < 0) negBoosts[b] = source.boosts[b] * -1;
 			}
-			if (negBoosts !== {}) this.boost(source, negBoosts);
+			if (negBoosts !== {}) {
+				this.boost(negBoosts, source);
+			}
 		},
 		boosts: {
 			def: 1,
