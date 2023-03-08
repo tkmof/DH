@@ -24,6 +24,228 @@ sound: Has no effect on Pokemon with the Soundproof Ability.
 */
 
 export const Moves: {[moveid: string]: MoveData} = {
+	/*Gen 7 MetaMons*/
+	aurasphere: {
+		num: 396,
+		accuracy: true,
+		basePower: 90,
+		category: "Special",
+		name: "Aura Sphere",
+		pp: 20,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, pulse: 1, mirror: 1, distance: 1},
+		secondary: null,
+		target: "any",
+		type: "Fighting",
+		contestType: "Beautiful",
+	},
+	explosion: {
+		num: 153,
+		accuracy: 100,
+		basePower: 500,
+		category: "Physical",
+		shortDesc: "Target's Def halved during damage. User faints.",
+		name: "Explosion",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		selfdestruct: "always",
+		secondary: null,
+		target: "allAdjacent",
+		type: "Normal",
+		contestType: "Beautiful",
+	},
+	fellstinger: {
+		num: 565,
+		accuracy: 100,
+		basePower: 500,
+		category: "Physical",
+		shortDesc: "Target's Def halved during damage. User faints.",
+		name: "Fell Stinger",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		selfdestruct: "always",
+		secondary: null,
+		target: "normal",
+		type: "Bug",
+		contestType: "Cool",
+	},
+	iciclecrash: {
+		num: 556,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		name: "Icicle Crash",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'flinch',
+		},
+		target: "normal",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
+	moonlight: {
+		num: 236,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Moonlight",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+		secondary: null,
+		target: "self",
+		type: "Fairy",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
+	},
+	playrough: {
+		num: 583,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Play Rough",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 10,
+			boosts: {
+				atk: -1,
+			},
+		},
+		target: "normal",
+		type: "Fairy",
+		contestType: "Cute",
+	},
+	rockslide: {
+		num: 157,
+		accuracy: 100,
+		basePower: 75,
+		category: "Physical",
+		name: "Rock Slide",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'flinch',
+		},
+		target: "allAdjacentFoes",
+		type: "Rock",
+		contestType: "Tough",
+	},
+	shadowclaw: {
+		num: 421,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+      shortDesc: "20% chance to lower foe's Defense.",
+		name: "Shadow Claw",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 20,
+			boosts: {
+				spd: -1,
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+		contestType: "Cool",
+	},
+	shelltrap: {
+		num: 704,
+		accuracy: 75,
+		basePower: 100,
+		category: "Physical",
+		shortDesc: "Traps and damages the target for 4-5 turns.",
+		name: "Shell Trap",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		volatileStatus: 'partiallytrapped',
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Tough",
+	},
+	sketch: {
+		num: 166,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+      shortDesc: "(Placeholder) Copied move reverts back to Sketch after battle.",	
+		isNonstandard: "Past",
+		name: "Sketch",
+		pp: 1,
+		noPPBoosts: true,
+		priority: 0,
+		flags: {authentic: 1, mystery: 1},
+	/*	onHit(target, source) {
+			const disallowedMoves = ['chatter', 'sketch', 'struggle'];
+			const move = target.lastMove;
+			if (source.transformed || !move || source.moves.includes(move.id)) return false;
+			if (disallowedMoves.includes(move.id) || move.isZ || move.isMax) return false;
+			const sketchIndex = source.moves.indexOf('sketch');
+			if (sketchIndex < 0) return false;
+			const sketchedMove = {
+				move: move.name,
+				id: move.id,
+				pp: move.pp,
+				maxpp: move.pp,
+				target: move.target,
+				disabled: false,
+				used: false,
+			};
+			source.moveSlots[sketchIndex] = sketchedMove;
+			source.baseMoveSlots[sketchIndex] = sketchedMove;
+			this.add('-activate', source, 'move: Sketch', move.name);
+		},*/
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		zMove: {boost: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}},
+		contestType: "Clever",
+	},
+	windshackle: {
+		num: 662,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "Traps and damages the target for 4-5 turns.",
+		name: "Wind Shackle",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+      volatileStatus: 'partiallytrapped',
+		target: "normal",
+		type: "Flying",
+		contestType: "Tough",
+	},
+	/*Gen 8 MetaMons*/
 	acidrain: {
 	basePower: 75,
 	accuracy: 100,
@@ -103,5 +325,44 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {spa: 1}},
 		contestType: "Clever",
 	},
+/*Gen 9 MetaMons*/
+	filletaway: {
+		num: 187,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+      shortDesc: "+2 Attack, Sp. Atk, Speed for 1/2 user's max HP.",
+		name: "Fillet Away",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		onHit(target) {
+			if (target.hp <= target.maxhp / 2 || target.boosts.atk >= 6 || target.maxhp === 1) { // Shedinja clause
+				return false;
+			}
+			this.directDamage(target.maxhp / 2);
+			this.boost({atk: 2, spa: 2, spe: 2,}, target);
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'heal'},
+		contestType: "Cute",
+	},
+	aquacutter: {
+		num: 400,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		shortDesc: "High critical hit ratio.",
+		name: "Aqua Cutter",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		critRatio: 2,
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Cool",
+	},
 };
-
