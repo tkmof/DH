@@ -44,7 +44,6 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				if (!target.fainted && (target.hp < target.maxhp || target.status)) {
 					target.heal(target.maxhp / 4);
 					this.add('-heal', target, target.getHealth, '[from] move: Healing Wish');
-					target.side.removeSlotCondition(target, 'healingwish');
 				}
 			},
 			onModifyDef(def, pokemon) {
