@@ -1,4 +1,12 @@
 export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
+	landorustherian: {
+		tier: "Scoo",
+		doublesTier: "Scoo",
+	},
+	wugtrio: {
+		tier: "Scoo",
+		doublesTier: "Scoo",
+	},
 	arbrella: {
 		tier: "Scoo",
 		doublesTier: "Scoo",
