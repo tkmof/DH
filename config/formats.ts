@@ -111,12 +111,13 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 8] Clean Slate Micro 2",
+		name: "[Gen 9] Clean Slate Micro 2",
 		desc: `Clean Slate.`,
 		threads: [
 			`<a href="https://www.smogon.com/forums/threads/clean-slate-micro-2.3696166/">Clean Slate Micro 2</a>`,
 		],
-		mod: 'g8csm2',
+		mod: 'csm2',
+		gen: 9,
 		ruleset: ['Standard', 'Dynamax Clause'],
 		// onSwitchIn(pokemon) {
 			// this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
