@@ -118,7 +118,7 @@ export const Formats: FormatList = [
 		],
 		mod: 'csm2',
 		gen: 9,
-		ruleset: ['Standard', 'Dynamax Clause'],
+		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Data Mod'],
 		// onSwitchIn(pokemon) {
 			// this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
 		// },
