@@ -612,7 +612,7 @@ export class ModdedDex {
 		
 		name = (name || '').trim();
 		let id = toID(name);
-		console.log(id);
+		
 		if (this.data.Aliases.hasOwnProperty(id)) {
 			name = this.data.Aliases[id];
 			id = toID(name);
@@ -644,6 +644,11 @@ export class ModdedDex {
 		} else {
 			effect = new Format({id, name, exists: false});
 		}
+		if(id === "csm2") console.log(effect);
+		if(id === "csm2") console.log("-------------------------");
+		if(id === "csm2") console.log("-------------------------");
+		if(id === "csm2") console.log("-------------------------");
+		if(id === "g8csm2") console.log(effect);
 		return effect;
 	}
 
