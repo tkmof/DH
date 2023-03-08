@@ -1784,6 +1784,7 @@ export const Learnsets = {
 			feralpower: ["8L1"],
 			feralspray: ["8L1"],
 			feralresilience: ["8L1"],
+			mortalspin: ["8L1"],
 		},
 	},
 	muabboa: {
@@ -3863,6 +3864,7 @@ export const Learnsets = {
 			dragonclaw: ["8L1"],
 			outrage: ["8L1"],
 			dragonrush: ["8L1"],
+			spiritbreak: ["8L1"],
 			playrough: ["8L1"],
 			earthquake: ["8L1"],
 			bulldoze: ["8L1"],
