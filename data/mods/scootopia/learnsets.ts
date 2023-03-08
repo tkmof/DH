@@ -4013,7 +4013,7 @@ export const Learnsets = {
 			crystalshard: ["8L1"],
 		},
 	},
-	wolf: {
+	fenreil: {
 		learnset: {
 			doubleedge: ["8L1"],
 			bodyslam: ["8L1"],

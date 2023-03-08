@@ -382,9 +382,9 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Thick Fat", H: "Crystal Heart"},
 		weightkg: 638,
 	},
-	wolf: {
+	fenreil: {
 		num: 1053,
-		name: "Wolf",
+		name: "Fenreil",
 		types: ["Normal", "Dark"],
 		baseStats: {hp: 80, atk: 105, def: 100, spa: 105, spd: 100, spe: 110},
 		abilities: {0: "Natural Cure", H: "Wild Heart"},

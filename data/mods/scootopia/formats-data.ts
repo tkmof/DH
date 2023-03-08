@@ -207,7 +207,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "Scoo",
 		doublesTier: "Scoo",
 	},
-	wolf: {
+	fenreil: {
 		tier: "Scoo",
 		doublesTier: "Scoo",
 	},
