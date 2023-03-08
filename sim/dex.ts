@@ -649,6 +649,7 @@ export class ModdedDex {
 		if(id === "gen8csm2") console.log("-------------------------");
 		if(id === "gen8csm2") console.log("-------------------------");
 		if(id === "gen8csm2") console.log(effect);
+		console.log(id);
 		return effect;
 	}
 
