@@ -49,7 +49,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 85,
 	},
-	infiltrator: {
+	infiltratorgen7: {
 		onModifyMove(move) {
 			move.infiltrates = true;
 		},
@@ -58,7 +58,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return false;
 			}
 		},
-		name: "Infiltrator",
+		name: "Infiltrator-Gen 7",
 		rating: 2.5,
 		num: 151,
 	},
