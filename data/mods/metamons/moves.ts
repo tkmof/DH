@@ -138,12 +138,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fairy",
 		contestType: "Cute",
 	},
-	rockslidegen7: {
+	rockslide: {
 		num: 157,
 		accuracy: 100,
 		basePower: 75,
 		category: "Physical",
-		name: "Rock Slide-Gen 7",
+		name: "Rock Slide",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
