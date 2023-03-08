@@ -644,11 +644,11 @@ export class ModdedDex {
 		} else {
 			effect = new Format({id, name, exists: false});
 		}
-		if(id === "csm2") console.log(effect);
-		if(id === "csm2") console.log("-------------------------");
-		if(id === "csm2") console.log("-------------------------");
-		if(id === "csm2") console.log("-------------------------");
-		if(id === "g8csm2") console.log(effect);
+		if(id === "gen8csm2") console.log(effect);
+		if(id === "gen8csm2") console.log("-------------------------");
+		if(id === "gen8csm2") console.log("-------------------------");
+		if(id === "gen8csm2") console.log("-------------------------");
+		if(id === "gen8csm2") console.log(effect);
 		return effect;
 	}
 
