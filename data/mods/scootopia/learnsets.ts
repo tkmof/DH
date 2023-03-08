@@ -2759,6 +2759,7 @@ export const Learnsets = {
 			mist: ["8L1"],
 			haze: ["8L1"],
 			futuresight: ["8L1"],
+			roost: ["8L1"],
 			extrasensory: ["8L1"],
 			shadowball: ["8L1"],
 			psychic: ["8L1"],
