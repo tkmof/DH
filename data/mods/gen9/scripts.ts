@@ -43,7 +43,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Moves', 'whirlwind').flags.wind = 1;
 		this.modData('Moves', 'wildboltstorm').flags.wind = 1;
 	},
-	// For Loaded Dice
+	// For Loaded Dice and Rage Fist
 	hitStepMoveHitLoop(targets, pokemon, move) { // Temporary name
 		const damage: (number | boolean | undefined)[] = [];
 		for (const i of targets.keys()) {
@@ -178,10 +178,13 @@ export const Scripts: ModdedBattleScriptsData = {
 
 		for (const [i, target] of targetsCopy.entries()) {
 			if (target && pokemon !== target) {
-				target.gotAttacked(move, damage[i] as number | false | undefined, pokemon);
+				target.gotAttacked(move, moveDamage[i] as number | false | undefined, pokemon);
+				if (typeof moveDamage[i] === 'number') {
+					target.timesAttacked += hit - 1;
+				}
 			}
 		}
-
+		
 		if (move.ohko && !targets[0].hp) this.add('-ohko');
 
 		if (!damage.some(val => !!val || val === 0)) return damage;
@@ -432,5 +435,126 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			return true;
 		}
-	}
+	},
+	queue: {
+		// For Revival Blessing Part 2
+		resolveAction(action: ActionChoice, midTurn = false): Action[] {
+			if (!action) throw new Error(`Action not passed to resolveAction`);
+			if (action.choice === 'pass') return [];
+			const actions = [action];
+
+			if (!action.side && action.pokemon) action.side = action.pokemon.side;
+			if (!action.move && action.moveid) action.move = this.battle.dex.getActiveMove(action.moveid);
+			if (!action.order) {
+				const orders: {[choice: string]: number} = {
+					team: 1,
+					start: 2,
+					instaswitch: 3,
+					beforeTurn: 4,
+					beforeTurnMove: 5,
+					revivalblessing: 6,
+
+					runUnnerve: 100,
+					runSwitch: 101,
+					runPrimal: 102,
+					switch: 103,
+					megaEvo: 104,
+					runDynamax: 105,
+
+					shift: 200,
+					// default is 200 (for moves)
+
+					residual: 300,
+				};
+				if (action.choice in orders) {
+					action.order = orders[action.choice];
+				} else {
+					action.order = 200;
+					if (!['move', 'event'].includes(action.choice)) {
+						throw new Error(`Unexpected orderless action ${action.choice}`);
+					}
+				}
+			}
+			if (!midTurn) {
+				if (action.choice === 'move') {
+					if (!action.maxMove && !action.zmove && action.move.beforeTurnCallback) {
+						actions.unshift(...this.resolveAction({
+							choice: 'beforeTurnMove', pokemon: action.pokemon, move: action.move, targetLoc: action.targetLoc,
+						}));
+					}
+					if (action.mega) {
+						// TODO: Check that the Pokémon is not affected by Sky Drop.
+						// (This is currently being done in `runMegaEvo`).
+						actions.unshift(...this.resolveAction({
+							choice: 'megaEvo',
+							pokemon: action.pokemon,
+						}));
+					}
+					if (action.maxMove && !action.pokemon.volatiles['dynamax']) {
+						actions.unshift(...this.resolveAction({
+							choice: 'runDynamax',
+							pokemon: action.pokemon,
+						}));
+					}
+					action.fractionalPriority = this.battle.runEvent('FractionalPriority', action.pokemon, null, action.move, 0);
+				} else if (['switch', 'instaswitch'].includes(action.choice)) {
+					if (typeof action.pokemon.switchFlag === 'string') {
+						action.sourceEffect = this.battle.dex.getMove(action.pokemon.switchFlag as ID) as any;
+					}
+					action.pokemon.switchFlag = false;
+				}
+			}
+
+			const deferPriority = this.battle.gen === 7 && action.mega && action.mega !== 'done';
+			if (action.move) {
+				let target = null;
+				action.move = this.battle.dex.getActiveMove(action.move);
+
+				if (!action.targetLoc) {
+					target = this.battle.getRandomTarget(action.pokemon, action.move);
+					// TODO: what actually happens here?
+					if (target) action.targetLoc = this.battle.getTargetLoc(target, action.pokemon);
+				}
+				action.originalTarget = this.battle.getAtLoc(action.pokemon, action.targetLoc);
+			}
+			if (!deferPriority) this.battle.getActionSpeed(action);
+			return actions as any;
+		},
+	},
+	pokemon: {
+		getSwitchRequestData() {
+			const entry: AnyObject = {
+				ident: this.fullname,
+				details: this.details,
+				condition: this.getHealth().secret,
+				active: (this.position < this.side.active.length),
+				stats: {
+					atk: this.baseStoredStats['atk'],
+					def: this.baseStoredStats['def'],
+					spa: this.baseStoredStats['spa'],
+					spd: this.baseStoredStats['spd'],
+					spe: this.baseStoredStats['spe'],
+				},
+				moves: this.moves.map(move => {
+					if (move === 'hiddenpower') {
+						return move + toID(this.hpType) + (this.battle.gen < 6 ? '' : this.hpPower);
+					}
+					if (move === 'frustration' || move === 'return') {
+						const basePowerCallback = this.battle.dex.getMove(move).basePowerCallback as (pokemon: Pokemon) => number;
+						return move + basePowerCallback(this);
+					}
+					return move;
+				}),
+				baseAbility: this.baseAbility,
+				item: this.item,
+				pokeball: this.pokeball,
+			};
+			if (this.battle.gen > 6) entry.ability = this.ability;
+			if (this.battle.gen >= 9) {
+				entry.commanding = !!this.volatiles['commanding'] && !this.fainted;
+				entry.reviving = this.isActive && !!this.side.slotConditions[this.position]['revivalblessing'];
+			}
+			return entry;
+		}
+	},
 };
