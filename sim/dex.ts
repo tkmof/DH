@@ -649,7 +649,6 @@ export class ModdedDex {
 		if(id === "gen8cleanslatemicro2") console.log("-------------------------");
 		if(id === "gen8cleanslatemicro2") console.log("-------------------------");
 		if(id === "gen8cleanslatemicro2") console.log(effect);
-		console.log(id);
 		return effect;
 	}
 
