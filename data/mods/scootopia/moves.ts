@@ -15,7 +15,51 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			},
 		},
 	},
-	
+	shedtail: {
+		num: 880,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Shed Tail",
+		pp: 10,
+		priority: 0,
+		flags: {},
+		onTryHit(source) {
+			if (!this.canSwitch(source.side)) {
+				this.add('-fail', source);
+				return this.NOT_FAIL;
+			}
+			if (source.hp <= Math.ceil(source.maxhp / 2)) {
+				this.add('-fail', source, 'move: Shed Tail', '[weak]');
+				return this.NOT_FAIL;
+			}
+		},
+		onHit(target) {
+			this.directDamage(Math.ceil(target.maxhp / 2));
+		},
+		slotCondition: 'shedtail',
+		condition: {
+			duration: 1,
+			onSwap(target) {
+				if (!target.fainted && (target.hp < target.maxhp || target.status)) {
+					target.heal(target.maxhp / 4);
+					this.add('-heal', target, target.getHealth, '[from] move: Healing Wish');
+					target.side.removeSlotCondition(target, 'healingwish');
+				}
+			},
+			onModifyDef(def, pokemon) {
+				return this.chainModify(2);
+			},
+			onModifySpD(spd, pokemon) {
+				return this.chainModify(2);
+			},
+		},
+		selfSwitch: 'shedtail',
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+	},
 	darkfang: {
 		accuracy: 100,
 		basePower: 50,
@@ -359,7 +403,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		num: 393,
 		accuracy: true,
 		basePower: 90,
-		category: "Status",
+		category: "Special",
 		name: "Lodestone",
 		pp: 10,
 		priority: 0,
