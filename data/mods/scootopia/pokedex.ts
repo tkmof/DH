@@ -370,7 +370,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 1051,
 		name: "Quadringo",
 		types: ["Fairy", "Dragon"],
-		baseStats: {hp: 80, atk: 120, def: 95, spa: 100, spd: 130, spe: 75},
+		baseStats: {hp: 80, atk: 120, def: 95, spa: 100, spd: 120, spe: 85},
 		abilities: {0: "Hydration", 1: "Pastel Veil", H: "Wild Roots"},
 		weightkg: 156,
 	},

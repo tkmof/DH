@@ -355,6 +355,39 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 25,
 		accuracy: 80,
 	},
+	lodestone: {
+		num: 393,
+		accuracy: true,
+		basePower: 90,
+		category: "Status",
+		name: "Lodestone",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, gravity: 1},
+		self: {
+			volatileStatus: 'lodestone'
+		},
+		shortDesc: "User is not grounded until the end of the turn.",
+		condition: {
+			duration: 1,
+			onStart(target) {
+				if (target.volatiles['smackdown'] || target.volatiles['ingrain']) return false;
+				this.add('-start', target, 'Lodestone');
+			},
+			onImmunity(type) {
+				if (type === 'Ground') return false;
+			},
+			onResidualOrder: 15,
+			onEnd(target) {
+				this.add('-end', target, 'Lodestone');
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		zMove: {boost: {evasion: 1}},
+		contestType: "Clever",
+	},
 	spikebolt: {
 		num: 454,
 		accuracy: 100,
@@ -362,6 +395,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		category: "Physical",
 		name: "Spike Bolt",
 		pp: 15,
+		shortDesc: "High Critical Hit ratio.",
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		critRatio: 2,

@@ -1273,15 +1273,17 @@ export class Battle {
 		const unfaintedActive = oldActive?.hp ? oldActive : null;
 		if (unfaintedActive) {
 			oldActive.beingCalledBack = true;
-			if (sourceEffect && (sourceEffect as Move).selfSwitch === 'copyvolatile') {
-				oldActive.switchCopyFlag = true;
+			let switchCopyFlag: 'copyvolatile' | 'shedtail' | boolean = false;
+			if (sourceEffect && typeof (sourceEffect as Move).selfSwitch === 'string') {
+				switchCopyFlag = (sourceEffect as Move).selfSwitch!;
 			}
-			if (!oldActive.switchCopyFlag && !isDrag) {
-				this.runEvent('BeforeSwitchOut', oldActive);
-				if (this.gen >= 5) {
-					this.eachEvent('Update');
+			if (!oldActive.skipBeforeSwitchOutEventFlag && !isDrag) {
+				this.battle.runEvent('BeforeSwitchOut', oldActive);
+				if (this.battle.gen >= 5) {
+					this.battle.eachEvent('Update');
 				}
 			}
+			oldActive.skipBeforeSwitchOutEventFlag = false;
 			if (!this.runEvent('SwitchOut', oldActive)) {
 				// Warning: DO NOT interrupt a switch-out if you just want to trap a pokemon.
 				// To trap a pokemon and prevent it from switching out, (e.g. Mean Look, Magnet Pull)
@@ -1308,8 +1310,8 @@ export class Battle {
 			if (this.gen === 4 && sourceEffect) {
 				newMove = oldActive.lastMove;
 			}
-			if (oldActive.switchCopyFlag) {
-				oldActive.switchCopyFlag = false;
+			if (switchCopyFlag) {
+				switchCopyFlag = false;
 				pokemon.copyVolatileFrom(oldActive);
 			}
 			if (newMove) pokemon.lastMove = newMove;
