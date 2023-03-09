@@ -24,6 +24,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {},
+		shortDesc: "Sac 50% HP, heal ally 25%, 50% dmg redux this turn.",
 		onTryHit(source) {
 			if (!this.canSwitch(source.side)) {
 				this.add('-fail', source);
