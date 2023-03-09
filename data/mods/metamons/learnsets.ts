@@ -3361,7 +3361,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			toxic: ["7M"],
 			uproar: ["8M", "7T"],
 			uturn: ["8M", "7M", "7S1"],
-			vitalthrow: ["8E", "7E"],
+		   vitalthrow: ["8E", "7E"],
 			workup: ["8M", "7M"],
 		},
 		eventData: [
