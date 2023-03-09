@@ -3469,7 +3469,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			rest: ["8M"],
 			slash: ["8L20"],
 			sleeptalk: ["8M"],
-			snowscape: ["8M"],
 			storedpower: ["8M"],
 			substitute: ["8M"],
 			surf: ["8M"],
