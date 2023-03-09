@@ -133,7 +133,7 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 9] MetaMons",
+		name: "[Gen 8] Gen 9 MetaMons",
 	   desc: [
 			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
 		],
