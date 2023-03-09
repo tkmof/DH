@@ -267,7 +267,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 		],
 	},
 /*Gen 8 MetaMons*/
-	whimsicott: {
+/*	whimsicott: {
 		learnset: {
 			absorb: ["8L1"],
 			attract: ["8M", "7M", "6M", "5M"],
@@ -3430,7 +3430,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			waterpulse: ["7T", "7L14", "6T", "6L14"],
 			workup: ["7M"],
 		},
-	},		
+	},		/*
 /*Gen 9 MetaMons*/
 	veluza: {
 		learnset: {
