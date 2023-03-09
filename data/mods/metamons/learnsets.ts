@@ -3431,7 +3431,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			workup: ["7M"],
 		},
 	},		
-
 /*Gen 9 MetaMons*/
 	veluza: {
 		learnset: {
