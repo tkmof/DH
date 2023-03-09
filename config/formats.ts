@@ -1454,7 +1454,7 @@ export const Formats: FormatList = [
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (template.tier !== 'Gen 7 MetaMons' && template.tier !== 'Gen 8 MetaMons' && template.tier !== 'MetaMons') {
-					return [set.species + ' is not legal in the MetaMons format.'];
+					return [set.species + ' is not legal in the MetaMons Expanded format.'];
 				}
 			}
 		},
