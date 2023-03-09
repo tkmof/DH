@@ -243,6 +243,14 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3,
 		num: 208,
 	},
+	shellbunker: {
+		onDamage(damage, target, source, effect) {
+			if (effect.effectType !== 'Move' || !target.hurtThisTurn) return damage;
+			return damage / 2;
+		},
+		name: "Shell Bunker",
+		shortDesc: "After taking a hit, Def and SpD are doubled for the rest of the turn.",
+	},
 	crystalline: {
 		onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {

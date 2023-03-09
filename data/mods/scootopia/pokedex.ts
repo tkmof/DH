@@ -267,7 +267,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Blunderbusk",
 		types: ["Water"],
 		baseStats: {hp: 68, atk: 67, def: 124, spa: 128, spd: 74, spe: 24},
-		abilities: {0: "Mega Launcher", H: "Dry Skin"},
+		abilities: {0: "Mega Launcher", H: "Shell Bunker"},
 		weightkg: 86,
 	},
 	barracoth: {

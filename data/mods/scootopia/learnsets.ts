@@ -1,5 +1,5 @@
 export const Learnsets = {
-		arbrella: {
+	arbrella: {
 		learnset: {
 			woodhammer: ["8L1"],
 			seedbomb: ["8L1"],
@@ -10,6 +10,7 @@ export const Learnsets = {
 			vinewhip: ["8L1"],
 			earthquake: ["8L1"],
 			bulldoze: ["8L1"],
+			drillrun: ["8L1"],
 			stoneedge: ["8L1"],
 			rockslide: ["8L1"],
 			rocktomb: ["8L1"],
