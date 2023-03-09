@@ -51,12 +51,6 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
             this.modData('Learnsets', pokemonid).learnset[moveid] = [moveid === 'dracometeor' || moveid === 'steelbeam' ? '8T' : '8M'];
           }
         };
-        for (const id in this.dataCache.Pokedex) {
-          if (this.dataCache.Learnsets[id] && this.dataCache.Learnsets[id].learnset) {
-            const learnset = this.modData('Learnsets', this.toID(id)).learnset;
-            this.modData('Learnsets', this.toID(id)).learnset.terablast = ["8M"];
-          }
-        };
     
         addNewMoves('altaria',['trailblaze']);
         addNewMoves('ampharos',['trailblaze']);
@@ -1157,7 +1151,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'guzzlord').learnset.pursuit = ['8L1'];
     this.modData('Learnsets', 'guzzlord').learnset.spikes = ['8L1'];
     this.modData('Learnsets', 'necrozma').learnset.focusblast = ['8L1'];
-    this.modData('Learnsets', 'necrozma').learnset.aurasphere = ['8L1'];
+    //this.modData('Learnsets', 'necrozma').learnset.aurasphere = ['8L1'];
     delete this.modData('Learnsets', 'magearna').learnset.drainingkiss;
     delete this.modData('Learnsets', 'magearna').learnset.storedpower;
     this.modData('Learnsets', 'stakataka').learnset.zawall = ['8T'];
@@ -1225,11 +1219,6 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     delete this.modData('Learnsets', 'spectrier').learnset.nastyplot;
     this.modData('Learnsets', 'calyrexice').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'calyrexice').learnset.tripleaxel = ['8L1'];
-
-    //gen 9:
-
-    this.modData('Learnsets', 'tatsugiri').learnset.icebeam = ['8L1'];
-    this.modData('Learnsets', 'screamtail').learnset.followme = ['8L1'];
 
 
     // return 
