@@ -42,7 +42,85 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 
     //inherit: 'gen8',
     //gen: 8,
-    init: function() {
+    //init: function() {
+
+      init() {
+        //stolen from optimons x
+        const addNewMoves = (pokemonid: string, moveids: string[]) => {
+          for (const moveid of moveids) {
+            this.modData('Learnsets', pokemonid).learnset[moveid] = [moveid === 'dracometeor' || moveid === 'steelbeam' ? '8T' : '8M'];
+          }
+        };
+        for (const id in this.dataCache.Pokedex) {
+          if (this.dataCache.Learnsets[id] && this.dataCache.Learnsets[id].learnset) {
+            const learnset = this.modData('Learnsets', this.toID(id)).learnset;
+            this.modData('Learnsets', this.toID(id)).learnset.terablast = ["8M"];
+          }
+        };
+    
+        addNewMoves('altaria',['trailblaze']);
+        addNewMoves('ampharos',['trailblaze']);
+        addNewMoves('azumarill',['trailblaze']);
+        addNewMoves('blissey',['trailblaze']);
+        addNewMoves('clodsire',['trailblaze']);
+        addNewMoves('delibird',['trailblaze']);
+        addNewMoves('donphan',['trailblaze']);
+        addNewMoves('eevee',['trailblaze']);
+        addNewMoves('golduck',['trailblaze']);
+        addNewMoves('heracross',['trailblaze']);
+        addNewMoves('hypno',['trailblaze']);
+        addNewMoves('jumpluff',['trailblaze']);
+        addNewMoves('perrserker',['trailblaze']);
+        addNewMoves('persian',['trailblaze']);
+        addNewMoves('quagsire',['trailblaze']);
+        addNewMoves('raichu',['trailblaze']);
+        addNewMoves('stantler',['trailblaze']);
+        addNewMoves('sudowoodo',['trailblaze']);
+        addNewMoves('sunflora',['trailblaze']);
+        addNewMoves('ursaring',['trailblaze']);
+        addNewMoves('weavile',['trailblaze']);
+        addNewMoves('wigglytuff',['trailblaze']);
+    
+    
+        //addNewMoves('wigglytuff', ['nastyplot']);
+        addNewMoves('dugtrio', ['swordsdance']);
+        addNewMoves('dugtrioalola', ['swordsdance']);
+        addNewMoves('golduck', ['nastyplot', "powergem"]);
+        addNewMoves('primeape', ['stealthrock']);
+        addNewMoves('muk', ['drainpunch', 'toxicspikes']);
+        addNewMoves('mukalola', ['drainpunch']);
+        addNewMoves('gengar', ['toxicspikes']);
+        addNewMoves('scyther', ['closecombat']);
+        addNewMoves('vaporeon', ['calmmind']);
+        addNewMoves('jolteon', ['calmmind']);
+        addNewMoves('flareon', ['calmmind']);
+        addNewMoves('articuno', ['haze']);
+        addNewMoves('articunogalar', ['tailwind']);
+        addNewMoves('zapdosgalar', ['tailwind']);
+        addNewMoves('moltresgalar', ['tailwind']);
+        addNewMoves('dragonite', ['encore']);
+        addNewMoves('mewtwo', ['earthpower', 'powergem']);
+    
+        addNewMoves('typhlosionhisui', ['focusblast', 'eruption']);
+        addNewMoves('ampharos', ['dazzlinggleam']);
+        addNewMoves('sudowoodo', ['spikes']);
+        addNewMoves('jumpluff', ['tailwind', 'pollenpuff', 'dazzlinggleam']);
+        addNewMoves('quagsire', ['spikes', 'toxicspikes', 'stealthrock']);
+        addNewMoves('espeon', ['powergem']);
+        addNewMoves('umbreon', ['calmmind', 'thunderwave']);
+        addNewMoves('slowkinggalar', ['toxicspikes']);
+        addNewMoves('forretress', ['bodypress']);
+        addNewMoves('scizor', ['pounce', 'closecombat']);
+        addNewMoves('tyranitar', ['powergem']);
+    
+        addNewMoves('gardevoir', ['aurasphere']);
+        addNewMoves('masquerain', ['hurricane']);
+        addNewMoves('sableye', ['gigadrain', 'reflect', 'lightscreen']);
+        addNewMoves('honchkrow', ['uturn', 'hurricane']);
+        addNewMoves('weavile', ['icespinner']);
+        addNewMoves('leafeon', ['calmmind']);
+        addNewMoves('weavile', ['calmmind']);
+        addNewMoves('gallade', ['agility', 'sacredsword']);
 
     //PLA stuff to match SV
     this.modData('Learnsets', 'arcaninehisui').learnset.headsmash = ['8L1'];
