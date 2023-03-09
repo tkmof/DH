@@ -2978,10 +2978,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoType: "levelMove",
 		evoCondition: "while holding Meltan Candy",
 	},
-	cinderace: {//to remove when gen 9
+	/*cinderace: {//to remove when gen 9
 		inherit: true,
 		baseStats: {hp: 80, atk: 101, def: 80, spa: 80, spd: 80, spe: 109},
-	},
+	},*/
 	sobble: {
 		inherit: true,
 		abilities: {0: "Torrent", H: "Deadly Blasts"},
@@ -3173,7 +3173,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 80, atk: 45, def: 125, spa: 130, spd: 60, spe: 95},
 		abilities: {0: "Light Metal", 1: "Clear Body", H: "Stalwart"},
 	},
-	zacian: {//to remove when gen 9
+	/*zacian: {//to remove when gen 9
 		inherit: true,
 		baseStats: {hp: 92, atk: 115, def: 115, spa: 115, spd: 115, spe: 118},
 	},
@@ -3184,15 +3184,19 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	zamazenta: {//to remove when gen 9
 		inherit: true,
 		baseStats: {hp: 92, atk: 115, def: 115, spa: 115, spd: 115, spe: 118},
+	},*/
+	zacian: {
+		inherit: true,
+		baseStats: {hp: 92, atk: 120, def: 115, spa: 80, spd: 115, spe: 138},
 	},
-	/*zaciancrowned: {
+	zaciancrowned: {
 		inherit: true,
 		baseStats: {hp: 92, atk: 150, def: 115, spa: 100, spd: 115, spe: 148},
 	},
 	zamazentacrowned: {
 		inherit: true,
 		baseStats: {hp: 92, atk: 130, def: 145, spa: 80, spd: 145, spe: 128},
-	},*/
+	},
 	zarude: {
 		inherit: true,
 		abilities: {0: "Defiant"},
@@ -3721,6 +3725,23 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoType: "other",
 		evoCondition: "Use Rage Fist 20 times and level-up",
 		eggGroups: ["Field"],
+	},
+	wooper: {
+		inherit: true,
+		otherFormes: ["Wooper-Paldea"],
+		formeOrder: ["Wooper", "Wooper-Paldea"],
+	},
+	wooperpaldea: {
+		num: 194,
+		name: "Wooper-Paldea",
+		types: ["Poison", "Ground"],
+		baseStats: {hp: 55, atk: 45, def: 45, spa: 25, spd: 25, spe: 15},
+		abilities: {0: "Poison Point", 1: "Water Absorb", H: "Unaware"},
+		heightm: 0.4,
+		weightkg: 8.5,
+		color: "Brown",
+		evos: ["Clodsire"],
+		eggGroups: ["Water 1", "Field"],
 	},
 	clodsire: {
 		num: 980,

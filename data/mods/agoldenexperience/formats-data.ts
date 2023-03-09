@@ -4610,6 +4610,9 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
+	wooperpaldea: {
+		tier: "LC",
+	},
 	clodsire: {
 		tier: "OU",
 		doublesTier: "DUU",
