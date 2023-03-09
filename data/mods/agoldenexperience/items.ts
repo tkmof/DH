@@ -887,7 +887,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		},
 		// Mold Breaker protection implemented in Battle.suppressingAbility() within sim/battle.ts
 		num: 1881,
-		gen: 9,
+		gen: 8,
 	},
 	clearamulet: {
 		name: "Clear Amulet",
@@ -907,7 +907,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			}
 		},
 		num: 1882,
-		gen: 9,
+		gen: 8,
 	},
 	mirrorherb: {
 		name: "Mirror Herb",
@@ -932,7 +932,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			this.boost(boostPlus, pokemon);
 		},
 		num: 1883,
-		gen: 9,
+		gen: 8,
 	},
 	punchingglove: {
 		name: "Punching Glove",
@@ -949,7 +949,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (move.flags['punch']) delete move.flags['contact'];
 		},
 		num: 1884,
-		gen: 9,
+		gen: 8,
 	},
 	covertcloak: {
 		name: "Covert Cloak",
@@ -962,7 +962,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
 		},
 		num: 1885,
-		gen: 9,
+		gen: 8,
 	},
 	loadeddice: {
 		name: "Loaded Dice",
@@ -974,7 +974,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			}
 		},
 		num: 1886,
-		gen: 9,
+		gen: 8,
 	},
 	boosterenergy: {
 		name: "Booster Energy",
@@ -995,6 +995,6 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			return true;
 		},
 		num: 1880,
-		gen: 9,
+		gen: 8,
 	},
 }

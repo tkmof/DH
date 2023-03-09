@@ -116,6 +116,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
         addNewMoves('gardevoir', ['aurasphere']);
         addNewMoves('masquerain', ['hurricane']);
         addNewMoves('sableye', ['gigadrain', 'reflect', 'lightscreen']);
+        addNewMoves('altaria', ['willowisp']);
         addNewMoves('honchkrow', ['uturn', 'hurricane']);
         addNewMoves('weavile', ['icespinner']);
         addNewMoves('leafeon', ['calmmind']);
