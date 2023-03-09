@@ -275,7 +275,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Barracoth",
 		types: ["Ice", "Water"],
 		baseStats: {hp: 140, atk: 115, def: 105, spa: 55, spd: 65, spe: 35},
-		abilities: {0: "Filter", 1: "Thick Fat", H: "Multi-Scale"},
+		abilities: {0: "Filter", 1: "Thick Fat", H: "Multiscale"},
 		weightkg: 356,
 	},
 	jamborai: {
