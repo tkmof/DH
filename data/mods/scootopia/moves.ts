@@ -448,6 +448,34 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Bug",
 		contestType: "Clever",
 	},
+	secondsight: {
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		shortDesc: "Uses user's SpD stat as SpA in damage calculation. Powers up in Nexus form.",
+		isViable: true,
+		name: "Second Sight",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		basePowerCallback(pokemon, target, move) {
+			if (pokemon.species.name === 'Flocura-Nexus' && pokemon.hasAbility('xenospore')) {
+				return move.basePower / 2;
+			}
+			return move.basePower;
+		},
+		onPrepareHit(source, target, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Glare", target);
+			if (pokemon.species.name === 'Flocura-Nexus' && pokemon.hasAbility('xenospore')) {
+				move.multihit = 3;
+			}
+		},
+		useSourceDefensiveAsOffensive: true,
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+	},
 	crystalcutter: {
 		name: "Crystal Cutter",
 		accuracy: 100,
@@ -647,9 +675,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: {
 			chance: 20,
-			boosts: {
-				def: -1,
-			},
+			status: "psn",
 		},
 	},
 	feralshred: {
