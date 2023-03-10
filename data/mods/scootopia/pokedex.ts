@@ -306,7 +306,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 1043,
 		name: "Noxtrice",
 		types: ["Poison", "Fire"],
-		baseStats: {hp: 65, atk: 118, def: 75, spa: 65, spd: 80, spe: 112},
+		baseStats: {hp: 65, atk: 118, def: 75, spa: 63, spd: 80, spe: 114},
 		abilities: {0: "Poison Touch", H: "Flash Fire"},
 		weightkg: 73.7,
 	},
@@ -379,7 +379,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Saphor",
 		types: ["Ground", "Normal"],
 		baseStats: {hp: 95, atk: 100, def: 105, spa: 100, spd: 105, spe: 95},
-		abilities: {0: "Thick Fat", H: "Crystal Heart"},
+		abilities: {0: "Thick Fat", 1: "Crystal Heart"},
 		weightkg: 638,
 	},
 	fenreil: {
@@ -387,7 +387,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Fenreil",
 		types: ["Normal", "Dark"],
 		baseStats: {hp: 80, atk: 105, def: 100, spa: 105, spd: 100, spe: 110},
-		abilities: {0: "Natural Cure", H: "Wild Heart"},
+		abilities: {0: "Natural Cure", 1: "Wild Heart"},
 		weightkg: 232,
 	},
 	soleron: {
