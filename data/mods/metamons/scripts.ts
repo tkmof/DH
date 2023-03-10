@@ -22,9 +22,11 @@ export const Scripts: ModdedBattleScriptsData = {
 		   this.modData("Learnsets", "archeops").learnset.flamethrower = ["8L1"];
 		   this.modData("Learnsets", "archeops").learnset.superpower = ["8L1"];
 			
-			this.modData("Learnsets", "aurorus").learnset.iciclecrash = ["8L1"];
-		   this.modData("Learnsets", "altaria").learnset.slackoff = ["8L1"];
-		   this.modData("Learnsets", "altaria").learnset.superpower = ["8L1"];
+			this.modData("Learnsets", "aurorus").learnset.iciclecrashgen7 = ["8L1"];
+			
+		   this.modData("Learnsets", "avalugg").learnset.slackoff = ["8L1"];
+		   this.modData("Learnsets", "avalugg").learnset.superpower = ["8L1"];
+			this.modData("Learnsets", "avalugg").learnset.iciclecrashgen7 = ["8L1"];
 
 		   this.modData("Learnsets", "banette").learnset.bulkup = ["8L1"];
 		   this.modData("Learnsets", "banette").learnset.drainpunch = ["8L1"];
@@ -122,6 +124,10 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Learnsets', 'altaria').learnset.fireblast;		
 			delete this.modData('Learnsets', 'altaria').learnset.flamethrower;	
 			delete this.modData('Learnsets', 'altaria').learnset.heatwave;	
+			
+			delete this.modData('Learnsets', 'aurorus').learnset.iciclecrash;	
+
+			delete this.modData('Learnsets', 'altaria').learnset.iciclecrash;	
 
 			delete this.modData('Learnsets', 'archeops').learnset.headsmash;	
 			
