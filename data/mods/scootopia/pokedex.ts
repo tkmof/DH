@@ -123,7 +123,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 1016,
 		name: "Aurorowl",
 		types: ["Ice", "Flying"],
-		baseStats: {hp: 70, atk: 80, def: 65, spa: 95, spd: 95, spe: 100},
+		baseStats: {hp: 70, atk: 70, def: 65, spa: 95, spd: 95, spe: 115},
 		abilities: {0: "Slush Rush", H: "Technician"},
 		weightkg: 15,
 	},
