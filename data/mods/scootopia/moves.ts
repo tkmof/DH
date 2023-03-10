@@ -450,7 +450,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 	},
 	secondsight: {
 		accuracy: 100,
-		basePower: 70,
+		basePower: 55,
 		category: "Special",
 		shortDesc: "Uses user's SpD stat as SpA in damage calculation. Powers up in Nexus form.",
 		isViable: true,
@@ -464,12 +464,12 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			}
 			return move.basePower;
 		},
-		onPrepareHit(source, target, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Glare", target);
+		onPrepareHit(target, pokemon, move) {
 			if (pokemon.species.name === 'Flocura-Nexus' && pokemon.hasAbility('xenospore')) {
 				move.multihit = 3;
 			}
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Glare", target);
 		},
 		useSourceDefensiveAsOffensive: true,
 		secondary: null,
