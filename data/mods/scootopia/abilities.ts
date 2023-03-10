@@ -244,15 +244,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 208,
 	},
 	shellbunker: {
-		onDamagingHit(damage, target, source, effect) {
-			target.addVolatile("shellbunker");
-		},
-		condition: {
-			duration: 1,
-			onDamage(damage, target, source, effect) {
-				if (effect.effectType !== 'Move') return damage;
-				return damage / 2;
-			},
+		onDamage(damage, target, source, effect) {
+			if (effect.effectType !== 'Move') return damage;
+			return damage / 2;
 		},
 		name: "Shell Bunker",
 		shortDesc: "After taking a hit, Def and SpD are doubled for the rest of the turn.",
