@@ -648,7 +648,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	// Coded
 	jacko: {
 		num: 1038,
-		name: "Jack-o'",
+		name: "Jack-O'",
 		desc: "1.3x Atk and SpA in Pumpkin Field. Immune to Pumpkin Field",
 		onModifyDamage(damage, source, target, move) {
 			if (this.field.isTerrain("pumpkinfield")) return this.chainModify([0x14CC, 0x1000]);
