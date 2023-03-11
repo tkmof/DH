@@ -554,10 +554,10 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 					invBoost[swapBoost[i]] = boost[i] * -1;
 				}
 			}
-			for (let i in swapBoost) {
+			for (let i in invBoost) {
 				if (!swapBoost[i]) continue;
 				if (!boost[i]) boost[i] = 0;
-				boost[i] += swapBoost[i];
+				boost[i] += invBoost[i];
 			}
 		},
 	},
