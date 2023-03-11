@@ -649,7 +649,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	jacko: {
 		num: 1038,
 		name: "Jack-o'",
-		desc: "This Pokemon is immune to the effects of Pumpkin Field. If Pumpkin Field is set on the field, the power of this Pokemon's physical and special attacks is multiplied by 1.3.",
+		desc: "1.3x Atk and SpA in Pumpkin Field. Immune to Pumpkin Field",
 		onModifyDamage(damage, source, target, move) {
 			if (this.field.isTerrain("pumpkinfield")) return this.chainModify([0x14CC, 0x1000]);
 		},
@@ -848,7 +848,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	prudentplow: {
 		num: 1049,
 		name: "Prudent Plow",
-		desc: "This Pokemon's Autumn-type moves become two-hit moves, including Status moves. The second hit has its damage/HP recovery quartered. Does not affect moves that are already multi-hit.",
+		desc: "Autumn-type moves become two-hit moves. 2nd hit of attacking moves has 1/4 damage.",
 		onPrepareHit(source, target, move) {
 			if (move.selfdestruct || move.multihit) return;
 			if (['beachball', 'boulder'].includes(move.id)) return;

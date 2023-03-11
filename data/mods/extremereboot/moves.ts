@@ -1132,7 +1132,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Status",
 		pp: 10,
 		type: "Storm",
-		shortDesc: "Protects the user for the turn. If a special attack is blocked, this Pokémon's Attack and Special Attack are boosted 1 stage.",
+		shortDesc: "Protects user. If hit by a special attack, +1 Atk and SpA.",
 		priority: 4,
 		flags: {},
 		stallingMove: true,
@@ -1881,7 +1881,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		flags: {protect: 1, mirror: 1},
 		target: "normal",
 		secondary: {
-			boost: {
+			boosts: {
 				def: -1,
 			},
 			chance: 10,
@@ -1947,7 +1947,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		flags: {protect: 1, mirror: 1},
 		target: "normal",
 		secondary: {
-			boost: {
+			boosts: {
 				spe: -1,
 			},
 			chance: 100,
@@ -4640,11 +4640,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		shortDesc: "This Pokémon heals 25% of its Max HP after a turn when it uses this move. Contact",
 		onHit(target, source) {
 			source.addVolatile('sereneslice');
+			source.volatiles['sereneslice'].turn = this.turn;
 		},
 		condition: {
 			duration: 1,
 			onEnd(pokemon) {
-				this.heal(Math.ceil(pokemon.maxhp * 0.25), pokemon);
+				if this.effectData.turn = pokemon.battle.turn)this.heal(Math.ceil(pokemon.maxhp * 0.25), pokemon);
 			}
 		},
 		priority: 0,
@@ -4847,7 +4848,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: null,
 		onHit(target, source, move) {
 			let switched = false;
-			for (const foe of source.side.foe.pokemon) {
+			for (const foe of source.side.foe.active) {
 				if (foe.newlySwitched) switched = true;
 			}
 			if (switched) this.boost(move.boosts);
@@ -6161,12 +6162,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 15,
 		type: "Earth",
 		shortDesc: "If user's stats are raised, lowers the foe's corresponding stat by one for each boost.",
-		onHit(target, source) {
-			let boosts = source.positiveBoosts();
-			for (boost in this.boosts) {
-				boosts[boost] = -1;
-			}
-			this.boost(boosts, target, source, null, true, false);
+		secondary: {
+			chance: 100,
+			onHit(target, source) {
+				let targetBoost = {};
+				for (const boost in source.boosts) {
+					if (source.boosts[boost] > 0) targetBoost[boost] = -1;
+				}
+				this.boost(targetBoost, target, source, null, true, false);
+			},
 		},
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -6215,7 +6219,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		secondary: null,
 	},
-	// Coded
+	// Coded and Tested
 	typhoon: {
 		name: "Typhoon",
 		accuracy: 100,

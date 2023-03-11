@@ -1460,10 +1460,6 @@ export const Formats: FormatList = [
 		},
 	 },
 	{
-		section: "Gen 8 Mods",
-		column: 1,
-	},
-	{
 		name: "[Gen 8] Patratdex",
 		desc: `<b>Patratdex</b>: Galvantic's Solomod, containing a new regional dex with a bunch of new stuff, notably 151 Fakemon.`,
 		mod: 'patratdex',

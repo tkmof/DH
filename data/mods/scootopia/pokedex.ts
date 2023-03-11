@@ -251,7 +251,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 1036,
 		name: "Axolacred",
 		types: ["Dragon", "Flying"],
-		baseStats: {hp: 60, atk: 75, def: 85, spa: 90, spd: 95, spe: 85},
+		baseStats: {hp: 60, atk: 75, def: 85, spa: 95, spd: 95, spe: 85},
 		abilities: {0: "Regenerator", 1: "Shield Dust", H: "Beads of Ruin"},
 		weightkg: 33,
 	},
