@@ -4195,8 +4195,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 						pokemon.m.fieldTurns++;
 						if (pokemon.m.fieldTurns > pokemon.activeTurns) pokemon.m.fieldTurns = pokemon.activeTurns;
 						if (pokemon.m.fieldTurns === 3) {
-							if (pokemon.hasType("Serenity") || pokemon.hasType("Sea")) pokemon.heal(pokemon.baseMaxhp / 2);
-							else pokemon.heal(pokemon.baseMaxhp / 4);
+							console.log("rice field");
+							console.log(pokemon.name);
+							if (pokemon.hasType("Serenity") || pokemon.hasType("Sea")) this.heal(pokemon.baseMaxhp / 2, pokemon);
+							else this.heal(pokemon.baseMaxhp / 4,pokemon);
 						}
 					}
 				}
@@ -4204,7 +4206,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			},
 			onEnd() {
 				if (!this.effectData.duration) this.eachEvent('Terrain');
-				this.add('-fieldend', 'move: Pumpkin Field');
+				this.add('-fieldend', 'move: Rice Field');
 			},
 		},
 		target: "all",
@@ -6175,7 +6177,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		target: "normal",
-		secondary: null,
 	},
 	// Coded
 	twister: {
@@ -6346,7 +6347,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		pp: 1,
+		pp: .625,
 		type: "Manmade",
 		shortDesc: "The user's Attack, Defense, Sp. Atk, Sp. Def, and Speed rise by 1 stage.",
 		boosts: {
