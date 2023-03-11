@@ -389,7 +389,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onBoost(boost, target, source, effect) {
 			if (effect && effect.id === 'zpower') return;
 			let i: BoostName;
-			for (i in boost) {
+			for (let i in boost) {
 				boost[i]! *= -1;
 			}
 		},
@@ -549,12 +549,12 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onBoost(boost, target, source, effect) {
 			let invBoost = {};
 			let swapBoost = {atk: 'spa', spa: 'atk', def: 'spd', spd: 'def'};
-			for (i in swapBoost) {
+			for (let i in swapBoost) {
 				if (boost[i]) {
 					invBoost[swapBoost[i]] = boost[i] * -1;
 				}
 			}
-			for (i in swapBoost) {
+			for (let i in swapBoost) {
 				if (!swapBoost[i]) continue;
 				if (!boost[i]) boost[i] = 0;
 				boost[i] += swapBoost[i];
@@ -1092,7 +1092,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		desc: "While this Pokemon is active, opposing Pokemons' stat raises will be lowers instead, and vice versa.",
 		onFoeBoost(boost, target, source, effect) {
 			let i: BoostName;
-			for (i in boost) {
+			for (let i in boost) {
 				boost[i]! *= -1;
 			}
 		},
