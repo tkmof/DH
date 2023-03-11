@@ -4645,7 +4645,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		condition: {
 			duration: 1,
 			onEnd(pokemon) {
-				if this.effectData.turn = pokemon.battle.turn)this.heal(Math.ceil(pokemon.maxhp * 0.25), pokemon);
+				if (this.effectData.turn = pokemon.battle.turn) this.heal(Math.ceil(pokemon.maxhp * 0.25), pokemon);
 			}
 		},
 		priority: 0,
