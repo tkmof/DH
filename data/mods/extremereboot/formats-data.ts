@@ -4,6 +4,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	baobloss: {
+		randomBattleMoves: ['blossomout', 'floralbreeze', 'guardup', 'purification', 'soothingtune', 'rosefield'],
+        randomBattleLevel: 100,
 		tier: "OU",
 		doublesTier: "DOU",
 	},

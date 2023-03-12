@@ -131,7 +131,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 1017,
 		name: "Carapex",
 		types: ["Bug", "Flying"],
-		baseStats: {hp: 65, atk: 95, def: 155, spa: 65, spd: 90, spe: 55},
+		baseStats: {hp: 75, atk: 95, def: 155, spa: 65, spd: 80, spe: 55},
 		abilities: {0: "Wind Rider", 1: "Mold Breaker", H: "Sturdy"},
 		weightkg: 135,
 	},
@@ -417,7 +417,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Efflor",
 		types: ["Rock", "Grass"],
 		baseStats: {hp: 80, atk: 85, def: 100, spa: 105, spd: 125, spe: 25},
-		abilities: {0: "Solid Rock", H: "Growth Power"},
+		abilities: {0: "Solid Rock", 1: "Flower Veil", H: "Growth Power"},
 		weightkg: 193,
 	},
 	jaegorm: {

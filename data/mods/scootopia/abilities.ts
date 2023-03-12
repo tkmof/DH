@@ -245,7 +245,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	shellbunker: {
 		onDamage(damage, target, source, effect) {
-			if (effect.effectType !== 'Move') return damage;
+			if (effect.effectType !== 'Move' || !target.hurtThisTurn) return damage;
 			return damage / 2;
 		},
 		name: "Shell Bunker",
@@ -288,5 +288,36 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		shortDesc: "Reduces damage from Fairy and Feral by 50%.",
 		name: "Wild Roots",
 		rating: 3.5,
+	},
+	growthpower: {
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Grass') {
+				this.field.setTerrain('grassyterrain');
+				this.add('-immune', target, '[from] ability: Growth Power');
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (target === this.effectData.target || target.side !== source.side) return;
+			if (move.type === 'Grass') {
+				this.field.setTerrain('grassyterrain');
+			}
+		},
+		onSwitchIn(pokemon) {
+			if (pokemon.hp > pokemon.maxhp / 2) target.m.growthPower = false;
+		}
+		onResidual(pokemon) {
+			if (pokemon.hp > pokemon.maxhp / 2) target.m.growthPower = false;
+		},
+		onDamage(damage, target, source, move) {
+			if (!move || move.effectType !== 'Move' || !source) return;
+			if (!target.m.growthPower) {
+				target.m.growthPower = true
+				this.field.setTerrain('grassyterrain');
+			}
+		},
+		shortDesc: "If knocked below 50% or hit by a Grass move, sets Grassy Terrain. Immune to Grass moves.",
+		name: "Growth Power",
 	},
 };

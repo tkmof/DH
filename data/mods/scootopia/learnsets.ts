@@ -306,6 +306,7 @@ export const Learnsets = {
 	woolora: {
 		learnset: {
 			moonblast: ["8L1"],
+			healingwish: ["8L1"],
 			drainingkiss: ["8L1"],
 			mistyexplosion: ["8L1"],
 			disarmingvoice: ["8L1"],
@@ -1119,7 +1120,6 @@ export const Learnsets = {
 			willowisp: ["8L1"],
 			sleeppowder: ["8L1"],
 			defog: ["8L1"],
-			healingwish: ["8L1"],
 			astonish: ["8L1"],
 			leer: ["8L1"],
 			infestation: ["8L1"],
@@ -1191,6 +1191,7 @@ export const Learnsets = {
 	aurorowl: {
 		learnset: {
 			frostbreath: ["8L1"],
+			dualwingbeat: ["8L1"],
 			icebeam: ["8L1"],
 			aircutter: ["8L1"],
 			hurricane: ["8L1"],
@@ -1954,7 +1955,6 @@ export const Learnsets = {
 			recover: ["8L1"],
 			thunderwave: ["8L1"],
 			healbell: ["8L1"],
-			healingwish: ["8L1"],
 			futuresight: ["8L1"],
 			expandingforce: ["8L1"],
 			storedpower: ["8L1"],
@@ -3376,6 +3376,8 @@ export const Learnsets = {
 	efflor: {
 		learnset: {
 			stoneedge: ["8L1"],
+			rockslide: ["8L1"],
+			chillyreception: ["8L1"],
 			protect: ["8L1"],
 			rest: ["8L1"],
 			round: ["8L1"],
@@ -3457,6 +3459,7 @@ export const Learnsets = {
 			feralbite: ["8L1"],
 			feralrush: ["8L1"],
 			feralpower: ["8L1"],
+			feralbreath: ["8L1"],
 			feralresilience: ["8L1"],
 		},
 	},
@@ -3775,6 +3778,7 @@ export const Learnsets = {
 			roost: ["8L1"],
 			defog: ["8L1"],
 			taunt: ["8L1"],
+			disable: ["8L1"],
 			perishsong: ["8L1"],
 			featherdance: ["8L1"],
 			torment: ["8L1"],

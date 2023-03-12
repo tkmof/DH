@@ -726,16 +726,16 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 	feralbite: {
 		name: "Feral Bite",
 		accuracy: 100,
-		basePower: 85,
+		basePower: 90,
 		category: "Physical",
 		pp: 15,
 		type: "Feral",
-		shortDesc: "20% to lower foe's Def by 1",
+		shortDesc: "30% chance to Poison foe.",
 		priority: 0,
 		flags: {protect: 1, mirror: 1, contact: 1, bite: 1},
 		target: "normal",
 		secondary: {
-			chance: 20,
+			chance: 30,
 			status: "psn",
 		},
 		onPrepareHit: function(target, source, move) {
