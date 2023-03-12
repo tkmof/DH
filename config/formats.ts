@@ -133,6 +133,26 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 8] Fusion Evolution Gen 9",
+		desc: `Fusion Evolution.`,
+		threads: [
+			`<a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Gen 9 Fusion Evolution</a>`,
+		],
+		mod: 'gen9feou',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', /* 'Mega Data Mod' */],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['FEOU', 'FENFE', "FELC"];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Fusion Evolution.'];
+				}
+			}
+		},
+	},
+	{
 		name: "[Gen 9] MetaMons",
 	   desc: [
 			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
@@ -1796,8 +1816,15 @@ export const Formats: FormatList = [
 		team: 'random',
       ruleset: ['Standard With Dig and Fly', 'Data Mod', 'Allow Tradeback'],
 	},
-
-
+	{
+		name: "[Gen 8] Fusion Evolution Gen 9 Random Battle",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Fusion Evolution on Smogon Forums</a>`,
+		],
+		mod: 'gen9feou',
+		team: 'random',
+		ruleset: ['OHKO Clause', 'Obtainable', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause', 'Data Mod', /* 'Mega Data Mod', */ 'Cancel Mod'],
+	},
 	{
 		name: "[Gen 8] Fusion Evolution UU Random Battle",
 		threads: [
