@@ -306,7 +306,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		onSwitchIn(pokemon) {
 			if (pokemon.hp > pokemon.maxhp / 2) target.m.growthPower = false;
-		}
+		},
 		onResidual(pokemon) {
 			if (pokemon.hp > pokemon.maxhp / 2) target.m.growthPower = false;
 		},
