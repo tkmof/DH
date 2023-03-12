@@ -1490,26 +1490,13 @@ export const Formats: FormatList = [
 		],
 		mod: "scootopia",
 		gen: 9,
-		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Data Mod'],
+		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Super Type Moves Rule', 'Data Mod'],
 		banlist: ['All Pokemon', "Crystal Heart", "Wild Heart"],
 		unbanlist: ['Orchile', 'Dolphena', 'Scalaron', 'Rantler', 'Cobracotta', 'Albatrygon', 'Electangle', 'Torgeist', 'Platypad', 'Soleron', 'Nunopod', 'Zeploom', 'Brawnkey', 'Salamalix', 
 			'Cinnastar', "Muab'Boa", 'Volvolpa', 'Harzodia', 'Cyllindrake', 'Kodokai', 'Jaegorm', 'Jaegorm-Collective', 'Faerenheit', 'Cellsius', 'Kelven', 'Salaos', 'Morndos', 'Pythos', 
 			'Quadringo', 'Corundell', 'Flocura', 'Arbrella', 'Woolora', 'Embuck', 'Cindoe', 'Minillow', 'Crossont', 'Lumoth', 'Aurorowl', 'Carapex', 'Dojodo', 'Elemadillo', 'Axolacred', 
-			'Roscenti', 'Blunderbusk', 'Jamborai', 'Dracoil', 'Celespirit', 'Noxtrice', 'Saphor', 'Fenreil', 'Barracoth', 'Krachiten'
+			'Roscenti', 'Blunderbusk', 'Jamborai', 'Dracoil', 'Celespirit', 'Noxtrice', 'Efflor', 'Saphor', 'Fenreil', 'Barracoth', 'Krachiten'
 		],
-		onBeforeMove(pokemon, target, move) {
-			move = Dex.mod("scootopia").getMove(move);
-			if (move.type === "Crystal" && !pokemon.hasType("Crystal")) return false;
-			if (move.type === "Feral" && !pokemon.hasType("Feral")) return false;
-		},
-		onDisableMove(pokemon) {
-			for (const moveSlot of pokemon.moveSlots) {
-				let move = Dex.mod("scootopia").getMove(moveSlot.id);
-				if ((move.type === "Crystal" && !pokemon.hasType("Crystal")) || (move.type === "Feral" && !pokemon.hasType("Feral"))) {
-					pokemon.disableMove(moveSlot.id, false);
-				}
-			}
-		},
 	},
 	{
 		name: "[Gen 9] Scoop Test Gen 9",
