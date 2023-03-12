@@ -3060,6 +3060,7 @@ export const Learnsets = {
 			toxicspikes: ["8L1"],
 			calmmind: ["8L1"],
 			acidarmor: ["8L1"],
+			triattack: ["8L1"],
 			teleport: ["8L1"],
 			sludge: ["8L1"],
 			psybeam: ["8L1"],
