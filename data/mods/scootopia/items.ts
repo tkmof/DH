@@ -21,7 +21,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			}
 		},
 		onTakeItem(item, pokemon, source) {
-			if ((source && source.baseSpecies.num === 1130) || pokemon.baseSpecies.num === 1130) {
+			if (source && source.hasType("Crystal")) {
 				return false;
 			}
 			return true;

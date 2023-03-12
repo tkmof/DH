@@ -124,7 +124,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Aurorowl",
 		types: ["Ice", "Flying"],
 		baseStats: {hp: 70, atk: 70, def: 65, spa: 95, spd: 95, spe: 115},
-		abilities: {0: "Slush Rush", H: "Technician"},
+		abilities: {0: "Snow Veil", H: "Technician"},
 		weightkg: 15,
 	},
 	carapex: {
@@ -195,7 +195,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 1025,
 		name: "Volvolpa",
 		types: ["Electric", "Ice"],
-		baseStats: {hp: 70, atk: 100, def: 65, spa: 65, spd: 92, spe: 133},
+		baseStats: {hp: 76, atk: 97, def: 64, spa: 70, spd: 102, spe: 121},
 		abilities: {0: "Slush Rush", 1: "Volt Absorb", H: "Strong Jaw"},
 		weightkg: 27,
 	},
