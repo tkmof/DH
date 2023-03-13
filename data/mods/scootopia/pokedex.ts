@@ -446,7 +446,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 1054,
 		name: "Flocura",
 		types: ["Grass", "Psychic"],
-		baseStats: {hp: 55, atk: 95, def: 55, spa: 107, spd: 180, spe: 108},
+		baseStats: {hp: 55, atk: 95, def: 55, spa: 105, spd: 180, spe: 110},
 		abilities: {0: "Xenospore"},
 		otherFormes: ["Flocura-Nexus"],
 		formeOrder: ["Flocura", "Flocura-Nexus"],
