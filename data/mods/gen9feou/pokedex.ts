@@ -95,7 +95,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	smoliqwil: {
  // fusion: ['Smoliv', 'Cyndaquil'],
 		num: 1002,
-		name: "Dollava",
+		name: "Smoliqwil",
 		types: ["Grass", "Fire"],
 		baseStats: {hp: 55, atk: 43, def: 44, spa: 59, spd: 55, spe: 47},
 		abilities: {0: "Growth Spurt"},
