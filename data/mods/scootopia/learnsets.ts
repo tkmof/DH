@@ -2733,6 +2733,7 @@ export const Learnsets = {
 	},
 	axolacred: {
 		learnset: {
+			acrobatics: ["9L1"],
 			dracometeor: ["9L1"],
 			dragonpulse: ["9L1"],
 			airslash: ["9L1"],
