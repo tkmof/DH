@@ -249,7 +249,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			return damage / 2;
 		},
 		name: "Shell Bunker",
-		shortDesc: "After taking a hit, Def and SpD are doubled for the rest of the turn.",
+		shortDesc: "After taking damage, Def and SpD are doubled for the rest of the turn.",
 	},
 	crystalline: {
 		onSourceModifyAtkPriority: 6,
