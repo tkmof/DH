@@ -2928,6 +2928,7 @@ export const Learnsets = {
 			substitute: ["9L1"],
 			surf: ["9L1"],
 			swagger: ["9L1"],
+			toxic: ["9L1"],
 			swift: ["9L1"],
 			torment: ["9L1"],
 			triattack: ["9L1"],
