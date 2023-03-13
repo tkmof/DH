@@ -416,8 +416,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 1032,
 		name: "Efflor",
 		types: ["Rock", "Grass"],
-		baseStats: {hp: 80, atk: 85, def: 100, spa: 105, spd: 125, spe: 25},
-		abilities: {0: "Solid Rock", 1: "Flower Veil", H: "Growth Power"},
+		baseStats: {hp: 80, atk: 85, def: 110, spa: 105, spd: 110, spe: 25},
+		abilities: {0: "Solid Rock", 1: "Unaware", H: "Growth Power"},
 		weightkg: 193,
 	},
 	jaegorm: {
