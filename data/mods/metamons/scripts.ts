@@ -130,6 +130,8 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Learnsets', 'altaria').learnset.iciclecrash;	
 
 			delete this.modData('Learnsets', 'archeops').learnset.headsmash;	
+
+			delete this.modData('Learnsets', 'banette').learnset.shadowclaw;	
 			
 			delete this.modData('Learnsets', 'bronzong').learnset.explosion;
 
