@@ -310,6 +310,14 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Poison Touch", H: "Flash Fire"},
 		weightkg: 73.7,
 	},
+	avastar: {
+		num: 1034,
+		name: "Avastar",
+		types: ["Psychic", "Steel"],
+		baseStats: {hp: 75, atk: 65, def: 110, spa: 115, spd: 110, spe: 80},
+		abilities: {0: "Poison Touch", H: "Flash Fire"},
+		weightkg: 999.9,
+	},
 	faerenheit: {
 		num: 1044,
 		name: "Faerenheit",
