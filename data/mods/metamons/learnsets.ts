@@ -180,7 +180,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			psychic: ["8L1"],
 			quickattack: ["8L1"],
 			shadowclawgen7: ["8L1"],
-			sketch: ["8L1"],
 			stealthrock: ["8L1"],
 			swordsdance: ["8L1"],
 			taunt: ["8L1"],
