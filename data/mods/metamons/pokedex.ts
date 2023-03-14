@@ -16,7 +16,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	ampharos: {
 		num: 181,
 		name: "Ampharos",
-		types: ["Electric"],
+		types: ["Electric", "Fairy"],
 		baseStats: {hp: 90, atk: 70, def: 95, spa: 110, spd: 95, spe: 50},
 		abilities: {0: "Static", H: "Thick Fat"},
 		heightm: 1.4,
