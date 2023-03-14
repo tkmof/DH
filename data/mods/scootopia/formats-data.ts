@@ -171,6 +171,10 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "Scoo",
 		doublesTier: "Scoo",
 	},
+	avastar: {
+		tier: "Scoo",
+		doublesTier: "Scoo",
+	},
 	faerenheit: {
 		tier: "Scoo",
 		doublesTier: "Scoo",
