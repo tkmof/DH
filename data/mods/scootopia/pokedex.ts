@@ -315,7 +315,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Avastar",
 		types: ["Psychic", "Steel"],
 		baseStats: {hp: 75, atk: 65, def: 110, spa: 115, spd: 110, spe: 80},
-		abilities: {0: "Poison Touch", H: "Flash Fire"},
+		abilities: {0: "Stalwart", 1: "Heavy Metal", H: "Bunker Shell"},
 		weightkg: 999.9,
 	},
 	faerenheit: {
