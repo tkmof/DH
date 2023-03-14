@@ -87,11 +87,6 @@ export const Scripts: ModdedBattleScriptsData = {
 
 		   this.modData("Learnsets", "rotomfrost").learnset.freezedry = ["8L1"];
 		   this.modData("Learnsets", "rotomfrost").learnset.icebeam = ["8L1"];
-
-		   this.modData("Learnsets", "salazzle").learnset.hydropump = ["8L1"];
-		   this.modData("Learnsets", "salazzle").learnset.scald = ["8L1"];
-			this.modData("Learnsets", "salazzle").learnset.shadowclaw = ["8L1"];
-		   this.modData("Learnsets", "salazzle").learnset.surf = ["8L1"];
 			
 		   this.modData("Learnsets", "scolipede").learnset.fellstingergen7 = ["8L1"];
 		   this.modData("Learnsets", "scolipede").learnset.gunkshot = ["8L1"];
@@ -153,10 +148,6 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Learnsets', 'pheromosa').learnset.icebeam;	
 			
 			delete this.modData('Learnsets', 'rotomfrost').learnset.willowisp;	
-
-			delete this.modData('Learnsets', 'salazzle').learnset.flamecharge;	
-			delete this.modData('Learnsets', 'salazzle').learnset.willowisp;	
-			delete this.modData('Learnsets', 'salazzle').learnset.overheat;	
 			
 			delete this.modData('Learnsets', 'scolipede').learnset.gyroball;	
 			delete this.modData('Learnsets', 'scolipede').learnset.swordsdance;	
