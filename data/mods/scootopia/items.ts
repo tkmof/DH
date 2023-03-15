@@ -21,8 +21,7 @@ export const Items: {[itemid: string]: ItemData} = {
 			}
 		},
 		onUpdate(pokemon) {
-			console.log(pokemon.name);
-			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === pokemon.fullname && !pokemon.hasType('Crystal') && pokemon.transformed) {
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === pokemon.fullname && !pokemon.hasType('Crystal')) {
 				pokemon.setType([pokemon.types[0],"Crystal"]);
 				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 			}
@@ -60,6 +59,12 @@ export const Items: {[itemid: string]: ItemData} = {
 				pokemon.side.superTypeUser = pokemon.fullname;
 			}
 			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === pokemon.fullname) {
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			}
+		},
+		onUpdate(pokemon) {
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === pokemon.fullname && !pokemon.hasType('Feral')) {
+				pokemon.setType([pokemon.types[0],"Feral"]);
 				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 			}
 		},
