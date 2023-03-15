@@ -69,9 +69,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 210,
 	},
 	firmfooting: {
-		shortDesc: "Immune to Special Flying moves, +1 SpD if hit by one.",
+		shortDesc: "Immune to Wind moves, +1 SpD if hit by one.",
 		onTryHit(target, source, move) {
-			if (target !== source && move.type === 'Flying' && move.category === "Special") {
+			if (target !== source && move.flags["wind"]) {
 				if (!this.boost({spd: 1})) {
 					this.add('-immune', target, '[from] ability: Firm Footing');
 				}
