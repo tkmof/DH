@@ -212,7 +212,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		onStart(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies !== 'Jaegorm' || pokemon.transformed) return;
 			if (pokemon.hp > pokemon.maxhp / 4) {
-				if (pokemon.species.id === 'Jaegorm') {
+				if (pokemon.species.id === 'jaegorm') {
 					pokemon.formeChange('Jaegorm-Collective');
 				}
 			} else {
@@ -228,7 +228,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				pokemon.transformed || !pokemon.hp
 			) return;
 			if (pokemon.hp > pokemon.maxhp / 4) {
-				if (pokemon.species.id === 'Jaegorm') {
+				if (pokemon.species.id === 'jaegorm') {
 					pokemon.formeChange('Jaegorm-Collective');
 				}
 			} else {

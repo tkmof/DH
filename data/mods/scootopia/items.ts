@@ -20,6 +20,13 @@ export const Items: {[itemid: string]: ItemData} = {
 				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 			}
 		},
+		onUpdate(pokemon) {
+			console.log(pokemon.name);
+			if (pokemon.side.usedSuperType && pokemon.side.superTypeUser === pokemon.fullname && !pokemon.hasType('Crystal') && pokemon.transformed) {
+				pokemon.setType([pokemon.types[0],"Crystal"]);
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			}
+		},
 		onTakeItem(item, pokemon, source) {
 			if (source && source.hasType("Crystal")) {
 				return false;

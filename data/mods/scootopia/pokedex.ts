@@ -52,7 +52,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Orchile",
 		types: ["Grass", "Poison"],
 		baseStats: {hp: 65, atk: 60, def: 75, spa: 110, spd: 121, spe: 64},
-		abilities: {0: "Flower Veil", H: "Magic Guard"},
+		abilities: {0: "Sweet Veil", 1: "Aroma Veil", H: "Flower Veil"},
 		weightkg: 45,
 	},
 	embuck: {
