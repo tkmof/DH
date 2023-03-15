@@ -162,7 +162,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	primeape: {//to remove when gen 9
 		inherit: true,
-		abilities: {0: "Gorilla Tactics", 1: "Anger Point", H: "Defiant"},
+		//abilities: {0: "Gorilla Tactics", 1: "Anger Point", H: "Defiant"},
+		evos: ["Annihilape"],
 	},
 	growlithe: {//to remove when gen 9
 		inherit: true,
@@ -687,7 +688,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	girafarig: {
 		inherit: true,
-		evos: [/*"Farigiraf", */"Girafatak"],
+		evos: ["Farigiraf", "Girafatak"],
 		abilities: {0: "Inner Focus", 1: "Early Bird", H: "Neuroforce"},
 	},
 	granbull: {
@@ -3770,6 +3771,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoMove: "Twin Beam",
 		eggGroups: ["Field"],
 	},
+	dunsparce: {
+		inherit: true,
+		evos: ["Dudunsparce"],
+	},
 	dudunsparce: {
 		num: 982,
 		name: "Dudunsparce",
@@ -3802,6 +3807,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoType: "levelMove",
 		evoMove: "Hyper Drill",
 		eggGroups: ["Field"],
+	},
+	bisharp: {
+		inherit: true,
+		evos: ["Kingambit"],
 	},
 	kingambit: {
 		num: 983,
