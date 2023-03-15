@@ -4084,6 +4084,7 @@ export const Learnsets = {
 	saphor: {
 		learnset: {
 			doubleedge: ["9L1"],
+			scorchingsands: ["9L1"],
 			headlongrush: ["9L1"],
 			bodyslam: ["9L1"],
 			earthquake: ["9L1"],
