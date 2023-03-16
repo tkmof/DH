@@ -1917,7 +1917,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			trick: ["8M", "7T", "6T", "5T", "4T"],
 		},
 	},
-	irontreads: {
+	ironthreads: {
 		learnset: {
 			toxic: ["8L1"],
 			toxicthread: ["8L1"],
