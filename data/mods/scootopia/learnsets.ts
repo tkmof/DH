@@ -118,7 +118,6 @@ export const Learnsets = {
 			lifedew: ["9L1"],
 			raindance: ["9L1"],
 			sunnyday: ["9L1"],
-			swordsdance: ["9L1"],
 			substitute: ["9L1"],
 			protect: ["9L1"],
 			rest: ["9L1"],
