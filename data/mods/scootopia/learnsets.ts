@@ -66,6 +66,7 @@ export const Learnsets = {
 	krachiten: {
 		learnset: {
 			aquacutter: ["9L1"],
+			focusenergy: ["9L1"],
 			firstimpression: ["9L1"],
 			leechlife: ["9L1"],
 			lunge: ["9L1"],
