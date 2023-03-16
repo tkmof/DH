@@ -1386,6 +1386,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Chakra Surge", 1: "Inner Focus", H: "Justified"},
 	},
+	lucariomega: {
+		inherit: true,
+		baseStats: {hp: 70, atk: 155, def: 88, spa: 130, spd: 80, spe: 102},
+		abilities: {0: "Mega Launcher"},
+	},
 	drapion: {
 		inherit: true,
 		abilities: {0: "Battle Armor", 1: "Sniper", H: "Sheer Force"},
