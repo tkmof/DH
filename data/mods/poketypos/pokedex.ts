@@ -210,7 +210,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 27,
 		name: "Wugtrio",
 		types: ["Water"],
-		baseStats: {hp: 35, atk: 100, def: 50, spa: 50, spd: 75, spe: 120},
+		baseStats: {hp: 35, atk: 100, def: 50, spa: 50, spd: 70, spe: 120},
 		abilities: {0: "Gooey", 1: "Rattled", H: "Sand Veil"},
 		weightkg: 5.4,
 	},

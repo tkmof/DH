@@ -24,11 +24,12 @@ Ratings and how they work:
 */
 export const Abilities: {[abilityid: string]: AbilityData} = {
 /*Gen 7 MetaMons*/
-	berserk: {
+	berserkgen7: {
 		onDamagingHit(damage, target, source, effect) {
 			this.boost({spa: 1});
 		},
-		name: "Berserk",
+		name: "Berserk-Gen 7",
+		shortDesc: "This Pokemon's Sp. Atk is raised by 1 stage after it is damaged by a move.",
 		rating: 2,
 		num: 201,
 	},
@@ -46,6 +47,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Fortress",
+		shortDesc: "The power of Fighting and Ground attacks against this Pokemon is halved.",
 		rating: 2,
 		num: 85,
 	},
@@ -59,6 +61,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Infiltrator-Gen 7",
+		shortDesc: "Moves ignore substitutes/side conditions. This Pokemon is immune to hazards.",
 		rating: 2.5,
 		num: 151,
 	},
@@ -70,11 +73,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Light Runner",
+		shortDesc: "The power of Ground-type attacks against this Pokemon is halved",
 		rating: 2,
 		num: 85,
 	},
 	persistence: {
-		shortDesc: "1.5x Defense when statused.",		
 		onModifyDefPriority: 6,
 		onModifyDef(def, pokemon) {
 			if (pokemon.status) {
@@ -82,10 +85,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Persistence",
+		shortDesc: "1.5x Defense when statused.",
 		rating: 2.5,
 		num: 63,
 	},
-	purepower: {
+	purepowergen7: {
 		onBasePowerPriority: 30,
 		onBasePower(basePower, attacker, defender, move) {
 			const basePowerAfterMultiplier = this.modify(basePower, this.event.modifier);
@@ -95,7 +99,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return this.chainModify(2);
 			}
 		},
-		name: "Pure Power",
+		name: "Pure Power-Gen 7",
+		shortDesc: "This Pokemon's moves of 60 power or less have 2x power, including Struggle.",
 		rating: 5,
 		num: 74,
 	},

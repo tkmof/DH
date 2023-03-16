@@ -224,4 +224,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	camerupt: {
 	   tier: "MetaMons",
 	},
+   dragalge: {
+	   tier: "MetaMons",
+	},
+	lapras: {
+	   tier: "MetaMons",
+	},
+	boltund: {
+	   tier: "MetaMons",
+	},
 };

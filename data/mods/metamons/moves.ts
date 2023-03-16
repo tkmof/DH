@@ -201,32 +201,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-      shortDesc: "(Placeholder) Copied move reverts back to Sketch after battle.",	
+      shortDesc: "Uses the last move used in the battle.",	
 		name: "Sketch-Gen 7",
 		pp: 1,
 		noPPBoosts: true,
 		priority: 0,
 		flags: {authentic: 1, mystery: 1},
-	/*	onHit(target, source) {
-			const disallowedMoves = ['chatter', 'sketch', 'struggle'];
-			const move = target.lastMove;
-			if (source.transformed || !move || source.moves.includes(move.id)) return false;
-			if (disallowedMoves.includes(move.id) || move.isZ || move.isMax) return false;
-			const sketchIndex = source.moves.indexOf('sketch');
-			if (sketchIndex < 0) return false;
-			const sketchedMove = {
-				move: move.name,
-				id: move.id,
-				pp: move.pp,
-				maxpp: move.pp,
-				target: move.target,
-				disabled: false,
-				used: false,
-			};
-			source.moveSlots[sketchIndex] = sketchedMove;
-			source.baseMoveSlots[sketchIndex] = sketchedMove;
-			this.add('-activate', source, 'move: Sketch', move.name);
-		},*/
+      onHit(pokemon) {
+			const noCopycat = [
+				'assist', 'banefulbunker', 'beakblast', 'behemothbash', 'behemothblade', 'belch', 'bestow', 'celebrate', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'craftyshield', 'destinybond', 'detect', 'dragontail', 'dynamaxcannon', 'endure', 'feint', 'focuspunch', 'followme', 'helpinghand', 'holdhands', 'kingsshield', 'matblock', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'obstruct', 'protect', 'ragepowder', 'roar', 'shelltrap', 'sketch', 'sleeptalk', 'snatch', 'spikyshield', 'spotlight', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind',
+			];
+			let move: Move | ActiveMove | null = this.lastMove;
+			if (!move) return;
+
+			if (move.isMax && move.baseMove) move = this.dex.getMove(move.baseMove);
+			if (noCopycat.includes(move.id) || move.isZ || move.isMax) {
+				return false;
+			}
+			this.useMove(move.id, pokemon);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -352,6 +345,26 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'heal'},
 		contestType: "Cute",
 	},
+	chillingwater: {
+		num: 300,
+		accuracy: 100,
+		basePower: 50,
+		category: "Special",
+		name: "Chilling Water",
+		shortDesc: "100% chance to lower the target's Attack by 1.",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			boosts: {
+				atk: -1,
+			},
+		},
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
+	},
 	aquacutter: {
 		num: 400,
 		accuracy: 100,
@@ -366,6 +379,40 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: null,
 		target: "normal",
 		type: "Water",
+		contestType: "Cool",
+	},
+	icespinner: {
+		num: -1025,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Ends the effects of Electric Terrain, Grassy Terrain, Misty Terrain, and Psychic Terrain.",
+		shortDesc: "Ends the effects of terrain.",
+		name: "Ice Spinner",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onHit(target, source, move) {
+			this.field.clearTerrain();
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+	},
+	spectralfang: {
+		num: 533,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Spectral Fang",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		ignoreEvasion: true,
+		ignoreDefensive: true,
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
 		contestType: "Cool",
 	},
 };

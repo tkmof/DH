@@ -999,12 +999,16 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 80,
 		category: "Physical",
 		name: "Runic Rebellion",
+		shortDesc: "Cures user’s non-volatile status conditions",
 		pp: 20,
 		priority: 0,
 		flags: {snatch: 1},
-		onHit(pokemon) {
-			if (['', 'slp', 'frz'].includes(pokemon.status)) return false;
-			pokemon.cureStatus();
+		self: {
+			onHit(source) {
+				for (const ally of source.side.pokemon) {
+					ally.cureStatus();
+				}
+			},
 		},
 		secondary: null,
 		target: "normal",
@@ -1017,7 +1021,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		basePower: 30,
 		category: "Physical",
-		name: "Triple Axel",
+		name: "Triple Dive",
+		shortDesc: "Hits 3 times.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -1034,6 +1039,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 50,
 		category: "Physical",
 		name: "Trailblaze",
+		shortDesc: "100% chance to raise the user's Speed by 1.",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},

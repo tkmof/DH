@@ -133,6 +133,26 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 8] Fusion Evolution Gen 9",
+		desc: `Fusion Evolution.`,
+		threads: [
+			`<a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Gen 9 Fusion Evolution</a>`,
+		],
+		mod: 'gen9feou',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', /* 'Mega Data Mod' */],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['FEOU', 'FENFE', "FELC"];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Fusion Evolution.'];
+				}
+			}
+		},
+	},
+	{
 		name: "[Gen 9] MetaMons",
 	   desc: [
 			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
@@ -355,7 +375,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'extremereboot',
-		ruleset: ['Standard', 'Dynamax Clause', 'Data Mod',],
+		ruleset: ['Standard', 'Dynamax Clause', 'ER Data Mod',],
 		banlist: ['All Pokemon', 'All Items'],
 		unbanlist: [
 			'Extreme Ribbit', 'Baobloss', 'Tenquarrel', 'Tradituki', 'Hibarrage', 'Pumking', 'Carboneichus', 'Calmengo', 'Paciphal', 'Hullacane', 'Cylindrake', 
@@ -784,10 +804,10 @@ export const Formats: FormatList = [
 		mod: 'gen6megasrevisited',
 		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
-					"Beedrillite", "Pidgeotite", "Slowbronite", 
+					"Beedrillite", "Slowbronite", 
 					"Kangaskhanite", "Gyaradosite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Scizorite",
 					"Heracronite", "Tyranitarite", "Blazikenite", "Gardevoirite", "Sablenite", "Mawilite",
-					"Aggronite", "Medichamite", "Manectite", "Sharpedonite", "Cameruptite", "Absolite", "Salamencite",
+					"Aggronite", "Sharpedonite", "Cameruptite", "Salamencite",
 					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Abomasite", "Galladite", "Diancite"
 					],
 	},
@@ -1460,10 +1480,6 @@ export const Formats: FormatList = [
 		},
 	 },
 	{
-		section: "Gen 8 Mods",
-		column: 1,
-	},
-	{
 		name: "[Gen 8] Patratdex",
 		desc: `<b>Patratdex</b>: Galvantic's Solomod, containing a new regional dex with a bunch of new stuff, notably 151 Fakemon.`,
 		mod: 'patratdex',
@@ -1494,26 +1510,13 @@ export const Formats: FormatList = [
 		],
 		mod: "scootopia",
 		gen: 9,
-		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Data Mod'],
+		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Super Type Moves Rule', 'Data Mod'],
 		banlist: ['All Pokemon', "Crystal Heart", "Wild Heart"],
 		unbanlist: ['Orchile', 'Dolphena', 'Scalaron', 'Rantler', 'Cobracotta', 'Albatrygon', 'Electangle', 'Torgeist', 'Platypad', 'Soleron', 'Nunopod', 'Zeploom', 'Brawnkey', 'Salamalix', 
 			'Cinnastar', "Muab'Boa", 'Volvolpa', 'Harzodia', 'Cyllindrake', 'Kodokai', 'Jaegorm', 'Jaegorm-Collective', 'Faerenheit', 'Cellsius', 'Kelven', 'Salaos', 'Morndos', 'Pythos', 
 			'Quadringo', 'Corundell', 'Flocura', 'Arbrella', 'Woolora', 'Embuck', 'Cindoe', 'Minillow', 'Crossont', 'Lumoth', 'Aurorowl', 'Carapex', 'Dojodo', 'Elemadillo', 'Axolacred', 
-			'Roscenti', 'Blunderbusk', 'Jamborai', 'Dracoil', 'Celespirit', 'Noxtrice', 'Saphor', 'Fenreil', 'Barracoth', 'Krachiten'
+			'Roscenti', 'Blunderbusk', 'Jamborai', 'Dracoil', 'Celespirit', 'Noxtrice', 'Efflor', 'Saphor', 'Fenreil', 'Barracoth', 'Krachiten', 'Avastar',
 		],
-		onBeforeMove(pokemon, target, move) {
-			move = Dex.mod("scootopia").getMove(move);
-			if (move.type === "Crystal" && !pokemon.hasType("Crystal")) return false;
-			if (move.type === "Feral" && !pokemon.hasType("Feral")) return false;
-		},
-		onDisableMove(pokemon) {
-			for (const moveSlot of pokemon.moveSlots) {
-				let move = Dex.mod("scootopia").getMove(moveSlot.id);
-				if ((move.type === "Crystal" && !pokemon.hasType("Crystal")) || (move.type === "Feral" && !pokemon.hasType("Feral"))) {
-					pokemon.disableMove(moveSlot.id, false);
-				}
-			}
-		},
 	},
 	{
 		name: "[Gen 9] Scoop Test Gen 9",
@@ -1813,8 +1816,15 @@ export const Formats: FormatList = [
 		team: 'random',
       ruleset: ['Standard With Dig and Fly', 'Data Mod', 'Allow Tradeback'],
 	},
-
-
+	{
+		name: "[Gen 8] Fusion Evolution Gen 9 Random Battle",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Fusion Evolution on Smogon Forums</a>`,
+		],
+		mod: 'gen9feou',
+		team: 'random',
+		ruleset: ['OHKO Clause', 'Obtainable', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause', 'Data Mod', /* 'Mega Data Mod', */ 'Cancel Mod'],
+	},
 	{
 		name: "[Gen 8] Fusion Evolution UU Random Battle",
 		threads: [

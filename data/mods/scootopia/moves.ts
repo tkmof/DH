@@ -170,13 +170,25 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 5,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			if (source.species.id === "faerenheit"){
+				this.attrLastMove('[still]');
+				this.add('-anim', source, "Hidden Power Fire", target);
+			} else if (source.species.id === "cellsius"){
+				this.attrLastMove('[still]');
+				this.add('-anim', source, "Hidden Power Water", target);
+			} else if (source.species.id === "kelven"){
+				this.attrLastMove('[still]');
+				this.add('-anim', source, "Hidden Power Ice", target);
+			}
+		},
 		onHit(target, source, move) {
 			if (source.species.id === "faerenheit"){
 				this.field.setWeather('sunnyday');
 			} else if (source.species.id === "cellsius"){
 				this.field.setWeather('raindance');
 			} else if (source.species.id === "kelven"){
-				this.field.setWeather('snowscape');
+				this.field.setWeather('snow');
 			}
 		},
 		target: "normal",
@@ -351,6 +363,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
 		status: 'frz',
+		shortDesc: "Inflicts Freeze status on the opponent (1/16 Residual damage, halved SpA).",
 		secondary: null,
 		target: "normal",
 		type: "Ice",
@@ -368,6 +381,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, contact: 1},
 		target: "normal",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Triple Axel", target);
+		},
 		secondaries: [
 			{
 				chance: 20,
@@ -379,6 +396,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				status: 'frz',
 			},
 		],
+		
 	},
 	spore: {
 		inherit: true,
@@ -431,6 +449,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Rock",
 		zMove: {boost: {evasion: 1}},
 		contestType: "Clever",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rock Blast", target);
+		},
 	},
 	spikebolt: {
 		num: 454,
@@ -441,12 +463,44 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pp: 15,
 		shortDesc: "High Critical Hit ratio.",
 		priority: 0,
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Pin Missile", target);
+		},
 		flags: {protect: 1, mirror: 1},
 		critRatio: 2,
 		secondary: null,
 		target: "normal",
 		type: "Bug",
 		contestType: "Clever",
+	},
+	secondsight: {
+		accuracy: 100,
+		basePower: 55,
+		category: "Special",
+		shortDesc: "Uses user's SpD stat as SpA in damage calculation. Powers up in Nexus form.",
+		isViable: true,
+		name: "Second Sight",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		basePowerCallback(pokemon, target, move) {
+			if (pokemon.species.name === 'Flocura-Nexus' && pokemon.hasAbility('xenospore')) {
+				return move.basePower / 2;
+			}
+			return move.basePower;
+		},
+		onPrepareHit(target, pokemon, move) {
+			if (pokemon.species.name === 'Flocura-Nexus' && pokemon.hasAbility('xenospore')) {
+				move.multihit = 3;
+			}
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Glare", target);
+		},
+		useSourceDefensiveAsOffensive: true,
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
 	},
 	crystalcutter: {
 		name: "Crystal Cutter",
@@ -460,6 +514,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		flags: {protect: 1, mirror: 1, contact: 1, slicing: 1},
 		target: "normal",
 		willCrit: true,
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psycho Cut", target);
+		},
 		secondary: {
 			chance: 100,
 			boosts: {
@@ -478,6 +536,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, contact: 1},
 		target: "normal",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Tail", target);
+		},
 		secondary: {
 			chance: 20,
 			boosts: {
@@ -496,6 +558,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, contact: 1},
 		target: "normal",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Iron Head", target);
+		},
 		secondary: {
 			chance: 10,
 			boosts: {
@@ -514,6 +580,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		target: "normal",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aurora Beam", target);
+		},
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -530,6 +600,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Crystal",
 		shortDesc: "Traps and damages for 4-5 turns.",
 		priority: 0,
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Diamond Storm", target);
+		},
 		flags: {protect: 1, mirror: 1},
 		volatileStatus: 'partiallytrapped',
 		target: "normal",
@@ -544,6 +618,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		shortDesc: "Lower's user's SpA by 1",
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Clanging Scales", target);
+		},
 		self: {
 			boosts: {
 				spa: -1,
@@ -585,6 +663,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "allyTeam",
 		type: "Crystal",
 		zMove: {effect: 'heal'},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Heal Bell", target);
+		},
 		contestType: "Beautiful",
 	},
 	crystalfortification: {
@@ -610,6 +692,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			def: 1,
 			spd: 1,
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Iron Defense", target);
+		},
 		secondary: null,
 		target: "self",
 		type: "Crystal",
@@ -628,6 +714,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		onHitSide(side, source) {
 			source.side.foe.addSideCondition("spikes");
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spikes", target);
+		},
 		secondary: null,
 		target: "foeSide",
 		type: "Crystal",
@@ -637,19 +727,21 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 	feralbite: {
 		name: "Feral Bite",
 		accuracy: 100,
-		basePower: 85,
+		basePower: 90,
 		category: "Physical",
 		pp: 15,
 		type: "Feral",
-		shortDesc: "20% to lower foe's Def by 1",
+		shortDesc: "30% chance to Poison foe.",
 		priority: 0,
 		flags: {protect: 1, mirror: 1, contact: 1, bite: 1},
 		target: "normal",
 		secondary: {
-			chance: 20,
-			boosts: {
-				def: -1,
-			},
+			chance: 30,
+			status: "psn",
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poison Fang", target);
 		},
 	},
 	feralshred: {
@@ -670,6 +762,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				def: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Claw", target);
+		},
 	},
 	feralrush: {
 		name: "Feral Rush",
@@ -689,6 +785,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				def: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 	},
 	feralshriek: {
 		name: "Feral Shriek",
@@ -707,6 +807,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				spd: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Overdrive", target);
+		},
 	},
 	feralpower: {
 		accuracy: 100,
@@ -721,6 +825,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			boosts: {
 				def: -1,
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Searing Shot", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -744,6 +852,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				spd: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Rage", target);
+		},
 	},
 	feralroar: {
 		accuracy: true,
@@ -761,6 +873,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				atk: 1,
 				spa: 1,
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Roar", target);
 		},
 		target: "normal",
 		type: "Feral",
@@ -786,6 +902,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		secondary: null,
 		target: "normal",
 		type: "Feral",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Acid Spray", target);
+		},
 		zMove: {boost: {def: 1}},
 		contestType: "Clever",
 	},
@@ -811,5 +931,9 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Feral",
 		zMove: {effect: 'heal'},
 		contestType: "Cute",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Refresh", target);
+		},
 	},
 };
