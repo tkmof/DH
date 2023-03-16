@@ -11,6 +11,11 @@ export const Scripts: ModdedBattleScriptsData = {
 		for (const i in this.data.Pokedex) {
 			(this.data.Pokedex[i] as any).gender = 'N';
 			(this.data.Pokedex[i] as any).eggGroups = null;
+            var BST = 0;
+            for (const stat in this.data.Pokedex[i].baseStats) {
+                BST += this.data.Pokedex[i].baseStats[stat];
+            }
+            if (BST >= 650) this.data.FormatsData[i].tier = 'Uber';
 		}
 	},
 	// Gen 1 stores the last damage dealt by a move in the battle.

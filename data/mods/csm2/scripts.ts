@@ -1,5 +1,8 @@
 export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	inherit: 'gen9',
+	teambuilderConfig: {
+        excludeStandardTiers: true,
+	},
 	init: function () {
 		// Solrock
 		this.modData("Learnsets", "solrock").learnset.shoreup = ["9L1"];
@@ -46,6 +49,12 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		delete this.modData('Learnsets', 'chandelure').learnset.calmmind;
 		delete this.modData('Learnsets', 'chandelure').learnset.energyball;
 		delete this.modData('Learnsets', 'chandelure').learnset.solarbeam;
+		delete this.modData('Learnsets', 'litwick').learnset.calmmind;
+		delete this.modData('Learnsets', 'litwick').learnset.energyball;
+		delete this.modData('Learnsets', 'litwick').learnset.solarbeam;
+		delete this.modData('Learnsets', 'lampent').learnset.calmmind;
+		delete this.modData('Learnsets', 'lampent').learnset.energyball;
+		delete this.modData('Learnsets', 'lampent').learnset.solarbeam;
 		// Carracosta
 		this.modData("Learnsets", "carracosta").learnset.darkpulse = ["9L1"];
 		this.modData("Learnsets", "carracosta").learnset.spikes = ["9L1"];
@@ -58,6 +67,14 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		delete this.modData('Learnsets', 'carracosta').learnset.focusblast;
 		delete this.modData('Learnsets', 'carracosta').learnset.earthpower;
 		delete this.modData('Learnsets', 'carracosta').learnset.aquajet;
+		delete this.modData('Learnsets', 'carracosta').learnset.ironhead;
+		delete this.modData('Learnsets', 'tirtouga').learnset.stoneedge;
+		delete this.modData('Learnsets', 'tirtouga').learnset.rockslide;
+		delete this.modData('Learnsets', 'tirtouga').learnset.stealthrock;
+		delete this.modData('Learnsets', 'tirtouga').learnset.rockblast;
+		delete this.modData('Learnsets', 'tirtouga').learnset.focusblast;
+		delete this.modData('Learnsets', 'tirtouga').learnset.earthpower;
+		delete this.modData('Learnsets', 'tirtouga').learnset.aquajet;
 		// Overqwil
 		this.modData("Learnsets", "overqwil").learnset.knockoff = ["9L1"];
 		this.modData("Learnsets", "overqwil").learnset.flipturn = ["9L1"];

@@ -287,6 +287,56 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 4,
 		gen: 6,
 	},	
+	armortail: {
+		onFoeTryMove(target, source, move) {
+			const targetAllExceptions = ['perishsong', 'flowershield', 'rototiller'];
+			if (move.target === 'foeSide' || (move.target === 'all' && !targetAllExceptions.includes(move.id))) {
+				return;
+			}
+
+			const armortailHolder = this.effectData.target;
+			if ((source.side === armortailHolder.side || move.target === 'all') && move.priority > 0.1) {
+				this.attrLastMove('[still]');
+				this.add('cant', armortailHolder, 'ability: Armor Tail', move, '[of] ' + target);
+				return false;
+			}
+		},
+		name: "Armor Tail",
+		rating: 2.5,
+		gen: 6,
+	},
+	brainpower: {
+		onModifySpAPriority: 5,
+		onModifySpA(spa) {
+			return this.chainModify(2);
+		},
+		name: "Brain Power",
+    	shortDesc: "This Pokemon's Special Attack is doubled.",
+		rating: 5,
+	},
+	neuroforce: {
+		onModifyDamage(damage, source, target, move) {
+			if (move && target.getMoveHitData(move).typeMod > 0) {
+				return this.chainModify([0x1400, 0x1000]);
+			}
+		},
+		name: "Neuroforce",
+		rating: 2.5,
+		num: 233,
+		gen: 6,
+	},
+	bugzapper: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Bug') {
+				if (!source.addVolatile('trapped', target, move, 'trapper')) {
+					this.add('-immune', target, '[from] ability: Bug Zapper');
+				}
+				return null;
+			}
+		},
+		name: "Bug Zapper",
+		rating: 5,
+	},
 	
 /*	
 // ngas is so cringe

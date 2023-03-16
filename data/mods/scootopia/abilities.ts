@@ -32,18 +32,6 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			},
 		},
 	},
-	retaliation: {
-		shortDesc: "On opponent making contact: -1 Atk.",
-		onDamagingHitOrder: 1,
-		onDamagingHit(damage, target, source, move) {
-			if (move.flags['contact']) {
-				this.boost({atk: -1}, source, target);
-			}
-		},
-		name: "Retaliation",
-		rating: 2.5,
-		num: 24,
-	},
 	mythicalpresence: {
 		name: "Mythical Presence",
 		shortDesc: "Lowers opposing Pokemon Special Attack by 1 stage when switching in.",
@@ -81,9 +69,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 210,
 	},
 	firmfooting: {
-		shortDesc: "Immune to Special Flying moves, +1 SpD if hit by one.",
+		shortDesc: "Immune to Wind moves, +1 SpD if hit by one.",
 		onTryHit(target, source, move) {
-			if (target !== source && move.type === 'Flying' && move.category === "Special") {
+			if (target !== source && move.flags["wind"]) {
 				if (!this.boost({spd: 1})) {
 					this.add('-immune', target, '[from] ability: Firm Footing');
 				}
@@ -184,11 +172,47 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 5,
 		num: 211,
 	},
+	crystalheart: {
+		shortDesc: "User becomes Crystal type. While Crystal type, 33% boost to Def and SpD",
+		onStart(pokemon) {
+			if (pokemon.hasType('Crystal')) return false;
+			if (!pokemon.addType('Crystal')) return false;
+			pokemon.setType(["Crystal"]);
+			this.add('-start', pokemon, 'typechange', 'Crystal', '[from] ability: Crystal Heart');
+		},
+		onModifyDefPriority: 6,
+		onModifyDef(def, pokemon) {
+			if (pokemon.hasType('Crystal')) return this.chainModify(1 + (1/3));
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(spd, pokemon) {
+			if (pokemon.hasType('Crystal')) return this.chainModify(1 + (1/3));
+		},
+		name: "Crystal Heart",
+	},
+	wildheart: {
+		onStart(pokemon) {
+			if (pokemon.hasType('Feral')) return false;
+			if (!pokemon.addType('Feral')) return false;
+			pokemon.setType(["Feral"]);
+			this.add('-start', pokemon, 'typechange', "Feral", '[from] ability: Wild Heart');
+		},
+		onModifyAtkPriority: 6,
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.hasType('Feral')) return this.chainModify(1 + (1/3));
+		},
+		onModifySpAPriority: 6,
+		onModifySpA(spa, pokemon) {
+			if (pokemon.hasType('Feral')) return this.chainModify(1 + (1/3));
+		},
+		name: "Wild Heart",
+		shortDesc: "User becomes Feral type. While Feral type, 33% boost to Atk and SpA",
+	},
 	schooling: {
 		onStart(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies !== 'Jaegorm' || pokemon.transformed) return;
 			if (pokemon.hp > pokemon.maxhp / 4) {
-				if (pokemon.species.id === 'Jaegorm') {
+				if (pokemon.species.id === 'jaegorm') {
 					pokemon.formeChange('Jaegorm-Collective');
 				}
 			} else {
@@ -204,7 +228,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				pokemon.transformed || !pokemon.hp
 			) return;
 			if (pokemon.hp > pokemon.maxhp / 4) {
-				if (pokemon.species.id === 'Jaegorm') {
+				if (pokemon.species.id === 'jaegorm') {
 					pokemon.formeChange('Jaegorm-Collective');
 				}
 			} else {
@@ -218,5 +242,82 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		shortDesc: "If user is Jaegorm, changes to Collective Form if it has > 1/4 max HP, else Solo Form.",
 		rating: 3,
 		num: 208,
+	},
+	shellbunker: {
+		onDamage(damage, target, source, effect) {
+			if (effect.effectType !== 'Move' || !target.hurtThisTurn) return damage;
+			return damage / 2;
+		},
+		name: "Shell Bunker",
+		shortDesc: "After taking damage, Def and SpD are doubled for the rest of the turn.",
+	},
+	crystalline: {
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Crystal' || move.type === 'Rock') {
+				this.debug('Crystalline weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Crystal' || move.type === 'Rock') {
+				this.debug('Crystalline weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Crystalline",
+		shortDesc: "Reduces damage from Rock and Crystal by 50%.",
+		rating: 3.5,
+	},
+	wildroots: {
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Fairy' || move.type === 'Feral') {
+				this.debug('Wild Roots weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Fairy' || move.type === 'Feral') {
+				this.debug('Wild Roots weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		shortDesc: "Reduces damage from Fairy and Feral by 50%.",
+		name: "Wild Roots",
+		rating: 3.5,
+	},
+	growthpower: {
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Grass') {
+				this.field.setTerrain('grassyterrain');
+				this.add('-immune', target, '[from] ability: Growth Power');
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (target === this.effectData.target || target.side !== source.side) return;
+			if (move.type === 'Grass') {
+				this.field.setTerrain('grassyterrain');
+			}
+		},
+		onSwitchIn(pokemon) {
+			if (pokemon.hp > pokemon.maxhp / 2) target.m.growthPower = false;
+		},
+		onResidual(pokemon) {
+			if (pokemon.hp > pokemon.maxhp / 2) target.m.growthPower = false;
+		},
+		onDamage(damage, target, source, move) {
+			if (!move || move.effectType !== 'Move' || !source) return;
+			if (!target.m.growthPower) {
+				target.m.growthPower = true
+				this.field.setTerrain('grassyterrain');
+			}
+		},
+		shortDesc: "If knocked below 50% or hit by a Grass move, sets Grassy Terrain. Immune to Grass moves.",
+		name: "Growth Power",
 	},
 };
