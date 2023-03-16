@@ -201,32 +201,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-      shortDesc: "(Placeholder) Copied move reverts back to Sketch after battle.",	
+      shortDesc: "Uses the last move used in the battle.",	
 		name: "Sketch-Gen 7",
 		pp: 1,
 		noPPBoosts: true,
 		priority: 0,
 		flags: {authentic: 1, mystery: 1},
-	/*	onHit(target, source) {
-			const disallowedMoves = ['chatter', 'sketch', 'struggle'];
-			const move = target.lastMove;
-			if (source.transformed || !move || source.moves.includes(move.id)) return false;
-			if (disallowedMoves.includes(move.id) || move.isZ || move.isMax) return false;
-			const sketchIndex = source.moves.indexOf('sketch');
-			if (sketchIndex < 0) return false;
-			const sketchedMove = {
-				move: move.name,
-				id: move.id,
-				pp: move.pp,
-				maxpp: move.pp,
-				target: move.target,
-				disabled: false,
-				used: false,
-			};
-			source.moveSlots[sketchIndex] = sketchedMove;
-			source.baseMoveSlots[sketchIndex] = sketchedMove;
-			this.add('-activate', source, 'move: Sketch', move.name);
-		},*/
+      onHit(pokemon) {
+			const noCopycat = [
+				'assist', 'banefulbunker', 'beakblast', 'behemothbash', 'behemothblade', 'belch', 'bestow', 'celebrate', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'craftyshield', 'destinybond', 'detect', 'dragontail', 'dynamaxcannon', 'endure', 'feint', 'focuspunch', 'followme', 'helpinghand', 'holdhands', 'kingsshield', 'matblock', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'obstruct', 'protect', 'ragepowder', 'roar', 'shelltrap', 'sketch', 'sleeptalk', 'snatch', 'spikyshield', 'spotlight', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind',
+			];
+			let move: Move | ActiveMove | null = this.lastMove;
+			if (!move) return;
+
+			if (move.isMax && move.baseMove) move = this.dex.getMove(move.baseMove);
+			if (noCopycat.includes(move.id) || move.isZ || move.isMax) {
+				return false;
+			}
+			this.useMove(move.id, pokemon);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
