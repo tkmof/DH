@@ -363,6 +363,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
 		status: 'frz',
+		shortDesc: "Inflicts Freeze status on the opponent (1/16 Residual damage, halved SpA).",
 		secondary: null,
 		target: "normal",
 		type: "Ice",
@@ -619,7 +620,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		flags: {protect: 1, mirror: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Dazzling Gleam", target);
+			this.add('-anim', source, "Clanging Scales", target);
 		},
 		self: {
 			boosts: {
@@ -693,7 +694,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Cosmic Power", target);
+			this.add('-anim', source, "Iron Defense", target);
 		},
 		secondary: null,
 		target: "self",

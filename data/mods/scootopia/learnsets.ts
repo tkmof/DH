@@ -2015,6 +2015,7 @@ export const Learnsets = {
 	cyllindrake: {
 		learnset: {
 			heavyslam: ["9L1"],
+			stealthrock: ["9L1"],
 			steelroller: ["9L1"],
 			ironhead: ["9L1"],
 			metalclaw: ["9L1"],
