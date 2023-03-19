@@ -661,6 +661,7 @@ export const Learnsets = {
 	cobracotta: {
 		learnset: {
 			powerwhip: ["9L1"],
+			toxic: ["9L1"],
 			petalblizzard: ["9L1"],
 			seedbomb: ["9L1"],
 			bulletseed: ["9L1"],
@@ -4163,6 +4164,7 @@ export const Learnsets = {
 	fenreil: {
 		learnset: {
 			doubleedge: ["9L1"],
+			howl: ["9L1"],
 			bodyslam: ["9L1"],
 			darkpulse: ["9L1"],
 			snarl: ["9L1"],
@@ -4258,7 +4260,6 @@ export const Learnsets = {
 			sleeppowder: ["9L1"],
 			stealthrock: ["9L1"],
 			strengthsap: ["9L1"],
-			bellydrum: ["9L1"],
 			thunderwave: ["9L1"],
 			painsplit: ["9L1"],
 			taunt: ["9L1"],
