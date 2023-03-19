@@ -824,6 +824,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'noctowl').learnset.focusblast = ['8L1'];
     this.modData('Learnsets', 'noctowl').learnset.magisterialwind = ['8L1'];
     this.modData('Learnsets', 'noctowl').learnset.uturn = ['8L1'];
+    this.modData('Learnsets', 'slowking').learnset.chillyreception = ['8L1'];
+    this.modData('Learnsets', 'slowkinggalar').learnset.chillyreception = ['8L1'];
     this.modData('Learnsets', 'lanturn').learnset.tailglow = ['8L1'];
     this.modData('Learnsets', 'bellossom').learnset.weatherball = ['8L1'];
     this.modData('Learnsets', 'politoed').learnset.flipturn = ['8L1'];
@@ -886,6 +888,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'walrein').learnset.iciclecrash = ['8L1'];
     this.modData('Learnsets', 'relicanth').learnset.flipturn = ['8L1'];
     this.modData('Learnsets', 'regirock').learnset.shoreup = ['8L1'];
+    this.modData('Learnsets', 'metagross').learnset.skullbash = ['8L1'];
 
     //gen 4:
     this.modData('Learnsets', 'torterra').learnset.bodypress = ['8L1'];
@@ -1141,6 +1144,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'silvally').learnset.calmmind = ['8L1'];
     this.modData('Learnsets', 'turtonator').learnset.stealthrock = ['8L1'];
     this.modData('Learnsets', 'turtonator').learnset.lavaplume = ['8L1'];
+    this.modData('Learnsets', 'drampa').learnset.chillyreception = ['8L1'];
     this.modData('Learnsets', 'mimikyu').learnset.poltergeist = ['8L1'];
     this.modData('Learnsets', 'tapubulu').learnset.playrough = ['8L1'];
     this.modData('Learnsets', 'tapubulu').learnset.slackoff = ['8L1'];
