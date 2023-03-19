@@ -386,8 +386,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	primeape: {
-		tier: "NU",
-		doublesTier: "(DUU)",
+		tier: "NFE",
 	},
 	growlithe: {
 		tier: "LC",
@@ -1204,8 +1203,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "RU",
 	},
 	dunsparce: {
-		tier: "(PU)",
-		doublesTier: "(DUU)",
+		tier: "LC",
 	},
 	gligar: {
 		tier: "NFE",
@@ -2991,7 +2989,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	bisharp: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	bouffalant: {
@@ -4497,6 +4495,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		//natDexTier: "UU",
 	},
 	squawkabilly: {
+		tier: "NU",
+		doublesTier: "(DUU)",
+		//natDexTier: "RU",
+	},
+	dudunsparce: {
+		tier: "NU",
+		doublesTier: "(DUU)",
+		//natDexTier: "RU",
+	},
+	dudunsparcethreesegment: {
 		tier: "NU",
 		doublesTier: "(DUU)",
 		//natDexTier: "RU",
