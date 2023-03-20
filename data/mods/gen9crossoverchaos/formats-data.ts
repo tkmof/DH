@@ -1,18 +1,18 @@
 export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
   malenia: {
-		tier: "CCOU",
+		tier: "CC OU",
 		doublesTier: "DOU",
 	},
 	kingdedede: {
-		tier: "CCOU",
+		tier: "CC OU",
 		doublesTier: "DOU",
 	},
 	maskeddedede: {
-		tier: "CCUbers",
+		tier: "CC Ubers",
 		doublesTier: "DOU",
 	},
 	zelda: {
-		tier: "CCOU",
+		tier: "CC OU",
 		doublesTier: "DOU",
 	},
 };
