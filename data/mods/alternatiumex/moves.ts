@@ -1,4 +1,32 @@
 export const Moves: {[moveid: string]: MoveData} = {
+	recover: {
+		inherit: true,
+		pp: 10,
+	},
+	softboiled: {
+		inherit: true,
+		pp: 10,
+	},
+	rest: {
+		inherit: true,
+		pp: 10,
+	},
+	milkdrink: {
+		inherit: true,
+		pp: 10,
+	},
+	slackoff: {
+		inherit: true,
+		pp: 10,
+	},
+	roost: {
+		inherit: true,
+		pp: 10,
+	},
+	shoreup: {
+		inherit: true,
+		pp: 10,
+	},
 	triplearrows: {
 		num: -1,
 		accuracy: 100,
@@ -1130,17 +1158,56 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 100,
 		onModifyMove(move, pokemon) {
-			if (pokemon.effectiveWeather() == 'sunnyday' || pokemon.effectiveWeather() == 'desolateland') {
+			if (pokemon.effectiveWeather() == 'snow') {
 				move.basePower *= 1.3;
 			}
 		},
 		category: "Physical",
 		name: "Mountain Gale",
+		shortDesc: "1.3x power in Snow.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		secondary: null,
 		target: "normal",
 		type: "Ice",
+	},
+	psyshieldbash: {
+		num: 828,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Psyshield Bash",
+		shortDesc: "Uses user's Def stat as Atk in damage calculation.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		overrideOffensiveStat: 'def',
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+	},
+	jetpunch: {
+		num: 857,
+		accuracy: 100,
+		basePower: 80,
+		basePowerCallback(pokemon, target) {
+            if(pokemon.getStat('spe') < target.getStat('spe')) return basePower / 2;
+        },
+		category: "Physical",
+		name: "Jet Punch",
+		shortDesc: "If the target is faster than the user: 1/2 power and +1 priority.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		onModifyMove(pokemon, target) {
+			if(pokemon.getStat('spe') < target.getStat('spe')) {
+				priority = 1;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Cool",
 	},
 };
