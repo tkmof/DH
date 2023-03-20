@@ -619,15 +619,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 289,
 	},
 	bubblemane: {
-		const hazards = ['Stealth Rock', 'Spikes', 'Toxic Spikes', 'Sticky Web'];
-		onTryHit(target, source, move) {
-			if (target !== source && hazards.includes(move.name)) {
-				if (!this.boost({spa: 1})) {
-					this.add('-immune', target, '[from] ability: Bubble Mane');
-				}
-				return null;
-			}
-		},
+		onAnyTryMove(target, source, effect) {
+            if (['stealthrock', 'spikes', 'toxicspikes', 'stickyweb'].includes(effect.id)) {
+                this.attrLastMove('[still]');
+				this.boost({spa: 1}, source);
+                this.add('cant', this.effectData.target, 'ability: Damp', effect, '[of] ' + target);
+                return false;
+            }
+        },
 		name: "Bubble Mane",
 		shortDesc: "If a hazard move is used on this Pokemon, it fails and this Pokemon's Special Attack is raised by 1.",
 		rating: 3.5,
@@ -648,7 +647,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	reflectivesurface: {
 		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Fire') {
-				
+				this.add('-immune', target, '[from] ability: Reflective Surface')
+				if (this.runEvent('DragOut', source, target, move)){
+                        source.forceSwitchFlag = true;
+                    }
 				return null;
 			}
 		},

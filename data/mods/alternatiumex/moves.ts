@@ -1380,4 +1380,22 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Fire",
 	},
+	mountaingale: {
+		num: 836,
+		accuracy: 100,
+		basePower: 100,
+		onModifyMove(move, pokemon) {
+			if (pokemon.effectiveWeather() == 'sunnyday' || pokemon.effectiveWeather() == 'desolateland') {
+				move.basePower *= 1.3;
+			}
+		},
+		category: "Physical",
+		name: "Mountain Gale",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+	},
 };
