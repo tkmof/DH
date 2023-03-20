@@ -447,4 +447,24 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},
+	squawkabilly: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	wishiwashilonesome: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	winardin: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	palafin: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	hercuphin: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
 };
