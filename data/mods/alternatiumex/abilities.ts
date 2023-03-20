@@ -576,48 +576,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: -23,
 	},
-	toxicdebris: {
-		onDamagingHit(damage, target, source, move) {
-			const side = source.isAlly(target) ? source.side.foe : source.side;
-			const toxicSpikes = side.sideConditions['toxicspikes'];
-			if (move.category === 'Physical' && (!toxicSpikes || toxicSpikes.layers < 2)) {
-				this.add('-activate', target, 'ability: Toxic Debris');
-				side.addSideCondition('toxicspikes', target);
-			}
-		},
-		name: "Toxic Debris",
-		rating: 3.5,
-		num: 295,
-	},
-	sharpness: {
-		onBasePowerPriority: 19,
-		onBasePower(basePower, attacker, defender, move) {
-			if (move.flags['slicing']) {
-				this.debug('Shapness boost');
-				return this.chainModify(1.5);
-			}
-		},
-		name: "Sharpness",
-		rating: 3.5,
-		num: 292,
-	},
-	hadronengine: {
-		onStart(pokemon) {
-			if (!this.field.setTerrain('electricterrain') && this.field.isTerrain('electricterrain')) {
-				this.add('-activate', pokemon, 'ability: Hadron Engine');
-			}
-		},
-		onModifySpAPriority: 5,
-		onModifySpA(atk, attacker, defender, move) {
-			if (this.field.isTerrain('electricterrain')) {
-				this.debug('Hadron Engine boost');
-				return this.chainModify([5461, 4096]);
-			}
-		},
-		name: "Hadron Engine",
-		rating: 4.5,
-		num: 289,
-	},
 	bubblemane: {
 		onAnyTryMove(target, source, effect) {
             if (['stealthrock', 'spikes', 'toxicspikes', 'stickyweb'].includes(effect.id)) {
@@ -687,5 +645,32 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Ice Age",
 		rating: 4.5,
 		num: -27,
+	},
+	flock: {
+        onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Flying' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Flock boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Flying' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Flock boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Flock",
+		shortDesc: "When this Pokemon has 1/3 HP or less, its Flying-type moves have 1.5x power.",
+		num: -28,
+	},
+	costar: {
+        onStart(pokemon, target) {
+			pokemon.boosts.spe = target.boosts.spe;
+		},
+		name: "Costar",
+		shortDesc: "On switch-in, this Pokemon copies the speed boosts of the opponent.",
+		num: 294,
 	},
 };

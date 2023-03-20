@@ -166,6 +166,7 @@ export const Formats: FormatList = [
 				"Greninja", "Greninja-Ronin", "Imperil", "Hoopa-Ifrit",
 				"Kyurem", "Kyurem-Black", "Kyurem-White", "Xerneas-Dormant", "Xerneas-Justice",
 				"Arcanine-Water Balloon", "Arcanine-Noble", "Avalugg-Prism", "Avalugg-Plated",
+				"Squawkabilly", "Squawkabiluck", "Squawkalone", "Squawkabilly-Yellow",
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
