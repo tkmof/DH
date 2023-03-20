@@ -339,7 +339,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},
-	zoroark: {
+	zoroarkjorogumo: {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},
@@ -412,6 +412,22 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "Alternatium EX",
 	},
 	xerneasjustice: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	arcaninewaterballoon: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	arcaninenoble: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	avaluggprism: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	avaluggplated: {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},

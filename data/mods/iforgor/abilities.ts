@@ -435,7 +435,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: -1024,
 	},
 	akashiarts: {
-		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a move.",
+		shortDesc: "This Pokemon's slicing moves lower the target's Defense by 1.",
 		onDamagingHit(damage, target, source, effect) {
 			this.boost({atk: 1});
 		},

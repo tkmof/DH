@@ -1068,6 +1068,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {mirror: 1, bypasssub: 1, heal: 1},
 		drain: [3, 4],
 	},
+	/*
 	aerialace: {
 		inherit: true,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
@@ -1151,6 +1152,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Special",
 		name: "Chilling Water",
 		shortDesc: "100% chance to lower the target's Attack by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scald", target);
+		},
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -1171,6 +1176,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Physical",
 		name: "Trailblaze",
 		shortDesc: "100% chance to raise the user's Speed by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Trop Kick", target);
+		},
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -1193,6 +1202,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Physical",
 		name: "Aqua Cutter",
 		shortDesc: "High critical hit ratio.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Razor Shell", target);
+		},
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, slicing: 1},
@@ -1209,6 +1222,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Special",
 		name: "Lumina Crash",
 		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psystrike", target);
+		},
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -1228,6 +1245,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Physical",
 		name: "Glaive Rush",
 		shortDesc: "User takes sure-hit 2x damage until its next turn.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Rush", target);
+		},
 		pp: 5,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -1262,6 +1283,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Physical",
 		name: "Ice Spinner",
 		shortDesc: "Ends the effects of terrain.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Triple Axel", target);
+		},
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -1274,7 +1299,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: null,
 		target: "normal",
 		type: "Ice",
-	},
+	},*/
 	freezeshock: {
 		num: 553,
 		accuracy: 100,
@@ -1317,6 +1342,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 80,
 		category: "Special",
 		name: "Tera Blast",
+		shortDesc: "Physical if Atk > SpA.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Techno Blast", target);
+		},
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -1328,5 +1358,26 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: null,
 		target: "normal",
 		type: "Normal",
+	},
+	ragingfury: {
+		num: 833,
+		accuracy: 100,
+		basePower: 50,
+		basePowerCallback(pokemon) {
+			return Math.min(200, 50 + 50 * pokemon.timesAttacked);
+		},
+		category: "Physical",
+		name: "Raging Fury",
+		shortDesc: "+25 power for each time the user was hit. Max 6 hits.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flare Blitz", target);
+		},
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
 	},
 };

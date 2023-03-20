@@ -618,4 +618,72 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4.5,
 		num: 289,
 	},
+	bubblemane: {
+		const hazards = ['Stealth Rock', 'Spikes', 'Toxic Spikes', 'Sticky Web'];
+		onTryHit(target, source, move) {
+			if (target !== source && hazards.includes(move.name)) {
+				if (!this.boost({spa: 1})) {
+					this.add('-immune', target, '[from] ability: Bubble Mane');
+				}
+				return null;
+			}
+		},
+		name: "Bubble Mane",
+		shortDesc: "If a hazard move is used on this Pokemon, it fails and this Pokemon's Special Attack is raised by 1.",
+		rating: 3.5,
+		num: -24,
+	},
+	frenziedmight: {
+		onDamage(damage, target, source, effect) {
+			if (effect.effectType !== 'Move') {
+				if (effect.effectType === 'Ability') this.add('-activate', source, 'ability: ' + effect.name);
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Frenzied Might",
+		shortDesc: "This Pokemon takes halved damage from residual sources.",
+		rating: 4,
+		num: -25,
+	},
+	reflectivesurface: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+				
+				return null;
+			}
+		},
+		name: "Reflective Surface",
+		shortDesc: "This Pokemon forces the attacker out if hit by a Fire move; Fire immunity.",
+		rating: 3.5,
+		num: -26,
+	},
+	iceage: {
+		shortDesc: "This Pokemon takes halved damage from Ice-type attacks. Its own have 1.3x power.",
+		onSourceModifyAtkPriority: 5,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ice') {
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ice') {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ice') {
+				return this.chainModify(1.3);
+			}
+		},
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ice') {
+				return this.chainModify(1.3);
+			}
+		},
+		isBreakable: true,
+		name: "Ice Age",
+		rating: 4.5,
+		num: -27,
+	},
 };
