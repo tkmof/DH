@@ -623,7 +623,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
             if (['stealthrock', 'spikes', 'toxicspikes', 'stickyweb'].includes(effect.id)) {
                 this.attrLastMove('[still]');
 				this.boost({spa: 1}, source);
-                this.add('cant', this.effectData.target, 'ability: Damp', effect, '[of] ' + target);
+                this.add('cant', this.effectData.target, 'ability: Bubble Mane', effect, '[of] ' + target);
                 return false;
             }
         },
