@@ -133,7 +133,7 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 8] Crossover Chaos Gen 9",
+		name: "[Gen 9] Crossover Chaos Gen 9",
 		desc: `Crossover Chaos, a micrometa designed to crossover characters from video game titles.`,
 		threads: [
 			`<a href="https://www.smogon.com/forums/threads/gen-9-crossover-chaos.3711854/#post-9421623">Gen 9 Crossover Chaos</a>`,
