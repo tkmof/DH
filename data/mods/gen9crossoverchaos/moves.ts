@@ -34,7 +34,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		name: "Dedede Hammer Throw",
 		pp: 10,
 		priority: 0,
-		flags: flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1},
     beforeTurnCallback(pokemon) {
 			pokemon.addVolatile('dededehammerthrow');
 		},
