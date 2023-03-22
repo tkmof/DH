@@ -1191,8 +1191,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: 857,
 		accuracy: 100,
 		basePower: 80,
-		basePowerCallback(pokemon, target) {
-            if(pokemon.getStat('spe') < target.getStat('spe')) return basePower / 2;
+		basePowerCallback(pokemon, target, move) {
+            if(pokemon.getStat('spe') < target.getStat('spe')) return move.basePower / 2;
         },
 		category: "Physical",
 		name: "Jet Punch",
@@ -1200,9 +1200,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		onModifyMove(pokemon, target) {
+		onModifyMove(move, pokemon, target) {
 			if(pokemon.getStat('spe') < target.getStat('spe')) {
-				priority = 1;
+				move.priority = 1;
+				return move.basePower;
 			}
 		},
 		secondary: null,
