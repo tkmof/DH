@@ -266,41 +266,50 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 
 	persistence: { 
+	/*
 		onBeforeMove(target, source, move) {
 			if (!source || source === target || move.category === 'Status' || move.name === "Counter") return;
 			const moveType = move.id === 'hiddenpower' ? target.hpType : move.type;
 			if (move.flags['charge'] && !target.volatiles['twoturnmove']) {
 				this.boost({atk: 1});
-			} /*else if (!this.dex.getImmunity(moveType, source)) {
+			} else if (!this.dex.getImmunity(moveType, source)) {
 				this.boost({atk: 1});
 			}
 			(move as any).persistence = true;
-			*/
 		},
 		onAfterMove(source, target, move) {
 			if (!source || source === target || move.category === 'Status' || move.name === "Counter") return;
+         if (!move.flags['charge']) return;
 			if(source.moveThisTurnResult === null || source.moveThisTurnResult === undefined) return;
 			if(!source.moveThisTurnResult) {
 				this.boost({atk: 1});
 			} else if(target.moveThisTurnResult) {
 			}
 		},
+*/
 		name: "Persistence",
-		desc: "If the user chooses an attacking move but doesn't damage the target on the same turn, raises the user's Attack by 1 stage.",
-		shortDesc: "If the user doesn't damage the target with an attacking move, raises user's Attack by 1 stage.",
+		desc: "If the user chooses an attacking move but doesn't damage the target on the same turn, raises the user's Attack by 1 stage. This effect doesn't occur if this Pokemon is charging.",
+		shortDesc: "(Non-functional placeholder) If the user doesn't damage the target with an attacking move, raises user's Attack by 1 stage.",
 		num: -111,
 	},
-
+		
 	thunderthighs: {
 		onBasePowerPriority: 23,
 		onModifyMove(critRatio, source, target, move) {
-			if (kickMoves.includes(move.id)) {
-				move.basePower *= 1.2;
+			if (move.name === 'Jump Kick' || move.name === 'High Jump Kick' || move.name === 'Mega Kick' || move.name === 'Double Kick' || move.name === 'Trop Kick' || move.name === 'Blaze Kick' || move.name === 'Low Kick' || move.name === 'Stick Kick' || move.name === 'Thunderous Kick') {
+				this.debug('Thunder Thighs boost');
+				return this.chainModify([0x1333, 0x1000]);
 			}
+		},
+		onSourceModifyAccuracyPriority: 9,
+		onSourceModifyAccuracy(accuracy, move) {
+			if (typeof accuracy !== 'number' && (move.name === 'Jump Kick' || move.name === 'High Jump Kick' || move.name === 'Mega Kick' || move.name === 'Double Kick' || move.name === 'Trop Kick' || move.name === 'Blaze Kick' || move.name === 'Low Kick' || move.name === 'Stick Kick' || move.name === 'Thunderous Kick')) return;
+			this.debug('compoundeyes - enhancing accuracy');
+			return accuracy * 1.3;
 		},
 		name: "Thunder Thighs",
 		desc: "Moves with the word 'kick' in their name have their power multiplied by 1.2x.",
-		shortDesc: "Kicking moves deal 1.2x damage.",
+		shortDesc: "Kicking moves deal 1.2x damage and can't miss.",
 		num: -112,
 	},
 
@@ -433,5 +442,41 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				this.add('-start', pokemon, 'typechange', newType, '[from] ability: Mimicry');
 			},
 		},
+	},
+	polarice: {
+		desc: "On switch-in, the weather becomes Hail. This weather remains in effect until this Ability is no longer active for any Pokémon, or the weather is changed by Delta Stream, Desolate Land or Primordial Sea.",
+		shortDesc: "On switch-in, hail begins until this Ability is not active in battle.",
+		onStart(source) {
+			if (this.field.setWeather('hail')) {
+				this.add('-message', `${source.name} created an unrelenting winter storm!`);
+				this.hint("Polar Ice doesn't wear off until the user leaves the field!");
+				this.field.weatherData.duration = 0;
+			} else if (this.field.isWeather('hail') && this.field.weatherData.duration !== 0) {
+				this.add('-ability', source, 'Polar Ice');
+				this.add('-message', `${source.name} created an unrelenting winter storm!`);
+				this.hint("Polar Ice doesn't wear off until the user leaves the field!");
+				this.field.weatherData.source = source;
+				this.field.weatherData.duration = 0;
+			}
+		},
+		onAnySetWeather(target, source, weather) {
+			if (source.hasAbility('polarice') && weather.id === 'hail') return;
+			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
+			if (this.field.getWeather().id === 'hail' && !strongWeathers.includes(weather.id)) return false;
+		},
+		onEnd(pokemon) {
+			if (this.field.weatherData.source !== pokemon) return;
+			for (const target of this.getAllActive()) {
+				if (target === pokemon) continue;
+				if (target.hasAbility('polarice')) {
+					this.field.weatherData.source = target;
+					return;
+				}
+			}
+			this.field.clearWeather();
+		},
+		name: "Polar Ice",
+		rating: 4.5,
+		num: -49,
 	},
 };

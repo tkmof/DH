@@ -59,16 +59,14 @@ exports.wsdeflate = {
  */
 exports.ssl = null;
 
-/*
 // example:
-exports.ssl = {
-	port: 443,
-	options: {
-		key: './config/ssl/privkey.pem',
-		cert: './config/ssl/fullchain.pem',
-	},
-};
-*/
+// exports.ssl = {
+	// port: 443,
+	// options: {
+		// key: './config/ssl/privkey.pem',
+		// cert: './config/ssl/fullchain.pem',
+	// },
+// };
 
 /*
 Main's SSL deploy script from Let's Encrypt looks like:
@@ -170,7 +168,7 @@ Y929lRybWEiKUr+4Yw2O1W0CAwEAAQ==
  */
 exports.routes = {
 	root: 'dragonheavenserver.herokuapp.com',
-	client: 'dragonheaven.herokuapp.com',
+	client: 'play.pokemonshowdown.com',
 	dex: 'dex.pokemonshowdown.com',
 	replays: 'replay.pokemonshowdown.com',
 };
@@ -286,22 +284,22 @@ exports.restrictLinks = true;
   * chat modchat - default minimum group for speaking in chatrooms; changeable with /modchat
   * @type {false | string}
  */
-exports.chatmodchat = '+',
+exports.chatmodchat = '+';
 /**
  * battle modchat - default minimum group for speaking in battles; changeable with /modchat
  * @type {false | string}
  */
-exports.battlemodchat = false,
+exports.battlemodchat = false;
 /**
  * pm modchat - minimum group for PMing other users, challenging other users
  * @type {false | string}
  */
-exports.pmmodchat = false,
+exports.pmmodchat = false;
 /**
  * ladder modchat - minimum group for laddering
  * @type {false | GroupSymbol}
  */
-exports.laddermodchat = false,
+exports.laddermodchat = false;
 
 /**
  * forced timer - force the timer on for all battles

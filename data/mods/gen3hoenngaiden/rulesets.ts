@@ -17,4 +17,17 @@ export const Formats: {[k: string]: FormatData} = {
 			this.add('-message', `https://www.smogon.com/forums/threads/hoenn-gaiden-pet-mod-of-the-season-slate-8-concept-voting.3681339/`);
 		},
 	},
+	hgouteambuilder: {
+		effectType: 'Rule',
+		name: 'HG OU Teambuilder',
+	},
+	illegalbatonpassclause: {
+		effectType: 'ValidatorRule',
+		name: 'Illegal Baton Pass Clause',
+		desc: "Stops teams from having a Pok&eacute;mon with Baton Pass and Mean Look/Spider Web/Block/Ingrain",
+		banlist: ['Baton Pass + Block', 'Baton Pass + Mean Look', 'Baton Pass + Spider Web', 'Baton Pass + Ingrain'],
+		onBegin() {
+			this.add('rule', 'Illegal Baton Pass Clause: Do not allow Baton Pass with the combination of Mean Look/Spider Web/Block/Ingrain');
+		},
+	},
 };

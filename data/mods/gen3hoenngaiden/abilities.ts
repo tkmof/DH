@@ -240,16 +240,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		num: 225,
 	},
 	sandveil: {
-		desc: "If Sandstorm is active, this Pokemon's defence is multiplied by 1.1. This Pokemon takes no damage from Sandstorm.",
-		shortDesc: "If Sandstorm is active, this Pokemon's defence is 1.1x; immunity to Sandstorm.",
-		onImmunity(type, pokemon) {
-			if (type === 'sandstorm') return false;
-		},
-		onModifyDef(def, pokemon) {
-			if (this.field.isWeather('sandstorm')) {
-				return this.chainModify(1.1);
-			}
-		},
+		desc: "This Pokemon can not be damaged by sandstorm.",
+		shortDesc: "This Pokemon can not be damaged by sandstorm.",
 		onImmunity(type, pokemon) {
 			if (type === 'sandstorm') return false;
 		},
@@ -259,15 +251,12 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		num: 146,
 	},
 	icebody: {
-		onWeather(target, source, effect) {
-			if (effect.id === 'hail') {
-				this.heal(target.baseMaxhp / 16);
-			}
-		},
 		onImmunity(type, pokemon) {
 			if (type === 'hail') return false;
 		},
 		isNonstandard: null,
+		desc: "This Pokemon can not be damaged by hail.",
+		shortDesc: "This Pokemon can not be damaged by hail.",
 		gen: 3,
 		name: "Ice Body",
 		rating: 1,
@@ -315,7 +304,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.galvanizeBoosted) return this.chainModify(1.2);
 		},
-		inherit: true,
 		isNonstandard: null,
 		gen: 3,
 		name: "Galvanize",
@@ -512,6 +500,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Inner Focus",
+		shortDesc: "This Pokemon cannot be made to flinch. Immune to Intimidate.",
 		rating: 1.5,
 		num: 39,
 	},
@@ -537,6 +526,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Own Tempo",
+		shortDesc: "This Pokemon cannot be confused. Immune to Intimidate.",
 		rating: 1.5,
 		num: 20,
 	},
@@ -564,6 +554,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Oblivious",
+		shortDesc: "This Pokemon cannot be infatuated. Immune to Intimidate.",
 		rating: 1.5,
 		num: 12,
 	},
@@ -597,10 +588,14 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		num: 169,
 		gen: 3,
 	},
-	gluttony: {
-		name: "Gluttony",
-		rating: 1.5,
-		num: 82,
+	// gluttony: {
+	// 	name: "Gluttony",
+	// 	rating: 1.5,
+	// 	num: 82,
+	// 	gen: 3,
+	// },
+	comatose: {
+		inherit: true,
 		gen: 3,
 	},
 };

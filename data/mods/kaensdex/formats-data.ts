@@ -1,11 +1,11 @@
 export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 
-woodite: {
-		tier: "KaensDex",
+    woodite: {
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	manteaf: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	fasmiwood: {
@@ -13,11 +13,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	smice: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	ratevil: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	burstrat: {
@@ -25,11 +25,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	doplash: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	makid: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	merdolph: {
@@ -37,7 +37,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	princeguin: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	kinguin: {
@@ -45,15 +45,19 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	ekidna: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	porcusquill: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
-	mop: {
+	porcusquillmega: {
 		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	mop: {
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	mopper: {
@@ -61,7 +65,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	puppessum: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	grimssum: {
@@ -69,7 +73,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	spiball: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	scopiball: {
@@ -77,7 +81,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	navird: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	peckbeard: {
@@ -85,7 +89,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	bask: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	peayes: {
@@ -93,11 +97,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	weaworm: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	lilfly: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	koafly: {
@@ -105,7 +109,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	puptwin: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	duog: {
@@ -113,7 +117,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	bureep: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	parllama: {
@@ -121,7 +125,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	debi: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	deecrust: {
@@ -129,7 +133,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	pickynest: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	vulcdor: {
@@ -137,7 +141,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	buroach: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	bugler: {
@@ -149,7 +153,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	rack: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	mountse: {
@@ -157,7 +161,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	lacorn: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	antney: {
@@ -165,7 +169,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	hairpu: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	sockorm: {
@@ -173,7 +177,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	kibaion: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	kibasol: {
@@ -181,7 +185,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	gnodog: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	dressog: {
@@ -189,7 +193,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	tigle: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	biitora: {
@@ -197,7 +201,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	psyguana: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	forguana: {
@@ -205,7 +209,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	timk: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	dynabite: {
@@ -213,7 +217,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	positt: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	frogassin: {
@@ -225,7 +229,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	wospark: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	ravesp: {
@@ -233,7 +237,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	cabbitt: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	haresprout: {
@@ -241,11 +245,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	seerd: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	evialden: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	ostranch: {
@@ -253,10 +257,14 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	pasuragu: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	grussgu: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	grussgumega: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
@@ -265,7 +273,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	nerdium: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	smartish: {
@@ -273,7 +281,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	higarden: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	unimount: {
@@ -281,7 +289,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	birnal: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	yeagle: {
@@ -289,11 +297,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	flysh: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	seaplane: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	airpier: {
@@ -301,7 +309,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	likaba: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	sucabra: {
@@ -309,7 +317,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	mousse: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	donter: {
@@ -317,11 +325,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	melops: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	harvetops: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	pentamelop: {
@@ -329,7 +337,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	scarferret: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	lovefume: {
@@ -337,7 +345,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	smolle: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	molvel: {
@@ -345,7 +353,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	toxtaur: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	venotauro: {
@@ -353,7 +361,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	helmdillo: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	rescurer: {
@@ -361,11 +369,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	crimske: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	snagant: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	zhulong: {
@@ -373,7 +381,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	yufo: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	spavader: {
@@ -381,7 +389,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	grichick: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	grileo: {
@@ -389,7 +397,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	sbusho: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	pangearth: {
@@ -397,7 +405,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	ankylonite: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	champkylo: {
@@ -405,7 +413,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	slomoss: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	milomoss: {
@@ -413,7 +421,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	rampeck: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	terroccer: {
@@ -421,7 +429,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	tifrost: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	smilofrost: {
@@ -432,8 +440,12 @@ woodite: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
-	paramer: {
+	vizcachumega: {
 		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	paramer: {
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	toolsaur: {
@@ -441,7 +453,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	neuro: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	brancell: {
@@ -449,11 +461,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	freezegon: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	snoak: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	coldrake: {
@@ -461,7 +473,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	capowt: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	capoedar: {
@@ -469,7 +481,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	warcon: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	istrebitel: {
@@ -477,11 +489,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	voltcro: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	wirechomp: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	thungator: {
@@ -489,11 +501,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	scalpick: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	roostlax: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	eagatrice: {
@@ -501,7 +513,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	theri: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	theriscyno: {
@@ -513,7 +525,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	moclaw: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	jawlusk: {
@@ -521,7 +533,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	tumbna: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	plesioskul: {
@@ -533,7 +545,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	thermaque: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	thermandril: {
@@ -541,7 +553,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	tamantula: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	spideth: {
@@ -552,12 +564,16 @@ woodite: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
-	chillma: {
+	abomigomega: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	chillma: {
+		tier: "LC",
+		doublesTier: "KDD",
+	},
 	wintber: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	evergrowl: {
@@ -565,7 +581,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	stontler: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	balatone: {
@@ -573,7 +589,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	coayena: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	pherosmoke: {
@@ -581,7 +597,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	octovase: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	cthulhurn: {
@@ -589,7 +605,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	shahood: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	karakasa: {
@@ -597,7 +613,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	grag: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	kimokus: {
@@ -609,11 +625,11 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	cowpy: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	cowork: {
-		tier: "KaensDex",
+		tier: "NFE",
 		doublesTier: "KDD",
 	},
 	barbecow: {
@@ -621,7 +637,7 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	hoorel: {
-		tier: "KaensDex",
+		tier: "LC",
 		doublesTier: "KDD",
 	},
 	baishark: {
@@ -645,6 +661,98 @@ woodite: {
 		doublesTier: "KDD",
 	},
 	skyradise: {
+		tier: "KaensDexUber",
+		doublesTier: "KDD",
+	},
+	ironsun: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	crazymoon: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	jumpfurr: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	surivexe: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	eeveecile: {
+		tier: "LC",
+		doublesTier: "KDD",
+	},
+	vaporeoncile: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	jolteoncile: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	flareoncile: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	espeoncile: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	umbreoncile: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	leafeoncile: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	glaceoncile: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	sylveoncile: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	qilineon: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	fossileon: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	crobat: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	crobatmega: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	cupida: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	mightyena: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	mightyenamega: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	drapede: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	quetzal: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	granjaguar: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
