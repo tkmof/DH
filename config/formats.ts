@@ -51,6 +51,9 @@ export const Formats: FormatList = [
 				"Maushold-Raider", "Maushold-Extended", "Oinkologne", "Oinkologne-F", "Dudunsparce", "Dududunsparce",
 				"Greninja", "Greninja-Ronin", "Imperil", "Hoopa-Ifrit",
 				"Kyurem", "Kyurem-Black", "Kyurem-White", "Xerneas-Dormant", "Xerneas-Justice",
+				"Arcanine-Water Balloon", "Arcanine-Noble", "Avalugg-Prism", "Avalugg-Plated",
+				"Squawkabilly", "Squawkabiluck", "Squawkalone", "Squawkabilly-Yellow",
+				"Wishiwashi-Lonesome", "Winardin", "Palafin", "Hercuphin",
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
