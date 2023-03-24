@@ -77,5 +77,13 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "medicham").learnset.closecombat = ["6L1"];
 		this.modData("Learnsets", "medicham").learnset.gunkshot = ["6L1"];
 		this.modData("Learnsets", "medicham").learnset.healingwish = ["6L1"];
+		this.modData("Learnsets", "beedrill").learnset.earthquake = ["6L1"];
+		this.modData("Learnsets", "beedrill").learnset.stoneedge = ["6L1"];
+		this.modData("Learnsets", "beedrill").learnset.rockslide = ["6L1"];
+		this.modData("Learnsets", "beedrill").learnset.smackdown = ["6L1"];
+		this.modData("Learnsets", "beedrill").learnset.stealthrock = ["6L1"];
+		this.modData("Learnsets", "mawile").learnset.firepunch = ["6L1"];
+		this.modData("Learnsets", "mawile").learnset.rockslide = ["6L1"];
+		this.modData("Learnsets", "mawile").learnset.slackoff = ["6L1"];
 	},
 };

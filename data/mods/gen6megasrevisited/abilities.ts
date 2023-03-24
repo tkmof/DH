@@ -302,6 +302,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Armor Tail",
+    	shortDesc: "While this Pokemon is active, allies are protected from opposing priority moves.",
 		rating: 2.5,
 		gen: 6,
 	},
@@ -335,8 +336,25 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Bug Zapper",
+    	shortDesc: "This Pokemon is immune to Bug-type moves and traps the foe it hit by one.",
 		rating: 5,
 	},
+	exoskeleton: {
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.category === 'Physical') {
+				return this.chainModify(0.5);
+			}
+		},
+		onDamage(damage, target, source, effect) {
+			if (effect && (effect.id === 'stealthrock' || effect.id === 'spikes')) {
+				return damage / 2;
+			}
+		},
+		name: "Exoskeleton",
+    	shortDesc: "This Pokemon takes halved damage from hazards and physical moves.",
+		rating: 4,
+	},
+
 	
 /*	
 // ngas is so cringe
