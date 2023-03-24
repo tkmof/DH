@@ -57,7 +57,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	pinsirmega: {
 		inherit: true,
 		types: ["Bug", "Ice"],
-		baseStats: {hp: 65, atk: 160, def: 110, spa: 55, spd: 85, spe: 125},
+		baseStats: {hp: 65, atk: 150, def: 110, spa: 80, spd: 85, spe: 110},
 		abilities: {0: "Mountaineer"},
 	},	
 	gengarmega: {
@@ -96,6 +96,41 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Poison"],
 		baseStats: {hp: 100, atk: 145, def: 120, spa: 85, spd: 115, spe: 70},
 		abilities: {0: "Poison Touch"},
+	},	
+	manectricmega: {
+		inherit: true,
+		types: ["Electric"],
+		baseStats: {hp: 70, atk: 75, def: 80, spa: 135, spd: 85, spe: 130},
+		abilities: {0: "Bug Zapper"},
+	},	
+	absolmega: {
+		inherit: true,
+		types: ["Dark", "Fairy"],
+		baseStats: {hp: 65, atk: 130, def: 60, spa: 135, spd: 60, spe: 115},
+		abilities: {0: "Neuroforce"},
+	},	
+	medichammega: {
+		inherit: true,
+		types: ["Fighting", "Psychic"],
+		baseStats: {hp: 60, atk: 60, def: 100, spa: 90, spd: 100, spe: 100},
+		abilities: {0: "Brain Power"},
+	},	
+	sableyemega: {
+		inherit: true,
+		types: ["Ghost", "Dark"],
+		baseStats: {hp: 50, atk: 95, def: 115, spa: 85, spd: 115, spe: 20},
+	},	
+	beedrillmega: {
+		inherit: true,
+		types: ["Bug", "Rock"],
+		baseStats: {hp: 65, atk: 145, def: 85, spa: 45, spd: 85, spe: 75},
+		abilities: {0: "Exoskeleton"},
+	},	
+	mawilemega: {
+		inherit: true,
+		types: ["Steel", "Fairy"],
+		baseStats: {hp: 50, atk: 125, def: 125, spa: 55, spd: 95, spe: 30},
+		abilities: {0: "Tough Claws"},
 	},	
 	
 // Gen 6 Stuff

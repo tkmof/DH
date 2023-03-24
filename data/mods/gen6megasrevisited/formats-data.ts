@@ -84,9 +84,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	beedrillmega: {
-		randomBattleMoves: ["xscissor", "swordsdance", "uturn", "poisonjab", "drillrun", "knockoff"],
+		randomBattleMoves: ["uturn", "stoneedge", "roost", "knockoff", "defog", "earthquake"],
 		randomDoubleBattleMoves: ["xscissor", "uturn", "substitute", "poisonjab", "drillrun", "knockoff", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	pidgey: {
@@ -102,9 +102,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	pidgeotmega: {
-		randomBattleMoves: ["roost", "heatwave", "uturn", "hurricane", "defog"],
+		randomBattleMoves: ["roost", "heatwave", "uturn", "hurricane", "focusblast"],
 		randomDoubleBattleMoves: ["tailwind", "heatwave", "uturn", "hurricane", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	rattata: {
@@ -1669,7 +1669,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	sableyemega: {
 		randomBattleMoves: ["recover", "willowisp", "darkpulse", "calmmind", "shadowball"],
 		randomDoubleBattleMoves: ["fakeout", "knockoff", "darkpulse", "shadowball", "willowisp", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	mawile: {
@@ -1679,9 +1679,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	mawilemega: {
-		randomBattleMoves: ["swordsdance", "ironhead", "firefang", "substitute", "playrough", "suckerpunch", "knockoff", "focuspunch"],
+		randomBattleMoves: ["swordsdance", "ironhead", "firepunch", "slackoff", "playrough", "suckerpunch", "knockoff", "rockslide"],
 		randomDoubleBattleMoves: ["swordsdance", "ironhead", "firefang", "substitute", "playrough", "suckerpunch", "knockoff", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	aron: {
@@ -1706,15 +1706,15 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "LC Uber",
 	},
 	medicham: {
-		randomBattleMoves: ["highjumpkick", "drainpunch", "zenheadbutt", "icepunch", "bulletpunch"],
+		randomBattleMoves: ["closecombat", "healingwish", "zenheadbutt", "icepunch", "bulletpunch"],
 		randomDoubleBattleMoves: ["highjumpkick", "drainpunch", "zenheadbutt", "icepunch", "bulletpunch", "protect", "fakeout"],
 		tier: "RU",
 		doublesTier: "(DUU)",
 	},
 	medichammega: {
-		randomBattleMoves: ["highjumpkick", "zenheadbutt", "thunderpunch", "icepunch", "fakeout"],
+		randomBattleMoves: ["focusblast", "psyshock", "vacuumwave", "thunderbolt", "shadowball"],
 		randomDoubleBattleMoves: ["highjumpkick", "drainpunch", "zenheadbutt", "icepunch", "bulletpunch", "protect", "fakeout"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	electrike: {
@@ -1729,7 +1729,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	manectricmega: {
 		randomBattleMoves: ["voltswitch", "thunderbolt", "hiddenpowerice", "hiddenpowergrass", "overheat"],
 		randomDoubleBattleMoves: ["voltswitch", "thunderbolt", "hiddenpowerice", "hiddenpowergrass", "overheat", "flamethrower", "snarl", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	plusle: {
@@ -2021,7 +2021,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	absolmega: {
 		randomBattleMoves: ["swordsdance", "suckerpunch", "knockoff", "fireblast", "superpower", "pursuit", "playrough", "icebeam"],
 		randomDoubleBattleMoves: ["swordsdance", "suckerpunch", "knockoff", "fireblast", "superpower", "protect", "playrough"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	snorunt: {
