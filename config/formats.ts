@@ -573,7 +573,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'gen3hoenngaiden',
-		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod', 'HG OU Teambuilder'],
+		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod'],
 		banlist: ['Uber', 'Air Balloon'],
 		unbanlist: [
 			//Abilities
@@ -589,7 +589,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen3hoenngaiden',
 		searchShow: false,
-		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod', 'HG UU Teambuilder'],
+		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod'],
 		banlist: [
 				'Uber', 'OU', 'UUBL', 'Snow Warning', 'Air Balloon',
 				'Babiri Berry', 'Charti Berry', 'Chilan Berry', 'Chople Berry', 'Coba Berry', 'Colbur Berry', 
