@@ -591,7 +591,7 @@ export const Formats: FormatList = [
 		searchShow: false,
 		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod', 'HG UU Teambuilder'],
 		banlist: [
-				'Uber', 'OU', 'UUBL', 'Snow Warning', 'Air Balloon'
+				'Uber', 'OU', 'UUBL', 'Snow Warning', 'Air Balloon',
 				'Babiri Berry', 'Charti Berry', 'Chilan Berry', 'Chople Berry', 'Coba Berry', 'Colbur Berry', 
 				'Haban Berry', 'Kasib Berry', 'Kebia Berry', 'Occa Berry', 'Passho Berry', 'Payapa Berry', 
 				'Rindo Berry', 'Roseli Berry', 'Shuca Berry', 'Tanga Berry', 'Wacan Berry', 'Yache Berry',
