@@ -587,7 +587,7 @@ export const Formats: FormatList = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-pet-mod-of-the-season.3714737/">Hoenn Gaiden on Smogon Forums</a>`,
 		],
 
-		mod: 'gen3hoenngaiden',
+		mod: 'gen3uuhoenngaiden',
 		searchShow: false,
 		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod'],
 		banlist: [

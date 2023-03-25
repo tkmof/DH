@@ -1139,12 +1139,12 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	lugia: {
 		randomBattleMoves: ["aeroblast", "calmmind", "earthquake", "icebeam", "recover", "substitute", "thunderbolt", "toxic"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	hooh: {
 		randomBattleMoves: ["calmmind", "earthquake", "hiddenpowerrock", "sacredfire", "shadowball", "thunderbolt", "recover", "substitute", "toxic"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	celebi: {
 		randomBattleMoves: ["batonpass", "calmmind", "healbell", "hiddenpowergrass", "leechseed", "psychic", "recover"],
@@ -1734,27 +1734,27 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	latias: {
 		randomBattleMoves: ["calmmind", "dragonclaw", "hiddenpowerfire", "recover", "refresh", "toxic"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	latios: {
 		randomBattleMoves: ["calmmind", "dragonclaw", "hiddenpowerfire", "recover", "refresh", "thunderbolt"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	kyogre: {
 		randomBattleMoves: ["calmmind", "icebeam", "rest", "sleeptalk", "surf", "thunder", "waterspout"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	groudon: {
 		randomBattleMoves: ["earthquake", "hiddenpowerghost", "overheat", "rockslide", "substitute", "swordsdance", "thunderwave"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	rayquaza: {
 		randomBattleMoves: ["dragondance", "earthquake", "extremespeed", "hiddenpowerflying", "overheat", "rockslide"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	jirachi: {
 		randomBattleMoves: ["bodyslam", "calmmind", "firepunch", "protect", "psychic", "substitute", "thunderbolt", "wish"],
@@ -1764,17 +1764,17 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	deoxys: {
 		randomBattleMoves: ["extremespeed", "firepunch", "icebeam", "psychoboost", "shadowball", "superpower"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	deoxysattack: {
 		randomBattleMoves: ["extremespeed", "firepunch", "psychoboost", "shadowball", "superpower"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	deoxysdefense: {
 		randomBattleMoves: ["nightshade", "recover", "spikes", "taunt", "toxic"],
 		tier: "Uber",
-		rank: "Banned",
+		rank: "Unranked",
 	},
 	deoxysspeed: {
 		randomBattleMoves: ["calmmind", "icebeam", "psychic", "recover", "shadowball", "spikes", "superpower", "taunt", "toxic"],
