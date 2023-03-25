@@ -165,14 +165,14 @@ export const Scripts: ModdedBattleScriptsData = {
 		// list Pokemon by VR rank
 		for (const id in this.dataCache.Pokedex) {
 			if (this.modData('FormatsData', id) && this.modData('FormatsData', id).tier !== 'Uber') {
-				if (this.ruleTable.has('hgouteambuilder')) {
+				if (this.ruleTable('hgouteambuilder')) {
 					if (this.modData('FormatsData', id).rankou !== 'Unranked') {
 						this.modData('FormatsData', id).tier = this.modData('FormatsData', id).rankou;
 					} else {
 						this.modData('FormatsData', id).tier = 'Unranked';
 					}
 				}
-				else if (this.ruleTable.has('hguuteambuilder')) {
+				else if (this.ruleTable('hguuteambuilder')) {
 					if (this.modData('FormatsData', id).rankuu !== 'Unranked') {
 						this.modData('FormatsData', id).tier = this.modData('FormatsData', id).rankuu;
 					} else {
