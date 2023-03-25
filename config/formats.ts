@@ -569,11 +569,11 @@ export const Formats: FormatList = [
 		name: "[Gen 3] Hoenn Gaiden",
 		desc: ["<b>Hoenn Gaiden</b>: A Gen 3 pet mod that aims to devamp Gen 4-8 Pokemon, moves and items into the Gen 3 mechanics."],
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-the-gen-3-pet-mod-round-1-discussion.3681339/">Hoenn Gaiden on Smogon Forums</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-pet-mod-of-the-season.3714737/">Hoenn Gaiden on Smogon Forums</a>`,
 		],
 
 		mod: 'gen3hoenngaiden',
-		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod', 'Illegal Baton Pass Clause'],
+		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod', 'HG OU Teambuilder'],
 		banlist: ['Uber', 'Air Balloon'],
 		unbanlist: [
 			//Abilities
@@ -584,13 +584,18 @@ export const Formats: FormatList = [
 		name: "[Gen 3] Hoenn Gaiden UU",
 		desc: ["<b>Hoenn Gaiden</b>: A Gen 3 pet mod that aims to devamp Gen 4-8 Pokemon, moves and items into the Gen 3 mechanics."],
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-the-gen-3-pet-mod-round-1-discussion.3681339/">Hoenn Gaiden on Smogon Forums</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-pet-mod-of-the-season.3714737/">Hoenn Gaiden on Smogon Forums</a>`,
 		],
 
-		mod: 'gen3uuhoenngaiden',
+		mod: 'gen3hoenngaiden',
 		searchShow: false,
-		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod', 'Illegal Baton Pass Clause'],
-		banlist: ['Uber', 'OU', 'UUBL', 'Snow Warning', 'Air Balloon'],
+		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod', 'HG UU Teambuilder'],
+		banlist: [
+				'Uber', 'OU', 'UUBL', 'Snow Warning', 'Air Balloon'
+				'Babiri Berry', 'Charti Berry', 'Chilan Berry', 'Chople Berry', 'Coba Berry', 'Colbur Berry', 
+				'Haban Berry', 'Kasib Berry', 'Kebia Berry', 'Occa Berry', 'Passho Berry', 'Payapa Berry', 
+				'Rindo Berry', 'Roseli Berry', 'Shuca Berry', 'Tanga Berry', 'Wacan Berry', 'Yache Berry',
+		],
 		unbanlist: [],
 	},
 	{

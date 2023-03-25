@@ -8,7 +8,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		// for micrometas to only show custom tiers
 		excludeStandardTiers: true,
 		// only to specify the order of custom tiers
-		customTiers: ['New','S1','S2','A1','A2','A3','A4','B1','B2','B3','B4','C1','C2','C3','D1','D2','E1','E2','Unranked','NFE','LC','Uber'],
+		customTiers: ['New','S1','S2','A1','A2','A3','A4','B1','B2','B3','B4','C1','C2','C3','D1','D2','E1','E2','Unranked','NFE','LC','Banned'],
 	},
 
 	// Don't remove this function; it handles Silvally's Multi-Attack type
@@ -165,10 +165,19 @@ export const Scripts: ModdedBattleScriptsData = {
 		// list Pokemon by VR rank
 		for (const id in this.dataCache.Pokedex) {
 			if (this.modData('FormatsData', id) && this.modData('FormatsData', id).tier !== 'Uber') {
-				if (this.modData('FormatsData', id).rank !== 'Unranked') {
-					this.modData('FormatsData', id).tier = this.modData('FormatsData', id).rank;
-				} else {
-					this.modData('FormatsData', id).tier = 'Unranked';
+				if (this.ruleTable.has('hgouteambuilder')) {
+					if (this.modData('FormatsData', id).rankou !== 'Unranked') {
+						this.modData('FormatsData', id).tier = this.modData('FormatsData', id).rankou;
+					} else {
+						this.modData('FormatsData', id).tier = 'Unranked';
+					}
+				}
+				else if (this.ruleTable.has('hguuteambuilder')) {
+					if (this.modData('FormatsData', id).rankuu !== 'Unranked') {
+						this.modData('FormatsData', id).tier = this.modData('FormatsData', id).rankuu;
+					} else {
+						this.modData('FormatsData', id).tier = 'Unranked';
+					}
 				}
 			}
 		};
@@ -1044,6 +1053,8 @@ export const Scripts: ModdedBattleScriptsData = {
 		delete this.modData('Learnsets', 'roselia').learnset.sleeppowder;
 		delete this.modData('Learnsets', 'roserade').learnset.sleeppowder;
 
+		delete this.modData('Learnsets', 'voltorbhisui').learnset.headbutt;
+		delete this.modData('Learnsets', 'voltorbhisui').learnset.refresh;
 		delete this.modData('Learnsets', 'electrodehisui').learnset.headbutt;
 		delete this.modData('Learnsets', 'electrodehisui').learnset.refresh;
 
