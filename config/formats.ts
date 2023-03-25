@@ -136,6 +136,26 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 9] Crossover Chaos Gen 9",
+		desc: `Crossover Chaos, a micrometa designed to crossover characters from video game titles.`,
+		threads: [
+			`<a href="https://www.smogon.com/forums/threads/gen-9-crossover-chaos.3711854/#post-9421623">Gen 9 Crossover Chaos</a>`,
+		],
+		mod: 'gen9crossoverchaos',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', /* 'Mega Data Mod' */],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['CC OU', 'CC Ubers'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Crossover Chaos Gen 9.'];
+				}
+			}
+		},
+	},
+	{
 		name: "[Gen 8] Fusion Evolution Gen 9",
 		desc: `Fusion Evolution.`,
 		threads: [
