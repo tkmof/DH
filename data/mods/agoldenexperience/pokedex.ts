@@ -655,10 +655,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Grass", "Fairy"],
 		baseStats: {hp: 75, atk: 50, def: 95, spa: 110, spd: 100, spe: 60},
 	},
-	sudowoodo: {
-		inherit: true,
-		baseStats: {hp: 90, atk: 125, def: 135, spa: 30, spd: 80, spe: 30},
-	},
 	politoed: {
 		inherit: true,
 		baseStats: {hp: 90, atk: 75, def: 100, spa: 100, spd: 100, spe: 60},
@@ -4874,5 +4870,24 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Void-Heart"},
 		heightm: 1,
 		weightkg: 80.5,
+	},
+	sudowoodo: {
+		inherit: true,
+		evos: ["Truelewoodo"],
+	},
+	truelewoodo: {
+		num: 2077,
+		name: "Truelewoodo",
+		types: ["Rock", "Grass"],
+		baseStats: {hp: 110, atk: 130, def: 125, spa: 20, spd: 85, spe: 30},
+		abilities: {0: "Sturdy", 1: "Rock Head", H: "Water Absorb"},
+		heightm: 1.4,
+		weightkg: 138,
+		color: "Brown",
+		prevo: "Sudowoodo",
+		evoType: "Using Teramorphosis 20 times",
+		evoMove: "Mimic",
+		eggGroups: ["Mineral"],
+		canHatch: true,
 	},
 }

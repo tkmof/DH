@@ -1127,7 +1127,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	sudowoodo: {
-		tier: "(PU)",
+		tier: "NFE",
+	},
+	truelewoodo: {
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	hoppip: {

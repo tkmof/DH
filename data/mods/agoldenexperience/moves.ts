@@ -2779,6 +2779,29 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Psychic",
 	},
+	teramorphosis: {
+		num: -544888,
+		accuracy: 100,
+		basePower: 75,
+		category: "Physical",
+		name: "Teramorphosis",
+		shortDesc: "Has 33% recoil. 50% chance to raise the user's Atk by 1.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		recoil: [1, 3],
+		secondary: {
+			chance: 50,
+			self: {
+				boosts: {
+					atk: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Grass",
+		contestType: "Cool",
+	},
 	//Gen 9
 	spicyextract: {
 		num: 858,
