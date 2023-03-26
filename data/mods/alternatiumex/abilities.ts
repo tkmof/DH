@@ -674,7 +674,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 						this.add('-ability', pokemon, 'Costar', 'boost');
 						activated = true;
 					}
-					pokemon.boosts.spe = target.boosts.spe;
+					pokemon.boosts[spe] = target.boosts[spe];
 			}
 		},
 		name: "Costar",
@@ -717,9 +717,28 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -29,
 	},
 	zerotohero: {
-		//volatile immunity implemented in scripts.ts
+		onTryAddVolatile(status, pokemon) {
+			if (target.species.id !== 'palafin') return;
+            if (status.id === 'flinch' ||
+				status.id === 'trapped' ||
+				status.id === 'partiallytrapped' ||
+				status.id === 'leechseed' ||
+				status.id === 'confusion' ||
+				status.id === 'curse' ||
+				status.id === 'drowsy' ||
+				status.id === 'taunt' ||
+				status.id === 'torment' ||
+				status.id === 'encore' ||
+				status.id === 'disable' ||
+				status.id === 'embargo' ||
+				status.id === 'healblock' ||
+				status.id === 'infatuation' ||
+				status.id === 'nightmare' ||
+				status.id === 'perishsong' ||
+				status.id === 'telekinesis') return null;
+        },
 		onCheckShow(pokemon) {
-			if (!['palafin'].includes(target.species.id)) return;
+			if (target.species.id !== 'palafin') return;
 			// This is complicated
 			// For the most part, in-game, it's obvious whether or not Natural Cure activated,
 			// since you can see how many of your opponent's pokemon are statused.
@@ -797,6 +816,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (!pokemon.showCure) pokemon.showCure = undefined;
 		},
 		isPermanent: true,
+		isUnbreakable: true,
 		name: "Zero to Hero",
 		rating: 3.5,
 		num: 278,
