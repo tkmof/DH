@@ -1385,11 +1385,16 @@ export class TeamValidator {
 
 		setHas['item:' + item.id] = true;
 
-		let banReason = ruleTable.check('item:' + item.id);
+		let banReason = ruleTable.check('item:' + (item.id || 'noitem'));
 		if (banReason) {
+			if (!item.id) {
+				return `${set.name} not holding an item is ${banReason}.`;
+			}
 			return `${set.name}'s item ${item.name} is ${banReason}.`;
 		}
 		if (banReason === '') return null;
+
+		if (!item.id) return null;
 
 		banReason = ruleTable.check('pokemontag:allitems');
 		if (banReason) {
@@ -1941,7 +1946,7 @@ export class TeamValidator {
 							// available as egg move
 							learned = learnedGen + 'Eany';
 							// falls through to E check below
-						} else {
+						} else if (dex.currentMod != 'gen1glitch') {
 							// this move is unavailable, skip it
 							continue;
 						}

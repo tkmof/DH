@@ -6,7 +6,6 @@ export const Scripts: BattleScriptsData = {
 		this.modData('Learnsets', 'shedinja').learnset.partingshot = ['8L1'];
 		this.modData('Learnsets', 'torkoal').learnset.flipturn = ['8L1'];
 	   this.modData('Learnsets', 'latias').learnset.moonblast = ['8L1'];
-		this.modData('Learnsets', 'latios').learnset.voltswitch = ['8L1'];
 	   this.modData('Learnsets', 'tangrowth').learnset.spikes = ['8L1'];
 	   this.modData('Learnsets', 'darmanitan').learnset.thunderouskick = ['8L1'];
       this.modData('Learnsets', 'cofagrigus').learnset.recover = ['8L1'];
@@ -47,5 +46,10 @@ export const Scripts: BattleScriptsData = {
 		this.modData("Learnsets", "musharna").learnset.lavaplume = ["8L1"];
 		this.modData("Learnsets", "unfezant").learnset.earthquake = ["8L1"];
 		this.modData("Learnsets", "unfezant").learnset.tripleaxel = ["8L1"];
+		this.modData("Learnsets", "rotomheat").learnset.strengthsap = ['8L1'];
+		this.modData("Learnsets", "beartic").learnset.closecombat = ['8L1'];
+		this.modData("Learnsets", "stunfiskgalar").learnset.toxic = ['8L1'];
+		this.modData("Learnsets", "frosmoth").learnset.earthpower = ['8L1'];
+		this.modData("Learnsets", "lycanrocdusk").learnset.poltergeist = ['8L1'];
    },
 };

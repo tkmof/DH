@@ -59,4 +59,34 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	doomossum: {
 		tier: "RTS",
 	},
+	llamagic: {
+		tier: "RTS",
+	},
+	venoroach: {
+		tier: "RTS",
+	},
+	salamados: {
+		tier: "RTS",
+	},
+	steelboon: {
+		tier: "RTS",
+	},
+	jaguaplume: {
+		tier: "RTS",
+	},
+	hamstora: {
+		tier: "RTS",
+	},
+	cabarrage: {
+		tier: "RTS",
+	},
+	sumouse: {
+		tier: "RTS",
+	},
+	electrorb: {
+		tier: "RTS",
+	},
+	horroling: {
+		tier: "RTS",
+	},
 };

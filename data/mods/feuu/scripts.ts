@@ -116,6 +116,10 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			return "Absable-Mega-Y"; 
 		}
 		
+		if (item.name === "Sablenite" && pokemon.baseSpecies.name === "Sablemime") {
+			return "Sablemime-Mega"; 
+		}
+		
 		if (item.name === "Sablenite" && pokemon.baseSpecies.name === "Sableior-Meteor") {
 			return "Sableior-Meteor-Mega"; 
 		}
@@ -331,6 +335,10 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 							this.battle.add('-immune', this, '[from] ability: Ghoul Away');
 						} else if (this.hasAbility('spiritascent')) {
 							this.battle.add('-immune', this, '[from] ability: Spirit Ascent');
+						} else if (this.hasAbility('testcram')) {
+							this.battle.add('-immune', this, '[from] ability: Test Cram');
+						} else if (this.hasAbility('floatingreach')) {
+							this.battle.add('-immune', this, '[from] ability: Floating Reach');
 						} else {
 							this.battle.add('-immune', this, '[from] ability: Levitate');
 						}
@@ -372,7 +380,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 				this.hasAbility('hoverboard') || 
 				this.hasAbility('levistatic') || 
 				this.hasAbility('ghoulaway') || 
-				this.hasAbility('spiritascent') || 
+				this.hasAbility('spiritascent') ||
+				this.hasAbility('testcram') ||
+				this.hasAbility('floatingreach') ||
 				this.hasAbility('lovelessfloat')) &&
 				
 				!this.battle.suppressingAttackEvents()
@@ -953,7 +963,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		if (pokemon.ability === 'faustianpact' && move.flags['contact']) {
 			let swapped = false; 
 			const targetAbility = target.getAbility();
-			const additionalBannedAbilities = ['hungerswitch', 'illusion', 'neutralizinggas', 'wonderguard'];
+			const additionalBannedAbilities = ['noability', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'pillage', 'magicmissile', 'ecopy', 'lemegeton', 'modeshift', 'rebootsystem', 'concussion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode'];
 			if (!targetAbility.isPermanent || !additionalBannedAbilities.includes(targetAbility) || !pokemon.volatiles['dynamax']) {
 				swapped = true; 
 			} 

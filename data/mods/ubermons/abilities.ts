@@ -28,42 +28,37 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		inherit: true,
 	},
 	moody: {
-		onResidualOrder: 26,
-		onResidualSubOrder: 1,
-		onResidual(pokemon) {
-			let stats: BoostName[] = [];
-			const boost: SparseBoostsTable = {};
-			let statPlus: BoostName;
-			for (statPlus in pokemon.boosts) {
-				if (statPlus === 'accuracy' || statPlus === 'evasion') continue;
-				if (pokemon.boosts[statPlus] < 6) {
-					stats.push(statPlus);
+		onStart(pokemon) {
+			let statName = 'atk';
+			let bestStat = 0;
+			let worstStat = 3000; //The highest possible stat number (with boosts) is 2,676
+			let bs: StatNameExceptHP;
+			let ws: StatNameExceptHP;
+			for (bs in pokemon.storedStats) {
+				if (pokemon.storedStats[bs] > bestStat) {
+					statName = bs;
+					bestStat = pokemon.storedStats[bs];
 				}
 			}
-			let randomStat: BoostName | undefined = stats.length ? this.sample(stats) : undefined;
-			if (randomStat) boost[randomStat] = 2;
-
-			stats = [];
-			let statMinus: BoostName;
-			for (statMinus in pokemon.boosts) {
-				if (statMinus === 'accuracy' || statMinus === 'evasion') continue;
-				if (pokemon.boosts[statMinus] > -6 && statMinus !== randomStat) {
-					stats.push(statMinus);
+			this.boost({[statName]: -1}, pokemon);
+			for (ws in pokemon.storedStats) {
+				if (pokemon.storedStats[ws] < worstStat) {
+					statName = ws;
+					worstStat = pokemon.storedStats[ws];
 				}
+				
 			}
-			randomStat = stats.length ? this.sample(stats) : undefined;
-			if (randomStat) boost[randomStat] = -1;
-
-			this.boost(boost);
+			this.boost({[statName]: 2}, pokemon);
 		},
 		name: "Moody",
+		shortDesc: "Upon entry, +2 in lowest stat and -1 in highest stat.",
 		rating: 5,
 		num: 141,
 	},
 	shadowtag: {
-		onFoeSwitchOut(source, target) {
-			for (const target of source.side.foe.active) {
-				this.damage(source.baseMaxhp / 8, source, target);
+		onFoeSwitchOut(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				this.damage(pokemon.baseMaxhp / 8, pokemon, target);
 			}
 		},
 		name: "Shadow Tag",
@@ -103,14 +98,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onModifyAtkPriority: 1,
 		onModifyAtk(atk, pokemon) {
-			if (pokemon.volatiles['dynamax']) return;
+			//if (pokemon.volatiles['dynamax']) return;
 			// PLACEHOLDER
 			this.debug('Gorilla Tactics Atk Boost');
 			return this.chainModify(1.5);
 		},
 		onDisableMove(pokemon) {
 			if (!pokemon.abilityData.choiceLock) return;
-			if (pokemon.volatiles['dynamax']) return;
+			//if (pokemon.volatiles['dynamax']) return;
 			for (const moveSlot of pokemon.moveSlots) {
 				if (moveSlot.id !== pokemon.abilityData.choiceLock) {
 					pokemon.disableMove(moveSlot.id, false, this.effectData.sourceEffect);
@@ -502,5 +497,83 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "The foes cannot be statused, and are considered to be asleep.",
 		rating: 4,
 		num: 123,
+	},
+	snowcloak: {
+		onModifyDef(def, pokemon) {
+			if (this.field.isWeather('hail')) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Snow Cloak",
+		shortDesc: "If Hail is active, this Pokemon's Defense is multiplied by 1.5x.",
+		rating: 0.5,
+		num: 81,
+	},
+	sandveil: {
+		onResidualOrder: 5,
+		onResidualSubOrder: 4,
+		onResidual(pokemon) {
+			if (pokemon.status && this.field.isWeather('sandstorm')) {
+				this.debug('sandveil');
+				this.add('-activate', pokemon, 'ability: Sand Veil');
+				pokemon.cureStatus();
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'sandstorm') return false;
+		},
+		name: "Sand Veil",
+		shortDesc: "This Pokemon has its status cured at the end of each turn if Sandstorm is active.",
+		rating: 0.5,
+		num: 8,
+	},
+	quickdraw: {
+		onModifyPriority(priority, source, move) {
+			if (move.flags['bullet']) {
+				if (source.activeMoveActions < 1) {
+					return priority + 2;
+				} else if (source.activeMoveActions > 1) {
+					return priority + 0;
+				}
+			}
+		},
+		name: "Quick Draw",
+		shortDesc: "User's bullet/bomb moves have +2 priority on the first turn.",
+		rating: 2.5,
+		num: 259,
+	},
+	
+	//Dynamax abilities
+	liquidvoice: {
+		inherit: true,
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			if (move.flags['sound']) { // hardcode
+				move.type = 'Water';
+			}
+		},
+	},
+	wanderingspirit: {
+		onDamagingHit(damage, target, source, move) {
+			const additionalBannedAbilities = ['hungerswitch', 'illusion', 'neutralizinggas', 'wonderguard'];
+			if (source.getAbility().isPermanent || additionalBannedAbilities.includes(source.ability)
+			) {
+				return;
+			}
+
+			if (move.flags['contact']) {
+				const sourceAbility = source.setAbility('wanderingspirit', target);
+				if (!sourceAbility) return;
+				if (target.side === source.side) {
+					this.add('-activate', target, 'Skill Swap', '', '', '[of] ' + source);
+				} else {
+					this.add('-activate', target, 'ability: Wandering Spirit', this.dex.getAbility(sourceAbility).name, 'Wandering Spirit', '[of] ' + source);
+				}
+				target.setAbility(sourceAbility);
+			}
+		},
+		name: "Wandering Spirit",
+		rating: 2.5,
+		num: 254,
 	},
 };

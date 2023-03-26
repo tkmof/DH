@@ -365,4 +365,49 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	munchlax: {
 		tier: "SSS",
 	},
+	vi: {
+		tier: "SSS",
+	},
+	ninetalesalola: {
+		tier: "SSS",
+	},
+	porygonz: {
+		tier: "SSS",
+	},
+	firefairy: {
+		tier: "SSS",
+	},
+	thunjust: {
+		tier: "SSS",
+	},
+	vulclairis: {
+		tier: "SSS",
+	},
+	ninjoth: {
+		tier: "SSS",
+	},
+	croakorrode: {
+		tier: "SSS",
+	},
+	yellowwollywog: {
+		tier: "SSS",
+	},
+	serpaint: {
+		tier: "SSS",
+	},
+	butterfree: {
+		tier: "SSS",
+	},
+	salamalix: {
+		tier: "SSS",
+	},
+	pepsiman: {
+		tier: "SSS",
+	},
+	draxplosion: {
+		tier: "SSS",
+	},
+	aegislashancient: {
+		tier: "SSS",
+	},
 };

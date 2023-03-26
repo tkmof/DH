@@ -359,7 +359,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				this.debug('Multi Antlers weaken');
 				return this.chainModify(0.5);
 			}
-			else if (target.hp >= target.maxhp) {
+			if (target.hp >= target.maxhp) {
 				this.debug('Multi Antlers weaken');
 				return this.chainModify(0.5);
 			}
@@ -977,7 +977,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (item.id && !item.megaStone) {
 				this.damage(source.baseMaxhp / 4, source, target);
 				target.addVolatile('fling');
-				if (item.isBerry) {
+				if (item.is
+					) {
 					if (this.singleEvent('Eat', item, null, source, null, null)) {
 						this.runEvent('EatItem', source, null, null, item);
 						if (item.id === 'leppaberry') source.staleness = 'external';
@@ -3240,7 +3241,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
             if (!this.isAdjacent(pokemon, this.effectData.target)) return;
             if (pokemon.isGrounded() || !pokemon.hasAbility('feelnopain') || !pokemon.hasAbility('magneticwaves') || 
             !pokemon.hasAbility('stickyfloat') || !pokemon.hasAbility('etativel') || !pokemon.hasAbility('lighthearted') 
-            || !pokemon.hasAbility('leviflame') || !pokemon.hasAbility('levitability') || !pokemon.hasAbility('feelsomepain') || !pokemon.hasAbility('aerialbreak') || !pokemon.hasAbility('floatguise') || !pokemon.hasAbility('clearlyfloating') || !pokemon.hasAbility('hoverboard') || !pokemon.hasAbility('levimetal') || !pokemon.hasAbility('levistatic') || !pokemon.hasAbility('lovelessfloat') || !pokemon.species.name === 'Rotofable') {
+            || !pokemon.hasAbility('leviflame') || !pokemon.hasAbility('levitability') || !pokemon.hasAbility('feelsomepain') || !pokemon.hasAbility('aerialbreak') || !pokemon.hasAbility('floatguise') || !pokemon.hasAbility('clearlyfloating') || !pokemon.hasAbility('hoverboard') || !pokemon.hasAbility('levimetal') || !pokemon.hasAbility('levistatic') || !pokemon.hasAbility('lovelessfloat') || !pokemon.hasAbility('testcram') || !pokemon.species.name === 'Rotofable') {
                 pokemon.tryTrap(true);
             }
         },
@@ -3249,7 +3250,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
             if (!source || !this.isAdjacent(pokemon, source)) return;
             if (pokemon.isGrounded(!pokemon.knownType) || !pokemon.hasAbility('feelnopain') || !pokemon.hasAbility('magneticwaves') || 
             !pokemon.hasAbility('stickyfloat') || !pokemon.hasAbility('etativel') || !pokemon.hasAbility('lighthearted') 
-            || !pokemon.hasAbility('leviflame') || !pokemon.hasAbility('levitability') || !pokemon.hasAbility('feelsomepain') || !pokemon.hasAbility('aerialbreak') || !pokemon.hasAbility('floatguise') || !pokemon.hasAbility('clearlyfloating') || !pokemon.hasAbility('hoverboard') || !pokemon.hasAbility('levimetal') || !pokemon.hasAbility('levistatic') || !pokemon.hasAbility('lovelessfloat') || !pokemon.species.name === 'Rotofable') { // Negate immunity if the type is unknown
+            || !pokemon.hasAbility('leviflame') || !pokemon.hasAbility('levitability') || !pokemon.hasAbility('feelsomepain') || !pokemon.hasAbility('aerialbreak') || !pokemon.hasAbility('floatguise') || !pokemon.hasAbility('clearlyfloating') || !pokemon.hasAbility('hoverboard') || !pokemon.hasAbility('levimetal') || !pokemon.hasAbility('levistatic') || !pokemon.hasAbility('lovelessfloat') || !pokemon.hasAbility('testcram') || !pokemon.species.name === 'Rotofable') { // Negate immunity if the type is unknown
                 pokemon.maybeTrapped = true;
             }
         },
@@ -3257,14 +3258,14 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
         onSourceModifyAccuracy(accuracy, target, source, move) {
             if (!target.isGrounded() || target.hasAbility('feelnopain') || target.hasAbility('magneticwaves') || 
             target.hasAbility('stickyfloat') || target.hasAbility('etativel') || target.hasAbility('lighthearted') || 
-            target.hasAbility('leviflame') || target.hasAbility('levitability') || target.hasAbility('feelsomepain') || target.hasAbility('aerialbreak') || target.hasAbility('floatguise') || target.hasAbility('clearlyfloating') || target.hasAbility('hoverboard') || target.hasAbility('levimetal') || target.hasAbility('levistatic') || target.hasAbility('lovelessfloat')) {
+            target.hasAbility('leviflame') || target.hasAbility('levitability') || target.hasAbility('feelsomepain') || target.hasAbility('aerialbreak') || target.hasAbility('floatguise') || target.hasAbility('clearlyfloating') || target.hasAbility('hoverboard') || target.hasAbility('levimetal') || target.hasAbility('levistatic') || target.hasAbility('lovelessfloat') || target.hasAbility('testcram')) {
                 return accuracy * 0.8;
             }
         },
 		onModifyDamage(damage, source, target, move) {
 			if (move && target.isGrounded() || !target.hasAbility('feelnopain') || !target.hasAbility('magneticwaves') || 
             !target.hasAbility('stickyfloat') || !target.hasAbility('etativel') || !target.hasAbility('lighthearted') || 
-            !target.hasAbility('leviflame') || !target.hasAbility('levitability') || !target.hasAbility('feelsomepain') || !target.hasAbility('aerialbreak') || !target.hasAbility('floatguise') || !target.hasAbility('clearlyfloating') || !target.hasAbility('hoverboard') || !target.hasAbility('levimetal') || !target.hasAbility('levistatic') || !target.hasAbility('lovelessfloat') || !target.hasType('Ghost')) {
+            !target.hasAbility('leviflame') || !target.hasAbility('levitability') || !target.hasAbility('feelsomepain') || !target.hasAbility('aerialbreak') || !target.hasAbility('floatguise') || !target.hasAbility('clearlyfloating') || !target.hasAbility('hoverboard') || !target.hasAbility('levimetal') || !target.hasAbility('levistatic') || !target.hasAbility('lovelessfloat') || target.hasAbility('testcram') || !target.hasType('Ghost')) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -5503,6 +5504,112 @@ lifedrain: {
 		},
 	  name: "Peer Pressure",
     },
+	testcram: {
+		onModifyCritRatio(critRatio) {
+			return critRatio + 1;
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ground' && !source.hasAbility('aerialbreak') && !target.volatiles['smackdown'] && !this.field.getPseudoWeather('gravity')) {
+				this.add('-immune', target, '[from] ability: Test Cram');
+				return null;
+			}
+		},
+		onCriticalHit: false,
+		name: "Test Cram",
+		shortDesc: "Levitate + Super Luck + Immune to critical hits",
+	},
+	slowandsteady: {
+	  shortDesc: "If this Pokemon moves last, it takes 3/4 damage from all attacks.",
+		onSourceModifyDamage(damage, source, target, move) {
+			if (this.queue.willMove(target)) {
+				this.debug('Slow and Steady neutralize');
+				return this.chainModify(0.75);
+			}
+		},
+	  name: "Slow and Steady",
+    },
+	stresseating: {
+	  shortDesc: "On-switch, this Pokemon eats its berry.",
+		onStart(pokemon) {
+			const item = pokemon.getItem();
+			if (item.isBerry && pokemon.hp) {
+				pokemon.eatItem(true)
+			} else {
+				return false;
+			}
+		},
+	  name: "Stress Eating",
+    },
+	mephistospact: {
+	  shortDesc: "After this Pokemon lands a contact move, a target’s ability is swapped with this one.",
+      onAfterMove(target, source, move) {
+			const additionalBannedAbilities = ['noability', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'pillage', 'magicmissile', 'ecopy', 'lemegeton', 'modeshift', 'rebootsystem', 'concussion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode'];
+			if (target.getAbility().isPermanent || additionalBannedAbilities.includes(target.ability) ||
+				source.volatiles['dynamax']
+			) {
+				return;
+			}
+
+			if (move.flags['contact']) {
+				const targetAbility = target.setAbility('mephistospact', target);
+				if (!targetAbility) return;
+				if (source.side === target.side) {
+					this.add('-activate', source, 'Skill Swap', '', '', '[of] ' + source);
+				} else {
+					this.add('-activate', source, 'ability: Mephisto\'s Pact', this.dex.getAbility(targetAbility).name, 'Mephisto\'s Pact', '[of] ' + source);
+				}
+				source.setAbility(targetAbility);
+			}
+		},
+	  name: "Mephisto's Pact",
+    },
+	realitysmasher: {
+	  shortDesc: "Mold Breaker + Defiant",
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Reality Smasher');
+			this.add('-message', `Drudlinks breaks reality!`);
+		},
+		onModifyMove(move) {
+			move.ignoreAbility = true;
+		},
+		onAfterEachBoost(boost, target, source, effect) {
+			if (!source || target.side === source.side) {
+				if (effect.id === 'stickyweb') {
+					this.hint("Court Change Sticky Web counts as lowering your own Speed, and Reality Smasher only affects stats lowered by foes.", true, source.side);
+				}
+				return;
+			}
+			let statsLowered = false;
+			let i: BoostName;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.add('-ability', target, 'Reality Smasher');
+				this.boost({atk: 2}, target, target, null, true);
+			}
+		},
+	  name: "Reality Smasher",
+    },
+	toxinreplica: {
+	  shortDesc: "(Non-functional placeholder) If another Pokemon uses a move with a chance of poisoning, this Pokemon uses the same move.",
+	  name: "Toxin Replica",
+    },
+	floatingreach: {
+	  shortDesc: "Long Reach + Levitate",
+		onModifyMove(move) {
+			delete move.flags['contact'];
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ground' && !source.hasAbility('aerialbreak') && !target.volatiles['smackdown'] && !this.field.getPseudoWeather('gravity')) {
+				this.add('-immune', target, '[from] ability: Aerial Break');
+				return null;
+			}
+		},
+	  name: "Floating Reach",
+    },
 
 // LC Only Abilities
 	"aurevoir": { //this one looks like EXACTLY the character limit
@@ -5588,7 +5695,8 @@ lifedrain: {
 		},
 		onDamagingHit(damage, target, source, move) {
 			if (this.field.getWeather().id !== 'sandstorm') {
-				this.field.setWeather('sandstorm', this.effectData.target);
+				this.field.setW
+				her('sandstorm', this.effectData.target);
 			}
 		},
 		onSourceHit(target, source, move) {
@@ -6664,5 +6772,70 @@ lifedrain: {
 		name: "Ghoul Away",
 		shortDesc: "Filter + Levitate",
 	},	
+	dizzyvenom: {
+	  shortDesc: "30% chance a Pokemon making contact with this Pokemon will be poisoned or confused. Immune to Confusion and Intimidate.",
+		onDamagingHit(damage, target, source, move) {
+			if (move.flags['contact']) {
+				if (this.randomChance(3, 10)) {
+					source.trySetStatus('psn', target);
+					source.addVolatile('confusion', this.effectData.target);
+				}
+			}
+		},
+		onUpdate(pokemon) {
+			if (pokemon.volatiles['confusion']) {
+				this.add('-activate', pokemon, 'ability: Dizzy Venom');
+				pokemon.removeVolatile('confusion');
+			}
+		},
+		onTryAddVolatile(status, pokemon) {
+			if (status.id === 'confusion') return null;
+		},
+		onHit(target, source, move) {
+			if (move?.volatileStatus === 'confusion') {
+				this.add('-immune', target, 'confusion', '[from] ability: Dizzy Venom');
+			}
+		},
+		onBoost(boost, target, source, effect) {
+			if (effect.id === 'intimidate' || effect.id === 'scarilyadorable' || effect.id === 'metalhead' || effect.id === 'creepy' || effect.id === 'ragingrapids' || effect.id === 'catastrophic') {
+				delete boost.atk;
+				this.add('-immune', target, '[from] ability: Dizzy Venom');
+			}
+			if (effect.id === 'peckingorder') {
+				delete boost.def;
+				this.add('-immune', target, '[from] ability: Dizzy Venom');
+			}
+			if (effect.id === 'debilitate') {
+				delete boost.spa;
+				this.add('-immune', target, '[from] ability: Dizzy Venom');
+			}
+			if (effect.id === 'sinkorswim' || effect.id === 'scarilyadorable') {
+				delete boost.spe;
+				this.add('-immune', target, '[from] ability: Dizzy Venom');
+			}
+		},
+	  name: "Dizzy Venom",
+    },
+	laststand: {
+	  shortDesc: "This Pokemon's attacks do not make contact with the target and, at 1/3 HP or less, deal 1.5x damage.",
+		onModifyMove(move) {
+			delete move.flags['contact'];
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.flags['contact'] && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Last Stand boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.flags['contact'] && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Last Stand boost');
+				return this.chainModify(1.5);
+			}
+		},
+	  name: "Last Stand",
+    },
 };
  

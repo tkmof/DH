@@ -2,6 +2,7 @@
  * Gen 3 moves
  */
 
+
 export const Moves: {[k: string]: ModdedMoveData} = {
 	weatherball: {
 		inherit: true,
@@ -28,6 +29,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				move.category = 'Special';
 				break;
 			}
+			if (this.field.effectiveWeather()) move.basePower *= 2;
 		},
 	},
 	acrobatics: {
@@ -54,16 +56,26 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	batonpass: {
 		inherit: true,
-		self: {
-			onHit(source) {
-				if (source.positiveBoosts()) {
-					source.clearBoosts();
-					this.add('-clearpositiveboost', source);
-					this.hint("Baton Pass can't pass Stat Boosts.");
-				}
-			}
-		}
-
+		isNonStandard: "Unobtainable",
+	},
+	batonpassgaiden: {
+		name: "Baton Pass Gaiden",
+		realMove: "Baton Pass",
+		num: 226,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		pp: 40,
+		priority: 0,
+		flags: {},
+		selfSwitch: 'copyvolatile',
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cute",
+		desc: "The user is replaced with another Pokemon in its party. The selected Pokemon has the user's stat stage deductions, confusion, and certain move effects transferred to it.",
+		shortDesc: "Modified Baton Pass. Positive boosts are reset.",
 	},
 	bodypress: {
 		num: 776,
@@ -108,6 +120,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Fighting",
 		contestType: "Cool",
+		gen: 3,
+	},
+	darkestlariat: {
+		inherit: true,
 		gen: 3,
 	},
 	fierywrath: {
@@ -230,243 +246,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		gen: 3,
 	},
 	multiattack: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattack",
-		isViable: true,
-		name: "Multi-Attack",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Normal",
+		inherit: true,
 		gen: 3,
-	},
-	multiattackbug: {
-		accuracy: 100,
 		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackbug",
-		isViable: true,
-		name: "Multi-Attack-Bug",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Bug",
-	},
-	multiattackdark: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Special",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackdark",
-		isViable: true,
-		name: "Multi-Attack-Dark",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Dark",
-	},
-	multiattackdragon: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Special",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackdragon",
-		isViable: true,
-		name: "Multi-Attack-Dragon",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Dragon",
-	},
-	multiattackelectric: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Special",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackelectric",
-		isViable: true,
-		name: "Multi-Attack-Electric",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Electric",
-	},
-	multiattackfighting: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackfighting",
-		isViable: true,
-		name: "Multi-Attack-Fighting",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Fighting",
-	},
-	multiattackfire: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Special",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackfire",
-		isViable: true,
-		name: "Multi-Attack-Fire",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Fire",
-	},
-	multiattackflying: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackflying",
-		isViable: true,
-		name: "Multi-Attack-Flying",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Flying",
-	},
-	multiattackghost: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackghost",
-		isViable: true,
-		name: "Multi-Attack-Ghost",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Ghost",
-	},
-	multiattackgrass: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Special",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackgrass",
-		isViable: true,
-		name: "Multi-Attack-Grass",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Grass",
-	},
-	multiattackground: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackground",
-		isViable: true,
-		name: "Multi-Attack-Ground",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Ground",
-	},
-	multiattackice: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Special",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackice",
-		isViable: true,
-		name: "Multi-Attack-Ice",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Ice",
-	},
-	multiattackpoison: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackpoison",
-		isViable: true,
-		name: "Multi-Attack-Poison",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Poison",
-	},
-	multiattackpsychic: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Special",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackpsychic",
-		isViable: true,
-		name: "Multi-Attack-Psychic",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Psychic",
-	},
-	multiattackrock: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackrock",
-		isViable: true,
-		name: "Multi-Attack-Rock",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Rock",
-	},
-	multiattacksteel: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattacksteel",
-		isViable: true,
-		name: "Multi-Attack-Steel",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Steel",
-	},
-	multiattackwater: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Special",
-		desc: "This move's type depends on the user's held Memory.",
-		shortDesc: "Type varies based on the held Memory.",
-		id: "multiattackwater",
-		isViable: true,
-		name: "Multi-Attack-Water",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		type: "Water",
+		onModifyMove(move, pokemon) {
+			if (pokemon.ignoringItem()) return;
+			move.type = this.runEvent('Memory', pokemon, null, move, 'Normal');
+			const specialTypes = ['Fire', 'Water', 'Grass', 'Ice', 'Electric', 'Dark', 'Psychic', 'Dragon'];
+			move.category = specialTypes.includes(move.type) ? 'Special' : 'Physical';
+		}
 	},
 	recover: {
 		inherit: true,
@@ -572,72 +360,16 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Clever",
 		gen: 3,
 	},
-	//Temporary Multi-Attack Fix
-	/*multiattack: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		shortDesc: "Type varies based on the held Memory.",
-		isViable: true,
-		name: "Multi-Attack",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		onModifyType(move, pokemon) {
-			switch (pokemon.item.id) {
-			case 'bugmemory':
-				move.type = 'Bug';
-				break;
-			case 'darkmemory':
-				move.type = 'Dark';
-				break;
-			case 'dragonmemory':
-				move.type = 'Dragon';
-				break;
-			case 'electricmemory':
-				move.type = 'Electric';
-				break;
-			case 'fightingmemory':
-				move.type = 'Fighting';
-				break;
-			case 'firememory':
-				move.type = 'Fire';
-				break;
-			case 'flyingmemory':
-				move.type = 'Flying';
-				break;
-			case 'ghostmemory':
-				move.type = 'Ghost';
-				break;
-			case 'grassmemory':
-				move.type = 'Grass';
-				break;
-			case 'groundmemory':
-				move.type = 'Ground';
-				break;
-			case 'icememory':
-				move.type = 'Ice';
-				break;
-			case 'poisonmemory':
-				move.type = 'Poison';
-				break;
-			case 'psychicmemory':
-				move.type = 'Psychic';
-				break;
-			case 'rockmemory':
-				move.type = 'Rock';
-				break;
-			case 'steelmemory':
-				move.type = 'Steel';
-				break;
-			case 'watermemory':
-				move.type = 'Water';
-				break;
-			}
-		},
-		onModifyMove(move, pokemon) {
-			if (['darkmemory', 'dragonmemory', 'electricmemory', 'firememory', 'grassmemory', 'icememory', 'psychicmemory', 'watermemory'].includes(pokemon.item.id)) move.category = 'Special';
-		},
-		type: "Normal",
-	},*/
+	attackorder: {
+		inherit: true,
+		gen: 3,
+	},
+	defendorder: {
+		inherit: true,
+		gen: 3,
+	},
+	healorder: {
+		inherit: true,
+		gen: 3,
+	},
 };
