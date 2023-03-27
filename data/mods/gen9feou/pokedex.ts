@@ -115,7 +115,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	gargamise: {
  // fusion: ['Garganacl', 'Dhelmise'],
-		num: 9,
+		num: 13,
 		name: "Gargamise",
 		types: ["Rock", "Grass"],
 		baseStats: {hp: 85, atk: 115, def: 115, spa: 65, spd: 90, spe: 40},
