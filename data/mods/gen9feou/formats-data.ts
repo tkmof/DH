@@ -38,32 +38,32 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	zarubok: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["gunkshot", "crunch", "suckerpunch", "coil"],
+		randomBattleMoves: ["gunkshot", "crunch", "suckerpunch", "swordsdance"],
 		randomBattleLevel: 75,
 	},
 	ironmeta: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["roost", "flashcannon", "hurricane", "earthpower"],
+		randomBattleMoves: ["uturn", "flashcannon", "hurricane", "earthpower"],
 		randomBattleLevel: 75,
 	},
 	ironmetamega: {
 		tier: "Uber",
 		doublesTier: "DOU",
-		randomBattleMoves: ["roost", "meteormash", "earthquake", "knockoff"],
+		randomBattleMoves: ["uturn", "meteormash", "earthquake", "knockoff"],
 		randomBattleLevel: 73,
 		requiredItem: "Metagrossite",
 	},
 	deciperiorhisui: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["roost", "uturn", "triplearrows", "spikes"],
+		randomBattleMoves: ["roost", "uturn", "triplearrows", "earthquake"],
 		randomBattleLevel: 75,
 	},
 	slitherking: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["morningsun", "uturn", "leechlife", "spikes"],
+		randomBattleMoves: ["morningsun", "uturn", "firstimpression", "flareblitz"],
 		randomBattleLevel: 75,
 	},
 	gargamise: {
