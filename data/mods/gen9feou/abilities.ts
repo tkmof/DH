@@ -416,10 +416,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	},
 	quarksurge: {
 	  shortDesc: "Quark Drive + Electric Surge",
-		onStart(source) {
-			this.field.setTerrain('electricterrain');
-		},
 		onStart(pokemon) {
+			this.field.setTerrain('electricterrain');
 			this.singleEvent('TerrainChange', this.effect, this.effectData, pokemon);
 		},
 		onUpdate(pokemon) {
