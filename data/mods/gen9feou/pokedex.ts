@@ -79,6 +79,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		weightkg: 330.5,
 		otherFormes: ["Iron Meta-Mega"],
 		formeOrder: ["Iron Meta", "Iron Meta-Mega"],
+		tags: ["Paradox"],
 	},
 	ironmetamega: {
  // fusion: ['Iron Jugulis', 'Metagross'],
@@ -110,6 +111,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 79, atk: 107, def: 85, spa: 83, spd: 97, spe: 79},
 		abilities: {0: "Opening Act"},
 		weightkg: 47.5,
+		tags: ["Paradox"],
 	},
 	gargamise: {
  // fusion: ['Garganacl', 'Dhelmise'],
@@ -161,6 +163,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 70, atk: 116, def: 94, spa: 80, spd: 100, spe: 60},
 		abilities: {0: "Quark Surge"},
 		weightkg: 63,
+		tags: ["Paradox"],
 	},
 
 // LCs and NFEs
