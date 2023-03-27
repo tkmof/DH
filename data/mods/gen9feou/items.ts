@@ -44,6 +44,9 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (pokemon.hasAbility('quarksurge') && !pokemon.volatiles['quarksurge'] && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
 				pokemon.addVolatile('quarksurge');
 			}
+			if (pokemon.hasAbility('openingact') && !pokemon.volatiles['openingact'] && !this.field.isTerrain('sunnyday') && pokemon.useItem()) {
+				pokemon.addVolatile('openingact');
+			}
 		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.tags.includes("Paradox")) return false;
