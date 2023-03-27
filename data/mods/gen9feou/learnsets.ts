@@ -1589,6 +1589,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			terablast: ["8L1"],
 			trailblaze: ["8L1"],
 			uturn: ["8L1"],
+			triplearrows: ["8L1"],
 		},
 	},
 	slitherking: {
