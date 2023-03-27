@@ -215,7 +215,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 105, atk: 105, def: 100, spa: 57, spd: 60, spe: 46},
 		abilities: {0: "Reachless"},
 		weightkg: 68,
-		evos: ["Rhytrix"],
+		evos: ["Deciperior-Hisui"],
 	},
 	grimeblualola: {
  // fusion: ['Grimer-Alola', 'Swablu'],
