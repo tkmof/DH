@@ -460,7 +460,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Special",
 		name: "Make It Rain",
 		shortDesc: "Lowers the user's Sp by 1. Hits foes.",
-		pp: 20,
+		pp: 5,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		secondary: {
