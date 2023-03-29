@@ -25,6 +25,12 @@ Ratings and how they work:
 
 export const Abilities: {[abilityid: string]: AbilityData} = {
 	thermalexchange: {
+		onTryHit(target, source, move) {
+			if (move.type === 'Fire') {
+				this.add('-immune', pokemon, '[from] ability: Thermal Exchange');
+				return null;
+			}
+		},
 		onDamagingHit(damage, target, source, move) {
 			if (move.type === 'Fire') {
 				this.boost({atk: 1});
@@ -206,5 +212,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Lingering Aroma",
 		shortDesc: "Making contact with this Pokemon has the attacker's Ability become Lingering Aroma.",
 		rating: 2,
+	},
+	sharpness: {
+
 	},
 };
