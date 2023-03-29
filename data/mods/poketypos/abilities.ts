@@ -214,6 +214,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 	},
 	sharpness: {
-
+		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.name === 'Aerial Ace' || move.name === 'Air Cutter' || move.name === 'Air Slash' || move.name === 'Aerial Ace' || move.name === 'Aqua Cutter' || move.name === 'Behemoth Blade' || move.name === 'Cross Poison' || move.name === 'Cut' || move.name === 'Fury Cutter' || move.name === 'Leaf Blade' || move.name === 'Night Slash' || move.name === 'Psycho Cut' || move.name === 'Razor Leaf' || move.name === 'Razor Shell' || move.name === 'Sacred Sword' || move.name === 'Slash' || move.name === 'Solar Blade' || move.name === 'X-Scissor') {
+				this.debug('Shapness boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Sharpness",
+		rating: 3.5,
+		num: 292,
 	},
 };
