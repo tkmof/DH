@@ -35,11 +35,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "FEDD",
 		doublesTier: "DDD",
 	},
-	gyagiri: {
+	gyaragiri: {
 		tier: "FEDD",
 		doublesTier: "DDD",
 	},
-	weezugiri: {
+	weezigiri: {
 		tier: "FEDD",
 		doublesTier: "DDD",
 	},
@@ -104,6 +104,14 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "DDD",
 	},
 	magnegiri: {
+		tier: "FEDD",
+		doublesTier: "DDD",
+	},
+	komagiri: {
+		tier: "FEDD",
+		doublesTier: "DDD",
+	},
+	aegigiri: {
 		tier: "FEDD",
 		doublesTier: "DDD",
 	},
