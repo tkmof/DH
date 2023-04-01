@@ -651,6 +651,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			wildcharge: ["8L1"],
 			willowisp: ["8L1"],
 			zenheadbutt: ["8L1"],
+			infernalparade: ["8L1"],
 		},
 	},
 	guguzzparce: {
