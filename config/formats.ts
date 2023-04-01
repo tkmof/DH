@@ -1040,7 +1040,6 @@ export const Formats: FormatList = [
 		section: "Duomod Randbats Tournament",
 		column: 2,
 	},
-
 	{
         name: "[Gen 8] Gen 9 Duomod Randbats",
         desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
@@ -1402,6 +1401,23 @@ export const Formats: FormatList = [
 			}
 		},
 		mod: 'evolutionproject',
+	},
+	{
+		name: "[Gen 9] Fusion Evolution Dondozo",
+		mod: 'dondozo',
+		desc: `dondozo`,
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', /* 'Mega Data Mod' */],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['Dondozo','FEDD'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Fusion Evolution.'];
+				}
+			}
+		},
 	},
 	{
 		name: "[Gen 2] GSC Doubles",

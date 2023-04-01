@@ -1211,4 +1211,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Water",
 		contestType: "Cool",
 	},
+	watershuriken: {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, slicing: 1},
+		multihit: 3,
+	},
 };
