@@ -354,7 +354,54 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
     	shortDesc: "This Pokemon takes halved damage from hazards and physical moves.",
 		rating: 4,
 	},
-
+	icescales: {
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.category === 'Special') {
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Ice Scales",
+		rating: 4,
+		num: 246,
+		gen: 6,
+	},
+	eartheater: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Earth Eater');
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Earth Eater",
+		rating: 3.5,
+		num: 297,
+		gen: 6,
+    	shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
+	},
+	shellejection: {
+		onModifyMovePriority: -1,
+		onModifyMove(move, attacker) {
+			if (move.category === 'Special') {
+				attacker.addVolatile('shellejection');
+				this.add('-message', `Slowbro is getting ready to leave the battlefield!`);
+			}
+		},
+		condition: {
+			duration: 2,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Shell Ejection');
+				this.add('-message', `Slowbro ejected itself from its shell!`);
+				pokemon.switchFlag = true;				
+			},
+		},
+		name: "Shell Ejection",
+		rating: 3.5,
+		gen: 6,
+    	shortDesc: "After using a Special move, this Pokemon switches out at the end of the next turn.",
+	},
 	
 /*	
 // ngas is so cringe
