@@ -115,4 +115,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "FEDD",
 		doublesTier: "DDD",
 	},
+	croakigiri: {
+		tier: "FEDD",
+		doublesTier: "DDD",
+	},
 }

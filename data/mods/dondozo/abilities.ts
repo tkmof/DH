@@ -825,4 +825,17 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "byeah",
 		shortDesc: "This Pokemon changes to Dondozo before it attacks.",
 	},
+	facingfears: {
+		onStart(pokemon) {
+			for (const target of pokemon.foes()) {
+				if (target.species.dondozo) {
+					this.add('-ability', pokemon, 'Anticipation');
+					this.boost({atk: 2, def: 2, spa: 2, spd: 2, spe:2});
+					return;	
+				}
+			}
+		},
+		name: "Facing Fears",
+		shortDesc: "On switch-in, shudders and gains +2 to all stats if the foe is Dondozo.",
+	},
 }

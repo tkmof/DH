@@ -364,6 +364,15 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		requiredAbility: "byeah",
 		battleOnly: "Aegigiri",
 	},
+	croakigiri: {
+		fusion: ['Toxicroak', 'Tatsugiri'],
+		num: 29,
+		name: "Croakigiri",
+		types: ["Water", "Fighting"],
+		baseStats: {hp: 75, atk: 80, def: 65, spa: 110, spd: 80, spe: 90},
+		abilities: {0: "Facing Fears"},
+		weightkg: 26.2,
+	},
 	dondozo: {
 		inherit: true,
 		dondozo: true,
