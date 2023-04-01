@@ -386,6 +386,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onModifyMove(move, attacker) {
 			if (move.category === 'Special') {
 				attacker.addVolatile('shellejection');
+				this.add('-ability', attacker, 'Shell Ejection');
 				this.add('-message', `Slowbro is getting ready to leave the battlefield!`);
 			}
 		},
