@@ -39,6 +39,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 150, atk: 100, def: 115, spa: 65, spd: 65, spe: 35},
 		abilities: {0: "Cold Commander"},
 		weightkg: 220,
+		requiredAbility: "Cold Commander",
 		battleOnly: "Eisugiri",
 	},
 	cramogiri: {
@@ -283,6 +284,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 150, atk: 100, def: 115, spa: 65, spd: 65, spe: 35},
 		abilities: {0: "Dondozo Shield"},
 		weightkg: 220,
+		requiredAbility: "Dondozo Shield",
 		battleOnly: "Minigiri",
 	},
 	swampugiri: {
@@ -359,6 +361,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 150, atk: 100, def: 115, spa: 65, spd: 65, spe: 35},
 		abilities: {0: "byeah"},
 		weightkg: 220,
+		requiredAbility: "byeah",
 		battleOnly: "Aegigiri",
 	},
 	dondozo: {
