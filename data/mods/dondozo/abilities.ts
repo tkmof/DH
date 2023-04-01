@@ -111,6 +111,10 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		shortDesc: "If switching out into Dondozo, both Pokemon are healed, each for 33.3% of its Max HP.",
 	},
 	commanderguard: {
+		onStart(pokemon){
+			pokemon.baseMaxhp = 1;
+			pokemon.hp = 1;
+		}
 		onTryHit(target, source, move) {
 			this.debug('Commander Guard immunity: ' + move.id);
 			if (!target.species.dondozo) {
@@ -355,6 +359,16 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				if(target.ability !== 'fishesofruin') target.addVolatile('fishesofruin');
 			}
 		},
+		onFaint(pokemon) {
+			for (const target of pokemon.foes()) {
+				if(target.volatiles['fishesofruin']) target.removeVolatile('fishesofruin');
+			}
+		}
+		onEnd(pokemon) {
+			for (const target of pokemon.foes()) {
+				if(target.volatiles['fishesofruin']) target.removeVolatile('fishesofruin');
+			}
+		}
 		condition: {
 			onStart(pokemon) {
 				const randAbil = this.random(3);

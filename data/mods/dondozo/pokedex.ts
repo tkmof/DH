@@ -368,7 +368,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		fusion: ['Toxicroak', 'Tatsugiri'],
 		num: 29,
 		name: "Croakigiri",
-		types: ["Water", "Fighting"],
+		types: ["Dragon", "Fighting"],
 		baseStats: {hp: 75, atk: 80, def: 65, spa: 110, spd: 80, spe: 90},
 		abilities: {0: "Facing Fears"},
 		weightkg: 26.2,
