@@ -111,10 +111,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		shortDesc: "If switching out into Dondozo, both Pokemon are healed, each for 33.3% of its Max HP.",
 	},
 	commanderguard: {
-		onStart(pokemon){
-			pokemon.baseMaxhp = 1;
-			pokemon.hp = 1;
-		}
 		onTryHit(target, source, move) {
 			this.debug('Commander Guard immunity: ' + move.id);
 			if (!target.species.dondozo) {
@@ -759,7 +755,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	},
 	dondono: {
 		onTryHit(target, source, move) {
-			if (target !== source && target.species.dondozo) {
+			if (target !== source && source.species.dondozo) {
 				if (!this.heal(target.baseMaxhp / 4)) {
 					this.add('-immune', target, '[from] ability: Dondo-No');
 				}

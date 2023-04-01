@@ -79,6 +79,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Shedigiri",
 		types: ["Water", "Ghost"],
 		baseStats: {hp: 1, atk: 90, def: 52, spa: 75, spd: 62, spe: 61},
+		maxHP: 1,
 		abilities: {0: "Commander Guard"},
 		weightkg: 4.6,
 	},
