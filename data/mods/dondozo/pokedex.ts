@@ -95,7 +95,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		fusion: ['Golisopod', 'Tatsugiri'],
 		num: 7,
 		name: "Goligiri",
-		types: ["Water"],
+		types: ["Water", "Bug"],
 		baseStats: {hp: 75, atk: 90, def: 100, spa: 95, spd: 95, spe: 61},
 		abilities: {0: "Imperial Retreat"},
 		weightkg: 58,
