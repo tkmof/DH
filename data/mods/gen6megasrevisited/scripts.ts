@@ -85,5 +85,9 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "mawile").learnset.firepunch = ["6L1"];
 		this.modData("Learnsets", "mawile").learnset.rockslide = ["6L1"];
 		this.modData("Learnsets", "mawile").learnset.slackoff = ["6L1"];
+		this.modData("Learnsets", "camerupt").learnset.morningsun = ["6L1"];
+		this.modData("Learnsets", "abomasnow").learnset.spikyshield = ["6L1"];
+		this.modData("Learnsets", "abomasnow").learnset.earthpower = ["6L1"];
+
 	},
 };
