@@ -410,7 +410,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Shell Ejection",
 		rating: 3.5,
 		gen: 6,
-    	shortDesc: "After using a Special move, this Pokemon switches out at the end of the next turn.",
+    	shortDesc: "After using a Special move, this Pokemon switches out at the end of the next turn and it can't use status moves.",
 	},
 	
 /*	
