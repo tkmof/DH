@@ -113,7 +113,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	commanderguard: {
 		onTryHit(target, source, move) {
 			this.debug('Commander Guard immunity: ' + move.id);
-			if (!target.species.dondozo) {
+			if (!source.species.dondozo) {
 				if (move.smartTarget) {
 					move.smartTarget = false;
 				} else {
