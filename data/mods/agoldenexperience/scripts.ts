@@ -831,6 +831,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'sudowoodo').learnset.teramorphosis = ['8L1'];
     this.modData('Learnsets', 'politoed').learnset.flipturn = ['8L1'];
     this.modData('Learnsets', 'politoed').learnset.lifedew = ['8L1'];
+    this.modData('Learnsets', 'dunsparce').learnset.hyperdrill = ['8L1'];
     this.modData('Learnsets', 'sunflora').learnset.weatherball = ['8L1'];
     this.modData('Learnsets', 'sunflora').learnset.flamethrower = ['8L1'];
     this.modData('Learnsets', 'sunflora').learnset.fireblast = ['8L1'];
