@@ -388,10 +388,19 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				attacker.addVolatile('shellejection');
 				this.add('-ability', attacker, 'Shell Ejection');
 				this.add('-message', `Slowbro is getting ready to leave the battlefield!`);
+				this.add('-message', `Slowbro can no longer use status moves!`);
 			}
 		},
 		condition: {
 			duration: 2,
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					const move = this.dex.getMove(moveSlot.id);
+					if (move.category === 'Status' && move.id !== 'mefirst') {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
 			onEnd(pokemon) {
 				this.add('-ability', pokemon, 'Shell Ejection');
 				this.add('-message', `Slowbro ejected itself from its shell!`);
