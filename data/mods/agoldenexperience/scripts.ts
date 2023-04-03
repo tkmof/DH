@@ -2219,6 +2219,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     delete this.modData('Learnsets', 'cutiefly').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'ribombee').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'rockruff').learnset.hiddenpower; 
+    delete this.modData('Learnsets', 'rockruffdusk').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'lycanroc').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'lycanrocdusk').learnset.hiddenpower; 
     delete this.modData('Learnsets', 'lycanroc').learnset.hiddenpower; 
