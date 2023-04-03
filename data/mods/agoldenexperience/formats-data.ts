@@ -3120,20 +3120,20 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	genesectburn: {
-		tier: "(OU)",
-		doublesTier: "(DOU)",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	genesectchill: {
-		tier: "(OU)",
-		doublesTier: "(DOU)",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	genesectdouse: {
-		tier: "(OU)",
-		doublesTier: "(DOU)",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	genesectshock: {
-		tier: "(OU)",
-		doublesTier: "(DOU)",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	chespin: {
 		tier: "LC",

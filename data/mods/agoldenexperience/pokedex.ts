@@ -2124,23 +2124,23 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	genesectdouse: {
 		inherit: true,
-		baseStats: {hp: 81, atk: 115, def: 95, spa: 115, spd: 95, spe: 99},
-		abilities: {0: "Analytic"},
+		baseStats: {hp: 81, atk: 120, def: 105, spa: 120, spd: 105, spe: 119},
+		abilities: {0: "Water Bubble"},
 	},
 	genesectshock: {
 		inherit: true,
-		baseStats: {hp: 81, atk: 115, def: 95, spa: 115, spd: 95, spe: 99},
-		abilities: {0: "Analytic"},
+		baseStats: {hp: 81, atk: 125, def: 95, spa: 125, spd: 95, spe: 129},
+		abilities: {0: "Motor Drive"},
 	},
 	genesectburn: {
 		inherit: true,
-		baseStats: {hp: 81, atk: 115, def: 95, spa: 115, spd: 95, spe: 99},
-		abilities: {0: "Analytic"},
+		baseStats: {hp: 81, atk: 115, def: 120, spa: 115, spd: 120, spe: 99},
+		abilities: {0: "Heatproof"},
 	},
 	genesectchill: {
 		inherit: true,
-		baseStats: {hp: 81, atk: 115, def: 95, spa: 115, spd: 95, spe: 99},
-		abilities: {0: "Analytic"},
+		baseStats: {hp: 81, atk: 140, def: 95, spa: 140, spd: 95, spe: 99},
+		abilities: {0: "Refridgerate"},
 	},
 
 	//gen 6 :
