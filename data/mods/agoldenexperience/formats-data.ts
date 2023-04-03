@@ -4592,6 +4592,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DUber",
 		//natDexTier: "AG",
 	},
+	koraidonweakened: {
+		tier: "OU",
+		doublesTier: "DOU",
+		//natDexTier: "Uber",
+	},
+	miraidonweakened: {
+		tier: "OU",
+		doublesTier: "DOU",
+		//natDexTier: "AG",
+	},
 	tinkatink: {
 		tier: "LC",
 	},

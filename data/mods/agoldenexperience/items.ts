@@ -1004,4 +1004,34 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		num: 1880,
 		gen: 8,
 	},
+
+	// sandwiches
+	mightysandwichkora: {
+		name: "Mighty Sandwich (Koraidon)",
+		// spritenum: 699,
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 1007) || pokemon.baseSpecies.num === 1007) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Koraidon",
+		itemUser: ["Koraidon"],
+		num: -1104,
+		gen: 8,
+	},
+	mightysandwichmira: {
+		name: "Mighty Sandwich (Miraidon)",
+		// spritenum: 699,
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 1008) || pokemon.baseSpecies.num === 1008) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Miraidon",
+		itemUser: ["Miraidon"],
+		num: -1184,
+		gen: 8,
+	},
 }

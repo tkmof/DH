@@ -102,7 +102,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
         addNewMoves('quagsire', ['spikes', 'toxicspikes', 'stealthrock']);
         addNewMoves('espeon', ['powergem']);
         addNewMoves('umbreon', ['calmmind', 'thunderwave']);
-        addNewMoves('slowkinggalar', ['toxicspikes']);
+        addNewMoves('slowking', ['chillyreception']);
+        addNewMoves('slowkinggalar', ['toxicspikes', 'chillyreception']);
         addNewMoves('forretress', ['bodypress']);
         addNewMoves('scizor', ['pounce', 'closecombat']);
         addNewMoves('tyranitar', ['powergem']);
@@ -116,6 +117,13 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
         addNewMoves('leafeon', ['calmmind']);
         addNewMoves('weavile', ['calmmind']);
         addNewMoves('gallade', ['agility', 'sacredsword']);
+
+        addNewMoves('medicham', ['axekick']);
+
+        addNewMoves('tornadus',['bleakwindstorm']);
+        addNewMoves('thundurus',['wildboltstorm']);
+        addNewMoves('landorus',['sandsearstorm']);
+        addNewMoves('enamorus',['springtidestorm']);
 
     //PLA stuff to match SV
     this.modData('Learnsets', 'arcaninehisui').learnset.headsmash = ['8L1'];
@@ -145,6 +153,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'avalugghisui').learnset.iciclecrash = ['8L1'];
     this.modData('Learnsets', 'scyther').learnset.closecombat = ['8L1'];
     this.modData('Learnsets', 'arcaninehisui').learnset.extremespeed = ['8L1'];
+
+    //delete this.modData('Learnsets', 'koraidonweakened').learnset.collisioncourse;
+    //delete this.modData('Learnsets', 'miraidonweakened').learnset.electrodrift;
 
     // distrib for PLA moves
 
