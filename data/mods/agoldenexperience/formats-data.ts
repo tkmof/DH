@@ -1127,7 +1127,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	sudowoodo: {
-		tier: "(PU)",
+		tier: "NFE",
+	},
+	truelewoodo: {
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	hoppip: {
@@ -3117,20 +3120,20 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	genesectburn: {
-		tier: "(OU)",
-		doublesTier: "(DOU)",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	genesectchill: {
-		tier: "(OU)",
-		doublesTier: "(DOU)",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	genesectdouse: {
-		tier: "(OU)",
-		doublesTier: "(DOU)",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	genesectshock: {
-		tier: "(OU)",
-		doublesTier: "(DOU)",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	chespin: {
 		tier: "LC",
@@ -4587,6 +4590,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	miraidon: {
 		tier: "Uber",
 		doublesTier: "DUber",
+		//natDexTier: "AG",
+	},
+	koraidonweakened: {
+		tier: "OU",
+		doublesTier: "DOU",
+		//natDexTier: "Uber",
+	},
+	miraidonweakened: {
+		tier: "OU",
+		doublesTier: "DOU",
 		//natDexTier: "AG",
 	},
 	tinkatink: {

@@ -33,14 +33,14 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 2,
 		num: -1,
 	},
-	dardevil: {
+	daredevil: {
 		onDamage(damage, target, source, effect) {
 			if (effect.id === 'recoil') {
 				if (!this.activeMove) throw new Error("Battle.activeMove is null");
 				if (this.activeMove.id !== 'struggle') return null;
 			}
 		},
-		name: "Dardevil",
+		name: "Daredevil",
 		shortDesc: "This Pokemon does not take recoil damage besides Struggle/Life Orb/crash damage.",
 		rating: 3,
 		num: -2,
@@ -2380,6 +2380,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Dauntless Shield",
+		shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
 		rating: 3.5,
 		num: 235,
 	},
@@ -2391,6 +2392,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Intrepid Sword",
+		shortDesc: "On switch-in, this Pokemon's Attack is raised by 1 stage. Once per battle.",
 		rating: 4,
 		num: 234,
 	},
@@ -2409,6 +2411,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			delete this.effectData.libero;
 		},
 		name: "Libero",
+		shortDesc: "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
 		rating: 4,
 		num: 236,
 	},
@@ -2428,6 +2431,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		isBreakable: true,
 		name: "Armor Tail",
+		shortDesc: "This Pokemon and its allies are protected from opposing priority moves.",
 		rating: 2.5,
 		num: 296,
 	},
@@ -2461,6 +2465,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			},
 		},
 		name: "Cud Chew",
+		shortDesc: "If this Pokemon eats a Berry, it will eat that Berry again at the end of the next turn.",
 		rating: 2,
 		num: 291,
 	},
@@ -2475,6 +2480,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		isBreakable: true,
 		name: "Earth Eater",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
 		rating: 3.5,
 		num: 297,
 	},
@@ -2492,8 +2498,29 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Hadron Engine",
+		shortDesc: "On switch-in, summons Electric Terrain. During Electric Terrain, Sp. Atk is 1.3333x.",
 		rating: 4.5,
 		num: 289,
+	},
+	orichalcumpulse: {
+		onStart(pokemon) {
+			if (this.field.setWeather('sunnyday')) {
+				this.add('-activate', pokemon, 'Orichalcum Pulse', '[source]');
+			} else if (this.field.isWeather('sunnyday')) {
+				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+				this.debug('Orichalcum boost');
+				return this.chainModify([5461, 4096]);
+			}
+		},
+		name: "Orichalcum Pulse",
+		shortDesc: "On switch-in, summons Sunny Day. During Sunny Day, Attack is 1.3333x.",
+		rating: 4.5,
+		num: 288,
 	},
 	opportunist: {
 		onFoeAfterBoost(boost, target, source, effect) {
@@ -2510,6 +2537,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			this.boost(positiveBoosts, pokemon);
 		},
 		name: "Opportunist",
+		shortDesc: "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",
 		rating: 3,
 		num: 290,
 	},
@@ -2581,6 +2609,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		isPermanent: true,
 		name: "Protosynthesis",
+		shortDesc: "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 		rating: 3,
 		num: 281,
 	},
@@ -2613,6 +2642,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		isBreakable: true,
 		name: "Purifying Salt",
+		shortDesc: "Ghost damage to this Pokemon dealt with a halved offensive stat; can't be statused.",
 		rating: 4,
 		num: 272,
 	},
@@ -2684,6 +2714,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		},
 		isPermanent: true,
 		name: "Quark Drive",
+		shortDesc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 		rating: 3,
 		num: 282,
 	},
@@ -2708,6 +2739,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Supreme Overlord",
+		shortDesc: " This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
 		rating: 3.5,
 		num: 293,
 	},
@@ -2725,6 +2757,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Wind Power",
+		shortDesc: "This Pokemon gains the Charge effect when hit by a wind move or Tailwind begins.",
 		rating: 1,
 		num: 277,
 	},
@@ -2749,6 +2782,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Wind Rider",
+		shortDesc: "Attack raised by 1 if hit by a wind move or Tailwind begins. Wind move immunity.",
 		rating: 3.5,
 		// We do not want Brambleghast to get Infiltrator in Randbats
 		num: 274,
