@@ -143,6 +143,25 @@ export const Formats: FormatList = [
 		],
 		mod: 'gen9crossoverchaos',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', /* 'Mega Data Mod' */],
+		onChangeSet(set) {
+			const item = this.toID(set.item);
+			if (set.species === 'King Dedede' || set.species === 'Masked Dedede') {
+				if (item === 'dededesmask') {
+					set.species = 'Masked Dedede';
+					let attackOrder = set.moves.indexOf('attackorder');
+					if (attackOrder >= 0) {
+						set.moves[attackOrder] = 'gigatonhammer';
+					}
+					let defendOrder = set.moves.indexOf('defendorder');
+					if (defendOrder >= 0) {
+						set.moves[defendOrder] = 'thundercage';
+					}
+				} 
+				else {
+					set.species = 'King Dedede';
+				}
+			}
+		},
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
