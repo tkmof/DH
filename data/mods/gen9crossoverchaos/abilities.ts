@@ -24,4 +24,53 @@ Ratings and how they work:
 */
 
 export const Abilities: {[abilityid: string]: AbilityData} = {
+	
+	adeptprowess: {
+		shortDesc: "On switch-in, gains secondary type based on held berry.",
+		onStart(source) {
+			if (source.ignoringItem()) return;
+			const item = source.getItem();
+			if (!item.naturalGift) return;
+			let itemType = item.naturalGift.type;
+			if(source.types[0] !== itemType) {
+				source.setType([source.types[1],itemType]);
+			}
+			this.add('-start', source, 'typechange', source.getTypes(true).join('/'), '[from] ability: Adept Prowess');
+		},
+		name: "Adept Prowess",
+		rating: 3.5,
+		num: -1,
+	},
+	
+	puyomastery: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Water') {
+				this.debug('Puyo Mastery boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Water') {
+				this.debug('Puyo Mastery boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Puyo Mastery",
+		rating: 3.5,
+		num: -2,
+	},
+	
+	funkymode: {
+		onDamage(damage, target, source, effect) {
+			if (effect.effectType !== 'Move') {
+				if (effect.effectType === 'Ability') this.add('-activate', source, 'ability: ' + effect.name);
+				return false;
+			}
+		},
+		name: "Funky Mode",
+		rating: 4,
+		num: -3,
+	},
 };
