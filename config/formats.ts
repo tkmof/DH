@@ -1608,6 +1608,7 @@ export const Formats: FormatList = [
 		ruleset: ['Standard', 'Dynamax Clause', 'Data Mod'],
 		banlist: ['Uber', 'Moody', 'Shadow Tag', 'Baton Pass', 'Kyurem', 'Slowking-Base', 'Slowbro-Base'],
 	},
+	/*
 	// Gen 9
 	///////////////////////////////////////////////////////////////////
 
@@ -1648,6 +1649,7 @@ export const Formats: FormatList = [
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
+	*/
 	
 	// Past Gens OU
 	///////////////////////////////////////////////////////////////////
