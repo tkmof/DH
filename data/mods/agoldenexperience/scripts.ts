@@ -336,6 +336,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'seismitoad').learnset.dissolution = ['8T'];
     this.modData('Learnsets', 'shuckle').learnset.dissolution = ['8T'];
     this.modData('Learnsets', 'lickilicky').learnset.dissolution = ['8T'];
+    this.modData('Learnsets', 'annoyog').learnset.dissolution = ['8T'];
 
     // landslide 
     this.modData('Learnsets', 'hippopotas').learnset.landslide = ['8L1'];

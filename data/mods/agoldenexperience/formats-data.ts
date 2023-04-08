@@ -1133,10 +1133,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 		doublesTier: "(DUU)",
 	},
-	irondrill: {
-		tier: "OU",
-		doublesTier: "DUU",
-	},
 	hoppip: {
 		tier: "LC",
 	},
@@ -3241,7 +3237,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	gogoat: {
-		tier: "NU",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	pancham: {
@@ -4941,6 +4937,14 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	grimillia: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	irondrill: {
+		tier: "OU",
+		doublesTier: "DUU",
+	},
+	annoyog: {
 		tier: "OU",
 		doublesTier: "DOU",
 	},

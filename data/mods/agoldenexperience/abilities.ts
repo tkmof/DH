@@ -260,8 +260,13 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	strangebody: {
 		onEffectiveness(typeMod, target, type, move) {
-            if (!target || move.category !== 'Physical' || target.getMoveHitData(move).typeMod < 0) return;
+            if (!target || move.category !== 'Physical' /*|| target.getMoveHitData(move).typeMod < 0*/) return;
             if (!target.runImmunity(move.type)) return;
+			if ((target.getMoveHitData(move).typeMod > 0))
+			{
+				// console.log("This is resisted bro");
+				return;}
+			// console.log((target.getMoveHitData(move).typeMod > 0));
             return 0;
         },
 		name: "Strange Body",
@@ -1450,6 +1455,50 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		shortDesc: "This Pokemon's contact moves have a 30% chance of burning.",
 		rating: 2,
 		num: -1143,
+	},
+	virality: {
+		name: "Virality",
+		shortDesc: "Pokemon making contact with this Pokemon have their Ability changed to Mummy.",
+		onDamagingHit(damage, target, source, move) {
+			const sourceAbility = source.getAbility();
+			if (sourceAbility.isPermanent || sourceAbility.id === 'virality') {
+				return;
+			}
+			if (move.flags['contact']) {
+				const oldAbility = source.setAbility('virality', target);
+				if (oldAbility) {
+					this.add('-activate', target, 'ability: Virality', this.dex.getAbility(oldAbility).name, '[of] ' + source);
+				}
+			}
+		},
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.multihitType === 'parentalbond' && move.hit > 1) return this.chainModify(0.25);
+		},
+		rating: 2,
+		num: -1152,
+	},
+	moody: {// WIP
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual(pokemon) {
+			let stats: BoostName[] = [];
+			const boost: SparseBoostsTable = {};
+			let statPlus: BoostName;
+			for (statPlus in pokemon.boosts) {
+				if (statPlus === 'accuracy' || statPlus === 'evasion') continue;
+				if (pokemon.boosts[statPlus] < 6) {
+					stats.push(statPlus);
+				}
+			}
+			let randomStat: BoostName | undefined = stats.length ? this.sample(stats) : undefined;
+			if (randomStat) boost[randomStat] = 1;
+
+			this.boost(boost);
+		},
+		name: "Moody",
+		shortDesc: "Boosts a random stat (except accuracy/evasion) +1 every turn. The boost resets at the end of the turn.",
+		rating: 5,
+		num: 141,
 	},
 	colorchange: {
 		onTryHit(target, source, move) {

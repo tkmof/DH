@@ -4938,4 +4938,13 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		color: "Red",
 		eggGroups: ["Field"],
 	},
+	annoyog: {
+		num: 3001,
+		name: "Annoyog",
+		types: ["Electric", "Poison"],
+		baseStats: {hp: 60, atk: 50, def: 85, spa: 70, spd: 85, spe: 120},
+		abilities: {0: "Levitate", 1: "Virality", H: "Prankster"},
+		heightm: 1,
+		weightkg: 0.1,
+	},
 }
