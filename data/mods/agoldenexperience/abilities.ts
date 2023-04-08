@@ -1500,10 +1500,68 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 					stats.push(statPlus);
 				}
 			}
+			// console.log(statPlus);
 			let randomStat: BoostName | undefined = stats.length ? this.sample(stats) : undefined;
 			if (randomStat) boost[randomStat] = 1;
+			console.log(randomStat);
+			switch (randomStat) {
+				case 'atk':
+					pokemon.addVolatile('MoodAtk');
+					break;
+				case 'def':
+					pokemon.addVolatile('MoodDef');
+					break;
+				case 'spa':
+					pokemon.addVolatile('MoodSpA');
+					break;
+				case 'spd':
+					pokemon.addVolatile('MoodSpD');
+					break;
+				case 'spe':
+					pokemon.addVolatile('MoodSpe');
+					break;
+				default:
+					break;
+			}
 
 			this.boost(boost);
+			console.log(pokemon.volatiles['MoodAtk']);
+			console.log(pokemon.volatiles['MoodDef']);
+			console.log(pokemon.volatiles['MoodSpA']);
+			console.log(pokemon.volatiles['MoodSpD']);
+			console.log(pokemon.volatiles['MoodSpe']);
+		},
+		onEnd(pokemon) {
+			if(pokemon.volatiles['MoodAtk']) 
+			{
+				this.boost({atk: -1});
+				delete pokemon.volatiles['MoodAtk'];
+				console.log(pokemon.volatiles['MoodAtk']);
+			}
+			if(pokemon.volatiles['MoodDef'])
+			{
+				this.boost({def: -1});
+				delete pokemon.volatiles['MoodDef'];
+				console.log(pokemon.volatiles['MoodDef']);
+			} 
+			if(pokemon.volatiles['MoodSpA'])
+			{
+				this.boost({spa: -1});
+				delete pokemon.volatiles['MoodSpA'];
+				console.log(pokemon.volatiles['MoodSpA']);
+			} 
+			if(pokemon.volatiles['MoodSpD'])
+			{
+				this.boost({spd: -1});
+				delete pokemon.volatiles['MoodSpD'];
+				console.log(pokemon.volatiles['MoodSpD']);
+			} 
+			if(pokemon.volatiles['MoodSpe'])
+			{
+				this.boost({spe: -1});
+				delete pokemon.volatiles['MoodSpe'];
+				console.log(pokemon.volatiles['MoodSpe']);
+			} 
 		},
 		name: "Moody",
 		shortDesc: "Boosts a random stat (except accuracy/evasion) +1 every turn. The boost resets at the end of the turn.",
