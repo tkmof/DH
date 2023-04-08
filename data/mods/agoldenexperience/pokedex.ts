@@ -4926,4 +4926,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		eggGroups: ["Mineral"],
 		canHatch: true,
 	},
+	irondrill: {
+		num: 2530,
+		name: "Iron Drill",
+		types: ["Fighting", "Steel"],
+		gender: "N",
+		baseStats: {hp: 114, atk: 140, def: 70, spa: 80, spd: 72, spe: 94},
+		abilities: {0: "Quark Drive", H: "Sand Rush"},
+		heightm: 5,
+		weightkg: 999.9,
+		color: "Red",
+		eggGroups: ["Field"],
+	},
 }

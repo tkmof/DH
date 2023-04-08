@@ -1133,6 +1133,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 		doublesTier: "(DUU)",
 	},
+	irondrill: {
+		tier: "OU",
+		doublesTier: "DUU",
+	},
 	hoppip: {
 		tier: "LC",
 	},
