@@ -278,9 +278,9 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onResidual(pokemon) {
 			if (!pokemon.hp) return;
-			if (!pokemon.activeTurns) return;
 			for (const target of pokemon.foes()) {
-				if(target.ability !== 'fishesofruin' &&
+				if(target.activeTurns &&
+				   target.ability !== 'fishesofruin' &&
 				   target.ability !== 'commatose' &&
 				   target.ability !== 'ouroboros' &&
 				   target.ability !== 'nauticalnuke' &&
