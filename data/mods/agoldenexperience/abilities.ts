@@ -260,13 +260,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	strangebody: {
 		onEffectiveness(typeMod, target, type, move) {
-            if (!target || move.category !== 'Physical' /*|| target.getMoveHitData(move).typeMod < 0*/) return;
+            if (!target || move.category !== 'Physical') return;
             if (!target.runImmunity(move.type)) return;
-			if ((target.getMoveHitData(move).typeMod > 0))
-			{
-				// console.log("This is resisted bro");
-				return;}
-			// console.log((target.getMoveHitData(move).typeMod > 0));
+			if (this.dex.getEffectiveness(move, target) === -1) return;
             return 0;
         },
 		name: "Strange Body",
