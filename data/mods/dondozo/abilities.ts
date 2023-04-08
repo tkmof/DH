@@ -22,7 +22,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
-			if (
+			if (source.ability !== 'notpayingattentiontodondozoatallsorry' &&
 				effect && effect.effectType === 'Move' && effect.category === 'Physical' &&
 				target.species.id === 'eisugiri' && !target.transformed
 			) {
@@ -33,6 +33,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onCriticalHit(target, type, move) {
 			if (!target) return;
+			if (source.ability === 'notpayingattentiontodondozoatallsorry') return;
 			if (move.category !== 'Physical' || target.species.id !== 'eisugiri' || target.transformed) return;
 			if (target.volatiles['substitute'] && !(move.flags['bypasssub'] || move.infiltrates)) return;
 			if (!target.runImmunity(move.type)) return;
@@ -40,6 +41,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (!target) return;
+			if (source.ability === 'notpayingattentiontodondozoatallsorry') return;
 			if (move.category !== 'Physical' || target.species.id !== 'eisugiri' || target.transformed) return;
 
 			const hitSub = target.volatiles['substitute'] && !move.flags['bypasssub'] && !(move.infiltrates && this.gen >= 6);
@@ -113,7 +115,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	commanderguard: {
 		onTryHit(target, source, move) {
 			this.debug('Commander Guard immunity: ' + move.id);
-			if (!source.species.dondozo) {
+			if (!source.species.dondozo && source.ability !== 'notpayingattentiontodondozoatallsorry') {
 				if (move.smartTarget) {
 					move.smartTarget = false;
 				} else {
@@ -129,86 +131,11 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	notpayingattentiontodondozoatallsorry: {
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'not paying attention to dondozo at all, sorry');
+			this.add('-message', '${pokemon.name} is ignoring Dondozo!');
 		},
-		//effects in unaware, water veil, and oblivious
+		//effects in various other abilities
 		name: "not paying attention to dondozo at all, sorry",
-		shortDesc: "This Pokemon ignores the abilities of Dondozo.",
-	},
-	unaware: {
-		name: "Unaware",
-		onAnyModifyBoost(boosts, pokemon) {
-			const unawareUser = this.effectData.target;
-			if (pokemon.ability === 'notpayingattentiontodondozoatallsorry') return;
-			if (unawareUser === pokemon) return;
-			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
-				boosts['def'] = 0;
-				boosts['spd'] = 0;
-				boosts['evasion'] = 0;
-			}
-			if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
-				boosts['atk'] = 0;
-				boosts['def'] = 0;
-				boosts['spa'] = 0;
-				boosts['accuracy'] = 0;
-			}
-		},
-		isBreakable: true,
-		rating: 4,
-		num: 109,
-	},
-	waterveil: {
-		onUpdate(pokemon) {
-			if (pokemon.status === 'brn') {
-				this.add('-activate', pokemon, 'ability: Water Veil');
-				pokemon.cureStatus();
-			}
-		},
-		onSetStatus(status, target, source, effect) {
-			if (source.ability === 'notpayingattentiontodondozoatallsorry') return;
-			if (status.id !== 'brn') return;
-			if ((effect as Move)?.status) {
-				this.add('-immune', target, '[from] ability: Water Veil');
-			}
-			return false;
-		},
-		isBreakable: true,
-		name: "Water Veil",
-		rating: 2,
-		num: 41,
-	},
-	oblivious: {
-		onUpdate(pokemon) {
-			if (pokemon.volatiles['attract']) {
-				this.add('-activate', pokemon, 'ability: Oblivious');
-				pokemon.removeVolatile('attract');
-				this.add('-end', pokemon, 'move: Attract', '[from] ability: Oblivious');
-			}
-			if (pokemon.volatiles['taunt']) {
-				this.add('-activate', pokemon, 'ability: Oblivious');
-				pokemon.removeVolatile('taunt');
-				// Taunt's volatile already sends the -end message when removed
-			}
-		},
-		onImmunity(type, pokemon) {
-			if (type === 'attract') return false;
-		},
-		onTryHit(pokemon, target, move) {
-			if (pokemon.ability === 'notpayingattentiontodondozoatallsorry') return;
-			if (move.id === 'attract' || move.id === 'captivate' || move.id === 'taunt') {
-				this.add('-immune', pokemon, '[from] ability: Oblivious');
-				return null;
-			}
-		},
-		onTryBoost(boost, target, source, effect) {
-			if (effect.name === 'Intimidate' && boost.atk) {
-				delete boost.atk;
-				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Oblivious', '[of] ' + target);
-			}
-		},
-		isBreakable: true,
-		name: "Oblivious",
-		rating: 1.5,
-		num: 12,
+		shortDesc: "This Pokemon ignores the abilities with Dondozo in it.",
 	},
 	imperialretreat: {
 		onDamagingHit(damage, target, source, move) {
@@ -351,8 +278,14 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onResidual(pokemon) {
 			if (!pokemon.hp) return;
+			if (!pokemon.activeTurns) return;
 			for (const target of pokemon.foes()) {
-				if(target.ability !== 'fishesofruin') target.addVolatile('fishesofruin');
+				if(target.ability !== 'fishesofruin' &&
+				   target.ability !== 'commatose' &&
+				   target.ability !== 'ouroboros' &&
+				   target.ability !== 'nauticalnuke' &&
+				   target.ability !== 'notpayingattentiontodondozoatallsorry') 
+				   target.addVolatile('fishesofruin');
 			}
 		},
 		onFaint(pokemon) {
@@ -367,11 +300,13 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		}
 		condition: {
 			onStart(pokemon) {
-				const randAbil = this.random(3);
 				pokemon.formeChange('Dondozo');
+				/* saving these in case we revert later
+				const randAbil = this.random(3);
 				if (randAbil < 1) pokemon.setAbility('unaware');
 				else if (randAbil < 2) pokemon.setAbility('waterveil');
 				else pokemon.setAbility('oblivious');
+				*/
 			},
 			onEnd(pokemon) {
 				if (['Dondozo'].includes(pokemon.species.forme)) {
@@ -387,7 +322,9 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onDamagingHitOrder: 1,
 		onDamagingHit(damage, target, source, move) {
 			if (!target.hp) {
-				this.damage(Math.floor(target.getUndynamaxedHP(damage) * 1.546), source, target);
+				if (source.ability !== 'notpayingattentiontodondozoatallsorry')
+					this.damage(Math.floor(target.getUndynamaxedHP(damage) * 1.546), source, target);
+				else this.damage(target.getUndynamaxedHP(damage), source, target);
 			}
 		},
 		shortDesc: "When this Pokemon is knocked out by an opponent's attack, it deals damage to that opponent equal to Dondozo's HP.",
@@ -430,9 +367,9 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					if (randAbil < 1) pokemon.setAbility('unaware');
 					else if (randAbil < 2) pokemon.setAbility('waterveil');
 					else pokemon.setAbility('oblivious');
-					const liquidation = {
-						move: "Liquidation",
-						id: "liquidation",
+					const avalanche = {
+						move: "Avalanche",
+						id: "avalanche",
 						pp: 16,
 						maxpp: 16,
 						target: "normal",
@@ -467,17 +404,17 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 						disabled: false,
 						used: false,
 					}
-					const bodypress = {
-						move: "Body Press",
-						id: "bodypress",
+					const eq = {
+						move: "Earthquake",
+						id: "earthquake",
 						pp: 16,
 						maxpp: 16,
-						target: "normal",
+						target: "allAdjacent",
 						disabled: false,
 						used: false,
 					}
-					pokemon.moveSlots[0] = liquidation;
-					pokemon.baseMoveSlots[0] = liquidation;
+					pokemon.moveSlots[0] = avalanche;
+					pokemon.baseMoveSlots[0] = avalanche;
 					const randMove = this.random(2);
 					if (randMove < 1) {
 						pokemon.moveSlots[3] = curse;
@@ -488,8 +425,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					}
 					pokemon.moveSlots[1] = rest;
 					pokemon.baseMoveSlots[1] = rest;
-					pokemon.moveSlots[2] = bodypress;
-					pokemon.baseMoveSlots[2] = bodypress;
+					pokemon.moveSlots[2] = eq;
+					pokemon.baseMoveSlots[2] = eq;
                 }
             }
         },
@@ -591,7 +528,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	callforhelp: {
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
-			if (
+			if (source.ability !== 'notpayingattentiontodondozoatallsorry' &&
 				effect && effect.effectType === 'Move' &&
 				['mimigiri'].includes(target.species.id) && !target.transformed
 			) {
@@ -602,6 +539,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onCriticalHit(target, source, move) {
 			if (!target) return;
+			if (source.ability === 'notpayingattentiontodondozoatallsorry') return;
 			if (!['mimigiri', 'mimigiritotem'].includes(target.species.id) || target.transformed) {
 				return;
 			}
@@ -613,6 +551,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (!target || move.category === 'Status') return;
+			if (source.ability === 'notpayingattentiontodondozoatallsorry') return;
 			if (!['mimigiri'].includes(target.species.id) || target.transformed) {
 				return;
 			}
@@ -643,10 +582,31 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'Ouroboros');
 			this.boost({atk: 2, def: 2, spa: 2, spd: 2, spe:2},);
-			pokemon.faint();
+			pokemon.addVolatile('trapped');
+		},
+		onUpdate(pokemon) {
+			if (pokemon.volatiles['attract']) {
+				this.add('-activate', pokemon, 'ability: Ouroboros');
+				pokemon.removeVolatile('attract');
+				this.add('-end', pokemon, 'move: Attract', '[from] ability: Ouroboros');
+			}
+			if (pokemon.volatiles['taunt']) {
+				this.add('-activate', pokemon, 'ability: Ouroboros');
+				pokemon.removeVolatile('taunt');
+				// Taunt's volatile already sends the -end message when removed
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'attract') return false;
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'attract' || move.id === 'captivate' || move.id === 'taunt') {
+				this.add('-immune', pokemon, '[from] ability: Ouroboros');
+				return null;
+			}
 		},
 		name: "Ouroboros",
-		shortDesc: "On switchin, this Pokemon jumps into its own mouth and gains +2 to all stats.",
+		shortDesc: "On switchin, this Pokemon jumps into its own mouth and gains +2 in all stats; cannot be infatuated, taunted, or Dondozo.",
 	},
 	bozotodozo: {
 		onSwitchOut(pokemon) {
@@ -818,10 +778,16 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'Commatose');
 		},
+		onSetStatus(status, target, source, effect) {
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Commatose');
+			}
+			return false;
+		},
 		//effect in pokedex.ts
 		name: "Commatose",
 		isPermanent: true,
-		shortDesc: "This Pokemon is considered to be Dondozo.",
+		shortDesc: "This Pokemon cannot be statused, and is considered to be Dondozo.",
 	},
 	byeah: {
 		onModifyMovePriority: 1,
