@@ -6837,4 +6837,13 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			venomdrench: ["8T"],
 		},
 	},
+	raticket: {
+		learnset: {
+			firelash: ["8L1"],
+			powerwhip: ["8L1"],
+			aquatail: ["8L1"],
+			slash: ["8L1"],
+			nightslash: ["8L1"],
+		},
+	},
 }

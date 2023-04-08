@@ -109,8 +109,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	raticate: {
-		tier: "(PU)",
-		doublesTier: "(DUU)",
+		tier: "NFE",
 	},
 	raticatealola: {
 		tier: "(PU)",
@@ -4945,6 +4944,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DUU",
 	},
 	annoyog: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	raticket: {
 		tier: "OU",
 		doublesTier: "DOU",
 	},

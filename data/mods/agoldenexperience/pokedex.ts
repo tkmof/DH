@@ -29,6 +29,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		eggGroups: ["Bug"],
 		requiredItem: "Butterfrite",
 	},
+	raticate: {
+		inherit: true,
+		evos: ["Raticket"],
+	},
 	pidgeot: {
 		inherit: true,
 		abilities: {0: "Keen Eye", 1: "Gale Wings", H: "Big Pecks"},
@@ -4946,5 +4950,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Levitate", 1: "Virality", H: "Prankster"},
 		heightm: 1,
 		weightkg: 0.1,
+	},
+	raticket: {
+		num: 3002,
+		name: "Raticket",
+		types: ["Normal", "Dark"],
+		baseStats: {hp: 75, atk: 101, def: 80, spa: 50, spd: 90, spe: 117},
+		abilities: {0: "Old School"},
+		heightm: 0.9,
+		weightkg: 50,
+		prevo: "Raticate",
+		eggGroups: ["Field"],
 	},
 }

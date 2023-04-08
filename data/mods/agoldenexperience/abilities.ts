@@ -1473,6 +1473,20 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 2,
 		num: -1152,
 	},
+	oldschool: {
+		shortDesc: "This Pokemon's high crit rate moves always crit. This Pokemon's special moves use SpD in calculation.",
+		name: "Old School",
+		onModifyMove(move, attacker) {
+			if (move.category === 'Special') {
+				move.useSourceDefensiveAsOffensive = true;
+			}
+		},
+		onModifyCritRatio(critRatio, source, target) {
+			if (critRatio >= 2) return 5;
+		},
+		rating: 3.5,
+		num: -2148,
+	},
 	moody: {// WIP
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
