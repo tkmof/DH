@@ -582,8 +582,10 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'Ouroboros');
 			this.boost({atk: 2, def: 2, spa: 2, spd: 2, spe:2},);
-			pokemon.addVolatile('trapped');
+			pokemon.faint();
+			//pokemon.addVolatile('trapped');
 		},
+		/*
 		onUpdate(pokemon) {
 			if (pokemon.volatiles['attract']) {
 				this.add('-activate', pokemon, 'ability: Ouroboros');
@@ -604,9 +606,9 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				this.add('-immune', pokemon, '[from] ability: Ouroboros');
 				return null;
 			}
-		},
+		},*/
 		name: "Ouroboros",
-		shortDesc: "On switchin, this Pokemon jumps into its own mouth and gains +2 in all stats; cannot be infatuated, taunted, or Dondozo.",
+		shortDesc: "On switchin, this Pokemon jumps into its own mouth and gains +2 in all stats.",
 	},
 	bozotodozo: {
 		onSwitchOut(pokemon) {
