@@ -486,4 +486,314 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Quark Surge",
 		rating: 3,
 	},
+	onceuponatime: {
+	  shortDesc: "Protosynthesis + Infiltrator",
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Once Upon a Time is not affected by Utility Umbrella
+			if (this.field.isWeather('sunnyday') && !pokemon.volatiles['onceuponatime']) {
+				pokemon.addVolatile('onceuponatime');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
+				pokemon.removeVolatile('onceuponatime');
+				pokemon.addVolatile('onceuponatime', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['onceuponatime'].fromBooster = true;
+			} else if (!pokemon.volatiles['onceuponatime']?.fromBooster && !this.field.isWeather('sunnyday')) {
+				pokemon.removeVolatile('onceuponatime');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['onceuponatime'];
+			this.add('-end', pokemon, 'Once Upon a Time', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Once Upon a Time', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Once Upon a Time');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'onceuponatime' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Once Upon a Time atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Once Upon a Time def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Once Upon a Time spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Once Upon a Time spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Once Upon a Time spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Once Upon a Time');
+			},
+		},
+		onModifyMove(move) {
+			move.infiltrates = true;
+		},
+		isPermanent: true,
+		name: "Once Upon a Time",
+		rating: 3,
+	},
+	primitive: {
+	  shortDesc: "Protosynthesis + Oblivious",
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'attract') return false;
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'attract' || move.id === 'captivate' || move.id === 'taunt') {
+				this.add('-immune', pokemon, '[from] ability: Primitive');
+				return null;
+			}
+		},
+		onBoost(boost, target, source, effect) {
+			if (effect.id === 'intimidate' || effect.id === 'forestfury') {
+				delete boost.atk;
+				this.add('-immune', target, '[from] ability: Primitive');
+			}
+		},
+		onUpdate(pokemon) {
+			if (pokemon.volatiles['attract']) {
+				this.add('-activate', pokemon, 'ability: Primitive');
+				pokemon.removeVolatile('attract');
+				this.add('-end', pokemon, 'move: Attract', '[from] ability: Primitive');
+			}
+			if (pokemon.volatiles['taunt']) {
+				this.add('-activate', pokemon, 'ability: Primitive');
+				pokemon.removeVolatile('taunt');
+				// Taunt's volatile already sends the -end message when removed
+			}
+			// if (pokemon.transformed) return;
+			// Primitive is not affected by Utility Umbrella
+			if (this.field.isWeather('sunnyday') && !pokemon.volatiles['primitive']) {
+				pokemon.addVolatile('primitive');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
+				pokemon.removeVolatile('primitive');
+				pokemon.addVolatile('primitive', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['primitive'].fromBooster = true;
+			} else if (!pokemon.volatiles['primitive']?.fromBooster && !this.field.isWeather('sunnyday')) {
+				pokemon.removeVolatile('primitive');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['primitive'];
+			this.add('-end', pokemon, 'Primitive', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Primitive', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Primitive');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'primitive' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Primitive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Primitive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Primitive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Primitive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Primitive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Primitive');
+			},
+		},
+		isPermanent: true,
+		name: "Primitive",
+		rating: 3,
+	},
+	systempurge: {
+	  shortDesc: "Hit by a Dark move or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		onDamagingHit(damage, target, source, move) {
+			if (move.type === 'Dark') {
+				target.addVolatile('systempurge');
+				target.volatiles['systempurge'].fromBooster = true;
+			}
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (pokemon.hasItem('boosterenergy') && pokemon.useItem()) {
+				pokemon.removeVolatile('systempurge');
+				pokemon.addVolatile('systempurge', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['systempurge'].fromBooster = true;
+			} else if (!pokemon.volatiles['systempurge']?.fromBooster) {
+				pokemon.removeVolatile('systempurge');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['systempurge'];
+			this.add('-end', pokemon, 'System Purge', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: System Purge', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: System Purge');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'systempurge' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('System Purge atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('System Purge def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('System Purge spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('System Purge spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('System Purge spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'System Purge');
+			},
+		},
+		isPermanent: true,
+		name: "System Purge",
+		rating: 3,
+	},
+	delayedreaction: {
+	  shortDesc: "This Pokemon switches out at the end of the next turn after being lowered to 50% of its max HP.",
+		onAfterMoveSecondary(target, source, move) {
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			const lastAttackedBy = target.getLastAttackedBy();
+			if (!lastAttackedBy) return;
+			const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+				target.addVolatile('delayedreaction');
+				this.add('-ability', target, 'Delayed Reaction');
+				this.add('-message', `${target.name} is getting ready to leave the battlefield!`);
+			}
+		},
+		condition: {
+			duration: 2,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Delayed Reaction');
+				this.add('-message', `${pokemon.name} ejected itself from the battle!`);
+				pokemon.switchFlag = true;				
+			},
+		},
+		name: "Delayed Reaction",
+		rating: 1,
+	},
+	choreography: {
+	  shortDesc: "Protean + Dancer",
+		onPrepareHit(source, target, move) {
+			if (this.effectData.choreography) return;
+			if (move.hasBounced || move.isFutureMove || move.sourceEffect === 'snatch') return;
+			const type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+				this.effectData.choreography = true;
+				this.add('-start', source, 'typechange', type, '[from] ability: Choreography');
+			}
+		},
+		onSwitchIn(pokemon) {
+			delete this.effectData.choreography;
+		},
+		name: "Choreography",
+		rating: 4,
+	},
+	squall: {
+	  shortDesc: "+1 Atk if hit by a Fire or Ice move or Tailwind begins; Fire & Ice immunity.",
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (target !== source && (move.type === 'Ice' || move.type === 'Fire')) {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] ability: Squall');
+				}
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (target === this.effectData.target || target.side !== source.side) return;
+			if (move.type === 'Ice' || move.type === 'Fire') {
+				this.boost({atk: 1}, this.effectData.target);
+			}
+		},
+		onAllySideConditionStart(target, source, sideCondition) {
+			const pokemon = this.effectData.target;
+			if (sideCondition.id === 'tailwind') {
+				this.boost({atk: 1}, pokemon, pokemon);
+			}
+		},
+		name: "Squall",
+		rating: 4,
+	},
 };
