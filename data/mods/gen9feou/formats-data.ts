@@ -119,4 +119,51 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "FELC",
 		doublesTier: "LC",
 	},
+	whimsysands: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["moonblast", "earthpower", "spikes", "uturn"],
+		randomBattleLevel: 75,
+	},
+	roaringsal: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["firelash", "knockoff", "earthquake", "uturn"],
+		randomBattleLevel: 75,
+	},
+	solvaliant: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["playrough", "knockoff", "closecombat", "swordsdance"],
+		randomBattleLevel: 75,
+	},
+	solvaliantmega: {
+		tier: "Uber",
+		doublesTier: "DOU",
+		randomBattleMoves: ["moonblast", "knockoff", "closecombat", "fireblast"],
+		randomBattleLevel: 73,
+		requiredItem: "Absolite",
+	},
+	golisorospaldeablaze: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["liquidation", "bodypress", "spikes", "willowisp"],
+		randomBattleLevel: 75,
+	},
+	brambleswine: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["iciclecrash", "powerwhip", "spikes", "earthquake"],
+		randomBattleLevel: 75,
+	},
+	meowscoriosensu: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["revelationdance", "aurasphere", "uturn", "hurricane"],
+		randomBattleLevel: 75,
+	},
+	bramblinub: {
+		tier: "FELC",
+		doublesTier: "LC",
+	},
 };
