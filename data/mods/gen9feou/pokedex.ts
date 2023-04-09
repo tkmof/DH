@@ -207,7 +207,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 70, atk: 150, def: 80, spa: 140, spd: 60, spe: 140},
 		abilities: {0: "Magic Bounce"},
 		weightkg: 43,
-		requiredItem: "Galladite",
+		requiredItem: "Absolite",
 		battleOnly: "Sol Valiant",
 	},
 	golisorospaldeablaze: {
