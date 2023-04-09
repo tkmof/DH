@@ -98,7 +98,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			const dancers = [];
 			for (const currentPoke of this.getAllActive()) {
 				if (pokemon === currentPoke) continue;
-				if ((currentPoke.hasAbility('dancer') || currentPoke.hasAbility('choreography'))) && !currentPoke.isSemiInvulnerable()) {
+				if ((currentPoke.hasAbility('dancer') || currentPoke.hasAbility('choreography')) && !currentPoke.isSemiInvulnerable()) {
 					dancers.push(currentPoke);
 				}
 			}
