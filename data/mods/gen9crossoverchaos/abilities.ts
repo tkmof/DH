@@ -50,6 +50,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	
 	puyomastery: {
+		shortDesc: "Boosts Water attacks by 1.5x",
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Water') {
@@ -70,6 +71,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	
 	funkymode: {
+		shortDesc: "This Pokemon can only be damaged by direct attacks.",
 		onDamage(damage, target, source, effect) {
 			if (effect.effectType !== 'Move') {
 				if (effect.effectType === 'Ability') this.add('-activate', source, 'ability: ' + effect.name);
