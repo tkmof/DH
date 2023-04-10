@@ -47,6 +47,15 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (pokemon.hasAbility('openingact') && !pokemon.volatiles['openingact'] && !this.field.isTerrain('sunnyday') && pokemon.useItem()) {
 				pokemon.addVolatile('openingact');
 			}
+			if (pokemon.hasAbility('onceuponatime') && !pokemon.volatiles['onceuponatime'] && !this.field.isTerrain('sunnyday') && pokemon.useItem()) {
+				pokemon.addVolatile('onceuponatime');
+			}
+			if (pokemon.hasAbility('primitive') && !pokemon.volatiles['primitive'] && !this.field.isTerrain('sunnyday') && pokemon.useItem()) {
+				pokemon.addVolatile('primitive');
+			}
+			if (pokemon.hasAbility('systempurge') && !pokemon.volatiles['systempurge'] && pokemon.useItem()) {
+				pokemon.addVolatile('systempurge');
+			}
 		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.tags.includes("Paradox")) return false;
@@ -54,5 +63,18 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		},
 		num: 1880,
 		gen: 9,
+	},
+	absolite: {
+		name: "Absolite",
+		spritenum: 576,
+		megaStone: "Sol Valiant-Mega",
+		megaEvolves: "Sol Valiant",
+		itemUser: ["Sol Valiant"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 677,
+		desc: "If held by a Sol Valiant, this item allows it to Mega Evolve in battle.",
 	},
 };
