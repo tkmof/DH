@@ -120,7 +120,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Special",
-		shortDesc: "Move's type depends on user's held berry.",
+		shortDesc: "Consumes Berry and changes move type.",
 		name: "Psy Blast",
 		pp: 15,
 		priority: 0,
@@ -130,6 +130,18 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			const item = pokemon.getItem();
 			if (!item.naturalGift) return;
 			move.type = item.naturalGift.type;
+		},
+		onPrepareHit(target, pokemon, move) {
+			if (pokemon.ignoringItem()) return false;
+			const item = pokemon.getItem();
+			if (!item.naturalGift) return false;
+			move.basePower = item.naturalGift.basePower;
+			if (!pokemon.hasAbility('adeptprowess')) {
+				pokemon.setItem('');
+				pokemon.lastItem = item.id;
+				pokemon.usedItemThisTurn = true;
+				this.runEvent('AfterUseItem', pokemon, null, null, item);
+			}
 		},
 		secondary: null,
 		target: "normal",
