@@ -1487,6 +1487,20 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3.5,
 		num: -2148,
 	},
+	justified: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Dark') {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] ability: Justified');
+				}
+				return null;
+			}
+		},
+		name: "Justified",
+		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move. Dark immunity.",
+		rating: 2.5,
+		num: 154,
+	},
 	moody: {// WIP
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
