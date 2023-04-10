@@ -1106,6 +1106,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'reshiram').learnset.calmmind = ['8L1'];
 
     //gen 6:
+    this.modData('Learnsets', 'chesnaught').learnset.bodypress = ['8L1'];
     this.modData('Learnsets', 'delphox').learnset.nastyplot = ['8L1'];//to remove at gen 9
     this.modData('Learnsets', 'delphox').learnset.recover = ['8L1'];
     this.modData('Learnsets', 'delphox').learnset.speedswap = ['8L1'];
