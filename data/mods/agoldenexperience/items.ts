@@ -1006,7 +1006,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 	},
 
 	// sandwiches
-	mightysandwichkora: {
+	mightysandwichkoraidon: {
 		name: "Mighty Sandwich (Koraidon)",
 		// spritenum: 699,
 		onTakeItem(item, pokemon, source) {
@@ -1020,7 +1020,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		num: -1104,
 		gen: 8,
 	},
-	mightysandwichmira: {
+	mightysandwichmiraidon: {
 		name: "Mighty Sandwich (Miraidon)",
 		// spritenum: 699,
 		onTakeItem(item, pokemon, source) {
