@@ -4075,6 +4075,32 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		tags: ["Restricted Legendary"],
 		eggGroups: ["Undiscovered"],
 	},
+	walkingwake: {
+		num: 1009,
+		name: "Walking Wake",
+		types: ["Water", "Dragon"],
+		gender: "N",
+		baseStats: {hp: 99, atk: 83, def: 91, spa: 125, spd: 83, spe: 109},
+		abilities: {0: "Protosynthesis", H: "Pressure"},
+		heightm: 3.5,
+		weightkg: 280,
+		color: "Blue",
+		tags: ["Paradox"],
+		eggGroups: ["Undiscovered"],
+	},
+	ironleaves: {
+		num: 1010,
+		name: "Iron Leaves",
+		types: ["Grass", "Psychic"],
+		gender: "N",
+		baseStats: {hp: 90, atk: 130, def: 88, spa: 70, spd: 108, spe: 104},
+		abilities: {0: "Quark Drive", H: "Justified"},
+		heightm: 1.5,
+		weightkg: 125,
+		color: "Green",
+		tags: ["Paradox"],
+		eggGroups: ["Undiscovered"],
+	},
 
 	//Fakemons (+ their megas) :
 	tentarcolh: {

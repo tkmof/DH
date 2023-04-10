@@ -4643,6 +4643,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DUber",
 		//natDexTier: "OU",
 	},
+	walkingwake: {
+		tier: "OU",
+		doublesTier: "DOU",
+		// natDexTier: "OU",
+	},
+	ironleaves: {
+		tier: "UUBL",
+		doublesTier: "DUU",
+		// natDexTier: "UU",
+	},
 	
 //fakemons
 	tentarcohl: {
