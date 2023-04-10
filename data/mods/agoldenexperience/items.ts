@@ -1008,6 +1008,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 	// sandwiches
 	mightysandwichkoraidon: {
 		name: "Mighty Sandwich (Koraidon)",
+		shortDesc: "Allows Koraidon to be its strongest version.",
 		// spritenum: 699,
 		onTakeItem(item, pokemon, source) {
 			if ((source && source.baseSpecies.num === 1007) || pokemon.baseSpecies.num === 1007) {
@@ -1022,6 +1023,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 	},
 	mightysandwichmiraidon: {
 		name: "Mighty Sandwich (Miraidon)",
+		shortDesc: "Allows Miraidon to be its strongest version.",
 		// spritenum: 699,
 		onTakeItem(item, pokemon, source) {
 			if ((source && source.baseSpecies.num === 1008) || pokemon.baseSpecies.num === 1008) {
