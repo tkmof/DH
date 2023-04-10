@@ -26,7 +26,7 @@ Ratings and how they work:
 export const Abilities: {[abilityid: string]: AbilityData} = {
 	
 	adeptprowess: {
-		shortDesc: "On switch-in, gains secondary type based on held berry.",
+		shortDesc: "Gains secondary type based on held berry. Psy Blast doesn't consume berry.",
 		onStart(source) {
 			if (source.ignoringItem()) return;
 			const item = source.getItem();
