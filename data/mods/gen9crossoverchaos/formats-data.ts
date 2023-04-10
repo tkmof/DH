@@ -15,4 +15,16 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "CC OU",
 		doublesTier: "DOU",
 	},
+	isaac: {
+		tier: "CC OU",
+		doublesTier: "DOU",
+	},
+	dracocentauros: {
+		tier: "CC OU",
+		doublesTier: "DOU",
+	},
+	funkykong: {
+		tier: "CC OU",
+		doublesTier: "DOU",
+	},
 };
