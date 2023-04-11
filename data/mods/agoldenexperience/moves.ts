@@ -2325,6 +2325,79 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Poison",
 	},
+	fissure: {
+		num: 90,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Fissure",
+		shortDesc: "10% chance to lower the target's Defense by 1.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, nonsky: 1},
+		secondary: {
+			chance: 10,
+			boosts: {
+				def: -1,
+			},
+		},
+		target: "normal",
+		type: "Ground",
+		contestType: "Tough",
+	},
+	sheercold: {
+		num: 329,
+		accuracy: 100,
+		basePower: 150,
+		category: "Special",
+		name: "Sheer Cold",
+		shortDesc: "Sets Hail and Aurora Veil. User faints after use.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		weather: 'hail',
+		self: {
+			sideCondition: 'auroraveil',
+		},
+		secondary: null,
+		selfdestruct: "always",
+		target: "normal",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
+	guillotine: {
+		num: 12,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		name: "Guillotine",
+		shortDesc: "Raises user's Attack by 1 if this KOes the target.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (!target || target.fainted || target.hp <= 0) this.boost({atk: 1}, pokemon, pokemon, move);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Cool",
+	},
+	horndrill: {
+		num: 32,
+		accuracy: 85,
+		basePower: 120,
+		category: "Physical",
+		name: "Horn Drill",
+		shortDesc: "No additional effect.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+		contestType: "Cool",
+	},
 	hiddenpower: {
 		num: 237,
 		accuracy: 100,
@@ -3279,7 +3352,40 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Steel",
 	},
-
+	hydrosteam: {
+		num: 876,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Hydro Steam",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, defrost: 1},
+		// Damage boost in Sun applied in conditions.ts
+		thawsTarget: true,
+		secondary: null,
+		target: "normal",
+		type: "Water",
+	},
+	psyblade: {
+		num: 875,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Psyblade",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		secondary: null,
+		onBasePower(basePower, source) {
+			if (this.field.isTerrain('electricterrain')) {
+				this.debug('psyblade electric terrain boost');
+				return this.chainModify(1.5);
+			}
+		},
+		target: "normal",
+		type: "Psychic",
+	},
 
 	// Endless Dream field
 	wakeupslap: {

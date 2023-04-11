@@ -192,7 +192,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'glastrier').learnset.mountaingale = ['8L1'];
     this.modData('Learnsets', 'mamoswine').learnset.mountaingale = ['8L1'];
 
-    //
+    //    
 
     // underdog 
     this.modData('Learnsets', 'lillipup').learnset.underdog = ['8L1'];
@@ -336,6 +336,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'seismitoad').learnset.dissolution = ['8T'];
     this.modData('Learnsets', 'shuckle').learnset.dissolution = ['8T'];
     this.modData('Learnsets', 'lickilicky').learnset.dissolution = ['8T'];
+    this.modData('Learnsets', 'annoyog').learnset.dissolution = ['8T'];
 
     // landslide 
     this.modData('Learnsets', 'hippopotas').learnset.landslide = ['8L1'];
@@ -364,6 +365,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'lairon').learnset.landslide = ['8L1'];
     this.modData('Learnsets', 'aggron').learnset.landslide = ['8L1'];
     this.modData('Learnsets', 'stonjourner').learnset.landslide = ['8L1'];
+    this.modData('Learnsets', 'ironthorns').learnset.landslide = ['8L1'];
 
     // epicenter 
     this.modData('Learnsets', 'golem').learnset.epicenter = ['8L1'];
@@ -378,6 +380,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'gigalith').learnset.epicenter = ['8L1'];
     this.modData('Learnsets', 'copperajah').learnset.epicenter = ['8L1'];
     this.modData('Learnsets', 'metagross').learnset.epicenter = ['8L1'];
+    this.modData('Learnsets', 'ironthorns').learnset.epicenter = ['8L1'];
 
     // downdraft 
     this.modData('Learnsets', 'rayquaza').learnset.downdraft = ['8L1'];
@@ -659,6 +662,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'kartana').learnset.sneakyassault = ['8L1'];
     this.modData('Learnsets', 'zeraora').learnset.sneakyassault = ['8L1'];
     this.modData('Learnsets', 'zarude').learnset.sneakyassault = ['8L1'];
+    this.modData('Learnsets', 'meowscarada').learnset.sneakyassault = ['8L1'];
+    this.modData('Learnsets', 'lokix').learnset.sneakyassault = ['8L1'];
     this.modData('Learnsets', 'slendawful').learnset.sneakyassault = ['8L1'];
 
     // mercuryshot 
@@ -1101,6 +1106,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'reshiram').learnset.calmmind = ['8L1'];
 
     //gen 6:
+    this.modData('Learnsets', 'chesnaught').learnset.bodypress = ['8L1'];
     this.modData('Learnsets', 'delphox').learnset.nastyplot = ['8L1'];//to remove at gen 9
     this.modData('Learnsets', 'delphox').learnset.recover = ['8L1'];
     this.modData('Learnsets', 'delphox').learnset.speedswap = ['8L1'];
