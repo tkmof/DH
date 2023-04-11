@@ -44,6 +44,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				pokemon.setType("Ground");
 				this.add('-start', pokemon, 'typechange', 'Grass', '[from] ability: Adept Prowess');
 			}
+		},
 		name: "Adept Prowess",
 		rating: 3.5,
 		num: -1,
