@@ -1652,7 +1652,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		tags: ["Restricted Legendary"],
 		eggGroups: ["Undiscovered"],
 	},
-	},
 	walkingwake: {
 		num: 1009,
 		name: "Walking Wake",
