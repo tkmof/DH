@@ -242,4 +242,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	froslass: {
 	   tier: "MetaMons",
 	},
+	beedrill: {
+	   tier: "MetaMons",
+	},
+	liepard: {
+	   tier: "MetaMons",
+	},
+	emboar: {
+	   tier: "MetaMons",
+	},
 };
