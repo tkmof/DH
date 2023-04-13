@@ -109,8 +109,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	raticate: {
-		tier: "(PU)",
-		doublesTier: "(DUU)",
+		tier: "NFE",
 	},
 	raticatealola: {
 		tier: "(PU)",
@@ -3237,7 +3236,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	gogoat: {
-		tier: "NU",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	pancham: {
@@ -4644,6 +4643,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DUber",
 		//natDexTier: "OU",
 	},
+	walkingwake: {
+		tier: "OU",
+		doublesTier: "DOU",
+		// natDexTier: "OU",
+	},
+	ironleaves: {
+		tier: "UUBL",
+		doublesTier: "DUU",
+		// natDexTier: "UU",
+	},
 	
 //fakemons
 	tentarcohl: {
@@ -4937,6 +4946,18 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	grimillia: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	irondrill: {
+		tier: "OU",
+		doublesTier: "DUU",
+	},
+	annoyog: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	raticket: {
 		tier: "OU",
 		doublesTier: "DOU",
 	},

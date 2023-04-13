@@ -412,6 +412,20 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		gen: 6,
     	shortDesc: "After using a Special move, this Pokemon switches out at the end of the next turn and it can't use status moves.",
 	},
+	sharpness: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['slicing']) {
+				this.debug('Shapness boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Sharpness",
+		rating: 3.5,
+		gen: 6,
+		num: 292,
+    	shortDesc: "This Pokemon's slicing moves deal 50% more damage.",
+	},
 	
 /*	
 // ngas is so cringe
