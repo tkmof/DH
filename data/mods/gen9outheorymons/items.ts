@@ -2,6 +2,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 	//---------Gen 9 Moves----------//
 	abilityshield: {
 		name: "Ability Shield",
+		shortDesc: "Holder's Ability can't be changed by any effect.",
 		spritenum: 0, // TODO
 		ignoreKlutz: true,
 		// Neutralizing Gas protection implemented in Pokemon.ignoringAbility() within sim/pokemon.ts
@@ -19,6 +20,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	clearamulet: {
 		name: "Clear Amulet",
+		shortDesc: "Prevents other Pokemon from lowering the holder's stat changes.",
 		spritenum: 0, // TODO
 		onTryBoost(boost, target, source, effect) {
 			if (source && target === source) return;
@@ -39,6 +41,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	mirrorherb: {
 		name: "Mirror Herb",
+		shortDesc: "When an opposing Pokemon raises a stat stage, the holder copies it. Single use.",
 		fling: {
 			basePower: 10,
 		},
@@ -64,6 +67,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	punchingglove: {
 		name: "Punching Glove",
+		shortDesc: "Holder's punch-based attacks have 1.1x power and do not make contact.",
 		spritenum: 0, // TODO
 		onBasePowerPriority: 23,
 		onBasePower(basePower, attacker, defender, move) {
@@ -81,6 +85,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	covertcloak: {
 		name: "Covert Cloak",
+		shortDesc: "Holder is not affected by the secondary effect of another Pokemon's attack.",
 		fling: {
 			basePower: 10,
 		},
@@ -94,6 +99,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	loadeddice: {
 		name: "Loaded Dice",
+		shortDesc: "Holder's moves that hit 2-5 times hit 4-5 times; Population Bomb hits 4-10 times.",
 		spritenum: 0, // TODO
 		// partially implemented in sim/battle-actions.ts:BattleActions#hitStepMoveHitLoop
 		onModifyMove(move) {
@@ -106,6 +112,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	boosterenergy: {
 		name: "Booster Energy",
+		shortDesc: "Activates the Protosynthesis or Quark Drive Abilities. Single use.",
 		spritenum: 0, // TODO
 		onUpdate(pokemon) {
 			if (pokemon.transformed) return;
