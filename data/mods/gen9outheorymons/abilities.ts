@@ -12,6 +12,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		isNonstandard: "Unobtainable",
 		isPermanent: true,
 		name: "Battle Bond",
+		shortDesc: "After KOing a Pokemon: raises Attack, Sp. Atk, Speed by 1 stage. Once per battle.",
 		rating: 3.5,
 		num: 210,
 	},
@@ -23,6 +24,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Dauntless Shield",
+		shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
 		rating: 3.5,
 		num: 235,
 	},
@@ -34,6 +36,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Intrepid Sword",
+		shortDesc: "On switch-in, this Pokemon's Attack is raised by 1 stage. Once per battle.",
 		rating: 4,
 		num: 234,
 	},
@@ -52,6 +55,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			delete this.effectData.libero;
 		},
 		name: "Libero",
+		shortDesc: "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
 		rating: 4,
 		num: 236,
 	},
@@ -70,6 +74,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			delete this.effectData.protean;
 		},
 		name: "Protean",
+		shortDesc: "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
 		rating: 4,
 		num: 168,
 	},
@@ -106,6 +111,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Anger Shell",
+		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and -1 Def, Sp. Def.",
 		rating: 4,
 		num: 271,
 	},
@@ -125,6 +131,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isBreakable: true,
 		name: "Armor Tail",
+		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and -1 Def, Sp. Def.",
 		rating: 2.5,
 		num: 296,
 	},
@@ -142,6 +149,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			return this.chainModify(0.75);
 		},
 		name: "Beads of Ruin",
+      shortDesc: "Active Pokemon without this Ability have their Special Defense multiplied by 0.75.",
 		rating: 4.5,
 		num: 284,
 	},
@@ -170,6 +178,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isPermanent: true,
 		name: "Commander",
+		shortDesc: "If ally is Dondozo: this Pokemon cannot act or be hit, +2 to all Dondozo's stats.",
 		rating: 0,
 		num: 279,
 	},
@@ -194,6 +203,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			this.add('-copyboost', pokemon, ally, '[from] ability: Costar');
 		},
 		name: "Costar",
+		shortDesc: "On switch-in, this Pokemon copies all of its ally's stat stage changes.",
 		rating: 0,
 		num: 294,
 	},
@@ -227,6 +237,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			},
 		},
 		name: "Cud Chew",
+		shortDesc: "On switch-in, this Pokemon copies all of its ally's stat stage changes.",
 		rating: 2,
 		num: 291,
 	},
@@ -241,6 +252,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isBreakable: true,
 		name: "Earth Eater",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
 		rating: 3.5,
 		num: 297,
 	},
@@ -250,6 +262,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			target.addVolatile('charge');
 		},
 		name: "Electromorphosis",
+		shortDesc: "This Pokemon gains the Charge effect when it takes a hit from an attack.",
 		rating: 2,
 		num: 280,
 	},
@@ -262,6 +275,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isBreakable: true,
 		name: "Good as Gold",
+		shortDesc: "This Pokemon is immune to Status moves.",
 		rating: 5,
 		num: 283,
 	},
@@ -295,6 +309,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Hadron Engine",
+		shortDesc: "On switch-in, summons Electric Terrain. During Electric Terrain, Special Attack is 1.3333x.",
 		rating: 4.5,
 		num: 289,
 	},
@@ -312,6 +327,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Lingering Aroma",
+		shortDesc: "Making contact with this Pokemon has the attacker's Ability become Lingering Aroma.",
 		rating: 2,
 		num: 268,
 	},
@@ -328,6 +344,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Mycelium Might",
+		shortDesc: "This Pokemon's Status moves go last in their priority bracket and ignore Abilities.",
 		rating: 2,
 		num: 298,
 	},
@@ -346,6 +363,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			this.boost(positiveBoosts, pokemon);
 		},
 		name: "Opportunist",
+		shortDesc: "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",
 		rating: 3,
 		num: 290,
 	},
@@ -417,6 +435,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isPermanent: true,
 		name: "Protosynthesis",
+		shortDesc: "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 		rating: 3,
 		num: 281,
 	},
@@ -449,6 +468,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isBreakable: true,
 		name: "Purifying Salt",
+		shortDesc: "Ghost damage to this Pokemon dealt with a halved offensive stat; can't be statused.",
 		rating: 4,
 		num: 272,
 	},
@@ -520,6 +540,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isPermanent: true,
 		name: "Quark Drive",
+		shortDesc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 		rating: 3,
 		num: 282,
 	},
@@ -539,6 +560,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Rocky Payload",
+		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Rock-type attack.",
 		rating: 3.5,
 		num: 276,
 	},
@@ -547,6 +569,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			this.field.setTerrain('grassyterrain');
 		},
 		name: "Seed Sower",
+		shortDesc: "When this Pokemon is hit by an attack, the effect of Grassy Terrain begins.",
 		rating: 2.5,
 		num: 269,
 	},
@@ -560,6 +583,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Sharpness",
+		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
 		rating: 3.5,
 		num: 292,
 	},
@@ -584,6 +608,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Supreme Overlord",
+		shortDesc: "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
 		rating: 3.5,
 		num: 293,
 	},
@@ -601,6 +626,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			return this.chainModify(0.75);
 		},
 		name: "Sword of Ruin",
+      shortDesc: "Active Pokemon without this Ability have their Defense multiplied by 0.75.",
 		rating: 4.5,
 		num: 285,
 	},
@@ -618,6 +644,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			return this.chainModify(0.75);
 		},
 		name: "Tablets of Ruin",
+      shortDesc: "Active Pokemon without this Ability have their Attack multiplied by 0.75.",
 		rating: 4.5,
 		num: 284,
 	},
@@ -641,6 +668,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			return false;
 		},
 		name: "Thermal Exchange",
+		shortDesc: "This Pokemon's Attack is raised by 1 when damaged by Fire moves; can't be burned.",
 		rating: 2.5,
 		num: 270,
 	},
@@ -654,6 +682,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Toxic Debris",
+		shortDesc: "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
 		rating: 3.5,
 		num: 295,
 	},
@@ -671,6 +700,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			return this.chainModify(0.75);
 		},
 		name: "Vessel of Ruin",
+      shortDesc: "Active Pokemon without this Ability have their Special Attack multiplied by 0.75.",
 		rating: 4.5,
 		num: 284,
 	},
@@ -685,6 +715,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isBreakable: true,
 		name: "Well-Baked Body",
+		shortDesc: "This Pokemon's Defense is raised 2 stages if hit by a Fire move; Fire immunity.",
 		rating: 3.5,
 		num: 273,
 	},
@@ -702,6 +733,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Wind Power",
+		shortDesc: "This Pokemon gains the Charge effect when hit by a wind move or Tailwind begins.",
 		rating: 1,
 		num: 277,
 	},
@@ -726,6 +758,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Wind Rider",
+		shortDesc: "Attack raised by 1 if hit by a wind move or Tailwind begins. Wind move immunity.",
 		rating: 3.5,
 		// We do not want Brambleghast to get Infiltrator in Randbats
 		num: 274,
@@ -751,6 +784,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		isPermanent: true,
 		name: "Zero to Hero",
+		shortDesc: "If this Pokemon is a Palafin in Zero Form, switching out has it change to Hero Form.",
 		rating: 5,
 		num: 278,
 	},
