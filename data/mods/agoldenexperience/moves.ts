@@ -3361,7 +3361,11 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, defrost: 1},
-		// Damage boost in Sun applied in conditions.ts
+		onModifyMove(move, pokemon) {
+			if (pokemon.effectiveWeather() === 'sunnyday') {
+				move.basePower = 260;
+			}
+		},
 		thawsTarget: true,
 		secondary: null,
 		target: "normal",
