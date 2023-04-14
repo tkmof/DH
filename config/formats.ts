@@ -196,6 +196,21 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 6] Megas Revisited",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-6-megas-revisited-slate-2-submissions.3713949/">Megas Revisited on Smogon Forums</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1wK11cPHnPCmH7JFss6leKW6_-cumn3DuZA-YMzrzF-U/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'gen6megasrevisited',
+		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+					"Kangaskhanite", "Mewtwonite X", "Mewtwonite Y", "Scizorite",
+					"Heracronite", "Tyranitarite", "Blazikenite", "Gardevoirite",
+					"Aggronite", "Sharpedonite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Diancite"
+					],
+	},
+	{
 		name: "[Gen 9] MetaMons",
 	   desc: [
 			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
@@ -843,6 +858,7 @@ export const Formats: FormatList = [
 		ruleset: ['Team Preview', 'Cancel Mod', 'HP Percentage Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Freeze Clause Mod', 'Data Mod', 'Mega Data Mod', 'Sandbox Mod', 'Overflow Stat Mod'],
 		mod: 'm4asandbox',
 	},
+/* Moving to Gen 9 section
 	{
 		name: "[Gen 6] Megas Revisited",
 		threads: [
@@ -852,12 +868,13 @@ export const Formats: FormatList = [
 		mod: 'gen6megasrevisited',
 		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
-					"Kangaskhanite", "Gyaradosite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Scizorite",
+					"Kangaskhanite", "Mewtwonite X", "Mewtwonite Y", "Scizorite",
 					"Heracronite", "Tyranitarite", "Blazikenite", "Gardevoirite",
 					"Aggronite", "Sharpedonite", "Salamencite",
-					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Galladite", "Diancite"
+					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Diancite"
 					],
 	},
+*/
 	/*
 	{
 		name: "[Gen 8] Metamorphosis",
@@ -1498,7 +1515,7 @@ export const Formats: FormatList = [
 						'Karakasa','Grag','Kimokus','Toknight','Cowpy','Cowork','Barbecow','Hoorel','Baishark','Luviu','Shucklony','Dreamer','Nohtyp','Abomigo-Mega',
 						'Vizcachu-Mega','Iron Sun','Crazy Moon','Grussgu-Mega','Porcusquill-Mega','Jumpfurr','SurivExe','Eevee-Cile','Vaporeon-Cile','Jolteon-Cile',
 						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile','Qilineon','Fossileon','Crobat-Mega','Cupida',
-						'Mightyena-Mega','Drapede','Quetzal','Granjaguar',]
+						'Mightyena-Mega','Drapede','Quetzal','Granjaguar','Huemul','Undeer','Dothdo']
 	},
 	{
 		name: "[Gen 8] imando Gen 9",

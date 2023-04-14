@@ -26,16 +26,24 @@ Ratings and how they work:
 export const Abilities: {[abilityid: string]: AbilityData} = {
 	
 	adeptprowess: {
-		shortDesc: "On switch-in, gains secondary type based on held berry.",
-		onStart(source) {
-			if (source.ignoringItem()) return;
-			const item = source.getItem();
+		shortDesc: "Gains secondary type based on held berry. Psy Blast doesn't consume berry.",
+		onStart(pokemon){
+			if(pokemon.ignoringItem()) return;
+			const item = pokemon.getItem();
 			if (!item.naturalGift) return;
-			let itemType = item.naturalGift.type;
-			if(source.types[0] !== itemType) {
-				source.setType([source.types[1],itemType]);
+			let type: string;
+			type = item.naturalGift.type;
+
+			if (!pokemon.hasType(type) && pokemon.addType(type)) {
+				this.add('-start', pokemon, 'typeadd', type, '[from] ability: Adept Prowess');
 			}
-			this.add('-start', source, 'typechange', source.getTypes(true).join('/'), '[from] ability: Adept Prowess');
+		},
+
+		onUpdate(pokemon) {
+			if ((pokemon.ignoringItem() || !pokemon.item) && Object.keys(pokemon.getTypes()).length === 2) {
+				pokemon.setType("Ground");
+				this.add('-start', pokemon, 'typechange', 'Grass', '[from] ability: Adept Prowess');
+			}
 		},
 		name: "Adept Prowess",
 		rating: 3.5,
@@ -43,6 +51,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	
 	puyomastery: {
+		shortDesc: "Boosts Water attacks by 1.5x",
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Water') {
@@ -63,6 +72,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	
 	funkymode: {
+		shortDesc: "This Pokemon can only be damaged by direct attacks.",
 		onDamage(damage, target, source, effect) {
 			if (effect.effectType !== 'Move') {
 				if (effect.effectType === 'Ability') this.add('-activate', source, 'ability: ' + effect.name);
