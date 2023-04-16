@@ -1,4 +1,8 @@
 export const Moves: {[moveid: string]: ModdedMoveData} = {
+	rest: {
+		inherit: true,
+		pp: 10,
+	},
 	diamonddust: {
 		num: 3010,
 		accuracy: 100,
@@ -1017,65 +1021,5 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Fighting",
 		zMove: {boost: {def: 1}},
 		contestType: "Cool",
-	},
-	aerialace: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	aircutter: {
-		inherit: true,
-		flags: {protect: 1, mirror: 1, slicing: 1},
-	},
-	behemothblade: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	crosspoison: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	cut: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	furycutter: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	leafblade: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	nightslash: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	psychocut: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	razorleaf: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	razorshell: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	sacredsword: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	slash: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	solarblade: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	xscissor: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
 	},
 };

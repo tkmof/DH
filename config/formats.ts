@@ -1456,6 +1456,23 @@ export const Formats: FormatList = [
 						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile','Qilineon','Fossileon','Crobat-Mega','Cupida',
 						'Mightyena-Mega','Drapede','Quetzal','Granjaguar',]
 	},
+	{
+		name: "[Gen 9] i forgor OU",
+		mod: 'iforgor',
+		desc: `i forgor`,
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Mega Data Mod'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['IDK'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return ['you forgor ' + set.species + ' doesnt exist.'];
+				}
+			}
+		},
+	},
     {
 		name: "[Gen 3] Inverse OU",
         mod: 'gen3inverse',
