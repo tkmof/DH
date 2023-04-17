@@ -222,4 +222,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       abilities: {0: "White Smoke", H: "Screen Cleaner"},
       weightkg: 350,
    },
+   kabluxie: {
+      num: 29,
+      name: "Kabluxie",
+      types: ["Fire", "Fighting"],
+      baseStats: {hp: 95, atk: 115, def: 120, spa: 65, spd: 120, spe: 65},
+      abilities: {0: "Levitate"},
+   },
+   deoxin: {
+      num: 30,
+      name: "Deoxin",
+      types: ["Poison"],
+      baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
+      abilities: {0: "Poison Touch"},
+   },
 };
