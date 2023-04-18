@@ -54,6 +54,9 @@ export const Formats: FormatList = [
 				"Arcanine-Water Balloon", "Arcanine-Noble", "Avalugg-Prism", "Avalugg-Plated",
 				"Squawkabilly", "Squawkabiluck", "Squawkalone", "Squawkabilly-Yellow",
 				"Wishiwashi-Lonesome", "Winardin", "Palafin", "Hercuphin",
+				'Gumshoos', 'Gumshoos-Totem', 'Togedemaru', 'Totemaru',
+				'Tauros', 'Bravatoro', 'Tauros-Steam', 'Tauros-Azul',
+				'Raichu', 'Raichu-Soft', 'Rapidash', 'Rapidash-Galar', 'Golem-Berserker', 'Golem-Alola',
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */

@@ -436,12 +436,36 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -15,
 	},
 	originorb: {
-		/*onEffectiveness: function(typeMod, target, type, move) {
-			if (move && this.dex.getImmunity(move, type) === false) return 2;
-			return -typeMod;
-		},*/
+		onModifyMovePriority: -5,
+		onModifyMove(move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Fighting'] = true;
+				move.ignoreImmunity['Normal'] = true;
+				move.ignoreImmunity['Poison'] = true;
+				move.ignoreImmunity['Ground'] = true;
+				move.ignoreImmunity['Ghost'] = true;
+				move.ignoreImmunity['Electric'] = true;
+				move.ignoreImmunity['Psychic'] = true;
+				move.ignoreImmunity['Dragon'] = true;
+			}
+		},
+		onModifyDamage(damage, source, target, move) {
+			if (
+			((move.type === 'Fighting' || move.type === 'Normal') && target.hasType('Ghost')) ||
+			move.type === 'Poison' && target.hasType('Steel') ||
+			move.type === 'Ground' && target.hasType('Flying') ||
+			move.type === 'Ghost' && target.hasType('Normal') ||
+			move.type === 'Electric' && target.hasType('Ground') ||
+			move.type === 'Psychic' && target.hasType('Dark') ||
+			move.type === 'Dragon' && target.hasType('Fairy')
+			) {
+				this.debug('Origin Orb decrease');
+				return this.chainModify(0.5);
+			}
+		},
 		name: "Origin Orb",
-		shortDesc: "(Non-functional placeholder) This Pokemon deals resisted damage to immunities.",
+		shortDesc: "(Semifunctional placeholder) This Pokemon deals resisted damage to immunities.",
 		rating: 5,
 		num: -16,
 	},
@@ -666,19 +690,28 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -28,
 	},
 	costar: {
-		onStart(pokemon) {
+		/*onStart(pokemon) {
 			let activated = false;
 			for (const target of pokemon.side.foe.active) {
-					if (!target || !this.isAdjacent(target, pokemon)) continue;
-					if (!activated) {
-						this.add('-ability', pokemon, 'Costar', 'boost');
-						activated = true;
-					}
-					pokemon.boosts[spe] = target.boosts[spe];
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Costar', 'boost');
+					activated = true;
+				}
+				pokemon.boosts[spe] = target.boosts[spe];
 			}
-		},
+		},*/
+		/*onBoost(boost, target, source, effect) {
+			if (target.newlySwitched ) {
+				const boost = boosts['spe']!;
+				for (boost in target.boosts) {
+					source.boosts[boost] = target.boosts[boost];
+				}
+				this.add('-copyboost', source, target, '[from] move: Psych Up');
+			}
+		},*/
 		name: "Costar",
-		shortDesc: "On switch-in, this Pokemon copies the speed boosts of the opponent.",
+		shortDesc: "(Non-functional placeholder) On switch-in, this Pokemon copies the speed boosts of the opponent.",
 		num: 294,
 	},
 	overthehead: {
@@ -718,7 +751,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	zerotohero: {
 		onTryAddVolatile(status, pokemon) {
-			if (target.species.id !== 'palafin') return;
+			if (pokemon.species.id !== 'palafin') return;
             if (status.id === 'flinch' ||
 				status.id === 'trapped' ||
 				status.id === 'partiallytrapped' ||
@@ -735,7 +768,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				status.id === 'infatuation' ||
 				status.id === 'nightmare' ||
 				status.id === 'perishsong' ||
-				status.id === 'telekinesis') return null;
+				status.id === 'telekinesis') {
+				this.add('-immune', pokemon, '[from] ability: Zero to Hero');
+				return null;
+			}
         },
 		onCheckShow(pokemon) {
 			if (target.species.id !== 'palafin') return;
@@ -818,7 +854,212 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		isPermanent: true,
 		isUnbreakable: true,
 		name: "Zero to Hero",
+		shortDesc: "If Palafin: Non-volatile status condition are cured when switching out. Immune to volatile status.",
 		rating: 3.5,
 		num: 278,
+	},
+	moody: {
+      shortDesc: "This Pokemon's lowest stat goes up by 1 every turn.",
+        onResidualOrder: 26,
+        onResidualSubOrder: 1,
+        onResidual(pokemon) {
+            if (pokemon.activeTurns) {
+            let statName = 'atk';
+            let worstStat = 3000; //The highest possible stat number (with boosts) is 2,676
+            let s: StatNameExceptHP;
+            for (s in pokemon.storedStats) {
+                if (pokemon.storedStats[s] < worstStat) {
+                    statName = s;
+                    worstStat = pokemon.storedStats[s];
+                }
+            }
+            this.boost({[statName]: 1}, pokemon);
+            }
+        },
+        name: "Moody",
+        rating: 3,
+        num: 141,
+    },
+	spikyandround: {
+		onDamagingHitOrder: 1,
+		onDamagingHit(damage, target, source, move) {
+			if (move.flags['contact']) {
+				this.damage(source.baseMaxhp / 8, source, target);
+			}
+		},
+		onStart(pokemon) {
+			pokemon.addVolatile('spikyandround');
+		},
+		condition: {
+			onStart(pokemon) {
+				this.effectData.lastMove = '';
+				this.effectData.numConsecutive = 0;
+			},
+			onTryMovePriority: -2,
+			onTryMove(pokemon, target, move) {
+				if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
+					this.effectData.numConsecutive++;
+				} else if (pokemon.volatiles['twoturnmove'] && this.effectData.lastMove !== move.id) {
+					this.effectData.numConsecutive = 1;
+				} else {
+					this.effectData.numConsecutive = 0;
+				}
+				this.effectData.lastMove = move.id;
+			},
+			onModifyDamage(damage, source, target, move) {
+				if (source.hasType(move.type)) {
+					const dmgMod = [0x1000, 0x1199, 0x1333, 0x14CC, 0x1666, 0x1800];
+					const numConsecutive = this.effectData.numConsecutive > 5 ? 5 : this.effectData.numConsecutive;
+					return this.chainModify([dmgMod[numConsecutive], 0x1000]);
+				}
+			},
+		},
+		name: "Spiky and Round",
+		shortDesc: "Damage of STAB moves used on consecutive turns is increased. Max 1.5x after 5 turns. Contact: -1/8 max HP.",
+		rating: 3.5,
+		num: -30,
+	},
+	rollromp: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				if (!this.boost({spe: 1})) {
+					this.add('-immune', target, '[from] ability: Roll Romp');
+				}
+				return null;
+			}
+		},
+		name: "Roll Romp",
+		shortDesc: "This Pokemon's Speed is raised 1 stage if hit by an Ground move; Ground immunity.",
+		rating: 3,
+		num: -31,
+	},
+	angerpoint: {
+		onUpdate(target, source, move) {
+			if (target.volatiles['angerpoint']) return;
+			if (target.hp <= target.maxhp / 2) {
+				this.add('-activate', target, 'ability: Anger Point');
+				target.cureStatus();
+				target.addVolatile('angerpoint');
+			}
+		},
+		condition: {
+			onSetStatus(status, target, source, effect) {
+				if ((effect as Move)?.status) {
+					this.add('-immune', target, '[from] ability: Anger Point');
+				}
+				return false;
+			},
+		},
+		name: "Anger Point",
+		shortDesc: "When this Pokemon reaches 1/2 or less max HP, it cures its status and becomes immune to status.",
+		rating: 2.5,
+		num: 83,
+	},
+	tactician: {
+		onModifyDamage(damage, source, target, move) {
+			if (move && target.getMoveHitData(move).typeMod > 0) {
+				return this.chainModify([0x1400, 0x1000]);
+			}
+		},
+		name: "Tactician",
+		shortDesc: "This Pokemon's attacks that are super effective against the target do 1.25x damage.",
+		rating: 2.5,
+		num: -32,
+	},
+	pastelveil: {
+		onStart(source) {
+			for (const ally of source.side.pokemon) {
+				if (['psn', 'tox'].includes(ally.status)) {
+					ally.cureStatus();
+				}
+			}
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Poison') {
+				this.add('-immune', target, '[from] ability: Pastel Veil');
+				return null;
+			}
+		},
+		name: "Pastel Veil",
+		shortDesc: "This Pokemon is immune to Poison-type moves. On switch-in, cures its team of poison.",
+		rating: 3,
+		num: 257,
+	},
+	cannonstyle: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, item) {
+			if (attacker.item === 'ironball') {
+				this.debug('Cannon Style boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(spa, attacker, defender, item) {
+			if (attacker.item === 'ironball') {
+				this.debug('Cannon Style boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Cannon Style",
+		shortDesc: "This Pokemon's Atk and SpA is 1.5x when holding an Iron Ball. Fling: 2x damage.",
+		rating: 3.5,
+		num: -33,
+	},
+	thermofist: {
+		/*onAfterMoveSecondarySelf(boost, pokemon, target, move) {
+			if (move.flags['punch']) {
+				this.boost({atk: 1});
+			}
+			if (!move.flags['punch']) {
+				delete boost.atk;
+			}
+		},
+		onBoost(boost, target, source, effect) {
+			if (target.boosts['atk'] === 6) {
+				target.trySetStatus('brn', target);
+			}
+		},*/
+		name: "Thermo Fist",
+		shortDesc: "(Non-functional placeholder) +1 Atk if using a Punching move. If not: Atk reset. If +6 Atk: Burned.",
+		rating: 3.5,
+		num: -34,
+	},
+	
+	//SV Ability Descriptions
+	toxicdebris: {
+		inherit: true,
+		shortDesc: "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
+	},
+	sharpness: {
+		inherit: true,
+		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
+	},
+	hadronengine: {
+		inherit: true,
+		shortDesc: "On switch-in, summons Electric Terrain. During Electric Terrain, Sp. Atk is 1.3333x.",
+	},
+	supremeoverlord: {
+		inherit: true,
+		shortDesc: "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
+	},
+	opportunist: {
+		inherit: true,
+		shortDesc: "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",
+	},
+	cudchew: {
+		inherit: true,
+		shortDesc: "If this Pokemon eats a Berry, it will eat that Berry again at the end of the next turn.",
+	},
+	windpower: {
+		inherit: true,
+		shortDesc: "This Pokemon gains the Charge effect when hit by a wind move or Tailwind begins.",
+	},
+	electromorphosis: {
+		inherit: true,
+		shortDesc: "This Pokemon gains the Charge effect when it takes a hit from an attack.",
+	},
+	quarkdrive: {
+		inherit: true,
+		shortDesc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 	},
 };
