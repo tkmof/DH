@@ -314,4 +314,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 174,
 	},
+	wiseeye: {
+		shortDesc: "This Pokémon crits against opposing Pokémon sharing a type with it.",
+		onModifyCritRatio(critRatio, source, target) {
+			if (target.hasType(source.getTypes())) return 5;
+		},
+		name: "Wise Eye",
+		rating: 3,
+	},
 };

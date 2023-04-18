@@ -54,6 +54,9 @@ export const Formats: FormatList = [
 				"Arcanine-Water Balloon", "Arcanine-Noble", "Avalugg-Prism", "Avalugg-Plated",
 				"Squawkabilly", "Squawkabiluck", "Squawkalone", "Squawkabilly-Yellow",
 				"Wishiwashi-Lonesome", "Winardin", "Palafin", "Hercuphin",
+				'Gumshoos', 'Gumshoos-Totem', 'Togedemaru', 'Totemaru',
+				'Tauros', 'Bravatoro', 'Tauros-Steam', 'Tauros-Azul',
+				'Raichu', 'Raichu-Soft', 'Rapidash', 'Rapidash-Galar', 'Golem-Berserker', 'Golem-Alola',
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
@@ -1478,6 +1481,14 @@ export const Formats: FormatList = [
 		mod: 'gen1glitch',
 		ruleset: ['Standard', 'Data Mod'],
 		banlist: ['Uber', 'Wrap'],
+	},
+	{
+		
+	  name: "[Gen 8] Gen 9 Sandbox Theorymons",
+     desc: '<b>[Gen 8] Gen 9 Sandbox Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
+     mod: 'gen9outheorymons',
+	  ruleset: ['Standard', 'Data Mod'],
+	  banlist: ['Uber'],
 	},
 	{
 	name: "[Gen 1] JohtoMons",
