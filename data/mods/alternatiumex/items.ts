@@ -212,7 +212,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		inherit: true,
 		shortDesc: "Holder is not affected by the secondary effect of another Pokemon's attack.",
 	},
-	laodeddice:  {
+	loadeddice:  {
 		inherit: true,
 		shortDesc: "Holder's moves that hit 2-5 times hit 4-5 times; Population Bomb hits 4-10 times.",
 	},

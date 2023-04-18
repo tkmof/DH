@@ -1342,4 +1342,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		inherit: true,
 		shortDesc: "Ends the effects of terrain.",
 	},
+	populationbomb: {
+		inherit: true,
+		shortDesc: "Hits 10 times. Each hit can miss.",
+	},
+	spinout: {
+		inherit: true,
+		shortDesc: "Lowers the user's Speed by 2.",
+	},
 };
