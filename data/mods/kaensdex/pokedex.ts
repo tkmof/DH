@@ -1827,19 +1827,24 @@ mightyenamega: {
 drapede: {
 	num: 189,
 	name: "Drapede",
-	types: ["Dragon", "Bug"],
+	types: ["Bug", "Dragon"],
 	baseStats: {hp: 140, atk: 120, def: 100, spa: 60, spd: 100, spe: 50},
 	abilities: {0: "Shield Dust", 1: "Poison Touch", H: "Guardian of the Swamp"},
 	weightkg: 353.9,
+	otherFormes: ["Drapede-Solemne"],
+	formeOrder: ["Drapede", "Drapede-Solemne"],
 },
 
 drapedesolemne: {
 	num: 189,
-	name: "Drapede",
-	types: ["Fighting", "Bug"],
-	baseStats: {hp: 140, atk: 150, def: 100, spa: 80, spd: 80, spe: 20},
+	name: "Drapede-Solemne",
+	baseSpecies: "Drapede",
+	types: ["Fighting", "Dragon"],
+	baseStats: {hp: 140, atk: 150, def: 80, spa: 100, spd: 80, spe: 20},
 	abilities: {0: "Spirit of the Swamp"},
 	weightkg: 153.9,
+	requiredItem: "Golden Bracelet",
+	battleOnly: "Drapede",
 },
 
 quetzal: {
@@ -1849,15 +1854,20 @@ quetzal: {
 	baseStats: {hp: 75, atk: 95, def: 74, spa: 110, spd: 105, spe: 111},
 	abilities: {0: "Leaf Guard", 1: "Gale Wings", H: "Guardian of the Woods"},
 	weightkg: 131.6,
+	otherFormes: ["Quetzal-Solemne"],
+	formeOrder: ["Quetzal", "Quetzal-Solemne"],
 },
 
 quetzalsolemne: {
 	num: 190,
-	name: "Quetzal",
+	name: "Quetzal-Solemne",
+	baseSpecies: "Quetzal",
 	types: ["Dragon", "Grass"],
-	baseStats: {hp: 75, atk: 65, def: 104, spa: 140, spd: 105, spe: 81},
+	baseStats: {hp: 75, atk: 65, def: 105, spa: 141, spd: 105, spe: 79},
 	abilities: {0: "Spirit of the Woods"},
 	weightkg: 331.6,
+	requiredItem: "Golden Pendant",
+	battleOnly: "Quetzal",
 },
 
 granjaguar: {
@@ -1867,15 +1877,20 @@ granjaguar: {
 	baseStats: {hp: 85, atk: 115, def: 110, spa: 100, spd: 105, spe: 55},
 	abilities: {0: "Infiltrator", 1: "Intimidate", H: "Guardian of the Ruins"},
 	weightkg: 247.9,
+	otherFormes: ["Granjaguar-Solemne"],
+	formeOrder: ["Granjaguar", "Granjaguar-Solemne"],
 },
 
 granjaguarsolemne: {
 	num: 191,
 	name: "Granjaguar-Solemne",
+	baseSpecies: "Granjaguar",
 	types: ["Psychic", "Dark"],
 	baseStats: {hp: 85, atk: 115, def: 55, spa: 100, spd: 75, spe: 140},
 	abilities: {0: "Spirit of the Ruins"},
 	weightkg: 47.9,
+	requiredItem: "Golden Key",
+	battleOnly: "Granjaguar",
 },
 
 huemul: {

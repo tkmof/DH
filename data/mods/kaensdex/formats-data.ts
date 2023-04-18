@@ -748,11 +748,23 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	drapedesolemne: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 	quetzal: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	quetzalsolemne: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 	granjaguar: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	granjaguarsolemne: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
