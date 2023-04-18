@@ -15,7 +15,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
   },
   samurott: {
      inherit: true,
-     baseStats: {hp: 95, atk: 100, def: 85, spa: 108, spd: 80},
+     baseStats: {hp: 95, atk: 100, def: 85, spa: 108, spd: 80, spe: 80},
   },
   whiscash: {
      inherit: true,
