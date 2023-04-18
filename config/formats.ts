@@ -1483,6 +1483,14 @@ export const Formats: FormatList = [
 		banlist: ['Uber', 'Wrap'],
 	},
 	{
+		
+	  name: "[Gen 8] Gen 9 Sandbox Theorymons",
+     desc: '<b>[Gen 8] Gen 9 Sandbox Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
+     mod: 'gen9outheorymons',
+	  ruleset: ['Standard', 'Data Mod'],
+	  banlist: ['Uber'],
+	},
+	{
 	name: "[Gen 1] JohtoMons",
 	desc: '<b>[Gen 1] JohtoMons</b>: Adding the Johto mons to RBY',
 	threads: [
