@@ -621,6 +621,23 @@ darkeater: {
 		num: 10034,
 	},	
 
+permafrost: {
+		onModifyAtk(hail) {
+			if (this.field.isWeather('hail')) {
+				return this.chainModify(1.2);
+			}
+		},
+		onWeather(target, source, effect) {
+			if (effect.id === 'hail') {
+				this.heal(target.baseMaxhp / 16);
+			}
+		},
+		name: "Permafrost",
+		desc: "1.2 Atk on Hail and heals 1/16 of its max HP each turn.",
+		rating: 2,
+		num: 10035,
+	},
+
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,

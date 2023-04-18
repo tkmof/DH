@@ -1881,6 +1881,26 @@ cursedtail: {
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
 	},
+	butterflyeffect: {
+		num: 10075,
+		accuracy: 100,
+		basePower: 130,
+		category: "Special",
+		name: "Butterfly Effect",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		self: {
+			boosts: {
+				def: -1,
+				spa: -1,
+			},
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Bug",
+		contestType: "Beautiful",
+	},
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,

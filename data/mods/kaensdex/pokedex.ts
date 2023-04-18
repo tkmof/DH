@@ -1518,7 +1518,7 @@ nohtyp: {
 	prevo: "arbok",
 },
 skyradise: {
-	num: 194,
+	num: 198,
 	name: "Skyradise",
 	types: ["Flying"],
 	gender: "N",
@@ -1797,7 +1797,7 @@ crobatmega: {
 },
 
 cupida: {
-	num: 195,
+	num: 199,
 	name: "Cupida",
 	types: ["Fairy", "Ghost"],
 	gender: "F",
@@ -1833,6 +1833,15 @@ drapede: {
 	weightkg: 353.9,
 },
 
+drapedesolemne: {
+	num: 189,
+	name: "Drapede",
+	types: ["Fighting", "Bug"],
+	baseStats: {hp: 140, atk: 150, def: 100, spa: 80, spd: 80, spe: 20},
+	abilities: {0: "Spirit of the Swamp"},
+	weightkg: 153.9,
+},
+
 quetzal: {
 	num: 190,
 	name: "Quetzal",
@@ -1842,6 +1851,15 @@ quetzal: {
 	weightkg: 131.6,
 },
 
+quetzalsolemne: {
+	num: 190,
+	name: "Quetzal",
+	types: ["Dragon", "Grass"],
+	baseStats: {hp: 75, atk: 65, def: 104, spa: 140, spd: 105, spe: 81},
+	abilities: {0: "Spirit of the Woods"},
+	weightkg: 331.6,
+},
+
 granjaguar: {
 	num: 191,
 	name: "Granjaguar",
@@ -1849,6 +1867,15 @@ granjaguar: {
 	baseStats: {hp: 85, atk: 115, def: 110, spa: 100, spd: 105, spe: 55},
 	abilities: {0: "Infiltrator", 1: "Intimidate", H: "Guardian of the Ruins"},
 	weightkg: 247.9,
+},
+
+granjaguarsolemne: {
+	num: 191,
+	name: "Granjaguar-Solemne",
+	types: ["Psychic", "Dark"],
+	baseStats: {hp: 85, atk: 115, def: 55, spa: 100, spd: 75, spe: 140},
+	abilities: {0: "Spirit of the Ruins"},
+	weightkg: 47.9,
 },
 
 huemul: {
@@ -1879,4 +1906,45 @@ dothdo: {
 	abilities: {0: "Cold Heart", 1: "Big Pecks", H: "Cloud Nine"},
 	weightkg: 4.2,
 },
+
+frozenbeak: {
+		num: 194,
+		name: "Frozen Beak",
+		types: ["Ice", "Water"],
+		baseStats: {hp: 75, atk: 109, def: 131, spa: 65, spd: 91, spe: 99},
+		abilities: {0: "Permafrost"},
+		heightm: 2.4,
+		weightkg: 178,
+	},
+	
+purgapilla: {
+	num: 195,
+	name: "Purgapilla",
+	types: ["Bug"],
+	baseStats: {hp: 55, atk: 60, def: 45, spa: 10, spd: 25, spe: 20},
+	abilities: {0: "Shield Dust", 1:"Cursed Body", H: "Earth Eater"},
+	weightkg: 2,
+	evos: ["pumpkoon"],
+},
+pumpkoon: {
+	num: 196,
+	name: "Pumpkoon",
+	types: ["Bug"],
+	baseStats: {hp: 60, atk: 40, def: 90, spa: 40, spd: 55, spe: 20},
+	abilities: {0: "Shield Dust", 1:"Cursed Body", H: "Earth Eater"},
+	weightkg: 30.3,
+	prevo: "purgapilla",
+	evos: ["lepisalma"],
+},
+	
+	lepisalma: {
+		num: 197,
+		name: "Lepisalma",
+		types: ["Bug", "Ghost"],
+		baseStats: {hp: 80, atk: 95, def: 60, spa: 120, spd: 160, spe: 85},
+		abilities: {0: "Shield Dust", 1:"Effect Spore", H: "Levitate"},
+		weightkg: 45,
+		prevo: "pumpkoon",
+		evoLevel: 50,
+	},
 };

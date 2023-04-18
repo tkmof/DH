@@ -768,4 +768,20 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	frozenbeak: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	purgapilla: {
+		tier: "LC",
+		doublesTier: "KDD",
+	},
+	pumpkoon: {
+		tier: "NFE",
+		doublesTier: "KDD",
+	},
+	lepisalma: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 };
