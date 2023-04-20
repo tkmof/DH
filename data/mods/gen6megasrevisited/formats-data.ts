@@ -1234,9 +1234,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	heracrossmega: {
-		randomBattleMoves: ["closecombat", "pinmissile", "rockblast", "swordsdance", "bulletseed", "substitute"],
+		randomBattleMoves: ["closecombat", "megahorn", "stoneedge", "swordsdance", "knockoff", "spikes", "healorder"],
 		randomDoubleBattleMoves: ["closecombat", "pinmissile", "rockblast", "swordsdance", "bulletseed", "knockoff", "earthquake", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	sneasel: {
@@ -1561,7 +1561,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	gardevoirmega: {
 		randomBattleMoves: ["calmmind", "hypervoice", "psyshock", "focusblast", "substitute", "taunt", "willowisp"],
 		randomDoubleBattleMoves: ["psyshock", "focusblast", "shadowball", "calmmind", "thunderbolt", "hypervoice", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	gallade: {
@@ -1697,9 +1697,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	aggronmega: {
-		randomBattleMoves: ["earthquake", "heavyslam", "rockslide", "stealthrock", "thunderwave", "roar", "toxic"],
+		randomBattleMoves: ["earthquake", "heavyslam", "rockslide", "stealthrock", "voltswitch", "roar", "toxic"],
 		randomDoubleBattleMoves: ["rockslide", "earthquake", "lowkick", "heavyslam", "aquatail", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	meditite: {
@@ -1788,8 +1788,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	sharpedomega: {
-		randomBattleMoves: ["protect", "crunch", "waterfall", "icefang", "zenheadbutt", "destinybond"],
-		tier: "Illegal",
+		randomBattleMoves: ["protect", "thunder", "hydropump", "blizzard", "destinybond"],
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	wailmer: {
