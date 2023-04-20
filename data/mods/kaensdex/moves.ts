@@ -1901,6 +1901,22 @@ cursedtail: {
 		type: "Bug",
 		contestType: "Beautiful",
 	},
+	furyswirls: {
+		num: 10076,
+		accuracy: 100,
+		basePower: 38,
+		category: "Physical",
+		name: "Fury Swirls",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		multihit: [2, 5],
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		maxMove: {basePower: 100},
+		contestType: "Cute",
+	},
 	//eevee moves back to their original values
 	buzzybuzz: {
 		num: 734,

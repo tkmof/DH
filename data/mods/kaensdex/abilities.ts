@@ -622,7 +622,7 @@ darkeater: {
 	},	
 
 permafrost: {
-		onModifyAtk(hail) {
+		onModifyAtk(atk) {
 			if (this.field.isWeather('hail')) {
 				return this.chainModify(1.2);
 			}
@@ -735,6 +735,25 @@ spiritoftheruins: {
 		rating: 2,
 		num: 10038,
 	},
+	
+charged: {
+		onModifySpe(spe) {
+			if (this.field.isTerrain('electricterrain')) {
+				return this.chainModify(1.2);
+			}
+		},
+		onModifySpD(spd) {
+			if (this.field.isTerrain('electricterrain')) {
+				return this.chainModify(1.2);
+			}
+		},
+		name: "Charged",
+		desc: "1.2x Speed and Special Defense on Electric Terrain.",
+		rating: 2,
+		num: 10039,
+	},
+	
+	
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,
