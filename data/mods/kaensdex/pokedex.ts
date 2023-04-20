@@ -1518,7 +1518,7 @@ nohtyp: {
 	prevo: "arbok",
 },
 skyradise: {
-	num: 194,
+	num: 198,
 	name: "Skyradise",
 	types: ["Flying"],
 	gender: "N",
@@ -1797,7 +1797,7 @@ crobatmega: {
 },
 
 cupida: {
-	num: 195,
+	num: 199,
 	name: "Cupida",
 	types: ["Fairy", "Ghost"],
 	gender: "F",
@@ -1827,10 +1827,24 @@ mightyenamega: {
 drapede: {
 	num: 189,
 	name: "Drapede",
-	types: ["Dragon", "Bug"],
+	types: ["Bug", "Dragon"],
 	baseStats: {hp: 140, atk: 120, def: 100, spa: 60, spd: 100, spe: 50},
-	abilities: {0: "Shield Dust", 1: "Poison Touch", H: "Guardian of the Swamp"},
+	abilities: {0: "Guardian of the Swamp"},
 	weightkg: 353.9,
+	otherFormes: ["Drapede-Solemne"],
+	formeOrder: ["Drapede", "Drapede-Solemne"],
+},
+
+drapedesolemne: {
+	num: 189,
+	name: "Drapede-Solemne",
+	baseSpecies: "Drapede",
+	types: ["Fighting", "Dragon"],
+	baseStats: {hp: 140, atk: 150, def: 80, spa: 100, spd: 80, spe: 20},
+	abilities: {0: "Spirit of the Swamp"},
+	weightkg: 153.9,
+	requiredItem: "Golden Bracelet",
+	battleOnly: "Drapede",
 },
 
 quetzal: {
@@ -1838,8 +1852,22 @@ quetzal: {
 	name: "Quetzal",
 	types: ["Flying", "Grass"],
 	baseStats: {hp: 75, atk: 95, def: 74, spa: 110, spd: 105, spe: 111},
-	abilities: {0: "Leaf Guard", 1: "Gale Wings", H: "Guardian of the Woods"},
+	abilities: {0: "Guardian of the Woods"},
 	weightkg: 131.6,
+	otherFormes: ["Quetzal-Solemne"],
+	formeOrder: ["Quetzal", "Quetzal-Solemne"],
+},
+
+quetzalsolemne: {
+	num: 190,
+	name: "Quetzal-Solemne",
+	baseSpecies: "Quetzal",
+	types: ["Dragon", "Grass"],
+	baseStats: {hp: 75, atk: 65, def: 105, spa: 141, spd: 105, spe: 79},
+	abilities: {0: "Spirit of the Woods"},
+	weightkg: 331.6,
+	requiredItem: "Golden Pendant",
+	battleOnly: "Quetzal",
 },
 
 granjaguar: {
@@ -1847,8 +1875,22 @@ granjaguar: {
 	name: "Granjaguar",
 	types: ["Ground", "Dark"],
 	baseStats: {hp: 85, atk: 115, def: 110, spa: 100, spd: 105, spe: 55},
-	abilities: {0: "Infiltrator", 1: "Intimidate", H: "Guardian of the Ruins"},
+	abilities: {0: "Guardian of the Ruins"},
 	weightkg: 247.9,
+	otherFormes: ["Granjaguar-Solemne"],
+	formeOrder: ["Granjaguar", "Granjaguar-Solemne"],
+},
+
+granjaguarsolemne: {
+	num: 191,
+	name: "Granjaguar-Solemne",
+	baseSpecies: "Granjaguar",
+	types: ["Psychic", "Dark"],
+	baseStats: {hp: 85, atk: 115, def: 55, spa: 100, spd: 75, spe: 140},
+	abilities: {0: "Spirit of the Ruins"},
+	weightkg: 47.9,
+	requiredItem: "Golden Key",
+	battleOnly: "Granjaguar",
 },
 
 huemul: {
@@ -1879,4 +1921,45 @@ dothdo: {
 	abilities: {0: "Cold Heart", 1: "Big Pecks", H: "Cloud Nine"},
 	weightkg: 4.2,
 },
+
+frozenbeak: {
+		num: 194,
+		name: "Frozen Beak",
+		types: ["Ice", "Water"],
+		baseStats: {hp: 75, atk: 109, def: 131, spa: 65, spd: 91, spe: 99},
+		abilities: {0: "Permafrost"},
+		heightm: 2.4,
+		weightkg: 178,
+	},
+	
+purgapilla: {
+	num: 195,
+	name: "Purgapilla",
+	types: ["Bug"],
+	baseStats: {hp: 55, atk: 60, def: 45, spa: 10, spd: 25, spe: 20},
+	abilities: {0: "Shield Dust", 1:"Cursed Body", H: "Earth Eater"},
+	weightkg: 2,
+	evos: ["pumpkoon"],
+},
+pumpkoon: {
+	num: 196,
+	name: "Pumpkoon",
+	types: ["Bug"],
+	baseStats: {hp: 60, atk: 40, def: 90, spa: 40, spd: 55, spe: 20},
+	abilities: {0: "Shield Dust", 1:"Cursed Body", H: "Earth Eater"},
+	weightkg: 30.3,
+	prevo: "purgapilla",
+	evos: ["lepisalma"],
+},
+	
+	lepisalma: {
+		num: 197,
+		name: "Lepisalma",
+		types: ["Bug", "Ghost"],
+		baseStats: {hp: 80, atk: 95, def: 60, spa: 120, spd: 160, spe: 85},
+		abilities: {0: "Shield Dust", 1:"Effect Spore", H: "Levitate"},
+		weightkg: 45,
+		prevo: "pumpkoon",
+		evoLevel: 50,
+	},
 };

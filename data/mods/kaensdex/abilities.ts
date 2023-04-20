@@ -621,6 +621,120 @@ darkeater: {
 		num: 10034,
 	},	
 
+permafrost: {
+		onModifyAtk(hail) {
+			if (this.field.isWeather('hail')) {
+				return this.chainModify(1.2);
+			}
+		},
+		onWeather(target, source, effect) {
+			if (effect.id === 'hail') {
+				this.heal(target.baseMaxhp / 16);
+			}
+		},
+		name: "Permafrost",
+		desc: "1.2 Atk on Hail and heals 1/16 of its max HP each turn.",
+		rating: 2,
+		num: 10035,
+	},
+spiritoftheswamp: {
+		onSetStatus(status, target, source, effect) {
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Spirit of the Swamp');
+			}
+			return false;
+		},
+		onTryAddVolatile(status, target) {
+			if (status.id === 'yawn') {
+				this.add('-immune', target, '[from] ability: Spirit of the Swamp');
+				return null;
+			}
+		},	
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Bug') {
+				this.debug('Spirit of the Swamp boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Bug') {
+				this.debug('Spirit of the Swamp boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Spirit of the Swamp",
+		desc: "Can't be statused. 1.5x Bug-Type Damage.",
+		rating: 2,
+		num: 10036,
+	},
+	
+spiritofthewoods: {
+onSetStatus(status, target, source, effect) {
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Spirit of the Woods');
+			}
+			return false;
+		},
+		onTryAddVolatile(status, target) {
+			if (status.id === 'yawn') {
+				this.add('-immune', target, '[from] ability: Spirit of the Woods');
+				return null;
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Flying') {
+				this.debug('Spirit of the Woods boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Flying') {
+				this.debug('Spirit of the Woods boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Spirit of the Woods",
+		desc: "Can't be statused. 1.5x Flying-Type Damage.",
+		rating: 2,
+		num: 10037,
+	},
+	
+spiritoftheruins: {
+	onSetStatus(status, target, source, effect) {
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Spirit of the Ruins');
+			}
+			return false;
+		},
+		onTryAddVolatile(status, target) {
+			if (status.id === 'yawn') {
+				this.add('-immune', target, '[from] ability: Spirit of the Ruins');
+				return null;
+			}
+		},	
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ground') {
+				this.debug('Spirit of the Ruins boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ground') {
+				this.debug('Spirit of the Ruins boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Spirit of the Ruins",
+		desc: "Can't be statused. 1.5x Ground-Type Damage.",
+		rating: 2,
+		num: 10038,
+	},
 	//gen 9 stuff
 	sharpness: {
 		onBasePowerPriority: 19,

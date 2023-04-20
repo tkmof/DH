@@ -217,4 +217,52 @@ mightite: {
 		gen: 6,
 		desc: "If held by a Mightyena, this item allows it to Mega Evolve in battle.",
 	},
+	
+goldenbracelet: {
+		name: "Golden Bracelet",
+		spritenum: 698,
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 189) || pokemon.baseSpecies.num === 189) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Drapede-Solemne",
+		itemUser: ["Drapede-Solemne"],
+		num: 1103,
+		gen: 8,
+		desc: "If held by a Drapede, this item changes its forme to Solemne.",
+	},
+	
+goldenpendant: {
+		name: "Golden Pendant",
+		spritenum: 698,
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 190) || pokemon.baseSpecies.num === 190) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Quetzal-Solemne",
+		itemUser: ["Quetzal-Solemne"],
+		num: 1103,
+		gen: 8,
+		desc: "If held by a Quetzal, this item changes its forme to Solemne.",
+	},
+	
+goldenkey: {
+		name: "Golden Key",
+		spritenum: 698,
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 191) || pokemon.baseSpecies.num === 191) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Granjaguar-Solemne",
+		itemUser: ["Granjaguar-Solemne"],
+		num: 1103,
+		gen: 8,
+		desc: "If held by a Granjaguar, this item changes its forme to Solemne.",
+	},
 }
