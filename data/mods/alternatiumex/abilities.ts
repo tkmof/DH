@@ -1006,21 +1006,23 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -33,
 	},
 	thermofist: {
-		/*onAfterMoveSecondarySelf(boost, pokemon, target, move) {
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			const thermofistBoost: SparseBoostsTable = {};
 			if (move.flags['punch']) {
-				this.boost({atk: 1});
-			}
-			if (!move.flags['punch']) {
-				delete boost.atk;
+				this.boost({atk: 1}, pokemon);
+			} else if (!move.flags['flags']) {
+				thermofistBoost.atk = -1 * pokemon.boosts['atk'];
+				this.boost(thermofistBoost, pokemon, pokemon);
+            }
+		},
+		onUpdate(pokemon) {
+			const boost: SparseBoostsTable = {};
+			if (pokemon.boosts['atk'] === 6) {
+				pokemon.trySetStatus('brn', pokemon);
 			}
 		},
-		onBoost(boost, target, source, effect) {
-			if (target.boosts['atk'] === 6) {
-				target.trySetStatus('brn', target);
-			}
-		},*/
 		name: "Thermo Fist",
-		shortDesc: "(Non-functional placeholder) +1 Atk if using a Punching move. If not: Atk reset. If +6 Atk: Burned.",
+		shortDesc: "+1 Atk if using a Punching move. If not: Atk reset. If +6 Atk: Burned.",
 		rating: 3.5,
 		num: -34,
 	},
@@ -1061,5 +1063,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	quarkdrive: {
 		inherit: true,
 		shortDesc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+	},
+	purifyingsalt: {
+		inherit: true,
+		shortDesc: "Ghost damage to this Pokemon dealt with a halved offensive stat; can't be statused.",
 	},
 };

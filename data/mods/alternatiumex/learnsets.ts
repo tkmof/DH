@@ -7567,7 +7567,6 @@ export const Learnsets: {["8L1"]: LearnsetData} = {
 			liquidation: ["8L1"],
 			outrage: ["8L1"],
 			protect: ["8L1"],
-			ragingbull: ["8L1"],
 			raindance: ["8L1"],
 			rest: ["8L1"],
 			reversal: ["8L1"],

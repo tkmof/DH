@@ -1246,7 +1246,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		shortDesc: "Type depends on both the user's types.",
+		shortDesc: "(Non-functional placeholder) Type depends on both the user's types.",
 		name: "Raging Bull (Steam)",
 		pp: 10,
 		priority: 0,
@@ -1256,10 +1256,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (type === "Bird") type = "???";
 			move.type = type;
 		},
-		onEffectiveness(typeMod, target, source, type, move) {
-			let secondType = target.types[1];
+		/*onEffectiveness(typeMod, target, source, type, move) {
+			const secondType = source.types[1];
 			return typeMod + this.dex.getEffectiveness(secondType, type);
-		},
+		},*/
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -1341,5 +1341,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 	icespinner: {
 		inherit: true,
 		shortDesc: "Ends the effects of terrain.",
+	},
+	populationbomb: {
+		inherit: true,
+		shortDesc: "Hits 10 times. Each hit can miss.",
+	},
+	spinout: {
+		inherit: true,
+		shortDesc: "Lowers the user's Speed by 2.",
 	},
 };
