@@ -1445,8 +1445,8 @@ export const Formats: FormatList = [
 	},
 	{
 		
-	  name: "[Gen 8] Gen 9 Sandbox Theorymons",
-     desc: '<b>[Gen 8] Gen 9 Sandbox Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
+	  name: "[Gen 8] Gen 9 Dream World Theorymons",
+     desc: '<b>[Gen 8] Gen 9 Dream World Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
      mod: 'gen9outheorymons',
 	  ruleset: ['Standard', 'Data Mod'],
 	  banlist: ['Uber'],
