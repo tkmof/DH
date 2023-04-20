@@ -339,7 +339,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},
-	zoroark: {
+	zoroarkjorogumo: {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},
@@ -412,6 +412,114 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "Alternatium EX",
 	},
 	xerneasjustice: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	arcaninewaterballoon: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	arcaninenoble: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	avaluggprism: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	avaluggplated: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	squawkabilly: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	squawkabiluck: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	squawkalone: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	squawkabillyyellow: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	squawkabilly: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	wishiwashilonesome: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	winardin: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	palafin: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	hercuphin: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	gumshoos: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	gumshoostotem: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	togedemaru: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	totemaru: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	tauros: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	bravatoro: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	taurossteam: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	taurosazul: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	raichu: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	raichusoft: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	rapidash: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	rapidashgalar: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	golemberserker: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	golemalola: {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},

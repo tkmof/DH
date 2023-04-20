@@ -1,4 +1,32 @@
 export const Moves: {[moveid: string]: MoveData} = {
+	recover: {
+		inherit: true,
+		pp: 10,
+	},
+	softboiled: {
+		inherit: true,
+		pp: 10,
+	},
+	rest: {
+		inherit: true,
+		pp: 10,
+	},
+	milkdrink: {
+		inherit: true,
+		pp: 10,
+	},
+	slackoff: {
+		inherit: true,
+		pp: 10,
+	},
+	roost: {
+		inherit: true,
+		pp: 10,
+	},
+	shoreup: {
+		inherit: true,
+		pp: 10,
+	},
 	triplearrows: {
 		num: -1,
 		accuracy: 100,
@@ -916,7 +944,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (target.status || target.hasAbility('comatose')) return move.basePower * 2;
 			return move.basePower;
 		},
-		shortDesc: "Power doubles if the target has a status ailment.",
 	},
 	barbbarrage: {
 		num: -19,
@@ -1069,213 +1096,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {mirror: 1, bypasssub: 1, heal: 1},
 		drain: [3, 4],
 	},
-	aerialace: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	aircutter: {
-		inherit: true,
-		flags: {protect: 1, mirror: 1, slicing: 1},
-	},
-	behemothblade: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	crosspoison: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	cut: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	furycutter: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	leafblade: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	nightslash: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	psychocut: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	razorleaf: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	razorshell: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	sacredsword: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	slash: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	solarblade: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	xscissor: {
-		inherit: true,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-	},
-	populationbomb: {
-		num: 860,
-		accuracy: 90,
-		basePower: 20,
-		category: "Physical",
-		name: "Population Bomb",
-		shortDesc: "Hits 10 times. Each hit can miss.",
-		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-		multihit: 10,
-		multiaccuracy: true,
-		secondary: null,
-		target: "normal",
-		type: "Normal",
-	},
-	chillingwater: {
-		num: 886,
-		accuracy: 100,
-		basePower: 50,
-		category: "Special",
-		name: "Chilling Water",
-		shortDesc: "100% chance to lower the target's Attack by 1.",
-		pp: 20,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		secondary: {
-			chance: 100,
-			boosts: {
-				atk: -1,
-			},
-		},
-		target: "normal",
-		type: "Water",
-		contestType: "Beautiful",
-	},
-	trailblaze: {
-		num: 885,
-		accuracy: 100,
-		basePower: 50,
-		category: "Physical",
-		name: "Trailblaze",
-		shortDesc: "100% chance to raise the user's Speed by 1.",
-		pp: 20,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		secondary: {
-			chance: 100,
-			self: {
-				boosts: {
-					spe: 1,
-				},
-			},
-		},
-		target: "normal",
-		type: "Grass",
-		contestType: "Cool",
-	},
-	aquacutter: {
-		num: 895,
-		accuracy: 100,
-		basePower: 70,
-		category: "Physical",
-		name: "Aqua Cutter",
-		shortDesc: "High critical hit ratio.",
-		pp: 20,
-		priority: 0,
-		flags: {protect: 1, mirror: 1, slicing: 1},
-		critRatio: 2,
-		secondary: null,
-		target: "normal",
-		type: "Water",
-		contestType: "Cool",
-	},
-	luminacrash: {
-		num: 855,
-		accuracy: 100,
-		basePower: 80,
-		category: "Special",
-		name: "Lumina Crash",
-		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		secondary: {
-			chance: 100,
-			boosts: {
-				spd: -2,
-			},
-		},
-		target: "normal",
-		type: "Psychic",
-	},
-	glaiverush: {
-		num: 862,
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		name: "Glaive Rush",
-		shortDesc: "User takes sure-hit 2x damage until its next turn.",
-		pp: 5,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		self: {
-			volatileStatus: 'glaiverush',
-		},
-		condition: {
-			noCopy: true,
-			onStart(pokemon) {
-				this.add('-singlemove', pokemon, 'Glaive Rush', '[silent]');
-			},
-			onAccuracy() {
-				return true;
-			},
-			onSourceModifyDamage() {
-				return this.chainModify(2);
-			},
-			onBeforeMovePriority: 100,
-			onBeforeMove(pokemon) {
-				this.debug('removing Glaive Rush drawback before attack');
-				pokemon.removeVolatile('glaiverush');
-			},
-		},
-		secondary: null,
-		target: "normal",
-		type: "Dragon",
-	},
-	icespinner: {
-		num: 861,
-		accuracy: 100,
-		basePower: 80,
-		category: "Physical",
-		name: "Ice Spinner",
-		shortDesc: "Ends the effects of terrain.",
-		pp: 15,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		onHit() {
-			this.field.clearTerrain();
-		},
-		onAfterSubDamage() {
-			this.field.clearTerrain();
-		},
-		secondary: null,
-		target: "normal",
-		type: "Ice",
-	},
 	freezeshock: {
 		num: 553,
 		accuracy: 100,
@@ -1312,23 +1132,222 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Ice",
 		contestType: "Beautiful",
 	},
-	terablast: {
-		num: 851,
+	ragingfury: {
+		num: 833,
 		accuracy: 100,
-		basePower: 80,
-		category: "Special",
-		shortDesc: "Physical if user's Atk > Sp. Atk.",
-		name: "Tera Blast",
+		basePower: 50,
+		basePowerCallback(pokemon) {
+			return Math.min(200, 50 + 50 * pokemon.timesAttacked);
+		},
+		category: "Physical",
+		name: "Raging Fury",
+		shortDesc: "+25 power for each time the user was hit. Max 6 hits.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flare Blitz", target);
+		},
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+	},
+	mountaingale: {
+		num: 836,
+		accuracy: 100,
+		basePower: 100,
 		onModifyMove(move, pokemon) {
-			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) {
-				move.category = 'Physical';
+			if (pokemon.effectiveWeather() == 'snow') {
+				move.basePower *= 1.3;
+			}
+		},
+		category: "Physical",
+		name: "Mountain Gale",
+		shortDesc: "1.3x power in Snow.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+	},
+	psyshieldbash: {
+		num: 828,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Psyshield Bash",
+		shortDesc: "Uses user's Def stat as Atk in damage calculation.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		useSourceDefensiveAsOffensive: true,
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+	},
+	jetpunch: {
+		num: 857,
+		accuracy: 100,
+		basePower: 80,
+		basePowerCallback(pokemon, target, move) {
+            if(pokemon.getStat('spe') < target.getStat('spe')) return move.basePower / 2;
+        },
+		category: "Physical",
+		name: "Jet Punch",
+		shortDesc: "If the target is faster than the user: 1/2 power and +1 priority.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		onModifyMove(move, pokemon, target) {
+			if(pokemon.getStat('spe') < target.getStat('spe')) {
+				move.priority = 1;
+				return move.basePower;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Cool",
+	},
+	watershuriken: {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, slicing: 1},
+		multihit: 3,
+	},
+	ragingbull: {
+		num: 873,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "Type depends on user's secondary type. If resisted: -1 Defense.",
+		name: "Raging Bull",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onModifyType(move, pokemon) {
+			let type = pokemon.types[1];
+			if (type === "Bird") type = "???";
+			move.type = type;
+		},
+		onHit(target, source, move) {
+			if (!move || !target) return;
+			if (target !== source && move.category !== 'Status' && target.getMoveHitData(move).typeMod < 0) {
+				this.boost({def: -1}, target);
 			}
 		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
+	},
+	ragingbullsteam: {
+		num: -23,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "(Non-functional placeholder) Type depends on both the user's types.",
+		name: "Raging Bull (Steam)",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onModifyType(move, pokemon) {
+			let type = pokemon.types[0];
+			if (type === "Bird") type = "???";
+			move.type = type;
+		},
+		/*onEffectiveness(typeMod, target, source, type, move) {
+			const secondType = source.types[1];
+			return typeMod + this.dex.getEffectiveness(secondType, type);
+		},*/
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+	},
+	stampederush: {
+		num: -24,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "Destroys screens. Ice-type if user is Tauros-Azul.",
+		name: "Stampede Rush",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryHit(pokemon) {
+			// will shatter screens through sub, before you hit
+			pokemon.side.removeSideCondition('reflect');
+			pokemon.side.removeSideCondition('lightscreen');
+			pokemon.side.removeSideCondition('auroraveil');
+		},
+		onModifyType(move, pokemon) {
+			if (pokemon.species.name === 'Tauros-Azul') {
+				move.type = 'Ice';
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+	},
+	zippyzap: {
+		num: 729,
+		accuracy: 100,
+		basePower: 50,
+		category: "Physical",
+		shortDesc: "Usually goes first.",
+		isNonstandard: null,
+		name: "Zippy Zap",
+		pp: 10,
+		priority: 1,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		target: "normal",
+		type: "Electric",
+	},
+	fling: {
+		inherit: true,
+		basePowerCallback(pokemon, target, move) {
+			if (pokemon.hasAbility('cannonstyle')) {
+				return move.basePower * 2;
+			}
+			return move.basePower;
+		},
+	},
+	
+	//SV Move Descriptions
+	aquacutter:  {
+		inherit: true,
+		shortDesc: "High critical hit ratio.",
+	},
+	chillingwater:  {
+		inherit: true,
+		shortDesc: "100% chance to lower the target's Attack by 1.",
+	},
+	pounce:  {
+		inherit: true,
+		shortDesc: "100% chance to lower the target's Speed by 1.",
+	},
+	snowscape:  {
+		inherit: true,
+		shortDesc: "For 5 turns, snow falls. Ice: 1.5x Def.",
+	},
+	terablast:  {
+		inherit: true,
+		shortDesc: "If Terastallized: Phys. if Atk > SpA, type = Tera.",
+	},
+	trailblaze:  {
+		inherit: true,
+		shortDesc: "100% chance to raise the user's Speed by 1.",
+	},
+	icespinner: {
+		inherit: true,
+		shortDesc: "Ends the effects of terrain.",
+	},
+	populationbomb: {
+		inherit: true,
+		shortDesc: "Hits 10 times. Each hit can miss.",
+	},
+	spinout: {
+		inherit: true,
+		shortDesc: "Lowers the user's Speed by 2.",
 	},
 };
