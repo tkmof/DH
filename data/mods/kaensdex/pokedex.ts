@@ -1963,9 +1963,9 @@ pumpkoon: {
 		prevo: "pumpkoon",
 		evoLevel: 50,
 	},
-	ironfistmon: {
+	lronfist: {
 		num: 195,
-		name: "Iron Fist",
+		name: "lron Fist",
 		types: ["Fighting", "Steel"],
 		gender: "N",
 		baseStats: {hp: 90, atk: 116, def: 90, spa: 68, spd: 110, spe: 96},

@@ -1467,7 +1467,7 @@ call: {
 		basePower: 0,
 		category: "Status",
 		name: "Call",
-		shortDesc: "Curses the target.",
+		shortDesc: "Curses the target. Requires 1/4 of the user's HP.",
 		pp: 10,
 		priority: 0,
 		flags: {authentic: 1},
@@ -1478,7 +1478,7 @@ call: {
 			}
 		},
 		onHit(target, source) {
-			this.directDamage(source.maxhp / 2, source, source);
+			this.directDamage(source.maxhp / 4, source, source);
 		},
 		condition: {
 			onStart(pokemon, source) {

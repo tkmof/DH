@@ -384,6 +384,7 @@ spiball: {learnset: {
 	suckerpunch: ["7L1"],
 	toxic: ["7L1"],
 	toxicspikes: ["7L1"],
+	uturn: ["7L1"],
 	xscissor: ["7L1"],
 }},
 scopiball: {learnset: {
@@ -5007,7 +5008,7 @@ lepisalma: {learnset: {
 	willowisp: ["7L1"],
 }},
 
-ironfistmon: {learnset: {
+lronfist: {learnset: {
 	agility: ["7L1"],
 	acrobatics: ["7L1"],
 	aurasphere: ["7L1"],

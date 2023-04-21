@@ -221,14 +221,19 @@ mightite: {
 goldenbracelet: {
 		name: "Golden Bracelet",
 		spritenum: 698,
-		onTakeItem(item, pokemon, source) {
-			if ((source && source.baseSpecies.num === 189) || pokemon.baseSpecies.num === 189) {
-				return false;
+		onSwitchIn(pokemon) {
+			if (pokemon.isActive && pokemon.baseSpecies.name === 'Drapede') {
+				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
 			}
+		},
+		onPrimal(pokemon) {
+			pokemon.formeChange('Drapede-Solemne', this.effect, true);
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Drapede') return false;
 			return true;
 		},
-		forcedForme: "Drapede-Solemne",
-		itemUser: ["Drapede-Solemne"],
+		itemUser: ["Drapede"],
 		num: 1103,
 		gen: 8,
 		desc: "If held by a Drapede, this item changes its forme to Solemne.",
@@ -237,14 +242,19 @@ goldenbracelet: {
 goldenpendant: {
 		name: "Golden Pendant",
 		spritenum: 698,
-		onTakeItem(item, pokemon, source) {
-			if ((source && source.baseSpecies.num === 190) || pokemon.baseSpecies.num === 190) {
-				return false;
+		onSwitchIn(pokemon) {
+			if (pokemon.isActive && pokemon.baseSpecies.name === 'Quetzal') {
+				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
 			}
+		},
+		onPrimal(pokemon) {
+			pokemon.formeChange('Quetzal-Solemne', this.effect, true);
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Quetzal') return false;
 			return true;
 		},
-		forcedForme: "Quetzal-Solemne",
-		itemUser: ["Quetzal-Solemne"],
+		itemUser: ["Quetzal"],
 		num: 1103,
 		gen: 8,
 		desc: "If held by a Quetzal, this item changes its forme to Solemne.",
@@ -253,14 +263,19 @@ goldenpendant: {
 goldenkey: {
 		name: "Golden Key",
 		spritenum: 698,
-		onTakeItem(item, pokemon, source) {
-			if ((source && source.baseSpecies.num === 191) || pokemon.baseSpecies.num === 191) {
-				return false;
+		onSwitchIn(pokemon) {
+			if (pokemon.isActive && pokemon.baseSpecies.name === 'Granjaguar') {
+				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
 			}
+		},
+		onPrimal(pokemon) {
+			pokemon.formeChange('Granjaguar-Solemne', this.effect, true);
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Granjaguar') return false;
 			return true;
 		},
-		forcedForme: "Granjaguar-Solemne",
-		itemUser: ["Granjaguar-Solemne"],
+		itemUser: ["Granjaguar"],
 		num: 1103,
 		gen: 8,
 		desc: "If held by a Granjaguar, this item changes its forme to Solemne.",
