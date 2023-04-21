@@ -1581,7 +1581,6 @@ unimount: {learnset: {
 	hailblast: ["7L1"],
 	heavyslam: ["7L1"],
 	icebeam: ["7L1"],
-	iceshard: ["7L1"],
 	iciclecrash: ["7L1"],
 	iciclespear: ["7L1"],
 	megahorn: ["7L1"],
@@ -4467,7 +4466,6 @@ fossileon: {learnset: {
 
 cupida: {learnset: {
 	attract: ["7L1"],
-	aurasphere: ["7L1"],
 	aurorabeam: ["7L1"],
 	charm: ["7L1"],
 	dazzlinggleam: ["7L1"],
@@ -4481,7 +4479,6 @@ cupida: {learnset: {
 	hex: ["7L1"],
 	hyperbeam: ["7L1"],
 	moonblast: ["7L1"],
-	mysticalfire: ["7L1"],
 	nastyplot: ["7L1"],
 	phantomforce: ["7L1"],
 	lovearrow: ["7L1"],
@@ -4499,8 +4496,6 @@ cupida: {learnset: {
 	spiritbreak: ["7L1"],
 	spiritshackle: ["7L1"],
 	substitute: ["7L1"],
-	triplearrows: ["7L1"],
-	thousandarrows: ["7L1"],
 	wish: ["7L1"],
 }},
 
@@ -4986,7 +4981,7 @@ pumpkoon: {learnset: {
 	sunnyday: ["7L1"],
 }},
 
-lapisalma: {learnset: {
+lepisalma: {learnset: {
 	bugbuzz: ["7L1"],
 	butterflyeffect: ["7L1"],
 	confuseray: ["7L1"],

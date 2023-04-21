@@ -1923,7 +1923,7 @@ dothdo: {
 },
 
 frozenbeak: {
-		num: 195,
+		num: 196,
 		name: "Frozen Beak",
 		types: ["Ice", "Water"],
 		gender: "N",
@@ -1964,7 +1964,7 @@ pumpkoon: {
 		evoLevel: 50,
 	},
 	ironfistmon: {
-		num: 196,
+		num: 195,
 		name: "Iron Fist",
 		types: ["Fighting", "Steel"],
 		gender: "N",
