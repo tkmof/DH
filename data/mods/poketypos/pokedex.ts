@@ -43,7 +43,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 6, 
 		name: "Urthwyrm", 
 		types: ["Ground", "Dragon"],
-		baseStats: {hp: 90, atk: 105, def: 85, spa: 50, spd: 115, spe: 85},
+		baseStats: {hp: 90, atk: 105, def: 85, spa: 40, spd: 115, spe: 45},
 		abilities: {0: "Earth Eater", H: "Shed Skin"},
 		weightkg: 57,
 	},
