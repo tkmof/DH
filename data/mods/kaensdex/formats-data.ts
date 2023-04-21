@@ -796,4 +796,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	ironfistmon: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	meowthder: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 };

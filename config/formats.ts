@@ -1527,7 +1527,7 @@ export const Formats: FormatList = [
 						'Vizcachu-Mega','Iron Sun','Crazy Moon','Grussgu-Mega','Porcusquill-Mega','Jumpfurr','SurivExe','Eevee-Cile','Vaporeon-Cile','Jolteon-Cile',
 						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile','Qilineon','Fossileon','Crobat-Mega','Cupida',
 						'Mightyena-Mega','Drapede','Quetzal','Granjaguar','Huemul','Undeer','Dothdo','Frozen Beak','Purgapilla','Pumpkoon','Lepisalma','Drapede-Solemne',
-						'Quetzal-Solemne','Granjaguar-Solemne']
+						'Quetzal-Solemne','Granjaguar-Solemne','Iron Fist','Meowthder']
 	},
 	{
 		name: "[Gen 8] imando Gen 9",
