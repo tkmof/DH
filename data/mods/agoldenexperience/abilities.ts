@@ -260,8 +260,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	strangebody: {
 		onEffectiveness(typeMod, target, type, move) {
-            if (!target || move.category !== 'Physical' || target.getMoveHitData(move).typeMod < 0) return;
+            if (!target || move.category !== 'Physical') return;
             if (!target.runImmunity(move.type)) return;
+			if (this.dex.getEffectiveness(move, target) === -1) return;
             return 0;
         },
 		name: "Strange Body",
@@ -1450,6 +1451,136 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		shortDesc: "This Pokemon's contact moves have a 30% chance of burning.",
 		rating: 2,
 		num: -1143,
+	},
+	virality: {
+		name: "Virality",
+		shortDesc: "Pokemon making contact with this Pokemon have their Ability changed to Mummy.",
+		onDamagingHit(damage, target, source, move) {
+			const sourceAbility = source.getAbility();
+			if (sourceAbility.isPermanent || sourceAbility.id === 'virality') {
+				return;
+			}
+			if (move.flags['contact']) {
+				const oldAbility = source.setAbility('virality', target);
+				if (oldAbility) {
+					this.add('-activate', target, 'ability: Virality', this.dex.getAbility(oldAbility).name, '[of] ' + source);
+				}
+			}
+		},
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.multihitType === 'parentalbond' && move.hit > 1) return this.chainModify(0.25);
+		},
+		rating: 2,
+		num: -1152,
+	},
+	oldschool: {
+		shortDesc: "This Pokemon's high crit rate moves always crit. This Pokemon's special moves use SpD in calculation.",
+		name: "Old School",
+		onModifyMove(move, attacker) {
+			if (move.category === 'Special') {
+				move.useSourceDefensiveAsOffensive = true;
+			}
+		},
+		onModifyCritRatio(critRatio, source, target) {
+			if (critRatio >= 2) return 5;
+		},
+		rating: 3.5,
+		num: -2148,
+	},
+	justified: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Dark') {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] ability: Justified');
+				}
+				return null;
+			}
+		},
+		name: "Justified",
+		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move. Dark immunity.",
+		rating: 2.5,
+		num: 154,
+	},
+	moody: {// WIP
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual(pokemon) {
+			let stats: BoostName[] = [];
+			const boost: SparseBoostsTable = {};
+			let statPlus: BoostName;
+			for (statPlus in pokemon.boosts) {
+				if (statPlus === 'accuracy' || statPlus === 'evasion') continue;
+				if (pokemon.boosts[statPlus] < 6) {
+					stats.push(statPlus);
+				}
+			}
+			// console.log(statPlus);
+			let randomStat: BoostName | undefined = stats.length ? this.sample(stats) : undefined;
+			if (randomStat) boost[randomStat] = 1;
+			console.log(randomStat);
+			switch (randomStat) {
+				case 'atk':
+					pokemon.addVolatile('MoodAtk');
+					break;
+				case 'def':
+					pokemon.addVolatile('MoodDef');
+					break;
+				case 'spa':
+					pokemon.addVolatile('MoodSpA');
+					break;
+				case 'spd':
+					pokemon.addVolatile('MoodSpD');
+					break;
+				case 'spe':
+					pokemon.addVolatile('MoodSpe');
+					break;
+				default:
+					break;
+			}
+
+			this.boost(boost);
+			console.log(pokemon.volatiles['MoodAtk']);
+			console.log(pokemon.volatiles['MoodDef']);
+			console.log(pokemon.volatiles['MoodSpA']);
+			console.log(pokemon.volatiles['MoodSpD']);
+			console.log(pokemon.volatiles['MoodSpe']);
+		},
+		onEnd(pokemon) {
+			if(pokemon.volatiles['MoodAtk']) 
+			{
+				this.boost({atk: -1});
+				delete pokemon.volatiles['MoodAtk'];
+				console.log(pokemon.volatiles['MoodAtk']);
+			}
+			if(pokemon.volatiles['MoodDef'])
+			{
+				this.boost({def: -1});
+				delete pokemon.volatiles['MoodDef'];
+				console.log(pokemon.volatiles['MoodDef']);
+			} 
+			if(pokemon.volatiles['MoodSpA'])
+			{
+				this.boost({spa: -1});
+				delete pokemon.volatiles['MoodSpA'];
+				console.log(pokemon.volatiles['MoodSpA']);
+			} 
+			if(pokemon.volatiles['MoodSpD'])
+			{
+				this.boost({spd: -1});
+				delete pokemon.volatiles['MoodSpD'];
+				console.log(pokemon.volatiles['MoodSpD']);
+			} 
+			if(pokemon.volatiles['MoodSpe'])
+			{
+				this.boost({spe: -1});
+				delete pokemon.volatiles['MoodSpe'];
+				console.log(pokemon.volatiles['MoodSpe']);
+			} 
+		},
+		name: "Moody",
+		shortDesc: "Boosts a random stat (except accuracy/evasion) +1 every turn. The boost resets at the end of the turn.",
+		rating: 5,
+		num: 141,
 	},
 	colorchange: {
 		onTryHit(target, source, move) {

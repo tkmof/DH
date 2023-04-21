@@ -13,4 +13,14 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		gen: 9,
 		desc: "If held by King Dedede, this item changes its forme to Masked Dedede.", 
 	},
+	dracocentauriumz: {
+		name: "Dracocentaurium Z",
+		spritenum: 632,
+		onTakeItem: false,
+		zMove: "Great Fire",
+		zMoveFrom: "Draco Burning",
+		itemUser: ["Draco Centauros"],
+		num: -2,
+		gen: 9,
+	},
 };

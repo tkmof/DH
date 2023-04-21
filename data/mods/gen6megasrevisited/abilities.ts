@@ -412,6 +412,40 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		gen: 6,
     	shortDesc: "After using a Special move, this Pokemon switches out at the end of the next turn and it can't use status moves.",
 	},
+	sharpness: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['slicing']) {
+				this.debug('Shapness boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Sharpness",
+		rating: 3.5,
+		gen: 6,
+		num: 292,
+    	shortDesc: "This Pokemon's slicing moves deal 50% more damage.",
+	},
+	dauntlessshield: {
+		onStart(pokemon) {
+			this.boost({def: 1}, pokemon);
+			pokemon.addVolatile('dauntlessshield');
+			this.add('-message', `Aggron has its shield up!`);
+		},
+		condition: {
+			duration: 2,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Dauntless Shield');
+				this.add('-message', `Aggron lowered its shield!`);
+				this.boost({def: -1}, pokemon);
+			},
+		},
+		name: "Dauntless Shield",
+		rating: 3.5,
+		num: 235,
+    	shortDesc: "+1 Defense on switch-in. Boost goes away at the end of the next turn.",
+		gen: 6,
+	},
 	
 /*	
 // ngas is so cringe
