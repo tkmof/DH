@@ -2004,6 +2004,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 		learnset: {
          strengthsap: ["8L1"],
          athletesfoot: ["8L1"],
+         hiddenpower: ["8L1"],
          earthquake: ["8L1"],
          taunt: ["8L1"], 
 
@@ -2034,6 +2035,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			powerwhip: ["8L51"],
 			protect: ["8M"],
 			raindance: ["8M"],
+         rapidspin: ["8L1"],
 			reflect: ["8M"],
 			reflecttype: ["8L1"],
 			rest: ["8M"],
@@ -2060,6 +2062,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	},
 	wugtrio: {
 		learnset: {
+         tripledive: ["8L1"],
          earthquake: ["8L1"],
          uturn: ["8L1"],
          painsplit: ["8L1"],
