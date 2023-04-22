@@ -499,7 +499,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				this.heal(source.baseMaxhp / 4);
 			}
 		},
-		name: "Void Heart",
+		name: "Void-Heart",
 		rating: 3,
 		num: -22,
 	},
@@ -922,7 +922,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 				return this.chainModify(1.5);
 			}
 		},
-		name: "Ice Breaker",
+		name: "Icebreaker",
 		rating: 3,
 		num: -1202,
 	},

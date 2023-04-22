@@ -2432,6 +2432,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			wideguard: ["8L84"],
 			xscissor: ["8M"],
 			zenheadbutt: ["8M"],
+			sacredsword: ["8M"],
 		},
 	},
 	koraidon: {
@@ -2781,6 +2782,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			trickroom: ["8M"],
 			wideguard: ["8L1"],
 			willowisp: ["8M", "8L16"],
+			agility: ["8M"],
 		},
 	},
 	ceruledge: {
@@ -2836,6 +2838,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			taunt: ["8M"],
 			willowisp: ["8M", "8L16"],
 			xscissor: ["8M"],
+			agility: ["8M"],
 		},
 	},
 	kingambit: {
