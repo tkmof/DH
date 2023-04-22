@@ -53,8 +53,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 				pokemon.setStatus('');
 			}
 		},
+		onModifyDefPriority: 4,
 		onModifyDef(def, pokemon){
-			return this.chainModify(0.5);
+			return this.chainModify(0.67);
+		},
+		onModifySpDPriority: 4,
+		onModifySpD(spd, pokemon){
+			return this.chainModify(0.67);
 		},
 		onHit(target, source, move) {
 			if (move.thawsTarget || move.type === 'Fire' && move.category !== 'Status') {
