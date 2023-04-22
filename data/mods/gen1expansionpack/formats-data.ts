@@ -376,7 +376,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "LC",
 		gen: 1,
 	},
-	pupal: { // ogasawara name
+	kasanagi: { // ogasawara name
 		tier: "NFE",
 		gen: 1,
 	},

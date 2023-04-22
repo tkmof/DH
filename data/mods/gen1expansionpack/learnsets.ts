@@ -1641,7 +1641,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			{generation: 1, level: 2},
 		],
 	},
-	pupal: {
+	kasanagi: {
 		learnset: {
 			harden: ["1L7"],
 		},

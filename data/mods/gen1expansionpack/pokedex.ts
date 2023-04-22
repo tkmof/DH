@@ -370,11 +370,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Bug"],
 		abilities: {},
 		baseStats: {hp: 40, atk: 35, def: 30, spa: 25, spd: 25, spe: 45},
-		evos: ["Pupal"],
+		evos: ["Kasanagi"],
 	},
-	pupal: {
+	kasanagi: {
 		num: 1193,
-		name: "Pupal",
+		name: "Kasanagi",
 		types: ["Bug"],
 		abilities: {},
 		baseStats: {hp: 45, atk: 20, def: 50, spa: 30, spd: 30, spe: 40},
@@ -388,7 +388,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Bug", "Fighting"],
 		abilities: {},
 		baseStats: {hp: 60, atk: 85, def: 50, spa: 50, spd: 50, spe: 60},
-		prevo: "Pupal",
+		prevo: "Kasanagi",
 		evoLevel: 10,
 	},
 	taaban: {
