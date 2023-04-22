@@ -1940,7 +1940,7 @@ cursedtail: {
 	hyperbeam: {
 		num: 63,
 		accuracy: 90,
-		basePower: 140,
+		basePower: 130,
 		category: "Special",
 		name: "Hyper Beam",
 		shortDesc: "Cannot be used twice in a row."
@@ -1966,7 +1966,7 @@ cursedtail: {
 	gigaimpact: {
 		num: 416,
 		accuracy: 90,
-		basePower: 140,
+		basePower: 130,
 		category: "Physical",
 		name: "Giga Impact",
 		shortDesc: "Cannot be used twice in a row."
@@ -1992,7 +1992,7 @@ cursedtail: {
 	blastburn: {
 		num: 307,
 		accuracy: 90,
-		basePower: 140,
+		basePower: 130,
 		category: "Special",
 		name: "Blast Burn",
 		shortDesc: "Cannot be used twice in a row."
@@ -2018,7 +2018,7 @@ cursedtail: {
 	hydrocannon: {
 		num: 308,
 		accuracy: 90,
-		basePower: 140,
+		basePower: 130,
 		category: "Special",
 		name: "Hydro Cannon",
 		shortDesc: "Cannot be used twice in a row."
@@ -2044,7 +2044,7 @@ cursedtail: {
 	frenzyplant: {
 		num: 338,
 		accuracy: 90,
-		basePower: 140,
+		basePower: 130,
 		category: "Special",
 		name: "Frenzy Plant",
 		shortDesc: "Cannot be used twice in a row."
@@ -2070,7 +2070,7 @@ cursedtail: {
 	meteorassault: {
 		num: 794,
 		accuracy: 100,
-		basePower: 140,
+		basePower: 130,
 		category: "Physical",
 		name: "Meteor Assault",
 		shortDesc: "Cannot be used twice in a row."
@@ -2095,7 +2095,7 @@ cursedtail: {
 	roaroftime: {
 		num: 459,
 		accuracy: 90,
-		basePower: 140,
+		basePower: 130,
 		category: "Special",
 		name: "Roar of Time",
 		shortDesc: "Cannot be used twice in a row."
@@ -2121,7 +2121,7 @@ cursedtail: {
 	rockwrecker: {
 		num: 439,
 		accuracy: 90,
-		basePower: 140,
+		basePower: 130,
 		category: "Physical",
 		name: "Rock Wrecker",
 		shortDesc: "Cannot be used twice in a row."
@@ -2147,7 +2147,7 @@ cursedtail: {
 	prismaticlaser: {
 		num: 711,
 		accuracy: 100,
-		basePower: 140,
+		basePower: 130,
 		category: "Special",
 		name: "Prismatic Laser",
 		shortDesc: "Cannot be used twice in a row."
