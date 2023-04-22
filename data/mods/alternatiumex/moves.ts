@@ -1137,7 +1137,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 50,
 		basePowerCallback(pokemon) {
-			return Math.min(200, 50 + 50 * pokemon.timesAttacked);
+			if (!pokemon.m.timesAttacked) pokemon.m.timesAttacked = 0;
+			return Math.min(200, 50 + 25 * pokemon.m.timesAttacked);
 		},
 		category: "Physical",
 		name: "Raging Fury",
