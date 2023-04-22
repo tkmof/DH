@@ -1936,6 +1936,240 @@ cursedtail: {
 		zMove: {boost: {atk: 1}},
 		contestType: "Beautiful",
 	},
+	//recharge moves
+	hyperbeam: {
+		num: 63,
+		accuracy: 90,
+		basePower: 140,
+		category: "Special",
+		name: "Hyper Beam",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'hyperbeam') pokemon.disableMove('hyperbeam');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'hyperbeam') pokemon.addVolatile('hyperbeam');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('hyperbeam')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Hyper Beam again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Cool",
+	},
+	gigaimpact: {
+		num: 416,
+		accuracy: 90,
+		basePower: 140,
+		category: "Physical",
+		name: "Giga Impact",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'gigaimpact') pokemon.disableMove('gigaimpact');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'gigaimpact') pokemon.addVolatile('gigaimpact');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('gigaimpact')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Giga Impact again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Tough",
+	},
+	blastburn: {
+		num: 307,
+		accuracy: 90,
+		basePower: 140,
+		category: "Special",
+		name: "Blast Burn",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'blastburn') pokemon.disableMove('blastburn');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'blastburn') pokemon.addVolatile('blastburn');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('blastburn')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Blast Burn again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Beautiful",
+	},
+	hydrocannon: {
+		num: 308,
+		accuracy: 90,
+		basePower: 140,
+		category: "Special",
+		name: "Hydro Cannon",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'hydrocannon') pokemon.disableMove('hydrocannon');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'hydrocannon') pokemon.addVolatile('hydrocannon');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('hydrocannon')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Hydro Cannon again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
+	},
+	frenzyplant: {
+		num: 338,
+		accuracy: 90,
+		basePower: 140,
+		category: "Special",
+		name: "Frenzy Plant",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1, nonsky: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'frenzyplant') pokemon.disableMove('frenzyplant');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'frenzyplant') pokemon.addVolatile('frenzyplant');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('frenzyplant')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Frenzy Plant again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		contestType: "Cool",
+	},
+	meteorassault: {
+		num: 794,
+		accuracy: 100,
+		basePower: 140,
+		category: "Physical",
+		name: "Meteor Assault",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, recharge: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'meteorassault') pokemon.disableMove('meteorassault');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'meteorassault') pokemon.addVolatile('meteorassault');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('meteorassault')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Meteor Assault again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+	},
+	roaroftime: {
+		num: 459,
+		accuracy: 90,
+		basePower: 140,
+		category: "Special",
+		name: "Roar of Time",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'roaroftime') pokemon.disableMove('roaroftime');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'roaroftime') pokemon.addVolatile('roaroftime');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('roaroftime')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Roar of Time again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Beautiful",
+	},
+	rockwrecker: {
+		num: 439,
+		accuracy: 90,
+		basePower: 140,
+		category: "Physical",
+		name: "Rock Wrecker",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 5,
+		priority: 0,
+		flags: {bullet: 1, recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'rockwrecker') pokemon.disableMove('rockwrecker');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'rockwrecker') pokemon.addVolatile('rockwrecker');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('rockwrecker')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Rock Wrecker again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		contestType: "Tough",
+	},
+	prismaticlaser: {
+		num: 711,
+		accuracy: 100,
+		basePower: 140,
+		category: "Special",
+		name: "Prismatic Laser",
+		shortDesc: "Cannot be used twice in a row."
+		pp: 10,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'prismaticlaser') pokemon.disableMove('prismaticlaser');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'prismaticlaser') pokemon.addVolatile('prismaticlaser');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('prismaticlaser')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Prismatic Laser again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Cool",
+	},
 	//pp nerf
 	recover: {
 		num: 105,
