@@ -225,5 +225,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Sharpness",
 		rating: 3.5,
 		num: 292,
+   },
+	myceliummight: {
+		onFractionalPriorityPriority: -1,
+		onFractionalPriority(priority, pokemon, target, move) {
+			if (move.category === 'Status') {
+				return -0.1;
+			}
+		},
+		onModifyMove(move) {
+			if (move.category === 'Status') {
+				move.ignoreAbility = true;
+			}
+      },
+		onModifyMove(move) {
+			if (move.category === 'Status') {
+				move.ignoreVolatiles = true;
+			}
+		},
+		name: "Mycelium Might",
+		rating: 2,
+		num: 298,
 	},
 };

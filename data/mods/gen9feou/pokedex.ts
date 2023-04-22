@@ -165,16 +165,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		weightkg: 63,
 		tags: ["Paradox"],
 	},
-	whimsysands: {
- // fusion: ['Whimsicott', 'Sandy Shocks'],
-		num: 13,
-		name: "Whimsy Sands",
-		types: ["Fairy", "Ground"],
-		baseStats: {hp: 75, atk: 75, def: 91, spa: 109, spd: 81, spe: 109},
-		abilities: {0: "Once Upon a Time"},
-		weightkg: 33.3,
-		tags: ["Paradox"],
-	},
 	roaringsal: {
  // fusion: ['Roaring Moon', 'Salazzle'],
 		num: 14,
@@ -236,6 +226,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 75, atk: 90, def: 70, spa: 109, spd: 70, spe: 108},
 		abilities: {0: "Choreography"},
 		weightkg: 17.3,
+	},
+	whimsysands: {
+ // fusion: ['Whimsicott', 'Sandy Shocks'],
+		num: 19,
+		name: "Whimsy Sands",
+		types: ["Fairy", "Ground"],
+		baseStats: {hp: 75, atk: 75, def: 91, spa: 109, spd: 81, spe: 109},
+		abilities: {0: "Once Upon a Time"},
+		weightkg: 33.3,
+		tags: ["Paradox"],
 	},
 
 // LCs and NFEs

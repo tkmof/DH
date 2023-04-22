@@ -237,6 +237,23 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Cool",
 	},
 	
+	greatfire: {
+		num: -9,
+		accuracy: true,
+		basePower: 200,
+		category: "Special",
+		name: "Great Fire",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		useSourceAlternateDefensiveAsOffensive: true,
+		isZ: "dracocentauriumz",
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Beautiful",
+	},
+	
 	// Below are vanilla moves altered by custom interractions
 	
 	bounce: {
