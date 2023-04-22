@@ -108,5 +108,13 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "ampharos").learnset.waterpulse = ["6L1"];
 		this.modData("Learnsets", "ampharos").learnset.aurasphere = ["6L1"];
 		this.modData("Learnsets", "ampharos").learnset.darkpulse = ["6L1"];
+		this.modData("Learnsets", "heracross").learnset.healorder = ["6L1"];
+		this.modData("Learnsets", "heracross").learnset.circlethrow = ["6L1"];
+		this.modData("Learnsets", "heracross").learnset.spikes = ["6L1"];
+		this.modData("Learnsets", "heracross").learnset.icepunch = ["6L1"];
+		this.modData("Learnsets", "sharpedo").learnset.thunder = ["6L1"];
+		this.modData("Learnsets", "gardevoir").learnset.rapidspin = ["6L1"];
+		this.modData("Learnsets", "gardevoir").learnset.mysticalfire = ["6L1"];
+		this.modData("Learnsets", "aggron").learnset.voltswitch = ["6L1"];
 	},
 };

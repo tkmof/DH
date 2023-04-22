@@ -748,11 +748,23 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	drapedesolemne: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 	quetzal: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	quetzalsolemne: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 	granjaguar: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	granjaguarsolemne: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
@@ -765,6 +777,30 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "KDD",
 	},
 	dothdo: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	frozenbeak: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	purgapilla: {
+		tier: "LC",
+		doublesTier: "KDD",
+	},
+	pumpkoon: {
+		tier: "NFE",
+		doublesTier: "KDD",
+	},
+	lepisalma: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	ironfistmon: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	meowthder: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},

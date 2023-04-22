@@ -1,5 +1,5 @@
 export const Pokedex: {[speciesid: string]: SpeciesData} = {
-/*Gen 7 Metamons*/
+/*Gen 7 MetaMons*/
  	altaria: {
 		num: 334,
 		name: "Altaria",
@@ -1072,5 +1072,45 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		evoType: "useItem",
 		evoItem: "Dawn Stone",
 		eggGroups: ["Fairy", "Mineral"],
+	},
+	beedrill: {
+		num: 15,
+		name: "Beedrill",
+		types: ["Bug", "Ground"],
+		baseStats: {hp: 65, atk: 125, def: 80, spa: 45, spd: 85, spe: 122},
+		abilities: {0: "Intimidate", H: "Poison Touch"},
+		heightm: 1,
+		weightkg: 29.5,
+		color: "Yellow",
+		prevo: "Kakuna",
+		evoLevel: 10,
+		eggGroups: ["Bug"],
+	},
+	liepard: {
+		num: 510,
+		name: "Liepard",
+		types: ["Dark", "Poison"],
+		baseStats: {hp: 78, atk: 106, def: 90, spa: 106, spd: 90, spe: 135},
+		abilities: {0: "Limber", H: "Wise Eye"},
+		heightm: 1.1,
+		weightkg: 37.5,
+		color: "Purple",
+		prevo: "Purrloin",
+		evoLevel: 20,
+		eggGroups: ["Field"],
+	},
+	emboar: {
+		num: 500,
+		name: "Emboar",
+		types: ["Fire", "Fighting"],
+		genderRatio: {M: 0.875, F: 0.125},
+		baseStats: {hp: 110, atk: 123, def: 75, spa: 60, spd: 75, spe: 85},
+		abilities: {0: "Blaze", H: "Dragon's Maw"},
+		heightm: 1.6,
+		weightkg: 150,
+		color: "Red",
+		prevo: "Pignite",
+		evoLevel: 36,
+		eggGroups: ["Field"],
 	},
 };
