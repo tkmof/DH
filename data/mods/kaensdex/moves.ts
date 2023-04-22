@@ -1919,6 +1919,23 @@ cursedtail: {
 		maxMove: {basePower: 100},
 		contestType: "Cute",
 	},
+	frostbite: {
+		num: 10077,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Will-O-Wisp",
+		shortDesc: "Freeze the target, halving its SpA and dealing damage.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		status: 'frz',
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		zMove: {boost: {atk: 1}},
+		contestType: "Beautiful",
+	},
 	//pp nerf
 	recover: {
 		num: 105,
@@ -2012,6 +2029,37 @@ cursedtail: {
 		secondary: null,
 		target: "self",
 		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cute",
+	},
+	rest: {
+		num: 156,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Rest",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onTryMove(pokemon) {
+			if (pokemon.hp === pokemon.maxhp) {
+				this.add('-fail', pokemon, 'heal');
+				return null;
+			}
+			if (pokemon.status === 'slp' || pokemon.hasAbility('comatose')) {
+				this.add('-fail', pokemon);
+				return null;
+			}
+		},
+		onHit(target, source, move) {
+			if (!target.setStatus('slp', source, move)) return false;
+			target.statusData.time = 3;
+			target.statusData.startTime = 3;
+			this.heal(target.maxhp); // Aesthetic only as the healing happens after you fall asleep in-game
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Cute",
 	},

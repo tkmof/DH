@@ -35,4 +35,37 @@ hail: {
 			this.add('-weather', 'none');
 		},
 	},
+	
+frz: {
+		name: 'frz',
+		effectType: 'Status',
+		onStart(target, source, sourceEffect) {
+			if (sourceEffect && sourceEffect.effectType === 'Ability') {
+				this.add('-status', target, 'frz', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
+			} else {
+				this.add('-status', target, 'frz');
+			}
+			if (target.species.name === 'Shaymin-Sky' && target.baseSpecies.baseSpecies === 'Shaymin') {
+				target.formeChange('Shaymin', this.effect, true);
+			}
+		},
+		onResidualOrder: 9,
+		onResidual(pokemon) {
+			this.damage(pokemon.baseMaxhp / 16);
+		},
+		onModifySpA(spa, pokemon) {
+			return this.chainModify(0.5);
+		},
+		onModifyMove(move, pokemon) {
+			if (move.flags['defrost']) {
+				this.add('-curestatus', pokemon, 'frz', '[from] move: ' + move);
+				pokemon.setStatus('');
+			}
+		},
+		onHit(target, source, move) {
+			if (move.thawsTarget || move.type === 'Fire' && move.category !== 'Status') {
+				target.cureStatus();
+			}
+		},
+	},
 };
