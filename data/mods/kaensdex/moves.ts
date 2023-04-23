@@ -1924,7 +1924,7 @@ cursedtail: {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		name: "Will-O-Wisp",
+		name: "Frostbite",
 		shortDesc: "Freeze the target, halving its SpA and dealing damage.",
 		pp: 15,
 		priority: 0,
