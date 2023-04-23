@@ -54,6 +54,9 @@ export const Formats: FormatList = [
 				"Arcanine-Water Balloon", "Arcanine-Noble", "Avalugg-Prism", "Avalugg-Plated",
 				"Squawkabilly", "Squawkabiluck", "Squawkalone", "Squawkabilly-Yellow",
 				"Wishiwashi-Lonesome", "Winardin", "Palafin", "Hercuphin",
+				'Gumshoos', 'Gumshoos-Totem', 'Togedemaru', 'Totemaru',
+				'Tauros', 'Bravatoro', 'Tauros-Steam', 'Tauros-Azul',
+				'Raichu', 'Raichu-Soft', 'Rapidash', 'Rapidash-Galar', 'Golem-Berserker', 'Golem-Alola',
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
@@ -143,6 +146,25 @@ export const Formats: FormatList = [
 		],
 		mod: 'gen9crossoverchaos',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', /* 'Mega Data Mod' */],
+		onChangeSet(set) {
+			const item = this.toID(set.item);
+			if (set.species === 'King Dedede' || set.species === 'Masked Dedede') {
+				if (item === 'dededesmask') {
+					set.species = 'Masked Dedede';
+					let attackOrder = set.moves.indexOf('attackorder');
+					if (attackOrder >= 0) {
+						set.moves[attackOrder] = 'gigatonhammer';
+					}
+					let defendOrder = set.moves.indexOf('defendorder');
+					if (defendOrder >= 0) {
+						set.moves[defendOrder] = 'thundercage';
+					}
+				} 
+				else {
+					set.species = 'King Dedede';
+				}
+			}
+		},
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
@@ -162,7 +184,8 @@ export const Formats: FormatList = [
 			`<a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Gen 9 Fusion Evolution</a>`,
 		],
 		mod: 'gen9feou',
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', /* 'Mega Data Mod' */],
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', 'Mega Data Mod'],
+		banlist: ['Metagrossite', 'Revival Blessing', 'Shed Tail', 'Last Respects', 'Absolite'],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
@@ -174,6 +197,21 @@ export const Formats: FormatList = [
 				}
 			}
 		},
+	},
+	{
+		name: "[Gen 6] Megas Revisited",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/gen-6-megas-revisited-slate-2-submissions.3713949/">Megas Revisited on Smogon Forums</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1wK11cPHnPCmH7JFss6leKW6_-cumn3DuZA-YMzrzF-U/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'gen6megasrevisited',
+		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
+					"Kangaskhanite", "Mewtwonite X", "Mewtwonite Y", "Scizorite",
+					"Tyranitarite", "Blazikenite",
+					"Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Diancite"
+					],
 	},
 	{
 		name: "[Gen 9] MetaMons",
@@ -637,11 +675,11 @@ export const Formats: FormatList = [
 		name: "[Gen 3] Hoenn Gaiden",
 		desc: ["<b>Hoenn Gaiden</b>: A Gen 3 pet mod that aims to devamp Gen 4-8 Pokemon, moves and items into the Gen 3 mechanics."],
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-the-gen-3-pet-mod-round-1-discussion.3681339/">Hoenn Gaiden on Smogon Forums</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-pet-mod-of-the-season.3714737/">Hoenn Gaiden on Smogon Forums</a>`,
 		],
 
 		mod: 'gen3hoenngaiden',
-		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod', 'Illegal Baton Pass Clause'],
+		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod'],
 		banlist: ['Uber', 'Air Balloon'],
 		unbanlist: [
 			//Abilities
@@ -652,13 +690,18 @@ export const Formats: FormatList = [
 		name: "[Gen 3] Hoenn Gaiden UU",
 		desc: ["<b>Hoenn Gaiden</b>: A Gen 3 pet mod that aims to devamp Gen 4-8 Pokemon, moves and items into the Gen 3 mechanics."],
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-the-gen-3-pet-mod-round-1-discussion.3681339/">Hoenn Gaiden on Smogon Forums</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/hoenn-gaiden-pet-mod-of-the-season.3714737/">Hoenn Gaiden on Smogon Forums</a>`,
 		],
 
 		mod: 'gen3uuhoenngaiden',
 		searchShow: false,
-		ruleset: ['Standard', 'Data Mod', 'Baton Pass Mod', 'Freeze Clause Mod', 'Hoenn Gaiden Mod', 'Illegal Baton Pass Clause'],
-		banlist: ['Uber', 'OU', 'UUBL', 'Snow Warning', 'Air Balloon'],
+		ruleset: ['Standard', 'Data Mod', 'Freeze Clause Mod'],
+		banlist: [
+				'Uber', 'OU', 'UUBL', 'Snow Warning', 'Air Balloon',
+				'Babiri Berry', 'Charti Berry', 'Chilan Berry', 'Chople Berry', 'Coba Berry', 'Colbur Berry', 
+				'Haban Berry', 'Kasib Berry', 'Kebia Berry', 'Occa Berry', 'Passho Berry', 'Payapa Berry', 
+				'Rindo Berry', 'Roseli Berry', 'Shuca Berry', 'Tanga Berry', 'Wacan Berry', 'Yache Berry',
+		],
 		unbanlist: [],
 	},
 	{
@@ -818,6 +861,7 @@ export const Formats: FormatList = [
 		ruleset: ['Team Preview', 'Cancel Mod', 'HP Percentage Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Freeze Clause Mod', 'Data Mod', 'Mega Data Mod', 'Sandbox Mod', 'Overflow Stat Mod'],
 		mod: 'm4asandbox',
 	},
+/* Moving to Gen 9 section
 	{
 		name: "[Gen 6] Megas Revisited",
 		threads: [
@@ -827,13 +871,13 @@ export const Formats: FormatList = [
 		mod: 'gen6megasrevisited',
 		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
-					"Slowbronite", 
-					"Kangaskhanite", "Gyaradosite", "Mewtwonite X", "Mewtwonite Y", "Ampharosite", "Scizorite",
+					"Kangaskhanite", "Mewtwonite X", "Mewtwonite Y", "Scizorite",
 					"Heracronite", "Tyranitarite", "Blazikenite", "Gardevoirite",
-					"Aggronite", "Sharpedonite", "Cameruptite", "Salamencite",
-					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Abomasite", "Galladite", "Diancite"
+					"Aggronite", "Sharpedonite", "Salamencite",
+					"Metagrossite", "Latiasite", "Latiosite", "Garchompite", "Diancite"
 					],
 	},
+*/
 	/*
 	{
 		name: "[Gen 8] Metamorphosis",
@@ -1034,7 +1078,6 @@ export const Formats: FormatList = [
 		section: "Duomod Randbats Tournament",
 		column: 2,
 	},
-
 	{
         name: "[Gen 8] Gen 9 Duomod Randbats",
         desc: `<b>gen 9 duomod back and better than ever baybeeeeee</b>`,
@@ -1238,7 +1281,7 @@ export const Formats: FormatList = [
 		],
 		mod: 'agoldenexperience',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Mega Data Mod'],
-		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Arceus', 'Blazikenite', 'Calyrex-Ice', 'Calyrex-Shadow', 'Darkrai', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Dialga-Origin', 'Eternatus', /*'Flutter Mane', */'Gengarite', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', /*'Iron Bundle', 'Koraidon', */'Kyogre', 'Kyurem-Black', 'Kyurem-White', /*'Lucarionite', */'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Mewtwo-Mega-X', 'Mewtwo-Mega-Y', /*'Miraidon', */'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Palkia-Origin', 'Parafgufa', 'Rayquaza', 'Reshiram', 'Salamencite', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom', 'Zygarde-Base', 'Berserk Gene', 'Eevee-Starter', 'Pikachu-Starter', 'Moody', 
+		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Arceus', 'Blazikenite', 'Calyrex-Ice', 'Calyrex-Shadow', 'Darkrai', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Dialga-Origin', 'Eternatus', 'Flutter Mane', 'Gengarite', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Iron Bundle', 'Koraidon', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Mewtwo-Mega-X', 'Mewtwo-Mega-Y', 'Miraidon', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Palkia-Origin', 'Parafgufa', 'Rayquaza', 'Reshiram', 'Salamencite', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom', 'Zygarde-Base', 'Berserk Gene', 'Eevee-Starter', 'Pikachu-Starter', 'Moody',
 					'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Pikanium Z', 'Aloraichium Z', 'Eevium Z', 'Snorlium Z', 'Mewnium Z', 'Ultranecrozium Z', 'Pikashunium Z', 'Decidium Z', 'Incinium Z', 'Primarium Z', 'Lycanium Z', 'Mimikium Z', 'Kommonium Z', 'Tapunium Z', 'Solganium Z', 'Lunalium Z', 'Marshadium Z', 
 					'Bright Powder', 'Lax Incense', 'King\'s Rock', 'Razor Fang'],
 		//teambuilderFormat: 'OU',
@@ -1398,6 +1441,31 @@ export const Formats: FormatList = [
 		mod: 'evolutionproject',
 	},
 	{
+		name: "[Gen 9] Fusion Evolution Dondozo",
+		mod: 'dondozo',
+		desc: `dondozo`,
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', /* 'Mega Data Mod' */],
+		banlist: ['Shed Tail'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['Dondozo','FEDD'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Fusion Evolution.'];
+				}
+			}
+		},
+		/*
+		onBegin() {
+			if(species.id === 'shedigiri') {
+				pokemon.basemaxhp = 1;
+				pokemon.hp = 1;
+			}
+		}*/
+	},
+	{
 		name: "[Gen 2] GSC Doubles",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/solomods-megathread.3660004/post-9132049">Post in Solomods Megathread</a>`,
@@ -1413,6 +1481,14 @@ export const Formats: FormatList = [
 		mod: 'gen1glitch',
 		ruleset: ['Standard', 'Data Mod'],
 		banlist: ['Uber', 'Wrap'],
+	},
+	{
+		
+	  name: "[Gen 8] Gen 9 Sandbox Theorymons",
+     desc: '<b>[Gen 8] Gen 9 Sandbox Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
+     mod: 'gen9outheorymons',
+	  ruleset: ['Standard', 'Data Mod'],
+	  banlist: ['Uber'],
 	},
 	{
 	name: "[Gen 1] JohtoMons",
@@ -1450,7 +1526,8 @@ export const Formats: FormatList = [
 						'Karakasa','Grag','Kimokus','Toknight','Cowpy','Cowork','Barbecow','Hoorel','Baishark','Luviu','Shucklony','Dreamer','Nohtyp','Abomigo-Mega',
 						'Vizcachu-Mega','Iron Sun','Crazy Moon','Grussgu-Mega','Porcusquill-Mega','Jumpfurr','SurivExe','Eevee-Cile','Vaporeon-Cile','Jolteon-Cile',
 						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile','Qilineon','Fossileon','Crobat-Mega','Cupida',
-						'Mightyena-Mega','Drapede','Quetzal','Granjaguar',]
+						'Mightyena-Mega','Drapede','Quetzal','Granjaguar','Huemul','Undeer','Dothdo','Frozen Beak','Purgapilla','Pumpkoon','Lepisalma','Drapede-Solemne',
+						'Quetzal-Solemne','Granjaguar-Solemne','Iron Fist','Meowthder']
 	},
 	{
 		name: "[Gen 8] imando Gen 9",

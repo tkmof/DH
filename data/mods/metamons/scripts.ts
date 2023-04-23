@@ -449,6 +449,44 @@ export const Scripts: ModdedBattleScriptsData = {
 			this.modData("Learnsets", "boltund").learnset.moonblast = ["8L1"];
 			this.modData("Learnsets", "boltund").learnset.icefang = ["8L1"];
 			this.modData("Learnsets", "boltund").learnset.uturn = ["8L1"];
+
+			this.modData("Learnsets", "sudowoodo").learnset.knockoff = ["8L1"];
+
+			this.modData("Learnsets", "mesprit").learnset.swordsdance = ["8L1"];
+			this.modData("Learnsets", "mesprit").learnset.closecombat = ["8L1"];
+			this.modData("Learnsets", "mesprit").learnset.psychicfangs = ["8L1"];
+			this.modData("Learnsets", "mesprit").learnset.focusblast = ["8L1"];
+			this.modData("Learnsets", "mesprit").learnset.vacuumwave = ["8L1"];
+
+			this.modData("Learnsets", "froslass").learnset.rapidspin = ["8L1"];
+			this.modData("Learnsets", "froslass").learnset.uturn = ["8L1"];
+			this.modData("Learnsets", "froslass").learnset.dazzlinggleam = ["8L1"];
+			this.modData("Learnsets", "froslass").learnset.flashcannon = ["8L1"];
+			this.modData("Learnsets", "froslass").learnset.whirlwind = ["8L1"];
+			this.modData("Learnsets", "froslass").learnset.liquidation = ["8L1"];
+
+			this.modData("Learnsets", "beedrill").learnset.earthquake = ["8L1"];
+			this.modData("Learnsets", "beedrill").learnset.spikes = ["8L1"];
+
+			this.modData("Learnsets", "liepard").learnset.synchronoise = ["8L1"];
+			this.modData("Learnsets", "liepard").learnset.sludgewave = ["8L1"];
+			this.modData("Learnsets", "liepard").learnset.sludgebomb = ["8L1"];
+			this.modData("Learnsets", "liepard").learnset.gunkshot = ["8L1"];
+			this.modData("Learnsets", "liepard").learnset.poisonjab = ["8L1"];
+			
+			this.modData("Learnsets", "emboar").learnset.outrage = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.dragonpulse = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.dracometeor = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.dragondance = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.dragonrush = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.dragonclaw = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.swordsdance = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.beatup = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.defendorder = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.slackoff = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.outrage = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.bulletpunch = ["8L1"];
+			this.modData("Learnsets", "emboar").learnset.machpunch = ["8L1"];
 			
 			delete this.modData('Learnsets', 'bellossom').learnset.sleeppowder;
 			
@@ -458,6 +496,14 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Learnsets', 'dragalge').learnset.outrage;
 			delete this.modData('Learnsets', 'dragalge').learnset.scaleshot;
 			delete this.modData('Learnsets', 'dragalge').learnset.twister;
+
+			delete this.modData('Learnsets', 'sudowoodo').learnset.earthquake;
+
+			delete this.modData('Learnsets', 'froslass').learnset.icefang;
+			delete this.modData('Learnsets', 'froslass').learnset.reflect;
+			delete this.modData('Learnsets', 'froslass').learnset.lightscreen;
+
+			delete this.modData('Learnsets', 'liepard').learnset.nastyplot;
 			},
 			
 			

@@ -1182,7 +1182,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
-		overrideOffensiveStat: 'def',
+		useSourceDefensiveAsOffensive: true,
 		secondary: null,
 		target: "normal",
 		type: "Psychic",
@@ -1210,5 +1210,144 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Water",
 		contestType: "Cool",
+	},
+	watershuriken: {
+		inherit: true,
+		flags: {protect: 1, mirror: 1, slicing: 1},
+		multihit: 3,
+	},
+	ragingbull: {
+		num: 873,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "Type depends on user's secondary type. If resisted: -1 Defense.",
+		name: "Raging Bull",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onModifyType(move, pokemon) {
+			let type = pokemon.types[1];
+			if (type === "Bird") type = "???";
+			move.type = type;
+		},
+		onHit(target, source, move) {
+			if (!move || !target) return;
+			if (target !== source && move.category !== 'Status' && target.getMoveHitData(move).typeMod < 0) {
+				this.boost({def: -1}, target);
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+	},
+	ragingbullsteam: {
+		num: -23,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "(Non-functional placeholder) Type depends on both the user's types.",
+		name: "Raging Bull (Steam)",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onModifyType(move, pokemon) {
+			let type = pokemon.types[0];
+			if (type === "Bird") type = "???";
+			move.type = type;
+		},
+		/*onEffectiveness(typeMod, target, source, type, move) {
+			const secondType = source.types[1];
+			return typeMod + this.dex.getEffectiveness(secondType, type);
+		},*/
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+	},
+	stampederush: {
+		num: -24,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "Destroys screens. Ice-type if user is Tauros-Azul.",
+		name: "Stampede Rush",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryHit(pokemon) {
+			// will shatter screens through sub, before you hit
+			pokemon.side.removeSideCondition('reflect');
+			pokemon.side.removeSideCondition('lightscreen');
+			pokemon.side.removeSideCondition('auroraveil');
+		},
+		onModifyType(move, pokemon) {
+			if (pokemon.species.name === 'Tauros-Azul') {
+				move.type = 'Ice';
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+	},
+	zippyzap: {
+		num: 729,
+		accuracy: 100,
+		basePower: 50,
+		category: "Physical",
+		shortDesc: "Usually goes first.",
+		isNonstandard: null,
+		name: "Zippy Zap",
+		pp: 10,
+		priority: 1,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		target: "normal",
+		type: "Electric",
+	},
+	fling: {
+		inherit: true,
+		basePowerCallback(pokemon, target, move) {
+			if (pokemon.hasAbility('cannonstyle')) {
+				return move.basePower * 2;
+			}
+			return move.basePower;
+		},
+	},
+	
+	//SV Move Descriptions
+	aquacutter:  {
+		inherit: true,
+		shortDesc: "High critical hit ratio.",
+	},
+	chillingwater:  {
+		inherit: true,
+		shortDesc: "100% chance to lower the target's Attack by 1.",
+	},
+	pounce:  {
+		inherit: true,
+		shortDesc: "100% chance to lower the target's Speed by 1.",
+	},
+	snowscape:  {
+		inherit: true,
+		shortDesc: "For 5 turns, snow falls. Ice: 1.5x Def.",
+	},
+	terablast:  {
+		inherit: true,
+		shortDesc: "If Terastallized: Phys. if Atk > SpA, type = Tera.",
+	},
+	trailblaze:  {
+		inherit: true,
+		shortDesc: "100% chance to raise the user's Speed by 1.",
+	},
+	icespinner: {
+		inherit: true,
+		shortDesc: "Ends the effects of terrain.",
+	},
+	populationbomb: {
+		inherit: true,
+		shortDesc: "Hits 10 times. Each hit can miss.",
+	},
+	spinout: {
+		inherit: true,
+		shortDesc: "Lowers the user's Speed by 2.",
 	},
 };

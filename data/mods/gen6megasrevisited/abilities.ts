@@ -354,7 +354,98 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
     	shortDesc: "This Pokemon takes halved damage from hazards and physical moves.",
 		rating: 4,
 	},
-
+	icescales: {
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.category === 'Special') {
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Ice Scales",
+		rating: 4,
+		num: 246,
+		gen: 6,
+	},
+	eartheater: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Earth Eater');
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Earth Eater",
+		rating: 3.5,
+		num: 297,
+		gen: 6,
+    	shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
+	},
+	shellejection: {
+		onModifyMovePriority: -1,
+		onModifyMove(move, attacker) {
+			if (move.category === 'Special') {
+				attacker.addVolatile('shellejection');
+				this.add('-ability', attacker, 'Shell Ejection');
+				this.add('-message', `Slowbro is getting ready to leave the battlefield!`);
+				this.add('-message', `Slowbro can no longer use status moves!`);
+			}
+		},
+		condition: {
+			duration: 2,
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					const move = this.dex.getMove(moveSlot.id);
+					if (move.category === 'Status' && move.id !== 'mefirst') {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Shell Ejection');
+				this.add('-message', `Slowbro ejected itself from its shell!`);
+				pokemon.switchFlag = true;				
+			},
+		},
+		name: "Shell Ejection",
+		rating: 3.5,
+		gen: 6,
+    	shortDesc: "After using a Special move, this Pokemon switches out at the end of the next turn and it can't use status moves.",
+	},
+	sharpness: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['slicing']) {
+				this.debug('Shapness boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Sharpness",
+		rating: 3.5,
+		gen: 6,
+		num: 292,
+    	shortDesc: "This Pokemon's slicing moves deal 50% more damage.",
+	},
+	dauntlessshield: {
+		onStart(pokemon) {
+			this.boost({def: 1}, pokemon);
+			pokemon.addVolatile('dauntlessshield');
+			this.add('-message', `Aggron has its shield up!`);
+		},
+		condition: {
+			duration: 2,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Dauntless Shield');
+				this.add('-message', `Aggron lowered its shield!`);
+				this.boost({def: -1}, pokemon);
+			},
+		},
+		name: "Dauntless Shield",
+		rating: 3.5,
+		num: 235,
+    	shortDesc: "+1 Defense on switch-in. Boost goes away at the end of the next turn.",
+		gen: 6,
+	},
 	
 /*	
 // ngas is so cringe
