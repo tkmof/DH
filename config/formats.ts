@@ -1510,7 +1510,7 @@ export const Formats: FormatList = [
 	{
 		name: "[Gen 8] Kaen's Dex",
 		mod: "kaensdex",
-		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Data Mod', 'Mega Data Mod'],
+		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Data Mod', 'Mega Data Mod'],
 		banlist: ['All Pokemon'],
 		unbanlist: ['Luvdisc', 'Hypno','Arbok','Shuckle','Crobat','Mightyena','Woodite','Manteaf','Fasmiwood','Smice','Ratevil','Burstrat','Doplash','Makid','Merdolph','Princeguin',
 						'Kinguin','Ekidna','Porcusquill','Mop','Mopper','Puppessum','Grimssum','Spiball','Scopiball','Navird','Peckbeard','Bask','Peayes','Weaworm',
@@ -1527,7 +1527,7 @@ export const Formats: FormatList = [
 						'Vizcachu-Mega','Iron Sun','Crazy Moon','Grussgu-Mega','Porcusquill-Mega','Jumpfurr','SurivExe','Eevee-Cile','Vaporeon-Cile','Jolteon-Cile',
 						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile','Qilineon','Fossileon','Crobat-Mega','Cupida',
 						'Mightyena-Mega','Drapede','Quetzal','Granjaguar','Huemul','Undeer','Dothdo','Frozen Beak','Purgapilla','Pumpkoon','Lepisalma','Drapede-Solemne',
-						'Quetzal-Solemne','Granjaguar-Solemne','Iron Fist','Meowthder']
+						'Quetzal-Solemne','Granjaguar-Solemne','lron Fist','Meowthder','Golbat','Zubat','Drowzee','Ekans','Poochyena']
 	},
 	{
 		name: "[Gen 8] imando Gen 9",
