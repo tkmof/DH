@@ -1943,7 +1943,7 @@ cursedtail: {
 		basePower: 130,
 		category: "Special",
 		name: "Hyper Beam",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {recharge: 1, protect: 1, mirror: 1},
@@ -1969,7 +1969,7 @@ cursedtail: {
 		basePower: 130,
 		category: "Physical",
 		name: "Giga Impact",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {contact: 1, recharge: 1, protect: 1, mirror: 1},
@@ -1995,7 +1995,7 @@ cursedtail: {
 		basePower: 130,
 		category: "Special",
 		name: "Blast Burn",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {recharge: 1, protect: 1, mirror: 1},
@@ -2021,7 +2021,7 @@ cursedtail: {
 		basePower: 130,
 		category: "Special",
 		name: "Hydro Cannon",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {recharge: 1, protect: 1, mirror: 1},
@@ -2047,7 +2047,7 @@ cursedtail: {
 		basePower: 130,
 		category: "Special",
 		name: "Frenzy Plant",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {recharge: 1, protect: 1, mirror: 1, nonsky: 1},
@@ -2073,7 +2073,7 @@ cursedtail: {
 		basePower: 130,
 		category: "Physical",
 		name: "Meteor Assault",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, recharge: 1, mirror: 1},
@@ -2098,7 +2098,7 @@ cursedtail: {
 		basePower: 130,
 		category: "Special",
 		name: "Roar of Time",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {recharge: 1, protect: 1, mirror: 1},
@@ -2118,13 +2118,14 @@ cursedtail: {
 		type: "Dragon",
 		contestType: "Beautiful",
 	},
+	
 	rockwrecker: {
 		num: 439,
 		accuracy: 90,
 		basePower: 130,
 		category: "Physical",
 		name: "Rock Wrecker",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {bullet: 1, recharge: 1, protect: 1, mirror: 1},
@@ -2144,13 +2145,14 @@ cursedtail: {
 		type: "Rock",
 		contestType: "Tough",
 	},
+	
 	prismaticlaser: {
 		num: 711,
 		accuracy: 100,
 		basePower: 130,
 		category: "Special",
 		name: "Prismatic Laser",
-		shortDesc: "Cannot be used twice in a row."
+		shortDesc: "Cannot be used twice in a row.",
 		pp: 10,
 		priority: 0,
 		flags: {recharge: 1, protect: 1, mirror: 1},
@@ -2170,6 +2172,7 @@ cursedtail: {
 		type: "Psychic",
 		contestType: "Cool",
 	},
+	
 	//pp nerf
 	recover: {
 		num: 105,
@@ -2186,7 +2189,7 @@ cursedtail: {
 		type: "Normal",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Clever",
-	
+	},
 	softboiled: {
 		num: 135,
 		accuracy: true,
