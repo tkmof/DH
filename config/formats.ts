@@ -1510,7 +1510,7 @@ export const Formats: FormatList = [
 	{
 		name: "[Gen 8] Kaen's Dex",
 		mod: "kaensdex",
-		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Z-Move Clause', 'Data Mod', 'Mega Data Mod'],
+		ruleset: ['Standard NatDex', 'Dynamax Clause', 'Evasion Moves Clause', 'Species Clause', 'Data Mod', 'Mega Data Mod'],
 		banlist: ['All Pokemon'],
 		unbanlist: ['Luvdisc', 'Hypno','Arbok','Shuckle','Crobat','Mightyena','Woodite','Manteaf','Fasmiwood','Smice','Ratevil','Burstrat','Doplash','Makid','Merdolph','Princeguin',
 						'Kinguin','Ekidna','Porcusquill','Mop','Mopper','Puppessum','Grimssum','Spiball','Scopiball','Navird','Peckbeard','Bask','Peayes','Weaworm',
