@@ -996,32 +996,40 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
-			if (attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
-				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact']) {
+			this.effectData.bestStat = attacker.getBestStat(false, true);
+			if ((attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
+				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact'])
+				&& this.effectData.bestStat === 'atk') {
 				this.debug('Dyschronometria weaken');
 				return this.chainModify([4096, 5325]);
 			}
 		},
 		onSourceModifySpAPriority: 5,
 		onSourceModifySpA(atk, attacker, defender, move) {
-			if (attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
-				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact']) {
+			this.effectData.bestStat = attacker.getBestStat(false, true);
+			if ((attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
+				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact'])
+				&& this.effectData.bestStat === 'spa') {
 				this.debug('Dyschronometria weaken');
 				return this.chainModify([4096, 5325]);
 			}
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
-			if (defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
-				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact']) {
+			this.effectData.bestStat = defender.getBestStat(false, true);
+			if ((defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
+				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact'])
+				&& this.effectData.bestStat === 'def') {
 				this.debug('Dyschronometria boost');
 				return this.chainModify([5325, 4096]);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA(atk, attacker, defender, move) {
-			if (defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
-				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact']) {
+			this.effectData.bestStat = defender.getBestStat(false, true);
+			if ((defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
+				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact'])
+				&& this.effectData.bestStat === 'spd') {
 				this.debug('Dyschronometria boost');
 				return this.chainModify([5325, 4096]);
 			}
