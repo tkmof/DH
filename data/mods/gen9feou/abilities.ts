@@ -796,4 +796,245 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Squall",
 		rating: 4,
 	},
+	stoneage: {
+	  shortDesc: "Sturdy + Technician",
+		onBeforeMovePriority: 9,
+		onBeforeMove(pokemon) {
+			if (pokemon.species.baseSpecies !== 'Relishadow' || pokemon.transformed) return;
+			const targetForme = pokemon.species.name === 'Relishadow' ? 'Relishadow-Zenith' : 'Relishadow-Zenith';
+			pokemon.formeChange(targetForme);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.ohko) {
+				this.add('-immune', pokemon, '[from] ability: Stone Age');
+				return null;
+			}
+		},
+		onDamagePriority: -100,
+		onDamage(damage, target, source, effect) {
+			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+				this.add('-ability', target, 'Stone Age');
+				return target.hp - 1;
+			}
+		},
+		onBasePowerPriority: 30,
+		onBasePower(basePower, attacker, defender, move) {
+			const basePowerAfterMultiplier = this.modify(basePower, this.event.modifier);
+			this.debug('Base Power: ' + basePowerAfterMultiplier);
+			if (basePowerAfterMultiplier <= 60) {
+				this.debug('Stone Age boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Stone Age",
+		rating: 3,
+	},
+	moltencore: {
+	  shortDesc: "Turboblaze + Rock Head",
+		onDamage(damage, target, source, effect) {
+			if (effect.id === 'recoil') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return null;
+			}
+		},
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Molten Core');
+		},
+		onModifyMove(move) {
+			move.ignoreAbility = true;
+		},
+		name: "Molten Core",
+		rating: 3,
+	},
+	eczema: {
+	  shortDesc: "Pokemon that make contact with or KO this Pokemon lose 1/8 of their max HP.",
+		onDamagingHitOrder: 1,
+		onDamagingHit(damage, target, source, move) {
+			if (move.flags['contact']) {
+				this.damage(source.baseMaxhp / 8, source, target);
+			}
+			if (!target.hp) {
+				this.damage(source.baseMaxhp / 8, source, target);
+			}
+		},
+		name: "Eczema",
+		rating: 3,
+	},
+	aurashield: {
+	  shortDesc: "Shield Dust + While this Pokemon is active, moves with secondary effects used by any Pokemon have 1.33x power.",
+		onModifySecondaries(secondaries) {
+			this.debug('Aura Shield prevent secondary');
+			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
+		},
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Aura Shield');
+		},
+		onAnyBasePowerPriority: 20,
+		onAnyBasePower(basePower, source, target, move) {
+			if (target === source || move.category === 'Status' || !move.secondaries) return;
+			if (!move.auraBooster) move.auraBooster = this.effectData.target;
+			if (move.auraBooster !== this.effectData.target) return;
+			return this.chainModify([move.hasAuraBreak ? 0x0C00 : 0x1547, 0x1000]);
+		},
+		isUnbreakable: true,
+		name: "Aura Shield",
+		rating: 3,
+	},
+	faultyphoton: {
+	  shortDesc: "Disguise effects. Once the Disguise is broken, it gets a ×1.3 boost to it's highest stat; ×1.5 if Speed.",
+		onDamagePriority: 1,
+		onDamage(damage, target, source, effect) {
+			if (
+				effect && effect.effectType === 'Move' &&
+				['ironmimic'].includes(target.species.id) && !target.transformed
+			) {
+				this.add('-activate', target, 'ability: Faulty Photon');
+				this.effectData.busted = true;
+				return 0;
+			}
+		},
+		onCriticalHit(target, source, move) {
+			if (!target) return;
+			if (!['ironmimic'].includes(target.species.id) || target.transformed) {
+				return;
+			}
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates && this.gen >= 6);
+			if (hitSub) return;
+
+			if (!target.runImmunity(move.type)) return;
+			return false;
+		},
+		onEffectiveness(typeMod, target, type, move) {
+			if (!target) return;
+			if (!['ironmimic'].includes(target.species.id) || target.transformed) {
+				return;
+			}
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates && this.gen >= 6);
+			if (hitSub) return;
+
+			if (!target.runImmunity(move.type)) return;
+			return 0;
+		},
+		onUpdate(pokemon) {
+			if (['ironmimic'].includes(pokemon.species.id) && this.effectData.busted) {
+				const speciesid = pokemon.species.id === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' : 'Iron Mimic-Busted';
+				pokemon.formeChange(speciesid, this.effect, true);
+				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon, this.dex.getSpecies(speciesid));
+				pokemon.addVolatile('faultyphoton');
+				pokemon.volatiles['faultyphoton'].fromBooster = true;
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['faultyphoton'];
+			this.add('-end', pokemon, 'Faulty Photon', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Faulty Photon', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Faulty Photon');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'faultyphoton' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Faulty Photon atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Faulty Photon def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Faulty Photon spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Faulty Photon spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Faulty Photon spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Faulty Photon');
+			},
+		},
+		isPermanent: true,
+		name: "Faulty Photon",
+		rating: 3,
+	},
+	dyschronometria: {
+	  shortDesc: "This Pokemon ignores other Pokemon's stat stages and Paradox boosts when taking or doing damage.",
+		onAnyModifyBoost(boosts, pokemon) {
+			const unawareUser = this.effectData.target;
+			if (unawareUser === pokemon) return;
+			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['def'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			this.effectData.bestStat = attacker.getBestStat(false, true);
+			if ((attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
+				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact'])
+				&& this.effectData.bestStat === 'atk') {
+				this.debug('Dyschronometria weaken');
+				return this.chainModify([4096, 5325]);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(atk, attacker, defender, move) {
+			this.effectData.bestStat = attacker.getBestStat(false, true);
+			if ((attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
+				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact'])
+				&& this.effectData.bestStat === 'spa') {
+				this.debug('Dyschronometria weaken');
+				return this.chainModify([4096, 5325]);
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			this.effectData.bestStat = defender.getBestStat(false, true);
+			if ((defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
+				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact'])
+				&& this.effectData.bestStat === 'def') {
+				this.debug('Dyschronometria boost');
+				return this.chainModify([5325, 4096]);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			this.effectData.bestStat = defender.getBestStat(false, true);
+			if ((defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
+				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact'])
+				&& this.effectData.bestStat === 'spd') {
+				this.debug('Dyschronometria boost');
+				return this.chainModify([5325, 4096]);
+			}
+		},
+		name: "Dyschronometria",
+		rating: 3,
+	},
 };

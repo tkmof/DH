@@ -217,4 +217,67 @@ mightite: {
 		gen: 6,
 		desc: "If held by a Mightyena, this item allows it to Mega Evolve in battle.",
 	},
+	
+goldenbracelet: {
+		name: "Golden Bracelet",
+		spritenum: 698,
+		onSwitchIn(pokemon) {
+			if (pokemon.isActive && pokemon.baseSpecies.name === 'Drapede') {
+				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
+			}
+		},
+		onPrimal(pokemon) {
+			pokemon.formeChange('Drapede-Solemne', this.effect, true);
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Drapede') return false;
+			return true;
+		},
+		itemUser: ["Drapede"],
+		num: 1103,
+		gen: 8,
+		desc: "If held by a Drapede, this item changes its forme to Solemne.",
+	},
+	
+goldenpendant: {
+		name: "Golden Pendant",
+		spritenum: 698,
+		onSwitchIn(pokemon) {
+			if (pokemon.isActive && pokemon.baseSpecies.name === 'Quetzal') {
+				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
+			}
+		},
+		onPrimal(pokemon) {
+			pokemon.formeChange('Quetzal-Solemne', this.effect, true);
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Quetzal') return false;
+			return true;
+		},
+		itemUser: ["Quetzal"],
+		num: 1103,
+		gen: 8,
+		desc: "If held by a Quetzal, this item changes its forme to Solemne.",
+	},
+	
+goldenkey: {
+		name: "Golden Key",
+		spritenum: 698,
+		onSwitchIn(pokemon) {
+			if (pokemon.isActive && pokemon.baseSpecies.name === 'Granjaguar') {
+				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
+			}
+		},
+		onPrimal(pokemon) {
+			pokemon.formeChange('Granjaguar-Solemne', this.effect, true);
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Granjaguar') return false;
+			return true;
+		},
+		itemUser: ["Granjaguar"],
+		num: 1103,
+		gen: 8,
+		desc: "If held by a Granjaguar, this item changes its forme to Solemne.",
+	},
 }

@@ -166,6 +166,29 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 95, atk: 145, def: 109, spa: 70, spd: 130, spe: 91},
 		abilities: {0: "Aerilate"},
 	},	
+	heracrossmega: {
+		inherit: true,
+		types: ["Bug", "Fighting"],
+		baseStats: {hp: 80, atk: 150, def: 150, spa: 40, spd: 110, spe: 70},
+		abilities: {0: "Iron Barbs"},
+	},	
+	sharpedomega: {
+		inherit: true,
+		types: ["Water", "Electric"],
+		baseStats: {hp: 70, atk: 130, def: 55, spa: 145, spd: 55, spe: 105},
+		abilities: {0: "No Guard"},
+	},	
+	gardevoirmega: {
+		inherit: true,
+		types: ["Psychic", "Fairy"],
+		baseStats: {hp: 68, atk: 65, def: 100, spa: 150, spd: 127, spe: 108},
+	},	
+	aggronmega: {
+		inherit: true,
+		types: ["Steel"],
+		baseStats: {hp: 70, atk: 145, def: 185, spa: 90, spd: 85, spe: 60},
+		abilities: {0: "Dauntless Shield"},
+	},	
 	
 // Gen 6 Stuff
 	arbok: {

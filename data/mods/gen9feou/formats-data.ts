@@ -166,4 +166,51 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "FELC",
 		doublesTier: "LC",
 	},
+	relishadow: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["rockblast", "poltergeist", "earthquake", "shadowsneak"],
+		randomBattleLevel: 75,
+	},
+	relishadowzenith: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+	},
+	lashiram: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["blueflare", "earthpower", "roost", "stealthrock"],
+		randomBattleLevel: 75,
+	},
+	garpyuku: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["liquidation", "earthquake", "recover", "spikes"],
+		randomBattleLevel: 75,
+	},
+	garpyukumega: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["liquidation", "earthquake", "recover", "swordsdance"],
+		randomBattleLevel: 75,
+		requiredItem: "Garchompite",
+	},
+	yveltox: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["quiverdance", "oblivionwing", "sludgebomb", "heatwave"],
+		randomBattleLevel: 75,
+	},
+	ironmimic: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["swordsdance", "playrough", "stoneedge", "earthquake"],
+		randomBattleLevel: 75,
+	},
+	irondirge: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["torchsong", "earthpower", "slackoff", "willowisp"],
+		randomBattleLevel: 75,
+	},
 };

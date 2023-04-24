@@ -426,6 +426,26 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		num: 292,
     	shortDesc: "This Pokemon's slicing moves deal 50% more damage.",
 	},
+	dauntlessshield: {
+		onStart(pokemon) {
+			this.boost({def: 1}, pokemon);
+			pokemon.addVolatile('dauntlessshield');
+			this.add('-message', `Aggron has its shield up!`);
+		},
+		condition: {
+			duration: 2,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Dauntless Shield');
+				this.add('-message', `Aggron lowered its shield!`);
+				this.boost({def: -1}, pokemon);
+			},
+		},
+		name: "Dauntless Shield",
+		rating: 3.5,
+		num: 235,
+    	shortDesc: "+1 Defense on switch-in. Boost goes away at the end of the next turn.",
+		gen: 6,
+	},
 	
 /*	
 // ngas is so cringe

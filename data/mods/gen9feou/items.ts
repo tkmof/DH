@@ -77,4 +77,17 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		num: 677,
 		desc: "If held by a Sol Valiant, this item allows it to Mega Evolve in battle.",
 	},
+	garchompite: {
+		name: "Garchompite",
+		spritenum: 589,
+		megaStone: "Garpyuku-Mega",
+		megaEvolves: "Garpyuku",
+		itemUser: ["Garpyuku"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 683,
+		desc: "If held by a Garpyuku, this item allows it to Mega Evolve in battle.",
+	},
 };
