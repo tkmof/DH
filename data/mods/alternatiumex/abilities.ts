@@ -1054,8 +1054,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	gempower: {
 		onAfterMoveSecondarySelf(pokemon, target, move) {
-			if (pokemon.volatiles['gempowered']) return;
-			if (pokemon.item) return;
+			if (pokemon.item || pokemon.useItem()) return;
 			if (move.category !== 'Status') {
 				const type = move.type;
 				switch (type) {
@@ -1133,15 +1132,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					break;
 				}
 			}			
-		},
-		onAfterUseItem(item, pokemon) {
-			pokemon.addVolatile('gempowered');
-		},
-		onEnd(pokemon) {
-			pokemon.removeVolatile('unburden');
-		},
-		condition: {
-			duration: 1,
 		},
 		name: "Gem Power",
 		shortDesc: "If this Pokemon has no item, it will gain a Gem based on the type it uses.",
