@@ -1467,7 +1467,7 @@ call: {
 		basePower: 0,
 		category: "Status",
 		name: "Call",
-		shortDesc: "Curses the target.",
+		shortDesc: "Curses the target. Requires 1/4 of the user's HP.",
 		pp: 10,
 		priority: 0,
 		flags: {authentic: 1},
@@ -1478,7 +1478,7 @@ call: {
 			}
 		},
 		onHit(target, source) {
-			this.directDamage(source.maxhp / 2, source, source);
+			this.directDamage(source.maxhp / 4, source, source);
 		},
 		condition: {
 			onStart(pokemon, source) {
@@ -1887,6 +1887,7 @@ cursedtail: {
 		basePower: 130,
 		category: "Special",
 		name: "Butterfly Effect",
+		shortDesc: "Lowers the user's Defense and Sp. Atk by 1.",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -1907,6 +1908,7 @@ cursedtail: {
 		basePower: 38,
 		category: "Physical",
 		name: "Fury Swirls",
+		shortDesc: "Hits 2-5 times in one turn.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -1915,6 +1917,387 @@ cursedtail: {
 		target: "normal",
 		type: "Fairy",
 		maxMove: {basePower: 100},
+		contestType: "Cute",
+	},
+	frostbite: {
+		num: 10077,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Frostbite",
+		shortDesc: "Freeze the target, halving its SpA and dealing damage.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		status: 'frz',
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		zMove: {boost: {atk: 1}},
+		contestType: "Beautiful",
+	},
+	//recharge moves
+	hyperbeam: {
+		num: 63,
+		accuracy: 90,
+		basePower: 130,
+		category: "Special",
+		name: "Hyper Beam",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'hyperbeam') pokemon.disableMove('hyperbeam');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'hyperbeam') pokemon.addVolatile('hyperbeam');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('hyperbeam')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Hyper Beam again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Cool",
+	},
+	gigaimpact: {
+		num: 416,
+		accuracy: 90,
+		basePower: 130,
+		category: "Physical",
+		name: "Giga Impact",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'gigaimpact') pokemon.disableMove('gigaimpact');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'gigaimpact') pokemon.addVolatile('gigaimpact');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('gigaimpact')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Giga Impact again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Tough",
+	},
+	blastburn: {
+		num: 307,
+		accuracy: 90,
+		basePower: 130,
+		category: "Special",
+		name: "Blast Burn",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'blastburn') pokemon.disableMove('blastburn');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'blastburn') pokemon.addVolatile('blastburn');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('blastburn')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Blast Burn again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Beautiful",
+	},
+	hydrocannon: {
+		num: 308,
+		accuracy: 90,
+		basePower: 130,
+		category: "Special",
+		name: "Hydro Cannon",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'hydrocannon') pokemon.disableMove('hydrocannon');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'hydrocannon') pokemon.addVolatile('hydrocannon');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('hydrocannon')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Hydro Cannon again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
+	},
+	frenzyplant: {
+		num: 338,
+		accuracy: 90,
+		basePower: 130,
+		category: "Special",
+		name: "Frenzy Plant",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1, nonsky: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'frenzyplant') pokemon.disableMove('frenzyplant');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'frenzyplant') pokemon.addVolatile('frenzyplant');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('frenzyplant')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Frenzy Plant again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		contestType: "Cool",
+	},
+	meteorassault: {
+		num: 794,
+		accuracy: 100,
+		basePower: 130,
+		category: "Physical",
+		name: "Meteor Assault",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, recharge: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'meteorassault') pokemon.disableMove('meteorassault');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'meteorassault') pokemon.addVolatile('meteorassault');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('meteorassault')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Meteor Assault again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+	},
+	roaroftime: {
+		num: 459,
+		accuracy: 90,
+		basePower: 130,
+		category: "Special",
+		name: "Roar of Time",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 5,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'roaroftime') pokemon.disableMove('roaroftime');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'roaroftime') pokemon.addVolatile('roaroftime');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('roaroftime')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Roar of Time again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Beautiful",
+	},
+	
+	rockwrecker: {
+		num: 439,
+		accuracy: 90,
+		basePower: 130,
+		category: "Physical",
+		name: "Rock Wrecker",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 5,
+		priority: 0,
+		flags: {bullet: 1, recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'rockwrecker') pokemon.disableMove('rockwrecker');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'rockwrecker') pokemon.addVolatile('rockwrecker');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('rockwrecker')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Rock Wrecker again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		contestType: "Tough",
+	},
+	
+	prismaticlaser: {
+		num: 711,
+		accuracy: 100,
+		basePower: 130,
+		category: "Special",
+		name: "Prismatic Laser",
+		shortDesc: "Cannot be used twice in a row.",
+		pp: 10,
+		priority: 0,
+		flags: {recharge: 1, protect: 1, mirror: 1},
+		onDisableMove(pokemon) {
+			if (pokemon.lastMove?.id === 'prismaticlaser') pokemon.disableMove('prismaticlaser');
+		},
+		beforeMoveCallback(pokemon) {
+			if (pokemon.lastMove?.id === 'prismaticlaser') pokemon.addVolatile('prismaticlaser');
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.removeVolatile('prismaticlaser')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Prismatic Laser again in a row.");
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Cool",
+	},
+	
+	//pp nerf
+	recover: {
+		num: 105,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Recover",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 2],
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+	softboiled: {
+		num: 135,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Soft-Boiled",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 2],
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cute",
+	},
+	roost: {
+		num: 355,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Roost",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 2],
+		self: {
+			volatileStatus: 'roost',
+		},
+		condition: {
+			duration: 1,
+			onResidualOrder: 20,
+			onStart(target) {
+				this.add('-singleturn', target, 'move: Roost');
+			},
+			onTypePriority: -1,
+			onType(types, pokemon) {
+				this.effectData.typeWas = types;
+				return types.filter(type => type !== 'Flying');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Flying",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+	milkdrink: {
+		num: 208,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Milk Drink",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 2],
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cute",
+	},
+	slackoff: {
+		num: 303,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Slack Off",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 2],
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Cute",
+	},
+	rest: {
+		num: 156,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Rest",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onTryMove(pokemon) {
+			if (pokemon.hp === pokemon.maxhp) {
+				this.add('-fail', pokemon, 'heal');
+				return null;
+			}
+			if (pokemon.status === 'slp' || pokemon.hasAbility('comatose')) {
+				this.add('-fail', pokemon);
+				return null;
+			}
+		},
+		onHit(target, source, move) {
+			if (!target.setStatus('slp', source, move)) return false;
+			target.statusData.time = 3;
+			target.statusData.startTime = 3;
+			this.heal(target.maxhp); // Aesthetic only as the healing happens after you fall asleep in-game
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Cute",
 	},
 	//eevee moves back to their original values

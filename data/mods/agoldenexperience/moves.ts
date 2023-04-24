@@ -1328,6 +1328,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		category: "Physical",
 		name: "Payback",
+		shortDesc: "Usually goes last. Power doubles if the user moves after the target.",
 		pp: 10,
 		priority: -1,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -2404,11 +2405,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 100,
 		category: "Special",
 		name: "Hidden Power",
+		shortDesc: "Varies in type based on the user's IVs. Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onModifyType(move, pokemon) {
 			move.type = pokemon.hpType || 'Dark';
+		},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
 		secondary: null,
 		target: "normal",
@@ -2422,9 +2427,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Bug",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Bug",
@@ -2437,9 +2446,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Dark",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Dark",
@@ -2452,9 +2465,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Dragon",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Dragon",
@@ -2467,9 +2484,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Electric",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Electric",
@@ -2482,9 +2503,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Fighting",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Fighting",
@@ -2497,9 +2522,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Fire",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Fire",
@@ -2512,9 +2541,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Flying",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Flying",
@@ -2527,9 +2560,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Ghost",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ghost",
@@ -2542,9 +2579,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Grass",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Grass",
@@ -2557,9 +2598,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Ground",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ground",
@@ -2572,9 +2617,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Ice",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ice",
@@ -2587,9 +2636,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Poison",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Poison",
@@ -2602,9 +2655,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Psychic",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Psychic",
@@ -2617,9 +2674,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Rock",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Rock",
@@ -2632,9 +2693,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Steel",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Steel",
@@ -2647,9 +2712,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		realMove: "Hidden Power",
 		name: "Hidden Power Water",
+		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
 		secondary: null,
 		target: "normal",
 		type: "Water",
@@ -2983,7 +3052,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			volatileStatus: 'confusion',
 		},
 		target: "normal",
-		type: "Fighting",
+		type: "Dark",
 	},
 	populationbomb: {
 		num: 860,
@@ -3361,7 +3430,11 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, defrost: 1},
-		// Damage boost in Sun applied in conditions.ts
+		onModifyMove(move, pokemon) {
+			if (pokemon.effectiveWeather() === 'sunnyday') {
+				move.basePower = 260;
+			}
+		},
 		thawsTarget: true,
 		secondary: null,
 		target: "normal",

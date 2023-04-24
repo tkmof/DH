@@ -1923,7 +1923,7 @@ dothdo: {
 },
 
 frozenbeak: {
-		num: 195,
+		num: 196,
 		name: "Frozen Beak",
 		types: ["Ice", "Water"],
 		gender: "N",
@@ -1963,9 +1963,9 @@ pumpkoon: {
 		prevo: "pumpkoon",
 		evoLevel: 50,
 	},
-	ironfistmon: {
-		num: 196,
-		name: "Iron Fist",
+	lronfist: {
+		num: 195,
+		name: "lron Fist",
 		types: ["Fighting", "Steel"],
 		gender: "N",
 		baseStats: {hp: 90, atk: 116, def: 90, spa: 68, spd: 110, spe: 96},

@@ -6,7 +6,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	///db   8D Y8b  d8 88 `88. 88   88 88      88      88.     88  .8D   88      `8b  d8' 88 `88. 88.     88  88  88 `8b  d8' 88  V888 
 	///`8888Y'  `Y88P' 88   YD YP   YP 88      88      Y88888P Y8888D'   88       `Y88P'  YP   YD Y88888P YP  YP  YP  `Y88P'  VP   V8P 
 	//LCs and NFEs are given their respective designations
-	///New Pokemon are tiered "New" as if it were a new generation. This should be positioned below OU.
+	//New Pokemon are tiered "New" as if it were a new generation. They are then moved with the next update.
 	//Old Pokemon have been retiered
 	puchikoon: {
 		tier: "LC",
@@ -341,11 +341,11 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	melmetal: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	annihilape: {
-		tier: "New",
+		tier: "OU",
 		gen: 1,
 	},
 	wiglett: {
@@ -353,7 +353,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	wugtrio: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	toedscool: {
@@ -369,6 +369,22 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	sandyshocks: {
+		tier: "OU",
+		gen: 1,
+	},
+	kokana: {
+		tier: "LC",
+		gen: 1,
+	},
+	kasanagi: {
+		tier: "NFE",
+		gen: 1,
+	},
+	carapthor: { // ogasawara name
+		tier: "New",
+		gen: 1,
+	},
+	taaban: {
 		tier: "New",
 		gen: 1,
 	},
@@ -511,15 +527,15 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		gen: 1,
 	},
 	taurospaldeacombat: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	taurospaldeablaze: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	taurospaldeaaqua: {
-		tier: "New",
+		tier: "UU",
 		gen: 1,
 	},
 	/// .o88b. db       .d8b.  .d8888. .d8888. d888888b  .o88b.   d8888b.  .d88b.  db   dD d88888b d8888b. d88888b db    db 

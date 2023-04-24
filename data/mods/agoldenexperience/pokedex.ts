@@ -3502,7 +3502,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 920,
 		name: "Lokix",
 		types: ["Bug", "Dark"],
-		baseStats: {hp: 71, atk: 102, def: 78, spa: 52, spd: 55, spe: 92},
+		baseStats: {hp: 71, atk: 112, def: 78, spa: 52, spd: 55, spe: 92},
 		abilities: {0: "Swarm", H: "Tinted Lens"},
 		heightm: 1,
 		weightkg: 17.5,
