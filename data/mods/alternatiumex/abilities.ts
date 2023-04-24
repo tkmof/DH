@@ -1054,69 +1054,91 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	gempower: {
 		onAfterMoveSecondarySelf(pokemon, target, move) {
-			if (!move || !pokemon) return;
+			if (pokemon.volatiles['gempowered']) return;
+			if (pokemon.item) return;
 			if (move.category !== 'Status') {
-				if (pokemon.item) return;
 				const type = move.type;
-				let gemItem = null;
 				switch (type) {
 				case 'Bug':
-					gemItem = 'buggem';
+					this.add('-item', pokemon, 'Bug Gem', '[from] ability: Gem Power');
+					pokemon.setItem('buggem');
 					break;
 				case 'Dark':
-					gemItem = 'darkgem';
+					this.add('-item', pokemon, 'Dark Gem', '[from] ability: Gem Power');
+					pokemon.setItem('darkgem');
 					break;
 				case 'Dragon':
-					gemItem = 'dragongem';
+					this.add('-item', pokemon, 'Dragon Gem', '[from] ability: Gem Power');
+					pokemon.setItem('dragongem');
 					break;
 				case 'Electric':
-					gemItem = 'electricgem';
+					this.add('-item', pokemon, 'Electric Gem', '[from] ability: Gem Power');
+					pokemon.setItem('electricgem');
 					break;
 				case 'Fairy':
-					gemItem = 'fairygem';
+					this.add('-item', pokemon, 'Fairy Gem', '[from] ability: Gem Power');
+					pokemon.setItem('fairygem');
 					break;
 				case 'Fighting':
-					gemItem = 'fightinggem';
+					this.add('-item', pokemon, 'Fighting Gem', '[from] ability: Gem Power');
+					pokemon.setItem('fightinggem');
 					break;
 				case 'Fire':
-					gemItem = 'firegem';
+					this.add('-item', pokemon, 'Fire Gem', '[from] ability: Gem Power');
+					pokemon.setItem('firegem');
 					break;
 				case 'Flying':
-					gemItem = 'flyinggem';
+					this.add('-item', pokemon, 'Flying Gem', '[from] ability: Gem Power');
+					pokemon.setItem('flyinggem');
 					break;
 				case 'Ghost':
-					gemItem = 'ghostgem';
+					this.add('-item', pokemon, 'Ghost Gem', '[from] ability: Gem Power');
+					pokemon.setItem('ghostgem');
 					break;
 				case 'Grass':
-					gemItem = 'grassgem';
+					this.add('-item', pokemon, 'Grass Gem', '[from] ability: Gem Power');
+					pokemon.setItem('grassgem');
 					break;
 				case 'Ground':
-					gemItem = 'groundgem';
+					this.add('-item', pokemon, 'Ground Gem', '[from] ability: Gem Power');
+					pokemon.setItem('groundgem');
 					break;
 				case 'Ice':
-					gemItem = 'icegem';
+					this.add('-item', pokemon, 'Ice Gem', '[from] ability: Gem Power');
+					pokemon.setItem('icegem');
 					break;
 				case 'Normal':
-					gemItem = 'normalgem';
+					this.add('-item', pokemon, 'Normal Gem', '[from] ability: Gem Power');
+					pokemon.setItem('normalgem');
 					break;
 				case 'Poison':
-					gemItem = 'poisongem';
+					this.add('-item', pokemon, 'Poison Gem', '[from] ability: Gem Power');
+					pokemon.setItem('poisongem');
 					break;
 				case 'Psychic':
-					gemItem = 'psychicgem';
+					this.add('-item', pokemon, 'Psychic Gem', '[from] ability: Gem Power');
+					pokemon.setItem('psychicgem');
 					break;
 				case 'Rock':
-					gemItem = 'rockgem';
+					this.add('-item', pokemon, 'Rock Gem', '[from] ability: Gem Power');
+					pokemon.setItem('rockgem');
 					break;
 				case 'Steel':
-					gemItem = 'steelgem';
+					this.add('-item', pokemon, 'Steel Gem', '[from] ability: Gem Power');
+					pokemon.setItem('steelgem');
 					break;
 				case 'Water':
-					gemItem = 'watergem';
+					this.add('-item', pokemon, 'Water Gem', '[from] ability: Gem Power');
+					pokemon.setItem('watergem');
 					break;
 				}
-				this.add('-item', pokemon, gemItem, '[from] ability: Gem Power');
-			}
+			}			
+		},
+		onAfterUseItem(item, pokemon) {
+			pokemon.addVolatile('gempowered');
+		},
+		condition: {
+			duration: 1,
 		},
 		name: "Gem Power",
 		shortDesc: "If this Pokemon has no item, it will gain a Gem based on the type it uses.",

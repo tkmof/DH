@@ -1363,28 +1363,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 		shortDesc: "100% chance to paralyze the target if they attacked the user first.",
 		isNonstandard: null,
 		pp: 10,
-		secondary: {
-			chance: 100,
-			onHit(target, source) {
-				if (target.newlySwitched || this.queue.willMove(target)) return;
-				const move = target.lastMove;
-				if (move.category !== 'Status') {
-					target.trySetStatus('prz', source);
-				}
-			},
+		onHit(pokemon, source) {
+			if (source.hurtThisTurn) {
+				pokemon.trySetStatus('par', source);
+			}
 		},
+		secondary: null,
 	},
 	freezyfrost: {
 		inherit: true,
 		accuracy: 100,
 		basePower: 80,
-		shortDesc: "Eliminates target's stat changes.",
+		shortDesc: "Resets all of the target's stat stages to 0.",
 		isNonstandard: null,
 		pp: 15,
-		onHit(source) {
-			for (const pokemon of source.side.foe.active) {
-				pokemon.clearBoosts();
-			}
+		onHit(target) {
+			target.clearBoosts();
+			this.add('-clearboost', target);
 		},
 	},
 	glitzyglow: {
@@ -1425,7 +1420,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		inherit: true,
 		accuracy: 100,
 		basePower: 50,
-		basePowerCallback() {},
+		basePowerCallback(pokemon, target, move) {
+			return move.basePower;
+		},
 		category: "Special",
 		shortDesc: "The user removes its sides hazards. User switches out.",
 		isNonstandard: null,
