@@ -1137,6 +1137,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onAfterUseItem(item, pokemon) {
 			pokemon.addVolatile('gempowered');
 		},
+		onEnd(pokemon) {
+			pokemon.removeVolatile('unburden');
+		},
 		condition: {
 			duration: 1,
 		},
