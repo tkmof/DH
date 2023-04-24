@@ -1313,6 +1313,169 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return move.basePower;
 		},
 	},
+	extremeevoboost: {
+		inherit: true,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "User loses 33% of its max HP. +1 to all stats.",
+		isNonstandard: null,
+		name: "Extreme Evoboost",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1},
+		isZ: null,
+		onTryHit(pokemon, target, move) {
+			if (pokemon.hp <= (pokemon.maxhp * 33 / 100) || pokemon.maxhp === 1) {
+				return false;
+			}
+			if (!this.boost(move.boosts as SparseBoostsTable)) return null;
+			delete move.boosts;
+		},
+		onHit(pokemon) {
+			this.directDamage(pokemon.maxhp * 33 / 100);
+		},
+		boosts: {
+			atk: 1,
+			def: 1,
+			spa: 1,
+			spd: 1,
+			spe: 1,
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+	},
+	baddybad: {
+		inherit: true,
+		accuracy: 100,
+		isNonstandard: null,
+	},
+	bouncybubble: {
+		inherit: true,
+		basePower: 80,
+		isNonstandard: null,
+		pp: 10,
+		flags: {protect: 1, heal: 1, contact: 1},
+	},
+	buzzybuzz: {
+		inherit: true,
+		shortDesc: "100% chance to paralyze the target if they attacked the user first.",
+		isNonstandard: null,
+		pp: 10,
+		secondary: {
+			chance: 100,
+			onHit(target, source) {
+				if (target.newlySwitched || this.queue.willMove(target)) return;
+				const move = target.lastMove;
+				if (move.category !== 'Status') {
+					target.trySetStatus('prz', source);
+				}
+			},
+		},
+	},
+	freezyfrost: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 80,
+		shortDesc: "Eliminates target's stat changes.",
+		isNonstandard: null,
+		pp: 15,
+		onHit(source) {
+			for (const pokemon of source.side.foe.active) {
+				pokemon.clearBoosts();
+			}
+		},
+	},
+	glitzyglow: {
+		inherit: true,
+		accuracy: 100,
+		category: "Special",
+		isNonstandard: null,
+	},
+	sappyseed: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 80,
+		isNonstandard: null,
+	},
+	sizzlyslide: {
+		inherit: true,
+		shortDesc: "Power doubles if the target is burned. 30% chance to burn.",
+		isNonstandard: null,
+		pp: 10,
+		onBasePower(basePower, pokemon, target) {
+			if (target.status === 'brn') {
+				return this.chainModify(2);
+			}
+		},
+		secondary: {
+			chance: 30,
+			status: 'brn',
+		},
+	},
+	sparklyswirl: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 80,
+		isNonstandard: null,
+		pp: 15,
+	},
+	veeveevolley: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 50,
+		basePowerCallback() {},
+		category: "Special",
+		shortDesc: "The user removes its sides hazards. User switches out.",
+		isNonstandard: null,
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1},
+		selfSwitch: true,
+		onAfterHit(target, pokemon) {
+			const sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
+			for (const condition of sideConditions) {
+				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Veevee Volley', '[of] ' + pokemon);
+				}
+			}
+		},
+		onAfterSubDamage(damage, target, pokemon) {
+			const sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
+			for (const condition of sideConditions) {
+				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Veevee Volley', '[of] ' + pokemon);
+				}
+			}
+		},
+	},
+	blossom: {
+		num: -25,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "User: -1/2 max HP; +1 in Atk/Def/SpA/SpD/Spe & summons Sunny Day.",
+		name: "Blossom",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		onHit(target) {
+			if (target.hp <= target.maxhp / 2 || target.boosts.atk >= 6 || target.maxhp === 1) { // Shedinja clause
+				return false;
+			}
+			this.directDamage(target.maxhp / 2);
+			this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1}, target);
+			this.field.setWeather('sunnyday');
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Growth", target);
+		},
+		secondary: null,
+		target: "self",
+		type: "Grass",
+	},
 	
 	//SV Move Descriptions
 	aquacutter:  {
@@ -1350,5 +1513,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 	spinout: {
 		inherit: true,
 		shortDesc: "Lowers the user's Speed by 2.",
+	},
+	headlongrush: {
+		inherit: true,
+		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 	},
 };

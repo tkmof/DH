@@ -1026,6 +1026,103 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: -34,
 	},
+	flowergift: {
+		onModifyAtkPriority: 3,
+		onModifyAtk(pokemon) {
+			if (this.field.isTerrain('grassyterrain')) return this.chainModify(1.5);
+		},
+		onModifySpDPriority: 4,
+		onModifySpD(spd, pokemon) {
+			if (this.field.isTerrain('grassyterrain')) return this.chainModify(1.5);
+		},
+		name: "Flower Gift",
+		shortDesc: "If Grassy Terrain is active, this Pokemon's Atk and SpD are multiplied by 1.5.",
+		rating: 1,
+		num: 122,
+	},
+	generalist: {
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (!pokemon.hasType(move.type)) {
+				return this.chainModify(1.2);
+			}
+		},
+		name: "Generalist",
+		shortDesc: "Non-STAB moves have 1.2x power.",
+		rating: 4.5,
+		num: -35,
+	},
+	gempower: {
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (!move || !pokemon) return;
+			if (move.category !== 'Status') {
+				if (pokemon.item) return;
+				const type = move.type;
+				let gemItem = null;
+				switch (type) {
+				case 'Bug':
+					gemItem = 'buggem';
+					break;
+				case 'Dark':
+					gemItem = 'darkgem';
+					break;
+				case 'Dragon':
+					gemItem = 'dragongem';
+					break;
+				case 'Electric':
+					gemItem = 'electricgem';
+					break;
+				case 'Fairy':
+					gemItem = 'fairygem';
+					break;
+				case 'Fighting':
+					gemItem = 'fightinggem';
+					break;
+				case 'Fire':
+					gemItem = 'firegem';
+					break;
+				case 'Flying':
+					gemItem = 'flyinggem';
+					break;
+				case 'Ghost':
+					gemItem = 'ghostgem';
+					break;
+				case 'Grass':
+					gemItem = 'grassgem';
+					break;
+				case 'Ground':
+					gemItem = 'groundgem';
+					break;
+				case 'Ice':
+					gemItem = 'icegem';
+					break;
+				case 'Normal':
+					gemItem = 'normalgem';
+					break;
+				case 'Poison':
+					gemItem = 'poisongem';
+					break;
+				case 'Psychic':
+					gemItem = 'psychicgem';
+					break;
+				case 'Rock':
+					gemItem = 'rockgem';
+					break;
+				case 'Steel':
+					gemItem = 'steelgem';
+					break;
+				case 'Water':
+					gemItem = 'watergem';
+					break;
+				}
+				this.add('-item', pokemon, gemItem, '[from] ability: Gem Power');
+			}
+		},
+		name: "Gem Power",
+		shortDesc: "If this Pokemon has no item, it will gain a Gem based on the type it uses.",
+		rating: 1.5,
+		num: -36,
+	},
 	
 	//SV Ability Descriptions
 	toxicdebris: {
@@ -1067,5 +1164,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	purifyingsalt: {
 		inherit: true,
 		shortDesc: "Ghost damage to this Pokemon dealt with a halved offensive stat; can't be statused.",
+	},
+	angershell: {
+		inherit: true,
+		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and -1 Def, Sp. Def.",
+	},
+	protosynthesis: {
+		inherit: true,
+		shortDesc: "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 	},
 };
