@@ -280,4 +280,52 @@ goldenkey: {
 		gen: 8,
 		desc: "If held by a Granjaguar, this item changes its forme to Solemne.",
 	},
+	
+	dothdiumz: {
+		name: "Dothdium Z",
+		spritenum: 658,
+		onTakeItem: false,
+		zMove: "Undying Spirit of the Brave",
+		zMoveFrom: "Brave Bird",
+		itemUser: ["Dothdo"],
+		num: 806,
+		gen: 7,
+		desc: "If held by a Dothdo with Brave Bird, it can use Undying Spirit of the Brave.",
+	},
+	
+	burstratiumz: {
+		name: "Burstratium Z",
+		spritenum: 658,
+		onTakeItem: false,
+		zMove: "Even the Sun will burn",
+		zMoveFrom: "Burst Claws",
+		itemUser: ["Burstrat"],
+		num: 806,
+		gen: 7,
+		desc: "If held by a Burstrat with Burst Claws, it can use Even the Sun will burn.",
+	},
+	
+	fasmiwoodiumz: {
+		name: "Fasmiwoodium Z",
+		spritenum: 658,
+		onTakeItem: false,
+		zMove: "A new tree of life",
+		zMoveFrom: "Wood Crash",
+		itemUser: ["Fasmiwood"],
+		num: 806,
+		gen: 7,
+		desc: "If held by a Fasmiwood with Wood Crash, it can use A new tree of life.",
+	},
+	
+	merdolphiumz: {
+		name: "Merdolphium Z",
+		spritenum: 658,
+		onTakeItem: false,
+		zMove: "The ocean does not forgive",
+		zMoveFrom: "Water Pressure",
+		itemUser: ["Merdolph"],
+		num: 806,
+		gen: 7,
+		desc: "If held by a Merdolph with Water Pressure, it can use The ocean does not forgive.",
+	},
 }

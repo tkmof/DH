@@ -297,12 +297,12 @@ dreampunch: {
 		basePower: 90,
 		category: "Physical",
 		name: "Dream Punch",
-		shortDesc: "10% chance to put target to sleep.",
+		shortDesc: "30% chance to put target to sleep.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
 		secondary: {
-			chance: 10,
+			chance: 30,
 			status: 'slp',
 		},
 		target: "normal",
@@ -1492,7 +1492,7 @@ call: {
 		secondary: null,
 		target: "normal",
 		type: "Water",
-		zMove: {effect: 'curse'},
+		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Tough",
 	},
 	
@@ -1602,6 +1602,25 @@ aerialassault: {
 		target: "normal",
 		type: "Flying",
 		contestType: "Cool",
+	},
+	
+	snowthrower: {
+		num: 10063,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Snow Thrower",
+		shortDesc: "30% chance to freeze adjacent Pokemon.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			status: 'frz',
+		},
+		target: "allAdjacent",
+		type: "Ice",
+		contestType: "Beautiful",
 	},
 	
 puppetmasters: {
@@ -1936,6 +1955,106 @@ cursedtail: {
 		zMove: {boost: {atk: 1}},
 		contestType: "Beautiful",
 	},
+	
+	undyingspiritofthebrave: {
+		num: 10078,
+		accuracy: true,
+		basePower: 200,
+		category: "Physical",
+		name: "Undying Spirit of the Brave",
+		shortDesc: "100% chance to raise the user's Attack by 1.",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "dothdiumz",
+		self: {
+			boosts: {
+				atk: 1,
+			},
+		},
+		ignoreAbility: true,
+		target: "normal",
+		type: "Flying",
+		contestType: "Cool",
+	},
+	
+	eventhesunwillburn: {
+		num: 10079,
+		accuracy: true,
+		basePower: 160,
+		category: "Physical",
+		name: "Even the Sun will burn",
+		shortDesc: "Sets Sunny Day and burns the target.",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "burstratiumz",
+		self: {
+			onHit(source) {
+				this.field.setWeather('sunnyday');
+			},
+		},
+		secondary: {
+			chance: 100,
+			status: 'brn',
+		},
+		ignoreAbility: true,
+		target: "normal",
+		type: "Fire",
+		contestType: "Cool",
+	},
+	
+	anewtreeoflife: {
+		num: 10080,
+		accuracy: true,
+		basePower: 160,
+		category: "Physical",
+		name: "A new tree of life",
+		shortDesc: "Sets Grassy Terrain and paralyze the target.",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "fasmiwoodiumz",
+		self: {
+			onHit(source) {
+				this.field.setTerrain('grassyterrain');
+			},
+		},
+		secondary: {
+			chance: 100,
+			status: 'par',
+		},
+		ignoreAbility: true,
+		target: "normal",
+		type: "Grass",
+		contestType: "Cool",
+	},
+	
+	theoceandoesnotforgive: {
+		num: 10081,
+		accuracy: true,
+		basePower: 160,
+		category: "Special",
+		name: "The ocean does not forgive",
+		shortDesc: "Sets Rain and freeze the target.",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "merdolphiumz",
+		self: {
+			onHit(source) {
+				this.field.setWeather('rain');
+			},
+		},
+		secondary: {
+			chance: 100,
+			status: 'frz',
+		},
+		ignoreAbility: true,
+		target: "normal",
+		type: "Water",
+		contestType: "Cool",
+	},
 	//recharge moves
 	hyperbeam: {
 		num: 63,
@@ -1946,17 +2065,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
-		flags: {recharge: 1, protect: 1, mirror: 1},
-		onDisableMove(pokemon) {
+		flags: {protect: 1, mirror: 1},
+		self: { 
+			volatileStatus: "hyperbeam",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'hyperbeam') pokemon.disableMove('hyperbeam');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'hyperbeam') pokemon.addVolatile('hyperbeam');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('hyperbeam')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Hyper Beam again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -1972,17 +2091,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, recharge: 1, protect: 1, mirror: 1},
-		onDisableMove(pokemon) {
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: { 
+			volatileStatus: "gigaimpact",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'gigaimpact') pokemon.disableMove('gigaimpact');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'gigaimpact') pokemon.addVolatile('gigaimpact');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('gigaimpact')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Giga Impact again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -1998,17 +2117,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
-		flags: {recharge: 1, protect: 1, mirror: 1},
-		onDisableMove(pokemon) {
+		flags: {protect: 1, mirror: 1},
+		self: { 
+			volatileStatus: "blastburn",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'blastburn') pokemon.disableMove('blastburn');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'blastburn') pokemon.addVolatile('blastburn');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('blastburn')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Blast Burn again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -2024,17 +2143,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
-		flags: {recharge: 1, protect: 1, mirror: 1},
-		onDisableMove(pokemon) {
+		flags: {protect: 1, mirror: 1},
+		self: { 
+			volatileStatus: "hydrocannon",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'hydrocannon') pokemon.disableMove('hydrocannon');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'hydrocannon') pokemon.addVolatile('hydrocannon');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('hydrocannon')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Hydro Cannon again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -2050,17 +2169,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
-		flags: {recharge: 1, protect: 1, mirror: 1, nonsky: 1},
-		onDisableMove(pokemon) {
+		flags: {protect: 1, mirror: 1, nonsky: 1},
+		self: { 
+			volatileStatus: "frenzyplant",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'frenzyplant') pokemon.disableMove('frenzyplant');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'frenzyplant') pokemon.addVolatile('frenzyplant');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('frenzyplant')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Frenzy Plant again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -2076,17 +2195,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
-		flags: {protect: 1, recharge: 1, mirror: 1},
-		onDisableMove(pokemon) {
+		flags: {protect: 1, mirror: 1},
+		self: { 
+			volatileStatus: "meteorassault",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'meteorassault') pokemon.disableMove('meteorassault');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'meteorassault') pokemon.addVolatile('meteorassault');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('meteorassault')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Meteor Assault again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -2101,17 +2220,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
-		flags: {recharge: 1, protect: 1, mirror: 1},
-		onDisableMove(pokemon) {
+		flags: {protect: 1, mirror: 1},
+		self: { 
+			volatileStatus: "roaroftime",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'roaroftime') pokemon.disableMove('roaroftime');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'roaroftime') pokemon.addVolatile('roaroftime');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('roaroftime')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Roar of Time again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -2128,17 +2247,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
-		flags: {bullet: 1, recharge: 1, protect: 1, mirror: 1},
-		onDisableMove(pokemon) {
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		self: { 
+			volatileStatus: "rockwrecker",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'rockwrecker') pokemon.disableMove('rockwrecker');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'rockwrecker') pokemon.addVolatile('rockwrecker');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('rockwrecker')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Rock Wrecker again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -2155,17 +2274,17 @@ cursedtail: {
 		shortDesc: "Cannot be used twice in a row.",
 		pp: 10,
 		priority: 0,
-		flags: {recharge: 1, protect: 1, mirror: 1},
-		onDisableMove(pokemon) {
+		flags: {protect: 1, mirror: 1},
+		self: { 
+			volatileStatus: "prismaticlaser",
+		},
+		condition: {
+			onDisableMove(pokemon) {
 			if (pokemon.lastMove?.id === 'prismaticlaser') pokemon.disableMove('prismaticlaser');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'prismaticlaser') pokemon.addVolatile('prismaticlaser');
-		},
-		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('prismaticlaser')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Prismatic Laser again in a row.");
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -2812,8 +2931,13 @@ chillyreception: {
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onDisableMove(pokemon) {
-			if (pokemon.lastMove?.id === 'gigatonhammer') pokemon.disableMove('gigatonhammer');
+		self: { 
+			volatileStatus: "gigatonhammer",
+		},
+		condition: {
+			onDisableMove(pokemon) {
+				if (pokemon.lastMove?.id === 'gigatonhammer') pokemon.disableMove('gigatonhammer');
+			},
 		},
 		beforeMoveCallback(pokemon) {
 			if (pokemon.lastMove?.id === 'gigatonhammer') pokemon.addVolatile('gigatonhammer');
