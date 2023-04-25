@@ -1022,4 +1022,12 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		zMove: {boost: {def: 1}},
 		contestType: "Cool",
 	},
+	ragefist: {
+		inherit: true,
+		basePowerCallback(pokemon) {
+			if (!pokemon.m.timesAttacked) pokemon.m.timesAttacked = 0;
+			return Math.min(200, 50 + 25 * pokemon.m.timesAttacked);
+		},
+		shortDesc: "+25 power for each time user was hit. Max 6 hits.",
+	},
 };

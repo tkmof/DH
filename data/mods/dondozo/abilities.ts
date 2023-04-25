@@ -292,12 +292,12 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			for (const target of pokemon.foes()) {
 				if(target.volatiles['fishesofruin']) target.removeVolatile('fishesofruin');
 			}
-		}
+		},
 		onEnd(pokemon) {
 			for (const target of pokemon.foes()) {
 				if(target.volatiles['fishesofruin']) target.removeVolatile('fishesofruin');
 			}
-		}
+		},
 		condition: {
 			onStart(pokemon) {
 				pokemon.formeChange('Dondozo');

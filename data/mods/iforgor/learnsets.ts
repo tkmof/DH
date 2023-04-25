@@ -9703,6 +9703,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	},
 	ghostfighting: {
 		learnset: {
+			ragefist: ["9L1"],
 			vitalthrow: ["9L1"],
 			skullbash: ["9L1"],
 			matblock: ["9L1"],
