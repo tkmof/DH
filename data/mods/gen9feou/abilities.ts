@@ -800,9 +800,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  shortDesc: "Sturdy + Technician",
 		onBeforeMovePriority: 9,
 		onBeforeMove(pokemon) {
-			if (pokemon.species.baseSpecies !== 'Relishadow' || pokemon.transformed) return;
-			const targetForme = pokemon.species.name === 'Relishadow' ? 'Relishadow-Zenith' : 'Relishadow-Zenith';
-			pokemon.formeChange(targetForme);
+			if (pokemon.species.name !== 'Relishadow' || pokemon.transformed) return;
+			pokemon.formeChange('Relishadow-Zenith');
 		},
 		onTryHit(pokemon, target, move) {
 			if (move.ohko) {
