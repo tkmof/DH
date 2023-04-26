@@ -5185,7 +5185,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			uturn: ["8M", "8L1", "8M", "8L1", "7M", "7L1", "6M", "6L1", "5M", "5L1"],
 		},
 	},
-	goodrajorogumo: {
+	goodratsunade: {
 		learnset: {
 			dragonhammer: ["8L1"],
 			gunkshot: ["8L1"],
