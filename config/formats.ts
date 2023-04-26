@@ -57,6 +57,7 @@ export const Formats: FormatList = [
 				'Gumshoos', 'Gumshoos-Totem', 'Togedemaru', 'Totemaru',
 				'Tauros', 'Bravatoro', 'Tauros-Steam', 'Tauros-Azul',
 				'Raichu', 'Raichu-Soft', 'Rapidash', 'Rapidash-Galar', 'Golem-Berserker', 'Golem-Alola',
+				'Cherrim', 'Cherrine', 'Minior', 'Minior-Meteor', 'Eevee', 'Eevee-Starter',
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
