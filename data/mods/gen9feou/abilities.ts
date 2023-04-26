@@ -885,8 +885,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
 			if (
-				effect && effect.effectType === 'Move' &&
-				['ironmimic'].includes(target.species.id) && !target.transformed
+				effect && effect.effectType === 'Move' && target.species.id === 'ironmimic' && !target.transformed
 			) {
 				this.add('-activate', target, 'ability: Faulty Photon');
 				this.effectData.busted = true;
@@ -904,9 +903,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (!target) return;
-			if (target.species.id !== 'ironmimic' || target.transformed) {
-				return;
-			}
+			if (target.species.id !== 'ironmimic' || target.transformed) return;
 			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates/* && this.gen >= 6*/);
 			if (hitSub) return;
 
@@ -928,13 +925,13 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		condition: {
 			noCopy: true,
-			onStart(pokemon, source, effect) {
+			onStart(pokemon, source, effect) {/*
 				if (effect?.id === 'boosterenergy') {
 					this.effectData.fromBooster = true;
 					this.add('-activate', pokemon, 'ability: Faulty Photon', '[fromitem]');
 				} else {
 					this.add('-activate', pokemon, 'ability: Faulty Photon');
-				}
+				}*/
 				this.effectData.bestStat = pokemon.getBestStat(false, true);
 				this.add('-start', pokemon, 'faultyphoton' + this.effectData.bestStat);
 			},
@@ -1121,7 +1118,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['quarkdrive']) {
 				pokemon.addVolatile('quarkdrive');
-			} else if (pokemon.hasItem('quarkdrive') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
 				pokemon.removeVolatile('quarkdrive');
 				pokemon.addVolatile('quarkdrive', pokemon, Dex.getItem('boosterenergy'));
 				pokemon.volatiles['quarkdrive'].fromBooster = true;
