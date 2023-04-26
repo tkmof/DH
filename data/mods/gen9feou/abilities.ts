@@ -1,4 +1,5 @@
 export const Abilities: {[k: string]: ModdedAbilityData} = {
+	/* FEG9 abils */
 	unfiltered: {
 	  shortDesc: "Filter + Contrary",
 		onSourceModifyDamage(damage, source, target, move) {
@@ -569,7 +570,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (type === 'attract') return false;
 		},
 		onTryHit(pokemon, target, move) {
-			if (move.id === 'attract' || move.id === 'captivate' || move.id === 'taunt') {
+			if (['attract','captivate','taunt'].includes(move.id)) {
 				this.add('-immune', pokemon, '[from] ability: Primitive');
 				return null;
 			}
@@ -800,9 +801,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  shortDesc: "Sturdy + Technician",
 		onBeforeMovePriority: 9,
 		onBeforeMove(pokemon) {
-			if (pokemon.species.baseSpecies !== 'Relishadow' || pokemon.transformed) return;
-			const targetForme = pokemon.species.name === 'Relishadow' ? 'Relishadow-Zenith' : 'Relishadow-Zenith';
-			pokemon.formeChange(targetForme);
+			if (pokemon.species.name !== 'Relishadow' || pokemon.transformed) return;
+			pokemon.formeChange('Relishadow-Zenith');
 		},
 		onTryHit(pokemon, target, move) {
 			if (move.ohko) {
@@ -885,8 +885,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
 			if (
-				effect && effect.effectType === 'Move' &&
-				['ironmimic'].includes(target.species.id) && !target.transformed
+				effect && effect.effectType === 'Move' && target.species.id === 'ironmimic' && !target.transformed
 			) {
 				this.add('-activate', target, 'ability: Faulty Photon');
 				this.effectData.busted = true;
@@ -895,10 +894,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onCriticalHit(target, source, move) {
 			if (!target) return;
-			if (!['ironmimic'].includes(target.species.id) || target.transformed) {
-				return;
-			}
-			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates && this.gen >= 6);
+			if (target.species.id !== 'ironmimic' || target.transformed) return;
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates/* && this.gen >= 6*/);
 			if (hitSub) return;
 
 			if (!target.runImmunity(move.type)) return;
@@ -906,18 +903,16 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (!target) return;
-			if (!['ironmimic'].includes(target.species.id) || target.transformed) {
-				return;
-			}
-			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates && this.gen >= 6);
+			if (target.species.id !== 'ironmimic' || target.transformed) return;
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates/* && this.gen >= 6*/);
 			if (hitSub) return;
 
 			if (!target.runImmunity(move.type)) return;
 			return 0;
 		},
 		onUpdate(pokemon) {
-			if (['ironmimic'].includes(pokemon.species.id) && this.effectData.busted) {
-				const speciesid = pokemon.species.id === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' : 'Iron Mimic-Busted';
+			if (pokemon.species.id === 'ironmimic' && this.effectData.busted) {
+				const speciesid = /*pokemon.species.id === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' :*/ 'Iron Mimic-Busted';
 				pokemon.formeChange(speciesid, this.effect, true);
 				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon, this.dex.getSpecies(speciesid));
 				pokemon.addVolatile('faultyphoton');
@@ -930,13 +925,13 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		condition: {
 			noCopy: true,
-			onStart(pokemon, source, effect) {
+			onStart(pokemon, source, effect) {/*
 				if (effect?.id === 'boosterenergy') {
 					this.effectData.fromBooster = true;
 					this.add('-activate', pokemon, 'ability: Faulty Photon', '[fromitem]');
 				} else {
 					this.add('-activate', pokemon, 'ability: Faulty Photon');
-				}
+				}*/
 				this.effectData.bestStat = pokemon.getBestStat(false, true);
 				this.add('-start', pokemon, 'faultyphoton' + this.effectData.bestStat);
 			},
@@ -987,7 +982,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				boosts['spd'] = 0;
 				boosts['evasion'] = 0;
 			}
-			if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
+			else if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
 				boosts['atk'] = 0;
 				boosts['def'] = 0;
 				boosts['spa'] = 0;
@@ -996,45 +991,193 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
-			this.effectData.bestStat = attacker.getBestStat(false, true);
-			if ((attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
-				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact'])
-				&& this.effectData.bestStat === 'atk') {
-				this.debug('Dyschronometria weaken');
-				return this.chainModify([4096, 5325]);
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			if (attacker.getBestStat(false, true) !== 'atk') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+										  'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+				if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria weaken');
+					return this.chainModify([4096, 5325]);
+				}
 			}
 		},
 		onSourceModifySpAPriority: 5,
 		onSourceModifySpA(atk, attacker, defender, move) {
-			this.effectData.bestStat = attacker.getBestStat(false, true);
-			if ((attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
-				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact'])
-				&& this.effectData.bestStat === 'spa') {
-				this.debug('Dyschronometria weaken');
-				return this.chainModify([4096, 5325]);
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			if (attacker.getBestStat(false, true) !== 'spa') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+					if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria weaken');
+					return this.chainModify([4096, 5325]);
+				}
 			}
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
-			this.effectData.bestStat = defender.getBestStat(false, true);
-			if ((defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
-				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact'])
-				&& this.effectData.bestStat === 'def') {
-				this.debug('Dyschronometria boost');
-				return this.chainModify([5325, 4096]);
+			if (defender.getBestStat(false, true) !== 'def') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+									   'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+				if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria weaken');
+					return this.chainModify([4096, 5325]);
+				}
 			}
 		},
 		onModifySpAPriority: 5,
-		onModifySpA(atk, attacker, defender, move) {
-			this.effectData.bestStat = defender.getBestStat(false, true);
-			if ((defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
-				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact'])
-				&& this.effectData.bestStat === 'spd') {
-				this.debug('Dyschronometria boost');
-				return this.chainModify([5325, 4096]);
+		onModifySpA (atk, attacker, defender, move) {
+			if (defender.getBestStat(false, true) !== 'spd') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+				if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria weaken');
+					return this.chainModify([4096, 5325]);
+				}
 			}
 		},
 		name: "Dyschronometria",
 		rating: 3,
+	},
+	protosynthesis: {
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isWeather('sunnyday') && !pokemon.volatiles['protosynthesis']) {
+				pokemon.addVolatile('protosynthesis');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
+				pokemon.removeVolatile('protosynthesis');
+				pokemon.addVolatile('protosynthesis', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['protosynthesis'].fromBooster = true;
+			} else if (!pokemon.volatiles['protosynthesis']?.fromBooster && !this.field.isWeather('sunnyday')) {
+				pokemon.removeVolatile('protosynthesis');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['protosynthesis'];
+			this.add('-end', pokemon, 'Protosynthesis', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: ' + pokemon.getAbility().name, '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: ' + pokemon.getAbility().name);
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'protosynthesis' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Protosynthesis atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Protosynthesis def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Protosynthesis spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Protosynthesis spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Protosynthesis spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Protosynthesis');
+			},
+		},
+		isPermanent: true,
+		name: "Protosynthesis",
+		rating: 3,
+		num: 281,
+	},
+	quarkdrive: {
+		onStart(pokemon) {
+			this.singleEvent('TerrainChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['quarkdrive']) {
+				pokemon.addVolatile('quarkdrive');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+				pokemon.removeVolatile('quarkdrive');
+				pokemon.addVolatile('quarkdrive', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['quarkdrive'].fromBooster = true;
+			} else if (!pokemon.volatiles['quarkdrive']?.fromBooster && !this.field.isTerrain('electricterrain')) {
+				pokemon.removeVolatile('quarkdrive');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['quarkdrive'];
+			this.add('-end', pokemon, 'Quark Drive', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: ' + pokemon.getAbility().name, '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: ' + pokemon.getAbility().name);
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'quarkdrive' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Quark Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Quark Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Quark Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Quark Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Quark Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Quark Drive');
+			},
+		},
+		isPermanent: true,
+		name: "Quark Drive",
+		rating: 3,
+		num: 282,
 	},
 };

@@ -461,7 +461,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['quarkdrive']) {
 				pokemon.addVolatile('quarkdrive');
-			} else if (pokemon.hasItem('quarkdrive') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
 				pokemon.removeVolatile('quarkdrive');
 				pokemon.addVolatile('quarkdrive', pokemon, Dex.getItem('boosterenergy'));
 				pokemon.volatiles['quarkdrive'].fromBooster = true;
