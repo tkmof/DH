@@ -569,7 +569,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (type === 'attract') return false;
 		},
 		onTryHit(pokemon, target, move) {
-			if (move.id === 'attract' || move.id === 'captivate' || move.id === 'taunt') {
+			if (['attract','captivate','taunt'].includes(move.id)) {
 				this.add('-immune', pokemon, '[from] ability: Primitive');
 				return null;
 			}
@@ -894,10 +894,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onCriticalHit(target, source, move) {
 			if (!target) return;
-			if (!['ironmimic'].includes(target.species.id) || target.transformed) {
-				return;
-			}
-			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates && this.gen >= 6);
+			if (target.species.id !== 'ironmimic' || target.transformed) return;
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates/* && this.gen >= 6*/);
 			if (hitSub) return;
 
 			if (!target.runImmunity(move.type)) return;
@@ -905,18 +903,18 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (!target) return;
-			if (!['ironmimic'].includes(target.species.id) || target.transformed) {
+			if (target.species.id !== 'ironmimic' || target.transformed) {
 				return;
 			}
-			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates && this.gen >= 6);
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates/* && this.gen >= 6*/);
 			if (hitSub) return;
 
 			if (!target.runImmunity(move.type)) return;
 			return 0;
 		},
 		onUpdate(pokemon) {
-			if (['ironmimic'].includes(pokemon.species.id) && this.effectData.busted) {
-				const speciesid = pokemon.species.id === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' : 'Iron Mimic-Busted';
+			if (pokemon.species.id === 'ironmimic' && this.effectData.busted) {
+				const speciesid = /*pokemon.species.id === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' :*/ 'Iron Mimic-Busted';
 				pokemon.formeChange(speciesid, this.effect, true);
 				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon, this.dex.getSpecies(speciesid));
 				pokemon.addVolatile('faultyphoton');
@@ -986,7 +984,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				boosts['spd'] = 0;
 				boosts['evasion'] = 0;
 			}
-			if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
+			else if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
 				boosts['atk'] = 0;
 				boosts['def'] = 0;
 				boosts['spa'] = 0;
@@ -995,42 +993,48 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
-			this.effectData.bestStat = attacker.getBestStat(false, true);
-			if ((attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
-				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact'])
-				&& this.effectData.bestStat === 'atk') {
-				this.debug('Dyschronometria weaken');
-				return this.chainModify([4096, 5325]);
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			if (attacker.getBestStat(false, true) !== 'atk') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+										  'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+				if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria weaken');
+					return this.chainModify([4096, 5325]);
+				}
 			}
 		},
 		onSourceModifySpAPriority: 5,
 		onSourceModifySpA(atk, attacker, defender, move) {
-			this.effectData.bestStat = attacker.getBestStat(false, true);
-			if ((attacker.volatiles['faultyphoton'] || attacker.volatiles['systempurge'] || attacker.volatiles['onceuponatime'] || 
-				attacker.volatiles['primitive'] || attacker.volatiles['quarksurge'] || attacker.volatiles['lightdrive'] || attacker.volatiles['openingact'])
-				&& this.effectData.bestStat === 'spa') {
-				this.debug('Dyschronometria weaken');
-				return this.chainModify([4096, 5325]);
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			if (attacker.getBestStat(false, true) !== 'spa') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+					if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria weaken');
+					return this.chainModify([4096, 5325]);
+				}
 			}
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
-			this.effectData.bestStat = defender.getBestStat(false, true);
-			if ((defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
-				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact'])
-				&& this.effectData.bestStat === 'def') {
-				this.debug('Dyschronometria boost');
-				return this.chainModify([5325, 4096]);
+			if (defender.getBestStat(false, true) !== 'def') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+									   'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+				if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria weaken');
+					return this.chainModify([4096, 5325]);
+				}
 			}
 		},
 		onModifySpAPriority: 5,
-		onModifySpA(atk, attacker, defender, move) {
-			this.effectData.bestStat = defender.getBestStat(false, true);
-			if ((defender.volatiles['faultyphoton'] || defender.volatiles['systempurge'] || defender.volatiles['onceuponatime'] || 
-				defender.volatiles['primitive'] || defender.volatiles['quarksurge'] || defender.volatiles['lightdrive'] || defender.volatiles['openingact'])
-				&& this.effectData.bestStat === 'spd') {
-				this.debug('Dyschronometria boost');
-				return this.chainModify([5325, 4096]);
+		onModifySpA (atk, attacker, defender, move) {
+			if (defender.getBestStat(false, true) !== 'spd') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+				if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria weaken');
+					return this.chainModify([4096, 5325]);
+				}
 			}
 		},
 		name: "Dyschronometria",
