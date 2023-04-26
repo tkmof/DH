@@ -1080,7 +1080,7 @@ coldrake: {
 	num: 115,
 	name: "Coldrake",
 	types: ["Dragon", "Ice"],
-	baseStats: {hp: 103, atk: 120, def: 90, spa: 110, spd: 95, spe: 82},
+	baseStats: {hp: 83, atk: 110, def: 90, spa: 90, spd: 95, spe: 82},
 	abilities: {0: "Storm", 1: "Snow Cloak", H: "Slush Rush"},
 	weightkg: 120.2,
 	prevo: "snoak",
@@ -1481,6 +1481,11 @@ baishark: {
 	weightkg: 93.9,
 	prevo: "hoorel",
 },
+luvdisc: {
+		inherit: true,
+		num: 158,
+		evos: ["Luviu"],
+	},
 luviu: {
 	num: 159,
 	name: "Luviu",
@@ -1490,15 +1495,29 @@ luviu: {
 	weightkg: 98.2,
 	prevo: "luvdisc",
 },
+shuckle: {
+		inherit: true,
+		evos: ["Shucklony"],
+		num: 160,
+	},	
 shucklony: {
 	num: 161,
 	name: "Shucklony",
 	types: ["Bug", "Rock"],
-	baseStats: {hp: 60, atk: 20, def: 200, spa: 50, spd: 200, spe: 5},
+	baseStats: {hp: 70, atk: 20, def: 200, spa: 50, spd: 200, spe: 5},
 	abilities: {0: "Sticky Hold", 1: "Sap Sipper", H: "Contrary"},
 	weightkg: 60.5,
 	prevo: "shuckle",
 },
+drowzee: {
+	inherit: true,
+	num: 162,
+},
+hypno: {
+		inherit: true,
+		num: 163,
+		evos: ["Dreamer"],
+	},	
 dreamer: {
 	num: 164,
 	name: "Dreamer",
@@ -1508,6 +1527,15 @@ dreamer: {
 	weightkg: 85.6,
 	prevo: "hypno",
 },
+ekans: {
+	inherit: true,
+	num: 165,
+	},
+arbok: {
+		inherit: true,
+		num: 166,
+		evos: ["Nohtyp"],
+	},	
 nohtyp: {
 	num: 167,
 	name: "Nohtyp",
@@ -1517,51 +1545,6 @@ nohtyp: {
 	weightkg: 70.5,
 	prevo: "arbok",
 },
-skyradise: {
-	num: 200,
-	name: "Skyradise",
-	types: ["Flying"],
-	gender: "N",
-	baseStats: {hp: 200, atk: 105, def: 90, spa: 145, spd: 90, spe: 50},
-	abilities: {0: "Magic Guard", H: "Magic Bounce"},
-	weightkg: 999.9,
-},
-luvdisc: {
-		inherit: true,
-		evos: ["Luviu"],
-	},
-arbok: {
-		inherit: true,
-		evos: ["Nohtyp"],
-	},	
-hypno: {
-		inherit: true,
-		evos: ["Dreamer"],
-	},	
-shuckle: {
-		inherit: true,
-		evos: ["Shucklony"],
-	},	
-	
-	ironsun: {
-	num: 193,
-	name: "Iron Sun",
-	types: ["Rock", "Fire"],
-	gender: "N",
-	baseStats: {hp: 100, atk: 114, def: 110, spa: 70, spd: 80, spe: 96},
-	abilities: {0: "Meteor Power"},
-	weightkg: 308,
-	},
-	
-	crazymoon: {
-	num: 194,
-	name: "Crazy Moon",
-	types: ["Rock", "Fairy"],
-	gender: "N",
-	baseStats: {hp: 99, atk: 71, def: 81, spa: 113, spd: 111, spe: 95},
-	abilities: {0: "Primal Mind"},
-	weightkg: 336,
-	},
 	
 	jumpfurr: {
 	num: 168,
@@ -1570,6 +1553,15 @@ shuckle: {
 	baseStats: {hp: 75, atk: 25, def: 70, spa: 95, spd: 85, spe: 110},
 	abilities: {0: "Chlorophyll", 1: "Sticky Seeds", H: "Unburden"},
 	weightkg: 3,
+	},
+	
+meowthder: {
+		num: 169,
+		name: "Meowthder",
+		types: ["Electric", 'Fairy'],
+		baseStats: {hp: 65, atk: 80, def: 60, spa: 70, spd: 65, spe: 100},
+		abilities: {0: "Ball Fetch", 1:"Static", H: "Galvanize"},
+		weightkg: 32,
 	},
 	
 	surivexe: {
@@ -1776,6 +1768,15 @@ shuckle: {
 		evoItem: "Dusk Stone",
 		eggGroups: ["Field"],
 	},
+zubat: {
+	inherit: true,
+	num: 182,
+	},
+	
+golbat: {
+	inherit: true,
+	num: 183,
+	},	
 	
 crobat: {
 		inherit: true,
@@ -1796,15 +1797,10 @@ crobatmega: {
 	requiredItem: "Crobatite",
 },
 
-cupida: {
-	num: 201,
-	name: "Cupida",
-	types: ["Fairy", "Ghost"],
-	gender: "F",
-	baseStats: {hp: 104, atk: 110, def: 70, spa: 110, spd: 130, spe: 76},
-	abilities: {0: "Cute Charm", 1: "Serene Grace", H: "Archery"},
-	weightkg: 0.5,
-},
+poochyena: {
+	inherit: true,
+	num: 185,
+	},
 
 mightyena: {
 		inherit: true,
@@ -1824,8 +1820,62 @@ mightyenamega: {
 		requiredItem: "Mightite",
 	},
 	
-drapede: {
+	natu: {
+		inherit: true,
+		num: 187,
+		evos: ["Xatu","Naztu"],
+	},
+	
+	naztu: {
+		num: 188,
+		name: "Naztu",
+		types: ["Psychic", "Ground"],
+		baseStats: {hp: 75, atk: 55, def: 70, spa: 95, spd: 80, spe: 115},
+		abilities: {0: "Synchronize", 1: "Levitate", H: "Magic Bounce"},
+		heightm: 2.5,
+		weightkg: 15,
+		color: "Green",
+		prevo: "Natu",
+		eggGroups: ["Flying"],
+	},
+	
+	xatu: {
+		inherit: true,
+		num: 189,
+		baseStats: {hp: 75, atk: 75, def: 80, spa: 95, spd: 70, spe: 95},
+	},
+	
+	huemul: {
 	num: 190,
+	name: "Huemul",
+	types: ["Normal"],
+	baseStats: {hp: 25, atk: 35, def: 35, spa: 70, spd: 45, spe: 85},
+	abilities: {0: "Rattled", 1: "Frisk", H: "Run Away"},
+	weightkg: 40,
+	evos: ["Undeer"],
+},
+
+undeer: {
+	num: 191,
+	name: "Undeer",
+	types: ["Normal", "Ghost"],
+	baseStats: {hp: 143, atk: 85, def: 95, spa: 80, spd: 85, spe: 30},
+	abilities: {0: "Cursed Body", 1: "Frisk", H: "Dark Eater"},
+	weightkg: 521.3,
+	prevo: "Huemul",
+},
+
+dothdo: {
+	num: 192,
+	name: "Dothdo",
+	types: ["Ghost", "Flying"],
+	baseStats: {hp: 70, atk: 85, def: 75, spa: 45, spd: 100, spe: 112},
+	abilities: {0: "Cold Heart", 1: "Big Pecks", H: "Cloud Nine"},
+	weightkg: 4.2,
+},
+	
+drapede: {
+	num: 193,
 	name: "Drapede",
 	types: ["Bug", "Dragon"],
 	baseStats: {hp: 140, atk: 120, def: 100, spa: 60, spd: 100, spe: 50},
@@ -1836,7 +1886,7 @@ drapede: {
 },
 
 drapedesolemne: {
-	num: 190,
+	num: 193,
 	name: "Drapede-Solemne",
 	baseSpecies: "Drapede",
 	types: ["Fighting", "Dragon"],
@@ -1848,7 +1898,7 @@ drapedesolemne: {
 },
 
 quetzal: {
-	num: 191,
+	num: 194,
 	name: "Quetzal",
 	types: ["Flying", "Grass"],
 	baseStats: {hp: 75, atk: 95, def: 74, spa: 110, spd: 105, spe: 111},
@@ -1859,7 +1909,7 @@ quetzal: {
 },
 
 quetzalsolemne: {
-	num: 191,
+	num: 194,
 	name: "Quetzal-Solemne",
 	baseSpecies: "Quetzal",
 	types: ["Dragon", "Grass"],
@@ -1871,7 +1921,7 @@ quetzalsolemne: {
 },
 
 granjaguar: {
-	num: 192,
+	num: 195,
 	name: "Granjaguar",
 	types: ["Ground", "Dark"],
 	baseStats: {hp: 85, atk: 115, def: 110, spa: 100, spd: 105, spe: 55},
@@ -1882,7 +1932,7 @@ granjaguar: {
 },
 
 granjaguarsolemne: {
-	num: 192,
+	num: 195,
 	name: "Granjaguar-Solemne",
 	baseSpecies: "Granjaguar",
 	types: ["Psychic", "Dark"],
@@ -1893,37 +1943,38 @@ granjaguarsolemne: {
 	battleOnly: "Granjaguar",
 },
 
-huemul: {
-	num: 187,
-	name: "Huemul",
-	types: ["Normal"],
-	baseStats: {hp: 25, atk: 35, def: 35, spa: 70, spd: 45, spe: 85},
-	abilities: {0: "Rattled", 1: "Frisk", H: "Run Away"},
-	weightkg: 40,
-	evos: ["Undeer"],
-},
-
-undeer: {
-	num: 188,
-	name: "Undeer",
-	types: ["Normal", "Ghost"],
-	baseStats: {hp: 143, atk: 85, def: 95, spa: 80, spd: 85, spe: 30},
-	abilities: {0: "Cursed Body", 1: "Frisk", H: "Dark Eater"},
-	weightkg: 521.3,
-	prevo: "Huemul",
-},
-
-dothdo: {
-	num: 189,
-	name: "Dothdo",
-	types: ["Ghost", "Flying"],
-	baseStats: {hp: 70, atk: 85, def: 75, spa: 45, spd: 100, spe: 112},
-	abilities: {0: "Cold Heart", 1: "Big Pecks", H: "Cloud Nine"},
-	weightkg: 4.2,
-},
-
+ironsun: {
+	num: 196,
+	name: "Iron Sun",
+	types: ["Rock", "Fire"],
+	gender: "N",
+	baseStats: {hp: 100, atk: 114, def: 110, spa: 70, spd: 80, spe: 96},
+	abilities: {0: "Meteor Power"},
+	weightkg: 308,
+	},
+	
+	crazymoon: {
+	num: 197,
+	name: "Crazy Moon",
+	types: ["Rock", "Fairy"],
+	gender: "N",
+	baseStats: {hp: 99, atk: 71, def: 81, spa: 113, spd: 111, spe: 95},
+	abilities: {0: "Primal Mind"},
+	weightkg: 336,
+	},
+	
+lronfist: {
+		num: 198,
+		name: "lron Fist",
+		types: ["Fighting", "Steel"],
+		gender: "N",
+		baseStats: {hp: 90, atk: 116, def: 90, spa: 68, spd: 110, spe: 96},
+		abilities: {0: "Charged"},
+		weightkg: 160.2,
+	},
+	
 frozenbeak: {
-		num: 196,
+		num: 199,
 		name: "Frozen Beak",
 		types: ["Ice", "Water"],
 		gender: "N",
@@ -1934,7 +1985,7 @@ frozenbeak: {
 	},
 	
 purgapilla: {
-	num: 197,
+	num: 200,
 	name: "Purgapilla",
 	types: ["Bug"],
 	baseStats: {hp: 55, atk: 60, def: 45, spa: 10, spd: 25, spe: 20},
@@ -1943,7 +1994,7 @@ purgapilla: {
 	evos: ["pumpkoon"],
 },
 pumpkoon: {
-	num: 198,
+	num: 201,
 	name: "Pumpkoon",
 	types: ["Bug"],
 	baseStats: {hp: 60, atk: 40, def: 90, spa: 40, spd: 55, spe: 20},
@@ -1954,7 +2005,7 @@ pumpkoon: {
 },
 	
 	lepisalma: {
-		num: 199,
+		num: 202,
 		name: "Lepisalma",
 		types: ["Bug", "Ghost"],
 		baseStats: {hp: 80, atk: 95, def: 60, spa: 120, spd: 160, spe: 85},
@@ -1963,21 +2014,24 @@ pumpkoon: {
 		prevo: "pumpkoon",
 		evoLevel: 50,
 	},
-	lronfist: {
-		num: 195,
-		name: "lron Fist",
-		types: ["Fighting", "Steel"],
-		gender: "N",
-		baseStats: {hp: 90, atk: 116, def: 90, spa: 68, spd: 110, spe: 96},
-		abilities: {0: "Charged"},
-		weightkg: 160.2,
-	},
-	meowthder: {
-		num: 169,
-		name: "Meowthder",
-		types: ["Electric", 'Fairy'],
-		baseStats: {hp: 65, atk: 80, def: 60, spa: 70, spd: 65, spe: 100},
-		abilities: {0: "Ball Fetch", 1:"Static", H: "Galvanize"},
-		weightkg: 32,
-	},
+	
+skyradise: {
+	num: 203,
+	name: "Skyradise",
+	types: ["Flying"],
+	gender: "N",
+	baseStats: {hp: 200, atk: 105, def: 90, spa: 145, spd: 90, spe: 50},
+	abilities: {0: "Magic Guard", H: "Magic Bounce"},
+	weightkg: 999.9,
+},	
+	
+	cupida: {
+	num: 204,
+	name: "Cupida",
+	types: ["Fairy", "Ghost"],
+	gender: "F",
+	baseStats: {hp: 104, atk: 110, def: 70, spa: 110, spd: 130, spe: 76},
+	abilities: {0: "Cute Charm", 1: "Serene Grace", H: "Archery"},
+	weightkg: 0.5,
+},
 };
