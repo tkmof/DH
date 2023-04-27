@@ -812,4 +812,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	magshroom: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 };

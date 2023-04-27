@@ -1481,13 +1481,21 @@ baishark: {
 	weightkg: 93.9,
 	prevo: "hoorel",
 },
+magshroom: {
+	num: 158,
+	name: "Magshroom",
+	types: ["Grass", "Electric"],
+	baseStats: {hp: 125, atk: 35, def: 75, spa: 90, spd: 90, spe: 38},
+	abilities: {0: "Effect Spore", 1: "Poison Heal", H: "Thick Fat"},
+	weightkg: 200.9,
+},
 luvdisc: {
 		inherit: true,
-		num: 158,
+		num: 159,
 		evos: ["Luviu"],
 	},
 luviu: {
-	num: 159,
+	num: 160,
 	name: "Luviu",
 	types: ["Water", "Fairy"],
 	baseStats: {hp: 83, atk: 50, def: 85, spa: 95, spd: 95, spe: 117},
@@ -1498,10 +1506,10 @@ luviu: {
 shuckle: {
 		inherit: true,
 		evos: ["Shucklony"],
-		num: 160,
+		num: 161,
 	},	
 shucklony: {
-	num: 161,
+	num: 162,
 	name: "Shucklony",
 	types: ["Bug", "Rock"],
 	baseStats: {hp: 70, atk: 20, def: 200, spa: 50, spd: 200, spe: 5},
@@ -1511,15 +1519,15 @@ shucklony: {
 },
 drowzee: {
 	inherit: true,
-	num: 162,
+	num: 163,
 },
 hypno: {
 		inherit: true,
-		num: 163,
+		num: 164,
 		evos: ["Dreamer"],
 	},	
 dreamer: {
-	num: 164,
+	num: 165,
 	name: "Dreamer",
 	types: ["Psychic", "Fighting"],
 	baseStats: {hp: 85, atk: 113, def: 80, spa: 73, spd: 120, spe: 78},
@@ -1529,15 +1537,15 @@ dreamer: {
 },
 ekans: {
 	inherit: true,
-	num: 165,
+	num: 166,
 	},
 arbok: {
 		inherit: true,
-		num: 166,
+		num: 167,
 		evos: ["Nohtyp"],
 	},	
 nohtyp: {
-	num: 167,
+	num: 168,
 	name: "Nohtyp",
 	types: ["Poison", "Ground"],
 	baseStats: {hp: 100, atk: 105, def: 99, spa: 65, spd: 89, spe: 84},
@@ -1547,7 +1555,7 @@ nohtyp: {
 },
 	
 	jumpfurr: {
-	num: 168,
+	num: 169,
 	name: "Jumpfurr",
 	types: ["Grass", "Fairy"],
 	baseStats: {hp: 75, atk: 25, def: 70, spa: 95, spd: 85, spe: 110},
@@ -1556,7 +1564,7 @@ nohtyp: {
 	},
 	
 meowthder: {
-		num: 169,
+		num: 170,
 		name: "Meowthder",
 		types: ["Electric", 'Fairy'],
 		baseStats: {hp: 65, atk: 80, def: 60, spa: 70, spd: 65, spe: 100},
@@ -1565,7 +1573,7 @@ meowthder: {
 	},
 	
 	surivexe: {
-		num: 170,
+		num: 171,
 		name: "SurivExe",
 		types: ["Ghost", "Electric"],
 		gender: "N",
@@ -1576,7 +1584,7 @@ meowthder: {
 		formeOrder: ["SurivExe", "SurivExe-Virus"],
 	},
 	surivexevirus: {
-		num: 170,
+		num: 171,
 		name: "SurivExe-Virus",
 		baseSpecies: "SurivExe",
 		forme: "Virus",
@@ -1588,7 +1596,7 @@ meowthder: {
 		battleOnly: "SurivExe",
 	},
 	eeveecile: {
-		num: 171,
+		num: 172,
 		name: "Eevee-Cile",
 		baseSpecies: "Eevee",
 		forme: "Cile",
@@ -1603,7 +1611,7 @@ meowthder: {
 		eggGroups: ["Field"],
 	},
 	vaporeoncile: {
-		num: 172,
+		num: 173,
 		name: "Vaporeon-Cile",
 		baseSpecies: "Vaporeon",
 		forme: "Cile",
@@ -1619,7 +1627,7 @@ meowthder: {
 		eggGroups: ["Field"],
 	},
 	jolteoncile: {
-		num: 173,
+		num: 174,
 		name: "Jolteon-Cile",
 		baseSpecies: "Jolteon",
 		forme: "Cile",
@@ -1635,7 +1643,7 @@ meowthder: {
 		eggGroups: ["Field"],
 	},
 	flareoncile: {
-		num: 174,
+		num: 175,
 		name: "Flareon-Cile",
 		baseSpecies: "Flareon",
 		forme: "Cile",
@@ -1651,7 +1659,7 @@ meowthder: {
 		eggGroups: ["Field"],
 	},
 	espeoncile: {
-		num: 175,
+		num: 176,
 		name: "Espeon-Cile",
 		baseSpecies: "Espeon",
 		forme: "Cile",
@@ -1668,7 +1676,7 @@ meowthder: {
 		eggGroups: ["Field"],
 	},
 	umbreoncile: {
-		num: 176,
+		num: 177,
 		name: "Umbreon-Cile",
 		baseSpecies: "Umbreon",
 		forme: "Cile",
@@ -1685,7 +1693,7 @@ meowthder: {
 		eggGroups: ["Field"],
 	},
 	leafeoncile: {
-		num: 177,
+		num: 178,
 		name: "Leafeon-Cile",
 		baseSpecies: "Leafeon",
 		forme: "Cile",
@@ -1702,7 +1710,7 @@ meowthder: {
 		eggGroups: ["Field"],
 	},
 	glaceoncile: {
-		num: 178,
+		num: 179,
 		name: "Glaceon-Cile",
 		baseSpecies: "Glaceon",
 		forme: "Cile",
@@ -1720,7 +1728,7 @@ meowthder: {
 	},
 	
 	sylveoncile: {
-		num: 179,
+		num: 180,
 		name: "Sylveon-Cile",
 		baseSpecies: "Sylveon",
 		forme: "Cile",
@@ -1738,7 +1746,7 @@ meowthder: {
 	},
 	
 	qilineon: {
-		num: 180,
+		num: 181,
 		name: "Qilineon",
 		types: ["Dragon"],
 		genderRatio: {M: 0.875, F: 0.125},
@@ -1754,7 +1762,7 @@ meowthder: {
 	},
 	
 	fossileon: {
-		num: 181,
+		num: 182,
 		name: "Fossileon",
 		types: ["Ground"],
 		genderRatio: {M: 0.875, F: 0.125},
@@ -1770,23 +1778,23 @@ meowthder: {
 	},
 zubat: {
 	inherit: true,
-	num: 182,
+	num: 183,
 	},
 	
 golbat: {
 	inherit: true,
-	num: 183,
+	num: 184,
 	},	
 	
 crobat: {
 		inherit: true,
-		num: 184,
+		num: 185,
 		otherFormes: ["Crobat-Mega"],
 	formeOrder: ["Crobat", "Crobat-Mega"],
 	},	
 
 crobatmega: {
-	num: 184,
+	num: 185,
 	name: "Crobat-Mega",
 	baseSpecies: "Crobat",
 	forme: "Mega",
@@ -1799,20 +1807,21 @@ crobatmega: {
 
 poochyena: {
 	inherit: true,
-	num: 185,
+	num: 186,
 	},
 
 mightyena: {
 		inherit: true,
-		num: 186,
+		num: 187,
 		otherFormes: ["Mightyena-Mega"],
 	formeOrder: ["Mightyena", "Mightyena-Mega"],
 	},	
 
 mightyenamega: {
-		num: 186,
+		num: 187,
 		name: "Mightyena-Mega",
 		baseSpecies: "Mightyena",
+		forme: "Mega",
 		types: ["Dark", "Fairy"],
 		baseStats: {hp: 70, atk: 111, def: 100, spa: 70, spd: 80, spe: 89},
 		abilities: {0: "Scary",},
@@ -1822,12 +1831,12 @@ mightyenamega: {
 	
 	natu: {
 		inherit: true,
-		num: 187,
+		num: 188,
 		evos: ["Xatu","Naztu"],
 	},
 	
 	naztu: {
-		num: 188,
+		num: 189,
 		name: "Naztu",
 		types: ["Psychic", "Ground"],
 		baseStats: {hp: 75, atk: 55, def: 70, spa: 95, spd: 80, spe: 115},
@@ -1841,12 +1850,12 @@ mightyenamega: {
 	
 	xatu: {
 		inherit: true,
-		num: 189,
+		num: 190,
 		baseStats: {hp: 75, atk: 75, def: 80, spa: 95, spd: 70, spe: 95},
 	},
 	
 	huemul: {
-	num: 190,
+	num: 191,
 	name: "Huemul",
 	types: ["Normal"],
 	baseStats: {hp: 25, atk: 35, def: 35, spa: 70, spd: 45, spe: 85},
@@ -1856,7 +1865,7 @@ mightyenamega: {
 },
 
 undeer: {
-	num: 191,
+	num: 192,
 	name: "Undeer",
 	types: ["Normal", "Ghost"],
 	baseStats: {hp: 143, atk: 85, def: 95, spa: 80, spd: 85, spe: 30},
@@ -1866,7 +1875,7 @@ undeer: {
 },
 
 dothdo: {
-	num: 192,
+	num: 193,
 	name: "Dothdo",
 	types: ["Ghost", "Flying"],
 	baseStats: {hp: 70, atk: 85, def: 75, spa: 45, spd: 100, spe: 112},
@@ -1875,7 +1884,7 @@ dothdo: {
 },
 	
 drapede: {
-	num: 193,
+	num: 194,
 	name: "Drapede",
 	types: ["Bug", "Dragon"],
 	baseStats: {hp: 140, atk: 120, def: 100, spa: 60, spd: 100, spe: 50},
@@ -1886,9 +1895,10 @@ drapede: {
 },
 
 drapedesolemne: {
-	num: 193,
+	num: 194,
 	name: "Drapede-Solemne",
 	baseSpecies: "Drapede",
+	forme: "Solemne",
 	types: ["Fighting", "Dragon"],
 	baseStats: {hp: 140, atk: 150, def: 80, spa: 100, spd: 80, spe: 20},
 	abilities: {0: "Spirit of the Swamp"},
@@ -1898,7 +1908,7 @@ drapedesolemne: {
 },
 
 quetzal: {
-	num: 194,
+	num: 195,
 	name: "Quetzal",
 	types: ["Flying", "Grass"],
 	baseStats: {hp: 75, atk: 95, def: 74, spa: 110, spd: 105, spe: 111},
@@ -1909,9 +1919,10 @@ quetzal: {
 },
 
 quetzalsolemne: {
-	num: 194,
+	num: 195,
 	name: "Quetzal-Solemne",
 	baseSpecies: "Quetzal",
+	forme: "Solemne",
 	types: ["Dragon", "Grass"],
 	baseStats: {hp: 75, atk: 65, def: 105, spa: 141, spd: 105, spe: 79},
 	abilities: {0: "Spirit of the Woods"},
@@ -1921,7 +1932,7 @@ quetzalsolemne: {
 },
 
 granjaguar: {
-	num: 195,
+	num: 196,
 	name: "Granjaguar",
 	types: ["Ground", "Dark"],
 	baseStats: {hp: 85, atk: 115, def: 110, spa: 100, spd: 105, spe: 55},
@@ -1932,9 +1943,10 @@ granjaguar: {
 },
 
 granjaguarsolemne: {
-	num: 195,
+	num: 196,
 	name: "Granjaguar-Solemne",
 	baseSpecies: "Granjaguar",
+	forme: "Solemne",
 	types: ["Psychic", "Dark"],
 	baseStats: {hp: 85, atk: 115, def: 55, spa: 100, spd: 75, spe: 140},
 	abilities: {0: "Spirit of the Ruins"},
@@ -1944,7 +1956,7 @@ granjaguarsolemne: {
 },
 
 ironsun: {
-	num: 196,
+	num: 197,
 	name: "Iron Sun",
 	types: ["Rock", "Fire"],
 	gender: "N",
@@ -1954,7 +1966,7 @@ ironsun: {
 	},
 	
 	crazymoon: {
-	num: 197,
+	num: 198,
 	name: "Crazy Moon",
 	types: ["Rock", "Fairy"],
 	gender: "N",
@@ -1964,7 +1976,7 @@ ironsun: {
 	},
 	
 lronfist: {
-		num: 198,
+		num: 199,
 		name: "lron Fist",
 		types: ["Fighting", "Steel"],
 		gender: "N",
@@ -1974,7 +1986,7 @@ lronfist: {
 	},
 	
 frozenbeak: {
-		num: 199,
+		num: 200,
 		name: "Frozen Beak",
 		types: ["Ice", "Water"],
 		gender: "N",
@@ -1985,7 +1997,7 @@ frozenbeak: {
 	},
 	
 purgapilla: {
-	num: 200,
+	num: 201,
 	name: "Purgapilla",
 	types: ["Bug"],
 	baseStats: {hp: 55, atk: 60, def: 45, spa: 10, spd: 25, spe: 20},
@@ -1994,7 +2006,7 @@ purgapilla: {
 	evos: ["pumpkoon"],
 },
 pumpkoon: {
-	num: 201,
+	num: 202,
 	name: "Pumpkoon",
 	types: ["Bug"],
 	baseStats: {hp: 60, atk: 40, def: 90, spa: 40, spd: 55, spe: 20},
@@ -2005,7 +2017,7 @@ pumpkoon: {
 },
 	
 	lepisalma: {
-		num: 202,
+		num: 203,
 		name: "Lepisalma",
 		types: ["Bug", "Ghost"],
 		baseStats: {hp: 80, atk: 95, def: 60, spa: 120, spd: 160, spe: 85},
@@ -2016,7 +2028,7 @@ pumpkoon: {
 	},
 	
 skyradise: {
-	num: 203,
+	num: 204,
 	name: "Skyradise",
 	types: ["Flying"],
 	gender: "N",
@@ -2026,7 +2038,7 @@ skyradise: {
 },	
 	
 	cupida: {
-	num: 204,
+	num: 205,
 	name: "Cupida",
 	types: ["Fairy", "Ghost"],
 	gender: "F",

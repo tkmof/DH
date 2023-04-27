@@ -113,19 +113,19 @@ fertilizer: {
 		onModifyDefPriority: 1,
 		onModifyDef(def, pokemon) {
 			if (pokemon.baseSpecies.baseSpecies === 'Kibasol') {
-				return this.chainModify(1.3);
+				return this.chainModify(1.5);
 			}
 		},
 		onModifySpDPriority: 1,
 		onModifySpD(spd, pokemon) {
 			if (pokemon.baseSpecies.baseSpecies === 'Kibasol') {
-				return this.chainModify(1.3);
+				return this.chainModify(1.5);
 			}
 		},
 		itemUser: ["Kibasol"],
 		num: 100005,
 		gen: 2,
-		desc: "If held by a Kibasol, its gets 1.3x Def/SpD."
+		desc: "If held by a Kibasol, its gets 1.5x Def/SpD."
 	},
 	
 abomigorite: {
