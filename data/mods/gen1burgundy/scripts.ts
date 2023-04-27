@@ -901,5 +901,8 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'venomoth').learnset.quiverdance = ['1L1'];
 		this.modData('Learnsets', 'ninetales').learnset.willowisp = ['1L1'];
 		this.modData('Learnsets', 'ninetales').learnset.nightshade = ['1L1'];
+		this.modData('Learnsets', 'kingdra').learnset.dracometeor = ['1L1'];
+		this.modData('Learnsets', 'kingdra').learnset.dragonbreath = ['1L1'];
+
 	},
 };
