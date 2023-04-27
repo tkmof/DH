@@ -236,7 +236,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			return pokemon.cureStatus() || success;
 		},
 		secondary: null,
-		target: "allies",
+		target: "self",
 		type: "Grass",
 		gen: 1,
 	},	
@@ -1131,6 +1131,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			},
 			onTryHitPriority: -1,
 			onTryHit(target, source, move) {
+				if (move.flags['authentic'] || move.infiltrates) {
+					return;
+				}
 				if (move.drain) {
 					this.add('-miss', source);
 					return null;
