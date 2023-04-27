@@ -908,5 +908,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'bulbasaur').learnset.junglehealing = ['1L1'];
 		this.modData('Learnsets', 'bellsprout').learnset.junglehealing = ['1L1'];
 		this.modData('Learnsets', 'exeggcute').learnset.junglehealing = ['1L1'];
+		this.modData('Learnsets', 'venomoth').learnset.sludge = ['1L1'];
+		this.modData('Learnsets', 'venomoth').learnset.recover = ['1L1'];
 	},
 };
