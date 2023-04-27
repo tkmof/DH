@@ -32,26 +32,30 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (pokemon.transformed) return;
 			if (this.queue.peek(true)?.choice === 'runSwitch') return;
 
-			if (pokemon.hasAbility('protosynthesis') && !pokemon.volatiles['protosynthesis'] && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
-				pokemon.addVolatile('protosynthesis');
+			if (!this.field.isWeather('sunnyday')) {
+				if (pokemon.hasAbility('protosynthesis') && !pokemon.volatiles['protosynthesis'] /* && !this.field.isWeather('sunnyday') */ && pokemon.useItem()) {
+					pokemon.addVolatile('protosynthesis');
+				}
+				else if (pokemon.hasAbility('openingact') && !pokemon.volatiles['openingact'] && pokemon.useItem()) {
+					pokemon.addVolatile('openingact');
+				}
+				else if (pokemon.hasAbility('onceuponatime') && !pokemon.volatiles['onceuponatime'] && pokemon.useItem()) {
+					pokemon.addVolatile('onceuponatime');
+				}
+				else if (pokemon.hasAbility('primitive') && !pokemon.volatiles['primitive'] && pokemon.useItem()) {
+					pokemon.addVolatile('primitive');
+				}
 			}
-			if (pokemon.hasAbility('quarkdrive') && !pokemon.volatiles['quarkdrive'] && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
-				pokemon.addVolatile('quarkdrive');
-			}
-			if (pokemon.hasAbility('lightdrive') && !pokemon.volatiles['lightdrive'] && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
-				pokemon.addVolatile('lightdrive');
-			}
-			if (pokemon.hasAbility('quarksurge') && !pokemon.volatiles['quarksurge'] && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
-				pokemon.addVolatile('quarksurge');
-			}
-			if (pokemon.hasAbility('openingact') && !pokemon.volatiles['openingact'] && !this.field.isTerrain('sunnyday') && pokemon.useItem()) {
-				pokemon.addVolatile('openingact');
-			}
-			if (pokemon.hasAbility('onceuponatime') && !pokemon.volatiles['onceuponatime'] && !this.field.isTerrain('sunnyday') && pokemon.useItem()) {
-				pokemon.addVolatile('onceuponatime');
-			}
-			if (pokemon.hasAbility('primitive') && !pokemon.volatiles['primitive'] && !this.field.isTerrain('sunnyday') && pokemon.useItem()) {
-				pokemon.addVolatile('primitive');
+			if (!this.field.isTerrain('electricterrain')) {
+				if (pokemon.hasAbility('quarkdrive') && !pokemon.volatiles['quarkdrive'] && pokemon.useItem()) {
+					pokemon.addVolatile('quarkdrive');
+				}
+				else if (pokemon.hasAbility('lightdrive') && !pokemon.volatiles['lightdrive'] && pokemon.useItem()) {
+					pokemon.addVolatile('lightdrive');
+				}
+				else if (pokemon.hasAbility('quarksurge') && !pokemon.volatiles['quarksurge'] && pokemon.useItem()) {
+					pokemon.addVolatile('quarksurge');
+				}
 			}
 			if (pokemon.hasAbility('systempurge') && !pokemon.volatiles['systempurge'] && pokemon.useItem()) {
 				pokemon.addVolatile('systempurge');

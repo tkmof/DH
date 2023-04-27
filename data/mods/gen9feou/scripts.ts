@@ -98,7 +98,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			const dancers = [];
 			for (const currentPoke of this.getAllActive()) {
 				if (pokemon === currentPoke) continue;
-				if ((currentPoke.hasAbility('dancer') || currentPoke.hasAbility('choreography')) && !currentPoke.isSemiInvulnerable()) {
+				if ((currentPoke.hasAbility(['dancer', 'choreography'])) && !currentPoke.isSemiInvulnerable()) {
 					dancers.push(currentPoke);
 				}
 			}
@@ -161,8 +161,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			// If a Fire/Flying type uses Burn Up and Roost, it becomes ???/Flying-type, but it's still grounded.
 			if (!negateImmunity && this.hasType('Flying') && !('roost' in this.volatiles)) return false;
 			if (
-				(this.hasAbility('levitate') ||
-				this.hasAbility('holygrail')) &&
+				(this.hasAbility(['levitate', 'holygrail'])) &&
 				!this.battle.suppressingAttackEvents()
 			) return null;
 			if ('magnetrise' in this.volatiles) return false;

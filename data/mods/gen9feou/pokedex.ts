@@ -31,7 +31,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Ghost"],
 		baseStats: {hp: 70, atk: 55, def: 87, spa: 115, spd: 85, spe: 88},
 		abilities: {0: "Holy Grail"},
-		weightkg: 69.3,
+		weightkg: 15.2,
 	},
 	guguzzparce: {
  // fusion: ['Guzzlord', 'Dudunsparce'],

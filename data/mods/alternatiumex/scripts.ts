@@ -409,6 +409,40 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		delete this.modData('Learnsets', 'ponytagalar').learnset.psybeam;
 		
 		this.modData("Learnsets", "golemalola").learnset.shiftgear = ["8L1"];
+		
+		this.modData("Learnsets", "cherrim").learnset.solarblade = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.powerwhip = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.leafblade = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.headlongrush = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.earthquake = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.highhorsepower = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.dig = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.bulldoze = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.earthpower = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.stealthrock = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.superpower = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.bodypress = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.knockoff = ["8L1"];
+		this.modData("Learnsets", "cherrim").learnset.uturn = ["8L1"];
+
+		this.modData("Learnsets", "minior").learnset.dragonhammer = ["8L1"];
+		this.modData("Learnsets", "minior").learnset.meteorbeam = ["8L1"];
+		this.modData("Learnsets", "minior").learnset.dracometeor = ["8L1"];
+		this.modData("Learnsets", "minior").learnset.dragonpulse = ["8L1"];
+		this.modData("Learnsets", "minior").learnset.wish = ["8L1"];
+		delete this.modData('Learnsets', 'minior').learnset.acrobatics;
+		delete this.modData('Learnsets', 'minior').learnset.shellsmash;
+
+		this.modData("Learnsets", "eevee").learnset.extremeevoboost = ["8L1"];
+		this.modData("Learnsets", "eevee").learnset.knockoff = ["8L1"];
+		this.modData("Learnsets", "eevee").learnset.hydropump = ["8L1"];
+		this.modData("Learnsets", "eevee").learnset.thunderbolt = ["8L1"];
+		this.modData("Learnsets", "eevee").learnset.icebeam = ["8L1"];
+		this.modData("Learnsets", "eevee").learnset.psychic = ["8L1"];
+		this.modData("Learnsets", "eevee").learnset.gigadrain = ["8L1"];
+		this.modData("Learnsets", "eevee").learnset.flamethrower = ["8L1"];
+		this.modData("Learnsets", "eevee").learnset.moonblast = ["8L1"];
+		delete this.modData('Learnsets', 'eevee').learnset.storedpower;
 	},
 	
 	pokemon: {
