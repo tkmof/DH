@@ -903,6 +903,10 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'ninetales').learnset.nightshade = ['1L1'];
 		this.modData('Learnsets', 'kingdra').learnset.dracometeor = ['1L1'];
 		this.modData('Learnsets', 'kingdra').learnset.dragonbreath = ['1L1'];
-
+		this.modData('Learnsets', 'paras').learnset.junglehealing = ['1L1'];
+		this.modData('Learnsets', 'tangela').learnset.junglehealing = ['1L1'];
+		this.modData('Learnsets', 'bulbasaur').learnset.junglehealing = ['1L1'];
+		this.modData('Learnsets', 'bellsprout').learnset.junglehealing = ['1L1'];
+		this.modData('Learnsets', 'exeggcute').learnset.junglehealing = ['1L1'];
 	},
 };
