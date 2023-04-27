@@ -189,6 +189,17 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 70, atk: 145, def: 185, spa: 90, spd: 85, spe: 60},
 		abilities: {0: "Dauntless Shield"},
 	},	
+	kangaskhanmega: {
+		inherit: true,
+		types: ["Normal", "Ground"],
+		baseStats: {hp: 105, atk: 135, def: 105, spa: 40, spd: 105, spe: 100},
+	},
+	salamencemega: {
+		inherit: true,
+		types: ["Dragon", "Flying"],
+		baseStats: {hp: 95, atk: 135, def: 105, spa: 155, spd: 105, spe: 105},
+		abilities: {0: "Confidence"},
+	},	
 	
 // Gen 6 Stuff
 	arbok: {

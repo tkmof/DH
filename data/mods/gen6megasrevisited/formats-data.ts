@@ -665,7 +665,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	kangaskhanmega: {
 		randomBattleMoves: ["fakeout", "return", "suckerpunch", "earthquake", "poweruppunch", "crunch"],
 		randomDoubleBattleMoves: ["fakeout", "return", "suckerpunch", "earthquake", "doubleedge", "poweruppunch", "drainpunch", "crunch", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	horsea: {
@@ -2096,9 +2096,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "DUU",
 	},
 	salamencemega: {
-		randomBattleMoves: ["doubleedge", "return", "fireblast", "earthquake", "dracometeor", "roost", "dragondance"],
+		randomBattleMoves: ["hurricane", "outrage", "fireblast", "earthquake", "dracometeor", "roost", "dragondance"],
 		randomDoubleBattleMoves: ["doubleedge", "return", "fireblast", "earthquake", "dracometeor", "protect", "dragondance", "dragonclaw"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DUber",
 	},
 	beldum: {
@@ -2117,7 +2117,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	metagrossmega: {
 		randomBattleMoves: ["meteormash", "earthquake", "agility", "zenheadbutt", "hammerarm", "icepunch"],
 		randomDoubleBattleMoves: ["meteormash", "earthquake", "protect", "zenheadbutt", "thunderpunch", "icepunch"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	regirock: {
