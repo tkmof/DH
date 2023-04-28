@@ -496,6 +496,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			watergun: ["1L1"],
 			waterfall: ["1L1"],
 			sparklingaria: ["1L1"],
+			hydrocannon: ["1L1"],
 		},
 	},
 };
