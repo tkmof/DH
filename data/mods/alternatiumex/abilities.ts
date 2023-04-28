@@ -1188,4 +1188,35 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		inherit: true,
 		shortDesc: "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 	},
+	
+	//Gen 8 Version of abilities
+	protean: {
+		onPrepareHit(source, target, move) {
+			if (move.hasBounced) return;
+			const type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+				this.add('-start', source, 'typechange', type, '[from] ability: Protean');
+			}
+		},
+		name: "Protean",
+		rating: 4.5,
+		num: 168,
+	},
+	dauntlessshield: {
+		onStart(pokemon) {
+			this.boost({def: 1}, pokemon);
+		},
+		name: "Dauntless Shield",
+		rating: 3.5,
+		num: 235,
+	},
+	intrepidsword: {
+		onStart(pokemon) {
+			this.boost({atk: 1}, pokemon);
+		},
+		name: "Intrepid Sword",
+		rating: 4,
+		num: 234,
+	},
 };
