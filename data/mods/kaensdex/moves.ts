@@ -2065,6 +2065,7 @@ cursedtail: {
 		shortDesc: "10% chance to sleep. Super effective on Dark.",
 		pp: 20,
 		priority: 0,
+		ignoreImmunity: true,
 		flags: {protect: 1, mirror: 1},
 		onEffectiveness(typeMod, target, type) {
 			if (type === 'Dark') return 1;
