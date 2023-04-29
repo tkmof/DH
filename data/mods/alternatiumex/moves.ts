@@ -1040,13 +1040,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 					}
 				}
 				if (move.flags['contact']) {
-					this.useMove("Infestation", target);
+					source.addVolatile('partiallytrapped');
+					this.add('-activate', source, 'move: Infestation', '[of] ' + target);
 				}
 				return this.NOT_FAIL;
 			},
 			onHit(target, source, move) {
 				if (move.isZOrMaxPowered && this.checkMoveMakesContact(move, source, target)) {
-					this.useMove("Infestation", target);
+					source.addVolatile('partiallytrapped');
+					this.add('-activate', source, 'move: Infestation', '[of] ' + target);
 				}
 			},
 		},
@@ -1550,6 +1552,26 @@ export const Moves: {[moveid: string]: MoveData} = {
 	tripledive: {
 		inherit: true,
 		shortDesc: "Hits 3 times.",
+	},
+	axekick: {
+		inherit: true,
+		shortDesc: "30% confusion. User loses 50% max HP if miss.",
+	},
+	lastrespects: {
+		inherit: true,
+		shortDesc: "+50 power for each time a party member fainted.",
+	},
+	comeuppance: {
+		inherit: true,
+		shortDesc: "If hit by an attack, returns 1.5x damage.",
+	},
+	doubleshock: {
+		inherit: true,
+		shortDesc: "User's Electric type: typeless; must be Electric.",
+	},
+	victorydance: {
+		inherit: true,
+		shortDesc: "Raises the user's Attack, Defense, Speed by 1.",
 	},
 	
 	//Snow Moves
