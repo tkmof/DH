@@ -1158,14 +1158,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: 836,
 		accuracy: 100,
 		basePower: 100,
-		onModifyMove(move, pokemon) {
-			if (pokemon.effectiveWeather() == 'snow') {
-				move.basePower *= 1.3;
+		onBasePower(basePower, pokemon, target) {
+			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				this.debug('stronger by weather');
+				return this.chainModify(1.3);
 			}
 		},
 		category: "Physical",
 		name: "Mountain Gale",
-		shortDesc: "1.3x power in Snow.",
+		shortDesc: "This move has 1.3x power under Snow/Hail.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -1193,6 +1194,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "User cures its status and boosts its SpA & SpD by 1.",
 		name: "Take Heart",
 		pp: 15,
 		priority: 0,
@@ -1209,19 +1211,20 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: 857,
 		accuracy: 100,
 		basePower: 80,
-		basePowerCallback(pokemon, target, move) {
-            if(pokemon.getStat('spe') < target.getStat('spe')) return move.basePower / 2;
-        },
 		category: "Physical",
 		name: "Jet Punch",
-		shortDesc: "If the target is faster than the user: 1/2 power and +1 priority.",
+		shortDesc: "If target is faster: 1/2 power and +1 priority.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		onModifyMove(move, pokemon, target) {
-			if(pokemon.getStat('spe') < target.getStat('spe')) {
-				move.priority = 1;
-				return move.basePower;
+		onModifyMove(move, pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				const userspeed = pokemon.getStat('spe', false, true);
+				const targetspeed = target.getStat('spe', false, true);
+				if (targetspeed >= userspeed) {
+					move.priority = 1;
+					move.basePower *= 0.5;
+				}
 			}
 		},
 		secondary: null,
@@ -1239,7 +1242,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
-		shortDesc: "Type depends on user's secondary type. If resisted: -1 Defense.",
+		shortDesc: "Type depends on user's secondary type. Resists: -1 Def.",
 		name: "Raging Bull",
 		pp: 10,
 		priority: 0,
@@ -1377,7 +1380,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	buzzybuzz: {
 		inherit: true,
-		shortDesc: "100% chance to paralyze the target if they attacked the user first.",
+		shortDesc: "Paralyses target if they attacked the user first.",
 		isNonstandard: null,
 		pp: 10,
 		onHit(pokemon, source) {
@@ -1413,7 +1416,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	sizzlyslide: {
 		inherit: true,
-		shortDesc: "Power doubles if the target is burned. 30% chance to burn.",
+		shortDesc: "2x power if target is burned. 30% chance to burn.",
 		isNonstandard: null,
 		pp: 10,
 		onBasePower(basePower, pokemon, target) {
@@ -1441,7 +1444,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return move.basePower;
 		},
 		category: "Special",
-		shortDesc: "The user removes its sides hazards. User switches out.",
+		shortDesc: "The user removes its sides hazards. User switches.",
 		isNonstandard: null,
 		pp: 20,
 		priority: 0,
@@ -1469,7 +1472,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "User: -1/2 max HP; +1 in Atk/Def/SpA/SpD/Spe & summons Sunny Day.",
+		shortDesc: "User: -1/2 max HP; +1 Omni-Boost & Summons Sun.",
 		name: "Blossom",
 		pp: 10,
 		priority: 0,
@@ -1531,5 +1534,156 @@ export const Moves: {[moveid: string]: MoveData} = {
 	headlongrush: {
 		inherit: true,
 		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
+	},
+	glaiverush: {
+		inherit: true,
+		shortDesc: "User takes sure-hit 2x damage until its next turn.",
+	},
+	hyperdrill: {
+		inherit: true,
+		shortDesc: "Bypasses protection without breaking it.",
+	},
+	luminacrash: {
+		inherit: true,
+		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
+	},
+	tripledive: {
+		inherit: true,
+		shortDesc: "Hits 3 times.",
+	},
+	
+	//Snow Moves
+	auroraveil: {
+		inherit: true,
+		onTryHitSide() {
+			if (!['hail', 'snow'].includes(pokemon.effectiveWeather())) return false;
+		},
+		shortDesc: "For 5 turns, damage to allies halved. Snow/Hail only.",
+	},
+	blizzard: {
+		inherit: true,
+		onModifyMove(move) {
+			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) move.accuracy = true;
+		},
+		shortDesc: "10% chance to freeze foe(s). Can't miss in Snow/Hail.",
+	},
+	moonlight: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	morningsun: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	solarbeam: {
+		inherit: true,
+		onBasePower(basePower, pokemon, target) {
+			if (['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				this.debug('weakened by weather');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	solarblade: {
+		inherit: true,
+		onBasePower(basePower, pokemon, target) {
+			if (['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				this.debug('weakened by weather');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	synthesis: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	weatherball: {
+		inherit: true,
+		onModifyType(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				break;
+			case 'hail':
+			case 'snow':
+				move.type = 'Ice';
+				break;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.basePower *= 2;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.basePower *= 2;
+				break;
+			case 'sandstorm':
+				move.basePower *= 2;
+				break;
+			case 'hail':
+			case 'snow':
+				move.basePower *= 2;
+				break;
+			}
+		},
 	},
 };

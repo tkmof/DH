@@ -66,10 +66,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -3,
 	},
 	necrodancer: {
-		onSourceAfterFaint(length, target, source, effect) {
-			if (effect && effect.effectType === 'Move') {
-				source.addVolatile('necrodancer');
-			}
+		onAnyFaint() {
+			const necrodancertarget = this.effectData.target;
+			necrodancertarget.addVolatile('necrodancer');
 		},
 		onAfterMove(source) {
 			if (source.volatiles['necrodancer']) {
@@ -159,7 +158,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.field.setWeather('hail');
 		},
 		onWeather(target, source, effect) {
-			if (effect.id === 'hail') {
+			if (effect.id === 'hail' || effect.id === 'snow') {
 				this.heal(target.baseMaxhp / 16);
 			}
 		},
@@ -168,7 +167,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		isPermanent: true,
 		name: "As One (Glastrier)",
-		shortDesc: "The combination of Ice Body and Snow Warning.",
+		shortDesc: "The effects of Ice Body and summons Hail.",
 		rating: 3.5,
 		num: 266,
 	},
@@ -343,7 +342,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	snowcloak: {
 		onBoost(boost, target, source, effect) {
-			if(!this.field.isWeather('hail')) return;
+			if(!this.field.isWeather('snow') || !this.field.isWeather('hail')) return;
 			let showMsg = false;
 			let i: BoostName;
 			for (i in boost) {
@@ -357,7 +356,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Snow Cloak",
-		shortDesc: "If Hail is active, this Pokemon cannot have its stats lowered or lower its own stats.",
+		shortDesc: "If Snow/Hail, this Pokemon cannot have its stats lowered or lower its own stats.",
 		rating: 3,
 		num: 81,
 	},
@@ -1218,5 +1217,32 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Intrepid Sword",
 		rating: 4,
 		num: 234,
+	},
+	
+	//Snow Abilities
+	slushrush: {
+		onModifySpe(spe, pokemon) {
+			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(2);
+			}
+		},
+		inherit: true,
+		shortDesc: "If Snow/Hail is active, this Pokemon's Speed is doubled.",
+	},
+	snowwarning: {
+		onStart(source) {
+			this.field.setWeather('snow');
+		},
+		inherit: true,
+		shortDesc: "On switch-in, this Pokemon summons Snow.",
+	},
+	icebody: {
+		onWeather(target, source, effect) {
+			if (effect.id === 'hail' || effect.id === 'snow') {
+				this.heal(target.baseMaxhp / 16);
+			}
+		},
+		inherit: true,
+		shortDesc: "If Snow/Hail is active, this Pokemon heals 1/16 of its max HP each turn.",
 	},
 };
