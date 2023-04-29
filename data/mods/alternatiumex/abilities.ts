@@ -167,7 +167,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		isPermanent: true,
 		name: "As One (Glastrier)",
-		shortDesc: "The effects of Ice Body and summons Hail.",
+		shortDesc: "The effects of Ice Body. Summons Hail on entry.",
 		rating: 3.5,
 		num: 266,
 	},
