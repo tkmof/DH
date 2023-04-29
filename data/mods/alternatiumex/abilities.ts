@@ -689,7 +689,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -28,
 	},
 	costar: {
-		/*onStart(pokemon) {
+		onStart(pokemon) {
 			let activated = false;
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !this.isAdjacent(target, pokemon)) continue;
@@ -697,20 +697,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.add('-ability', pokemon, 'Costar', 'boost');
 					activated = true;
 				}
-				pokemon.boosts[spe] = target.boosts[spe];
+				console.log(target.boosts);
+				this.boost({spe: target.boosts.spe}, pokemon)
 			}
-		},*/
-		/*onBoost(boost, target, source, effect) {
-			if (target.newlySwitched ) {
-				const boost = boosts['spe']!;
-				for (boost in target.boosts) {
-					source.boosts[boost] = target.boosts[boost];
-				}
-				this.add('-copyboost', source, target, '[from] move: Psych Up');
-			}
-		},*/
+		},
 		name: "Costar",
-		shortDesc: "(Non-functional placeholder) On switch-in, this Pokemon copies the speed boosts of the opponent.",
+		shortDesc: "On switch-in, this Pokemon copies the speed boosts of the opponent.",
 		num: 294,
 	},
 	overthehead: {
