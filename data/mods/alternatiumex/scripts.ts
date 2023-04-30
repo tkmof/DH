@@ -480,31 +480,13 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			return item !== 'airballoon';
 		},
 		ignoringAbility() {
-			// Check if any active pokemon have the ability Neutralizing Gas
-			let neutralizinggas = false;
-			let rubberarmor = false;
-			const rubberarmorAbilities = ["blaze", "infiltrator", "libero", "overgrow", "sandforce", "soulreap", "splitsystem", "steelworker", 
-				"swarm", "torrent", "unseenfist", "victorystar", "waterbubble"];
-			for (const pokemon of this.battle.getAllActive()) {
-				// can't use hasAbility because it would lead to infinite recursion
-				if (pokemon.ability === ('neutralizinggas' as ID) && !pokemon.volatiles['gastroacid'] &&
-					!pokemon.transformed && !pokemon.abilityData.ending) {
-					neutralizinggas = true;
-					break;
-				}
-				if (pokemon.ability === ('rubberarmor' as ID) && !pokemon.volatiles['gastroacid'] &&
-					!pokemon.transformed) {
-					rubberarmor = true;
-				}
-			}
+			if (this.battle.gen >= 5 && !this.isActive) return true;
+			if (this.getAbility().isPermanent) return false;
+			if (this.volatiles['gastroacid']) return true;
+			if (this.ability === ('rubberarmor' as ID)) return false;
+			if (this.volatiles['rubberarmor']) return true;
 
-			return !!(
-				(this.battle.gen >= 5 && !this.isActive) ||
-				((this.volatiles['gastroacid'] || this.volatiles['rubberarmor'] || (neutralizinggas && this.ability !== ('neutralizinggas' as ID)) ||
-					(rubberarmor && rubberarmorAbilities.includes(this.ability))) &&
-				!this.getAbility().isPermanent
-				)
-			);
+			return false;
 		},
 	},
 	hitStepMoveHitLoop(targets, pokemon, move) { // Temporary name

@@ -145,6 +145,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'Rubber Armor');
 		},
+		onFoeBeforeMovePriority: 13,
+		onFoeBeforeMove(attacker, defender, move) {
+			if (move.category === 'Status') return;
+			attacker.addVolatile('rubberarmor');
+		},
+		condition: {
+			onAfterMove(pokemon) {
+				pokemon.removeVolatile('rubberarmor');
+			},
+		},
 		name: "Rubber Armor",
 		shortDesc: "Negates opponent's abilities when targeted by an attacking move.",
 		rating: 2,
@@ -1236,5 +1246,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		inherit: true,
 		shortDesc: "If Snow/Hail is active, this Pokemon heals 1/16 of its max HP each turn.",
+	},
+	
+	//Rubber Armor Interaction
+	galewings: {
+		inherit: true,
+		onModifyPriority(priority, pokemon, target, move) {
+			for (const poke of this.getAllActive()) {
+				if (poke.hasAbility('rubberarmor') && poke.side.id !== pokemon.side.id &&
+					!poke.volatiles['gastroacid'] && !poke.transformed && move?.category !== 'Status') {
+					return;
+				}
+			}
+			if (move?.type === 'Flying' && pokemon.hp === pokemon.maxhp) return priority + 1;
+		},
 	},
 };
