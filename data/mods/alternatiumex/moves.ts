@@ -1551,74 +1551,147 @@ export const Moves: {[moveid: string]: MoveData} = {
 	aquacutter:  {
 		inherit: true,
 		shortDesc: "High critical hit ratio.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+		},
 	},
 	chillingwater:  {
 		inherit: true,
 		shortDesc: "100% chance to lower the target's Attack by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Water Gun", target);
+		},
 	},
 	pounce:  {
 		inherit: true,
 		shortDesc: "100% chance to lower the target's Speed by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Skitter Smack", target);
+		},
 	},
 	snowscape:  {
 		inherit: true,
 		shortDesc: "For 5 turns, snow falls. Ice: 1.5x Def.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hail", target);
+		},
 	},
 	terablast:  {
 		inherit: true,
 		shortDesc: "If Terastallized: Phys. if Atk > SpA, type = Tera.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Terrain Pulse", target);
+		},
 	},
 	trailblaze:  {
 		inherit: true,
 		shortDesc: "100% chance to raise the user's Speed by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Branch Poke", target);
+		},
 	},
 	icespinner: {
 		inherit: true,
 		shortDesc: "Ends the effects of terrain.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rapid Spin", target);
+		},
 	},
 	populationbomb: {
 		inherit: true,
 		shortDesc: "Hits 10 times. Each hit can miss.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tail Slap", target);
+		},
 	},
 	spinout: {
 		inherit: true,
 		shortDesc: "Lowers the user's Speed by 2.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gyro Ball", target);
+		},
 	},
 	headlongrush: {
 		inherit: true,
 		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Earth Power", target);
+			this.add('-anim', source, "Close Combat", target);
+		},
 	},
 	glaiverush: {
 		inherit: true,
 		shortDesc: "User takes sure-hit 2x damage until its next turn.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Outrage", target);
+		},
 	},
 	hyperdrill: {
 		inherit: true,
 		shortDesc: "Bypasses protection without breaking it.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Horn Drill", target);
+		},
 	},
 	luminacrash: {
 		inherit: true,
 		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Luster Purge", target);
+		},
 	},
 	tripledive: {
 		inherit: true,
 		shortDesc: "Hits 3 times.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dive", target);
+		},
 	},
 	axekick: {
 		inherit: true,
 		shortDesc: "30% confusion. User loses 50% max HP if miss.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Jump Kick", target);
+		},
 	},
 	lastrespects: {
 		inherit: true,
 		shortDesc: "+50 power for each time a party member fainted.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poltergeist", target);
+		},
 	},
 	comeuppance: {
 		inherit: true,
 		shortDesc: "If hit by an attack, returns 1.5x damage.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Payback", target);
+		},
 	},
 	doubleshock: {
 		inherit: true,
 		shortDesc: "User's Electric type: typeless; must be Electric.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bolt Strike", target);
+		},
 	},
 	
 	//Snow Moves
