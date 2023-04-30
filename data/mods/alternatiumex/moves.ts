@@ -1005,7 +1005,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Spiky Shield", target);
+			this.add('-anim', source, "Withdraw", target);
+			this.add('-anim', source, "Protect", target);
 		},
 		stallingMove: true,
 		volatileStatus: 'shelter',
@@ -1040,13 +1041,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 					}
 				}
 				if (move.flags['contact']) {
-					this.useMove("Infestation", target);
+					source.addVolatile('partiallytrapped');
+					this.add('-activate', source, 'move: Infestation', '[of] ' + target);
 				}
 				return this.NOT_FAIL;
 			},
 			onHit(target, source, move) {
 				if (move.isZOrMaxPowered && this.checkMoveMakesContact(move, source, target)) {
-					this.useMove("Infestation", target);
+					source.addVolatile('partiallytrapped');
+					this.add('-activate', source, 'move: Infestation', '[of] ' + target);
 				}
 			},
 		},
@@ -1158,17 +1161,22 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: 836,
 		accuracy: 100,
 		basePower: 100,
-		onModifyMove(move, pokemon) {
-			if (pokemon.effectiveWeather() == 'snow') {
-				move.basePower *= 1.3;
+		onBasePower(basePower, pokemon, target) {
+			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				this.debug('stronger by weather');
+				return this.chainModify(1.3);
 			}
 		},
 		category: "Physical",
 		name: "Mountain Gale",
-		shortDesc: "1.3x power in Snow.",
+		shortDesc: "This move has 1.3x power under Snow/Hail.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Icicle Crash", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ice",
@@ -1183,6 +1191,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Body Press", target);
+		},
 		useSourceDefensiveAsOffensive: true,
 		secondary: null,
 		target: "normal",
@@ -1193,10 +1205,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "User cures its status and boosts its SpA & SpD by 1.",
 		name: "Take Heart",
 		pp: 15,
 		priority: 0,
 		flags: {snatch: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Recover", target);
+		},
 		onHit(pokemon) {
 			const success = !!this.boost({spa: 1, spd: 1});
 			return pokemon.cureStatus() || success;
@@ -1209,20 +1226,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: 857,
 		accuracy: 100,
 		basePower: 80,
-		basePowerCallback(pokemon, target, move) {
-            if(pokemon.getStat('spe') < target.getStat('spe')) return move.basePower / 2;
-        },
 		category: "Physical",
 		name: "Jet Punch",
-		shortDesc: "If the target is faster than the user: 1/2 power and +1 priority.",
+		shortDesc: "If target is faster: 1/2 power and +1 priority.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		onModifyMove(move, pokemon, target) {
-			if(pokemon.getStat('spe') < target.getStat('spe')) {
-				move.priority = 1;
-				return move.basePower;
+		onModifyMove(move, pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				const userspeed = pokemon.getStat('spe', false, true);
+				const targetspeed = target.getStat('spe', false, true);
+				if (targetspeed >= userspeed) {
+					move.priority = 1;
+					move.basePower *= 0.5;
+				}
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mach Punch", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -1239,7 +1261,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
-		shortDesc: "Type depends on user's secondary type. If resisted: -1 Defense.",
+		shortDesc: "Type depends on user's secondary type. Resists: -1 Def.",
 		name: "Raging Bull",
 		pp: 10,
 		priority: 0,
@@ -1255,6 +1277,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 				this.boost({def: -1}, target);
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -1264,7 +1290,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		shortDesc: "(Non-functional placeholder) Type depends on both the user's types.",
+		shortDesc: "(Semifunctional placeholder) Type depends on both the user's types.",
 		name: "Raging Bull (Steam)",
 		pp: 10,
 		priority: 0,
@@ -1274,10 +1300,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (type === "Bird") type = "???";
 			move.type = type;
 		},
-		/*onEffectiveness(typeMod, target, source, type, move) {
-			const secondType = source.types[1];
-			return typeMod + this.dex.getEffectiveness(secondType, type);
-		},*/
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.dex.getEffectiveness('Fire', type);
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -1302,6 +1331,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (pokemon.species.name === 'Tauros-Azul') {
 				move.type = 'Ice';
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -1377,7 +1410,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	buzzybuzz: {
 		inherit: true,
-		shortDesc: "100% chance to paralyze the target if they attacked the user first.",
+		shortDesc: "Paralyses target if they attacked the user first.",
 		isNonstandard: null,
 		pp: 10,
 		onHit(pokemon, source) {
@@ -1413,7 +1446,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	sizzlyslide: {
 		inherit: true,
-		shortDesc: "Power doubles if the target is burned. 30% chance to burn.",
+		shortDesc: "2x power if target is burned. 30% chance to burn.",
 		isNonstandard: null,
 		pp: 10,
 		onBasePower(basePower, pokemon, target) {
@@ -1441,7 +1474,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return move.basePower;
 		},
 		category: "Special",
-		shortDesc: "The user removes its sides hazards. User switches out.",
+		shortDesc: "The user removes its sides hazards. User switches.",
 		isNonstandard: null,
 		pp: 20,
 		priority: 0,
@@ -1469,7 +1502,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "User: -1/2 max HP; +1 in Atk/Def/SpA/SpD/Spe & summons Sunny Day.",
+		shortDesc: "User: -1/2 max HP; +1 Omni-Boost & Summons Sun.",
 		name: "Blossom",
 		pp: 10,
 		priority: 0,
@@ -1490,46 +1523,309 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "self",
 		type: "Grass",
 	},
+	victorydance: {
+		num: -26,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Raises the user's Attack, Defense, Speed by 1.",
+		name: "Victory Dance",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, dance: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Quiver Dance", target);
+		},
+		boosts: {
+			atk: 1,
+			def: 1,
+			spe: 1
+		},
+		secondary: null,
+		target: "self",
+		type: "Fighting",
+	},
 	
 	//SV Move Descriptions
 	aquacutter:  {
 		inherit: true,
 		shortDesc: "High critical hit ratio.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+		},
 	},
 	chillingwater:  {
 		inherit: true,
 		shortDesc: "100% chance to lower the target's Attack by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Water Gun", target);
+		},
 	},
 	pounce:  {
 		inherit: true,
 		shortDesc: "100% chance to lower the target's Speed by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Skitter Smack", target);
+		},
 	},
 	snowscape:  {
 		inherit: true,
 		shortDesc: "For 5 turns, snow falls. Ice: 1.5x Def.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hail", target);
+		},
 	},
 	terablast:  {
 		inherit: true,
 		shortDesc: "If Terastallized: Phys. if Atk > SpA, type = Tera.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Terrain Pulse", target);
+		},
 	},
 	trailblaze:  {
 		inherit: true,
 		shortDesc: "100% chance to raise the user's Speed by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Branch Poke", target);
+		},
 	},
 	icespinner: {
 		inherit: true,
 		shortDesc: "Ends the effects of terrain.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rapid Spin", target);
+		},
 	},
 	populationbomb: {
 		inherit: true,
 		shortDesc: "Hits 10 times. Each hit can miss.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tail Slap", target);
+		},
 	},
 	spinout: {
 		inherit: true,
 		shortDesc: "Lowers the user's Speed by 2.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gyro Ball", target);
+		},
 	},
 	headlongrush: {
 		inherit: true,
 		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Earth Power", target);
+			this.add('-anim', source, "Close Combat", target);
+		},
+	},
+	glaiverush: {
+		inherit: true,
+		shortDesc: "User takes sure-hit 2x damage until its next turn.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Outrage", target);
+		},
+	},
+	hyperdrill: {
+		inherit: true,
+		shortDesc: "Bypasses protection without breaking it.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Horn Drill", target);
+		},
+	},
+	luminacrash: {
+		inherit: true,
+		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Luster Purge", target);
+		},
+	},
+	tripledive: {
+		inherit: true,
+		shortDesc: "Hits 3 times.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dive", target);
+		},
+	},
+	axekick: {
+		inherit: true,
+		shortDesc: "30% confusion. User loses 50% max HP if miss.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Jump Kick", target);
+		},
+	},
+	lastrespects: {
+		inherit: true,
+		shortDesc: "+50 power for each time a party member fainted.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poltergeist", target);
+		},
+	},
+	comeuppance: {
+		inherit: true,
+		shortDesc: "If hit by an attack, returns 1.5x damage.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Payback", target);
+		},
+	},
+	doubleshock: {
+		inherit: true,
+		shortDesc: "User's Electric type: typeless; must be Electric.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bolt Strike", target);
+		},
+	},
+	
+	//Snow Moves
+	auroraveil: {
+		inherit: true,
+		onTryHitSide() {
+			if (!['hail', 'snow'].includes(pokemon.effectiveWeather())) return false;
+		},
+		shortDesc: "For 5 turns, damage to allies halved. Snow/Hail only.",
+	},
+	blizzard: {
+		inherit: true,
+		onModifyMove(move) {
+			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) move.accuracy = true;
+		},
+		shortDesc: "10% chance to freeze foe(s). Can't miss in Snow/Hail.",
+	},
+	moonlight: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	morningsun: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	solarbeam: {
+		inherit: true,
+		onBasePower(basePower, pokemon, target) {
+			if (['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				this.debug('weakened by weather');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	solarblade: {
+		inherit: true,
+		onBasePower(basePower, pokemon, target) {
+			if (['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				this.debug('weakened by weather');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	synthesis: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	weatherball: {
+		inherit: true,
+		onModifyType(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				break;
+			case 'hail':
+			case 'snow':
+				move.type = 'Ice';
+				break;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.basePower *= 2;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.basePower *= 2;
+				break;
+			case 'sandstorm':
+				move.basePower *= 2;
+				break;
+			case 'hail':
+			case 'snow':
+				move.basePower *= 2;
+				break;
+			}
+		},
 	},
 };

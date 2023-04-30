@@ -1,6 +1,7 @@
 export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	decidueyehermit: {
 		learnset: {
+			trailblaze: ["8L1"],
 			acrobatics: ["8L1"],
 			airslash: ["8L1"],
 			astonish: ["8L1"],
@@ -91,6 +92,10 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	decidueyeautumn: {
 		learnset: {
+			axekick: ["8L1"],
+			knockoff: ["8L1"],
+			shadowsneak: ["8L1"],
+			trailblaze: ["8L1"],
 			acrobatics: ["8L1"],
 			airslash: ["8L1"],
 			attract: ["8L1"],
@@ -280,6 +285,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	typhlosionwarlock: {
 		learnset: {
+			focusblast: ["8L1"],
 			aerialace: ["8L1"],
 			attract: ["8L1"],
 			blastburn: ["8L1"],
@@ -379,6 +385,10 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	samurottfoamy: {
 		learnset: {
+			drillrun: ["8L1"],
+			aquacutter: ["8L1"],
+			chillingwater: ["8L1"],
+			snowscape: ["8L1"],
 			aerialace: ["8L1"],
 			airslash: ["8L1"],
 			aquajet: ["8L1"],
@@ -466,6 +476,10 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	samurottrogue: {
 		learnset: {
+			drillrun: ["8L1"],
+			aquacutter: ["8L1"],
+			chillingwater: ["8L1"],
+			snowscape: ["8L1"],
 			aerialace: ["8L1"],
 			aquajet: ["8L1"],
 			aquatail: ["8L1"],
@@ -612,6 +626,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	oricoriopau: {
 		learnset: {
+			trailblaze: ["8L1"],
 			acrobatics: ["8L1"],
 			aerialace: ["8L1"],
 			agility: ["8L1"],
@@ -676,6 +691,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	horrorcorio: {
 		learnset: {
+			lastrespects: ["8L1"],
 			acrobatics: ["8L1"],
 			aerialace: ["8L1"],
 			agility: ["8L1"],
@@ -819,6 +835,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	pikachuhoenn: {
 		learnset: {
+			comeuppance: ["8L1"],
 			bulletpunch: ["8L1"],
 			closecombat: ["8L1"],
 			stoneedge: ["8L1"],
@@ -987,6 +1004,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	pikachuunova: {
 		learnset: {
+			aquacutter: ["8L1"],
+			chillingwater: ["8L1"],
 			waterfall: ["8L1"],
 			poisonjab: ["8L1"],
 			gunkshot: ["8L1"],
@@ -1342,6 +1361,10 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	urshifuerosion: {
 		learnset: {
+			swordsdance: ["8L1"],
+			chillingwater: ["8L1"],
+			snowscape: ["8L1"],
+			aquacutter: ["8L1"],
 			rapidspin: ["8L1"],
 			uturn: ["8L1"],
 			acrobatics: ["8L1"],
@@ -1470,6 +1493,9 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	calyrexglacier: {
 		learnset: {
+			icespinner: ["8L1"],
+			stealthrock: ["8L1"],
+			snowscape: ["8L1"],
 			agility: ["8L1"],
 			allyswitch: ["8L1"],
 			aromatherapy: ["8L1"],
@@ -1732,6 +1758,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	salazzleruler: {
 		learnset: {
+			toxicspikes: ["8L1"],
 			accelerock: ["8L1"],
 			acrobatics: ["8L1"],
 			attract: ["8L1"],
@@ -1861,6 +1888,9 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	mrmimeprance: {
 		learnset: {
+			chillingwater: ["8L1"],
+			snowscape: ["8L1"],
+			icespinner: ["8L1"],
 			allyswitch: ["8L1"],
 			attract: ["8L1"],
 			avalanche: ["8L1"],
@@ -2405,6 +2435,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	lilligantbard: {
 		learnset: {
+			trailblaze: ["8L1"],
 			absorb: ["8L1"],
 			afteryou: ["8L1"],
 			aromatherapy: ["8L1"],
@@ -2474,6 +2505,10 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	mistlegant: {
 		learnset: {
+			axekick: ["8L1"],
+			victorydance: ["8L1"],
+			icespinner: ["8L1"],
+			trailblaze: ["8L1"],
 			absorb: ["8L1"],
 			afteryou: ["8L1"],
 			aromatherapy: ["8L1"],
@@ -2808,6 +2843,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	persianomen: {
 		learnset: {
+			comeuppance: ["8L1"],
+			pounce: ["8L1"],
 			aerialace: ["8L1"],
 			amnesia: ["8L1"],
 			assurance: ["8L1"],
@@ -3198,6 +3235,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	polteageistantique: {
 		learnset: {
+			snowscape: ["8L1"],
+			icespinner: ["8L1"],
 			allyswitch: ["8L1"],
 			aromatherapy: ["8L1"],
 			aromaticmist: ["8L1"],
@@ -3400,6 +3439,9 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	articunomistral: {
 		learnset: {
+			snowscape: ["8L1"],
+			chillingwater: ["8L1"],
+			icespinner: ["8L1"],
 			aerialace: ["8L1"],
 			agility: ["8L1"],
 			aircutter: ["8L1"],
@@ -3495,6 +3537,9 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	articunotsunami: {
 		learnset: {
+			aquacutter: ["8L1"],
+			snowscape: ["8L1"],
+			chillingwater: ["8L1"],
 			agility: ["8L1"],
 			airslash: ["8L1"],
 			allyswitch: ["8L1"],
@@ -3560,6 +3605,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	charpados: {
 		learnset: {
+			axekick: ["8L1"],
 			autotomize: ["8L1"],
 			agility: ["8L1"],
 			ancientpower: ["8L1"],
@@ -3615,6 +3661,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	bennutres: {
 		learnset: {
+			trailblaze: ["8L1"],
 			afteryou: ["8L1"],
 			agility: ["8L1"],
 			ancientpower: ["8L1"],
@@ -3874,6 +3921,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	archronos: {
 		learnset: {
+			trick: ["8L1"],
+			focusblast: ["8L1"],
 			aerialace: ["8L1"],
 			ancientpower: ["8L1"],
 			aurasphere: ["8L1"],
@@ -3968,6 +4017,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	palkiaorigin: {
 		learnset: {
+			trick: ["8L1"],
+			stealthrock: ["8L1"],
 			aerialace: ["8L1"],
 			ancientpower: ["8L1"],
 			aquaring: ["8L1"],
@@ -4138,6 +4189,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	basculectric: {
 		learnset: {
+			chillingwater: ["8L1"],
 			wavecrash: ["8L1"],
 			lifedew: ["8L1"],
 			thunderbolt: ["8L1"],
@@ -4388,6 +4440,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	basculagoon: {
 		learnset: {
+			chillingwater: ["8L1"],
 			wavecrash: ["8L1"],
 			outrage: ["8L1"],
 			dracometeor: ["8L1"],
@@ -4554,6 +4607,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	magearnaprototype: {
 		learnset: {
+			spikes: ["8L1"],
 			fireblast: ["8L1"],
 			flamethrower: ["8L1"],
 			heatwave: ["8L1"],
@@ -4617,6 +4671,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	zarude: {
 		learnset: {
+			toxicspikes: ["8L1"],
+			trailblaze: ["8L1"],
 			gunkshot: ["8L1"],
 			poisonjab: ["8L1"],
 			sludgebomb: ["8L1"],
@@ -4688,6 +4744,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	zarudehero: {
 		learnset: {
+			trailblaze: ["8L1"],
 			fly: ["8L1"],
 			bounce: ["8L1"],
 			hurricane: ["8L1"],
@@ -5187,6 +5244,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	goodratsunade: {
 		learnset: {
+			toxicspikes: ["8L1"],
 			dragonhammer: ["8L1"],
 			gunkshot: ["8L1"],
 			poisonjab: ["8L1"],
@@ -5276,6 +5334,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	goodrasymbiotic: {
 		learnset: {
+			pounce: ["8L1"],
 			uturn: ["8L1"],
 			attackorder: ["8L1"],
 			lunge: ["8L1"],
@@ -5416,7 +5475,6 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			sleeptalk: ["8M"],
 			substitute: ["8M"],
 			sunnyday: ["8M"],
-			superfang: ["8L11"],
 			swift: ["8M"],
 			takedown: ["8M"],
 			taunt: ["8M"],

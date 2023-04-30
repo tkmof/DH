@@ -66,10 +66,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -3,
 	},
 	necrodancer: {
-		onSourceAfterFaint(length, target, source, effect) {
-			if (effect && effect.effectType === 'Move') {
-				source.addVolatile('necrodancer');
-			}
+		onAnyFaint() {
+			const necrodancertarget = this.effectData.target;
+			necrodancertarget.addVolatile('necrodancer');
 		},
 		onAfterMove(source) {
 			if (source.volatiles['necrodancer']) {
@@ -146,6 +145,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'Rubber Armor');
 		},
+		onFoeBeforeMovePriority: 13,
+		onFoeBeforeMove(attacker, defender, move) {
+			if (move.category === 'Status') return;
+			attacker.addVolatile('rubberarmor');
+		},
+		condition: {
+			onAfterMove(pokemon) {
+				pokemon.removeVolatile('rubberarmor');
+			},
+		},
 		name: "Rubber Armor",
 		shortDesc: "Negates opponent's abilities when targeted by an attacking move.",
 		rating: 2,
@@ -159,7 +168,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.field.setWeather('hail');
 		},
 		onWeather(target, source, effect) {
-			if (effect.id === 'hail') {
+			if (effect.id === 'hail' || effect.id === 'snow') {
 				this.heal(target.baseMaxhp / 16);
 			}
 		},
@@ -168,7 +177,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		isPermanent: true,
 		name: "As One (Glastrier)",
-		shortDesc: "The combination of Ice Body and Snow Warning.",
+		shortDesc: "The effects of Ice Body. Summons Hail on entry.",
 		rating: 3.5,
 		num: 266,
 	},
@@ -343,7 +352,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	snowcloak: {
 		onBoost(boost, target, source, effect) {
-			if(!this.field.isWeather('hail')) return;
+			if(!this.field.isWeather('snow') || !this.field.isWeather('hail')) return;
 			let showMsg = false;
 			let i: BoostName;
 			for (i in boost) {
@@ -357,7 +366,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Snow Cloak",
-		shortDesc: "If Hail is active, this Pokemon cannot have its stats lowered or lower its own stats.",
+		shortDesc: "If Snow/Hail, this Pokemon cannot have its stats lowered or lower its own stats.",
 		rating: 3,
 		num: 81,
 	},
@@ -690,7 +699,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -28,
 	},
 	costar: {
-		/*onStart(pokemon) {
+		onStart(pokemon) {
 			let activated = false;
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !this.isAdjacent(target, pokemon)) continue;
@@ -698,20 +707,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.add('-ability', pokemon, 'Costar', 'boost');
 					activated = true;
 				}
-				pokemon.boosts[spe] = target.boosts[spe];
+				console.log(target.boosts);
+				this.boost({spe: target.boosts.spe}, pokemon)
 			}
-		},*/
-		/*onBoost(boost, target, source, effect) {
-			if (target.newlySwitched ) {
-				const boost = boosts['spe']!;
-				for (boost in target.boosts) {
-					source.boosts[boost] = target.boosts[boost];
-				}
-				this.add('-copyboost', source, target, '[from] move: Psych Up');
-			}
-		},*/
+		},
 		name: "Costar",
-		shortDesc: "(Non-functional placeholder) On switch-in, this Pokemon copies the speed boosts of the opponent.",
+		shortDesc: "On switch-in, this Pokemon copies the speed boosts of the opponent.",
 		num: 294,
 	},
 	overthehead: {
@@ -1175,6 +1176,51 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	quarkdrive: {
 		inherit: true,
 		shortDesc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Quark Drive', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Quark Drive');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'quarkdrive' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk' || target.hasAbility('rubberarmor')) return;
+				this.debug('Quark Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Quark Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa' || target.hasAbility('rubberarmor')) return;
+				this.debug('Quark Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Quark Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Quark Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Quark Drive');
+			},
+		},
 	},
 	purifyingsalt: {
 		inherit: true,
@@ -1187,6 +1233,51 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	protosynthesis: {
 		inherit: true,
 		shortDesc: "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Protosynthesis', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Protosynthesis');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'protosynthesis' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk' || target.hasAbility('rubberarmor')) return;
+				this.debug('Protosynthesis atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Protosynthesis def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa' || target.hasAbility('rubberarmor')) return;
+				this.debug('Protosynthesis spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Protosynthesis spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Protosynthesis spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Protosynthesis');
+			},
+		},
 	},
 	
 	//Gen 8 Version of abilities
@@ -1218,5 +1309,46 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Intrepid Sword",
 		rating: 4,
 		num: 234,
+	},
+	
+	//Snow Abilities
+	slushrush: {
+		onModifySpe(spe, pokemon) {
+			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(2);
+			}
+		},
+		inherit: true,
+		shortDesc: "If Snow/Hail is active, this Pokemon's Speed is doubled.",
+	},
+	snowwarning: {
+		onStart(source) {
+			this.field.setWeather('snow');
+		},
+		inherit: true,
+		shortDesc: "On switch-in, this Pokemon summons Snow.",
+	},
+	icebody: {
+		onWeather(target, source, effect) {
+			if (effect.id === 'hail' || effect.id === 'snow') {
+				this.heal(target.baseMaxhp / 16);
+			}
+		},
+		inherit: true,
+		shortDesc: "If Snow/Hail is active, this Pokemon heals 1/16 of its max HP each turn.",
+	},
+	
+	//Rubber Armor Interaction
+	galewings: {
+		inherit: true,
+		onModifyPriority(priority, pokemon, target, move) {
+			for (const poke of this.getAllActive()) {
+				if (poke.hasAbility('rubberarmor') && poke.side.id !== pokemon.side.id &&
+					!poke.volatiles['gastroacid'] && !poke.transformed && move?.category !== 'Status') {
+					return;
+				}
+			}
+			if (move?.type === 'Flying' && pokemon.hp === pokemon.maxhp) return priority + 1;
+		},
 	},
 };
