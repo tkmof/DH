@@ -483,9 +483,6 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			// Check if any active pokemon have the ability Neutralizing Gas
 			let neutralizinggas = false;
 			let rubberarmor = false;
-			/*const aurabreakAbilities = ["adaptability", "aerilate", "analytic", "darkaura", "flareboost", "fairyaura", "galvanize", "guts", 
-				"hustle", "ironfist", "packleader", "pixilate", "poisontouch", "punkrock", "refrigerate", "sandforce", "shadowworld", "sheerforce",
-				"solarpower", "steelworker", "strongjaw", "technician", "toughclaws", "transistor", "waterbubble", "watercycle", "forecast"];*/
 			const rubberarmorAbilities = ["blaze", "infiltrator", "libero", "overgrow", "sandforce", "soulreap", "splitsystem", "steelworker", 
 				"swarm", "torrent", "unseenfist", "victorystar", "waterbubble"];
 			for (const pokemon of this.battle.getAllActive()) {
