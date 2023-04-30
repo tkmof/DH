@@ -1495,6 +1495,29 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "self",
 		type: "Grass",
 	},
+	victorydance: {
+		num: -26,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Raises the user's Attack, Defense, Speed by 1.",
+		name: "Victory Dance",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, dance: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Quiver Dance", target);
+		},
+		boosts: {
+			atk: 1,
+			def: 1,
+			spe: 1
+		},
+		secondary: null,
+		target: "self",
+		type: "Fighting",
+	},
 	
 	//SV Move Descriptions
 	aquacutter:  {
@@ -1568,10 +1591,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 	doubleshock: {
 		inherit: true,
 		shortDesc: "User's Electric type: typeless; must be Electric.",
-	},
-	victorydance: {
-		inherit: true,
-		shortDesc: "Raises the user's Attack, Defense, Speed by 1.",
 	},
 	
 	//Snow Moves
