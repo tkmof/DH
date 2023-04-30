@@ -1005,7 +1005,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Spiky Shield", target);
+			this.add('-anim', source, "Withdraw", target);
+			this.add('-anim', source, "Protect", target);
 		},
 		stallingMove: true,
 		volatileStatus: 'shelter',
@@ -1172,6 +1173,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Icicle Crash", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ice",
@@ -1186,6 +1191,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Body Press", target);
+		},
 		useSourceDefensiveAsOffensive: true,
 		secondary: null,
 		target: "normal",
@@ -1201,6 +1210,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {snatch: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Recover", target);
+		},
 		onHit(pokemon) {
 			const success = !!this.boost({spa: 1, spd: 1});
 			return pokemon.cureStatus() || success;
@@ -1228,6 +1241,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 					move.basePower *= 0.5;
 				}
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mach Punch", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -1260,6 +1277,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 				this.boost({def: -1}, target);
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -1269,7 +1290,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		shortDesc: "(Non-functional placeholder) Type depends on both the user's types.",
+		shortDesc: "(Semifunctional placeholder) Type depends on both the user's types.",
 		name: "Raging Bull (Steam)",
 		pp: 10,
 		priority: 0,
@@ -1279,10 +1300,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (type === "Bird") type = "???";
 			move.type = type;
 		},
-		/*onEffectiveness(typeMod, target, source, type, move) {
-			const secondType = source.types[1];
-			return typeMod + this.dex.getEffectiveness(secondType, type);
-		},*/
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.dex.getEffectiveness('Fire', type);
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -1307,6 +1331,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (pokemon.species.name === 'Tauros-Azul') {
 				move.type = 'Ice';
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
 		},
 		secondary: null,
 		target: "normal",
