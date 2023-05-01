@@ -662,7 +662,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onDamagingHit(damage, target, source, move) {
 			if (move.type === 'Dark') {
 				target.addVolatile('systempurge');
-				target.volatiles['systempurge'].fromBooster = true;
 			}
 		},
 		onUpdate(pokemon) {
@@ -672,8 +671,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				pokemon.removeVolatile('systempurge');
 				pokemon.addVolatile('systempurge', pokemon, Dex.getItem('boosterenergy'));
 				pokemon.volatiles['systempurge'].fromBooster = true;
-			} else if (!pokemon.volatiles['systempurge']?.fromBooster) {
-				pokemon.removeVolatile('systempurge');
 			}
 		},
 		onEnd(pokemon) {
