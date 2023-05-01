@@ -662,7 +662,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onDamagingHit(damage, target, source, move) {
 			if (move.type === 'Dark') {
 				target.addVolatile('systempurge');
-				target.volatiles['systempurge'].fromBooster = true;
 			}
 		},
 		onUpdate(pokemon) {
