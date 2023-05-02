@@ -8,7 +8,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		// for micrometas to only show custom tiers
 		excludeStandardTiers: true,
 		// only to specify the order of custom tiers
-		customTiers: ['New','S1','S2','A1','A2','A3','A4','B1','B2','B3','B4','C1','C2','C3','D1','D2','E1','E2','Unranked','NFE','LC','Uber'],
+		customTiers: ['New','S1','S2','A1','A2','A3','A4','B1','B2','B3','B4','C1','C2','C3','D1','D2','D3','E','Unranked','NFE','LC','Uber'],
 	},
 
 	// Don't remove this function; it handles Silvally's Multi-Attack type
