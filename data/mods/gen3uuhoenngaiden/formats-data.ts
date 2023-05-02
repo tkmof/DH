@@ -22,8 +22,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	charizard: {
 		randomBattleMoves: ["bellydrum", "dragondance", "earthquake", "fireblast", "hiddenpowerflying", "substitute"],
-		tier: "OU",
-		rank: "OU",
+		tier: "UU",
+		rank: "New",
 	},
 	squirtle: {
 		tier: "LC",
@@ -400,8 +400,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	magneton: {
 		randomBattleMoves: ["hiddenpowergrass", "hiddenpowerice", "rest", "sleeptalk", "substitute", "thunderbolt", "thunderwave", "toxic"],
-		tier: "OU",
-		rank: "OU",
+		tier: "UU",
+		rank: "New",
 	},
 	farfetchd: {
 		randomBattleMoves: ["agility", "batonpass", "hiddenpowerflying", "slash", "swordsdance"],
@@ -940,8 +940,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	sunflora: {
 		randomBattleMoves: ["hiddenpowerfire", "leechseed", "razorleaf", "solarbeam", "sunnyday", "synthesis"],
-		tier: "OU",
-		rank: "OU",
+		tier: "UU",
+		rank: "New",
 	},
 	yanma: {
 		randomBattleMoves: ["hiddenpowerflying", "hypnosis", "reversal", "shadowball", "substitute"],
@@ -1437,8 +1437,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	plusle: {
 		randomBattleMoves: ["agility", "batonpass", "encore", "hiddenpowergrass", "substitute", "thunderbolt"],
-		tier: "OU",
-		rank: "OU",
+		tier: "UU",
+		rank: "New",
 	},
 	minun: {
 		randomBattleMoves: ["batonpass", "encore", "lightscreen", "substitute", "thunderbolt", "wish"],
@@ -1457,8 +1457,8 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	roselia: {
 		randomBattleMoves: ["aromatherapy", "gigadrain", "hiddenpowerfire", "spikes", "stunspore", "synthesis"],
-		tier: "OU",
-		rank: "OU",
+		tier: "NFE",
+		rank: "NFE",
 	},
 	gulpin: {
 		tier: "LC",
@@ -1962,9 +1962,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	golemalola: {
-		rank: "OU",
+		rank: "New",
 		gen: 3,
-		tier: "OU",
+		tier: "UU",
 	},
 	croagunk: {
 		rank: "LC",
@@ -2122,14 +2122,14 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	dracovish: {
-		rank: "OU",
+		rank: "New",
 		gen: 3,
-		tier: "OU",
+		tier: "UU",
 	},
 	slowkinggalar: {
-		rank: "OU",
+		rank: "New",
 		gen: 3,
-		tier: "OU",
+		tier: "UU",
 	},
 	slowpokegalar: {
 		rank: "LC",
@@ -2367,9 +2367,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "LC",
 	},
 	electrodehisui: {
-		rank: "OU",
+		rank: "New",
 		gen: 3,
-		tier: "OU",
+		tier: "UU",
 	},
 	froslass: {
 		rank: "New",

@@ -22,7 +22,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	charizard: {
 		randomBattleMoves: ["bellydrum", "dragondance", "earthquake", "fireblast", "hiddenpowerflying", "substitute"],
-		tier: "OU",
+		tier: "UU",
 		rank: "C1",
 	},
 	squirtle: {
@@ -390,7 +390,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	magneton: {
 		randomBattleMoves: ["hiddenpowergrass", "hiddenpowerice", "rest", "sleeptalk", "substitute", "thunderbolt", "thunderwave", "toxic"],
-		tier: "OU",
+		tier: "UU",
 		rank: "C1",
 	},
 	farfetchd: {
@@ -925,7 +925,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	sunflora: {
 		randomBattleMoves: ["hiddenpowerfire", "leechseed", "razorleaf", "solarbeam", "sunnyday", "synthesis"],
-		tier: "OU",
+		tier: "UU",
 		rank: "B2",
 	},
 	yanma: {
@@ -1412,7 +1412,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	plusle: {
 		randomBattleMoves: ["agility", "batonpass", "encore", "hiddenpowergrass", "substitute", "thunderbolt"],
-		tier: "OU",
+		tier: "UU",
 		rank: "D2",
 	},
 	minun: {
@@ -1432,7 +1432,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	roselia: {
 		randomBattleMoves: ["aromatherapy", "gigadrain", "hiddenpowerfire", "spikes", "stunspore", "synthesis"],
-		tier: "OU",
+		tier: "NFE",
 		rank: "D3",
 	},
 	gulpin: {
@@ -1939,7 +1939,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	golemalola: {
 		rank: "D2",
 		gen: 3,
-		tier: "OU",
+		tier: "UU",
 	},
 	croagunk: {
 		rank: "Unranked",
@@ -2104,12 +2104,12 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	dracovish: {
 		rank: "D1",
 		gen: 3,
-		tier: "OU",
+		tier: "UU",
 	},
 	slowkinggalar: {
 		rank: "C2",
 		gen: 3,
-		tier: "OU",
+		tier: "UU",
 	},
 	slowpokegalar: {
 		rank: "Unranked",
@@ -2496,7 +2496,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	electrodehisui: {
 		rank: "D2",
 		gen: 3,
-		tier: "OU",
+		tier: "UU",
 	},
 	/*growlithehisui: {
 		rank: "Unranked",
