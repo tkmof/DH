@@ -418,17 +418,17 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", 'relicanth').learnset.superpower = ['3L1'];
 		this.modData("Learnsets", 'relicanth').learnset.whirlpool = ['3L1'];
 		
-		this.modData('Learnsets', 'blaziken').learnset.knockoff = ['3L1'];
+		// this.modData('Learnsets', 'blaziken').learnset.knockoff = ['3L1'];
 		this.modData('Learnsets', 'donphan').learnset.knockoff = ['3L1'];
 		//this.modData('Learnsets', 'dusclops').learnset.knockoff = ['3L1'];
-		this.modData('Learnsets', 'gardevoir').learnset.knockoff = ['3L1'];
+		// this.modData('Learnsets', 'gardevoir').learnset.knockoff = ['3L1'];
 		this.modData('Learnsets', 'ludicolo').learnset.knockoff = ['3L1'];
-		this.modData('Learnsets', 'machamp').learnset.knockoff = ['3L1'];
+		// this.modData('Learnsets', 'machamp').learnset.knockoff = ['3L1'];
 		//this.modData('Learnsets', 'milotic').learnset.knockoff = ['3L1'];
 		this.modData('Learnsets', 'muk').learnset.knockoff = ['3L1'];
 		this.modData('Learnsets', 'pinsir').learnset.knockoff = ['3L1'];
 		this.modData('Learnsets', 'tentacruel').learnset.knockoff = ['3L1'];
-		this.modData('Learnsets', 'scizor').learnset.knockoff = ['3L1'];
+		// this.modData('Learnsets', 'scizor').learnset.knockoff = ['3L1'];
 		this.modData('Learnsets', 'sudowoodo').learnset.knockoff = ['3L1'];
 		
 		//this.modData('Learnsets', 'skuntank').learnset.tailglow = ['3L1'];
