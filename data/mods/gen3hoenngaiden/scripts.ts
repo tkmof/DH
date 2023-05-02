@@ -521,8 +521,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		
 		this.modData('Learnsets', 'togekiss').learnset.extremespeed = ['3L1'];
 		
-		delete this.modData('Learnsets', 'deoxys').learnset.knockoff;
-		
 		
 		//Gen 2 Event Moves
 		this.modData('Learnsets', 'bulbasaur').learnset.ancientpower = ['3L1'];
