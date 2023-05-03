@@ -340,7 +340,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Grass",
 		zMove: {effect: 'healreplacement'},
 		contestType: "Cool",
-	},
+   },
 // Others
 	auroraveil: {
 		num: 694,
@@ -842,6 +842,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Normal",
 		zMove: {boost: {spd: 1}},
 		contestType: "Clever",
+	},
+   hiddenpower: {
+      inherit: true,
+		isNonstandard: undefined,
 	},
 	hail: {
 		inherit: true,
