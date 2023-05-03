@@ -667,7 +667,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	hiddenpower: {
 		inherit: true,
-		isNonstandard: undefined,
+		isNonstandard: null,
 	},
 	blizzard: {
 		num: 59,
