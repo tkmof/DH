@@ -1,3 +1,4 @@
+export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	flamester: {
 		tier: "R2OU",
 		doublesTier: "R2OU",
@@ -254,3 +255,4 @@
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
 	},
+};
