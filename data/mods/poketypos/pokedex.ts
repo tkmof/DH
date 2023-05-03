@@ -236,4 +236,26 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
       abilities: {0: "Poison Touch"},
    },
+   mirroar: {
+      num: 31,
+      name: "Mirroar",
+      types: ["Normal", "Ghost"],
+      baseStats: {hp: 56, atk: 58, def: 136, spa: 109, spd: 112, spe: 36},
+      abilities: {0: "Mirror Armor", 1: "Unnerve", H: "Magic Bounce"},
+   },
+   sparkeops: {
+      num: 32,
+      name: "Sparkeops",
+      types: ["Flying", "Electric"],
+      baseStats: {hp: 90, atk: 115, def: 90, spa: 102, spd: 75, spe: 95},
+      abilities: {0: "Volt Absorb", H: "Rocky Payload"},
+	  weightkg: 11,
+   },
+   mielmetal: {
+      num: 33,
+      name: "Mielmetal",
+      types: ["Bug", "Steel"],
+      baseStats: {hp: 105, atk: 115, def: 95, spa: 95, spd: 95, spe: 95},
+      abilities: {0: "Honey Gather", H: "Honey Fists"},
+   },
 };
