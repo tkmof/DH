@@ -378,5 +378,5 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	dondozo: {
 		inherit: true,
 		dondozo: true,
-	}
-}
+	},
+};

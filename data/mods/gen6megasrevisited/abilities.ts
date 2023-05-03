@@ -112,13 +112,27 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: -1,
 	},
 	parentalbond: {
-		inherit: true,
-		desc: "This Pokemon's damaging moves become multi-hit moves that hit twice. The second hit has its damage halved. Does not affect multi-hit moves or moves that have multiple targets.",
-		shortDesc: "This Pokemon's damaging moves hit twice. The second hit has its damage halved.",
-		onBasePower(basePower, pokemon, target, move) {
-			if (move.multihitType === 'parentalbond' && move.hit > 1 /* && !target.hasAbility('neutralizinggas') */) return this.chainModify(0.5);
+		onPrepareHit(source, target, move) {
+			if (move.category === 'Status' || move.selfdestruct || move.multihit) return;
+			if (['endeavor', 'seismictoss', 'psywave', 'nightshade', 'sonicboom', 'dragonrage', 'superfang', 'naturesmadness', 'bide', 'counter', 'mirrorcoat', 'metalburst'].includes(move.id)) return;
+			if (!move.spreadHit && !move.isZ && !move.isMax) {
+				move.multihit = 2;
+				move.multihitType = 'parentalbond';
+			}
 		},
-		rating: 5,
+		onBasePowerPriority: 7,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.multihitType === 'parentalbond' && move.hit > 1) return this.chainModify(0.5);
+		},
+		onSourceModifySecondaries(secondaries, target, source, move) {
+			if (move.multihitType === 'parentalbond' && move.id === 'secretpower' && move.hit < 2) {
+				// hack to prevent accidentally suppressing King's Rock/Razor Fang
+				return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+			}
+		},
+		name: "Parental Bond",
+		rating: 4.5,
+		num: 184,
 	},
 	pixilate: {
 		inherit: true,
@@ -302,6 +316,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Armor Tail",
+    	shortDesc: "While this Pokemon is active, allies are protected from opposing priority moves.",
 		rating: 2.5,
 		gen: 6,
 	},
@@ -335,7 +350,126 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Bug Zapper",
+    	shortDesc: "This Pokemon is immune to Bug-type moves and traps the foe it hit by one.",
 		rating: 5,
+	},
+	exoskeleton: {
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.category === 'Physical') {
+				return this.chainModify(0.5);
+			}
+		},
+		onDamage(damage, target, source, effect) {
+			if (effect && (effect.id === 'stealthrock' || effect.id === 'spikes')) {
+				return damage / 2;
+			}
+		},
+		name: "Exoskeleton",
+    	shortDesc: "This Pokemon takes halved damage from hazards and physical moves.",
+		rating: 4,
+	},
+	icescales: {
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.category === 'Special') {
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Ice Scales",
+		rating: 4,
+		num: 246,
+		gen: 6,
+	},
+	eartheater: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Earth Eater');
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Earth Eater",
+		rating: 3.5,
+		num: 297,
+		gen: 6,
+    	shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ground moves; Ground immunity.",
+	},
+	shellejection: {
+		onModifyMovePriority: -1,
+		onModifyMove(move, attacker) {
+			if (move.category === 'Special') {
+				attacker.addVolatile('shellejection');
+				this.add('-ability', attacker, 'Shell Ejection');
+				this.add('-message', `Slowbro is getting ready to leave the battlefield!`);
+				this.add('-message', `Slowbro can no longer use status moves!`);
+			}
+		},
+		condition: {
+			duration: 2,
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					const move = this.dex.getMove(moveSlot.id);
+					if (move.category === 'Status' && move.id !== 'mefirst') {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Shell Ejection');
+				this.add('-message', `Slowbro ejected itself from its shell!`);
+				pokemon.switchFlag = true;				
+			},
+		},
+		name: "Shell Ejection",
+		rating: 3.5,
+		gen: 6,
+    	shortDesc: "After using a Special move, this Pokemon switches out at the end of the next turn and it can't use status moves.",
+	},
+	sharpness: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['slicing']) {
+				this.debug('Shapness boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Sharpness",
+		rating: 3.5,
+		gen: 6,
+		num: 292,
+    	shortDesc: "This Pokemon's slicing moves deal 50% more damage.",
+	},
+	dauntlessshield: {
+		onStart(pokemon) {
+			this.boost({def: 1}, pokemon);
+			pokemon.addVolatile('dauntlessshield');
+			this.add('-message', `Aggron has its shield up!`);
+		},
+		condition: {
+			duration: 2,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Dauntless Shield');
+				this.add('-message', `Aggron lowered its shield!`);
+				this.boost({def: -1}, pokemon);
+			},
+		},
+		name: "Dauntless Shield",
+		rating: 3.5,
+		num: 235,
+    	shortDesc: "+1 Defense on switch-in. Boost goes away at the end of the next turn.",
+		gen: 6,
+	},
+	confidence: {
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({spa: length}, source);
+			}
+		},
+		name: "Confidence",
+		rating: 3,
+    	shortDesc: "This Pokemon's Sp. Atk is raised by 1 stage if it attacks and KOes another Pokemon.",
+		gen: 6,
 	},
 	
 /*	

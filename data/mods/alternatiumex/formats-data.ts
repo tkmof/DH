@@ -467,4 +467,84 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Alternatium EX",
 		doublesTier: "Alternatium EX",
 	},
+	gumshoos: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	gumshoostotem: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	togedemaru: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	totemaru: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	tauros: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	bravatoro: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	taurossteam: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	taurosazul: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	raichu: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	raichusoft: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	rapidash: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	rapidashgalar: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	golemberserker: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	golemalola: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	cherrim: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	cherrine: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	minior: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	miniormeteor: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	eevee: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
+	eeveestarter: {
+		tier: "Alternatium EX",
+		doublesTier: "Alternatium EX",
+	},
 };
