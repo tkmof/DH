@@ -30,7 +30,6 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	blastoise: {
 		inherit: true,
 		types: ["Water", "Electric"],
-		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 79, atk: 53, def: 100, spa: 105, spd: 105, spe: 88},
 		abilities: {0: "Torrent", H: "Motor Drive"},
 	},
