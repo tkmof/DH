@@ -1086,7 +1086,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Tinkaton",
 		types: ["Fairy", "Steel"],
 		gender: "F",
-		baseStats: {hp: 85, atk: 75, def: 77, spa: 70, spd: 105, spe: 106},
+		baseStats: {hp: 85, atk: 95, def: 77, spa: 70, spd: 105, spe: 94},
 		abilities: {0: "Mold Breaker", 1: "Own Tempo", H: "Pickpocket"},
 		heightm: 0.7,
 		weightkg: 112.8,
