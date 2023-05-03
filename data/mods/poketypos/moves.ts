@@ -171,6 +171,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 60,
 		category: "Special",
 		name: "Tar Shot",
+      shortDesc: "Lowers the target's Speed by 1.",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
