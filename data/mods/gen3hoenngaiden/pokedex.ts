@@ -2803,6 +2803,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	},*/
 	diglett: {
 		inherit: true,
+		abilities: {0: "Arena Trap"},
 		otherFormes: ["Diglett-Alola"],
 		formeOrder: ["Diglett", "Diglett-Alola"],
 	},
@@ -2823,6 +2824,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	},
 	dugtrio: {
 		inherit: true,
+		abilities: {0: "Arena Trap"},
 		otherFormes: ["Dugtrio-Alola"],
 		formeOrder: ["Dugtrio", "Dugtrio-Alola"],
 	},
