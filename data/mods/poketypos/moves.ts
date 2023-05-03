@@ -57,21 +57,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Dragon",
 		contestType: "Cool",
 	},
-	snowscape: {
-		num: 306,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		name: "Snowscape",
-		shortDesc: "For 5 turns, snow falls. Ice: 1.5x Def.",
-		pp: 10,
-		priority: 0,
-		flags: {},
-		weather: 'snow',
-		secondary: null,
-		target: "all",
-		type: "Ice",
-	},
 	combustion: {
 		num: 308,
 		accuracy: 100,
@@ -207,10 +192,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {snatch: 1},
 		self: {
-			onHit(source) {
-				for (const ally of source.side.pokemon) {
-					ally.cureStatus();
-				}
+			onHit(pokemon) {
+				pokemon.cureStatus();
 			},
 		},
 		secondary: null,
@@ -2530,5 +2513,4 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Psychic",
 	},
-};
 };
