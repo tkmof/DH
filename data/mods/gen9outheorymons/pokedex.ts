@@ -281,7 +281,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		color: "Black",
 		eggGroups: ["Field"],
 	},
-	},
 	wooper: {
 		num: 194,
 		name: "Wooper",
