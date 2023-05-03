@@ -108,7 +108,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Beavor",
 		types: ["Normal", "Water"],
 		baseStats: {hp: 70, atk: 130, def: 75, spa: 45, spd: 95, spe: 85},
-		abilities: {0: "Cheek Pouch", 1: "Pickup", H: "Sharpness"},
+		abilities: {0: "Cheek Pouch", 1: "Sharpness", H: "Carpenter"},
 		weightkg: 59,
 	},
 	judowoodo: {
