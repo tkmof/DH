@@ -879,7 +879,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	mabosstiff: {
 		num: 943,
 		name: "Mabosstiff",
-		types: ["Dark". "Fairy"],
+		types: ["Dark", "Fairy"],
 		baseStats: {hp: 80, atk: 140, def: 90, spa: 60, spd: 70, spe: 85},
 		abilities: {0: "Intimidate", 1: "Guard Dog", H: "Stakeout"},
 		heightm: 1.1,
