@@ -107,4 +107,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       tier: "Poketypos",
       doublesTier: "Poketypos", 
 	},
+   nabscar: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
+   kabluxie: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
+   deoxin: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
 };

@@ -364,6 +364,43 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {},
 		evos: ["Grimer"],
 	},
+	kokana: {
+		num: 1192,
+		name: "Kokana",
+		types: ["Bug"],
+		abilities: {},
+		baseStats: {hp: 40, atk: 35, def: 30, spa: 25, spd: 25, spe: 45},
+		evos: ["Kasanagi"],
+	},
+	kasanagi: {
+		num: 1193,
+		name: "Kasanagi",
+		types: ["Bug"],
+		abilities: {},
+		baseStats: {hp: 45, atk: 20, def: 50, spa: 30, spd: 30, spe: 40},
+		evos: ["Carapthor"],
+		prevo: "Kokana",
+		evoLevel: 7,
+	},
+	carapthor: {
+		num: 1194,
+		name: "Carapthor",
+		types: ["Bug", "Fighting"],
+		abilities: {},
+		baseStats: {hp: 60, atk: 85, def: 50, spa: 50, spd: 50, spe: 60},
+		prevo: "Kasanagi",
+		evoLevel: 10,
+	},
+	taaban: {
+		num: 1195,
+		name: "Taaban",
+		types: ["Water"],
+		baseStats: {hp: 70, atk: 125, def: 145, spa: 70, spd: 70, spe: 50},
+		abilities: {},
+		prevo: "Shellder",
+		evoType: "useItem",
+		evoItem: "Water Stone",
+	},
 	/// 
 	/// .o88b. d8888b.  .d88b.  .d8888. .d8888.         d888b  d88888b d8b   db   d88888b db    db  .d88b.  .d8888. 
 	///d8P  Y8 88  `8D .8P  Y8. 88'  YP 88'  YP        88' Y8b 88'     888o  88   88'     88    88 .8P  Y8. 88'  YP 
@@ -1247,6 +1284,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	shellder: {
 		inherit: true,
 		baseStats: {hp: 30, atk: 65, def: 100, spa: 45, spd: 45, spe: 40},
+		evos: ["Cloyster", "Taaban"],
 	},
 	cloyster: {
 		inherit: true,

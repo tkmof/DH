@@ -1080,7 +1080,7 @@ coldrake: {
 	num: 115,
 	name: "Coldrake",
 	types: ["Dragon", "Ice"],
-	baseStats: {hp: 103, atk: 120, def: 90, spa: 110, spd: 95, spe: 82},
+	baseStats: {hp: 83, atk: 110, def: 90, spa: 90, spd: 95, spe: 82},
 	abilities: {0: "Storm", 1: "Snow Cloak", H: "Slush Rush"},
 	weightkg: 120.2,
 	prevo: "snoak",
@@ -1481,8 +1481,21 @@ baishark: {
 	weightkg: 93.9,
 	prevo: "hoorel",
 },
+magshroom: {
+	num: 158,
+	name: "Magshroom",
+	types: ["Grass", "Electric"],
+	baseStats: {hp: 125, atk: 35, def: 75, spa: 90, spd: 90, spe: 38},
+	abilities: {0: "Effect Spore", 1: "Poison Heal", H: "Thick Fat"},
+	weightkg: 200.9,
+},
+luvdisc: {
+		inherit: true,
+		num: 159,
+		evos: ["Luviu"],
+	},
 luviu: {
-	num: 159,
+	num: 160,
 	name: "Luviu",
 	types: ["Water", "Fairy"],
 	baseStats: {hp: 83, atk: 50, def: 85, spa: 95, spd: 95, spe: 117},
@@ -1490,17 +1503,31 @@ luviu: {
 	weightkg: 98.2,
 	prevo: "luvdisc",
 },
+shuckle: {
+		inherit: true,
+		evos: ["Shucklony"],
+		num: 161,
+	},	
 shucklony: {
-	num: 161,
+	num: 162,
 	name: "Shucklony",
 	types: ["Bug", "Rock"],
-	baseStats: {hp: 60, atk: 20, def: 200, spa: 50, spd: 200, spe: 5},
+	baseStats: {hp: 70, atk: 20, def: 200, spa: 50, spd: 200, spe: 5},
 	abilities: {0: "Sticky Hold", 1: "Sap Sipper", H: "Contrary"},
 	weightkg: 60.5,
 	prevo: "shuckle",
 },
+drowzee: {
+	inherit: true,
+	num: 163,
+},
+hypno: {
+		inherit: true,
+		num: 164,
+		evos: ["Dreamer"],
+	},	
 dreamer: {
-	num: 164,
+	num: 165,
 	name: "Dreamer",
 	types: ["Psychic", "Fighting"],
 	baseStats: {hp: 85, atk: 113, def: 80, spa: 73, spd: 120, spe: 78},
@@ -1508,8 +1535,17 @@ dreamer: {
 	weightkg: 85.6,
 	prevo: "hypno",
 },
+ekans: {
+	inherit: true,
+	num: 166,
+	},
+arbok: {
+		inherit: true,
+		num: 167,
+		evos: ["Nohtyp"],
+	},	
 nohtyp: {
-	num: 167,
+	num: 168,
 	name: "Nohtyp",
 	types: ["Poison", "Ground"],
 	baseStats: {hp: 100, atk: 105, def: 99, spa: 65, spd: 89, spe: 84},
@@ -1517,54 +1553,9 @@ nohtyp: {
 	weightkg: 70.5,
 	prevo: "arbok",
 },
-skyradise: {
-	num: 190,
-	name: "Skyradise",
-	types: ["Flying"],
-	gender: "N",
-	baseStats: {hp: 200, atk: 105, def: 90, spa: 145, spd: 90, spe: 50},
-	abilities: {0: "Magic Guard", H: "Magic Bounce"},
-	weightkg: 999.9,
-},
-luvdisc: {
-		inherit: true,
-		evos: ["Luviu"],
-	},
-arbok: {
-		inherit: true,
-		evos: ["Nohtyp"],
-	},	
-hypno: {
-		inherit: true,
-		evos: ["Dreamer"],
-	},	
-shuckle: {
-		inherit: true,
-		evos: ["Shucklony"],
-	},	
-	
-	ironsun: {
-	num: 188,
-	name: "Iron Sun",
-	types: ["Rock", "Fire"],
-	gender: "N",
-	baseStats: {hp: 100, atk: 114, def: 110, spa: 70, spd: 80, spe: 96},
-	abilities: {0: "Meteor Power"},
-	weightkg: 308,
-	},
-	
-	crazymoon: {
-	num: 189,
-	name: "Crazy Moon",
-	types: ["Rock", "Fairy"],
-	gender: "N",
-	baseStats: {hp: 99, atk: 71, def: 81, spa: 113, spd: 111, spe: 95},
-	abilities: {0: "Primal Mind"},
-	weightkg: 336,
-	},
 	
 	jumpfurr: {
-	num: 168,
+	num: 169,
 	name: "Jumpfurr",
 	types: ["Grass", "Fairy"],
 	baseStats: {hp: 75, atk: 25, def: 70, spa: 95, spd: 85, spe: 110},
@@ -1572,8 +1563,17 @@ shuckle: {
 	weightkg: 3,
 	},
 	
+meowthder: {
+		num: 170,
+		name: "Meowthder",
+		types: ["Electric", 'Fairy'],
+		baseStats: {hp: 65, atk: 80, def: 60, spa: 70, spd: 65, spe: 100},
+		abilities: {0: "Ball Fetch", 1:"Static", H: "Galvanize"},
+		weightkg: 32,
+	},
+	
 	surivexe: {
-		num: 169,
+		num: 171,
 		name: "SurivExe",
 		types: ["Ghost", "Electric"],
 		gender: "N",
@@ -1584,7 +1584,7 @@ shuckle: {
 		formeOrder: ["SurivExe", "SurivExe-Virus"],
 	},
 	surivexevirus: {
-		num: 169,
+		num: 171,
 		name: "SurivExe-Virus",
 		baseSpecies: "SurivExe",
 		forme: "Virus",
@@ -1596,7 +1596,7 @@ shuckle: {
 		battleOnly: "SurivExe",
 	},
 	eeveecile: {
-		num: 170,
+		num: 172,
 		name: "Eevee-Cile",
 		baseSpecies: "Eevee",
 		forme: "Cile",
@@ -1611,7 +1611,7 @@ shuckle: {
 		eggGroups: ["Field"],
 	},
 	vaporeoncile: {
-		num: 171,
+		num: 173,
 		name: "Vaporeon-Cile",
 		baseSpecies: "Vaporeon",
 		forme: "Cile",
@@ -1627,7 +1627,7 @@ shuckle: {
 		eggGroups: ["Field"],
 	},
 	jolteoncile: {
-		num: 172,
+		num: 174,
 		name: "Jolteon-Cile",
 		baseSpecies: "Jolteon",
 		forme: "Cile",
@@ -1643,7 +1643,7 @@ shuckle: {
 		eggGroups: ["Field"],
 	},
 	flareoncile: {
-		num: 172,
+		num: 175,
 		name: "Flareon-Cile",
 		baseSpecies: "Flareon",
 		forme: "Cile",
@@ -1659,7 +1659,7 @@ shuckle: {
 		eggGroups: ["Field"],
 	},
 	espeoncile: {
-		num: 173,
+		num: 176,
 		name: "Espeon-Cile",
 		baseSpecies: "Espeon",
 		forme: "Cile",
@@ -1676,7 +1676,7 @@ shuckle: {
 		eggGroups: ["Field"],
 	},
 	umbreoncile: {
-		num: 174,
+		num: 177,
 		name: "Umbreon-Cile",
 		baseSpecies: "Umbreon",
 		forme: "Cile",
@@ -1693,7 +1693,7 @@ shuckle: {
 		eggGroups: ["Field"],
 	},
 	leafeoncile: {
-		num: 175,
+		num: 178,
 		name: "Leafeon-Cile",
 		baseSpecies: "Leafeon",
 		forme: "Cile",
@@ -1710,7 +1710,7 @@ shuckle: {
 		eggGroups: ["Field"],
 	},
 	glaceoncile: {
-		num: 176,
+		num: 179,
 		name: "Glaceon-Cile",
 		baseSpecies: "Glaceon",
 		forme: "Cile",
@@ -1728,7 +1728,7 @@ shuckle: {
 	},
 	
 	sylveoncile: {
-		num: 177,
+		num: 180,
 		name: "Sylveon-Cile",
 		baseSpecies: "Sylveon",
 		forme: "Cile",
@@ -1746,7 +1746,7 @@ shuckle: {
 	},
 	
 	qilineon: {
-		num: 178,
+		num: 181,
 		name: "Qilineon",
 		types: ["Dragon"],
 		genderRatio: {M: 0.875, F: 0.125},
@@ -1762,7 +1762,7 @@ shuckle: {
 	},
 	
 	fossileon: {
-		num: 179,
+		num: 182,
 		name: "Fossileon",
 		types: ["Ground"],
 		genderRatio: {M: 0.875, F: 0.125},
@@ -1776,16 +1776,25 @@ shuckle: {
 		evoItem: "Dusk Stone",
 		eggGroups: ["Field"],
 	},
+zubat: {
+	inherit: true,
+	num: 183,
+	},
+	
+golbat: {
+	inherit: true,
+	num: 184,
+	},	
 	
 crobat: {
 		inherit: true,
-		num: 182,
+		num: 185,
 		otherFormes: ["Crobat-Mega"],
 	formeOrder: ["Crobat", "Crobat-Mega"],
 	},	
 
 crobatmega: {
-	num: 182,
+	num: 185,
 	name: "Crobat-Mega",
 	baseSpecies: "Crobat",
 	forme: "Mega",
@@ -1796,27 +1805,23 @@ crobatmega: {
 	requiredItem: "Crobatite",
 },
 
-cupida: {
-	num: 191,
-	name: "Cupida",
-	types: ["Fairy", "Ghost"],
-	gender: "F",
-	baseStats: {hp: 104, atk: 110, def: 70, spa: 110, spd: 130, spe: 76},
-	abilities: {0: "Cute Charm", 1: "Serene Grace", H: "Archery"},
-	weightkg: 0.5,
-},
+poochyena: {
+	inherit: true,
+	num: 186,
+	},
 
 mightyena: {
 		inherit: true,
-		num: 184,
+		num: 187,
 		otherFormes: ["Mightyena-Mega"],
 	formeOrder: ["Mightyena", "Mightyena-Mega"],
 	},	
 
 mightyenamega: {
-		num: 184,
+		num: 187,
 		name: "Mightyena-Mega",
 		baseSpecies: "Mightyena",
+		forme: "Mega",
 		types: ["Dark", "Fairy"],
 		baseStats: {hp: 70, atk: 111, def: 100, spa: 70, spd: 80, spe: 89},
 		abilities: {0: "Scary",},
@@ -1824,30 +1829,221 @@ mightyenamega: {
 		requiredItem: "Mightite",
 	},
 	
+	natu: {
+		inherit: true,
+		num: 188,
+		evos: ["Xatu","Naztu"],
+	},
+	
+	naztu: {
+		num: 189,
+		name: "Naztu",
+		types: ["Psychic", "Ground"],
+		baseStats: {hp: 75, atk: 55, def: 70, spa: 95, spd: 80, spe: 115},
+		abilities: {0: "Synchronize", 1: "Levitate", H: "Magic Bounce"},
+		heightm: 2.5,
+		weightkg: 15,
+		color: "Green",
+		prevo: "Natu",
+		eggGroups: ["Flying"],
+	},
+	
+	xatu: {
+		inherit: true,
+		num: 190,
+		baseStats: {hp: 75, atk: 75, def: 80, spa: 95, spd: 70, spe: 95},
+	},
+	
+	huemul: {
+	num: 191,
+	name: "Huemul",
+	types: ["Normal"],
+	baseStats: {hp: 25, atk: 35, def: 35, spa: 70, spd: 45, spe: 85},
+	abilities: {0: "Rattled", 1: "Frisk", H: "Run Away"},
+	weightkg: 40,
+	evos: ["Undeer"],
+},
+
+undeer: {
+	num: 192,
+	name: "Undeer",
+	types: ["Normal", "Ghost"],
+	baseStats: {hp: 143, atk: 85, def: 95, spa: 80, spd: 85, spe: 30},
+	abilities: {0: "Cursed Body", 1: "Frisk", H: "Dark Eater"},
+	weightkg: 521.3,
+	prevo: "Huemul",
+},
+
+dothdo: {
+	num: 193,
+	name: "Dothdo",
+	types: ["Ghost", "Flying"],
+	baseStats: {hp: 70, atk: 85, def: 75, spa: 45, spd: 100, spe: 112},
+	abilities: {0: "Cold Heart", 1: "Big Pecks", H: "Cloud Nine"},
+	weightkg: 4.2,
+},
+	
 drapede: {
-	num: 185,
+	num: 194,
 	name: "Drapede",
-	types: ["Dragon", "Bug"],
+	types: ["Bug", "Dragon"],
 	baseStats: {hp: 140, atk: 120, def: 100, spa: 60, spd: 100, spe: 50},
-	abilities: {0: "Shield Dust", 1: "Poison Touch", H: "Guardian of the Swamp"},
+	abilities: {0: "Guardian of the Swamp"},
 	weightkg: 353.9,
+	otherFormes: ["Drapede-Solemne"],
+	formeOrder: ["Drapede", "Drapede-Solemne"],
+},
+
+drapedesolemne: {
+	num: 194,
+	name: "Drapede-Solemne",
+	baseSpecies: "Drapede",
+	forme: "Solemne",
+	types: ["Fighting", "Dragon"],
+	baseStats: {hp: 140, atk: 150, def: 80, spa: 100, spd: 80, spe: 20},
+	abilities: {0: "Spirit of the Swamp"},
+	weightkg: 153.9,
+	requiredItem: "Golden Bracelet",
+	battleOnly: "Drapede",
 },
 
 quetzal: {
-	num: 186,
+	num: 195,
 	name: "Quetzal",
 	types: ["Flying", "Grass"],
 	baseStats: {hp: 75, atk: 95, def: 74, spa: 110, spd: 105, spe: 111},
-	abilities: {0: "Leaf Guard", 1: "Gale Wings", H: "Guardian of the Woods"},
+	abilities: {0: "Guardian of the Woods"},
 	weightkg: 131.6,
+	otherFormes: ["Quetzal-Solemne"],
+	formeOrder: ["Quetzal", "Quetzal-Solemne"],
+},
+
+quetzalsolemne: {
+	num: 195,
+	name: "Quetzal-Solemne",
+	baseSpecies: "Quetzal",
+	forme: "Solemne",
+	types: ["Dragon", "Grass"],
+	baseStats: {hp: 75, atk: 65, def: 105, spa: 141, spd: 105, spe: 79},
+	abilities: {0: "Spirit of the Woods"},
+	weightkg: 331.6,
+	requiredItem: "Golden Pendant",
+	battleOnly: "Quetzal",
 },
 
 granjaguar: {
-	num: 187,
+	num: 196,
 	name: "Granjaguar",
 	types: ["Ground", "Dark"],
 	baseStats: {hp: 85, atk: 115, def: 110, spa: 100, spd: 105, spe: 55},
-	abilities: {0: "Infiltrator", 1: "Intimidate", H: "Guardian of the Ruins"},
+	abilities: {0: "Guardian of the Ruins"},
 	weightkg: 247.9,
+	otherFormes: ["Granjaguar-Solemne"],
+	formeOrder: ["Granjaguar", "Granjaguar-Solemne"],
+},
+
+granjaguarsolemne: {
+	num: 196,
+	name: "Granjaguar-Solemne",
+	baseSpecies: "Granjaguar",
+	forme: "Solemne",
+	types: ["Psychic", "Dark"],
+	baseStats: {hp: 85, atk: 115, def: 55, spa: 100, spd: 75, spe: 140},
+	abilities: {0: "Spirit of the Ruins"},
+	weightkg: 47.9,
+	requiredItem: "Golden Key",
+	battleOnly: "Granjaguar",
+},
+
+ironsun: {
+	num: 197,
+	name: "Iron Sun",
+	types: ["Rock", "Fire"],
+	gender: "N",
+	baseStats: {hp: 100, atk: 114, def: 110, spa: 70, spd: 80, spe: 96},
+	abilities: {0: "Meteor Power"},
+	weightkg: 308,
+	},
+	
+	crazymoon: {
+	num: 198,
+	name: "Crazy Moon",
+	types: ["Rock", "Fairy"],
+	gender: "N",
+	baseStats: {hp: 99, atk: 71, def: 81, spa: 113, spd: 111, spe: 95},
+	abilities: {0: "Primal Mind"},
+	weightkg: 336,
+	},
+	
+lronfist: {
+		num: 199,
+		name: "lron Fist",
+		types: ["Fighting", "Steel"],
+		gender: "N",
+		baseStats: {hp: 90, atk: 116, def: 90, spa: 68, spd: 110, spe: 96},
+		abilities: {0: "Charged"},
+		weightkg: 160.2,
+	},
+	
+frozenbeak: {
+		num: 200,
+		name: "Frozen Beak",
+		types: ["Ice", "Water"],
+		gender: "N",
+		baseStats: {hp: 75, atk: 109, def: 131, spa: 65, spd: 91, spe: 99},
+		abilities: {0: "Permafrost"},
+		heightm: 2.4,
+		weightkg: 178,
+	},
+	
+purgapilla: {
+	num: 201,
+	name: "Purgapilla",
+	types: ["Bug"],
+	baseStats: {hp: 55, atk: 60, def: 45, spa: 10, spd: 25, spe: 20},
+	abilities: {0: "Shield Dust", 1:"Cursed Body", H: "Earth Eater"},
+	weightkg: 2,
+	evos: ["pumpkoon"],
+},
+pumpkoon: {
+	num: 202,
+	name: "Pumpkoon",
+	types: ["Bug"],
+	baseStats: {hp: 60, atk: 40, def: 90, spa: 40, spd: 55, spe: 20},
+	abilities: {0: "Shield Dust", 1:"Cursed Body", H: "Earth Eater"},
+	weightkg: 30.3,
+	prevo: "purgapilla",
+	evos: ["lepisalma"],
+},
+	
+	lepisalma: {
+		num: 203,
+		name: "Lepisalma",
+		types: ["Bug", "Ghost"],
+		baseStats: {hp: 80, atk: 95, def: 60, spa: 120, spd: 160, spe: 85},
+		abilities: {0: "Shield Dust", 1:"Effect Spore", H: "Levitate"},
+		weightkg: 45,
+		prevo: "pumpkoon",
+		evoLevel: 50,
+	},
+	
+skyradise: {
+	num: 204,
+	name: "Skyradise",
+	types: ["Flying"],
+	gender: "N",
+	baseStats: {hp: 200, atk: 105, def: 90, spa: 145, spd: 90, spe: 50},
+	abilities: {0: "Magic Guard", H: "Magic Bounce"},
+	weightkg: 999.9,
+},	
+	
+	cupida: {
+	num: 205,
+	name: "Cupida",
+	types: ["Fairy", "Ghost"],
+	gender: "F",
+	baseStats: {hp: 104, atk: 110, def: 70, spa: 110, spd: 130, spe: 76},
+	abilities: {0: "Cute Charm", 1: "Serene Grace", H: "Archery"},
+	weightkg: 0.5,
 },
 };

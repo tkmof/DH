@@ -436,8 +436,10 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	akashiarts: {
 		shortDesc: "This Pokemon's slicing moves lower the target's Defense by 1.",
-		onDamagingHit(damage, target, source, effect) {
-			this.boost({atk: 1});
+		onAfterMove(target, source, move) {
+			if (move?.flags['slicing']) {
+				target.boost({def: -1});
+			}
 		},
 		name: "Akashi Arts",
 		rating: 3.5,
@@ -452,7 +454,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Overripe",
-		rating: 3.5,
+		rating: 4.5,
 		num: -1026,
 	},
 };
