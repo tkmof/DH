@@ -28,8 +28,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {},
-		onHit(pokemon)
-       pokemon.addVolatile('torment');
+		onHit(pokemon) {
+         pokemon.addVolatile('torment');
 		},
 		secondary: null,
 		target: "normal",
