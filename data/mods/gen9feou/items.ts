@@ -56,6 +56,9 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 				else if (pokemon.hasAbility('quarksurge') && !pokemon.volatiles['quarksurge'] && pokemon.useItem()) {
 					pokemon.addVolatile('quarksurge');
 				}
+				else if (pokemon.hasAbility('nanorepairs') && !pokemon.volatiles['nanorepairs'] && pokemon.useItem()) {
+					pokemon.addVolatile('nanorepairs');
+				}
 			}
 			if (pokemon.hasAbility('systempurge') && !pokemon.volatiles['systempurge'] && pokemon.useItem()) {
 				pokemon.addVolatile('systempurge');
@@ -93,5 +96,44 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		},
 		num: 683,
 		desc: "If held by a Garpyuku, this item allows it to Mega Evolve in battle.",
+	},
+	gengarite: {
+		name: "Gengarite",
+		spritenum: 588,
+		megaStone: "Crygargonal-Mega",
+		megaEvolves: "Crygargonal",
+		itemUser: ["Crygargonal"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 656,
+		desc: "If held by a Crygargonal, this item allows it to Mega Evolve in battle.",
+	},
+	ampharosite: {
+		name: "Ampharosite",
+		spritenum: 580,
+		megaStone: "Amphamence-Mega-Y",
+		megaEvolves: "Amphamence",
+		itemUser: ["Amphamence"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 658,
+		desc: "If held by an Amphamence, this item allows it to Mega Evolve in battle.",
+	},
+	salamencite: {
+		name: "Salamencite",
+		spritenum: 627,
+		megaStone: "Amphamence-Mega-X",
+		megaEvolves: "Amphamence",
+		itemUser: ["Amphamence"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: 769,
+		desc: "If held by an Amphamence, this item allows it to Mega Evolve in battle.",
 	},
 };
