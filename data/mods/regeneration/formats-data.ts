@@ -12,8 +12,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
      doublesTier: "ReGeneration",
   },
 	venusaurmega: {
-		 isNonstandard: "Past",
-		 tier: "Illegal",
+		isNonstandard: "Past",
+		tier: "Illegal",
 	},
   charmander: {
      tier: "ReGeneration LC",
@@ -27,7 +27,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
      tier: "ReGeneration",
      doublesTier: "ReGeneration",
   },
-	charizardmegax: {
+  charizardmegax: {
 	   isNonstandard: "Past",
 		 tier: "Illegal",
 	},
@@ -408,9 +408,9 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
      doublesTier: "ReGeneration LC",
 	},
 	haunter: {
-		 tier: "ReGeneration NFE",
+	  tier: "ReGeneration NFE",
      doublesTier: "ReGeneration NFE",
-  },
+   },
 	gengar: {
      tier: "ReGeneration",
      doublesTier: "ReGeneration",
@@ -474,10 +474,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	lickitung: {
      tier: "ReGeneration LC",
      doublesTier: "ReGeneration LC",
-	},
-	lickilicky: {
-     tier: "ReGeneration",
-     doublesTier: "ReGeneration",
 	},
 	koffing: {
      tier: "ReGeneration LC",
