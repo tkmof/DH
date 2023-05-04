@@ -9,6 +9,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		category: "Special",
 		name: "Vital Energy",
+      shortDesc: "Less power as user's HP decreases. Hits foe(s).",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -23,6 +24,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 75,
 		category: "Physical",
 		name: "Smoky Torment",
+      shortDesc: "Applies the Torment effect on opponent.",
 		pp: 10,
 		priority: 0,
 		flags: {},
@@ -40,35 +42,76 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 50,
 		category: "Special",
 		name: "Power Wash",
+      shortDesc: "Removes all hazards in the field. If any hazards are cleared, the user heals for 50% of its maximum HP.",
 		pp: 40,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
-		onAfterHit(target, pokemon) {
-			const sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
-			for (const condition of sideConditions) {
-				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Power Wash', '[of] ' + pokemon);
+		onHit(target, source, move) {
+			let success = false;
+			const removeAll = [
+				'spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge',
+			];
+			for (const sideCondition of removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.dex.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					success = true;
 				}
-      }
-		},
-		onAfterSubDamage(damage, target, pokemon) {
-			const sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
-			for (const condition of sideConditions) {
-				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Power Wash', '[of] ' + pokemon);
-				}
-			}
-		},
-		secondary: {
-			chance: 100,
-			self: {
-				if (!pokemon.side.removeSideCondition(condition)) return;
-          
-			},
+			} 
+			this.heal(Math.ceil(source.maxhp * 0.5), source);
+			return success;
 		},
 		target: "normal",
 		type: "Water",
 		contestType: "Cool",
+	},
+	brainwave: {
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		name: "Brainwave",
+      shortDesc: "Uses user's Special Defense stat as Special Attack in damage calculation.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		useSourceDefensiveAsOffensive: true,
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+	},
+	illwind: {
+		num: 202,
+		accuracy: 100,
+		basePower: 100,
+		category: "Special",
+		name: "Ill Wind",
+      shortDesc: "(Partially coded) Lowers the user's Sp. Atk by 1. Heals 25% of the damage done. Heals another 25% for each stage the user's Special Attack is lowered.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, heal: 1},
+		self: {
+			boosts: {
+				spa: -1,
+			},
+		},
+		drain: [1, 4],
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		contestType: "Clever",
+	},
+	guardiandive: {
+		accuracy: 100,
+		basePower: 75,
+		category: "Physical",
+		name: "Guardian Dive",
+      shortDesc: "Uses user's Defense stat as Attack in damage calculation.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		useSourceDefensiveAsOffensive: true,
+		secondary: null,
+		target: "normal",
+		type: "Flying",
 	},
 // Gen 9 Moves
 	hail: {
