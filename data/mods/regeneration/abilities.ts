@@ -57,7 +57,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Blackout",
-    shortDesc: "While this Pokemon is active, all held items are disabled.",
+      shortDesc: "While this Pokemon is active, all held items are disabled.",
 		rating: 5,
 	},
   excavate: {
@@ -70,41 +70,41 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 						activated = true;
 					}
 					pokemon.side.removeSideCondition(sideCondition);
+         }
+      },
+      onStart(pokemon) {
+		   let activated = false;
+			   if (target.side.getSideCondition('spikes')) {
+               this.add('-activate', pokemon, 'ability: Excavate');
+               activated = true;
+            }
+			   this.boost({def: 1}, pokemon);
+         }
+      },
+      onStart(pokemon) {
+		  let activated = false;
+			  if (target.side.getSideCondition('stealthrock')) {
+             this.add('-activate', pokemon, 'ability: Excavate');
+             activated = true;
+           }
+		     this.boost({def: 1}, pokemon);
         }
-      }
-    },
-    onStart(pokemon) {
-		 let activated = false;
-			 if (target.side.getSideCondition('spikes')) {
-            this.add('-activate', pokemon, 'ability: Excavate');
-            activated = true;
-         }
-			this.boost({def: 1}, pokemon);
-      }
-    },
-    onStart(pokemon) {
-		let activated = false;
-			if (target.side.getSideCondition('stealthrock')) {
-           this.add('-activate', pokemon, 'ability: Excavate');
-           activated = true;
-         }
-		   this.boost({def: 1}, pokemon);
-      }
-    },
-    name: "Excavate",
-    shortDesc: "Removes Stealth Rock and Spikes on switch-in, +1 Def for each hazard removed.",
-    rating: 4,
+      },
+      name: "Excavate",
+      shortDesc: "Removes Stealth Rock and Spikes on switch-in, +1 Def for each hazard removed.",
+      rating: 4,
   },
-	lifeguard: {
-		onDamagingHit(damage, target, source, move) {
-			if (move.type === 'Water') {
-				this.boost({def: 1});
-			}
-		},
-		onModifySecondaries(secondaries) {
-      if (move.type !== 'Water') return;
+  lifeguard: {
+	  onDamagingHit(damage, target, source, move) {
+		  if (move.type === 'Water') {
+			 this.boost({def: 1});
+		  }
+	  },
+	  onModifySecondaries(secondaries) {
+        if (move.type !== 'Water') return;
 			  this.debug('Lifeguard prevent secondary');
-		  	return secondaries.filter(effect => !effect.self);
+		  	  return secondaries.filter(effect => !effect.self);
+        }
 		},
 		name: "Lifeguard",
 		rating: 3,
