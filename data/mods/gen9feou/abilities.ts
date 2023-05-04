@@ -257,7 +257,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate' || effect.id === 'forestfury') {
+			if (effect.id === 'intimidate' || effect.id === 'forestfury' || effect.id === 'shockfactor') {
 				delete boost.atk;
 				this.add('-immune', target, '[from] ability: Scrap Rock');
 			}
@@ -576,7 +576,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate' || effect.id === 'forestfury') {
+			if (effect.id === 'intimidate' || effect.id === 'forestfury' || effect.id === 'shockfactor') {
 				delete boost.atk;
 				this.add('-immune', target, '[from] ability: Primitive');
 			}
@@ -991,7 +991,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			//this.effectData.bestStat = attacker.getBestStat(false, true);
 			if (attacker.getBestStat(false, true) !== 'atk') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-										  'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+										  'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
 				if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria weaken');
 					return this.chainModify([4096, 5325]);
@@ -1003,7 +1003,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			//this.effectData.bestStat = attacker.getBestStat(false, true);
 			if (attacker.getBestStat(false, true) !== 'spa') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
 					if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria weaken');
 					return this.chainModify([4096, 5325]);
@@ -1014,7 +1014,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onModifyAtk(atk, attacker, defender, move) {
 			if (defender.getBestStat(false, true) !== 'def') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-									   'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+									   'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
 				if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria weaken');
 					return this.chainModify([4096, 5325]);
@@ -1025,7 +1025,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onModifySpA (atk, attacker, defender, move) {
 			if (defender.getBestStat(false, true) !== 'spd') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive']) { 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
 				if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria weaken');
 					return this.chainModify([4096, 5325]);
@@ -1033,6 +1033,290 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Dyschronometria",
+		rating: 3,
+	},
+	nanorepairs: {
+	  shortDesc: "Quark Drive + Regenerator",
+		onSwitchOut(pokemon) {
+			pokemon.heal(pokemon.baseMaxhp / 3);
+		},
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Nanorepairs is not affected by Utility Umbrella
+			if (this.field.isWeather('sunnyday') && !pokemon.volatiles['nanorepairs']) {
+				pokemon.addVolatile('nanorepairs');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
+				pokemon.removeVolatile('nanorepairs');
+				pokemon.addVolatile('nanorepairs', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['nanorepairs'].fromBooster = true;
+			} else if (!pokemon.volatiles['nanorepairs']?.fromBooster && !this.field.isWeather('sunnyday')) {
+				pokemon.removeVolatile('nanorepairs');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['nanorepairs'];
+			this.add('-end', pokemon, 'Nanorepairs', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: ' + pokemon.getAbility().name, '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: ' + pokemon.getAbility().name);
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'nanorepairs' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Nanorepairs atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Nanorepairs def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Nanorepairs spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Nanorepairs spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Nanorepairs spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Nanorepairs');
+			},
+		},
+		isPermanent: true,
+		name: "Nanorepairs",
+		rating: 3,
+	},
+	ironsights: {
+	  shortDesc: "This Pokemon's Attack, Special Attack, and accuracy is x1.33.",
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk) {
+			return this.chainModify([5461, 4096]);
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(spa) {
+			return this.chainModify([5461, 4096]);
+		},
+		onSourceModifyAccuracyPriority: 9,
+		onSourceModifyAccuracy(accuracy) {
+			if (typeof accuracy !== 'number') return;
+			this.debug('compoundeyes - enhancing accuracy');
+			return accuracy * 1.333;
+		},
+		name: "Iron Sights",
+		rating: 3,
+	},
+	rejuvenate: {
+	  shortDesc: "Regenerator + Natural Cure",
+		onCheckShow(pokemon) {
+			// This is complicated
+			// For the most part, in-game, it's obvious whether or not Natural Cure activated,
+			// since you can see how many of your opponent's pokemon are statused.
+			// The only ambiguous situation happens in Doubles/Triples, where multiple pokemon
+			// that could have Natural Cure switch out, but only some of them get cured.
+			if (pokemon.side.active.length === 1) return;
+			if (pokemon.showCure === true || pokemon.showCure === false) return;
+
+			const cureList = [];
+			let noCureCount = 0;
+			for (const curPoke of pokemon.side.active) {
+				// pokemon not statused
+				if (!curPoke || !curPoke.status) {
+					// this.add('-message', "" + curPoke + " skipped: not statused or doesn't exist");
+					continue;
+				}
+				if (curPoke.showCure) {
+					// this.add('-message', "" + curPoke + " skipped: Rejuvenate already known");
+					continue;
+				}
+				const species = curPoke.species;
+				// pokemon can't get Natural Cure
+				if (!Object.values(species.abilities).includes('Rejuvenate')) {
+					// this.add('-message', "" + curPoke + " skipped: no Rejuvenate");
+					continue;
+				}
+				// pokemon's ability is known to be Natural Cure
+				if (!species.abilities['1'] && !species.abilities['H']) {
+					// this.add('-message', "" + curPoke + " skipped: only one ability");
+					continue;
+				}
+				// pokemon isn't switching this turn
+				if (curPoke !== pokemon && !this.queue.willSwitch(curPoke)) {
+					// this.add('-message', "" + curPoke + " skipped: not switching");
+					continue;
+				}
+
+				if (curPoke.hasAbility('rejuvenate')) {
+					// this.add('-message', "" + curPoke + " confirmed: could be Rejuvenate (and is)");
+					cureList.push(curPoke);
+				} else {
+					// this.add('-message', "" + curPoke + " confirmed: could be Rejuvenate (but isn't)");
+					noCureCount++;
+				}
+			}
+
+			if (!cureList.length || !noCureCount) {
+				// It's possible to know what pokemon were cured
+				for (const pkmn of cureList) {
+					pkmn.showCure = true;
+				}
+			} else {
+				// It's not possible to know what pokemon were cured
+
+				// Unlike a -hint, this is real information that battlers need, so we use a -message
+				this.add('-message', "(" + cureList.length + " of " + pokemon.side.name + "'s pokemon " + (cureList.length === 1 ? "was" : "were") + " cured by Rejuvenate.)");
+
+				for (const pkmn of cureList) {
+					pkmn.showCure = false;
+				}
+			}
+		},
+		onSwitchOut(pokemon) {
+			pokemon.heal(pokemon.baseMaxhp / 3);
+			if (!pokemon.status) return;
+			// if pokemon.showCure is undefined, it was skipped because its ability
+			// is known
+			if (pokemon.showCure === undefined) pokemon.showCure = true;
+			if (pokemon.showCure) this.add('-curestatus', pokemon, pokemon.status, '[from] ability: Rejuvenate');
+			pokemon.setStatus('');
+			// only reset .showCure if it's false
+			// (once you know a Pokemon has Natural Cure, its cures are always known)
+			if (!pokemon.showCure) pokemon.showCure = undefined;
+		},
+		name: "Rejuvenate",
+		rating: 3,
+	},
+	electromagneticveil: {
+	  shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Electric moves or burn; Electric & Burn immunity.",
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Electric') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Electromagnetic Veil');
+				}
+				return null;
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if ((effect as Move)?.status) {
+				this.heal(target.baseMaxhp / 4);
+				this.add('-immune', target, '[from] ability: Electromagnetic Veil');
+			}
+			return false;
+		},
+		onUpdate(pokemon) {
+			if (pokemon.status === 'brn') {
+				this.add('-activate', pokemon, 'ability: Electromagnetic Veil');
+				pokemon.cureStatus();
+			}
+		},
+		name: "Electromagnetic Veil",
+		rating: 3,
+	},
+	risingtension: {
+	  shortDesc: "Levitate + Cursed Body",
+		onDamagingHit(damage, target, source, move) {
+			if (source.volatiles['disable']) return;
+			if (!move.isFutureMove) {
+				if (this.randomChance(3, 10)) {
+					source.addVolatile('disable', this.effectData.target);
+				}
+			}
+		},
+		name: "Rising Tension",
+		rating: 3,
+	},
+	grindset: {
+	  shortDesc: "While active, own Attack is 1.25x, other Pokemon's Attack is 0.75.",
+		onStart(pokemon) {
+			if (this.suppressingAbility(pokemon)) return;
+			this.add('-ability', pokemon, 'Grindset');
+			this.add('-message', `The grind never stops for ${pokemon.name}, lowering the foe's Attack and raising its own!`);
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk) {
+			return this.chainModify(1.25);
+		},
+		onAnyModifyAtk(atk, source, target, move) {
+			const abilityHolder = this.effectData.target;
+			if (source.hasAbility('Grindset')) return;
+			if (!move.ruinedAtk) move.ruinedAtk = abilityHolder;
+			if (move.ruinedAtk !== abilityHolder) return;
+			this.debug('Grindset Atk drop');
+			return this.chainModify(0.75);
+		},
+		name: "Grindset",
+		rating: 3,
+	},
+	shockfactor: {
+	  shortDesc: "Static + Intimidate",
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Shock Factor', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({atk: -1}, target, pokemon, null, true);
+				}
+			}
+		},
+		onDamagingHit(damage, target, source, move) {
+			if (move.flags['contact']) {
+				if (this.randomChance(3, 10)) {
+					source.trySetStatus('par', target);
+				}
+			}
+		},
+		name: "Shock Factor",
+		rating: 3,
+	},
+	shellshock: {
+	  shortDesc: "Effects of Rock Head. Moves with Recoil have a 30% chance of paralysis.",
+		onDamage(damage, target, source, effect) {
+			if (effect.id === 'recoil') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return null;
+			}
+		},
+		onModifyMove(move) {
+			if (!move || !move.recoil || !move.hasCrashDamage || move.target === 'self') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			move.secondaries.push({
+				chance: 30,
+				status: 'par',
+				ability: this.dex.getAbility('shellshock'),
+			});
+		},
+		name: "Shell Shock",
 		rating: 3,
 	},
 	protosynthesis: {
