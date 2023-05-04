@@ -88,7 +88,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
              activated = true;
            }
 		     this.boost({def: 1}, pokemon);
-        }
+         }
       },
       name: "Excavate",
       shortDesc: "Removes Stealth Rock and Spikes on switch-in, +1 Def for each hazard removed.",
