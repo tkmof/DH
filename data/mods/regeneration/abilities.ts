@@ -82,12 +82,12 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
          }
       },
       onStart(pokemon) {
-		  let activated = false;
-			  if (target.side.getSideCondition('stealthrock')) {
-             this.add('-activate', pokemon, 'ability: Excavate');
-             activated = true;
-           }
-		     this.boost({def: 1}, pokemon);
+		   let activated = false;
+			   if (target.side.getSideCondition('stealthrock')) {
+               this.add('-activate', pokemon, 'ability: Excavate');
+               activated = true;
+            }
+			   this.boost({def: 1}, pokemon);
          }
       },
       name: "Excavate",
