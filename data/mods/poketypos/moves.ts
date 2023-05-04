@@ -392,6 +392,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {spe: 1}},
 		contestType: "Beautiful",
 	},
+	hiddenpower: {
+		inherit: true,
+		isNonstandard: null,
+	},
 	blizzard: {
 		num: 59,
 		accuracy: 70,

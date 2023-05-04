@@ -796,11 +796,23 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
-	ironfistmon: {
+	lronfist: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
 	meowthder: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	naztu: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	xatu: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	magshroom: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},

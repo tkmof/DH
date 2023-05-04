@@ -586,7 +586,7 @@ greatshield: {
 			}
 		},
 		name: "Great Shield",
-		desc: "Immune to Bullets and can't be crit. Deals 1/8 on contact.",
+		desc: "Immune to Bullets and can't be crit. Deals 1/8 max HP on contact.",
 		rating: 3,
 		num: 10032,
 	},

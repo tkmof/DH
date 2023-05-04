@@ -116,5 +116,9 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "gardevoir").learnset.rapidspin = ["6L1"];
 		this.modData("Learnsets", "gardevoir").learnset.mysticalfire = ["6L1"];
 		this.modData("Learnsets", "aggron").learnset.voltswitch = ["6L1"];
+		this.modData("Learnsets", "kangaskhan").learnset.milkdrink = ["6L1"];
+		this.modData("Learnsets", "salamence").learnset.hurricane = ["6L1"];
+		this.modData("Learnsets", "salamence").learnset.airslash = ["6L1"];
+		this.modData("Learnsets", "salamence").learnset.ironhead = ["6L1"];
 	},
 };
