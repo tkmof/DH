@@ -93,5 +93,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			delete this.modData('Learnsets', 'blastoise').learnset.shellsmash;	
 
 			delete this.modData('Learnsets', 'pidgeot').learnset.toxic;	
-
+			},
+			
+			
+			
 };
