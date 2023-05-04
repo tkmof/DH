@@ -315,7 +315,7 @@ export const Formats: FormatList = [
 	
 	
 	{
-		name: "[Gen 9] Roulettemons 2",
+		name: "[Gen 8] Roulettemons 2",
 		desc: `<b>[Gen 9] Roulettemons 2</b>: A meta where the only legal Pokemon are randomly-generated Fakemon.`,
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3717145/">Roulettemons 2 on Smogon Forums</a>`,
@@ -338,7 +338,7 @@ export const Formats: FormatList = [
 	 },
 	
 	{
-		name: "[Gen 9] Roulettemons 2 Ubers",
+		name: "[Gen 8] Roulettemons 2 Ubers",
 		desc: `<b>[Gen 9] Roulettemons 2 Ubers</b>: A broken meta where the only legal Pokemon are randomly-generated Fakemon.`,
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3717145/">Roulettemons 2 on Smogon Forums</a>`,
