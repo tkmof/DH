@@ -70,6 +70,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 						activated = true;
 					}
 					pokemon.side.removeSideCondition(sideCondition);
+            }
          }
       },
       onStart(pokemon) {
