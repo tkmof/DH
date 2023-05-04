@@ -4,6 +4,25 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
         excludeStandardTiers: true,
         customTiers: ['FEOU', 'FENFE', 'FELC'],
 	},
+	
+	canMegaEvo(pokemon) {
+		const altForme = pokemon.baseSpecies.otherFormes && this.dex.getSpecies(pokemon.baseSpecies.otherFormes[0]);
+		const item = pokemon.getItem();
+		if (
+			altForme?.isMega && altForme?.requiredMove &&
+			pokemon.baseMoves.includes(this.toID(altForme.requiredMove)) && !item.zMove
+		) {
+			return altForme.name;
+		}
+		if (item.name === "Salamencite" && pokemon.baseSpecies.name === "Amphamence") {
+			return "Amphamence-Mega-X"; 
+		}
+		if (item.name === "Ampharosite" && pokemon.baseSpecies.name === "Amphamence") {
+			return "Amphamence-Mega-Y"; 
+		}
+		
+		return item.megaStone;
+	},
 
 	runMove(moveOrMoveName, pokemon, targetLoc, sourceEffect, zMove, externalMove, maxMove, originalTarget) {
 		pokemon.activeMoveActions++;

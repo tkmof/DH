@@ -285,6 +285,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	typhlosionwarlock: {
 		learnset: {
+			calmmind: ["8L1"],
 			focusblast: ["8L1"],
 			aerialace: ["8L1"],
 			attract: ["8L1"],
@@ -1361,6 +1362,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	urshifuerosion: {
 		learnset: {
+			coil: ["8L1"],
 			swordsdance: ["8L1"],
 			chillingwater: ["8L1"],
 			snowscape: ["8L1"],
@@ -1670,6 +1672,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	rockmoo: {
 		learnset: {
+			recover: ["8L1"],
 			aerialace: ["8L1"],
 			aquatail: ["8L1"],
 			attract: ["8L1"],
@@ -1758,6 +1761,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	salazzleruler: {
 		learnset: {
+			highhorsepower: ["8L1"],
 			toxicspikes: ["8L1"],
 			accelerock: ["8L1"],
 			acrobatics: ["8L1"],
@@ -1823,6 +1827,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	lurantio: {
 		learnset: {
+			moonlight: ["8L1"],
 			aerialace: ["8L1"],
 			attract: ["8L1"],
 			brickbreak: ["8L1"],
@@ -2659,6 +2664,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	electroderingo: {
 		learnset: {
+			icespinner: ["8L1"],
+			volttackle: ["8L1"],
 			bide: ["8L1"],
 			bulletseed: ["8L1"],
 			charge: ["8L1"],
@@ -3177,6 +3184,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	indeedeeangel: {
 		learnset: {
+			moonblast: ["8L1"],
 			allyswitch: ["8L1"],
 			aromatherapy: ["8L1"],
 			attract: ["8L1"],
@@ -3371,6 +3379,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	toxtricitylowkey: {
 		learnset: {
+			calmmind: ["8L1"],
 			attract: ["8L1"],
 			belch: ["8L1"],
 			boomburst: ["8L1"],
@@ -4356,6 +4365,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	basculegion: {
 		learnset: {
+			suckerpunch: ["8L1"],
+			shadowbone: ["8L1"],
 			strengthsap: ["8L1"],
 			poltergeist: ["8L1"],
 			hex: ["8L1"],
@@ -4671,6 +4682,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	zarude: {
 		learnset: {
+			knockoff: ["8L1"],
 			toxicspikes: ["8L1"],
 			trailblaze: ["8L1"],
 			gunkshot: ["8L1"],
@@ -5547,6 +5559,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	oinkologne: {
 		learnset: {
+			uturn: ["8M"],
 			earthquake: ["8M"],
 			highhorsepower: ["8M"],
 			slackoff: ["8M"],
@@ -5599,6 +5612,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	oinkolognef: {
 		learnset: {
+			uturn: ["8M"],
 			moonblast: ["8M"],
 			strangesteam: ["8M"],
 			drainingkiss: ["8M"],
@@ -5823,6 +5837,9 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	greninja: {
 		learnset: {
+			closecombat: ["8M"],
+			knockoff: ["8M"],
+			flashcannon: ["8M"],
 			throatchop: ["8M"],
 			suckerpunch: ["8M"],
 			pursuit: ["8M"],
@@ -5914,6 +5931,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	greninjaronin: {
 		learnset: {
+			sacredsword: ["8M"],
 			aquacutter: ["8M"],
 			shadowclaw: ["8M"],
 			crosspoison: ["8M"],
@@ -6103,7 +6121,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	hoopaifrit: {
 		learnset: {
-		swift: ["8M"],
+			suckerpunch: ["8M"],
+			swift: ["8M"],
 			acidarmor: ["8M"],
 			acidspray: ["8M"],
 			belch: ["8M"],
@@ -6202,6 +6221,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	kyurem: {
 		learnset: {
+			dragondance: ["8M"],
 			brickbreak: ["8M"],
 			bulkup: ["8M"],
 			closecombat: ["8M"],
@@ -6369,6 +6389,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	kyuremwhite: {
 		learnset: {
+			grassknot: ["8M"],
 			fireblast: ["8M"],
 			firespin: ["8M"],
 			flamethrower: ["8M"],
@@ -6457,6 +6478,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	xerneasdormant: {
 		learnset: {
+			uturn: ["8M"],
+			powerwhip: ["8M"],
 			brickbreak: ["8M"],
 			bulkup: ["8M"],
 			bulletseed: ["8M"],
@@ -6545,6 +6568,9 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	xerneasjustice: {
 		learnset: {
+			highhorsepower: ["8M"],
+			uturn: ["8M"],
+			trick: ["8M"],
 			bulkup: ["8M"],
 			synthesis: ["8M"],
 			aromatherapy: ["8L25", "7L1", "6L1", "6S1"],
@@ -6620,6 +6646,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	arcaninewaterballoon: {
 		learnset: {
+			scald: ["8M"],
 			hydropump: ["8L1"],
 			surf: ["8L1"],
 			energyball: ["8L1"],
@@ -6714,6 +6741,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	arcaninenoble: {
 		learnset: {
+			morningsun: ["8M"],
 			diamondstorm: ["8L1"],
 			nobleroar: ["8L1"],
 			aerialace: ["8M"],
@@ -6778,6 +6806,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	avaluggprism: {
 		learnset: {
+			freezedry: ["8M"],
+			earthpower: ["8M"],
 			ironhead: ["8L1"],
 			flashcannon: ["8L1"],
 			steelbeam: ["8L1"],
@@ -7307,17 +7337,14 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			acrobatics: ["8M", "8L29"],
 			agility: ["8M"],
 			astonish: ["8L7"],
-			aurasphere: ["8M"],
 			blizzard: ["8M"],
 			bodyslam: ["8M"],
-			bulkup: ["8M"],
 			charm: ["8M", "8L25"],
 			chillingwater: ["8M"],
 			disarmingvoice: ["8M"],
 			dive: ["8L21"],
 			doublehit: ["8L17"],
 			drainingkiss: ["8M"],
-			drainpunch: ["8M"],
 			encore: ["8M", "8L34"],
 			endure: ["8M"],
 			facade: ["8M"],
@@ -7339,7 +7366,6 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			protect: ["8M"],
 			raindance: ["8M"],
 			rest: ["8M"],
-			reversal: ["8M"],
 			sleeptalk: ["8M"],
 			substitute: ["8M"],
 			supersonic: ["8L1"],
@@ -7591,6 +7617,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	taurosazul: {
 		learnset: {
+			focusblast: ["8L1"],
+			freezedry: ["8L1"],
 			avalanche: ["8L1"],
 			blizzard: ["8L1"],
 			icebeam: ["8L1"],

@@ -30,13 +30,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 	triplearrows: {
 		num: -1,
 		accuracy: 100,
-		basePower: 25,
+		basePower: 30,
 		category: "Special",
 		shortDesc: "Hits 3 times. Lowers target's Sp. Def. after the 3rd hit.",
 		name: "Triple Arrows",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
 		onHit(target, source, move) {
 			if (move.hit === 3) {
 				return !!this.boost({spd: -1}, target, source, move);
@@ -210,7 +211,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {snatch: 1, authentic: 1},
 		onModifyMove(move, pokemon) {
-			if (this.field.isTerrain('electricterrain') && pokemon.isGrounded()) move.boosts = {atk: 2, spa: 2};
+			if ((this.field.isTerrain('electricterrain') ||
+				 this.field.isTerrain('psychicterrain') ||
+				 this.field.isTerrain('grassyterrain') ||
+				 this.field.isTerrain('mistyterrain')) && pokemon.isGrounded()) move.boosts = {atk: 2, spa: 2};
 		},
 		boosts: {
 			atk: 1,
@@ -437,7 +441,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	ghostbite: {
 		num: -12,
 		accuracy: 100,
-		basePower: 70,
+		basePower: 85,
 		category: "Physical",
 		shortDesc: "Neutral on Ghost.",
 		name: "Ghost Bite",
@@ -452,7 +456,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Bug Bite", target);
 		},
 		target: "normal",
-		type: "Bug",
+		type: "Fighting",
 	},
 	snaptrap: {
 		num: 779,
@@ -602,18 +606,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 	payday: {
 		num: 6,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 60,
 		category: "Physical",
-		shortDesc: "If user moves before the target, the target looses 1/8 of its max HP.",
+		shortDesc: "Always results in a critical hit.",
 		name: "Pay Day",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onAfterMove(source, target) {
-			if (target.newlySwitched || this.queue.willMove(target)) {
-				this.damage(target.baseMaxhp / 8, target, source, this.dex.getEffect('Pay Day'));
-			}
-		},
+		willCrit: true,
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -795,16 +795,16 @@ export const Moves: {[moveid: string]: MoveData} = {
 	springtidestorm: {
 		num: -16,
 		accuracy: 100,
-		basePower: 85,
+		basePower: 120,
 		category: "Special",
-		shortDesc: "Lowers the user's Sp. Atk by 2.",
+		shortDesc: "Lowers the user's Sp. Atk by 1.",
 		name: "Springtide Storm",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		self: {
 			boosts: {
-				spa: -2,
+				spa: -1,
 			},
 		},
 		onPrepareHit: function(target, source, move) {
@@ -1141,11 +1141,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 50,
 		basePowerCallback(pokemon) {
 			if (!pokemon.m.timesAttacked) pokemon.m.timesAttacked = 0;
-			return Math.min(200, 50 + 25 * pokemon.m.timesAttacked);
+			return Math.min(350, 50 + 50 * pokemon.m.timesAttacked);
 		},
 		category: "Physical",
 		name: "Raging Fury",
-		shortDesc: "+25 power for each time the user was hit. Max 6 hits.",
+		shortDesc: "+50 power for each time the user was hit. Max 6 hits.",
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Flare Blitz", target);
@@ -1259,7 +1259,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	ragingbull: {
 		num: 873,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 100,
 		category: "Physical",
 		shortDesc: "Type depends on user's secondary type. Resists: -1 Def.",
 		name: "Raging Bull",
@@ -1314,9 +1314,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 	stampederush: {
 		num: -24,
 		accuracy: 100,
-		basePower: 90,
+		basePower: 100,
 		category: "Physical",
-		shortDesc: "Destroys screens. Ice-type if user is Tauros-Azul.",
+		shortDesc: "Destroys screens. Ice-type if user is Tauros-Azul. 100% chance to lower the target's Speed by 1.",
 		name: "Stampede Rush",
 		pp: 10,
 		priority: 0,
@@ -1336,7 +1336,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Double-Edge", target);
 		},
-		secondary: null,
+		secondary: {
+			chance: 100,
+			boosts: {
+				spe: -1,
+			},
+		},
 		target: "normal",
 		type: "Normal",
 	},
@@ -1410,15 +1415,17 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	buzzybuzz: {
 		inherit: true,
-		shortDesc: "Paralyses target if they attacked the user first.",
+		shortDesc: "100% chance to paralyze the target if they have a stat boost.",
 		isNonstandard: null,
 		pp: 10,
-		onHit(pokemon, source) {
-			if (source.hurtThisTurn) {
-				pokemon.trySetStatus('par', source);
-			}
+		secondary: {
+			chance: 100,
+			onHit(target, source, move) {
+				if (target.positiveBoosts() > 0) {
+					target.trySetStatus('par', source, move);
+				}
+			},
 		},
-		secondary: null,
 	},
 	freezyfrost: {
 		inherit: true,
@@ -1446,17 +1453,16 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	sizzlyslide: {
 		inherit: true,
-		shortDesc: "2x power if target is burned. 30% chance to burn.",
+		shortDesc: "100% chance to burn the target if they have a stat boost.",
 		isNonstandard: null,
 		pp: 10,
-		onBasePower(basePower, pokemon, target) {
-			if (target.status === 'brn') {
-				return this.chainModify(2);
-			}
-		},
 		secondary: {
-			chance: 30,
-			status: 'brn',
+			chance: 100,
+			onHit(target, source, move) {
+				if (target.positiveBoosts() > 0) {
+					target.trySetStatus('brn', source, move);
+				}
+			},
 		},
 	},
 	sparklyswirl: {
