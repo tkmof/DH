@@ -91,13 +91,11 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  },
 	  onModifySecondaries(secondaries) {
         if (move.type !== 'Water') return;
-			  this.debug('Lifeguard prevent secondary');
-		  	  return secondaries.filter(effect => !effect.self);
-        }
+		  this.debug('Lifeguard prevent secondary');
+		  return secondaries.filter(effect => !effect.self);
 		},
 		name: "Lifeguard",
 		rating: 3,
-		num: 19,
 	},
 // Gen 9 Abilities
 	battlebond: {
