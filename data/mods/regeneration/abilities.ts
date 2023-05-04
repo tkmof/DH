@@ -66,29 +66,17 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			for (const sideCondition of ['spikes', 'stealthrock']) {
 				if (pokemon.side.getSideCondition(sideCondition)) {
 					if (!activated) {
-						this.add('-activate', pokemon, 'ability: Excavate');
-						activated = true;
+						this.add('-activate', pokemon, 'ability: Screen Cleaner');
+		            activated = true;
 					}
 					pokemon.side.removeSideCondition(sideCondition);
             }
-         }
-      },
-      onStart(pokemon) {
-		   let activated = false;
 			   if (target.side.getSideCondition('spikes')) {
-               this.add('-activate', pokemon, 'ability: Excavate');
-               activated = true;
+			      this.boost({def: 1}, pokemon);
             }
-			   this.boost({def: 1}, pokemon);
-         }
-      },
-      onStart(pokemon) {
-		   let activated = false;
 			   if (target.side.getSideCondition('stealthrock')) {
-               this.add('-activate', pokemon, 'ability: Excavate');
-               activated = true;
+			      this.boost({def: 1}, pokemon);
             }
-			   this.boost({def: 1}, pokemon);
          }
       },
       name: "Excavate",
