@@ -1228,20 +1228,43 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 80,
 		category: "Physical",
 		name: "Jet Punch",
-		shortDesc: "If target is faster: 1/2 power and +1 priority.",
+		shortDesc: "(Non-functional placeholder) If target is faster: 1/2 power and +1 priority.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		onModifyMove(move, pokemon) {
+		/*onModifyMove(move, pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				const userspeed = pokemon.getStat('spe', false, true);
 				const targetspeed = target.getStat('spe', false, true);
 				if (targetspeed >= userspeed) {
-					move.priority = 1;
 					move.basePower *= 0.5;
+					move.jetpunchActivated = true;
 				}
 			}
 		},
+		onModifyPriority(priority, source, target, move) {
+			if (move?.jetpunchActivated) {
+				return priority + 1;
+				this.hint("Jet Punch moved at Hero Speed!");
+			}
+		},
+		onModifyMove(move, pokemon, target) {
+			if (!target) return;
+			const userspeed = pokemon.getStat('spe', false, true);
+			const targetspeed = target.getStat('spe', false, true);
+			if (targetspeed > userspeed || (targetspeed === userspeed && this.random(2) === 0)) {
+				move.basePower *= 0.5;
+			}
+		},
+		onModifyPriority(priority, source, target, move) {
+			if (!target) return;
+			const userspeed = source.getStat('spe', false, true);
+			const targetspeed = target.getStat('spe', false, true);
+			if (targetspeed > userspeed || (targetspeed === userspeed && this.random(2) === 0)) {
+				return priority + 1;
+				this.hint("Jet Punch moved at Hero Speed!");
+			}
+		},*/
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Mach Punch", target);
@@ -1697,14 +1720,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 	//Snow Moves
 	auroraveil: {
 		inherit: true,
-		onTryHitSide() {
-			if (!['hail', 'snow'].includes(pokemon.effectiveWeather())) return false;
+		onTryHitSide() {},
+		onTry() {
+			return this.field.isWeather(['hail', 'snow']);
 		},
 		shortDesc: "For 5 turns, damage to allies halved. Snow/Hail only.",
 	},
 	blizzard: {
 		inherit: true,
-		onModifyMove(move) {
+		onModifyMove(move, pokemon) {
 			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) move.accuracy = true;
 		},
 		shortDesc: "10% chance to freeze foe(s). Can't miss in Snow/Hail.",
