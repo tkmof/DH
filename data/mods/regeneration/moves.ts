@@ -53,7 +53,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			];
 			for (const sideCondition of removeAll) {
 				if (source.side.removeSideCondition(sideCondition)) {
-					this.add('-sideend', source.side, this.dex.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					this.add('-sideend', source.side, this.dex.getEffect(sideCondition).name, '[from] move: Power Wash', '[of] ' + source);
 					success = true;
 				}
 			} 
@@ -94,6 +94,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			},
 		},
 		drain: [1, 4],
+      onModifyMove(move, pokemon) {
+         move.drain += [pokemon.negativeBoosts().spa, 4]
+      },
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Icy Wind", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ice",
