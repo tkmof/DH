@@ -248,11 +248,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 298,
 	},
 	honeyfists: {
-		shortDesc: "When this Pokemon uses a STAB attack, it heals 1/8 of the damage dealt.",
 		onModifyMove(move, pokemon) {
 			if(pokemon.types.includes(move.type)) move.drain = [1, 8];
 		},
 		name: "Honey Fists",
+		shortDesc: "When this Pokemon uses a STAB attack, it heals 1/8 of the damage dealt.",
 		rating: 4,
 	},
 };

@@ -43,7 +43,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 6, 
 		name: "Urthwyrm", 
 		types: ["Ground", "Dragon"],
-		baseStats: {hp: 90, atk: 105, def: 85, spa: 50, spd: 115, spe: 85},
+		baseStats: {hp: 90, atk: 105, def: 85, spa: 40, spd: 115, spe: 45},
 		abilities: {0: "Earth Eater", H: "Shed Skin"},
 		weightkg: 57,
 	},
@@ -108,7 +108,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Beavor",
 		types: ["Normal", "Water"],
 		baseStats: {hp: 70, atk: 130, def: 75, spa: 45, spd: 95, spe: 85},
-		abilities: {0: "Cheek Pouch", 1: "Pickup", H: "Sharpness"},
+		abilities: {0: "Cheek Pouch", 1: "Sharpness", H: "Carpenter"},
 		weightkg: 59,
 	},
 	judowoodo: {

@@ -225,7 +225,7 @@ export const Formats: FormatList = [
 		mod: 'metamons', 
 		ruleset:['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Z-Move Clause'],
 		banlist: [
-			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
+			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass', 'Beedrillite'
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
@@ -360,6 +360,33 @@ export const Formats: FormatList = [
 		},
 	 },
 	
+	{
+		name: "[Gen 9] ReGeneration",
+	   desc: [
+			"In this Pet Mod, we will redesign the competitive functions of the Kantonian Pokemon after a Paldean counterpart.",
+		],
+		threads: [
+			'&bullet; <a href="https://www.smogon.com/forums/threads/regeneration-slate-4-seadra-dodrio-wigglytuff.3718196/">ReGeneration</a>',
+			'&bullet; <a href="https://docs.google.com/spreadsheets/d/1wbFWGR5pVcnTTyuy7vAUSrPxqSZsNF-Okx-v1hvD2Vc/edit?usp=sharing">Spreadsheet</a>',
+		],
+		mod: 'regeneration', 
+		ruleset:['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Z-Move Clause'],
+		banlist: [
+			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
+		   'Aerodactylite', 'Alakazite', 'Beedrillite', 'Blastoisinite', 'Charizardite X', 'Charizardite Y', 'Gengarite', 
+         'Gyaradosite', 'Kangaskhanite', 'Mewtwonite X', 'Mewtwonite Y', 'Pidgeotite', 'Pinsirite', 'Slowbronite', 'Venusaurite'
+		],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}} */
+			let speciesTable = {};
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (template.tier !== 'ReGeneration' && template.tier !== 'ReGeneration NFE' && template.tier !== 'ReGeneration LC') {
+					return [set.species + ' is not usable in ReGeneration.'];
+				}
+			}
+		},
+	},
 	{
 		section: "Gen 8 Mods",
 		column: 1,
@@ -1532,8 +1559,8 @@ export const Formats: FormatList = [
 	},
 	{
 		
-	  name: "[Gen 8] Gen 9 Sandbox Theorymons",
-     desc: '<b>[Gen 8] Gen 9 Sandbox Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
+	  name: "[Gen 8] Gen 9 Dream World Theorymons",
+     desc: '<b>[Gen 8] Gen 9 Dream World Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
      mod: 'gen9outheorymons',
 	  ruleset: ['Standard', 'Data Mod'],
 	  banlist: ['Uber'],
