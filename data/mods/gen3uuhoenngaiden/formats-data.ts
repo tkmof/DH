@@ -1626,10 +1626,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		rank: "New",
 	},
 	castformsunny: {
+		tier: "Illegal",
 	},
 	castformrainy: {
+		tier: "Illegal",
 	},
 	castformsnowy: {
+		tier: "Illegal",
 	},
 	kecleon: {
 		randomBattleMoves: ["brickbreak", "return", "shadowball", "thunderwave", "trick"],
