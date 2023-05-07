@@ -205,7 +205,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 16,
 		name: "Golisoros-Paldea-Blaze",
 		types: ["Water", "Fighting"],
-		baseStats: {hp: 75, atk: 125, def: 125, spa: 45, spd: 85, spe: 70},
+		baseStats: {hp: 79, atk: 125, def: 125, spa: 45, spd: 85, spe: 70},
 		abilities: {0: "Delayed Reaction"},
 		weightkg: 98.2,
 	},
