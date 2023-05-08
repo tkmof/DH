@@ -437,25 +437,17 @@ export const Moves: {[moveid: string]: MoveData} = {
 	draconicdrive: {
 		num: -11,
 		accuracy: 90,
-		basePower: 95,
+		basePower: 90,
 		category: "Special",
 		name: "Draconic Drive",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		secondary: {
-			chance: 20,
-			self: {
-				boosts: {
-					spa: 1,
-				},
-			},
-		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Dragon Pulse", target);
 		},
-		shortDesc: "20% chance to raise the user's Sp. Atk by 1 stage.",
+		shortDesc: "No additional effect.",
 		target: "normal",
 		type: "Dragon",
 		contestType: "Tough",
@@ -710,11 +702,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Cosmic",
 	},
 	cometpunch: {
-		inherit: true,
-		category: "Special",
-		type: "Cosmic",
-	},
-	triattack: {
 		inherit: true,
 		category: "Special",
 		type: "Cosmic",

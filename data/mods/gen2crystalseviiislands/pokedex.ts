@@ -92,7 +92,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: 261,
 		name: "Kipuro",
 		types: ["Rock", "Grass"],
-		baseStats: {hp: 100, atk: 90, def: 100, spa: 90, spd: 80, spe: 50},
+		baseStats: {hp: 90, atk: 90, def: 100, spa: 90, spd: 80, spe: 50},
 		abilities: {0: "No Ability"},
 		heightm: 2.1,
 		weightkg: 360,

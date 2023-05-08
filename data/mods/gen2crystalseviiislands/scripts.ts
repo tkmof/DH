@@ -183,7 +183,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'weezing').learnset.softshell = ['2L1'];
 		
 		this.modData('Learnsets', 'venusaur').learnset.malnourish = ['2L1'];
-		this.modData('Learnsets', 'muk').learnset.malnourish = ['2L1'];
+		this.modData('Learnsets', 'crobat').learnset.malnourish = ['2L1'];
 		this.modData('Learnsets', 'tentacruel').learnset.malnourish = ['2L1'];
 
 		this.modData('Learnsets', 'aerodactyl').learnset.boulderrush = ['2L1'];
