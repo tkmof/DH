@@ -1228,28 +1228,32 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 80,
 		category: "Physical",
 		name: "Jet Punch",
-		shortDesc: "(Non-functional placeholder) If target is faster: 1/2 power and +1 priority.",
+		shortDesc: "If target is faster: 1/2 power and +1 priority.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
 		onModifyMove(move, pokemon) {
+			const basePower = move.basePower;
             for (const target of pokemon.side.foe.active) {
-                const userspeed = pokemon.getStat('spe', false, true);
-                const targetspeed = target.getStat('spe', false, true);
-                if (targetspeed >= userspeed) {
-                    move.basePower *= 0.5;
-                    move.jetpunchActivate = true;
+                if (move.priority > 0) {
+					this.hint("Jet Punch moved at Hero Speed!");
+                    move.basePower = basePower * 0.5;
                 }
             }
         },
         onModifyPriority(priority, source, target, move) {
-			for (const target of source.side.foe.active) {
-                const userspeed = source.getStat('spe', false, true);
-                const targetspeed = target.getStat('spe', false, true);
-				if (targetspeed >= userspeed) {
-					this.hint("Jet Punch moved at Hero Speed!");
-					return priority + 1;
+			for (const pokemon of source.side.foe.active){
+				target = pokemon; // FSR "target" comes into this function as null, definitely a bug in PS
+			}
+			if (target.side.choice.actions && target.side.choice.actions.choice == 'switch') {
+				for (const pokemon of source.side.foe.pokemon) {
+					if (pokemon == target.side.choice.actions.pokemon) target = pokemon;
 				}
+			}
+			const userspeed = source.getStat('spe', false, true);
+			const targetspeed = target.getStat('spe', false, true);
+			if (targetspeed >= userspeed) {
+				return priority + 1;
 			}
         },
 		onPrepareHit: function(target, source, move) {
