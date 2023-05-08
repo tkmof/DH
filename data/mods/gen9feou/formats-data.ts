@@ -216,13 +216,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	irontornado: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["closecombat", "earthquake", "uturn", "icepunch"],
+		randomBattleMoves: ["closecombat", "earthquake", "uturn", "crunch"],
 		randomBattleLevel: 75,
 	},
 	deliraidon: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["dracometeor", "icebeam", "uturn", "electrodrift"],
+		randomBattleMoves: ["dracometeor", "blizzard", "uturn", "thunder"],
 		randomBattleLevel: 75,
 	},
 	stargrowth: {
@@ -263,7 +263,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	wopple: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["gravapple", "uturn", "knockoff", "leechseed"],
+		randomBattleMoves: ["gravapple", "outrage", "knockoff", "dragondance"],
 		randomBattleLevel: 75,
 	},
 	amphamence: {
@@ -273,17 +273,17 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleLevel: 75,
 	},
 	amphamencemegax: {
-		tier: "FEOU",
+		tier: "Uber",
 		doublesTier: "DOU",
 		randomBattleMoves: ["doubleedge", "wildcharge", "earthquake", "dragondance"],
-		randomBattleLevel: 75,
+		randomBattleLevel: 73,
 		requiredItem: "Salamencite",
 	},
 	amphamencemegay: {
-		tier: "FEOU",
+		tier: "Uber",
 		doublesTier: "DOU",
 		randomBattleMoves: ["roost", "dracometeor", "fireblast", "voltswitch"],
-		randomBattleLevel: 75,
+		randomBattleLevel: 73,
 		requiredItem: "Ampharosite",
 	},
 	mareegon: {

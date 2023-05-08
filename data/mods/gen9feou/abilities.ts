@@ -112,7 +112,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  name: "Galvanic Relay",
     },
 	forestfury: {
-	  shortDesc: "Effects of Intimidate and Hyper Cutter",
+	  shortDesc: "Effects of Intimidate and Hyper Cutter + This Pokemon can't be statused by opponents.",
 		onStart(pokemon) {
 			let activated = false;
 			for (const target of pokemon.side.foe.active) {
@@ -135,6 +135,18 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				if (!(effect as ActiveMove).secondaries) {
 					this.add("-fail", target, "unboost", "Attack", "[from] ability: Forest Fury", "[of] " + target);
 				}
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Forest Fury');
+			}
+			return false;
+		},
+		onTryAddVolatile(status, target) {
+			if (status.id === 'yawn') {
+				this.add('-immune', target, '[from] ability: Forest Fury');
+				return null;
 			}
 		},
 	  name: "Forest Fury",
@@ -284,18 +296,11 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 	},
 	openingact: {
-	  shortDesc: "Protosynthesis + Magician",
-		onSourceHit(target, source, move) {
-			if (!move || !target) return;
-			if (target !== source && move.category !== 'Status') {
-				if (source.item || source.volatiles['gem'] || move.id === 'fling') return;
-				const yourItem = target.takeItem(source);
-				if (!yourItem) return;
-				if (!source.setItem(yourItem)) {
-					target.item = yourItem.id; // bypass setItem so we don't break choicelock or anything
-					return;
-				}
-				this.add('-item', source, yourItem, '[from] ability: Opening Act', '[of] ' + target);
+	  shortDesc: "Protosynthesis + Prankster",
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.category === 'Status') {
+				move.pranksterBoosted = true;
+				return priority + 1;
 			}
 		},
 		onStart(pokemon) {
@@ -368,7 +373,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 	},
 	necromancer: {
-	  shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Ghost-type attack; can't be statused.",
+	  shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Ghost-type attack and takes 50% damage from Ghost and Steel attacks; can't be statused.",
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Ghost') {
@@ -381,6 +386,20 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (move.type === 'Ghost') {
 				this.debug('Necromancer boost');
 				return this.chainModify(1.5);
+			}
+		},
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ghost' || move.type === 'Steel') {
+				this.debug('Necromancer weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ghost' || move.type === 'Steel') {
+				this.debug('Necromancer weaken');
+				return this.chainModify(0.5);
 			}
 		},
 		onSetStatus(status, target, source, effect) {
@@ -740,7 +759,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		condition: {
-			duration: 2,
+			duration: 1,
 			onEnd(pokemon) {
 				this.add('-ability', pokemon, 'Delayed Reaction');
 				this.add('-message', `${pokemon.name} ejected itself from the battle!`);
@@ -1249,7 +1268,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 	},
 	grindset: {
-	  shortDesc: "While active, own Attack is 1.25x, other Pokemon's Attack is 0.75.",
+	  shortDesc: "While active, own Attack is 1.5x, other Pokemon's Attack is 0.5.",
 		onStart(pokemon) {
 			if (this.suppressingAbility(pokemon)) return;
 			this.add('-ability', pokemon, 'Grindset');
@@ -1257,7 +1276,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk) {
-			return this.chainModify(1.25);
+			return this.chainModify(1.5);
 		},
 		onAnyModifyAtk(atk, source, target, move) {
 			const abilityHolder = this.effectData.target;
@@ -1265,7 +1284,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (!move.ruinedAtk) move.ruinedAtk = abilityHolder;
 			if (move.ruinedAtk !== abilityHolder) return;
 			this.debug('Grindset Atk drop');
-			return this.chainModify(0.75);
+			return this.chainModify(0.5);
 		},
 		name: "Grindset",
 		rating: 3,

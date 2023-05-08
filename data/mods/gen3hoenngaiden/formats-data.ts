@@ -1372,7 +1372,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	sableye: {
 		randomBattleMoves: ["knockoff", "recover", "seismictoss", "shadowball", "toxic"],
 		tier: "UU",
-		rank: "New",
+		rank: "Unranked",
 	},
 	mawile: {
 		randomBattleMoves: ["batonpass", "brickbreak", "focuspunch", "hiddenpowersteel", "rockslide", "substitute", "swordsdance"],
@@ -2127,7 +2127,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	regieleki: {
-		rank: "New",
+		rank: "Unranked",
 		gen: 3,
 		tier: "UU",
 	},
@@ -2207,7 +2207,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "Uber",
 	},*/
 	tangrowth: {
-		rank: "New",
+		rank: "Unranked",
 		gen: 3,
 		tier: "UU",
 	},
@@ -2439,7 +2439,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	regidrago: {
-		rank: "New",
+		rank: "Unranked",
 		gen: 3,
 		tier: "UU",
 	},
@@ -2519,7 +2519,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	probopass: {
-		rank: "New",
+		rank: "Unranked",
 		gen: 3,
 		tier: "UU",
 	},
@@ -2529,12 +2529,12 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "OU",
 	},
 	bisharp: {
-		rank: "New",
+		rank: "Unranked",
 		gen: 3,
 		tier: "UU",
 	},
 	vespiquen: {
-		rank: "New",
+		rank: "Unranked",
 		gen: 3,
 		tier: "UU",
 	},
@@ -2544,7 +2544,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	komala: {
-		rank: "New",
+		rank: "Unranked",
 		gen: 3,
 		tier: "UU",
 	},
@@ -2559,7 +2559,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "UU",
 	},
 	weavile: {
-		rank: "New",
+		rank: "Unranked",
 		gen: 3,
 		tier: "UU",
 	},
