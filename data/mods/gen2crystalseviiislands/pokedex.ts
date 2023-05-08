@@ -173,6 +173,16 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 130,
 		prevo: "Cumulos",
 	},
+	celesteon: {
+		num: 270,
+		name: "Celesteon",
+		types: ["Cosmic"],
+		baseStats: {hp: 65, atk: 130, def: 110, spa: 95, spd: 60, spe: 65},
+		abilities: {0: "No Ability"},
+		heightm: 0.9,
+		weightkg: 26,
+		prevo: "Eevee",
+	},
 	
 	
 // Vanilla Edits
@@ -202,8 +212,6 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		inherit: true,
 		evos: ["lunaraknid"],
 	},
-	
-	
 	stantler: {
 		inherit: true,
 		types: ["Normal", "Cosmic"],
@@ -224,4 +232,8 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		inherit: true,
 		types: ["Grass", "Cosmic"],
 	},
+	eevee: {
+		inherit: true,
+		evos: ["Vaporeon", "Jolteon", "Flareon", "Espeon", "Umbreon", "Celesteon"],
+	}
 };

@@ -479,7 +479,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Cool",
 	},
 	essencesteal: {
-		num: -12,
+		num: -13,
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
@@ -502,7 +502,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Cool",
 	},
 	malnourish: {
-		num: -13,
+		num: -14,
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
@@ -528,7 +528,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Smart",
 	},
 	boulderrush: {
-		num: -14,
+		num: -15,
 		accuracy: 100,
 		basePower: 100,
 		category: "Physical",
@@ -549,7 +549,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	hiddenpowercosmic: {
 		gen: 2,
-		num: -15,
+		num: -16,
 		accuracy: 100,
 		basePower: 70,
 		category: "Special",
@@ -711,4 +711,112 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Special",
 		type: "Cosmic",
 	},
+	starstorm: {
+		num: -17,
+		accuracy: 75,
+		basePower: 120,
+		category: "Special",
+		name: "Star Storm",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			boosts: {
+				eva: -1,
+			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Make It Rain", target);
+		},
+		shortDesc: "30% chance to lower the target's Evasion by 1.",
+		target: "normal",
+		type: "Cosmic",
+		contestType: "Beauty",
+	},
+	celestialbeam: {
+		num: -18,
+		accuracy: 90,
+		basePower: 90,
+		category: "Special",
+		name: "Celestial Beam",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psybeam", target);
+		},
+		shortDesc: "No additional effect.",
+		target: "normal",
+		type: "Cosmic",
+		contestType: "Smart",
+	},
+	vacuum: {
+		num: -19,
+		accuracy: 95,
+		basePower: 24,
+		category: "Special",
+		name: "Vacuum",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		volatileStatus: 'partiallytrapped',
+		secondary: null,
+		target: "normal",
+		type: "Cosmic",
+		contestType: "Smart",
+		shortDesc: "Prevents the target from switching for two to five turns.",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Salt Cure", target);
+		},
+	},
+	meteorshard: {
+		num: -20,
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		name: "Meteor Shard",
+		pp: 25,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 10,
+			volatileStatus: 'confusion',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Swift", target);
+		},
+		shortDesc: "10% chance to confuse the target.",
+		target: "normal",
+		type: "Cosmic",
+		contestType: "Tough",
+	},
+	// cometcrash: {
+	// 	num: -21,
+	// 	accuracy: 80,
+	// 	basePower: 50,
+	// 	category: "Special",
+	// 	name: "Comet Crash",
+	// 	pp: 10,
+	// 	priority: 0,
+	// 	flags: {contact: 1, protect: 1, mirror: 1},
+	// 	secondary: {
+	// 		chance: 30,
+	// 		boosts: {
+	// 			eva: -1,
+	// 		},
+	// 	},
+	// 	onPrepareHit: function(target, source, move) {
+	// 		this.attrLastMove('[still]');
+	// 		this.add('-anim', source, "Rapid Spin", target);
+	// 	},
+	// 	shortDesc: "30% chance to boost a random stat by 1.",
+	// 	target: "normal",
+	// 	type: "Cosmic",
+	// 	contestType: "Tough",
+	// },
 };
