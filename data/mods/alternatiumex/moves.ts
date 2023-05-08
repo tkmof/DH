@@ -1232,39 +1232,26 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		/*onModifyMove(move, pokemon) {
-			for (const target of pokemon.side.foe.active) {
-				const userspeed = pokemon.getStat('spe', false, true);
-				const targetspeed = target.getStat('spe', false, true);
+		onModifyMove(move, pokemon) {
+            for (const target of pokemon.side.foe.active) {
+                const userspeed = pokemon.getStat('spe', false, true);
+                const targetspeed = target.getStat('spe', false, true);
+                if (targetspeed >= userspeed) {
+                    move.basePower *= 0.5;
+                    move.jetpunchActivate = true;
+                }
+            }
+        },
+        onModifyPriority(priority, source, target, move) {
+			for (const target of source.side.foe.active) {
+                const userspeed = source.getStat('spe', false, true);
+                const targetspeed = target.getStat('spe', false, true);
 				if (targetspeed >= userspeed) {
-					move.basePower *= 0.5;
-					move.jetpunchActivated = true;
+					this.hint("Jet Punch moved at Hero Speed!");
+					return priority + 1;
 				}
 			}
-		},
-		onModifyPriority(priority, source, target, move) {
-			if (move?.jetpunchActivated) {
-				return priority + 1;
-				this.hint("Jet Punch moved at Hero Speed!");
-			}
-		},
-		onModifyMove(move, pokemon, target) {
-			if (!target) return;
-			const userspeed = pokemon.getStat('spe', false, true);
-			const targetspeed = target.getStat('spe', false, true);
-			if (targetspeed > userspeed || (targetspeed === userspeed && this.random(2) === 0)) {
-				move.basePower *= 0.5;
-			}
-		},
-		onModifyPriority(priority, source, target, move) {
-			if (!target) return;
-			const userspeed = source.getStat('spe', false, true);
-			const targetspeed = target.getStat('spe', false, true);
-			if (targetspeed > userspeed || (targetspeed === userspeed && this.random(2) === 0)) {
-				return priority + 1;
-				this.hint("Jet Punch moved at Hero Speed!");
-			}
-		},*/
+        },
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Mach Punch", target);
