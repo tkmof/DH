@@ -220,11 +220,15 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		inherit: true,
 		types: ["Electric", "Cosmic"],
 	},
-	starmie: {
-		inherit: true,
-		types: ["Water", "Cosmic"],
-	},
 	clefable: {
+		inherit: true,
+		types: ["Cosmic"],
+	},
+	clefairy: {
+		inherit: true,
+		types: ["Cosmic"],
+	},
+	cleffa: {
 		inherit: true,
 		types: ["Cosmic"],
 	},
