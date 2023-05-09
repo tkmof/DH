@@ -753,6 +753,47 @@ charged: {
 		num: 10039,
 	},
 	
+contagious: {
+		// upokecenter says this is implemented as an added secondary effect
+		onModifyMove(move) {
+			if (!move || move.target === 'self') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			move.secondaries.push({
+				chance: 30,
+				status: 'frz',
+				ability: this.dex.getAbility('contagious'),
+			});
+		},
+		name: "Contagious",
+		desc: "This Pokemon's moves have a 30% chance of freezing.",
+		rating: 2,
+		num: 10040,
+	},
+	
+	frozendebris: {
+		onDamagingHitOrder: 1,
+		onDamagingHit(damage, target, source, move) {
+			const side = source.isAlly(target) ? source.side.foe : source.side;
+			const iceTrap = side.sideConditions['icetrap'];
+			if (move.category === 'Physical' && (!iceTrap || iceTrap.layers < 1)) {
+				this.add('-activate', target, 'ability: Frozen Debris');
+				side.addSideCondition('icetrap', target);
+			}
+		},
+		name: "Frozen Debris",
+		desc: "If this Pokemon is hit by a physical attack, Ice Trap is set on the opposing side.",
+		rating: 3.5,
+		num: 10041,
+	},
+	
+	climber: {
+		name: "Climber",
+		desc: "Removes hazards affecting the team from the field on switch-in.",
+		rating: 3.5,
+		num: 10042,
+	},
 	
 	//gen 9 stuff
 	sharpness: {
