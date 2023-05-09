@@ -108,6 +108,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData("Learnsets", "salazzle").learnset.sandattack = ["8L1"];
 		this.modData("Learnsets", "salazzle").learnset.fakeout = ["8L1"];
 		this.modData("Learnsets", "salazzle").learnset.mudslap = ["8L1"];
+		this.modData("Learnsets", "salazzle").learnset.swordsdance = ["8L1"];
 		delete this.modData('Learnsets', 'salandit').learnset.gunkshot;
 		delete this.modData('Learnsets', 'salandit').learnset.poisonjab;
 		delete this.modData('Learnsets', 'salandit').learnset.sludgebomb;
