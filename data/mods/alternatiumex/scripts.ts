@@ -358,6 +358,14 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData("Learnsets", "togedemaru").learnset.energyball = ["8L1"];
 		this.modData("Learnsets", "togedemaru").learnset.bulkup = ["8L1"];
 		this.modData("Learnsets", "togedemaru").learnset.stealthrock = ["8L1"];
+		this.modData("Learnsets", "togedemaru").learnset.powerwhip = ["8L1"];
+		this.modData("Learnsets", "togedemaru").learnset.seedbomb = ["8L1"];
+		this.modData("Learnsets", "togedemaru").learnset.trailblaze = ["8L1"];
+		this.modData("Learnsets", "togedemaru").learnset.bulletseed = ["8L1"];
+		this.modData("Learnsets", "togedemaru").learnset.gigadrain = ["8L1"];
+		this.modData("Learnsets", "togedemaru").learnset.megadrain = ["8L1"];
+		this.modData("Learnsets", "togedemaru").learnset.absorb = ["8L1"];
+		this.modData("Learnsets", "togedemaru").learnset.leechseed = ["8L1"];
 		this.modData("Learnsets", "togedemaru").learnset.swordsdance = ["8L1"];
 		delete this.modData('Learnsets', 'togedemaru').learnset.spark;
 		delete this.modData('Learnsets', 'togedemaru').learnset.wildcharge;
@@ -377,6 +385,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData("Learnsets", "tauros").learnset.stealthrock = ["8L1"];
 		this.modData("Learnsets", "tauros").learnset.uturn = ["8L1"];
 		this.modData("Learnsets", "tauros").learnset.headcharge = ["8L1"];
+		this.modData("Learnsets", "tauros").learnset.earthpower = ["8L1"];
+		this.modData("Learnsets", "tauros").learnset.headsmash = ["8L1"];
 		
 		this.modData("Learnsets", "raichu").learnset.icepunch = ["8L1"];
 		this.modData("Learnsets", "raichu").learnset.moonblast = ["8L1"];

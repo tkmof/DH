@@ -2138,6 +2138,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	necrozmabatwing: {
 		learnset: {
+			moonblast: ["8L1"],
 			aerialace: ["8L1"],
 			allyswitch: ["8L1"],
 			autotomize: ["8L1"],
@@ -2850,6 +2851,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	persianomen: {
 		learnset: {
+			moonlight: ["8L1"],
 			comeuppance: ["8L1"],
 			pounce: ["8L1"],
 			aerialace: ["8L1"],
@@ -3833,6 +3835,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	enamorus: {
 		learnset: {
+			airslash: ["8L1"],
+			hiddenpower: ["8L1"],
 			acrobatics: ["8L1"],
 			agility: ["8L1"],
 			airslash: ["8L1"],
@@ -3930,6 +3934,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	archronos: {
 		learnset: {
+			suckerpunch: ["8L1"],
 			trick: ["8L1"],
 			focusblast: ["8L1"],
 			aerialace: ["8L1"],
@@ -4532,15 +4537,20 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	magearna: {
 		learnset: {
+			wavecrash: ["8L1"],
+			liquidation: ["8L1"],
+			waterfall: ["8L1"],
+			flipturn: ["8L1"],
 			bulletpunch: ["8L1"],
-			plasmafists: ["8L1"],
+			hydropump: ["8L1"],
+			surf: ["8L1"],
+			scald: ["8L1"],
 			afteryou: ["7T"],
 			agility: ["8M"],
 			aurasphere: ["8M", "8L66", "7L81"],
 			batonpass: ["8M"],
 			brickbreak: ["8M", "7M"],
 			calmmind: ["8M", "7M"],
-			chargebeam: ["7M"],
 			confide: ["7M"],
 			craftyshield: ["8L54", "7L1"],
 			dazzlinggleam: ["8M", "7M"],
@@ -4548,9 +4558,6 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			doubleteam: ["7M"],
 			drainingkiss: ["8M"],
 			echoedvoice: ["7M"],
-			eerieimpulse: ["8M"],
-			electroball: ["8M"],
-			electroweb: ["8M"],
 			embargo: ["7M"],
 			encore: ["8M"],
 			endure: ["8M"],
@@ -4593,7 +4600,6 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			selfdestruct: ["8M"],
 			shadowball: ["8M", "7M"],
 			shiftgear: ["8L48", "7L1"],
-			shockwave: ["7T"],
 			signalbeam: ["7T"],
 			snore: ["8M", "7T"],
 			solarbeam: ["8M", "7M"],
@@ -4606,13 +4612,10 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			swagger: ["7M"],
 			synchronoise: ["7L73"],
 			thunderbolt: ["8M", "7M"],
-			thunderwave: ["8M", "7M"],
 			triattack: ["8M"],
 			trick: ["8M"],
 			trickroom: ["8M", "7M"],
 			trumpcard: ["7L97"],
-			voltswitch: ["8M", "7M"],
-			zapcannon: ["8L84"],
 			zenheadbutt: ["8M", "7T"],
 		},
 	},
@@ -4756,6 +4759,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	zarudehero: {
 		learnset: {
+			aerialace: ["8M"],
 			trailblaze: ["8L1"],
 			fly: ["8L1"],
 			bounce: ["8L1"],
@@ -5045,6 +5049,7 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	zoroarkjorogumo: {
 		learnset: {
+			poltergeist: ["8M"],
 			attackorder: ["8L1"],
 			bugbite: ["8L1"],
 			firstimpression: ["8L1"],
@@ -5559,6 +5564,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	oinkologne: {
 		learnset: {
+			toxic: ["8L1"],
+			stealthrock: ["8L1"],
 			uturn: ["8M"],
 			earthquake: ["8M"],
 			highhorsepower: ["8M"],
@@ -6478,6 +6485,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	xerneasdormant: {
 		learnset: {
+			earthquake: ["8M"],
+			ironhead: ["8M"],
 			uturn: ["8M"],
 			powerwhip: ["8M"],
 			brickbreak: ["8M"],
@@ -7560,6 +7569,9 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	taurossteam: {
 		learnset: {
+			scorchingsands: ["8L1"],
+			earthpower: ["8L1"],
+			sludgebomb: ["8L1"],
 			aquaring: ["8L1"],
 			bodypress: ["8L1"],
 			bodyslam: ["8L1"],
@@ -7826,6 +7838,10 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	golemberserker: {
 		learnset: {
+			closecombat: ["8L1"],
+			drainpunch: ["8L1"],
+			machpunch: ["8L1"],
+			poweruppunch: ["8L1"],
 			ancientpower: ["8L1"],
 			attract: ["8L1"],
 			autotomize: ["8L1"],
