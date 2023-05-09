@@ -468,6 +468,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData("Learnsets", "minior").learnset.dracometeor = ["8L1"];
 		this.modData("Learnsets", "minior").learnset.dragonpulse = ["8L1"];
 		this.modData("Learnsets", "minior").learnset.wish = ["8L1"];
+		this.modData("Learnsets", "minior").learnset.earthpower = ["8L1"];
 		delete this.modData('Learnsets', 'minior').learnset.acrobatics;
 		delete this.modData('Learnsets', 'minior').learnset.shellsmash;
 
