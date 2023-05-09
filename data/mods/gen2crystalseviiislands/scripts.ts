@@ -1,4 +1,4 @@
-const csi = ["horatekku", "aroofaondo", "exoltol", "animon", "esscargoo", "tunguru", "terricks", "skunkle", "skunking", "kipuro", "kamebi", "pyronoir", "kazappelin", "pierzer", "oatu", "lunaraknid", "cumulos", "altocumulos"];
+const csi = ["horatekku", "aroofaondo", "exoltol", "animon", "esscargoo", "tunguru", "terricks", "skunkle", "skunking", "kipuro", "kamebi", "pyronoir", "kazappelin", "pierzer", "oatu", "lunaraknid", "cumulos", "altocumulos", "celesteon"];
 
 export const Scripts: ModdedBattleScriptsData = {
 	inherit: 'gen2',
@@ -250,6 +250,10 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'onix').learnset.meteorshard = ['2L1'];
 		this.modData('Learnsets', 'rhyhorn').learnset.meteorshard = ['2L1'];
 		this.modData('Learnsets', 'terricks').learnset.meteorshard = ['2L1'];
+
+		this.modData('Learnsets', 'celesteon').learnset.swordsdance = ['2L1'];
+		this.modData('Learnsets', 'celesteon').learnset.moonlight = ['2L1'];
+		this.modData('Learnsets', 'celesteon').learnset.morningsun = ['2L1'];
 
 	},
 
