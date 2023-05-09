@@ -816,4 +816,32 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
+	coldtong: {
+		tier: "LC",
+		doublesTier: "KDD",
+	},
+	sickmander: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	hielorizo: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	guerrevo: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	piechivo: {
+		tier: "LC",
+		doublesTier: "KDD",
+	},
+	rocabra: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	granatija: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
 };
