@@ -208,9 +208,9 @@ export const Formats: FormatList = [
 		mod: 'gen6megasrevisited',
 		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
-					"Mewtwonite X", "Mewtwonite Y", "Scizorite",
-					"Tyranitarite", "Blazikenite",
-					"Latiasite", "Latiosite", "Garchompite", "Diancite"
+					"Mewtwonite X", "Mewtwonite Y",
+					"Blazikenite",
+					"Latiasite", "Latiosite", "Diancite"
 					],
 	},
 	{
@@ -1602,7 +1602,8 @@ export const Formats: FormatList = [
 						'Vizcachu-Mega','Iron Sun','Crazy Moon','Grussgu-Mega','Porcusquill-Mega','Jumpfurr','SurivExe','Eevee-Cile','Vaporeon-Cile','Jolteon-Cile',
 						'Flareon-Cile','Espeon-Cile','Umbreon-Cile','Leafeon-Cile','Glaceon-Cile','Sylveon-Cile','Qilineon','Fossileon','Crobat-Mega','Cupida',
 						'Mightyena-Mega','Drapede','Quetzal','Granjaguar','Huemul','Undeer','Dothdo','Frozen Beak','Purgapilla','Pumpkoon','Lepisalma','Drapede-Solemne',
-						'Quetzal-Solemne','Granjaguar-Solemne','lron Fist','Meowthder','Golbat','Zubat','Drowzee','Ekans','Poochyena','Natu','Naztu','Xatu','Magshroom']
+						'Quetzal-Solemne','Granjaguar-Solemne','lron Fist','Meowthder','Golbat','Zubat','Drowzee','Ekans','Poochyena','Natu','Naztu','Xatu','Magshroom',
+						'Coldtong','Sickmander','Hielorizo','Guerrevo','Guerrevo-Nacer','Piechivo','Rocabra','Granatija']
 	},
 	{
 		name: "[Gen 8] imando Gen 9",
