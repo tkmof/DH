@@ -83,7 +83,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  name: "All-Devouring",
     },
 	galvanicrelay: {
-	  shortDesc: "Mycelium Might and Transistor. User's Electric-type attacks ignore abilities and have -1 priority.",
+	  shortDesc: "Mycelium Might + Transistor; Mycelium Might effects extend to Electric-type attacks.",
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Electric') {
