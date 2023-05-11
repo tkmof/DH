@@ -269,7 +269,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate' || effect.id === 'forestfury' || effect.id === 'shockfactor') {
+			if (['intimidate','forestfury','shockfactor'].includes(effect.id)) {
 				delete boost.atk;
 				this.add('-immune', target, '[from] ability: Scrap Rock');
 			}
@@ -595,7 +595,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate' || effect.id === 'forestfury' || effect.id === 'shockfactor') {
+			if (['intimidate','forestfury','shockfactor'].includes(effect.id)) {
 				delete boost.atk;
 				this.add('-immune', target, '[from] ability: Primitive');
 			}
@@ -867,9 +867,13 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onDamagingHitOrder: 1,
 		onDamagingHit(damage, target, source, move) {
 			if (move.flags['contact']) {
-				this.damage(source.baseMaxhp / 8, source, target);
+				if (!target.hp) {
+					this.damage(source.baseMaxhp / 4, source, target);
+				} else {
+					this.damage(source.baseMaxhp / 8, source, target);
+				}
 			}
-			if (!target.hp) {
+			else if (!target.hp) {
 				this.damage(source.baseMaxhp / 8, source, target);
 			}
 		},
@@ -932,7 +936,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				pokemon.formeChange(speciesid, this.effect, true);
 				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon, this.dex.getSpecies(speciesid));
 				pokemon.addVolatile('faultyphoton');
-				pokemon.volatiles['faultyphoton'].fromBooster = true;
+				//pokemon.volatiles['faultyphoton'].fromBooster = true;
 			}
 		},
 		onEnd(pokemon) {
@@ -1005,7 +1009,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				boosts['accuracy'] = 0;
 			}
 		},
-		onSourceModifyAtkPriority: 6,
+		/*onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
 			//this.effectData.bestStat = attacker.getBestStat(false, true);
 			if (attacker.getBestStat(false, true) !== 'atk') return;
@@ -1028,26 +1032,43 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					return this.chainModify([4096, 5325]);
 				}
 			}
+		},*/
+		onSourceModifyDamage(damage, source, target, move) {
+			const bestStat = source.getBestStat(false,true);
+			if (['def','spd','spe'].includes(bestStat)) return;
+			if (bestStat === 'atk' && move.category !== 'Physical') return;
+			if (bestStat === 'spa' && move.category !== 'Special') return;
+			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
+					if (attacker.volatiles[paradox]) {
+					this.debug('Dyschronometria nullify');
+					return this.chainModify([3151, 4096]);
+				}
+			}
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
-			if (defender.getBestStat(false, true) !== 'def') return;
+			const bestStat = defender.getBestStat(false,true);
+			if (bestStat !== 'def' && (!move.defensiveCategory || move.defensiveCategory === 'Physical')) return;
+			if (move.defensiveCategory === 'Special' && bestStat !== 'spd') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
 									   'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
 				if (attacker.volatiles[paradox]) {
-					this.debug('Dyschronometria weaken');
-					return this.chainModify([4096, 5325]);
+					this.debug('Dyschronometria nullify');
+					return this.chainModify([5325, 4096]);
 				}
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA (atk, attacker, defender, move) {
-			if (defender.getBestStat(false, true) !== 'spd') return;
+			const bestStat = defender.getBestStat(false,true);
+			if (bestStat !== 'spd' && (!move.defensiveCategory || move.defensiveCategory === 'Special')) return;
+			if (move.defensiveCategory === 'Physical' && bestStat !== 'def') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
 										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
 				if (attacker.volatiles[paradox]) {
-					this.debug('Dyschronometria weaken');
-					return this.chainModify([4096, 5325]);
+					this.debug('Dyschronometria nullify');
+					return this.chainModify([5325, 4096]);
 				}
 			}
 		},
@@ -1129,7 +1150,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 	},
 	ironsights: {
-	  shortDesc: "This Pokemon's Attack, Special Attack, and accuracy is x1.33.",
+	  shortDesc: "This Pokemon's Attack, Special Attack, and accuracy are x1.33.",
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk) {
 			return this.chainModify([5461, 4096]);
@@ -1141,8 +1162,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onSourceModifyAccuracyPriority: 9,
 		onSourceModifyAccuracy(accuracy) {
 			if (typeof accuracy !== 'number') return;
-			this.debug('compoundeyes - enhancing accuracy');
-			return accuracy * 1.333;
+			this.debug('iron sights - enhancing accuracy');
+			return accuracy / 0.75;
 		},
 		name: "Iron Sights",
 		rating: 3,
@@ -1187,7 +1208,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					continue;
 				}
 
-				if (curPoke.hasAbility('rejuvenate')) {
+				if (curPoke.hasAbility(['naturalcure','rejuvenate'])) {
 					// this.add('-message', "" + curPoke + " confirmed: could be Rejuvenate (and is)");
 					cureList.push(curPoke);
 				} else {
@@ -1228,7 +1249,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 	},
 	electromagneticveil: {
-	  shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Electric moves or burn; Electric & Burn immunity.",
+	  shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Electric moves or burned; Electric & Burn immunity.",
 		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Electric') {
 				if (!this.heal(target.baseMaxhp / 4)) {
@@ -1248,6 +1269,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onUpdate(pokemon) {
 			if (pokemon.status === 'brn') {
 				this.add('-activate', pokemon, 'ability: Electromagnetic Veil');
+				this.heal(target.baseMaxhp / 4);
 				pokemon.cureStatus();
 			}
 		},
@@ -1307,17 +1329,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onDamagingHit(damage, target, source, move) {
-			if (move.flags['contact']) {
-				if (this.randomChance(3, 10)) {
+			if (move.flags['contact'] && this.randomChance(3, 10)) {
 					source.trySetStatus('par', target);
-				}
 			}
 		},
 		name: "Shock Factor",
 		rating: 3,
 	},
 	shellshock: {
-	  shortDesc: "Effects of Rock Head. Moves with Recoil have a 30% chance of paralysis.",
+	  shortDesc: "Effects of Rock Head. Moves with Recoil have a 30% chance of inflicting paralysis.",
 		onDamage(damage, target, source, effect) {
 			if (effect.id === 'recoil') {
 				if (!this.activeMove) throw new Error("Battle.activeMove is null");
@@ -1337,6 +1357,89 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		name: "Shell Shock",
 		rating: 3,
+	},
+	//Vanilla abilities
+	naturalcure: {
+		onCheckShow(pokemon) {
+			// This is complicated
+			// For the most part, in-game, it's obvious whether or not Natural Cure activated,
+			// since you can see how many of your opponent's pokemon are statused.
+			// The only ambiguous situation happens in Doubles/Triples, where multiple pokemon
+			// that could have Natural Cure switch out, but only some of them get cured.
+			if (pokemon.side.active.length === 1) return;
+			if (pokemon.showCure === true || pokemon.showCure === false) return;
+
+			const cureList = [];
+			let noCureCount = 0;
+			for (const curPoke of pokemon.side.active) {
+				// pokemon not statused
+				if (!curPoke || !curPoke.status) {
+					// this.add('-message', "" + curPoke + " skipped: not statused or doesn't exist");
+					continue;
+				}
+				if (curPoke.showCure) {
+					// this.add('-message', "" + curPoke + " skipped: Natural Cure already known");
+					continue;
+				}
+				const species = curPoke.species;
+				// pokemon can't get Natural Cure
+				if (!Object.values(species.abilities).includes('Natural Cure') && !Object.values(species.abilities).includes('Rejuvenate')) {
+					// this.add('-message', "" + curPoke + " skipped: no Natural Cure");
+					continue;
+				}
+				// pokemon's ability is known to be Natural Cure
+				if (!species.abilities['1'] && !species.abilities['H']) {
+					// this.add('-message', "" + curPoke + " skipped: only one ability");
+					continue;
+				}
+				// pokemon isn't switching this turn
+				if (curPoke !== pokemon && !this.queue.willSwitch(curPoke)) {
+					// this.add('-message', "" + curPoke + " skipped: not switching");
+					continue;
+				}
+
+				if (curPoke.hasAbility(['naturalcure','rejuvenate'])) {
+					// this.add('-message', "" + curPoke + " confirmed: could be Natural Cure (and is)");
+					cureList.push(curPoke);
+				} else {
+					// this.add('-message', "" + curPoke + " confirmed: could be Natural Cure (but isn't)");
+					noCureCount++;
+				}
+			}
+
+			if (!cureList.length || !noCureCount) {
+				// It's possible to know what pokemon were cured
+				for (const pkmn of cureList) {
+					pkmn.showCure = true;
+				}
+			} else {
+				// It's not possible to know what pokemon were cured
+
+				// Unlike a -hint, this is real information that battlers need, so we use a -message
+				this.add('-message', "(" + cureList.length + " of " + pokemon.side.name + "'s pokemon " + (cureList.length === 1 ? "was" : "were") + " cured by Natural Cure.)");
+
+				for (const pkmn of cureList) {
+					pkmn.showCure = false;
+				}
+			}
+		},
+		onSwitchOut(pokemon) {
+			if (!pokemon.status) return;
+
+			// if pokemon.showCure is undefined, it was skipped because its ability
+			// is known
+			if (pokemon.showCure === undefined) pokemon.showCure = true;
+
+			if (pokemon.showCure) this.add('-curestatus', pokemon, pokemon.status, '[from] ability: Natural Cure');
+			pokemon.setStatus('');
+
+			// only reset .showCure if it's false
+			// (once you know a Pokemon has Natural Cure, its cures are always known)
+			if (!pokemon.showCure) pokemon.showCure = undefined;
+		},
+		name: "Natural Cure",
+		rating: 2.5,
+		num: 30,
 	},
 	protosynthesis: {
 		onStart(pokemon) {
