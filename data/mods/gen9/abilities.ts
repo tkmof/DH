@@ -1,4 +1,12 @@
 export const Abilities: {[k: string]: ModdedAbilityData} = {
+	snowwarning: {
+		onStart(source) {
+			this.field.setWeather('snow');
+		},
+		name: "Snow Warning",
+		rating: 4,
+		num: 117
+	},
 	battlebond: {
 		onSourceAfterFaint(length, target, source, effect) {
 			if (effect?.effectType !== 'Move') return;
