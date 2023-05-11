@@ -206,14 +206,14 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				if (user.weighthg < target.weighthg && !user.volatiles['lightdrive']) {
 					user.addVolatile('lightdrive');
 					user.volatiles['lightdrive'].fromWeightDiff = true;
-				} else if (user.volatiles['lightdrive']?.fromWeightDiff && user.weighthg >= target.weighthg) {
+				} else if (user.volatiles['lightdrive'] && user.weighthg >= target.weighthg) {
 					user.removeVolatile('lightdrive');
 				}
 			} else if (target === user) {
 				if (user.weighthg < source.weighthg && !user.volatiles['lightdrive']) {
 					user.addVolatile('lightdrive');
 					user.volatiles['lightdrive'].fromWeightDiff = true;
-				} else if (user.volatiles['lightdrive']?.fromWeightDiff && user.weighthg >= source.weighthg) {
+				} else if (user.volatiles['lightdrive'] && user.weighthg >= source.weighthg) {
 					user.removeVolatile('lightdrive');
 				}
 			}
