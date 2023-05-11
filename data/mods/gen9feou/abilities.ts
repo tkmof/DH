@@ -178,7 +178,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  name: "Growth Spurt",
     },
 	lightdrive: {
-	  shortDesc: "(Partially functional) Light Metal + Quark Drive. Quark Drive activates if the user is lighter.",
+	  shortDesc: "Light Metal + Quark Drive. Quark Drive activates if the user is lighter.",
 		onModifyWeight(weighthg) {
 			return this.trunc(weighthg / 2);
 		},
