@@ -103,6 +103,14 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "R2OU",
 		doublesTier: "R2OU",
 	},
+	dinoolotl: {
+		tier: "R2OU",
+		doublesTier: "R2OU",
+	},
+	teleyle: {
+		tier: "R2OU",
+		doublesTier: "R2OU",
+	},
 	irotile: {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
@@ -243,15 +251,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
 	},
-	dinoolotl: {
-		tier: "R2Uber",
-		doublesTier: "R2Uber",
-	},
+	
 	shaingo: {
-		tier: "R2Uber",
-		doublesTier: "R2Uber",
-	},
-	teleyle: {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
 	},
