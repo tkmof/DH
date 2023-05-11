@@ -7268,6 +7268,8 @@ export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	},
 	winardin: {
 		learnset: {
+			curse: ["8L1"],
+			calmmind: ["8L1"],
 			wavecrash: ["8L1"],
 			waterspout: ["8L1"],
 			wish: ["8L1"],
