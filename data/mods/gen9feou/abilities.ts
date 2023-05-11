@@ -190,12 +190,32 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['lightdrive']) {
 				pokemon.addVolatile('lightdrive');
-			} else if (pokemon.hasItem('lightdrive') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
 				pokemon.removeVolatile('lightdrive');
 				pokemon.addVolatile('lightdrive', pokemon, Dex.getItem('boosterenergy'));
 				pokemon.volatiles['lightdrive'].fromBooster = true;
-			} else if (!pokemon.volatiles['lightdrive']?.fromBooster && !this.field.isTerrain('electricterrain')) {
+			} else if (!(pokemon.volatiles['lightdrive']?.fromBooster || pokemon.volatiles['lightdrive']?.fromWeightDiff) && !this.field.isTerrain('electricterrain')) {
 				pokemon.removeVolatile('lightdrive');
+			}
+		},
+		onAnyPrepareHit(source, target, move) {
+			if (move.hasBounced) return;
+			const user = this.effectData.target;
+			if (user.volatiles['lightdrive'] && !user.volatiles['lightdrive'].fromWeightDiff) return;
+			if (source === user) {
+				if (user.weighthg < target.weighthg && !user.volatiles['lightdrive']) {
+					user.addVolatile('lightdrive');
+					user.volatiles['lightdrive'].fromWeightDiff = true;
+				} else if (user.volatiles['lightdrive']?.fromWeightDiff && user.weighthg >= target.weighthg) {
+					user.removeVolatile('lightdrive');
+				}
+			} else if (target === user) {
+				if (user.weighthg < source.weighthg && !user.volatiles['lightdrive']) {
+					user.addVolatile('lightdrive');
+					user.volatiles['lightdrive'].fromWeightDiff = true;
+				} else if (user.volatiles['lightdrive']?.fromWeightDiff && user.weighthg >= source.weighthg) {
+					user.removeVolatile('lightdrive');
+				}
 			}
 		},
 		onEnd(pokemon) {
@@ -445,7 +465,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['quarksurge']) {
 				pokemon.addVolatile('quarksurge');
-			} else if (pokemon.hasItem('quarksurge') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
 				pokemon.removeVolatile('quarksurge');
 				pokemon.addVolatile('quarksurge', pokemon, Dex.getItem('boosterenergy'));
 				pokemon.volatiles['quarksurge'].fromBooster = true;
