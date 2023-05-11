@@ -109,7 +109,7 @@ charizardmegax: {
   forme: 'Mega-X',
   types: [ 'Fire', 'Dragon' ],
   genderRatio: { M: 0.875, F: 0.125 },
-  baseStats: { hp: 78, atk: 130, def: 111, spa: 107, spd: 107, spe: 100 },
+  baseStats: { hp: 78, atk: 107, def: 94, spa: 102, spd: 102, spe: 100 },
   abilities: { '0': 'Tough Claws' },
   weightkg: 110.5,
   eggGroups: [ 'Monster', 'Dragon' ]
@@ -121,7 +121,7 @@ charizardmegay: {
   forme: 'Mega-Y',
   types: [ 'Fire', 'Flying' ],
   genderRatio: { M: 0.875, F: 0.125 },
-  baseStats: { hp: 78, atk: 104, def: 78, spa: 137, spd: 137, spe: 100 },
+  baseStats: { hp: 78, atk: 94, def: 78, spa: 117, spd: 117, spe: 100 },
   abilities: { '0': 'Drought' },
   weightkg: 100.5,
   eggGroups: [ 'Monster', 'Dragon' ]
@@ -2835,7 +2835,7 @@ mewtwomegax: {
   forme: 'Mega-X',
   types: [ 'Psychic', 'Fighting' ],
   gender: 'N',
-  baseStats: { hp: 106, atk: 190, def: 100, spa: 127, spd: 127, spe: 130 },
+  baseStats: { hp: 106, atk: 150, def: 95, spa: 124, spd: 124, spe: 130 },
   abilities: { '0': 'Steadfast' },
   weightkg: 127,
   eggGroups: [ 'Undiscovered' ]
@@ -2847,7 +2847,7 @@ mewtwomegay: {
   forme: 'Mega-Y',
   types: [ 'Psychic' ],
   gender: 'N',
-  baseStats: { hp: 106, atk: 150, def: 70, spa: 157, spd: 157, spe: 140 },
+  baseStats: { hp: 106, atk: 130, def: 80, spa: 139, spd: 139, spe: 135 },
   abilities: { '0': 'Insomnia' },
   weightkg: 33,
   eggGroups: [ 'Undiscovered' ]
