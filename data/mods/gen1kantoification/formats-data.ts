@@ -1164,7 +1164,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	slaking: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	nincada: {
 		tier: "LC",
@@ -3090,10 +3090,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	solgaleo: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	lunala: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	nihilego: {
 		tier: "OU",
