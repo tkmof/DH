@@ -1002,7 +1002,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	blissey: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	raikou: {
 		tier: "OU",
@@ -1518,16 +1518,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	deoxys: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	deoxysattack: {
-		tier: "OU",
+		tier: "Illegal",
 	},
 	deoxysdefense: {
-		tier: "OU",
+		tier: "Illegal",
 	},
 	deoxysspeed: {
-		tier: "OU",
+		tier: "Illegal",
 	},
 	turtwig: {
 		tier: "LC",
@@ -3705,7 +3705,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	toedscruel: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	klawf: {
 		tier: "OU",
