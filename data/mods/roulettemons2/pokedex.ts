@@ -477,7 +477,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		species: "Solaroo",
 		types: ["Fairy", "Fire"],
 		baseStats: {hp: 143, atk: 114, def: 40, spa: 43, spd: 169, spe: 91},
-		abilities: {0: "Gooey", 1: "Multiscale", H: "As One Glastrier"},
+		abilities: {0: "Gooey", 1: "Multiscale", H: "As One (Glastrier)"},
 		height: 57,
 		weightkg: 17,
 	},
