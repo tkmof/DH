@@ -1144,7 +1144,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
     fierydance: ["7L1", "8L1", "9L1"],
     fireblast: ["7L1", "8L1", "9L1"],
     flail: ["7L1", "8L1", "9L1"],
-    flametheower: ["7L1", "8L1", "9L1"],
+    flamethrower: ["7L1", "8L1", "9L1"],
     frustration: ["7L1", "8L1", "9L1"],
     hiddenpower: ["7L1", "8L1", "9L1"],
     icebeam: ["7L1", "8L1", "9L1"],
