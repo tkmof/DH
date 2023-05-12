@@ -1109,7 +1109,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Ground',
   desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
   shortDesc: "10% chance to lower the target's Sp. Def by 1.",
-  gen: 3
+  gen: 1
 },
 	scorchingsands: {
   num: 815,
@@ -1126,7 +1126,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Ground',
   desc: 'Has a 30% chance to burn the target. The target thaws out if it is frozen.',
   shortDesc: '30% chance to burn the target. Thaws target.',
-  gen: 3
+  gen: 1
 },
 	powergem: {
   num: 408,
@@ -1141,7 +1141,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   target: 'normal',
   type: 'Rock',
   shortDesc: 'No additional effect.',
-  gen: 3
+  gen: 1
 },
 	rockpolish: {
   num: 397,
@@ -1159,7 +1159,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   zMove: { effect: 'clearnegativeboost' },
   desc: "Raises the user's Speed by 2 stages.",
   shortDesc: "Raises the user's Speed by 2.",
-  gen: 3
+  gen: 1
 },
 	iciclecrash: {
   num: 556,
@@ -1175,7 +1175,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Ice',
   desc: 'Has a 30% chance to make the target flinch.',
   shortDesc: '30% chance to make the target flinch.',
-  gen: 3
+  gen: 1
 },
 	wildcharge: {
   num: 528,
@@ -1192,7 +1192,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Electric',
   desc: 'If the target lost HP, the user takes recoil damage equal to 1/4 the HP lost by the target, rounded half up, but not less than 1 HP.',
   shortDesc: 'Has 1/4 recoil.',
-  gen: 3
+  gen: 1
 },
 	scald: {
   num: 503,
@@ -1209,7 +1209,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Water',
   desc: 'Has a 30% chance to burn the target. The target thaws out if it is frozen.',
   shortDesc: '30% chance to burn the target. Thaws target.',
-  gen: 3
+  gen: 1
 },
 	flareblitz: {
   num: 394,
@@ -1226,7 +1226,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Fire',
   desc: 'Has a 10% chance to burn the target. If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.',
   shortDesc: 'Has 33% recoil. 10% chance to burn. Thaws user.',
-  gen: 3
+  gen: 1
 },
 	heatwave: {
   num: 257,
@@ -1242,7 +1242,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Fire',
   desc: 'Has a 10% chance to burn the target.',
   shortDesc: '10% chance to burn the foe(s).',
-  gen: 3
+  gen: 1
 },
 	psychocut: {
   num: 427,
@@ -1259,7 +1259,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Psychic',
   desc: 'Has a higher chance for a critical hit.',
   shortDesc: 'High critical hit ratio.',
-  gen: 3
+  gen: 1
 },
 	zenheadbutt: {
   num: 428,
@@ -1275,7 +1275,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Psychic',
   desc: 'Has a 20% chance to make the target flinch.',
   shortDesc: '20% chance to make the target flinch.',
-  gen: 3
+  gen: 1
 },
 	hypervoice: {
   num: 304,
@@ -1291,7 +1291,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Normal',
   desc: 'No additional effect.',
   shortDesc: 'No additional effect. Hits adjacent foes.',
-  gen: 3
+  gen: 1
 },
 	gigaimpact: {
   num: 416,
@@ -1308,7 +1308,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Normal',
   desc: 'If this move is successful, the user must recharge on the following turn and cannot select a move.',
   shortDesc: 'User cannot move next turn.',
-  gen: 3
+  gen: 1
 },
 	crunch: {
   num: 242,
@@ -1324,7 +1324,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Dark',
   desc: "Has a 20% chance to lower the target's Defense by 1 stage.",
   shortDesc: "20% chance to lower the target's Defense by 1.",
-  gen: 3
+  gen: 1
 },
 	darkpulse: {
   num: 399,
@@ -1340,7 +1340,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Dark',
   desc: 'Has a 20% chance to make the target flinch.',
   shortDesc: '20% chance to make the target flinch.',
-  gen: 3
+  gen: 1
 },
 	throatchop: {
   num: 675,
@@ -1357,7 +1357,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Dark',
   desc: 'For 2 turns, the target cannot use sound-based moves.',
   shortDesc: 'For 2 turns, the target cannot use sound moves.',
-  gen: 3
+  gen: 1
 },
 	honeclaws: {
   num: 468,
@@ -1375,7 +1375,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   zMove: { boost: { atk: 1 } },
   desc: "Raises the user's Attack and accuracy by 1 stage.",
   shortDesc: "Raises the user's Attack and accuracy by 1.",
-  gen: 3
+  gen: 1
 },
 	nightslash: {
   num: 400,
@@ -1392,7 +1392,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Dark',
   desc: 'Has a higher chance for a critical hit.',
   shortDesc: 'High critical hit ratio.',
-  gen: 3
+  gen: 1
 },
 	autotomize: {
   num: 475,
@@ -1411,7 +1411,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   zMove: { effect: 'clearnegativeboost' },
   desc: "Raises the user's Speed by 2 stages. If the user's Speed was changed, the user's weight is reduced by 100 kg as long as it remains active. This effect is stackable but cannot reduce the user's weight to less than 0.1 kg.",
   shortDesc: "Raises the user's Speed by 2; user loses 100 kg.",
-  gen: 3
+  gen: 1
 },
 	flashcannon: {
   num: 430,
@@ -1427,7 +1427,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Steel',
   desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
   shortDesc: "10% chance to lower the target's Sp. Def by 1.",
-  gen: 3
+  gen: 1
 },
 	ironhead: {
   num: 442,
@@ -1443,7 +1443,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Steel',
   desc: 'Has a 30% chance to make the target flinch.',
   shortDesc: '30% chance to make the target flinch.',
-  gen: 3
+  gen: 1
 },
 	smartstrike: {
   num: 684,
@@ -1458,7 +1458,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   target: 'normal',
   type: 'Steel',
   shortDesc: 'This move does not check accuracy.',
-  gen: 3
+  gen: 1
 },
 	steelwing: {
   num: 211,
@@ -1474,7 +1474,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Steel',
   desc: "Has a 10% chance to raise the user's Defense by 1 stage.",
   shortDesc: "10% chance to raise the user's Defense by 1.",
-  gen: 3
+  gen: 1
 },
 	dazzlinggleam: {
   num: 605,
@@ -1490,7 +1490,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Fairy',
   desc: 'No additional effect.',
   shortDesc: 'No additional effect. Hits adjacent foes.',
-  gen: 3
+  gen: 1
 },
 	moonblast: {
   num: 585,
@@ -1506,7 +1506,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Fairy',
   desc: "Has a 30% chance to lower the target's Special Attack by 1 stage.",
   shortDesc: "30% chance to lower the target's Sp. Atk by 1.",
-  gen: 3
+  gen: 1
 },
 	playrough: {
   num: 583,
@@ -1522,7 +1522,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Fairy',
   desc: "Has a 10% chance to lower the target's Attack by 1 stage.",
   shortDesc: "10% chance to lower the target's Attack by 1.",
-  gen: 3
+  gen: 1
 },
 	aurasphere: {
   num: 396,
@@ -1537,7 +1537,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   target: 'any',
   type: 'Fighting',
   shortDesc: 'This move does not check accuracy.',
-  gen: 3
+  gen: 1
 },
 	brickbreak: {
   num: 280,
@@ -1553,7 +1553,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Fighting',
   desc: "If this attack does not miss, the effects of Reflect, Light Screen, and Aurora Veil end for the target's side of the field before damage is calculated.",
   shortDesc: 'Destroys screens, unless the target is immune.',
-  gen: 3
+  gen: 1
 },
 	crosschop: {
   num: 238,
@@ -1570,7 +1570,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Fighting',
   desc: 'Has a higher chance for a critical hit.',
   shortDesc: 'High critical hit ratio.',
-  gen: 3
+  gen: 1
 },
 	focusblast: {
   num: 411,
@@ -1586,7 +1586,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Fighting',
   desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
   shortDesc: "10% chance to lower the target's Sp. Def by 1.",
-  gen: 3
+  gen: 1
 },
 	airslash: {
   num: 403,
@@ -1602,7 +1602,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Flying',
   desc: 'Has a 30% chance to make the target flinch.',
   shortDesc: '30% chance to make the target flinch.',
-  gen: 3
+  gen: 1
 },
 	bravebird: {
   num: 413,
@@ -1619,7 +1619,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Flying',
   desc: 'If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.',
   shortDesc: 'Has 33% recoil.',
-  gen: 3
+  gen: 1
 },
 	hurricane: {
   num: 542,
@@ -1635,7 +1635,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Flying',
   desc: "Has a 30% chance to confuse the target. This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If the weather is Desolate Land or Sunny Day, this move's accuracy is 50%. If this move is used against a Pokemon holding Utility Umbrella, this move's accuracy remains at 70%.",
   shortDesc: "30% chance to confuse target. Can't miss in rain.",
-  gen: 3
+  gen: 1
 },
 	dualwingbeat: {
   num: 814,
@@ -1653,7 +1653,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   maxMove: { basePower: 130 },
   desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit.",
   shortDesc: 'Hits 2 times in one turn.',
-  gen: 3
+  gen: 1
 },
 	energyball: {
   num: 412,
@@ -1669,7 +1669,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Grass',
   desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
   shortDesc: "10% chance to lower the target's Sp. Def by 1.",
-  gen: 3
+  gen: 1
 },
 	gigadrain: {
   num: 202,
@@ -1686,7 +1686,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Grass',
   desc: 'The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.',
   shortDesc: 'User recovers 50% of the damage dealt.',
-  gen: 3
+  gen: 1
 },
 	leafblade: {
   num: 348,
@@ -1703,7 +1703,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Grass',
   desc: 'Has a higher chance for a critical hit.',
   shortDesc: 'High critical hit ratio.',
-  gen: 3
+  gen: 1
 },
 	powerwhip: {
   num: 438,
@@ -1718,7 +1718,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   target: 'normal',
   type: 'Grass',
   shortDesc: 'No additional effect.',
-  gen: 3
+  gen: 1
 },
 	seedbomb: {
   num: 402,
@@ -1733,7 +1733,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   target: 'normal',
   type: 'Grass',
   shortDesc: 'No additional effect.',
-  gen: 3
+  gen: 1
 },
 	synthesis: {
   num: 235,
@@ -1750,7 +1750,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   zMove: { effect: 'clearnegativeboost' },
   desc: 'The user restores 1/2 of its maximum HP if Delta Stream or no weather conditions are in effect or if the user is holding Utility Umbrella, 2/3 of its maximum HP if the weather is Desolate Land or Sunny Day, and 1/4 of its maximum HP if the weather is Primordial Sea, Rain Dance, Sandstorm, or Snow, all rounded half down.',
   shortDesc: 'Heals the user by a weather-dependent amount.',
-  gen: 3
+  gen: 1
 },
 	woodhammer: {
   num: 452,
@@ -1767,7 +1767,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Grass',
   desc: 'If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.',
   shortDesc: 'Has 33% recoil.',
-  gen: 3
+  gen: 1
 },
 	gunkshot: {
   num: 441,
@@ -1783,7 +1783,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Poison',
   desc: 'Has a 30% chance to poison the target.',
   shortDesc: '30% chance to poison the target.',
-  gen: 3
+  gen: 1
 },
 	poisonjab: {
   num: 398,
@@ -1799,7 +1799,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Poison',
   desc: 'Has a 30% chance to poison the target.',
   shortDesc: '30% chance to poison the target.',
-  gen: 3
+  gen: 1
 },
 	sludgebomb: {
   num: 188,
@@ -1815,7 +1815,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Poison',
   desc: 'Has a 30% chance to poison the target.',
   shortDesc: '30% chance to poison the target.',
-  gen: 3
+  gen: 1
 },
 	sludgewave: {
   num: 482,
@@ -1831,7 +1831,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Poison',
   desc: 'Has a 10% chance to poison the target.',
   shortDesc: '10% chance to poison adjacent Pokemon.',
-  gen: 3
+  gen: 1
 },
 	shadowball: {
   num: 247,
@@ -1847,7 +1847,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Ghost',
   desc: "Has a 20% chance to lower the target's Special Defense by 1 stage.",
   shortDesc: "20% chance to lower the target's Sp. Def by 1.",
-  gen: 3
+  gen: 1
 },
 	shadowclaw: {
   num: 421,
@@ -1864,7 +1864,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Ghost',
   desc: 'Has a higher chance for a critical hit.',
   shortDesc: 'High critical hit ratio.',
-  gen: 3
+  gen: 1
 },
 	bugbuzz: {
   num: 405,
@@ -1880,7 +1880,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Bug',
   desc: "Has a 10% chance to lower the target's Special Defense by 1 stage.",
   shortDesc: "10% chance to lower the target's Sp. Def by 1.",
-  gen: 3
+  gen: 1
 },
 	signalbeam: {
   num: 324,
@@ -1897,7 +1897,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Bug',
   desc: 'Has a 10% chance to confuse the target.',
   shortDesc: '10% chance to confuse the target.',
-  gen: 3
+  gen: 1
 },
 	xscissor: {
   num: 404,
@@ -1912,7 +1912,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   target: 'normal',
   type: 'Bug',
   shortDesc: 'No additional effect.',
-  gen: 3
+  gen: 1
 },
 	pollenpuff: {
   num: 676,
@@ -1928,7 +1928,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   type: 'Bug',
   desc: 'If the target is an ally, this move restores 1/2 of its maximum HP, rounded down, instead of dealing damage.',
   shortDesc: 'If the target is an ally, heals 50% of its max HP.',
-  gen: 3
+  gen: 1
 },
 	dragonclaw: {
   num: 337,
@@ -1943,7 +1943,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   target: 'normal',
   type: 'Dragon',
   shortDesc: 'No additional effect.',
-  gen: 3
+  gen: 1
 },
 	dragonpulse: {
   num: 406,
@@ -1958,6 +1958,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
   target: 'any',
   type: 'Dragon',
   shortDesc: 'No additional effect.',
-  gen: 3
+  gen: 1
 },
 };
