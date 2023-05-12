@@ -251,8 +251,27 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
 	},
-	
 	shaingo: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	gastroal: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	spritsoul: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	kynknight: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	scorpioxic: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	rhinoshroom: {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
 	},
