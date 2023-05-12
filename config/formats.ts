@@ -1605,6 +1605,17 @@ export const Formats: FormatList = [
 						'Quetzal-Solemne','Granjaguar-Solemne','lron Fist','Meowthder','Golbat','Zubat','Drowzee','Ekans','Poochyena','Natu','Naztu','Xatu','Magshroom',
 						'Coldtong','Sickmander','Hielorizo','Guerrevo','Guerrevo-Nacer','Piechivo','Rocabra','Granatija']
 	},
+    {
+		name: "[Gen 1] Kantoification OU",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/posts/8133786/">RBY Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3572352/">RBY OU Viability Rankings</a>`,
+		],
+
+		mod: 'gen1kantoification',
+		ruleset: ['Standard'],
+		banlist: ['Uber', 'Wrap'],
+	},
 	{
 		name: "[Gen 8] imando Gen 9",
 		desc: `i made a national dex ou meta where i played god (not clickbait) (real) (they made WHAT broken???)`,
