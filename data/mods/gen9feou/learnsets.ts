@@ -5181,6 +5181,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 		},
 	},
 bronzebonnet: {
+		learnset: {
 			sunnyday: ["8L1"],
 			weatherball: ["8L1"],
 			tackle: ["8L1"],
@@ -5276,6 +5277,7 @@ bronzebonnet: {
 		},
 	},
 ironlegion: {
+		learnset: {
 			watergun: ["8L1"],
 			tailwhip: ["8L1"],
 			tackle: ["8L1"],
