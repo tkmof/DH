@@ -1061,7 +1061,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
 										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs',
 											'weightoflife', 'circuitbreaker']) { 
-					if (attacker.volatiles[paradox]) {
+					if (source.volatiles[paradox]) {
 					this.debug('Dyschronometria nullify');
 					return this.chainModify([3151, 4096]);
 				}
@@ -1075,7 +1075,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
 									   'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs',
 											'weightoflife', 'circuitbreaker']) { 
-				if (attacker.volatiles[paradox]) {
+				if (defender.volatiles[paradox]) {
 					this.debug('Dyschronometria nullify');
 					return this.chainModify([5325, 4096]);
 				}
@@ -1089,7 +1089,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
 										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs',
 											'weightoflife', 'circuitbreaker']) { 
-				if (attacker.volatiles[paradox]) {
+				if (defender.volatiles[paradox]) {
 					this.debug('Dyschronometria nullify');
 					return this.chainModify([5325, 4096]);
 				}
