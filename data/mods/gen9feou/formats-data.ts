@@ -294,4 +294,16 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "FENFE",
 		doublesTier: "DOU",
 	},
+	ironlegion: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["hydropump", "shadowball", "freezedry", "flipturn"],
+		randomBattleLevel: 75,
+	},
+	bronzebonnet: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["spore", "synthesis", "heavyslam", "seedbomb"],
+		randomBattleLevel: 75,
+	},
 };
