@@ -1029,15 +1029,16 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				boosts['accuracy'] = 0;
 			}
 		},
-		/*onSourceModifyAtkPriority: 6,
+		onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
 			//this.effectData.bestStat = attacker.getBestStat(false, true);
 			if (attacker.getBestStat(false, true) !== 'atk') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-										  'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs', 
+										'weightoflife', 'circuitbreaker']) { 
 				if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria weaken');
-					return this.chainModify([4096, 5325]);
+					return this.chainModify([3151, 4096]);
 				}
 			}
 		},
@@ -1046,13 +1047,14 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			//this.effectData.bestStat = attacker.getBestStat(false, true);
 			if (attacker.getBestStat(false, true) !== 'spa') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs', 
+										'weightoflife', 'circuitbreaker']) { 
 					if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria weaken');
-					return this.chainModify([4096, 5325]);
+					return this.chainModify([3151, 4096]);
 				}
 			}
-		},*/
+		},/*
 		onSourceModifyDamage(damage, source, target, move) {
 			const bestStat = source.getBestStat(false,true);
 			if (['def','spd','spe'].includes(bestStat)) return;
@@ -1066,7 +1068,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					return this.chainModify([3151, 4096]);
 				}
 			}
-		},
+		},*/
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
 			const bestStat = defender.getBestStat(false,true);
