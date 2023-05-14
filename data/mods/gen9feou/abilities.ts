@@ -203,17 +203,17 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			const user = this.effectData.target;
 			if (user.volatiles['lightdrive'] && !user.volatiles['lightdrive'].fromWeightDiff) return;
 			if (source === user) {
-				if (user.weighthg < target.weighthg && !user.volatiles['lightdrive']) {
+				if (user.getWeight() < target.getWeight() && !user.volatiles['lightdrive']) {
 					user.addVolatile('lightdrive');
 					user.volatiles['lightdrive'].fromWeightDiff = true;
-				} else if (user.volatiles['lightdrive'] && user.weighthg >= target.weighthg) {
+				} else if (user.volatiles['lightdrive'] && user.getWeight() >= target.getWeight()) {
 					user.removeVolatile('lightdrive');
 				}
 			} else if (target === user) {
-				if (user.weighthg < source.weighthg && !user.volatiles['lightdrive']) {
+				if (user.getWeight() < source.getWeight() && !user.volatiles['lightdrive']) {
 					user.addVolatile('lightdrive');
 					user.volatiles['lightdrive'].fromWeightDiff = true;
-				} else if (user.volatiles['lightdrive'] && user.weighthg >= source.weighthg) {
+				} else if (user.volatiles['lightdrive'] && user.getWeight() >= source.getWeight()) {
 					user.removeVolatile('lightdrive');
 				}
 			}
@@ -1483,17 +1483,17 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			const user = this.effectData.target;
 			if (user.volatiles['weightoflife'] && !user.volatiles['weightoflife'].fromWeightDiff) return;
 			if (source === user) {
-				if (user.weighthg > target.weighthg && !user.volatiles['weightoflife']) {
+				if (user.getWeight() > target.getWeight() && !user.volatiles['weightoflife']) {
 					user.addVolatile('weightoflife');
 					user.volatiles['weightoflife'].fromWeightDiff = true;
-				} else if (user.volatiles['weightoflife'] && user.weighthg <= target.weighthg) {
+				} else if (user.volatiles['weightoflife'] && user.getWeight() <= target.getWeight()) {
 					user.removeVolatile('weightoflife');
 				}
 			} else if (target === user) {
-				if (user.weighthg > source.weighthg && !user.volatiles['weightoflife']) {
+				if (user.getWeight() > source.getWeight() && !user.volatiles['weightoflife']) {
 					user.addVolatile('weightoflife');
 					user.volatiles['weightoflife'].fromWeightDiff = true;
-				} else if (user.volatiles['weightoflife'] && user.weighthg <= source.weighthg) {
+				} else if (user.volatiles['weightoflife'] && user.getWeight() <= source.getWeight()) {
 					user.removeVolatile('weightoflife');
 				}
 			}
