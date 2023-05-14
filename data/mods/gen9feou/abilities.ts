@@ -1517,30 +1517,30 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			onModifyAtkPriority: 5,
 			onModifyAtk(atk, source, target, move) {
 				if (this.effectData.bestStat !== 'atk') return;
-				this.debug('Light Drive atk boost');
+				this.debug('Weight of Life atk boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifyDefPriority: 6,
 			onModifyDef(def, target, source, move) {
 				if (this.effectData.bestStat !== 'def') return;
-				this.debug('Light Drive def boost');
+				this.debug('Weight of Life def boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpAPriority: 5,
 			onModifySpA(relayVar, source, target, move) {
 				if (this.effectData.bestStat !== 'spa') return;
-				this.debug('Light Drive spa boost');
+				this.debug('Weight of Life spa boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpDPriority: 6,
 			onModifySpD(relayVar, target, source, move) {
 				if (this.effectData.bestStat !== 'spd') return;
-				this.debug('Light Drive spd boost');
+				this.debug('Weight of Life spd boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpe(spe, pokemon) {
 				if (this.effectData.bestStat !== 'spe') return;
-				this.debug('Light Drive spe boost');
+				this.debug('Weight of Life spe boost');
 				return this.chainModify(1.5);
 			},
 			onEnd(pokemon) {
@@ -1548,7 +1548,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			},
 		},
 		isPermanent: true,
-		name: "Light Drive",
+		name: "Weight of Life",
 		rating: 1,
 		num: 135,
 	},
