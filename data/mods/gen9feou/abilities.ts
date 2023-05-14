@@ -1422,30 +1422,30 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			onModifyAtkPriority: 5,
 			onModifyAtk(atk, source, target, move) {
 				if (this.effectData.bestStat !== 'atk') return;
-				this.debug('Nanorepairs atk boost');
+				this.debug('Circuit Breaker atk boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifyDefPriority: 6,
 			onModifyDef(def, target, source, move) {
 				if (this.effectData.bestStat !== 'def') return;
-				this.debug('Nanorepairs def boost');
+				this.debug('Circuit Breaker def boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpAPriority: 5,
 			onModifySpA(relayVar, source, target, move) {
 				if (this.effectData.bestStat !== 'spa') return;
-				this.debug('Nanorepairs spa boost');
+				this.debug('Circuit Breaker spa boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpDPriority: 6,
 			onModifySpD(relayVar, target, source, move) {
 				if (this.effectData.bestStat !== 'spd') return;
-				this.debug('Nanorepairs spd boost');
+				this.debug('Circuit Breaker spd boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpe(spe, pokemon) {
 				if (this.effectData.bestStat !== 'spe') return;
-				this.debug('Nanorepairs spe boost');
+				this.debug('Circuit Breaker spe boost');
 				return this.chainModify(1.5);
 			},
 			onEnd(pokemon) {
