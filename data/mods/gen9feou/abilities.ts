@@ -1059,7 +1059,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (bestStat === 'atk' && move.category !== 'Physical') return;
 			if (bestStat === 'spa' && move.category !== 'Special') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs',
+											'weightoflife', 'circuitbreaker']) { 
 					if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria nullify');
 					return this.chainModify([3151, 4096]);
@@ -1072,7 +1073,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (bestStat !== 'def' && (!move.defensiveCategory || move.defensiveCategory === 'Physical')) return;
 			if (move.defensiveCategory === 'Special' && bestStat !== 'spd') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-									   'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
+									   'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs',
+											'weightoflife', 'circuitbreaker']) { 
 				if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria nullify');
 					return this.chainModify([5325, 4096]);
@@ -1085,7 +1087,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (bestStat !== 'spd' && (!move.defensiveCategory || move.defensiveCategory === 'Special')) return;
 			if (move.defensiveCategory === 'Physical' && bestStat !== 'def') return;
 			for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
-										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs']) { 
+										'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs',
+											'weightoflife', 'circuitbreaker']) { 
 				if (attacker.volatiles[paradox]) {
 					this.debug('Dyschronometria nullify');
 					return this.chainModify([5325, 4096]);
@@ -1106,13 +1109,13 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onUpdate(pokemon) {
 			// if (pokemon.transformed) return;
 			// Nanorepairs is not affected by Utility Umbrella
-			if (this.field.isWeather('sunnyday') && !pokemon.volatiles['nanorepairs']) {
+			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['nanorepairs']) {
 				pokemon.addVolatile('nanorepairs');
-			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
 				pokemon.removeVolatile('nanorepairs');
 				pokemon.addVolatile('nanorepairs', pokemon, Dex.getItem('boosterenergy'));
 				pokemon.volatiles['nanorepairs'].fromBooster = true;
-			} else if (!pokemon.volatiles['nanorepairs']?.fromBooster && !this.field.isWeather('sunnyday')) {
+			} else if (!pokemon.volatiles['nanorepairs']?.fromBooster && !this.field.isTerrain('electricterrain')) {
 				pokemon.removeVolatile('nanorepairs');
 			}
 		},
@@ -1125,9 +1128,9 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			onStart(pokemon, source, effect) {
 				if (effect?.id === 'boosterenergy') {
 					this.effectData.fromBooster = true;
-					this.add('-activate', pokemon, 'ability: ' + pokemon.getAbility().name, '[fromitem]');
+					this.add('-activate', pokemon, 'ability: Nanorepairs', '[fromitem]');
 				} else {
-					this.add('-activate', pokemon, 'ability: ' + pokemon.getAbility().name);
+					this.add('-activate', pokemon, 'ability: Nanorepairs');
 				}
 				this.effectData.bestStat = pokemon.getBestStat(false, true);
 				this.add('-start', pokemon, 'nanorepairs' + this.effectData.bestStat);
@@ -1378,6 +1381,177 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Shell Shock",
 		rating: 3,
 	},
+	circuitbreaker: {
+	  shortDesc: "Quark Drive + Mold Breaker",
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+			this.add('-ability', pokemon, 'Circuit Breaker');
+		},
+		onModifyMove(move) {
+			move.ignoreAbility = true;
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Nanorepairs is not affected by Utility Umbrella
+			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['nanorepairs']) {
+				pokemon.addVolatile('circuitbreaker');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+				pokemon.removeVolatile('circuitbreaker');
+				pokemon.addVolatile('circuitbreaker', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['circuitbreaker'].fromBooster = true;
+			} else if (!pokemon.volatiles['circuitbreaker']?.fromBooster && !this.field.isTerrain('electricterrain')) {
+				pokemon.removeVolatile('circuitbreaker');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['circuitbreaker'];
+			this.add('-end', pokemon, 'Circuit Breaker', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Circuit Breaker', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Circuit Breaker');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'circuitbreaker' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Nanorepairs atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Nanorepairs def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Nanorepairs spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Nanorepairs spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Nanorepairs spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Circuit Breaker');
+			},
+		},
+		isPermanent: true,
+		name: "Circuit Breaker",
+		rating: 3,
+	},
+	weightoflife: {
+	  shortDesc: "Heavy Metal + Protosynthesis. Protosynthesis activates if the user is heavier.",
+		onModifyWeightPriority: 1,
+		onModifyWeight(weighthg) {
+			return weighthg*2
+		},
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isWeather('sunnyday') && !pokemon.volatiles['weightoflife']) {
+				pokemon.addVolatile('weightoflife');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
+				pokemon.removeVolatile('weightoflife');
+				pokemon.addVolatile('weightoflife', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['weightoflife'].fromBooster = true;
+			} else if (!(pokemon.volatiles['weightoflife']?.fromBooster || pokemon.volatiles['weightoflife']?.fromWeightDiff) && !this.field.isWeather('sunnyday')) {
+				pokemon.removeVolatile('weightoflife');
+			}
+		},
+		onAnyPrepareHit(source, target, move) {
+			if (move.hasBounced) return;
+			const user = this.effectData.target;
+			if (user.volatiles['weightoflife'] && !user.volatiles['weightoflife'].fromWeightDiff) return;
+			if (source === user) {
+				if (user.weighthg > target.weighthg && !user.volatiles['weightoflife']) {
+					user.addVolatile('weightoflife');
+					user.volatiles['weightoflife'].fromWeightDiff = true;
+				} else if (user.volatiles['weightoflife'] && user.weighthg <= target.weighthg) {
+					user.removeVolatile('weightoflife');
+				}
+			} else if (target === user) {
+				if (user.weighthg > source.weighthg && !user.volatiles['weightoflife']) {
+					user.addVolatile('weightoflife');
+					user.volatiles['weightoflife'].fromWeightDiff = true;
+				} else if (user.volatiles['weightoflife'] && user.weighthg <= source.weighthg) {
+					user.removeVolatile('weightoflife');
+				}
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['weightoflife'];
+			this.add('-end', pokemon, 'Weight of Life', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Weight of Life', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Weight of Life');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'weightoflife' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Light Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Light Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Light Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Light Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Light Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Weight of Life');
+			},
+		},
+		isPermanent: true,
+		name: "Light Drive",
+		rating: 1,
+		num: 135,
+	},
 	//Vanilla abilities
 	naturalcure: {
 		onCheckShow(pokemon) {
@@ -1461,6 +1635,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 2.5,
 		num: 30,
 	},
+	//Mainly did this so we could try to see if Quark Drive would work
 	protosynthesis: {
 		onStart(pokemon) {
 			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
