@@ -38,7 +38,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 						if (!pokemon.volatiles[proto] /* && !this.field.isWeather('sunnyday') */ && pokemon.useItem()) {
 							pokemon.addVolatile(proto);
 						}
-						break;
+						return;
 					}
 				}
 			}
@@ -48,7 +48,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 						if (!pokemon.volatiles[quark] && pokemon.useItem()) {
 							pokemon.addVolatile(quark);
 						}
-						break;
+						return;
 					}
 				}
 			}
