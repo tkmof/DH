@@ -5179,7 +5179,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			twister: ["8L1"],
 			zenheadbutt: ["8L1"],
 		},
-		bronzebonnet: {
+	},
+bronzebonnet: {
 			sunnyday: ["8L1"],
 			weatherball: ["8L1"],
 			tackle: ["8L1"],
@@ -5273,7 +5274,8 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			ingrain: ["8L1"],
 			ragepowder: ["8L1"],
 		},
-		ironlegion: {
+	},
+ironlegion: {
 			watergun: ["8L1"],
 			tailwhip: ["8L1"],
 			tackle: ["8L1"],
@@ -5344,7 +5346,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			freezedry: ["8L1"],
 			flipturn: ["8L1"],
 			auroraveil: ["8L1"],
+			lastrespects: ["8L1"],
 		},
-
 	},
 };
