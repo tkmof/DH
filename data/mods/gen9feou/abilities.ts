@@ -200,6 +200,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onAnyPrepareHit(source, target, move) {
 			if (move.hasBounced) return;
+			if (source == target) return;
 			const user = this.effectData.target;
 			if (user.volatiles['lightdrive'] && !user.volatiles['lightdrive'].fromWeightDiff) return;
 			if (source === user) {
@@ -1482,6 +1483,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onAnyPrepareHit(source, target, move) {
 			if (move.hasBounced) return;
+			if (source == target) return;
 			const user = this.effectData.target;
 			if (user.volatiles['weightoflife'] && !user.volatiles['weightoflife'].fromWeightDiff) return;
 			if (source === user) {
