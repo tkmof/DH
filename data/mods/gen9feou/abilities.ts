@@ -840,6 +840,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onBeforeMove(pokemon) {
 			if (pokemon.species.name !== 'Relishadow' || pokemon.transformed) return;
 			pokemon.formeChange('Relishadow-Zenith');
+			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 		},
 		onTryHit(pokemon, target, move) {
 			if (move.ohko) {
@@ -955,6 +956,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (pokemon.species.id === 'ironmimic' && this.effectData.busted) {
 				const speciesid = /*pokemon.species.id === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' :*/ 'Iron Mimic-Busted';
 				pokemon.formeChange(speciesid, this.effect, true);
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon, this.dex.getSpecies(speciesid));
 				pokemon.addVolatile('faultyphoton');
 				//pokemon.volatiles['faultyphoton'].fromBooster = true;
