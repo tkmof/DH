@@ -449,8 +449,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
 		onEffectiveness(typeMod, target, type) {
-			if (type === 'Ghost') return 0;
+			if (move.type !== 'Fighting') return;
+			if (!target) return; // avoid crashing when called from a chat plugin
+			// ignore effectiveness if the target is Ghost type and immune to Fighting
+			if (!target.runImmunity('Fighting')) {
+				if (target.hasType('Ghost')) return 0;
+			}
 		},
+		ignoreImmunity: {'Fighting': true},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Bug Bite", target);
