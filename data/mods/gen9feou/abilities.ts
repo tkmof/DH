@@ -1030,7 +1030,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				boosts['accuracy'] = 0;
 			}
 		},
-		onSourceModifyAtkPriority: 6,
+		/*onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
 			//this.effectData.bestStat = attacker.getBestStat(false, true);
 			if (attacker.getBestStat(false, true) !== 'atk') return;
@@ -1055,7 +1055,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					return this.chainModify([3151, 4096]);
 				}
 			}
-		},/*
+		},
 		onSourceModifyDamage(damage, source, target, move) {
 			const bestStat = source.getBestStat(false,true);
 			if (['def','spd','spe'].includes(bestStat)) return;
@@ -1069,7 +1069,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					return this.chainModify([3151, 4096]);
 				}
 			}
-		},*/
+		},
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
 			const bestStat = defender.getBestStat(false,true);
@@ -1095,6 +1095,63 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				if (defender.volatiles[paradox]) {
 					this.debug('Dyschronometria nullify');
 					return this.chainModify([5325, 4096]);
+				}
+			}
+		},*/
+		
+		onAnyModifyAtkPriority: 6,
+		onAnyModifyAtk(atk, attacker, defender, move) {
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			const dyschronoUser = this.effectData.target;
+			if (defender == dyschronoUser) {
+				if (attacker.getBestStat(false, true) !== 'atk') return;
+				for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+											'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs', 
+											'weightoflife', 'circuitbreaker']) { 
+					if (attacker.volatiles[paradox]) {
+						this.debug('Dyschronometria weaken');
+						return this.chainModify([3151, 4096]);
+					}
+				}
+			} else if (attacker == dyschronoUser) {
+				const bestStat = defender.getBestStat(false,true);
+				if (bestStat !== 'def' && (!move.defensiveCategory || move.defensiveCategory === 'Physical')) return;
+				if (move.defensiveCategory === 'Special' && bestStat !== 'spd') return;
+				for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+											'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs',
+												'weightoflife', 'circuitbreaker']) { 
+					if (defender.volatiles[paradox]) {
+						this.debug('Dyschronometria nullify');
+						return this.chainModify([5325, 4096]);
+					}
+				}
+			}
+		},
+		onAnyModifySpAPriority: 5,
+		onAnyModifySpA(atk, attacker, defender, move) {
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			const dyschronoUser = this.effectData.target;
+			if (defender == dyschronoUser) {
+				if (attacker.getBestStat(false, true) !== 'spa') return;
+				for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+											'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs', 
+											'weightoflife', 'circuitbreaker']) { 
+					if (attacker.volatiles[paradox]) {
+						this.debug('Dyschronometria weaken');
+						return this.chainModify([3151, 4096]);
+					}
+				}
+			} else if (attacker == dyschronoUser) {
+				const bestStat = defender.getBestStat(false,true);
+				if (bestStat !== 'spd' && (!move.defensiveCategory || move.defensiveCategory === 'Special')) return;
+				if (move.defensiveCategory === 'Physical' && bestStat !== 'def') return;
+				for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+											'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs',
+												'weightoflife', 'circuitbreaker']) { 
+					if (defender.volatiles[paradox]) {
+						this.debug('Dyschronometria nullify');
+						return this.chainModify([5325, 4096]);
+					}
 				}
 			}
 		},
