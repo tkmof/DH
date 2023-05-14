@@ -51,7 +51,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "Uber",
 		doublesTier: "DOU",
 		randomBattleMoves: ["uturn", "meteormash", "earthquake", "knockoff"],
-		randomBattleLevel: 73,
+		randomBattleLevel: 70,
 		requiredItem: "Metagrossite",
 	},
 	deciperiorhisui: {
@@ -179,7 +179,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	lashiram: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["blueflare", "earthpower", "roost", "stealthrock"],
+		randomBattleMoves: ["blueflare", "earthpower", "roost", "stealthrock", "flareblitz", "toxic"],
 		randomBattleLevel: 75,
 	},
 	garpyuku: {
@@ -198,13 +198,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	yveltox: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["quiverdance", "oblivionwing", "sludgebomb", "heatwave"],
+		randomBattleMoves: ["quiverdance", "oblivionwing", "sludgebomb", "heatwave","hurricane"],
 		randomBattleLevel: 75,
 	},
 	ironmimic: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["swordsdance", "playrough", "stoneedge", "earthquake"],
+		randomBattleMoves: ["swordsdance", "dragondance", "playrough", "stoneedge", "earthquake"],
 		randomBattleLevel: 75,
 	},
 	irondirge: {
@@ -269,7 +269,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	amphamence: {
 		tier: "FEOU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["discharge", "roost", "hurricane", "fireblast", "voltswitch"],
+		randomBattleMoves: ["discharge", "roost", "hurricane", "fireblast", "voltswitch", "hydropump"],
 		randomBattleLevel: 75,
 	},
 	amphamencemegax: {
