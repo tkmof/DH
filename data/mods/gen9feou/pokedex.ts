@@ -23,6 +23,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 75, atk: 122, def: 90, spa: 75, spd: 80, spe: 67},
 		abilities: {0: "Unfiltered"},
 		weightkg: 69.3,
+		prevo: "Varantis",
 	},
 	rotoghold: {
  // fusion: ['Gholdengo', 'Rotom'],
@@ -60,6 +61,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 90, atk: 76, def: 84, spa: 122, spd: 102, spe: 67},
 		abilities: {0: "Grassy Surge"},
 		weightkg: 63.9,
+		prevo: "Dollava",
 	},
 	zarubok: {
  // fusion: ['Zarude', 'Arbok'],
@@ -105,6 +107,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 105, atk: 130, def: 105, spa: 75, spd: 75, spe: 50},
 		abilities: {0: "Scrap Rock"},
 		weightkg: 160,
+		prevo: "Rhytrix",
 	},
 	slitherking: {
  // fusion: ['Slither Wing', 'Klefki'],
@@ -144,6 +147,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		weightkg: 36.3,
 		otherFormes: ["Muktaria-Alola-Mega"],
 		formeOrder: ["Muktaria-Alola", "Muktaria-Alola-Mega"],
+		prevo: "Grimeblu-Alola",
 	},
 	muktariaalolamega: {
  // fusion: ['Muk-Alola', 'Altaria'],
@@ -222,6 +226,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 82, atk: 123, def: 75, spa: 75, spd: 65, spe: 104},
 		abilities: {0: "Squall"},
 		weightkg: 148.5,
+		prevo: "Bramblinub",
 	},
 	meowscoriosensu: {
  // fusion: ['Meowscarada', 'Oricorio-Sensu'],
@@ -372,6 +377,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 90, atk: 90, def: 105, spa: 105, spd: 70, spe: 85},
 		abilities: {0: "Rejuvenate"},
 		weightkg: 104.3,
+		prevo: "Stargela",
 	},
 	floatzera: {
  // fusion: ['Floatzel', 'Zeraora'],
@@ -425,6 +431,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		weightkg: 82.1,
 		otherFormes: ["Amphamence-Mega-X", "Amphamence-Mega-Y"],
 		formeOrder: ["Amphamence", "Amphamence-Mega-X", "Amphamence-Mega-Y"],
+		prevo: "Flaalgon",
 	},
 	amphamencemegax: {
  // fusion: ['Ampharos', 'Salamence'],
@@ -493,6 +500,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 70, atk: 58, def: 59, spa: 79, spd: 76, spe: 56},
 		abilities: {0: "Growth Spurt"},
 		weightkg: 15.5,
+		prevo: "Smoliqwil",
 		evos: ["Arbolosion-Hisui"],
 	},
 	smoliqwil: {
@@ -523,6 +531,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 105, atk: 105, def: 100, spa: 57, spd: 60, spe: 46},
 		abilities: {0: "Reachless"},
 		weightkg: 68,
+		prevo: "Rhylet",
 		evos: ["Deciperior-Hisui"],
 	},
 	grimeblualola: {
@@ -573,6 +582,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 67, atk: 85, def: 77, spa: 70, spd: 55, spe: 51},
 		abilities: {0: "Shell Shock"},
 		weightkg: 61.9,
+		prevo: "Mareegon",
 		evos: ["Amphamence"],
 	},
 };
