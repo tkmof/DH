@@ -448,6 +448,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
+		ignoreImmunity: {'Fighting': true},
 		onEffectiveness(typeMod, target, type) {
 			if (type === 'Ghost') return 0;
 		},
