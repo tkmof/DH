@@ -465,7 +465,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	ironlegion: {
  // fusion: ['Iron Bundle', 'Basculegion-F'],
-		num: 33,
+		num: 34,
 		name: "Iron Legion",
 		types: ["Water", "Ghost"],
 		baseStats: {hp: 88, atk: 92, def: 90, spa: 112, spd: 68, spe: 110}, 
