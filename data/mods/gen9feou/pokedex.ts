@@ -468,7 +468,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 33,
 		name: "Iron Legion",
 		types: ["Water", "Ghost"],
-		baseStats: {hp: 88, atk: 92, def: 90, spa: 112, spd: 68, spe: 110} 
+		baseStats: {hp: 88, atk: 92, def: 90, spa: 112, spd: 68, spe: 110}, 
 		abilities: {0: "Circuit Breaker"},
 		weightkg: 60.5,
 		tags: ["Paradox"],
