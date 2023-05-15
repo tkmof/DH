@@ -143,7 +143,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			},
 		},
 		target: "normal",
-		type: "Dragon",
+		type: "Rock",
 		contestType: "Tough",
 		gen: 1,
 	},
