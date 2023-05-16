@@ -390,6 +390,25 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: -13,
 	},
+	shockproof: {
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'par') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Shockproof');
+			}
+			return false;
+		},
+		onSourceBasePower(basePower, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				return this.chainModify(0.5);
+			}
+		},
+		isBreakable: true,
+		name: "Shockproof",
+		shortDesc: "This Pokemon takes halved damage from Electric-type moves; paralysis immunity.",
+		rating: 2,
+		num: -37,
+	},
 	coldblooded: {
 		onStart(pokemon) {
 			pokemon.abilityData.choiceLock = "";

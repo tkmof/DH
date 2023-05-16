@@ -448,6 +448,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
+		ignoreImmunity: {'Fighting': true},
 		onEffectiveness(typeMod, target, type) {
 			if (type === 'Ghost') return 0;
 		},
@@ -899,6 +900,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	hyperspacefury: {
 		inherit: true,
+		flags: {mirror: 1, punch: 1, bypasssub: 1},
 		onTry(pokemon) {
 			if (pokemon.species.name === 'Hoopa-Ifrit' || pokemon.species.name === 'Archronos') {
 				return;
@@ -1228,43 +1230,34 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 80,
 		category: "Physical",
 		name: "Jet Punch",
-		shortDesc: "(Non-functional placeholder) If target is faster: 1/2 power and +1 priority.",
+		shortDesc: "If target is faster: 1/2 power and +1 priority.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		/*onModifyMove(move, pokemon) {
-			for (const target of pokemon.side.foe.active) {
-				const userspeed = pokemon.getStat('spe', false, true);
-				const targetspeed = target.getStat('spe', false, true);
-				if (targetspeed >= userspeed) {
-					move.basePower *= 0.5;
-					move.jetpunchActivated = true;
+		onModifyMove(move, pokemon) {
+			const basePower = move.basePower;
+            for (const target of pokemon.side.foe.active) {
+                if (move.priority > 0) {
+					this.hint("Jet Punch moved at Hero Speed!");
+                    move.basePower = basePower * 0.5;
+                }
+            }
+        },
+        onModifyPriority(priority, source, target, move) {
+			for (const pokemon of source.side.foe.active){
+				target = pokemon; // FSR "target" comes into this function as null, definitely a bug in PS
+			}
+			if (target.side.choice.actions && target.side.choice.actions.choice == 'switch') {
+				for (const pokemon of source.side.foe.pokemon) {
+					if (pokemon == target.side.choice.actions.pokemon) target = pokemon;
 				}
 			}
-		},
-		onModifyPriority(priority, source, target, move) {
-			if (move?.jetpunchActivated) {
-				return priority + 1;
-				this.hint("Jet Punch moved at Hero Speed!");
-			}
-		},
-		onModifyMove(move, pokemon, target) {
-			if (!target) return;
-			const userspeed = pokemon.getStat('spe', false, true);
-			const targetspeed = target.getStat('spe', false, true);
-			if (targetspeed > userspeed || (targetspeed === userspeed && this.random(2) === 0)) {
-				move.basePower *= 0.5;
-			}
-		},
-		onModifyPriority(priority, source, target, move) {
-			if (!target) return;
 			const userspeed = source.getStat('spe', false, true);
 			const targetspeed = target.getStat('spe', false, true);
-			if (targetspeed > userspeed || (targetspeed === userspeed && this.random(2) === 0)) {
+			if (targetspeed >= userspeed) {
 				return priority + 1;
-				this.hint("Jet Punch moved at Hero Speed!");
 			}
-		},*/
+        },
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Mach Punch", target);
@@ -1312,7 +1305,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: -23,
 		accuracy: 100,
 		basePower: 90,
-		category: "Physical",
+		category: "Special",
 		shortDesc: "(Semifunctional placeholder) Type depends on both the user's types.",
 		name: "Raging Bull (Steam)",
 		pp: 10,
@@ -1352,7 +1345,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		onModifyType(move, pokemon) {
 			if (pokemon.species.name === 'Tauros-Azul') {
-				move.type = 'Ice';
+				move.type = 'Fighting';
 			}
 		},
 		onPrepareHit: function(target, source, move) {

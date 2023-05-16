@@ -200,6 +200,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 95, atk: 135, def: 105, spa: 155, spd: 105, spe: 105},
 		abilities: {0: "Confidence"},
 	},	
+	garchompmega: {
+		inherit: true,
+		types: ["Dragon", "Ground"],
+		baseStats: {hp: 108, atk: 150, def: 115, spa: 140, spd: 85, spe: 102},
+		abilities: {0: "Dry Skin"},
+	},	
+	tyranitarmega: {
+		inherit: true,
+		types: ["Rock", "Electric"],
+		baseStats: {hp: 100, atk: 164, def: 120, spa: 90, spd: 144, spe: 82},
+		abilities: {0: "Electric Surge"},
+	},	
 	
 // Gen 6 Stuff
 	arbok: {

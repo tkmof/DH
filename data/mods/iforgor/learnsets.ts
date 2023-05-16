@@ -1088,6 +1088,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	},
 	normalpoison: {
 		learnset: {
+			mortalspin: ["9L1"],
 			bodyslam: ["9L1"],
 			strength: ["9L1"],
 			triattack: ["9L1"],
@@ -8134,6 +8135,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	},
 	firefairy: {
 		learnset: {
+			inferno: ["9L1"],
 			lunardance: ["9L1"],
 			junglehealing: ["9L1"],
 			afteryou: ["9L1"],
@@ -8889,6 +8891,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	},
 	firesteel: {
 		learnset: {
+			bitterblade: ["9L1"],
 			facade: ["9L1"],
 			protect: ["9L1"],
 			rest: ["9L1"],
@@ -9274,6 +9277,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	},
 	rockground: {
 		learnset: {
+			stoneaxe: ["9L1"],
 			endure: ["9L1"],
 			facade: ["9L1"],
 			protect: ["9L1"],

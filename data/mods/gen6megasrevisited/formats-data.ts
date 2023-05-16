@@ -722,7 +722,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	scizormega: {
 		randomBattleMoves: ["swordsdance", "roost", "bulletpunch", "bugbite", "superpower", "uturn", "defog", "knockoff"],
 		randomDoubleBattleMoves: ["swordsdance", "roost", "bulletpunch", "bugbite", "superpower", "uturn", "protect", "feint", "knockoff"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DOU)",
 	},
 	smoochum: {
@@ -1383,15 +1383,15 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	tyranitar: {
-		randomBattleMoves: ["crunch", "stoneedge", "pursuit", "earthquake", "fireblast", "icebeam", "stealthrock"],
+		randomBattleMoves: ["crunch", "stoneedge", "pursuit", "earthquake", "fireblast", "iciclecrash", "stealthrock"],
 		randomDoubleBattleMoves: ["crunch", "stoneedge", "rockslide", "earthquake", "firepunch", "icepunch", "stealthrock", "protect"],
 		tier: "OU",
 		doublesTier: "DOU",
 	},
 	tyranitarmega: {
-		randomBattleMoves: ["crunch", "stoneedge", "earthquake", "icepunch", "dragondance"],
+		randomBattleMoves: ["wildcharge", "stoneedge", "earthquake", "iciclecrash", "dragondance"],
 		randomDoubleBattleMoves: ["crunch", "stoneedge", "earthquake", "icepunch", "dragondance", "rockslide", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DOU)",
 	},
 	lugia: {
@@ -2474,7 +2474,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	garchompmega: {
 		randomBattleMoves: ["outrage", "dracometeor", "earthquake", "stoneedge", "fireblast", "swordsdance"],
 		randomDoubleBattleMoves: ["substitute", "dragonclaw", "earthquake", "stoneedge", "rockslide", "swordsdance", "protect", "fireblast"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DOU)",
 	},
 	riolu: {

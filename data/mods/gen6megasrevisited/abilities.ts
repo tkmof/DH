@@ -471,6 +471,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
     	shortDesc: "This Pokemon's Sp. Atk is raised by 1 stage if it attacks and KOes another Pokemon.",
 		gen: 6,
 	},
+	electricsurge: {
+		onStart(source) {
+			this.field.setTerrain('electricterrain');
+		},
+		name: "Electric Surge",
+		rating: 4,
+		num: 226,
+		gen: 6,
+	},				
 	
 /*	
 // ngas is so cringe

@@ -1,4 +1,12 @@
 export const Abilities: {[k: string]: ModdedAbilityData} = {
+	snowwarning: {
+		onStart(source) {
+			this.field.setWeather('snow');
+		},
+		name: "Snow Warning",
+		rating: 4,
+		num: 117
+	},
 	battlebond: {
 		onSourceAfterFaint(length, target, source, effect) {
 			if (effect?.effectType !== 'Move') return;
@@ -348,6 +356,33 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Opportunist",
 		rating: 3,
 		num: 290,
+	},
+	orichalcumpulse: {
+		onStart(pokemon) {
+			if (
+				!this.field.setWeather('sunnyday') &&
+				['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())
+			) {
+				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
+			}
+		},
+		onAnyWeatherStart(target, source) {
+			const pokemon = this.effectData.target;
+			if (pokemon === source) return;
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+				this.add('-activate', pokemon, 'ability: Orichalcum Pulse');
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+				this.debug('Orichalcum boost');
+				return this.chainModify([5325, 4096]);
+			}
+		},
+		name: "Orichalcum Pulse",
+		rating: 4,
+		num: 288,
 	},
 	protosynthesis: {
 		onStart(pokemon) {
