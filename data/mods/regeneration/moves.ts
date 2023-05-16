@@ -120,6 +120,25 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Flying",
 	},
+	coralcrash: {
+		num: 38,
+		accuracy: 100,
+		basePower: 120,
+		category: "Special",
+		name: "Coral Crash",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 10,
+			status: 'psn',
+		},
+		recoil: [33, 100],
+		secondary: null,
+		target: "normal",
+		type: "Poison",
+		contestType: "Tough",
+	},
 // Gen 9 Moves
 	hail: {
 		inherit: true,
