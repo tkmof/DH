@@ -129,7 +129,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		num: 242,
 		accuracy: 100,
 		basePower: 80,
-		shortDesc: "20% chance to lower the foe's Special by 1 stage.",
+		shortDesc: "20% chance to lower the foe's Defense by 1 stage.",
 		category: "Physical",
 		name: "Crunch",
 		pp: 15,
@@ -138,8 +138,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: {
 			chance: 20,
 			boosts: {
-				spa: -1,
-				spd: -1,
+				def: -1,
 			},
 		},
 		target: "normal",
