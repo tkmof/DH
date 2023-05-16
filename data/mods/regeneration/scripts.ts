@@ -60,6 +60,33 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		   this.modData("Learnsets", "pidgeot").learnset.acrobatics = ["8L1"];
 		   this.modData("Learnsets", "pidgeot").learnset.closecombat = ["8L1"];
 
+		   this.modData("Learnsets", "wigglytuff").learnset.crunch = ["8L1"];
+		   this.modData("Learnsets", "wigglytuff").learnset.darkpulse = ["8L1"];
+		   this.modData("Learnsets", "wigglytuff").learnset.rapidspin = ["8L1"];
+		   this.modData("Learnsets", "wigglytuff").learnset.taunt = ["8L1"];
+		   this.modData("Learnsets", "wigglytuff").learnset.uturn = ["8L1"];
+
+		   this.modData("Learnsets", "dodrio").learnset.brickbreak = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.bulldoze = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.dig = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.drillrun = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.earthquake = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.highjumpkick = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.lowkick = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.quickguard = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.rototiller = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.sandattack = ["8L1"];
+		   this.modData("Learnsets", "dodrio").learnset.triplekick = ["8L1"];
+
+		   this.modData("Learnsets", "seadra").learnset.acidspray = ["8L1"];
+		   this.modData("Learnsets", "seadra").learnset.coralcrash = ["8L1"];
+		   this.modData("Learnsets", "seadra").learnset.dracometeor = ["8L1"];
+		   this.modData("Learnsets", "seadra").learnset.sludgebomb = ["8L1"];
+		   this.modData("Learnsets", "seadra").learnset.sludgewave = ["8L1"];
+		   this.modData("Learnsets", "seadra").learnset.thunder = ["8L1"];
+		   this.modData("Learnsets", "seadra").learnset.thunderbolt = ["8L1"];
+		   this.modData("Learnsets", "seadra").learnset.toxicspikes = ["8L1"];
+
 			delete this.modData('Learnsets', 'alakazam').learnset.focusblast;	
 			delete this.modData('Learnsets', 'alakazam').learnset.nastyplot;	
 
@@ -93,7 +120,12 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			delete this.modData('Learnsets', 'blastoise').learnset.shellsmash;	
 
 			delete this.modData('Learnsets', 'pidgeot').learnset.toxic;	
-			},
+
+			delete this.modData('Learnsets', 'dodrio').learnset.fly;	
+
+			delete this.modData('Learnsets', 'seadra').learnset.blizzard;	
+			delete this.modData('Learnsets', 'seadra').learnset.icebeam;	
+         },
 			
 			
 			
