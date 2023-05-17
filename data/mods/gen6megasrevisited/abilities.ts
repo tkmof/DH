@@ -480,7 +480,38 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		num: 226,
 		gen: 6,
 	},				
-	
+	goodasgold: {
+		onTryHit(target, source, move) {
+			if (move.category === 'Status' && target !== source) {
+				this.add('-immune', target, '[from] ability: Good as Gold');
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Good as Gold",
+		rating: 5,
+		num: 283,
+    	shortDesc: "This Pokemon is immune to Status moves.",
+	},
+	opportunist: {
+		onFoeAfterBoost(boost, target, source, effect) {
+			if (effect?.name === 'Opportunist') return;
+			const pokemon = this.effectData.target;
+			const positiveBoosts: Partial<BoostsTable> = {};
+			let i: BoostName;
+			for (i in boost) {
+				if (boost[i]! > 0) {
+					positiveBoosts[i] = boost[i];
+				}
+			}
+			if (Object.keys(positiveBoosts).length < 1) return;
+			this.boost(positiveBoosts, pokemon);
+		},
+		name: "Opportunist",
+		rating: 3,
+		num: 290,
+    	shortDesc: "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",																	
+	},
 /*	
 // ngas is so cringe
 	analytic: {
