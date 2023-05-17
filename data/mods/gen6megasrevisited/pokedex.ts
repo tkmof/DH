@@ -211,6 +211,19 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Rock", "Electric"],
 		baseStats: {hp: 100, atk: 164, def: 120, spa: 90, spd: 144, spe: 82},
 		abilities: {0: "Electric Surge"},
+	},
+	latiasmega: {
+		inherit: true,
+		abilities: {0: "Trace"},
+	},	
+	latiosmega: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 140, def: 100, spa: 150, spd: 120, spe: 110},
+		abilities: {0: "Opportunist"},
+	},
+	dianciemega: {
+		inherit: true,
+		abilities: {0: "Good As Gold"},
 	},	
 	
 // Gen 6 Stuff
