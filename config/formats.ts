@@ -210,7 +210,6 @@ export const Formats: FormatList = [
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass',
 					"Mewtwonite X", "Mewtwonite Y",
 					"Blazikenite",
-					"Latiasite", "Latiosite", "Diancite"
 					],
 	},
 	{
