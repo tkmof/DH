@@ -92,7 +92,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  onModifySecondaries(secondaries) {
         if (move.type !== 'Water') return;
 		  this.debug('Lifeguard prevent secondary');
-		  return secondaries.filter(effect => !effect.self);
+		  return secondaries.filter(effect => !!(effect.self || effect.dustproof));
 		},
 		name: "Lifeguard",
       shortDesc: "Boosts Defense when hit by a Water move; blocks additional effects of Water moves.",
