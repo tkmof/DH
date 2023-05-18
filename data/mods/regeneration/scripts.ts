@@ -1,10 +1,31 @@
 export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
-   	teambuilderConfig: {
+   teambuilderConfig: {
 		excludeStandardTiers: true,
 		customTiers: ['ReGeneration', 'ReGeneration NFE', 'ReGeneration LC'],
 		customDoublesTiers: ['ReGeneration', 'ReGeneration NFE', 'ReGeneration LC'],
-	   },
-		init: function () {
+   },
+	canTerastallize(pokemon: Pokemon) {
+		if (
+			pokemon.species.isMega || pokemon.species.isPrimal || pokemon.species.forme === "Ultra" ||
+			pokemon.getItem().zMove || pokemon.canMegaEvo || pokemon.side.canDynamaxNow()
+		) {
+			return null;
+		}
+		return pokemon.teraType;
+	}
+	terastallize(pokemon: Pokemon) {
+		const type = pokemon.teraType;
+		this.battle.add('-terastallize', pokemon, type);
+		pokemon.terastallized = type;
+		for (const ally of pokemon.side.pokemon) {
+			ally.canTerastallize = null;
+		}
+		pokemon.addedType = '';
+		pokemon.knownType = true;
+		pokemon.apparentType = type;
+		this.battle.runEvent('AfterTerastallization', pokemon);
+	},
+   init: function () {
 		   this.modData("Learnsets", "alakazam").learnset.brainwave = ["8L1"];
 
 		   this.modData("Learnsets", "gengar").learnset.avalanche = ["8L1"];
