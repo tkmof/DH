@@ -4,7 +4,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		customTiers: ['ReGeneration', 'ReGeneration NFE', 'ReGeneration LC'],
 		customDoublesTiers: ['ReGeneration', 'ReGeneration NFE', 'ReGeneration LC'],
    },	
-// Terastal (copied from SV Speculative)
+// Terastal (taken from SV Speculative)
 
 	canMegaEvo(pokemon) {
 		if (pokemon.species.isMega) return null;
