@@ -3,27 +3,149 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		excludeStandardTiers: true,
 		customTiers: ['ReGeneration', 'ReGeneration NFE', 'ReGeneration LC'],
 		customDoublesTiers: ['ReGeneration', 'ReGeneration NFE', 'ReGeneration LC'],
-   },
-	canTerastallize(pokemon: Pokemon) {
-		if (
-			pokemon.species.isMega || pokemon.species.isPrimal || pokemon.species.forme === "Ultra" ||
-			pokemon.getItem().zMove || pokemon.canMegaEvo || pokemon.side.canDynamaxNow()
-		) {
-			return null;
-		}
-		return pokemon.teraType;
+   },	
+// Terastal (copied from SV Speculative)
+
+	canMegaEvo(pokemon) {
+		if (pokemon.species.isMega) return null;
+		return pokemon.hpType || "Normal";
 	},
-	terastallize(pokemon: Pokemon) {
-		const type = pokemon.teraType;
-		this.battle.add('-terastallize', pokemon, type);
-		pokemon.terastallized = type;
-		for (const ally of pokemon.side.pokemon) {
-			ally.canTerastallize = null;
+	runMegaEvo(pokemon) {
+		if (pokemon.species.isMega || !pokemon.canMegaEvo) return false;
+		if (pokemon.illusion) {
+			this.singleEvent('End', this.dex.getAbility('Illusion'), pokemon.abilityData, pokemon);
 		}
-		pokemon.addedType = '';
-		pokemon.knownType = true;
-		pokemon.apparentType = type;
-		this.battle.runEvent('AfterTerastallization', pokemon);
+		let species = this.dex.deepClone(pokemon.species);
+		species.teraBoost = pokemon.species.types;
+		species.teraType = pokemon.canMegaEvo; // remember that the species is Terastal
+		species.types = [species.teraType];
+		species.nonTeraForm = pokemon.species;
+		
+		// Pokémon affected by Sky Drop cannot Terastallize
+		const side = pokemon.side;
+		for (const foeActive of side.foe.active) {
+			if (foeActive.volatiles['skydrop'] && foeActive.volatiles['skydrop'].source === pokemon) {
+				return false;
+			}
+		}
+
+		pokemon.formeChange(species, "Terastal", true);
+		this.add('-anim', pokemon, "Cosmic Power", pokemon);
+		this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+		this.add('-message', `${pokemon.name} Terastallized to become ${species.types[0]}-type!`);
+		pokemon.addVolatile('terastal');
+
+		// Limit one Terastal
+		for (const ally of side.pokemon) ally.canMegaEvo = null;
+		return true;
+	},
+	runSwitch(pokemon: Pokemon) { // modified for Terastal
+		if (pokemon.illusion ? pokemon.illusion.species.teraType : pokemon.species.teraType) this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
+		this.runEvent('Swap', pokemon);
+		this.runEvent('SwitchIn', pokemon);
+		if (this.gen <= 2 && !pokemon.side.faintedThisTurn && pokemon.draggedIn !== this.turn) {
+			this.runEvent('AfterSwitchInSelf', pokemon);
+		}
+		if (!pokemon.hp) return false;
+		pokemon.isStarted = true;
+		if (!pokemon.fainted) {
+			this.singleEvent('Start', pokemon.getAbility(), pokemon.abilityData, pokemon);
+			pokemon.abilityOrder = this.abilityOrder++;
+			this.singleEvent('Start', pokemon.getItem(), pokemon.itemData, pokemon);
+		}
+		if (this.gen === 4) {
+			for (const foeActive of pokemon.side.foe.active) {
+				foeActive.removeVolatile('substitutebroken');
+			}
+		}
+		pokemon.draggedIn = null;
+		return true;
+	},
+	pokemon: {
+		setType(newType: string | string[], enforce = false) { // modded for Terastal
+			// First type of Arceus, Silvally cannot be normally changed
+			if (!enforce) {
+				if (this.species.teraType || (this.battle.gen >= 5 && (this.species.num === 493 || this.species.num === 773)) ||
+					 (this.battle.gen === 4 && this.hasAbility('multitype'))) {
+					return false;
+				}
+			}
+
+			if (!newType) throw new Error("Must pass type to setType");
+			this.types = (typeof newType === 'string' ? [newType] : newType);
+			this.addedType = '';
+			this.knownType = true;
+			this.apparentType = this.types.join('/');
+
+			return true;
+		},
+
+		formeChange( // modded for Terastal
+		speciesId: string | Species, source: Effect = this.battle.effect,
+		 isPermanent?: boolean, message?: string
+		) {
+			if (this.species.teraType) console.log("teraType: " + this.species.teraType);
+			let baseForm = this.battle.dex.getSpecies(speciesId);
+			let teraSpecies = null;
+			if (this.species.teraType) {
+				teraSpecies = this.battle.dex.deepClone(baseForm);
+				teraSpecies.teraType = this.species.teraType;
+				teraSpecies.types = [teraSpecies.teraType];
+				teraSpecies.teraBoost = this.battle.dex.getSpecies(speciesId).types;
+				teraSpecies.nonTeraForm = baseForm;
+			}
+			const rawSpecies = teraSpecies || baseForm;
+			const species = this.setSpecies(rawSpecies, source);
+			if (!species) return false;
+
+			if (this.battle.gen <= 2) return true;
+
+			// The species the opponent sees
+			const apparentSpecies =
+					this.illusion ? this.illusion.species.name : species.baseSpecies;
+			if (isPermanent) {
+				this.baseSpecies = rawSpecies;
+				this.details = species.name + (this.level === 100 ? '' : ', L' + this.level) +
+					(this.gender === '' ? '' : ', ' + this.gender) + (this.set.shiny ? ', shiny' : '');
+				this.battle.add('detailschange', this, (this.illusion || this).details);
+				if (source.effectType === 'Item') {
+					if (source.zMove) {
+						this.battle.add('-burst', this, apparentSpecies, species.requiredItem);
+						this.moveThisTurnResult = true; // Ultra Burst counts as an action for Truant
+					} else if (source.onPrimal) {
+						if (this.illusion) {
+							this.ability = '';
+							this.battle.add('-primal', this.illusion);
+						} else {
+							this.battle.add('-primal', this);
+						}
+					} else {
+						this.battle.add('-mega', this, apparentSpecies, species.requiredItem);
+						this.moveThisTurnResult = true; // Mega Evolution counts as an action for Truant
+					}
+				} else if (source.effectType === 'Status') {
+					// Shaymin-Sky -> Shaymin
+					this.battle.add('-formechange', this, species.name, message);
+				}
+			} else {
+				if (source.effectType === 'Ability') {
+					this.battle.add('-formechange', this, species.name, message, `[from] ability: ${source.name}`);
+				} else {
+					this.battle.add('-formechange', this, this.illusion ? this.illusion.species.name : species.name, message);
+				}
+			}
+			
+			if (source === "Terastal") return true;
+			if (isPermanent && !['disguise', 'iceface'].includes(source.id)) {
+				if (this.illusion) {
+					this.ability = ''; // Don't allow Illusion to wear off
+				}
+				this.setAbility(species.abilities['0'], null, true);
+				this.baseAbility = this.ability;
+			}
+			if (teraSpecies) this.battle.add('-start', this, 'typechange', this.types.join('/'), '[silent]');
+			return true;
+		}
 	},
    init: function () {
 		   this.modData("Learnsets", "alakazam").learnset.brainwave = ["8L1"];
