@@ -146,6 +146,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			if (teraSpecies) this.battle.add('-start', this, 'typechange', this.types.join('/'), '[silent]');
 			return true;
 		}
+			
 		// STAB
 		if (move.forceSTAB || (type !== '???' && (pokemon.hasType(type) || pokemon.species.teraBoost?.includes(type)))) {
 			// The "???" type never gets STAB
