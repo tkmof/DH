@@ -81,15 +81,6 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		}
    },
 	modifyDamage(
-		baseDamage: number, pokemon: Pokemon, target: Pokemon, move: ActiveMove, suppressMessages = false
-	) {
-		const tr = this.trunc;
-		if (!move.type) move.type = '???';
-		const type = move.type;
-
-		baseDamage += 2;
-
-		// STAB
 		if (move.forceSTAB || (type !== '???' && (pokemon.hasType(type) || pokemon.species.teraBoost?.includes(type)))) {
 			// The "???" type never gets STAB
 			// Not even if you Roost in Gen 4 and somehow manage to use
