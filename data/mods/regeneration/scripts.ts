@@ -12,7 +12,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			return null;
 		}
 		return pokemon.teraType;
-	}
+	},
 	terastallize(pokemon: Pokemon) {
 		const type = pokemon.teraType;
 		this.battle.add('-terastallize', pokemon, type);
