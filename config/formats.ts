@@ -450,7 +450,7 @@ export const Formats: FormatList = [
 		],
 		mod: 'gen1burgundy',
 		ruleset: ['Standard With Dig and Fly', 'Data Mod', 'Allow Tradeback'],
-		banlist: ['Uber', 'Focus Energy'],
+		banlist: ['Uber', /*'Focus Energy'*/],
 		unbanlist: ['Anorith', 'Armaldo', 'Meditite', 'Medicham', 'Fletchling', 'Fletchinder', 'Talonflame', 'Sneasel-Hisui', 'Sneasler', 'Snover', 'Abomasnow',
 					  ],
     },
