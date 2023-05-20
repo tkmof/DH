@@ -724,7 +724,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			// Now we check for focus energy volatile.
 			if (pokemon.volatiles['focusenergy']) {
 				// If it exists, crit chance is multiplied by 4 and floored.
-				critChance = Math.floor(critChance * 8);
+				critChance = Math.floor(critChance * 4);
 			} else {
 				// Normally, without focus energy, crit chance is multiplied by 2 and capped at 255 here.
 				critChance = this.clampIntRange(critChance * 2, 1, 255);
