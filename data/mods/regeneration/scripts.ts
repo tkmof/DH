@@ -30,7 +30,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		}
 
 		pokemon.formeChange(species, "Terastal", true);
-		this.add('-anim', pokemon, "Cosmic Power", pokemon);
+		this.add('-anim', pokemon, "Geomancy", pokemon);
 		this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
 		this.add('-message', `${pokemon.name} Terastallized to become ${species.types[0]}-type!`);
 		pokemon.addVolatile('terastal');
@@ -83,6 +83,32 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	modifyDamage(
 		baseDamage: number, pokemon: Pokemon, target: Pokemon, move: ActiveMove, suppressMessages = false
 	) {
+		const tr = this.trunc;
+		if (!move.type) move.type = '???';
+		const type = move.type;
+
+		baseDamage += 2;
+
+		// multi-target modifier (doubles only)
+		if (move.spreadHit) {
+			const spreadModifier = move.spreadModifier || (this.gameType === 'free-for-all' ? 0.5 : 0.75);
+			this.debug('Spread modifier: ' + spreadModifier);
+			baseDamage = this.modify(baseDamage, spreadModifier);
+		}
+
+		// weather modifier
+		baseDamage = this.runEvent('WeatherModifyDamage', pokemon, target, move, baseDamage);
+
+		// crit - not a modifier
+		const isCrit = target.getMoveHitData(move).crit;
+		if (isCrit) {
+			baseDamage = tr(baseDamage * (move.critModifier || (this.gen >= 6 ? 1.5 : 2)));
+		}
+
+		// random factor - also not a modifier
+		baseDamage = this.randomizer(baseDamage);
+
+		// STAB
 		if (move.forceSTAB || (type !== '???' && (pokemon.hasType(type) || pokemon.species.teraBoost?.includes(type)))) {
 			// The "???" type never gets STAB
 			// Not even if you Roost in Gen 4 and somehow manage to use
