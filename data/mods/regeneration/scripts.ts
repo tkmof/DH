@@ -113,6 +113,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		   this.modData("Learnsets", "gengar").learnset.iceshard = ["8L1"];
 		   this.modData("Learnsets", "gengar").learnset.powdersnow = ["8L1"];
 		   this.modData("Learnsets", "gengar").learnset.snowscape = ["8L1"];
+		   this.modData("Learnsets", "gengar").learnset.illwind = ["8L1"];
 
 		   this.modData("Learnsets", "dragonite").learnset.barrier = ["8L1"];
 		   this.modData("Learnsets", "dragonite").learnset.guardiandive = ["8L1"];
