@@ -2103,7 +2103,7 @@ cursedtail: {
 		basePower: 85,
 		category: "Special",
 		name: "Combustion",
-		shortDesc: "Ignores Ability. +1 Atk/SpA/Spe. Part Fire",
+		shortDesc: "Ignores Ability. +1 Atk/SpA/Spe. Part Fire.",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -2189,7 +2189,7 @@ shellburst: {
 		shortDesc: "30% chance to raise Atk. Guerrevo transforms.",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1},
 		secondary: {
 			chance: 30,
 			self: {
