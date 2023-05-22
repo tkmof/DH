@@ -183,7 +183,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	tyranitar: {
 		num: 248,
 		name: "Tyranitar",
-		types: ["Rock", "Dragon"],
+		types: ["Rock"],
 		baseStats: {hp: 100, atk: 134, def: 95, spa: 100, spd: 100, spe: 61},
 		abilities: {},
 		heightm: 2,

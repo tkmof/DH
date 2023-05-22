@@ -21,7 +21,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Wings of Victory",
-		shortDesc: "This Pokemon's moves have 10% more power for each fainted foe, up to 5 allies.",
+		shortDesc: "This Pokemon's moves have 10% more power for each fainted foe, up to 5 foes.",
 		rating: 3.5,
 	},
 	galaxybrain: {
@@ -92,10 +92,67 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	  onModifySecondaries(secondaries) {
         if (move.type !== 'Water') return;
 		  this.debug('Lifeguard prevent secondary');
-		  return secondaries.filter(effect => !effect.self);
+		  return secondaries.filter(effect => !!(effect.self || effect.dustproof));
 		},
 		name: "Lifeguard",
+      shortDesc: "Boosts Defense when hit by a Water move; blocks additional effects of Water moves.",
 		rating: 3,
+	},
+	ballooning: {
+		onDamage(damage, target, source, effect) {
+			if (
+				effect.effectType === "Move" &&
+				!effect.multihit &&
+				(!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility('sheerforce')))
+			) {
+				this.effectData.checkedBallooning = false;
+			} else {
+				this.effectData.checkedBallooning = true;
+			}
+		},
+		onTryEatItem(item) {
+			const healingItems = [
+				'aguavberry', 'enigmaberry', 'figyberry', 'iapapaberry', 'magoberry', 'sitrusberry', 'wikiberry', 'oranberry', 'berryjuice',
+			];
+			if (healingItems.includes(item.id)) {
+				return this.effectData.checkedBallooning;
+			}
+			return true;
+		},
+		onAfterMoveSecondary(target, source, move) {
+			this.effectData.checkedBallooning = true;
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			const lastAttackedBy = target.getLastAttackedBy();
+			if (!lastAttackedBy) return;
+			const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+				this.boost({atk: 1, spa: 1, spe: 1, def: -1, spd: -1}, target, target);
+				pokemon.addVolatile('perishsong');
+			}
+		},
+		name: "Ballooning",
+		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and gains the Perish Song effect.",
+		rating: 4,
+		num: 271,
+	},
+	ofafeather: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Flying') {
+				this.debug('Of A Feather boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Flying') {
+				this.debug('Of A Feather boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Of A Feather",
+		rating: 3.5,
+		num: 263,
 	},
 // Gen 9 Abilities
 	battlebond: {

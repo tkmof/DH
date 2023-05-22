@@ -448,6 +448,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
+		ignoreImmunity: {'Fighting': true},
 		onEffectiveness(typeMod, target, type) {
 			if (type === 'Ghost') return 0;
 		},
@@ -899,6 +900,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	hyperspacefury: {
 		inherit: true,
+		flags: {mirror: 1, punch: 1, bypasssub: 1},
 		onTry(pokemon) {
 			if (pokemon.species.name === 'Hoopa-Ifrit' || pokemon.species.name === 'Archronos') {
 				return;
@@ -1303,7 +1305,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		num: -23,
 		accuracy: 100,
 		basePower: 90,
-		category: "Physical",
+		category: "Special",
 		shortDesc: "(Semifunctional placeholder) Type depends on both the user's types.",
 		name: "Raging Bull (Steam)",
 		pp: 10,
@@ -1343,7 +1345,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		onModifyType(move, pokemon) {
 			if (pokemon.species.name === 'Tauros-Azul') {
-				move.type = 'Ice';
+				move.type = 'Fighting';
 			}
 		},
 		onPrepareHit: function(target, source, move) {

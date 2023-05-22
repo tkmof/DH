@@ -40,6 +40,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		},
 		onStart(pokemon) {
 			this.boost({accuracy: -1}, pokemon);
+			pokemon.setItem('');
 		},
 		num: 213,
 		gen: 2,
@@ -315,7 +316,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			basePower: 80,
 		},
 		onModifySpe(spe, pokemon) {
-			this.chainModify(1.05);
+			this.chainModify(1.01);
 		},
 		num: 217,
 		gen: 2,
@@ -333,6 +334,21 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			}
 		},
 		num: 253,
+		gen: 3,
+	},
+	silkscarf: {
+		name: "Silk Scarf",
+		spritenum: 444,
+		fling: {
+			basePower: 10,
+		},
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move.type === 'Normal') {
+				return this.chainModify(1.3);
+			}
+		},
+		num: 251,
 		gen: 3,
 	},
 	snorliumz: {
