@@ -124,7 +124,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		num: 38,
 		accuracy: 100,
 		basePower: 120,
-		category: "Special",
+		category: "Physical",
 		name: "Coral Crash",
 		pp: 15,
 		priority: 0,
