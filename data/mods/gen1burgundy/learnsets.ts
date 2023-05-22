@@ -430,7 +430,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			thunderbolt: ["1L1"],
 			toxic: ["1L1"],
 			crunch: ["1L1"],
-			dracometeor: ["1L1"],
 		},
 	},
 	popplio: {

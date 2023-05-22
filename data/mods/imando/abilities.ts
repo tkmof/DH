@@ -503,4 +503,51 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 5,
 		num: -10000,
 	},
+	quickfeet: {
+		onModifySpe(spe, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(2);
+			}
+		},
+		name: "Quick Feet",
+		rating: 2.5,
+		num: 95,
+	},
+	watercompaction: {
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.boost({def: 1})) {
+					this.add('-immune', target, '[from] ability: Water Compaction');
+				}
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (target === this.effectData.target || target.side !== source.side) return;
+			if (move.type === 'Water') {
+				this.boost({def: 1}, this.effectData.target);
+			}
+		},
+		name: "Water Compaction",
+		rating: 1.5,
+		num: 195,
+	},
+	mountaineer: {
+		onDamage(damage, target, source, effect) {
+			if (effect && effect.id === 'stealthrock') {
+				return false;
+			}
+		},
+		onTryHit(target, source, move) {
+			if (move.type === 'Rock' && !target.activeTurns) {
+				this.add('-immune', target, '[from] ability: Mountaineer');
+				return null;
+			}
+		},
+		isNonstandard: null,
+		name: "Mountaineer",
+		rating: 3,
+		num: -2,
+	},
 }

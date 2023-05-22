@@ -486,7 +486,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	bouncybubble: {
 		num: 733,
 		accuracy: 100,
-		basePower: 60,
+		basePower: 80,
 		category: "Special",
 		name: "Bouncy Bubble",
 		pp: 20,
@@ -526,10 +526,17 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {contact: 1},
 		isZ: "pikaniumz",
+		self: {
+			onHit(pokemon, target, source, effect) {
+				pokemon.setItem('');
+				pokemon.setItem('Light Ball');
+			},
+
 		boosts: {
 			atk: 1,
 			spa: 1,
 			spe: 1,
+		},
 		},
 		secondary: null,
 		target: "normal",
@@ -586,15 +593,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Status",
 		name: "Extreme Evoboost",
 		pp: 1,
-		priority: 3,
+		priority: 0,
 		flags: {},
 		isZ: "eeviumz",
 		boosts: {
-			atk: 3,
-			def: 3,
-			spa: 3,
-			spd: 3,
-			spe: 3,
+			atk: 6,
+			def: 6,
+			spa: 6,
+			spd: 6,
+			spe: 6,
 		},
 		secondary: null,
 		target: "self",
@@ -832,6 +839,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		noMetronome: [
 			"After You", "Assist", "Baneful Bunker", "Beak Blast", "Belch", "Bestow", "Chatter", "Copycat", "Counter", "Covet", "Crafty Shield", "Detect", "Endure", "Focus Punch", "Follow Me", "Helping Hand", "Hyperspace Fury", "Instruct", "King's Shield", "Mat Block", "Me First", "Metronome", "Mimic", "Mirror Coat", "Mirror Move", "Nature Power", "Obstruct", "Protect", "Quash", "Quick Guard", "Rage Powder", "Shell Trap", "Sketch", "Sleep Talk", "Snatch", "Snore", "Spiky Shield", "Spotlight", "Struggle", "Wide Guard",
 		],
+		boosts: {
+			spe: 2,
+		},
 		onHit(target, source, effect) {
 			const moves: MoveData[] = [];
 			for (const id in Moves) {
@@ -933,7 +943,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 0,
 		category: "Status",
 		name: "Morning Sun",
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		heal: [3, 10],
@@ -955,7 +965,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		flags: {},
 		isZ: "primariumz",
 		boosts: {
-			spd: 2,
+			spd: 3,
 		},
 		secondary: null,
 		target: "normal",
@@ -1199,10 +1209,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Cute",
 	},
 	soulstealing7starstrike: {
-		// not sure how to do this
+		self: {
+			onHit(target, source, effect) {
+				this.useMove("Fling", target);
+				this.useMove("Thief", target);
+			},
+		},
 		num: 699,
 		accuracy: true,
-		basePower: 195,
+		basePower: 125,
 		category: "Physical",
 		name: "Soul-Stealing 7-Star Strike",
 		pp: 1,
@@ -1285,7 +1300,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Physical",
 		name: "Sucker Punch",
 		pp: 5,
-		priority: 2,
+		priority: 3,
 		flags: {punch: 1, contact: 1, protect: 1, mirror: 1},
 		onTry(source, target) {
 			const action = this.queue.willMove(target);
@@ -1371,7 +1386,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	blastburn: {
 		num: 307,
 		accuracy: 90,
-		basePower: 200,
+		basePower: 230,
 		category: "Special",
 		name: "Blast Burn",
 		pp: 5,
@@ -1388,7 +1403,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	eternabeam: {
 		num: 795,
 		accuracy: 90,
-		basePower: 230,
+		basePower: 300,
 		category: "Special",
 		name: "Eternabeam",
 		pp: 10,
@@ -1404,7 +1419,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	frenzyplant: {
 		num: 338,
 		accuracy: 90,
-		basePower: 200,
+		basePower: 230,
 		category: "Special",
 		name: "Frenzy Plant",
 		pp: 5,
@@ -1438,7 +1453,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	hydrocannon: {
 		num: 308,
 		accuracy: 90,
-		basePower: 200,
+		basePower: 230,
 		category: "Special",
 		name: "Hydro Cannon",
 		pp: 5,
@@ -1472,7 +1487,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	meteorassault: {
 		num: 794,
 		accuracy: 100,
-		basePower: 200,
+		basePower: 250,
 		category: "Physical",
 		name: "Meteor Assault",
 		pp: 5,
@@ -1488,7 +1503,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	prismaticlaser: {
 		num: 711,
 		accuracy: 100,
-		basePower: 230,
+		basePower: 250,
 		category: "Special",
 		name: "Prismatic Laser",
 		pp: 10,
@@ -1505,7 +1520,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	roaroftime: {
 		num: 459,
 		accuracy: 90,
-		basePower: 230,
+		basePower: 250,
 		category: "Special",
 		name: "Roar of Time",
 		pp: 5,
@@ -1522,7 +1537,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	rockwrecker: {
 		num: 439,
 		accuracy: 90,
-		basePower: 200,
+		basePower: 230,
 		category: "Physical",
 		name: "Rock Wrecker",
 		pp: 5,
@@ -1539,7 +1554,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	bounce: {
 		num: 340,
 		accuracy: 85,
-		basePower: 185,
+		basePower: 195,
 		category: "Physical",
 		name: "Bounce",
 		pp: 5,
@@ -1581,7 +1596,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	dig: {
 		num: 91,
 		accuracy: 100,
-		basePower: 130,
+		basePower: 150,
 		category: "Physical",
 		name: "Dig",
 		pp: 10,
@@ -1623,7 +1638,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	dive: {
 		num: 291,
 		accuracy: 100,
-		basePower: 130,
+		basePower: 150,
 		category: "Physical",
 		name: "Dive",
 		pp: 10,
@@ -1669,7 +1684,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	fly: {
 		num: 19,
 		accuracy: 95,
-		basePower: 120,
+		basePower: 140,
 		category: "Physical",
 		name: "Fly",
 		pp: 15,
@@ -1708,7 +1723,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	freezeshock: {
 		num: 553,
 		accuracy: 100,
-		basePower: 240,
+		basePower: 260,
 		category: "Physical",
 		name: "Freeze Shock",
 		pp: 5,
@@ -1736,7 +1751,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	iceburn: {
 		num: 554,
 		accuracy: 100,
-		basePower: 240,
+		basePower: 260,
 		category: "Special",
 		name: "Ice Burn",
 		pp: 5,
@@ -1764,7 +1779,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	meteorbeam: {
 		num: 800,
 		accuracy: 100,
-		basePower: 125,
+		basePower: 130,
 		category: "Special",
 		name: "Meteor Beam",
 		pp: 10,
@@ -1789,7 +1804,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	phantomforce: {
 		num: 566,
 		accuracy: 100,
-		basePower: 120,
+		basePower: 140,
 		category: "Physical",
 		name: "Phantom Force",
 		pp: 10,
@@ -1819,7 +1834,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	razorwind: {
 		num: 13,
 		accuracy: 100,
-		basePower: 150,
+		basePower: 160,
 		category: "Special",
 		name: "Razor Wind",
 		pp: 10,
@@ -1845,7 +1860,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	shadowforce: {
 		num: 467,
 		accuracy: 100,
-		basePower: 200,
+		basePower: 250,
 		category: "Physical",
 		name: "Shadow Force",
 		pp: 5,
@@ -1901,7 +1916,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	skyattack: {
 		num: 143,
 		accuracy: 90,
-		basePower: 200,
+		basePower: 230,
 		category: "Physical",
 		name: "Sky Attack",
 		pp: 5,
@@ -1930,7 +1945,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	skydrop: {
 		num: 507,
 		accuracy: 100,
-		basePower: 180,
+		basePower: 280,
 		category: "Physical",
 		name: "Sky Drop",
 		pp: 20,
@@ -2036,7 +2051,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	solarbeam: {
 		num: 76,
 		accuracy: 100,
-		basePower: 140,
+		basePower: 150,
 		category: "Special",
 		name: "Solar Beam",
 		pp: 10,
@@ -2072,7 +2087,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	solarblade: {
 		num: 669,
 		accuracy: 100,
-		basePower: 140,
+		basePower: 150,
 		category: "Physical",
 		name: "Solar Blade",
 		pp: 10,
@@ -2123,7 +2138,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	thousandarrows: {
 		num: 614,
 		accuracy: 90,
-		basePower: 70,
+		basePower: 80,
 		category: "Physical",
 		name: "Thousand Arrows",
 		pp: 10,
@@ -2214,7 +2229,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 110,
 		category: "Physical",
 		name: "Close Combat",
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		self: {
@@ -2234,7 +2249,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 110,
 		category: "Physical",
 		name: "Dragon Ascent",
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, distance: 1},
 		self: {
@@ -2248,7 +2263,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Beautiful",
 	},
 	headlongrush: {
-		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 		num: -1015,
 		accuracy: 95,
 		basePower: 110,
@@ -2260,7 +2274,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Tectonic Rage", target);
 		},
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		self: {
@@ -2280,7 +2294,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 110,
 		category: "Special",
 		name: "Armor Cannon",
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		self: {
@@ -2829,7 +2843,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	iceball: {
 		num: 301,
 		accuracy: 100,
-		basePower: 30,
+		basePower: 50,
 		basePowerCallback(pokemon, target, move) {
 			let bp = move.basePower;
 			if (pokemon.volatiles['iceball'] && pokemon.volatiles['iceball'].hitCount) {
@@ -2874,7 +2888,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	rollout: {
 		num: 205,
 		accuracy: 100,
-		basePower: 30,
+		basePower: 50,
 		basePowerCallback(pokemon, target, move) {
 			let bp = move.basePower;
 			if (pokemon.volatiles['rollout'] && pokemon.volatiles['rollout'].hitCount) {
@@ -2967,5 +2981,40 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Bug",
 		contestType: "Cute",
+	},
+	relicsong: {
+		num: 547,
+		accuracy: 100,
+		basePower: 75,
+		category: "Special",
+		name: "Relic Song",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+		secondary: {
+			chance: 15,
+			status: 'slp',
+		},
+		onHit(target, pokemon, move) {
+			if (pokemon.baseSpecies.baseSpecies === 'Meloetta' && !pokemon.transformed) {
+				move.willChangeForme = true;
+			}
+		},
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (move.willChangeForme) {
+				const meloettaForme = pokemon.species.id === 'meloettapirouette' ? '' : '-Pirouette';
+				pokemon.formeChange('Meloetta' + meloettaForme, this.effect, false, '[msg]');
+			}
+		},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
+		target: "allAdjacentFoes",
+		type: "Normal",
+		contestType: "Beautiful",
+	},
+	hail: {
+		inherit: true,
+		isNonstandard: null,
 	},
 }

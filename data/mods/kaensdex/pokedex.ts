@@ -1854,8 +1854,17 @@ mightyenamega: {
 		baseStats: {hp: 75, atk: 75, def: 80, spa: 95, spd: 70, spe: 95},
 	},
 	
-	huemul: {
+	granatija: {
 	num: 191,
+	name: "Granatija",
+	types: ["Fire", "Fairy"],
+	baseStats: {hp: 65, atk: 75, def: 60, spa: 80, spd: 80, spe: 80},
+	abilities: {0: "Gluttony", 1: "Limber", H: "Pixilate"},
+	weightkg: 65.5,
+},
+	
+	huemul: {
+	num: 192,
 	name: "Huemul",
 	types: ["Normal"],
 	baseStats: {hp: 25, atk: 35, def: 35, spa: 70, spd: 45, spe: 85},
@@ -1865,7 +1874,7 @@ mightyenamega: {
 },
 
 undeer: {
-	num: 192,
+	num: 193,
 	name: "Undeer",
 	types: ["Normal", "Ghost"],
 	baseStats: {hp: 143, atk: 85, def: 95, spa: 80, spd: 85, spe: 30},
@@ -1875,16 +1884,88 @@ undeer: {
 },
 
 dothdo: {
-	num: 193,
+	num: 194,
 	name: "Dothdo",
 	types: ["Ghost", "Flying"],
 	baseStats: {hp: 70, atk: 85, def: 75, spa: 45, spd: 100, spe: 112},
 	abilities: {0: "Cold Heart", 1: "Big Pecks", H: "Cloud Nine"},
 	weightkg: 4.2,
 },
-	
+
+coldtong: {
+	num: 195,
+	name: "Coldtong",
+	types: ["Poison", "Water"],
+	baseStats: {hp: 27, atk: 25, def: 45, spa: 75, spd: 50, spe: 70},
+	abilities: {0: "Limber", 1: "Water Absorb", H: "Quick Feet"},
+	weightkg: 4,
+	evos: ["sickmander"],
+},
+
+sickmander: {
+	num: 196,
+	name: "Sickmander",
+	types: ["Poison", "Ice"],
+	baseStats: {hp: 67, atk: 50, def: 95, spa: 115, spd: 60, spe: 90},
+	abilities: {0: "Contagious", 1: "Water Absorb", H: "Quick Feet"},
+	weightkg: 54.2,
+	prevo: "coldtong",
+},
+
+piechivo: {
+	num: 197,
+	name: "Piechivo",
+	types: ["Normal"],
+	baseStats: {hp: 85, atk: 65, def: 70, spa: 30, spd: 60, spe: 70},
+	abilities: {0: "Rock Head", 1: "Sap Sipper", H: "Inner Focus"},
+	weightkg: 12,
+	evos: ["rocabra"],
+},
+
+rocabra: {
+	num: 198,
+	name: "Rocabra",
+	types: ["Normal", "Rock"],
+	baseStats: {hp: 123, atk: 95, def: 100, spa: 40, spd: 73, spe: 100},
+	abilities: {0: "Rock Head", 1: "Sap Sipper", H: "Climber"},
+	weightkg: 88,
+	prevo: "piechivo",
+},
+
+hielorizo: {
+	num: 199,
+	name: "Hielorizo",
+	types: ["Normal", "Ice"],
+	baseStats: {hp: 65, atk: 70, def: 140, spa: 35, spd: 35, spe: 102},
+	abilities: {0: "Frozen Debris", 1: "Rough Skin", H: "Ice Body"},
+	weightkg: 38.5,
+},
+
+guerrevo: {
+	num: 200,
+	name: "Guerrevo",
+	baseForme: "Huevo",
+	types: ["Rock", "Ghost"],
+	baseStats: {hp: 70, atk: 50, def: 160, spa: 60, spd: 90, spe: 20},
+	abilities: {0: "Weak Armor", 1: "Iron Fist", H: "Bulletproof"},
+	weightkg: 800,
+	otherFormes: ["Guerrevo-Nacer"],
+	formeOrder: ["Guerrevo", "Guerrevo-Nacer"],
+},
+
+guerrevonacer: {
+	num: 200,
+	name: "Guerrevo-Nacer",
+	types: ["Rock", "Ghost"],
+	baseStats: {hp: 70, atk: 115, def: 75, spa: 80, spd: 80, spe: 75},
+	abilities: {0: "Weak Armor", 1: "Iron Fist", H: "Bulletproof"},
+	weightkg: 800,
+	requiredMove: "Shell Burst",
+	battleOnly: "Guerrevo",
+},
+
 drapede: {
-	num: 194,
+	num: 201,
 	name: "Drapede",
 	types: ["Bug", "Dragon"],
 	baseStats: {hp: 140, atk: 120, def: 100, spa: 60, spd: 100, spe: 50},
@@ -1895,7 +1976,7 @@ drapede: {
 },
 
 drapedesolemne: {
-	num: 194,
+	num: 201,
 	name: "Drapede-Solemne",
 	baseSpecies: "Drapede",
 	forme: "Solemne",
@@ -1908,7 +1989,7 @@ drapedesolemne: {
 },
 
 quetzal: {
-	num: 195,
+	num: 202,
 	name: "Quetzal",
 	types: ["Flying", "Grass"],
 	baseStats: {hp: 75, atk: 95, def: 74, spa: 110, spd: 105, spe: 111},
@@ -1919,7 +2000,7 @@ quetzal: {
 },
 
 quetzalsolemne: {
-	num: 195,
+	num: 202,
 	name: "Quetzal-Solemne",
 	baseSpecies: "Quetzal",
 	forme: "Solemne",
@@ -1932,7 +2013,7 @@ quetzalsolemne: {
 },
 
 granjaguar: {
-	num: 196,
+	num: 203,
 	name: "Granjaguar",
 	types: ["Ground", "Dark"],
 	baseStats: {hp: 85, atk: 115, def: 110, spa: 100, spd: 105, spe: 55},
@@ -1943,7 +2024,7 @@ granjaguar: {
 },
 
 granjaguarsolemne: {
-	num: 196,
+	num: 203,
 	name: "Granjaguar-Solemne",
 	baseSpecies: "Granjaguar",
 	forme: "Solemne",
@@ -1956,7 +2037,7 @@ granjaguarsolemne: {
 },
 
 ironsun: {
-	num: 197,
+	num: 204,
 	name: "Iron Sun",
 	types: ["Rock", "Fire"],
 	gender: "N",
@@ -1966,7 +2047,7 @@ ironsun: {
 	},
 	
 	crazymoon: {
-	num: 198,
+	num: 205,
 	name: "Crazy Moon",
 	types: ["Rock", "Fairy"],
 	gender: "N",
@@ -1976,7 +2057,7 @@ ironsun: {
 	},
 	
 lronfist: {
-		num: 199,
+		num: 206,
 		name: "lron Fist",
 		types: ["Fighting", "Steel"],
 		gender: "N",
@@ -1986,7 +2067,7 @@ lronfist: {
 	},
 	
 frozenbeak: {
-		num: 200,
+		num: 207,
 		name: "Frozen Beak",
 		types: ["Ice", "Water"],
 		gender: "N",
@@ -1997,7 +2078,7 @@ frozenbeak: {
 	},
 	
 purgapilla: {
-	num: 201,
+	num: 208,
 	name: "Purgapilla",
 	types: ["Bug"],
 	baseStats: {hp: 55, atk: 60, def: 45, spa: 10, spd: 25, spe: 20},
@@ -2006,7 +2087,7 @@ purgapilla: {
 	evos: ["pumpkoon"],
 },
 pumpkoon: {
-	num: 202,
+	num: 209,
 	name: "Pumpkoon",
 	types: ["Bug"],
 	baseStats: {hp: 60, atk: 40, def: 90, spa: 40, spd: 55, spe: 20},
@@ -2017,7 +2098,7 @@ pumpkoon: {
 },
 	
 	lepisalma: {
-		num: 203,
+		num: 210,
 		name: "Lepisalma",
 		types: ["Bug", "Ghost"],
 		baseStats: {hp: 80, atk: 95, def: 60, spa: 120, spd: 160, spe: 85},
@@ -2028,7 +2109,7 @@ pumpkoon: {
 	},
 	
 skyradise: {
-	num: 204,
+	num: 211,
 	name: "Skyradise",
 	types: ["Flying"],
 	gender: "N",
@@ -2038,7 +2119,7 @@ skyradise: {
 },	
 	
 	cupida: {
-	num: 205,
+	num: 212,
 	name: "Cupida",
 	types: ["Fairy", "Ghost"],
 	gender: "F",
@@ -2046,4 +2127,5 @@ skyradise: {
 	abilities: {0: "Cute Charm", 1: "Serene Grace", H: "Archery"},
 	weightkg: 0.5,
 },
+
 };
