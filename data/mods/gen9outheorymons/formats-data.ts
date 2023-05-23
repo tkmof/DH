@@ -1457,7 +1457,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	sunflora: {
-		tier: "(PU)",
+		tier: "DreamWorld",
 		doublesTier: "(DUU)",
 		natDexTier: "RU",
 	},
