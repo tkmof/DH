@@ -1402,7 +1402,7 @@ export const Formats: FormatList = [
      desc: '<b>[Gen 8] Gen 9 Dream World Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
      mod: 'gen9outheorymons',
 	  ruleset: ['Standard', 'Data Mod'],
-	  banlist: ['Uber'],
+	  banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Baton Pass', 'Last Respects'],
 	},
 	{
 	name: "[Gen 1] JohtoMons",
