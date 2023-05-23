@@ -2756,7 +2756,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	gastrodon: {
-		tier: "UU",
+		tier: "DreamWorld",
 		doublesTier: "DOU",
 		natDexTier: "RU",
 	},
@@ -2923,7 +2923,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "RU",
 	},
 	rotomfan: {
-		tier: "PU",
+		tier: "DreamWorld",
 		doublesTier: "(DUU)",
 		natDexTier: "RU",
 	},
@@ -3980,7 +3980,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "NFE",
 	},
 	greninja: {
-		tier: "UU",
+		tier: "DreamWorld",
 		doublesTier: "(DUU)",
 		natDexTier: "OU",
 	},
@@ -5100,8 +5100,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "NFE",
 		natDexTier: "NFE",
 	},
-	coalossal: {
-		tier: "RU",
+   coalossal: {
+		tier: "DreamWorld",
 		doublesTier: "(DUU)",
 		natDexTier: "RU",
 	},
@@ -5536,7 +5536,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	houndstone: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DOU",
 		natDexTier: "Uber",
 	},
@@ -5793,7 +5793,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "Uber",
 	},
 	irontreads: {
-		tier: "OU",
+		tier: "DreamWorld",
 		doublesTier: "DUU",
 		natDexTier: "UU",
 	},
