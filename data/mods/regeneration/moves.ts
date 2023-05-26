@@ -7,6 +7,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePowerCallback(pokemon, target, move) {
 			return move.basePower * pokemon.hp / pokemon.maxhp;
 		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Seed Flare", target);
+		},
 		category: "Special",
 		name: "Vital Energy",
       shortDesc: "Less power as user's HP decreases. Hits foe(s).",
@@ -30,6 +34,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		flags: {},
 		onHit(pokemon) {
          pokemon.addVolatile('torment');
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Outrage", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -60,6 +68,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.heal(Math.ceil(source.maxhp * 0.5), source);
 			return success;
 		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Volt Switch", target);
+		},
 		target: "normal",
 		type: "Water",
 		contestType: "Cool",
@@ -74,6 +86,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		useSourceDefensiveAsOffensive: true,
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Expanding Force", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Psychic",
@@ -84,7 +100,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 100,
 		category: "Special",
 		name: "Ill Wind",
-      shortDesc: "(Partially coded) Lowers the user's Sp. Atk by 1. Heals 25% of the damage done. Heals another 25% for each stage the user's Special Attack is lowered.",
+      shortDesc: "Lowers the user's Sp. Atk by 1. Heals 25% of the damage done. Heals another 25% for each stage the user's Special Attack is lowered.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, heal: 1},
@@ -116,6 +132,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		useSourceDefensiveAsOffensive: true,
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Acrobatics", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Flying",
@@ -124,7 +144,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		num: 38,
 		accuracy: 100,
 		basePower: 120,
-		category: "Special",
+		category: "Physical",
 		name: "Coral Crash",
 		pp: 15,
 		priority: 0,
@@ -132,6 +152,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: {
 			chance: 10,
 			status: 'psn',
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Aqua Tail", target);
 		},
 		recoil: [33, 100],
 		secondary: null,

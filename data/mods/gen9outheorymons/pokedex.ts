@@ -87,6 +87,19 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Ice"],
 		abilities: {0: "Torrent", 1: "No Guard", H: "Sniper"},
 	},
+   rotomfan: {
+      inherit: true,
+      baseStats: {hp: 50, atk: 65, def: 107, spa: 105, spd: 107, spe: 106},
+   },
+   coalossal: {
+      inherit: true,
+      types: ["Water", "Fire"],
+      baseStats: {hp: 110, atk: 80, def: 120, spa: 100, spd: 90, spe: 30},
+   },
+   gastrodon: {
+      inherit: true,
+      baseStats: {hp: 111, atk: 83, def: 68, spa: 92, spd: 102, spe: 39},
+   },
 // Gen 9 Mons
 	wyrdeer: {
 		num: 899,
@@ -1515,7 +1528,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Iron Treads",
 		types: ["Ground", "Steel"],
 		gender: "N",
-		baseStats: {hp: 90, atk: 112, def: 120, spa: 72, spd: 70, spe: 106},
+		baseStats: {hp: 90, atk: 112, def: 120, spa: 72, spd: 70, spe: 126},
 		abilities: {0: "Quark Drive"},
 		heightm: 0.9,
 		weightkg: 240,

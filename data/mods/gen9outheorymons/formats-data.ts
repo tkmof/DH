@@ -257,7 +257,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	raichualola: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	sandshrew: {
@@ -414,7 +414,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	diglettalola: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "LC",
 	},
 	dugtrio: {
@@ -424,7 +424,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	dugtrioalola: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	meowth: {
@@ -432,7 +432,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	meowthalola: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "LC",
 	},
 	meowthgalar: {
@@ -449,7 +449,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	persianalola: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	perrserker: {
@@ -478,7 +478,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	growlithehisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	arcanine: {
 		tier: "RU",
@@ -487,7 +487,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	arcaninehisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	poliwag: {
 		isNonstandard: "Past",
@@ -628,7 +628,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	slowpokegalar: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "LC",
 	},
 	slowbro: {
@@ -643,7 +643,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	slowbrogalar: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	slowking: {
@@ -653,7 +653,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	slowkinggalar: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "UU",
 	},
 	magnemite: {
@@ -709,7 +709,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	grimeralola: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "LC",
 	},
 	muk: {
@@ -719,7 +719,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	mukalola: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	shellder: {
@@ -794,7 +794,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	voltorbhisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	electrode: {
 		tier: "(PU)",
@@ -803,7 +803,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	electrodehisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	exeggcute: {
 		isNonstandard: "Past",
@@ -1005,7 +1005,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	kleavor: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	smoochum: {
 		isNonstandard: "Past",
@@ -1059,7 +1059,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	tauros: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	taurospaldeacombat: {
@@ -1216,32 +1216,32 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	articuno: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	articunogalar: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	zapdos: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "OU",
 	},
 	zapdosgalar: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RUBL",
 	},
 	moltres: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "UU",
 	},
 	moltresgalar: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RUBL",
 	},
 	dratini: {
@@ -1259,7 +1259,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	mewtwo: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	mewtwomegax: {
@@ -1274,7 +1274,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	mew: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RUBL",
 	},
 	chikorita: {
@@ -1305,7 +1305,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	typhlosionhisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	totodile: {
 		isNonstandard: "Past",
@@ -1457,7 +1457,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	sunflora: {
-		tier: "(PU)",
+		tier: "DreamWorld",
 		doublesTier: "(DUU)",
 		natDexTier: "RU",
 	},
@@ -1567,11 +1567,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	qwilfishhisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	overqwil: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	shuckle: {
 		isNonstandard: "Past",
@@ -1593,7 +1593,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	sneaselhisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	weavile: {
 		tier: "RU",
@@ -1602,7 +1602,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	sneasler: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	teddiursa: {
 		tier: "LC",
@@ -1614,7 +1614,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	ursaluna: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	slugma: {
 		isNonstandard: "Past",
@@ -1714,7 +1714,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	wyrdeer: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	smeargle: {
 		isNonstandard: "Past",
@@ -2535,7 +2535,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	kyogre: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	kyogreprimal: {
@@ -2545,7 +2545,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	groudon: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	groudonprimal: {
@@ -2555,7 +2555,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	rayquaza: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	rayquazamega: {
@@ -2756,7 +2756,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	gastrodon: {
-		tier: "UU",
+		tier: "DreamWorld",
 		doublesTier: "DOU",
 		natDexTier: "RU",
 	},
@@ -2923,7 +2923,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "RU",
 	},
 	rotomfan: {
-		tier: "PU",
+		tier: "DreamWorld",
 		doublesTier: "(DUU)",
 		natDexTier: "RU",
 	},
@@ -2934,42 +2934,42 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	uxie: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	mesprit: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	azelf: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	dialga: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	dialgaorigin: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	palkia: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	palkiaorigin: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	heatran: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "OU",
 	},
 	regigigas: {
@@ -2979,17 +2979,17 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	giratina: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	giratinaorigin: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	cresselia: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	phione: {
@@ -3019,7 +3019,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	arceus: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	arceusbug: {
@@ -3121,7 +3121,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	samurotthisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	patrat: {
 		isNonstandard: "Past",
@@ -3358,7 +3358,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	lilliganthisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	basculin: {
 		tier: "PU",
@@ -3372,15 +3372,15 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	basculinwhitestriped: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	basculegion: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	basculegionf: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	sandile: {
 		tier: "LC",
@@ -3789,7 +3789,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	braviaryhisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	vullaby: {
 		isNonstandard: "Past",
@@ -3847,22 +3847,22 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	tornadus: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	tornadustherian: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "OU",
 	},
 	thundurus: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	thundurustherian: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	reshiram: {
@@ -3877,12 +3877,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	landorus: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	landorustherian: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "OU",
 	},
 	kyurem: {
@@ -3910,7 +3910,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	meloetta: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	meloettapirouette: {
@@ -3943,32 +3943,32 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	chespin: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "LC",
 	},
 	quilladin: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "NFE",
 	},
 	chesnaught: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	fennekin: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "LC",
 	},
 	braixen: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "NFE",
 	},
 	delphox: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	froakie: {
@@ -3980,7 +3980,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "NFE",
 	},
 	greninja: {
-		tier: "UU",
+		tier: "DreamWorld",
 		doublesTier: "(DUU)",
 		natDexTier: "OU",
 	},
@@ -4027,7 +4027,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	vivillonpokeball: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	litleo: {
@@ -4207,7 +4207,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	carbink: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	goomy: {
@@ -4218,7 +4218,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	sliggoohisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	goodra: {
 		tier: "NUBL",
@@ -4227,7 +4227,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	goodrahisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	klefki: {
 		tier: "RU",
@@ -4282,7 +4282,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	avalugghisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	noibat: {
 		tier: "LC",
@@ -4323,7 +4323,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	diancie: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	dianciemega: {
@@ -4333,17 +4333,17 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	hoopa: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	hoopaunbound: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "OU",
 	},
 	volcanion: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	rowlet: {
@@ -4361,7 +4361,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	decidueyehisui: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	litten: {
 		isNonstandard: "Past",
@@ -4899,7 +4899,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	magearna: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	magearnaoriginal: {
@@ -4951,17 +4951,17 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	grookey: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "LC",
 	},
 	thwackey: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "NFE",
 	},
 	rillaboom: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "OU",
 	},
 	rillaboomgmax: {
@@ -5100,8 +5100,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "NFE",
 		natDexTier: "NFE",
 	},
-	coalossal: {
-		tier: "RU",
+   coalossal: {
+		tier: "DreamWorld",
 		doublesTier: "(DUU)",
 		natDexTier: "RU",
 	},
@@ -5357,27 +5357,27 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	zacian: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	zaciancrowned: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	zamazenta: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "OU",
 	},
 	zamazentacrowned: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	eternatus: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	eternatuseternamax: {
@@ -5386,17 +5386,17 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	kubfu: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "NFE",
 	},
 	urshifu: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	urshifurapidstrike: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "OU",
 	},
 	urshifugmax: {
@@ -5409,7 +5409,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	zarude: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	zarudedada: {
@@ -5417,46 +5417,46 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	regieleki: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	regidrago: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	glastrier: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	spectrier: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	calyrex: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "RU",
 	},
 	calyrexice: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "Uber",
 	},
 	calyrexshadow: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 		natDexTier: "AG",
 	},
 	enamorus: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	enamorustherian: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	sprigatito: {
 		tier: "LC",
@@ -5536,7 +5536,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	houndstone: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DOU",
 		natDexTier: "Uber",
 	},
@@ -5750,7 +5750,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	gimmighoulroaming: {
 		isNonstandard: "Unobtainable",
-		tier: "Unreleased",
+		tier: "HOME",
 	},
 	gholdengo: {
 		tier: "OU",
@@ -5793,7 +5793,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "Uber",
 	},
 	irontreads: {
-		tier: "OU",
+		tier: "DreamWorld",
 		doublesTier: "DUU",
 		natDexTier: "UU",
 	},

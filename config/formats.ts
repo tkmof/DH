@@ -340,7 +340,7 @@ export const Formats: FormatList = [
 	 },
 	
 	{
-		name: "[Gen 9] ReGeneration",
+		name: "[Gen 8] ReGeneration",
 	   desc: [
 			"In this Pet Mod, we will redesign the competitive functions of the Kantonian Pokemon after a Paldean counterpart.",
 		],
@@ -363,6 +363,20 @@ export const Formats: FormatList = [
 				if (template.tier !== 'ReGeneration' && template.tier !== 'ReGeneration NFE' && template.tier !== 'ReGeneration LC') {
 					return [set.species + ' is not usable in ReGeneration.'];
 				}
+			}
+		},
+		validateSet(set, teamHas) { // stolen from SV Speculative
+			const species = this.dex.getSpecies(set.species);
+			const ability = this.dex.getAbility(set.ability);
+			if (!set.hpType === 'Fairy' && !set.hpType === 'Normal') {
+				return this.validateSet(set, teamHas);
+			} else {
+				const terastal = set.hpType;
+				set.hpType = 'Fire';
+				const fakeValidation = this.validateSet(set, teamHas);
+				if (fakeValidation?.length) return fakeValidation;
+				set.hpType = terastal;
+				return null;
 			}
 		},
 	},
@@ -1386,7 +1400,7 @@ export const Formats: FormatList = [
      desc: '<b>[Gen 8] Gen 9 Dream World Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
      mod: 'gen9outheorymons',
 	  ruleset: ['Standard', 'Data Mod'],
-	  banlist: ['Uber'],
+	  banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Baton Pass', 'Last Respects'],
 	},
 	{
 	name: "[Gen 1] JohtoMons",
