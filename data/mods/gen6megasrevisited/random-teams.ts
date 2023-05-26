@@ -841,7 +841,7 @@ export class RandomGen6Teams extends RandomGen7Teams {
 		}
 
 		const levelScale: {[k: string]: number} = {
-			uber: 78, ou: 80, uubl: 81, uu: 82, rubl: 83, ru: 84, nubl: 85, nu: 86, publ, 87, pu: 88,
+			uber: 78, ou: 80, uubl: 81, uu: 82, rubl: 83, ru: 84, nubl: 85, nu: 86, publ: 87, pu: 88,
 		};
 		const customScale: {[k: string]: number} = {
 			// Banned Ability
