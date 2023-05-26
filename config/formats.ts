@@ -1959,6 +1959,7 @@ export const Formats: FormatList = [
 		team: 'random',
 		ruleset: ['Dynamax Clause', 'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Freeze Clause Mod', 'Mega Data Mod', 'Mega Hint Mod'],
 	},
+	/*
 	{
 		name: "[Gen 6] Megas Revisited Random Battle",
 		threads: [
@@ -1969,6 +1970,7 @@ export const Formats: FormatList = [
 		team: 'random',
 		ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Freeze Clause Mod', 'Mega Data Mod'],
 	},	
+	*/
 	{
       name: "[Gen 8] OU Theorymons Random Battle",
       threads: [ 
