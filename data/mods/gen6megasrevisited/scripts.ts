@@ -124,5 +124,21 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "tyranitar").learnset.iciclecrash = ["6L1"];
 		this.modData("Learnsets", "tyranitar").learnset.waterfall = ["6L1"];
 		this.modData("Learnsets", "diancie").learnset.spikyshield = ["6L1"];
+		this.modData("Learnsets", "blaziken").learnset.uturn = ["6L1"];
+		this.modData("Learnsets", "blaziken").learnset.spikes = ["6L1"];
+		this.modData("Learnsets", "blaziken").learnset.roost = ["6L1"];
+		this.modData("Learnsets", "blaziken").learnset.closecombat = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.extremespeed = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.sludgewave = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.swordsdance = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.uturn = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.closecombat = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.drainpunch = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.machpunch = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.scald = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.surf = ["6L1"];
+		this.modData("Learnsets", "mewtwo").learnset.hydropump = ["6L1"];
+		this.modData("Learnsets", "rayquaza").learnset.coil = ["6L1"];
+		this.modData("Learnsets", "rayquaza").learnset.defog = ["6L1"];
 	},
 };
