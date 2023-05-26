@@ -207,10 +207,7 @@ export const Formats: FormatList = [
 		],
 		mod: 'gen6megasrevisited',
 		ruleset: ['Standard', 'Swagger Clause', 'Mega Data Mod'],
-		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass', 'Blaziken + Speed Boost',
-					"Mewtwonite X", "Mewtwonite Y",
-					"Blazikenite",
-					],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass', 'Blaziken + Speed Boost'],
 	},
 	{
 		name: "[Gen 9] MetaMons",
