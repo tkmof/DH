@@ -118,15 +118,61 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			if (move.stab) stabBoost = move.stab;
 			if (pokemon.species.teraBoost?.includes(type)) {
 				if (pokemon.hasType(type)) {
-					if (!suppressMessages) this.add('-message', `Terastal boosts moves of the ${type} type!`);
-					stabBoost = 2;
-				} else {
-					this.hint(`Terastal keeps STAB on the user's original type, ${type}!`, true, pokemon.side);
-					// don't reveal to the opponent (in case of Illusion)
+				   if (!suppressMessages) this.add('-message', `Terastal boosts moves of the ${type} type!`);
+					stabBoost = 2.25;
+			   } else if (pokemon.species.teraBoost? && type !== pokemon.species.teraBoost?) {
+				    stabBoost = 1.5;
 				}
 			}
 			baseDamage = this.modify(baseDamage, stabBoost);
 		}
+		// types
+		let typeMod = target.runEffectiveness(move);
+		typeMod = this.clampIntRange(typeMod, -6, 6);
+		target.getMoveHitData(move).typeMod = typeMod;
+		if (typeMod > 0) {
+			if (!suppressMessages) this.add('-supereffective', target);
+
+			for (let i = 0; i < typeMod; i++) {
+				baseDamage *= 2;
+			}
+		}
+		if (typeMod < 0) {
+			if (!suppressMessages) this.add('-resisted', target);
+
+			for (let i = 0; i > typeMod; i--) {
+				baseDamage = tr(baseDamage / 2);
+			}
+		}
+
+		if (isCrit && !suppressMessages) this.add('-crit', target);
+
+		if (pokemon.status === 'brn' && move.category === 'Physical' && !pokemon.hasAbility('guts')) {
+			if (this.gen < 6 || move.id !== 'facade') {
+				baseDamage = this.modify(baseDamage, 0.5);
+			}
+		}
+
+		if (pokemon.status === 'frz' && pokemon.statusData.frostbite && move.category === 'Special') { // the only changed section
+			baseDamage = this.modify(baseDamage, 0.5);
+		}
+
+		// Generation 5, but nothing later, sets damage to 1 before the final damage modifiers
+		if (this.gen === 5 && !baseDamage) baseDamage = 1;
+
+		// Final modifier. Modifiers that modify damage after min damage check, such as Life Orb.
+		baseDamage = this.runEvent('ModifyDamage', pokemon, target, move, baseDamage);
+
+		if (move.isZOrMaxPowered && target.getMoveHitData(move).zBrokeProtect) {
+			baseDamage = this.modify(baseDamage, 0.25);
+			this.add('-zbroken', target);
+		}
+
+		// Generation 6-7 moves the check for minimum 1 damage after the final modifier...
+		if (this.gen !== 5 && !baseDamage) return 1;
+
+		// ...but 16-bit truncation happens even later, and can truncate to 0
+		return tr(baseDamage, 16);
 	},
    init: function () {
 		   this.modData("Learnsets", "alakazam").learnset.brainwave = ["8L1"];
