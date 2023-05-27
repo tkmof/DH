@@ -938,12 +938,12 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "DUber",
 	},
 	mewtwomegax: {
-		randomBattleMoves: ["bulkup", "drainpunch", "zenheadbutt", "stoneedge", "taunt", "icebeam"],
+		randomBattleMoves: ["swordsdance", "closecombat", "zenheadbutt", "extremespeed"],
 		tier: "Uber",
 		doublesTier: "DUber",
 	},
 	mewtwomegay: {
-		randomBattleMoves: ["psystrike", "aurasphere", "shadowball", "fireblast", "icebeam", "calmmind", "recover", "willowisp", "taunt"],
+		randomBattleMoves: ["psystrike", "aurasphere", "hydropump", "fireblast", "icebeam", "calmmind", "recover", "willowisp", "taunt"],
 		tier: "Uber",
 		doublesTier: "DUber",
 	},
@@ -1438,13 +1438,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "NFE",
 	},
 	blaziken: {
-		randomBattleMoves: ["fireblast", "highjumpkick", "protect", "knockoff", "hiddenpowerice"],
-		tier: "Uber",
+		randomBattleMoves: ["flareblitz", "closecombat", "thunderpunch", "swordsdance", "stoneedge", "knockoff"],
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	blazikenmega: {
-		randomBattleMoves: ["flareblitz", "highjumpkick", "protect", "swordsdance", "stoneedge", "knockoff"],
-		tier: "Illegal",
+		randomBattleMoves: ["flareblitz", "closecombat", "uturn", "spikes", "stoneedge", "knockoff"],
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	mudkip: {
@@ -2147,7 +2147,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	latiasmega: {
 		randomBattleMoves: ["calmmind", "dragonpulse", "surf", "dracometeor", "roost", "hiddenpowerfire", "substitute", "psyshock"],
 		randomDoubleBattleMoves: ["dragonpulse", "psychic", "tailwind", "helpinghand", "healpulse", "lightscreen", "reflect", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	latios: {
@@ -2157,9 +2157,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	latiosmega: {
-		randomBattleMoves: ["calmmind", "dracometeor", "hiddenpowerfire", "psyshock", "roost", "defog"],
+		randomBattleMoves: ["calmmind", "dracometeor", "hiddenpowerfire", "psyshock", "roost", "defog", "earthquake"],
 		randomDoubleBattleMoves: ["dracometeor", "dragonpulse", "surf", "thunderbolt", "psyshock", "substitute", "tailwind", "protect", "hiddenpowerfire"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "(DOU)",
 	},
 	kyogre: {
@@ -2191,8 +2191,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	rayquazamega: {
 		// randomBattleMoves: ["vcreate", "extremespeed", "swordsdance", "earthquake", "dragonascent", "dragonclaw", "dragondance"],
 		randomDoubleBattleMoves: ["vcreate", "extremespeed", "swordsdance", "earthquake", "dragonascent", "dragonclaw", "dragondance", "protect"],
-		tier: "Illegal",
+		tier: "Uber",
 		doublesTier: "DUber",
+		requiredItem: "Meteorite",
 	},
 	jirachi: {
 		randomBattleMoves: ["ironhead", "uturn", "firepunch", "icepunch", "stealthrock", "bodyslam", "toxic", "wish", "substitute"],
@@ -3900,7 +3901,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	dianciemega: {
 		randomBattleMoves: ["calmmind", "moonblast", "earthpower", "hiddenpowerfire", "diamondstorm"],
 		randomDoubleBattleMoves: ["diamondstorm", "moonblast", "calmmind", "psyshock", "earthpower", "hiddenpowerfire", "dazzlinggleam", "protect"],
-		tier: "Illegal",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	hoopa: {

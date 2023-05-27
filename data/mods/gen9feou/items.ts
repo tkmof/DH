@@ -10,7 +10,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			return true;
 		},
 		num: 755,
-		desc: "If held by a Muktaria-Alola, this item allows it to Mega Evolve in battle.",
+		desc: "If held by an Alolan Muktaria, this item allows it to Mega Evolve in battle.",
 	},
 	metagrossite: {
 		name: "Metagrossite",
@@ -33,31 +33,23 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (this.queue.peek(true)?.choice === 'runSwitch') return;
 
 			if (!this.field.isWeather('sunnyday')) {
-				if (pokemon.hasAbility('protosynthesis') && !pokemon.volatiles['protosynthesis'] /* && !this.field.isWeather('sunnyday') */ && pokemon.useItem()) {
-					pokemon.addVolatile('protosynthesis');
-				}
-				else if (pokemon.hasAbility('openingact') && !pokemon.volatiles['openingact'] && pokemon.useItem()) {
-					pokemon.addVolatile('openingact');
-				}
-				else if (pokemon.hasAbility('onceuponatime') && !pokemon.volatiles['onceuponatime'] && pokemon.useItem()) {
-					pokemon.addVolatile('onceuponatime');
-				}
-				else if (pokemon.hasAbility('primitive') && !pokemon.volatiles['primitive'] && pokemon.useItem()) {
-					pokemon.addVolatile('primitive');
+				for (const proto of ['protosynthesis', 'onceuponatime', 'primitive', 'openingact', 'weightoflife']) { 
+					if (pokemon.hasAbility(proto)) {
+						if (!pokemon.volatiles[proto] /* && !this.field.isWeather('sunnyday') */ && pokemon.useItem()) {
+							pokemon.addVolatile(proto);
+						}
+						return;
+					}
 				}
 			}
 			if (!this.field.isTerrain('electricterrain')) {
-				if (pokemon.hasAbility('quarkdrive') && !pokemon.volatiles['quarkdrive'] && pokemon.useItem()) {
-					pokemon.addVolatile('quarkdrive');
-				}
-				else if (pokemon.hasAbility('lightdrive') && !pokemon.volatiles['lightdrive'] && pokemon.useItem()) {
-					pokemon.addVolatile('lightdrive');
-				}
-				else if (pokemon.hasAbility('quarksurge') && !pokemon.volatiles['quarksurge'] && pokemon.useItem()) {
-					pokemon.addVolatile('quarksurge');
-				}
-				else if (pokemon.hasAbility('nanorepairs') && !pokemon.volatiles['nanorepairs'] && pokemon.useItem()) {
-					pokemon.addVolatile('nanorepairs');
+				for (const quark of ['quarkdrive', 'lightdrive', 'quarksurge', 'nanorepairs', 'circuitbreaker']) { 
+					if (pokemon.hasAbility(quark)) {
+						if (!pokemon.volatiles[quark] && pokemon.useItem()) {
+							pokemon.addVolatile(quark);
+						}
+						return;
+					}
 				}
 			}
 			if (pokemon.hasAbility('systempurge') && !pokemon.volatiles['systempurge'] && pokemon.useItem()) {
