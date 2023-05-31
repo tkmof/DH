@@ -747,6 +747,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	ironvaliant: {
-		tier: "OU",
+		tier: "Uber",
 	},
 };
