@@ -450,7 +450,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Uber",
 	},
 	mew: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	crobat: {
 		tier: "OU",
@@ -609,7 +609,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	togekiss: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	leafeon: {
 		tier: "OU",
@@ -663,7 +663,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	volcarona: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	flabebe: {
 		tier: "LC",
@@ -714,7 +714,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	screamtail: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	fluttermane: {
 		tier: "OU",
@@ -738,7 +738,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	chienpao: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	tinglu: {
 		tier: "OU",
