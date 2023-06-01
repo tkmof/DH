@@ -14,7 +14,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		}
         for (const i in this.data.Moves) {
 			if (!this.data.Moves[i]) console.log(i);
-            const category = this.data.Moves[i].category;
+            const category = this.mod().data.Moves[i].category;
 			this.modData('Moves', i).category = category;
 		}
 	},
