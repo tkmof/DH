@@ -1406,4 +1406,28 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		baseStats: {hp: 123, atk: 90, def: 85, spa: 101, spd: 100, spe: 58},
 		abilities: {0: "Long Reach", 1: "Refrigerate", H: "Snow Warning"},
 	},
+	abhornet: {
+		num: 126,
+		name: "Abhornet",
+		types: ["Bug","Poison"],
+		baseStats: {hp: 65, atk: 120, def: 50, spa: 15, spd: 80, spe: 135},
+		abilities: {0: "Adaptability", H: "Sniper"},
+		heightm: 1.4,
+		weightkg: 40.5,
+		prevo: "beedrill",
+	},
+	breloom: {
+		inherit: true,
+		num: 127,
+		abilities: {0: "Toxic Boost", 1: "Technician", H: "Poison Heal"},
+	},
+	aquazelle: {
+		num: 128,
+		name: "Aquazelle",
+		types: ["Normal", "Water"],
+		baseStats: {hp: 107, atk: 53, def: 83, spa: 123, spd: 97, spe: 137},
+		abilities: {0: "Heatproof", 1: "Aerilate", H: "Corrosion"},
+		weightkg: 5,
+		eggGroups: ["Undiscovered"],
+	},
 };
