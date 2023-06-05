@@ -2912,4 +2912,140 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Electric",
 		contestType: "Beautiful",
 	},
+	guidance: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "+2 Attack & SpA for the target.",
+		name: "Guidance",
+		pp: 15,
+		priority: 0,
+		flags: {mystery: 1},
+		secondary: null,
+		boosts: {
+			atk: 2,
+			spa: 2,
+		},
+		target: "normal",
+		type: "Psychic",
+	},
+	resistance: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "+2 Defense & SpD for the target.",
+		name: "Resistance",
+		pp: 15,
+		priority: 0,
+		flags: {mystery: 1},
+		secondary: null,
+		boosts: {
+			def: 2,
+			spd: 2,
+		},
+		target: "normal",
+		type: "Psychic",
+	},
+	command: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Protects the user. Disables the foe's last move if hit by contact.",
+		name: "Command",
+		pp: 10,
+		priority: 4,
+		flags: {},
+		stallingMove: true,
+		volatileStatus: 'command',
+		onTryHit(target, source, move) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', target);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
+		},
+		condition: {
+			duration: 1,
+			onStart(target) {
+				this.add('-singleturn', target, 'move: Protect');
+			},
+			onTryHitPriority: 3,
+			onTryHit(target, source, move) {
+				if (!move.flags['protect']) {
+					if (move.isZ || (move.isMax && !move.breaksProtect)) target.getMoveHitData(move).zBrokeProtect = true;
+					return;
+				}
+				if (move.smartTarget) {
+					move.smartTarget = false;
+				} else {
+					this.add('-activate', target, 'move: Protect');
+				}
+				const lockedmove = source.getVolatile('lockedmove');
+				if (lockedmove) {
+					// Outrage counter is reset
+					if (source.volatiles['lockedmove'].duration === 2) {
+						delete source.volatiles['lockedmove'];
+					}
+				}
+				if (move.flags['contact']) {
+					source.addVolatile('disable');
+				}
+				return this.NOT_FAIL;
+			},
+			onHit(target, source, move) {
+				if (move.isZOrMaxPowered && move.flags['contact']) {
+					source.addVolatile('disable');
+				}
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		zMove: {boost: {def: 1}},
+		contestType: "Tough",
+	},
+	bless: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "+2 Attack for the user and allies.",
+		name: "Bless",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Morning Sun", target);
+		},
+		boosts: {
+			atk: 2,
+		},
+		secondary: null,
+		target: "allyTeam",
+		type: "Psychic",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
+	},
+	prehistoricpulse: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		shortDesc: "10% chance to lower the foe's SpD.",
+		name: "Prehistoric Pulse",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, pulse: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ancient Power", target);
+		},
+		secondary: {
+			chance: 10,
+			boosts: {
+				spd: -1,
+			},
+		},
+		target: "normal",
+		type: "Rock",
+		contestType: "Clever",
+	},
 };
