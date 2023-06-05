@@ -71,6 +71,180 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Cute",
 	},
+	charge: {
+		inherit: true,
+		onHit() {},
+		condition: {
+			onStart(pokemon, source, effect) {
+				if (effect && ['Electromorphosis', 'Wind Power'].includes(effect.name)) {
+					this.add('-start', pokemon, 'Charge', this.activeMove!.name, '[from] ability: ' + effect.name);
+				} else {
+					this.add('-start', pokemon, 'Charge');
+				}
+			},
+			onRestart(pokemon, source, effect) {
+				if (effect && ['Electromorphosis', 'Wind Power'].includes(effect.name)) {
+					this.add('-start', pokemon, 'Charge', this.activeMove!.name, '[from] ability: ' + effect.name);
+				} else {
+					this.add('-start', pokemon, 'Charge');
+				}
+			},
+			onBasePowerPriority: 9,
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Electric') {
+					this.debug('charge boost');
+					return this.chainModify(2);
+				}
+			},
+			onMoveAborted(pokemon, target, move) {
+				if (move.type === 'Electric' && move.id !== 'charge') {
+					pokemon.removeVolatile('charge');
+				}
+			},
+			onAfterMove(pokemon, target, move) {
+				if (move.type === 'Electric' && move.id !== 'charge') {
+					pokemon.removeVolatile('charge');
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Charge', '[silent]');
+			},
+		},
+	},
+	auroraveil: {
+		inherit: true,
+		onTryHitSide() {},
+		onTry() {
+			return this.field.isWeather(['hail', 'snow']);
+		},
+		shortDesc: "For 5 turns, damage to allies halved. Snow/Hail only.",
+	},
+	blizzard: {
+		inherit: true,
+		onModifyMove(move, pokemon) {
+			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) move.accuracy = true;
+		},
+		shortDesc: "10% chance to freeze foe(s). Can't miss in Snow/Hail.",
+	},
+	moonlight: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	morningsun: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	solarbeam: {
+		inherit: true,
+		onBasePower(basePower, pokemon, target) {
+			if (['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				this.debug('weakened by weather');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	solarblade: {
+		inherit: true,
+		onBasePower(basePower, pokemon, target) {
+			if (['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				this.debug('weakened by weather');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	synthesis: {
+		inherit: true,
+		onHit(pokemon) {
+			let factor = 0.5;
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				factor = 0.667;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
+			case 'snow':
+				factor = 0.25;
+				break;
+			}
+			return !!this.heal(this.modify(pokemon.maxhp, factor));
+		},
+	},
+	weatherball: {
+		inherit: true,
+		onModifyType(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				break;
+			case 'hail':
+			case 'snow':
+				move.type = 'Ice';
+				break;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.basePower *= 2;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.basePower *= 2;
+				break;
+			case 'sandstorm':
+				move.basePower *= 2;
+				break;
+			case 'hail':
+			case 'snow':
+				move.basePower *= 2;
+				break;
+			}
+		},
+	},
 	//---------------Gen 9 Moves-----------------//
 	//PL:A
 	ragingfury: {
@@ -139,7 +313,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 85,
 		basePower: 100,
 		category: "Physical",
-		isNonstandard: "Unobtainable",
+		shortDesc: "30% chance to make the target flinch.",
 		name: "Mountain Gale",
 		pp: 10,
 		priority: 0,
@@ -156,11 +330,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
-		isNonstandard: "Unobtainable",
+		shortDesc: "100% chance to raise user Speed by 1. High crit.",
 		name: "Esper Wing",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+		},
 		critRatio: 2,
 		secondary: {
 			chance: 100,
@@ -174,7 +352,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Psychic",
 	},
 	psyshieldbash: {
-		shortDesc: "100% chance to raise the user's Defense by 1.",
 		num: -1013,
 		accuracy: 90,
 		basePower: 70,
@@ -202,14 +379,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Clever",
 	},
 	stoneaxe: {
-		shortDesc: "Sets Stealth Rock after damage. High critical hit ratio.",
 		num: -1014,
 		accuracy: 90,
 		basePower: 65,
 		category: "Physical",
 		name: "Stone Axe",
 		desc: "Has a higher chance for a critical hit. If this move is successful, it sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in. Foes lose 1/32, 1/16, 1/8, 1/4, or 1/2 of their maximum HP, rounded down, based on their weakness to the Rock type; 0.25x, 0.5x, neutral, 2x, or 4x, respectively. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
-		shortDesc: "High critical hit ratio. Foes: Stealth Rock.",
+		shortDesc: "Sets Stealth Rock on the target's side.",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -217,7 +393,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stone Edge", target);
 		},
-		critRatio: 2,
+		//critRatio: 2,
 		sideCondition: 'stealthrock',
 		secondary: null,
 		target: "adjacentFoe",
@@ -225,7 +401,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Tough",
 	},
 	headlongrush: {
-		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 		num: -1015,
 		accuracy: 100,
 		basePower: 120,
@@ -252,7 +427,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Tough",
 	},
 	powershift: {
-		shortDesc: "Switches user's Attack with Defense and Sp. Atk with Sp. Def.",
+		shortDesc: "Switches user's Attack and Defense stats.",
 		num: -1017,
 		accuracy: true,
 		basePower: 0,
@@ -310,7 +485,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Clever",
 	},
 	mysticalpower: {
-		shortDesc: "100% chance to raise the user's spa by 1.",
+		shortDesc: "100% chance to raise the user's Sp. Atk by 1.",
 		num: -1018,
 		accuracy: 90,
 		basePower: 70,
@@ -327,12 +502,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				},
 			},
 		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stored Power", target);
+		},
 		target: "normal",
 		type: "Psychic",
 		contestType: "Clever",
 	},
 	wavecrash: {
-		shortDesc: "Usually goes first. Has 33% recoil.",
 		num: -1008,
 		accuracy: 100,
 		basePower: 120,
@@ -353,7 +531,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Cool",
 	},
 	chloroblast: {
-		shortDesc: "User loses 50% max HP.",
 		num: -1002,
 		accuracy: 95,
 		basePower: 150,
@@ -379,7 +556,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Grass",
 	},
 	infernalparade: {
-		shortDesc: "Power doubles if the target has a status ailment; 30% chance to burn.",
 		num: -1003,
 		accuracy: 100,
 		basePower: 60,
@@ -390,7 +566,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Special",
 		name: "Infernal Parade",
 		desc: "Has a 30% chance to burn the target. Power doubles if the target has a non-volatile status condition.",
-		shortDesc: "30% chance to burn. 2x power if target is statused.",
+		shortDesc: "30% burn. 2x power if target is already statused.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -408,7 +584,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Clever",
 	},
 	barbbarrage: {
-		shortDesc: "Power doubles if the target has a status ailment; 30% chance to poison.",
 		num: -1004,
 		accuracy: 100,
 		basePower: 60,
@@ -418,8 +593,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		category: "Physical",
 		name: "Barb Barrage",
-		desc: "Has a 30% chance to poison the target. Power doubles if the target is poisoned.",
-		shortDesc: "30% chance to psn. 2x power if target is poisoned.",
+		desc: "Has a 50% chance to poison the target. Power doubles if the target is poisoned.",
+		shortDesc: "50% psn. 2x power if target already poisoned.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -428,7 +603,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.add('-anim', source, "Poison Sting", target);
 		},
 		secondary: {
-			chance: 30,
+			chance: 50,
 			status: 'psn',
 		},
 		target: "normal",
@@ -436,30 +611,36 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {basePower: 160},
 		contestType: "Clever",
 	},
-	//SV
-	spicyextract: {
-		num: 858,
+	victorydance: {
+		num: -1,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		name: "Spicy Extract",
-		shortDesc: "Raises target's Atk by 2 and lowers its Def by 2.",
-		pp: 15,
+		shortDesc: "Raises the user's Attack, Defense, Speed by 1.",
+		name: "Victory Dance",
+		pp: 10,
 		priority: 0,
-		flags: {protect: 1, reflectable: 1, mirror: 1},
+		flags: {snatch: 1, dance: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Quiver Dance", target);
+		},
 		boosts: {
-			atk: 2,
-			def: -2,
+			atk: 1,
+			def: 1,
+			spe: 1
 		},
 		secondary: null,
-		target: "normal",
-		type: "Grass",
+		target: "self",
+		type: "Fighting",
 	},
+	//SV
 	saltcure: {
 		num: 864,
 		accuracy: 100,
 		basePower: 40,
 		category: "Physical",
+		shortDesc: "Deals 1/8 max HP each turn; 1/4 on Steel, Water.",
 		name: "Salt Cure",
 		pp: 15,
 		priority: 0,
@@ -477,6 +658,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				this.add('-end', pokemon, 'Salt Cure');
 			},
 		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sand Attack", target);
+		},
 		secondary: {
 			chance: 100,
 			volatileStatus: 'saltcure',
@@ -489,6 +674,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
+		shortDesc: "If Terastallized: Phys. if Atk > SpA, type = Tera.",
 		name: "Tera Blast",
 		pp: 10,
 		priority: 0,
@@ -503,6 +689,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				move.category = 'Physical';
 			}
 		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Terrain Pulse", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -512,16 +702,25 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 80,
 		basePower: 100,
 		category: "Special",
-		isNonstandard: "Unobtainable",
+		shortDesc: "30% chance to lower the foe(s) Speed by 1.",
 		name: "Bleakwind Storm",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
+		onModifyMove(move) {
+			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
 		secondary: {
 			chance: 30,
 			boosts: {
 				spe: -1,
 			},
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hurricane", target);
 		},
 		target: "allAdjacentFoes",
 		type: "Flying",
@@ -531,14 +730,23 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 80,
 		basePower: 100,
 		category: "Special",
-		isNonstandard: "Unobtainable",
+		shortDesc: "20% chance to burn foe(s).",
 		name: "Sandsear Storm",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
+		onModifyMove(move) {
+			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
 		secondary: {
 			chance: 20,
 			status: 'brn',
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scorching Sands", target);
 		},
 		target: "allAdjacentFoes",
 		type: "Ground",
@@ -548,7 +756,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 80,
 		basePower: 100,
 		category: "Special",
-		isNonstandard: "Unobtainable",
+		shortDesc: "30% chance to lower the foe(s) Attack by 1.",
 		name: "Springtide Storm",
 		pp: 5,
 		priority: 0,
@@ -559,6 +767,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				atk: -1,
 			},
 		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fairy Wind", target);
+		},
 		target: "allAdjacentFoes",
 		type: "Fairy",
 	},
@@ -567,14 +779,23 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 80,
 		basePower: 100,
 		category: "Special",
-		isNonstandard: "Unobtainable",
+		shortDesc: "20% chance to paralyze foe(s).",
 		name: "Wildbolt Storm",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
+		onModifyMove(move) {
+			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
 		secondary: {
 			chance: 20,
 			status: 'par',
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunder", target);
 		},
 		target: "allAdjacentFoes",
 		type: "Electric",
@@ -584,7 +805,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 90,
 		basePower: 65,
 		category: "Physical",
-		isNonstandard: "Unobtainable",
+		shortDesc: "Sets a layer of Spikes on the opposing side.",
 		name: "Ceaseless Edge",
 		pp: 15,
 		priority: 0,
@@ -596,6 +817,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				}
 			},
 		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
 		secondary: {}, // allows sheer force to trigger
 		target: "normal",
 		type: "Dark",
@@ -605,6 +830,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "Protects from damaging attacks. Contact: -1 Spe.",
 		name: "Silk Trap",
 		pp: 10,
 		priority: 4,
@@ -651,6 +877,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				}
 			},
 		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Protect", target);
+		},
 		target: "self",
 		type: "Bug",
 	},
@@ -659,6 +889,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 90,
 		basePower: 120,
 		category: "Physical",
+		shortDesc: "30% confusion. User loses 50% max HP if miss.",
 		name: "Axe Kick",
 		pp: 10,
 		priority: 0,
@@ -671,6 +902,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			chance: 30,
 			volatileStatus: 'confusion',
 		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "High Jump Kick", target);
+		},
 		target: "normal",
 		type: "Fighting",
 	},
@@ -682,10 +917,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			return 50 + 50 * pokemon.side.totalFainted;
 		},
 		category: "Physical",
+		shortDesc: "+50 power for each time a party member fainted.",
 		name: "Last Respects",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poltergeist", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ghost",
@@ -695,6 +935,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
+		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
 		name: "Lumina Crash",
 		pp: 10,
 		priority: 0,
@@ -705,6 +946,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				spd: -2,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Luster Purge", target);
+		},
 		target: "normal",
 		type: "Psychic",
 	},
@@ -713,6 +958,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
+		shortDesc: "Curly|Droopy|Stretchy eaten: +1 Atk|Def|Spe.",
 		name: "Order Up",
 		pp: 10,
 		priority: 0,
@@ -736,6 +982,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				break;
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Tail", target);
+		},
 		secondary: null,
 		hasSheerForce: true,
 		target: "normal",
@@ -746,10 +996,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
+		shortDesc: "Usually goes first.",
 		name: "Jet Punch",
 		pp: 15,
 		priority: 1,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aqua Jet", target);
+		},
 		secondary: null,
 		hasSheerForce: true,
 		target: "normal",
@@ -762,12 +1017,17 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 0,
 		category: "Status",
 		name: "Spicy Extract",
+		shortDesc: "Raises target's Atk by 2 and lowers its Def by 2.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
 		boosts: {
 			atk: 2,
 			def: -2,
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rage Powder", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -778,10 +1038,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 100,
 		category: "Physical",
+		shortDesc: "Lowers the user's Speed by 2.",
 		name: "Spin Out",
 		pp: 5,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gyro Ball", target);
+		},
 		self: {
 			boosts: {
 				spe: -2,
@@ -796,10 +1061,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 90,
 		basePower: 20,
 		category: "Physical",
+		shortDesc: "Hits 10 times. Each hit can miss.",
 		name: "Population Bomb",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tail Slap", target);
+		},
 		multihit: 10,
 		multiaccuracy: true,
 		secondary: null,
@@ -811,10 +1081,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
+		shortDesc: "Ends the effects of terrain.",
 		name: "Ice Spinner",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rapid Spin", target);
+		},
 		onHit() {
 			this.field.clearTerrain();
 		},
@@ -830,6 +1105,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 120,
 		category: "Physical",
+		shortDesc: "User takes sure-hit 2x damage until its next turn.",
 		name: "Glaive Rush",
 		pp: 5,
 		priority: 0,
@@ -854,6 +1130,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				pokemon.removeVolatile('glaiverush');
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Outrage", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Dragon",
@@ -863,6 +1143,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "User and ally's Abilities become target's Ability.",
 		name: "Doodle",
 		pp: 10,
 		priority: 0,
@@ -887,6 +1168,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				return this.NOT_FAIL;
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "skill Swap", target);
+		},
 		secondary: null,
 		target: "adjacentFoe",
 		type: "Normal",
@@ -896,6 +1181,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "+2 Attack, Sp. Atk, Speed for 1/2 user's max HP.",
 		name: "Fillet Away",
 		pp: 10,
 		priority: 0,
@@ -915,6 +1201,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			spa: 2,
 			spe: 2,
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Baton Pass", target);
+		},
 		secondary: null,
 		target: "self",
 		type: "Normal",
@@ -924,10 +1214,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 85,
 		category: "Physical",
+		shortDesc: "This move does not check accuracy.",
 		name: "Kowtow Cleave",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Dark",
@@ -937,10 +1232,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 70,
 		category: "Physical",
+		shortDesc: "Always results in a critical hit; no accuracy check.",
 		name: "Flower Trick",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Seed Bomb", target);
+		},
 		willCrit: true,
 		secondary: null,
 		target: "normal",
@@ -951,10 +1251,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
+		shortDesc: "100% chance to raise the user's Sp. Atk by 1.",
 		name: "Torch Song",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flame Burst", target);
+		},
 		secondary: {
 			chance: 100,
 			self: {
@@ -972,10 +1277,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
+		shortDesc: "100% chance to raise the user's Speed by 1.",
 		name: "Aqua Step",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, dance: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Liquidation", target);
+		},
 		secondary: {
 			chance: 100,
 			self: {
@@ -993,6 +1303,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
+		shortDesc: "Destroys screens. Type depends on user's form.",
 		name: "Raging Bull",
 		pp: 10,
 		priority: 0,
@@ -1016,6 +1327,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				break;
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Head Smash", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -1025,6 +1340,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 120,
 		category: "Special",
+		shortDesc: "Lowers the user's Sp. Atk by 1. Hits foe(s).",
 		name: "Make It Rain",
 		pp: 5,
 		priority: 0,
@@ -1033,6 +1349,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			boosts: {
 				spa: -1,
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mirror Shot", target);
 		},
 		secondary: null,
 		target: "allAdjacentFoes",
@@ -1047,10 +1367,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			return this.clampIntRange(Math.floor(target.getUndynamaxedHP() / 2), 1);
 		},
 		category: "Special",
+		shortDesc: "Does damage equal to 1/2 target's current HP.",
 		name: "Ruination",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Foul Play", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Dark",
@@ -1061,6 +1386,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 100,
 		category: "Physical",
+		shortDesc: "Deals 1.3333x damage with supereffective hits.",
 		name: "Collision Course",
 		pp: 5,
 		priority: 0,
@@ -1072,6 +1398,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				return this.chainModify([5461, 4096]);
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "All-Out Pummeling", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Fighting",
@@ -1082,6 +1412,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 100,
 		category: "Special",
+		shortDesc: "Deals 1.3333x damage with supereffective hits.",
 		name: "Electro Drift",
 		pp: 5,
 		priority: 0,
@@ -1093,6 +1424,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				return this.chainModify([5461, 4096]);
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gigavolt Havoc", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Electric",
@@ -1103,6 +1438,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "User takes 1/2 its max HP to pass a substitute.",
 		name: "Shed Tail",
 		pp: 10,
 		priority: 0,
@@ -1130,6 +1466,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				source.skipBeforeSwitchOutEventFlag = true;
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Baton Pass", target);
+		},
 		selfSwitch: 'shedtail',
 		secondary: null,
 		target: "self",
@@ -1141,12 +1481,17 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "Starts Snow. User switches out.",
 		name: "Chilly Reception",
 		pp: 10,
 		priority: 0,
 		flags: {},
 		// TODO show prepare message before the "POKEMON used MOVE!" message
 		// This happens even before sleep shows its "POKEMON is fast asleep." message
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Parting Shot", target);
+		},
 		weather: 'snow',
 		selfSwitch: true,
 		secondary: null,
@@ -1158,6 +1503,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "User +1 Atk, Spe. Clears all substitutes/hazards.",
 		name: "Tidy Up",
 		pp: 10,
 		priority: 0,
@@ -1180,6 +1526,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			if (success) this.add('-activate', pokemon, 'move: Tidy Up');
 			return !!this.boost({atk: 1, spe: 1}, pokemon, pokemon, null, false, true) || success;
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Defog", target);
+		},
 		secondary: null,
 		target: "self",
 		type: "Normal",
@@ -1189,10 +1539,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "For 5 turns, snow falls. Ice: 1.5x Def.",
 		name: "Snowscape",
 		pp: 10,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hail", target);
+		},
 		weather: 'snow',
 		secondary: null,
 		target: "all",
@@ -1203,10 +1558,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 50,
 		category: "Physical",
+		shortDesc: "100% chance to lower the target's Speed by 1.",
 		name: "Pounce",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Skitter Smack", target);
+		},
 		secondary: {
 			chance: 100,
 			boosts: {
@@ -1222,10 +1582,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 50,
 		category: "Physical",
+		shortDesc: "100% chance to raise the user's Speed by 1.",
 		name: "Trailblaze",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Branch Poke", target);
+		},
 		secondary: {
 			chance: 100,
 			self: {
@@ -1243,10 +1608,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 50,
 		category: "Special",
+		shortDesc: "100% chance to lower the target's Attack by 1.",
 		name: "Chilling Water",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Water Gun", target);
+		},
 		secondary: {
 			chance: 100,
 			boosts: {
@@ -1262,10 +1632,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 100,
 		category: "Physical",
+		shortDesc: "Bypasses protection without breaking it.",
 		name: "Hyper Drill",
 		pp: 5,
 		priority: 0,
 		flags: {contact: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Horn Drill", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -1276,10 +1651,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 40,
 		category: "Special",
+		shortDesc: "Hits 2 times in one turn.",
 		name: "Twin Beam",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psybeam", target);
+		},
 		multihit: 2,
 		secondary: null,
 		target: "normal",
@@ -1295,10 +1675,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			return Math.min(350, 50 + 50 * pokemon.m.timesAttacked);
 		},
 		category: "Physical",
+		shortDesc: "+50 power for each time user was hit. Max 6 hits.",
 		name: "Rage Fist",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Punch", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Ghost",
@@ -1308,6 +1693,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 120,
 		category: "Special",
+		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 		name: "Armor Cannon",
 		pp: 5,
 		priority: 0,
@@ -1318,6 +1704,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				spd: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Overheat", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Fire",
@@ -1327,12 +1717,17 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
+		shortDesc: "User recovers 50% of the damage dealt.",
 		name: "Bitter Blade",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
 		drain: [1, 2],
 		secondary: null,
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fire Lash", target);
+		},
 		target: "normal",
 		type: "Fire",
 	},
@@ -1341,6 +1736,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 120,
 		category: "Physical",
+		shortDesc: "User's Electric type: typeless; must be Electric.",
 		name: "Double Shock",
 		pp: 5,
 		priority: 0,
@@ -1357,6 +1753,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				this.add('-start', pokemon, 'typechange', pokemon.getTypes().join('/'), '[from] move: Double Shock');
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bolt Strike", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Electric",
@@ -1367,10 +1767,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 160,
 		category: "Physical",
+		shortDesc: "Cannot be used twice in a row.",
 		name: "Gigaton Hammer",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Hammer", target);
+		},
 		self: { 
 			volatileStatus: "gigatonhammer",
 		},
@@ -1403,6 +1808,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			return 0;
 		},
 		category: "Physical",
+		shortDesc: "If hit by an attack, returns 1.5x damage.",
 		name: "Comeuppance",
 		pp: 10,
 		priority: 0,
@@ -1417,6 +1823,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				targetRelayVar.target = this.getAtSlot(lastDamagedBy.slot);
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Payback", target);
+		},
 		secondary: null,
 		target: "scripted",
 		type: "Dark",
@@ -1427,10 +1837,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 70,
 		category: "Physical",
+		shortDesc: "High critical hit ratio.",
 		name: "Aqua Cutter",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, slicing: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+		},
 		critRatio: 2,
 		secondary: null,
 		target: "normal",
@@ -1442,10 +1857,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 95,
 		basePower: 30,
 		category: "Physical",
+		shortDesc: "Hits 3 times.",
 		name: "Triple Dive",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dive", target);
+		},
 		multihit: 3,
 		secondary: null,
 		target: "normal",
@@ -1457,6 +1877,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 80,
 		category: "Physical",
 		isNonstandard: "Unobtainable",
+		shortDesc: "30% chance to burn the target.",
 		name: "Blazing Torque",
 		pp: 10,
 		priority: 0,
@@ -1464,6 +1885,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: {
 			chance: 30,
 			status: 'brn',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flamethrower", target);
 		},
 		target: "normal",
 		type: "Fire",
@@ -1474,6 +1899,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 80,
 		category: "Physical",
 		isNonstandard: "Unobtainable",
+		shortDesc: "10% chance to cause the target to fall asleep.",
 		name: "Wicked Torque",
 		pp: 10,
 		priority: 0,
@@ -1481,6 +1907,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: {
 			chance: 10,
 			status: 'slp',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dark Pulse", target);
 		},
 		target: "normal",
 		type: "Dark",
@@ -1491,6 +1921,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 100,
 		category: "Physical",
 		isNonstandard: "Unobtainable",
+		shortDesc: "30% chance to poison the target.",
 		name: "Noxious Torque",
 		pp: 10,
 		priority: 0,
@@ -1498,6 +1929,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: {
 			chance: 30,
 			status: 'psn',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Bomb", target);
 		},
 		target: "normal",
 		type: "Poison",
@@ -1508,6 +1943,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 100,
 		category: "Physical",
 		isNonstandard: "Unobtainable",
+		shortDesc: "30% chance to paralyze the target.",
 		name: "Combat Torque",
 		pp: 10,
 		priority: 0,
@@ -1515,6 +1951,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: {
 			chance: 30,
 			status: 'par',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aura Sphere", target);
 		},
 		target: "normal",
 		type: "Fighting",
@@ -1525,6 +1965,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 100,
 		category: "Physical",
 		isNonstandard: "Unobtainable",
+		shortDesc: "30% chance to confuse the target.",
 		name: "Magical Torque",
 		pp: 10,
 		priority: 0,
@@ -1532,6 +1973,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: {
 			chance: 30,
 			volatileStatus: 'confusion',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dazzling Gleam", target);
 		},
 		target: "normal",
 		type: "Fairy",
@@ -1541,6 +1986,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "Revives a fainted Pokemon to 50% HP.",
 		name: "Revival Blessing",
 		pp: 1,
 		noPPBoosts: true,
@@ -1556,6 +2002,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		// No this not a real switchout move
 		// This is needed to trigger a switch protocol to choose a fainted party member
 		// Feel free to refactor
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Healing Wish", target);
+		},
 		selfSwitch: true,
 		condition: {
 			duration: 1,
@@ -1570,6 +2020,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 30,
 		category: "Physical",
+		shortDesc: "Poisons foes, frees user from hazards/bind/leech.",
 		name: "Mortal Spin",
 		pp: 15,
 		priority: 0,
@@ -1602,6 +2053,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				pokemon.removeVolatile('partiallytrapped');
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poison Sting", target);
+		},
 		secondary: {
 			chance: 100,
 			status: 'psn',
@@ -1614,11 +2069,16 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
+		shortDesc: "During Sunny Day: 1.5x damage instead of half.",
 		name: "Hydro Steam",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, defrost: 1},
 		// Damage boost in Sun applied in conditions.ts
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scald", target);
+		},
 		thawsTarget: true,
 		secondary: null,
 		target: "normal",
@@ -1629,6 +2089,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
+		shortDesc: "During Electric Terrain: 1.5x power.",
 		name: "Psyblade",
 		pp: 15,
 		priority: 0,
@@ -1640,6 +2101,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				return this.chainModify(1.5);
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sacred Sword", target);
+		},
 		target: "normal",
 		type: "Psychic",
 	},
@@ -1648,6 +2113,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
+		shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
 		name: "Triple Arrows",
 		pp: 10,
 		priority: 0,
@@ -1664,6 +2130,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				volatileStatus: 'flinch',
 			},
 		],
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thousand Arrows", target);
+		},
 		target: "normal",
 		type: "Fighting",
 	},
@@ -1672,6 +2142,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
+		shortDesc: "User cures its status and boosts its SpA & SpD by 1.",
 		name: "Take Heart",
 		pp: 15,
 		priority: 0,
@@ -1679,6 +2150,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		onHit(pokemon) {
 			const success = !!this.boost({spa: 1, spd: 1});
 			return pokemon.cureStatus() || success;
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Calm Mind", target);
 		},
 		secondary: null,
 		target: "self",
