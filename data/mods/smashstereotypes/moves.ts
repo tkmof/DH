@@ -3176,6 +3176,49 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Fairy",
 		contestType: "Beautiful",
 	},
-// jolte payback goes here
+// jolte payback and revenge go here
 
+	takeheart: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+    	shortDesc: "+1 Def, SpA, & SpD. User recharges after.",
+		name: "Take Heart",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, recharge: 1},
+		onAfterMove(pokemon) {
+			pokemon.addVolatile('recharge');
+		},
+		boosts: {
+			def: 1,
+			spa: 1,
+			spd: 1,
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+	petrifyinggaze: {
+		accuracy: 90,
+		basePower: 0,
+		category: "Status",
+    	shortDesc: "-1 priority. Foe flinches on its next turn.",
+		name: "Petrifying Gaze",
+		pp: 20,
+		priority: -1,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		volatileStatus: 'flinch',
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Glare", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
 };
