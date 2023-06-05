@@ -1545,7 +1545,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 	thunderpunch: {
 		inherit: true,
 		onModifyMove(move, source, target) {
-			if (source.species.id === 'typhlosion') {
+			if (source.species.id === 'typhlosion' || source.species.id === 'breloom') {
 				move.basePower = 85;
 			}
 		},
@@ -3048,4 +3048,134 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		type: "Rock",
 		contestType: "Clever",
 	},
+	skyuppercut: {
+		inherit: true,
+		isNonstandard: null,
+		onModifyMove(move, source, target) {
+			if (source.species.id === 'breloom') {
+				move.basePower = 70;
+				move.accuracy = 100;
+			}
+		},
+		onEffectiveness(typeMod, target, type, source) {
+			if (source.species.id === 'breloom') {
+				if (type === 'Flying') return 1;
+			}
+		},
+	},
+	poisondart: {
+		accuracy: true,
+		basePower: 40,
+		category: "Physical",
+    shortDesc: "Usually goes first. 10% chance to poison foe.",
+		isViable: true,
+		name: "Poison Dart",
+		pp: 30,
+		priority: 1,
+		flags: {protect: 1, mirror: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Poison Sting", target);
+		},
+		secondary: {
+			chance: 10,
+			status: 'psn',
+		},
+		target: "normal",
+		type: "Poison",
+		contestType: "Cool",
+	},
+	acidicfists: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+    shortDesc: "Destroys screens, unless the target is immune. 10% poison chance.",
+		isViable: true,
+		name: "Acidic Fists",
+		pp: 10,
+		priority: 0,
+		flags: {punch: 1, contact: 1, protect: 1, mirror: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Poison Jab", target);
+		  this.add('-anim', source, "Corrosive Gas", target);
+		},
+		onTryHit(pokemon) {
+			// will shatter screens through sub, before you hit
+			if (pokemon.runImmunity('Poison')) {
+				pokemon.side.removeSideCondition('reflect');
+				pokemon.side.removeSideCondition('lightscreen');
+				pokemon.side.removeSideCondition('auroraveil');
+			}
+		},
+		secondary: {
+			chance: 10,
+			status: 'psn',
+		},
+		target: "normal",
+		type: "Poison",
+		contestType: "Cool",
+	},
+	rashpowder: {
+		accuracy: 75,
+		basePower: 0,
+		category: "Status",
+    shortDesc: "Burns the target.",
+		isViable: true,
+		name: "Rash Powder",
+		pp: 30,
+		priority: 0,
+		flags: {powder: 1, protect: 1, reflectable: 1, mirror: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Spore", target);
+		},
+		status: 'brn',
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
+	},
+	venoshock: {
+		inherit: true,
+		isNonstandard: null,
+		onBasePower(basePower, pokemon, target) {
+			if (pokemon.species.id === 'breloom' && (target.status || target.hasAbility('comatose'))) {
+				return this.chainModify(2);
+			}
+			else if (target.status === 'psn' || target.status === 'tox') {
+				return this.chainModify(2);
+			}
+		},
+	},
+	armthrust: {
+		inherit: true,
+		onModifyMove(move, source, target) {
+			if (source.species.id === 'breloom') {
+				move.basePower = 25;
+			}
+		},
+	},
+	enchantedpunch: {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		defensiveCategory: "Special",
+    shortDesc: "Damages target based on Sp. Def, not Defense.",
+		name: "Enchanted Punch",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1, punch: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Meteor Mash", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Beautiful",
+	},
+// jolte payback goes here
+
 };
