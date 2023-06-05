@@ -419,4 +419,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	sylveon: {
 		tier: "SSS",
 	},
+	norn: {
+		tier: "SSS",
+	},
+	aurorus: {
+		tier: "SSS",
+	},
+	orceyeofgruumsh: {
+		tier: "SSS",
+	},
 };
