@@ -1419,7 +1419,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	breloom: {
 		inherit: true,
 		num: 127,
-		abilities: {0: "Toxic Boost", 1: "Technician", H: "Poison Heal"},
+		abilities: {0: "Toxic Boost (Jolte)", 1: "Technician", H: "Poison Heal"},
 	},
 	aquazelle: {
 		num: 128,
