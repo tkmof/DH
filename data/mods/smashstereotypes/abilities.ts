@@ -1000,4 +1000,56 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			}
 		},
 	},
+	fowlbehavior: {
+		id: "fowlbehavior",
+		name: "Fowl Behavior",
+		shortDesc: "This Pokemon's Sp. Atk is 1.5x, but it can only select the first move it executes.",
+		onStart(pokemon) {
+			pokemon.abilityData.choiceLock = "";
+		},
+		onBeforeMove(pokemon, target, move) {
+			if (move.isZOrMaxPowered || move.id === 'struggle') return;
+			if (pokemon.abilityData.choiceLock && pokemon.abilityData.choiceLock !== move.id) {
+				// Fails unless ability is being ignored (these events will not run), no PP lost.
+				this.addMove('move', pokemon, move.name);
+				this.attrLastMove('[still]');
+				this.debug("Disabled by Fowl Behavior");
+				this.add('-fail', pokemon);
+				return false;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			if (pokemon.abilityData.choiceLock || move.isZOrMaxPowered || move.id === 'struggle') return;
+			pokemon.abilityData.choiceLock = move.id;
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, pokemon, move) {
+			if (pokemon.volatiles['dynamax']) return;
+			///////////PLACEHOLDER FOR STURDY MOLD
+			let ignore = false;
+			for (const target of pokemon.side.foe.active) {
+				if (target.hasAbility('sturdymold')) {
+					ignore = true;
+					return;
+				}
+			} 
+			if ((move.target === 'allAdjacentFoes' || move.target === 'allAdjacent') && ignore) return;
+			///////////END PLACEHOLDER
+			// PLACEHOLDER
+			this.debug('Fowl Behavior Sp. Atk Boost');
+			return this.chainModify(1.5);
+		},
+		onDisableMove(pokemon) {
+			if (!pokemon.abilityData.choiceLock) return;
+			if (pokemon.volatiles['dynamax']) return;
+			for (const moveSlot of pokemon.moveSlots) {
+				if (moveSlot.id !== pokemon.abilityData.choiceLock) {
+					pokemon.disableMove(moveSlot.id, false, this.effectData.sourceEffect);
+				}
+			}
+		},
+		onEnd(pokemon) {
+			pokemon.abilityData.choiceLock = "";
+		},
+	},
 };
