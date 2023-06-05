@@ -135,8 +135,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				this.boost({atk: 1, spa: 1, spe: 1, def: -1, spd: -1}, target, target);
 			}
 		},
-		name: "Anger Point",
-		shortDesc: "When this Pokemon reaches 1/2 or less max HP, it cures its status and becomes immune to status.",
+		name: "Anger Shell",
+		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and -1 Def, Sp. Def.",
 		rating: 4,
 		num: 271,
 	},
