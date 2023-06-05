@@ -719,3 +719,4 @@ bruined: {
 	height: 100,
 	weightkg: 100,
 },
+};

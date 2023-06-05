@@ -3175,7 +3175,7 @@ forenseelie: {learnset: {
 	waterpulse: ["7L1, 8L1, 9L1"],
 }},
 atomoth: {learnset: {
-	"acid: ["7L1, 8L1, 9L1"],
+	acid: ["7L1, 8L1, 9L1"],
 	acidspray: ["7L1, 8L1, 9L1"],
 	acrobatics: ["7L1, 8L1, 9L1"],
 	agility: ["7L1, 8L1, 9L1"],
@@ -3393,7 +3393,7 @@ idk2: {learnset: {
 	toxic: ["7L1, 8L1, 9L1"],
 }},
 zauryo: {learnset: {
-	"fleurcannon: ["7L1, 8L1, 9L1"],
+	fleurcannon: ["7L1, 8L1, 9L1"],
 	aquajet: ["7L1, 8L1, 9L1"],
 	aquaring: ["7L1, 8L1, 9L1"],
 	aquatail: ["7L1, 8L1, 9L1"],
