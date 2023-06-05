@@ -428,4 +428,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	orceyeofgruumsh: {
 		tier: "SSS",
 	},
+	breloom: {
+		tier: "SSS",
+	},
+	abhornet: {
+		tier: "SSS",
+	},
+	aquazelle: {
+		tier: "SSS",
+	},
 };
