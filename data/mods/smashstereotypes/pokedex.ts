@@ -1383,5 +1383,27 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	   types: ["Fairy", "Ground"],
 		baseStats: {hp: 95, atk: 65, def: 80, spa: 110, spd: 130, spe: 60},
 	},
-
+	norn: { //done
+		//fusion: ['Porygon2', 'Dragalge'],
+		num: 123,
+		name: "Norn",
+		types: ["Normal", "Poison"],
+		baseStats: {hp: 90, atk: 90, def: 90, spa: 110, spd: 110, spe: 54},
+		abilities: {0: "Nocturnal Flash"},
+		weightkg: 57,
+	},
+	orceyeofgruumsh: {
+		num: 124,
+		name: "Orc Eye of Gruumsh",
+		types: ["Dark", "Psychic"],
+		baseStats: {hp: 80, atk: 130, def: 100, spa: 50, spd: 80, spe: 75},
+		abilities: {0: "Intimidate", H: "Long Reach"},
+		weightkg: 200,
+	},
+	aurorus: {
+		inherit: true,
+		num: 125,
+		baseStats: {hp: 123, atk: 90, def: 85, spa: 101, spd: 100, spe: 58},
+		abilities: {0: "Long Reach", 1: "Refrigerate", H: "Snow Warning"},
+	},
 };
