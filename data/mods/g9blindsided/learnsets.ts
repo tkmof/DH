@@ -5019,7 +5019,7 @@ kurayami: {
 			safeguard: ["8L1"],
 			calmmind: ["8L1"],
 			swordsdance: ["8L1"],
-			extransensory: ["8L1"],
+			extrasensory: ["8L1"],
 			sunnyday: ["8L1"],
 			futuresight: ["8L1"],
 			skyattack: ["8L1"],
