@@ -883,4 +883,43 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: -118,
 		shortDesc: "(Partially functional) When the user switches in, all non-fainted team members regain 1/16 HP.",
 	},
+	"nocturnalflash": {
+		shortDesc: "Attacks have 1.5x power and a 30% chance to Poison if it moves last.",
+		id: "nocturnalflash",
+		name: "Nocturnal Flash",
+		onBasePower(basePower, pokemon) {
+			let boosted = true;
+			for (const target of this.getAllActive()) {
+				if (target === pokemon) continue;
+				if (this.queue.willMove(target)) {
+					boosted = false;
+					break;
+				}
+			}
+			if (boosted) {
+				this.debug('Nocturnal Flash boost');
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
+		onModifyMove(move, pokemon) { 
+			let boosted = true;
+			for (const target of this.getAllActive()) {
+				if (target === pokemon) continue;
+				if (this.queue.willMove(target)) {
+					boosted = false;
+					break;
+				}
+			}
+			if (!move || move.target === 'self') return;
+			if (!boosted) return; 
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			move.secondaries.push({
+				chance: 30,
+				status: 'psn',
+				ability: this.dex.getAbility('nocturnalflash'),
+			});
+		},
+	},
 };
