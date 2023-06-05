@@ -11,6 +11,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Blaze", H: "Frisk"},
 	},
+	sneaselhisui: {
+		inherit: true,
+		abilities: {0: "Inner Focus", 1: "Keen Eye", H: "Pickpocket"},
+	},
 	gallade: {
 		inherit: true,
 		abilities: {0: "Steadfast", 1: "Sharpness", H: "Justified"},
