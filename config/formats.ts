@@ -71,6 +71,30 @@ export const Formats: FormatList = [
 			}
 		},
 	},
+	
+	{
+        name: "[Gen 8] Gen 9 Blindsided",
+        desc: `<b>[Gen 9] Blindsided</b>: the monkey has awoken`,
+        threads: [
+            `&bullet; <a href="https://docs.google.com/spreadsheets/d/1263L6g2BPzf4eQQNfqJrp2FO1UMtGdxWXcyfz9OBqkM/edit#gid=1545907772">spreadsheet</a>`,
+        ],
+        mod: 'g9blindsided',
+        ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause', 'Data Mod', 'Mega Data Mod'],
+        banlist: [
+            'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass', 'Shed Tail', 'Last Respects'
+        ],
+        onValidateTeam(team, format) {
+            let speciesTable = {};
+            let allowedTiers = ['hi'];
+            for (const set of team) {
+                let template = this.dex.getSpecies(set.species);
+                if (template.tier !== 'hi') {
+                    return [set.species + ' is not legal in [Gen 9] Blindsided.'];
+                }
+            }
+        },
+     },
+	
 	{
 		name: "[Gen 8] Book of Enigmas",
 		mod: 'bookofenigmas',
