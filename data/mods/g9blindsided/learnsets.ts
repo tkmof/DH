@@ -1135,7 +1135,6 @@ chubee: {learnset: {
 	rocktomb: ["7L1, 8L1, 9L1"],
 	seismictoss: ["7L1, 8L1, 9L1"],
 	shadowclaw: ["7L1, 8L1, 9L1"],
-	slackoff: ["7L1, 8L1, 9L1"],
 	spikes: ["7L1, 8L1, 9L1"],
 	steamroller: ["7L1, 8L1, 9L1"],
 	steelroller: ["7L1, 8L1, 9L1"],
