@@ -199,6 +199,13 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		
 		this.modData("Learnsets", "sylveon").learnset.earthpower = ["8L1"];
 		
+		this.modData('Learnsets', 'breloom').learnset.armthrust = ['8L1'];
+		this.modData('Learnsets', 'breloom').learnset.poisondart = ['8L1'];
+		this.modData('Learnsets', 'breloom').learnset.acidicfists = ['8L1'];
+		this.modData('Learnsets', 'breloom').learnset.payback = ['8L1'];
+		this.modData('Learnsets', 'breloom').learnset.revenge = ['8L1'];
+		this.modData('Learnsets', 'breloom').learnset.enchantedpunch = ['8L1'];
+		this.modData('Learnsets', 'breloom').learnset.rashpowder = ['8L1'];
 	},
 	
 	teambuilderConfig: {
