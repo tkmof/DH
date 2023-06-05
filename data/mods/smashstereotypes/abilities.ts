@@ -1052,4 +1052,26 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			pokemon.abilityData.choiceLock = "";
 		},
 	},
+	shortcircuit: {
+		shortDesc: "Electric moves fail and instead cause every pokemon to lose 25% of its max HP.",
+		onAnyTryHit(target, source, move) {
+			if (target !== source && move.type === 'Electric') {
+				let activated = false;
+				for (const pokemon of this.getAllActive()) {
+					if (pokemon.hasAbility("Short Circuit") && !activated) {
+						this.add('-activate', pokemon, 'ability: Short Circuit');
+						activated = true;
+					}
+				}
+				for (const pokemon of this.getAllActive()) {
+					if (pokemon.fainted) continue;
+					this.damage(pokemon.baseMaxhp / 4, pokemon, target);
+				}
+				return null;
+			}
+		},
+		name: "Short Circuit",
+		rating: 3,
+		num: 1003,
+	},
 };
