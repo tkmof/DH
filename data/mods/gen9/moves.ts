@@ -1867,11 +1867,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		basePower: 0,
 		damageCallback(pokemon) {
-			const lastDamagedBy = pokemon.getLastDamagedBy(true);
-			if (lastDamagedBy !== undefined) {
-				return (lastDamagedBy.damage * 1.5) || 1;
-			}
-			return 0;
+			if (!pokemon.volatiles['comeuppance']) return 0;
+			return pokemon.volatiles['comeuppance'].damage || 1;
 		},
 		category: "Physical",
 		shortDesc: "If hit by an attack, returns 1.5x damage.",
@@ -1879,15 +1876,31 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
-		onTry(source) {
-			const lastDamagedBy = source.getLastDamagedBy(true);
-			if (lastDamagedBy === undefined || !lastDamagedBy.thisTurn) return false;
+		beforeTurnCallback(pokemon) {
+			pokemon.addVolatile('comeuppance');
 		},
-		onModifyTarget(targetRelayVar, source, target, move) {
-			const lastDamagedBy = source.getLastDamagedBy(true);
-			if (lastDamagedBy) {
-				targetRelayVar.target = this.getAtSlot(lastDamagedBy.slot);
-			}
+		onTryHit(target, source, move) {
+			if (!source.volatiles['comeuppance']) return false;
+			if (source.volatiles['comeuppance'].position === null) return false;
+		},
+		condition: {
+			duration: 1,
+			noCopy: true,
+			onStart(target, source, move) {
+				this.effectData.position = null;
+				this.effectData.damage = 0;
+			},
+			onRedirectTargetPriority: -1,
+			onRedirectTarget(target, source, source2) {
+				if (source !== this.effectData.target) return;
+				return source.side.foe.active[this.effectData.position];
+			},
+			onDamagingHit(damage, target, source, effect) {
+				if (source.side !== target.side) {
+					this.effectData.position = source.position;
+					this.effectData.damage = 1.5 * damage;
+				}
+			},
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
