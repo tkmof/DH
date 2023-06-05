@@ -251,4 +251,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	emboar: {
 	   tier: "MetaMons",
 	},
+   alcremie: {
+	   tier: "MetaMons",
+	},
+   copperajah: {
+	   tier: "MetaMons",
+	},
+   exeggutoralola: {
+	   tier: "MetaMons",
+	},
 };

@@ -487,6 +487,18 @@ export const Scripts: ModdedBattleScriptsData = {
 			this.modData("Learnsets", "emboar").learnset.outrage = ["8L1"];
 			this.modData("Learnsets", "emboar").learnset.bulletpunch = ["8L1"];
 			this.modData("Learnsets", "emboar").learnset.machpunch = ["8L1"];
+
+			this.modData("Learnsets", "alcremie").learnset.teleport = ["8L1"];
+			this.modData("Learnsets", "alcremie").learnset.scald = ["8L1"];
+			this.modData("Learnsets", "alcremie").learnset.hydropump = ["8L1"];
+			this.modData("Learnsets", "alcremie").learnset.surf = ["8L1"];
+			this.modData("Learnsets", "alcremie").learnset.whirlpool = ["8L1"];
+			this.modData("Learnsets", "alcremie").learnset.rapidspin = ["8L1"];
+			this.modData("Learnsets", "alcremie").learnset.heartswap = ["8L1"];
+			this.modData("Learnsets", "alcremie").learnset.moonblast = ["8L1"];
+
+			this.modData("Learnsets", "copperajah").learnset.toxic = ["8L1"];
+			this.modData("Learnsets", "copperajah").learnset.swordsdance = ["8L1"];
 			
 			delete this.modData('Learnsets', 'bellossom').learnset.sleeppowder;
 			
@@ -504,6 +516,10 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Learnsets', 'froslass').learnset.lightscreen;
 
 			delete this.modData('Learnsets', 'liepard').learnset.nastyplot;
+
+			delete this.modData('Learnsets', 'exeggutoralola').learnset.flamethrower;
+			delete this.modData('Learnsets', 'exeggutoralola').learnset.hypnosis;
+			delete this.modData('Learnsets', 'exeggutoralola').learnset.sleeppowder;
 			},
 			
 			

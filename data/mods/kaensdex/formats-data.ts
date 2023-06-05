@@ -796,11 +796,51 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
-	ironfistmon: {
+	lronfist: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
 	meowthder: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	naztu: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	xatu: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	magshroom: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	coldtong: {
+		tier: "LC",
+		doublesTier: "KDD",
+	},
+	sickmander: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	hielorizo: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	guerrevo: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	piechivo: {
+		tier: "LC",
+		doublesTier: "KDD",
+	},
+	rocabra: {
+		tier: "KaensDex",
+		doublesTier: "KDD",
+	},
+	granatija: {
 		tier: "KaensDex",
 		doublesTier: "KDD",
 	},
