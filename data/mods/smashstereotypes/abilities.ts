@@ -945,4 +945,59 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		name: "Toxic Boost (Jolte)",
 		rating: 2.5,
 	},
+	terabyte: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			if (move.flags['bite']) {
+				move.type = 'Electric';
+			}
+		},
+		name: "Terabyte",
+		shortDesc: "This Pokemon's biting moves become Electric-type.",
+	},
+	pillage: {
+		id: "pillage",
+		name: "Pillage",
+		shortDesc: "On switch-in, swaps ability with the opponent.",
+		onSwitchIn(pokemon) {
+			this.effectData.switchingIn = true;
+		},
+		onStart(pokemon) {
+			if ((pokemon.side.foe.active.some(
+				foeActive => foeActive && this.isAdjacent(pokemon, foeActive) && foeActive.ability === 'noability'
+			))
+			|| pokemon.species.id !== 'yaciancrowned' && pokemon.species.id !== 'porygrigus' && pokemon.species.id !== 'porymask' && pokemon.species.id !== 'hatterune' && pokemon.species.id !== 'hatamaskgalar') {
+				this.effectData.gaveUp = true;
+			}
+		},
+		onUpdate(pokemon) {
+			if (!pokemon.isStarted || this.effectData.gaveUp) return;
+			if (!this.effectData.switchingIn) return;
+			const possibleTargets = pokemon.side.foe.active.filter(foeActive => foeActive && this.isAdjacent(pokemon, foeActive));
+			while (possibleTargets.length) {
+				let rand = 0;
+				if (possibleTargets.length > 1) rand = this.random(possibleTargets.length);
+				const target = possibleTargets[rand];
+				const ability = target.getAbility();
+				const additionalBannedAbilities = [
+					// Zen Mode included here for compatability with Gen 5-6
+					'noability', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'pillage',
+					'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode',
+					'magicmissile', 'ecopy', 'lemegeton', 'modeshift', 'rebootsystem', 'concussion',
+				];
+				if (target.getAbility().isPermanent || additionalBannedAbilities.includes(target.ability)) {
+					possibleTargets.splice(rand, 1);
+					continue;
+				}
+				target.setAbility('pillage', pokemon);
+				pokemon.setAbility(ability);
+				
+				this.add('-activate', pokemon, 'ability: Pillage');
+				this.add('-activate', pokemon, 'Skill Swap', '', '', '[of] ' + target);
+				this.add('-activate', pokemon, 'ability: ' + ability.name);
+				this.add('-activate', target, 'ability: Pillage');
+				return;
+			}
+		},
+	},
 };
