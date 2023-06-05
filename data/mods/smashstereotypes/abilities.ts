@@ -922,4 +922,27 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			});
 		},
 	},
+	toxicboostjolte: {
+		shortDesc: "1.5x Attack and Defense while poisoned; Immune to poison status damage.",
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if ((attacker.status === 'psn' || attacker.status === 'tox') && move.category === 'Physical') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyDefPriority: 6,
+		onModifyDef(def, pokemon) {
+			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
+				return this.chainModify(1.5);
+			}
+		},
+		onDamagePriority: 1,
+		onDamage(damage, target, source, effect) {
+			if (effect.id === 'psn' || effect.id === 'tox') {
+				return false;
+			 }
+		},
+		name: "Toxic Boost (Jolte)",
+		rating: 2.5,
+	},
 };
