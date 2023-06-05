@@ -1649,6 +1649,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			thunderwave: ["8M", "8L29"],
 			voltswitch: ["8M"],
 			wildcharge: ["8M", "8L1"],
+			uturn: ["8M"],
 		},
 	},
 	tandemaus: {
