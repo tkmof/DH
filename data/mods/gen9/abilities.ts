@@ -103,6 +103,26 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 4,
 		num: 168,
 	},
+	transistor: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				this.debug('Transistor boost');
+				return this.chainModify(1.3);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				this.debug('Transistor boost');
+				return this.chainModify(1.3);
+			}
+		},
+		name: "Transistor",
+		shortDesc: "This Pokemon's offensive stat is multiplied by 1.3 while using an Electric-type attack.",
+		rating: 3.5,
+		num: 262,
+	},
 	//----------Gen 9 Abilities-----------//
 	angershell: {
 		onDamage(damage, target, source, effect) {
