@@ -455,4 +455,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	talonflame: {
 		tier: "SSS",
 	},
+	frozalisk: {
+		tier: "SSS",
+	},
+	mimikyu: {
+		tier: "SSS",
+	},
+	nihilego: {
+		tier: "SSS",
+	},
 };
