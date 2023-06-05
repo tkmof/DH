@@ -953,28 +953,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: -31,
 	},
-	angerpoint: {
-		onUpdate(target, source, move) {
-			if (target.volatiles['angerpoint']) return;
-			if (target.hp <= target.maxhp / 2) {
-				this.add('-activate', target, 'ability: Anger Point');
-				target.cureStatus();
-				target.addVolatile('angerpoint');
-			}
-		},
-		condition: {
-			onSetStatus(status, target, source, effect) {
-				if ((effect as Move)?.status) {
-					this.add('-immune', target, '[from] ability: Anger Point');
-				}
-				return false;
-			},
-		},
-		name: "Anger Point",
-		shortDesc: "When this Pokemon reaches 1/2 or less max HP, it cures its status and becomes immune to status.",
-		rating: 2.5,
-		num: 83,
-	},
 	tactician: {
 		onModifyDamage(damage, source, target, move) {
 			if (move && target.getMoveHitData(move).typeMod > 0) {
@@ -1160,41 +1138,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	
 	//SV Ability Descriptions
-	toxicdebris: {
-		inherit: true,
-		shortDesc: "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
-	},
-	sharpness: {
-		inherit: true,
-		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",
-	},
-	hadronengine: {
-		inherit: true,
-		shortDesc: "On switch-in, summons Electric Terrain. During Electric Terrain, Sp. Atk is 1.3333x.",
-	},
-	supremeoverlord: {
-		inherit: true,
-		shortDesc: "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
-	},
-	opportunist: {
-		inherit: true,
-		shortDesc: "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",
-	},
-	cudchew: {
-		inherit: true,
-		shortDesc: "If this Pokemon eats a Berry, it will eat that Berry again at the end of the next turn.",
-	},
-	windpower: {
-		inherit: true,
-		shortDesc: "This Pokemon gains the Charge effect when hit by a wind move or Tailwind begins.",
-	},
-	electromorphosis: {
-		inherit: true,
-		shortDesc: "This Pokemon gains the Charge effect when it takes a hit from an attack.",
-	},
 	quarkdrive: {
 		inherit: true,
-		shortDesc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 		condition: {
 			noCopy: true,
 			onStart(pokemon, source, effect) {
@@ -1241,17 +1186,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			},
 		},
 	},
-	purifyingsalt: {
-		inherit: true,
-		shortDesc: "Ghost damage to this Pokemon dealt with a halved offensive stat; can't be statused.",
-	},
-	angershell: {
-		inherit: true,
-		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Atk, Sp. Atk, Spe, and -1 Def, Sp. Def.",
-	},
 	protosynthesis: {
 		inherit: true,
-		shortDesc: "Sunny Day active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
 		condition: {
 			noCopy: true,
 			onStart(pokemon, source, effect) {
@@ -1328,33 +1264,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Intrepid Sword",
 		rating: 4,
 		num: 234,
-	},
-	
-	//Snow Abilities
-	slushrush: {
-		onModifySpe(spe, pokemon) {
-			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) {
-				return this.chainModify(2);
-			}
-		},
-		inherit: true,
-		shortDesc: "If Snow/Hail is active, this Pokemon's Speed is doubled.",
-	},
-	snowwarning: {
-		onStart(source) {
-			this.field.setWeather('snow');
-		},
-		inherit: true,
-		shortDesc: "On switch-in, this Pokemon summons Snow.",
-	},
-	icebody: {
-		onWeather(target, source, effect) {
-			if (effect.id === 'hail' || effect.id === 'snow') {
-				this.heal(target.baseMaxhp / 16);
-			}
-		},
-		inherit: true,
-		shortDesc: "If Snow/Hail is active, this Pokemon heals 1/16 of its max HP each turn.",
 	},
 	
 	//Rubber Armor Interaction
