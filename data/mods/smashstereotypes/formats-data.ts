@@ -446,4 +446,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	yaciancrowned: {
 		tier: "SSS",
 	},
+	manicunogalar: {
+		tier: "SSS",
+	},
+	dragapultanti: {
+		tier: "SSS",
+	},
+	talonflame: {
+		tier: "SSS",
+	},
 };
