@@ -1392,7 +1392,7 @@ export const Formats: FormatList = [
 		name: "[Gen 1] Glitch OU",
 		mod: 'gen1glitch',
 		ruleset: ['Standard', 'Data Mod'],
-		banlist: ['Uber', 'Wrap'],
+		banlist: ['Uber', 'Agility + Wrap', 'Agility + Fire Spin', 'Agility + Bind', 'Agility + Clamp', 'Amnesia', 'Sleep Powder'],
 	},
 	{
 		
@@ -1451,7 +1451,7 @@ export const Formats: FormatList = [
 
 		mod: 'gen1kantoification',
 		ruleset: ['Standard'],
-		banlist: ['Uber', 'Wrap'],
+		banlist: ['Uber', 'Agility + Wrap', 'Agility + Fire Spin', 'Agility + Bind', 'Agility + Clamp'],
 	},
 	{
 		name: "[Gen 8] imando Gen 9",

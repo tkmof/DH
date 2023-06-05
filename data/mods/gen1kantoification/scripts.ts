@@ -12,6 +12,11 @@ export const Scripts: ModdedBattleScriptsData = {
 			(this.data.Pokedex[i] as any).gender = 'N';
 			(this.data.Pokedex[i] as any).eggGroups = null;
 		}
+        for (const i in this.data.Moves) {
+			if (!this.data.Moves[i]) console.log(i);
+            const category = this.mod().data.Moves[i].category;
+			this.modData('Moves', i).category = category;
+		}
 	},
 	// Gen 1 stores the last damage dealt by a move in the battle.
 	// This is used for the move Counter.
