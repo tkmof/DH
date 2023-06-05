@@ -437,4 +437,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	aquazelle: {
 		tier: "SSS",
 	},
+	balammit: {
+		tier: "SSS",
+	},
+	golevishalola: {
+		tier: "SSS",
+	},
+	yaciancrowned: {
+		tier: "SSS",
+	},
 };
