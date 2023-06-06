@@ -123,11 +123,23 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
       tier: "Poketypos",
       doublesTier: "Poketypos", 
 	},
-    sparkeops: {
+   sparkeops: {
       tier: "Poketypos",
       doublesTier: "Poketypos", 
 	},
-    mielmetal: {
+   mielmetal: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
+   abomarang: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
+   zapoark: {
+      tier: "Poketypos",
+      doublesTier: "Poketypos", 
+	},
+   graceon: {
       tier: "Poketypos",
       doublesTier: "Poketypos", 
 	},

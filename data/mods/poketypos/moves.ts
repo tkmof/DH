@@ -32,6 +32,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Special",
 		name: "Smoke Shuriken",
 		shortDesc: "Usually goes first. Hits 2-5 times in one turn.",
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Water Shuriken", target);
+		},
 		pp: 20,
 		priority: 1,
 		flags: {protect: 1, mirror: 1},
@@ -48,6 +52,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Physical",
 		name: "Draining Fur",
 		shortDesc: "Heals 50% of the damage dealt.",
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Drain Punch", target);
+		},
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, distance: 1, heal: 1},
@@ -76,6 +84,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		onHit(target, source) {
 			if (target.volatiles['leechseed']) target.removeVolatile('leechseed', source);
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Flamethrower", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -113,6 +125,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 					return false;
 				}
 			},
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Gunk Shot", target);
 		},
 		secondary: null,
 		target: "normal",
@@ -161,6 +177,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			chance: 50,
 			status: 'brn',
 		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Flame Charge", target);
+		},
 		target: "normal",
 		type: "Fire",
 		contestType: "Cool",
@@ -197,6 +217,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 				pokemon.cureStatus();
 			},
 		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Close Combat", target);
+		},
 		secondary: null,
 		target: "normal",
 		type: "Psychic",
@@ -226,6 +250,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		   	volatileStatus: 'confusion',
 		   },
       ],
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Dive", target);
+		},
 		target: "normal",
 		type: "Water",
 		zMove: {basePower: 120},
@@ -244,6 +272,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 30,
 			status: 'brn',
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Flare Blitz", target);
 		},
 		target: "normal",
 		type: "Fire",
@@ -264,6 +296,10 @@ export const Moves: {[moveid: string]: MoveData} = {
             def: -1,
         },
 		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Lash Out", target);
+		},
 		target: "normal",
 		type: "Dark",
 	},
@@ -280,6 +316,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 30,
 			status: 'psn',
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Poison Jab", target);
 		},
 		target: "normal",
 		type: "Poison",
@@ -298,6 +338,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			chance: 30,
 			status: 'par',
 		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Close Combat", target);
+		},
 		target: "normal",
 		type: "Fighting",
 	},
@@ -314,6 +358,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			volatileStatus: 'confusion',
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Play Rough", target);
 		},
 		target: "normal",
 		type: "Fairy",
@@ -333,6 +381,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (!success && !target.hasAbility('mirrorarmor')) {
 				delete move.selfSwitch;
 			}
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Dragon Ascent", target);
 		},
 		selfSwitch: true,
 		secondary: null,

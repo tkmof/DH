@@ -1,5 +1,4 @@
 export const Items: {[k: string]: ModdedItemData} = {
-	//---------Gen 9 Moves----------//
 	abilityshield: {
 		name: "Ability Shield",
 		spritenum: 0, // TODO
@@ -15,6 +14,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		// Mold Breaker protection implemented in Battle.suppressingAbility() within sim/battle.ts
 		num: 1881,
+      shortDesc: "Holder's Ability cannot be changed by any effect.",
 		gen: 9,
 	},
 	clearamulet: {
@@ -35,6 +35,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			}
 		},
 		num: 1882,
+	   shortDesc: "Prevents other Pokemon from lowering the holder's stat stages.",
 		gen: 9,
 	},
 	mirrorherb: {
@@ -60,6 +61,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			this.boost(boostPlus, pokemon);
 		},
 		num: 1883,
+	   shortDesc: "When an opposing Pokemon raises a stat stage, the holder copies it. Single use.",
 		gen: 9,
 	},
 	punchingglove: {
@@ -77,6 +79,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			if (move.flags['punch']) delete move.flags['contact'];
 		},
 		num: 1884,
+		shortDesc: "Holder's punch-based attacks have 1.1x power and do not make contact.",
 		gen: 9,
 	},
 	covertcloak: {
@@ -90,6 +93,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
 		},
 		num: 1885,
+	   shortDesc: "Holder is not affected by the secondary effect of another Pokemon's attack.",
 		gen: 9,
 	},
 	loadeddice: {
@@ -102,6 +106,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			}
 		},
 		num: 1886,
+		shortDesc: "Holder's moves that hit 2-5 times hit 4-5 times; Population Bomb hits 4-10 times.",
 		gen: 9,
 	},
 	boosterenergy: {
@@ -122,6 +127,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			return true;
 		},
 		num: 1880,
+	   shortDesc: "Holder's moves that hit 2-5 times hit 4-5 times; Population Bomb hits 4-10 times.",
 		gen: 9,
 	},
 };

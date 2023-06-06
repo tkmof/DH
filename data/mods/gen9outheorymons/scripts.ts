@@ -1,7 +1,7 @@
 export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	teambuilderConfig: {
 		excludeStandardTiers: true,
-		customTiers: ['DreamWorld', 'OU', 'UU', 'RU', 'NU', 'PU', '(PU)'],
+		customTiers: ['HOME', 'DreamWorld', 'OU', 'UU', 'RU', 'NU', 'PU', '(PU)'],
 	},
   init: function() {
      this.modData('Learnsets', 'chansey').learnset.spikes = ['8L1'];

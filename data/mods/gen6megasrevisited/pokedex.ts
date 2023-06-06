@@ -211,7 +211,53 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Rock", "Electric"],
 		baseStats: {hp: 100, atk: 164, def: 120, spa: 90, spd: 144, spe: 82},
 		abilities: {0: "Electric Surge"},
+	},
+	latiasmega: {
+		inherit: true,
+		abilities: {0: "Trace"},
 	},	
+	latiosmega: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 140, def: 100, spa: 150, spd: 120, spe: 110},
+		abilities: {0: "Opportunist"},
+	},
+	dianciemega: {
+		inherit: true,
+		abilities: {0: "Good As Gold"},
+	},	
+	blazikenmega: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 150, def: 80, spa: 120, spd: 90, spe: 110},
+		abilities: {0: "Regenerator"},
+	},
+	mewtwomegax: {
+		inherit: true,
+		types: ["Psychic", "Poison"],
+		baseStats: {hp: 106, atk: 140, def: 130, spa: 154, spd: 120, spe: 130},
+		abilities: {0: "Intoxicate"},
+	},
+	mewtwomegay: {
+		inherit: true,
+		types: ["Psychic", "Water"],
+		baseStats: {hp: 106, atk: 120, def: 110, spa: 194, spd: 130, spe: 120},
+		abilities: {0: "Levitate"},
+	},
+	rayquazamega: {
+		num: 384,
+		name: "Rayquaza-Mega",
+		baseSpecies: "Rayquaza",
+		forme: "Mega",
+		types: ["Dragon", "Flying"],
+		gender: "N",
+		baseStats: {hp: 105, atk: 180, def: 100, spa: 180, spd: 100, spe: 115},
+		abilities: {0: "Delta Stream"},
+		heightm: 10.8,
+		weightkg: 392,
+		color: "Green",
+		eggGroups: ["Undiscovered"],
+		requiredItem: "Meteorite",
+		requiredMove: null,		
+	},
 	
 // Gen 6 Stuff
 	arbok: {
