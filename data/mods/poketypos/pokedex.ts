@@ -249,7 +249,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       types: ["Flying", "Electric"],
       baseStats: {hp: 90, atk: 115, def: 90, spa: 102, spd: 75, spe: 95},
       abilities: {0: "Volt Absorb", H: "Rocky Payload"},
-	  weightkg: 11,
+	   weightkg: 11,
    },
    mielmetal: {
       num: 33,
@@ -257,5 +257,26 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       types: ["Bug", "Steel"],
       baseStats: {hp: 105, atk: 115, def: 95, spa: 95, spd: 95, spe: 95},
       abilities: {0: "Honey Gather", H: "Honey Fists"},
+   },
+   abomarang: {
+      num: 34,
+      name: "Abomarang",
+      types: ["Normal", "Ground"],
+      baseStats: {hp: 95, atk: 112, def: 85, spa: 67, spd: 75, spe: 60},
+      abilities: {0: "Technician", H: "Sand Stream"},
+   },
+   zapoark: {
+      num: 35, 
+      name: "Zapoark",
+      types: ["Electric", "Fighting"],
+      baseStats: {hp: 85, atk: 50, def: 70, spa: 120, spd: 95, spe: 90},
+      abilities: {0: "Electric Surge"},
+   },
+   graceon: {
+      num: 36,
+      name: "Graceon",
+      types: ["Psychic", "Fairy"],
+      baseStats: {hp: 75, atk: 65, def: 60, spa: 120, spd: 120, spe: 85},
+      abilities: {0: "Natural Cure", H: "Serene Grace"},
    },
 };

@@ -111,6 +111,14 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "R2OU",
 		doublesTier: "R2OU",
 	},
+	gastroal: {
+		tier: "R2OU",
+		doublesTier: "R2OU",
+	},
+	rhinoshroom: {
+		tier: "R2OU",
+		doublesTier: "R2OU",
+	},
 	irotile: {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
@@ -255,10 +263,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
 	},
-	gastroal: {
-		tier: "R2Uber",
-		doublesTier: "R2Uber",
-	},
 	spritsoul: {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
@@ -271,8 +275,44 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
 	},
-	rhinoshroom: {
+		groodo: {
 		tier: "R2Uber",
 		doublesTier: "R2Uber",
 	},
+	swagear: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	demoorb: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	seismialo: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	gladlord: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	eleray: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	atmosaring: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	chillsphere: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	aquatbyss: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},
+	crabtle: {
+		tier: "R2Uber",
+		doublesTier: "R2Uber",
+	},	
 };

@@ -1361,4 +1361,27 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		abilities: {0: "Klutz", 1: "Dry Skin", H: "Refreshment"},
 		weightkg: 79,
 	}, 
+	blastor: {
+		num: 120,
+		name: "Blastor",
+		types: ["Bug", "Electric"],
+		baseStats: {hp: 70, atk: 70, def: 95, spa: 115, spd: 55, spe: 95},
+		abilities: {0: "Battery", H: "Mega Launcher"},
+		weightkg: 118,
+	}, 
+	valcondor: {
+		num: 121,
+		name: "Valcondor",
+		types: ["Flying", "Fighting"],
+		baseStats: {hp: 75, atk: 110, def: 85, spa: 88, spd: 138, spe: 59},
+		abilities: {0: "Big Pecks", H: "Sheer Force"},
+		weightkg: 72.2,
+	},
+	sylveon: {
+		inherit: true,
+		num: 122,
+	   types: ["Fairy", "Ground"],
+		baseStats: {hp: 95, atk: 65, def: 80, spa: 110, spd: 130, spe: 60},
+	},
+
 };

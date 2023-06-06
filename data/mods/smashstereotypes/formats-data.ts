@@ -410,4 +410,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	aegislashancient: {
 		tier: "SSS",
 	},
+	blastor: {
+		tier: "SSS",
+	},
+	valcondor: {
+		tier: "SSS",
+	},
+	sylveon: {
+		tier: "SSS",
+	},
 };
