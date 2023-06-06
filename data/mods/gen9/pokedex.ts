@@ -1,4 +1,64 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
+	growlithehisui: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Flash Fire", H: "Rock Head"},
+	},
+	arcaninehisui: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Flash Fire", H: "Rock Head"},
+	},
+	typhlosionhisui: {
+		inherit: true,
+		abilities: {0: "Blaze", H: "Frisk"},
+	},
+	sneaselhisui: {
+		inherit: true,
+		abilities: {0: "Inner Focus", 1: "Keen Eye", H: "Pickpocket"},
+	},
+	gallade: {
+		inherit: true,
+		abilities: {0: "Steadfast", 1: "Sharpness", H: "Justified"},
+	},
+	cresselia: {
+		inherit: true,
+		baseStats: {hp: 120, atk: 70, def: 110, spa: 75, spd: 120, spe: 85},
+	},
+	samurotthisui: {
+		inherit: true,
+		abilities: {0: "Torrent", H: "Sharpness"},
+	},
+	braviaryhisui: {
+		inherit: true,
+		abilities: {0: "Keen Eye", 1: "Sheer Force", H: "Tinted Lens"},
+	},
+	sliggoohisui: {
+		inherit: true,
+		abilities: {0: "Sap Sipper", 1: "Shell Armor", H: "Gooey"},
+	},
+	goodrahisui: {
+		inherit: true,
+		abilities: {0: "Sap Sipper", 1: "Shell Armor", H: "Gooey"},
+	},
+	decidueyehisui: {
+		inherit: true,
+		abilities: {0: "Overgrow", H: "Scrappy"},
+	},
+	zacian: {
+		inherit: true,
+		baseStats: {hp: 92, atk: 120, def: 115, spa: 80, spd: 115, spe: 138},
+	},
+	zaciancrowned: {
+		inherit: true,
+		baseStats: {hp: 92, atk: 150, def: 115, spa: 80, spd: 115, spe: 148},
+	},
+	zamazenta: {
+		inherit: true,
+		baseStats: {hp: 92, atk: 120, def: 115, spa: 80, spd: 115, spe: 138},
+	},
+	zamazentacrowned: {
+		inherit: true,
+		baseStats: {hp: 92, atk: 120, def: 140, spa: 80, spd: 140, spe: 128},
+	},
 	wyrdeer: {
 		num: 899,
 		name: "Wyrdeer",
