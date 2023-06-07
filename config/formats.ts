@@ -1395,7 +1395,8 @@ export const Formats: FormatList = [
 		name: "[Gen 1] Glitch OU",
 		mod: 'gen1glitch',
 		ruleset: ['Standard', 'Data Mod'],
-		banlist: ['Uber', 'Agility + Wrap', 'Agility + Fire Spin', 'Agility + Bind', 'Agility + Clamp', 'Amnesia', 'Sleep Powder'],
+		banlist: ['Uber', 'Agility + Wrap', 'Agility + Fire Spin', 'Agility + Bind', 'Agility + Clamp', 'Amnesia', 'Sleep Powder'
+					'Self-Destruct', 'Explosion'],
 	},
 	{
 		
