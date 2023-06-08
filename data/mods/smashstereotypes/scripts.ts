@@ -196,6 +196,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData("Learnsets", "porygonz").learnset.confuseray = ["8L1"];
 		this.modData("Learnsets", "porygonz").learnset.shadowsneak = ["8L1"];
 		this.modData("Learnsets", "porygonz").learnset.psyshock = ["8L1"];
+		
+		this.modData("Learnsets", "sylveon").learnset.earthpower = ["8L1"];
+		
 	},
 	
 	teambuilderConfig: {

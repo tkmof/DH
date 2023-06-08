@@ -2873,4 +2873,43 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "allAdjacentFoes",
 		type: "Water",
 	},
+	balllighting: {
+		accuracy: true,
+		basePower: 80,
+		category: "Special",
+		shortDesc: "Never misses.",
+		name: "Ball Lighting",
+		pp: 20,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, pulse: 1, mirror: 1, distance: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Electro Ball", target);
+		},
+		secondary: null,
+		target: "any",
+		type: "Electric",
+		contestType: "Beautiful",
+	},
+	empulse: {
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		shortDesc: "30% chance to confuse the foe.",
+		name: "EM Pulse",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, pulse: 1, mirror: 1, distance: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shock Wave", target);
+		},
+		secondary: {
+			chance: 20,
+			volatileStatus: 'confusion',
+		},
+		target: "any",
+		type: "Electric",
+		contestType: "Beautiful",
+	},
 };
