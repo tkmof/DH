@@ -1545,7 +1545,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 	thunderpunch: {
 		inherit: true,
 		onModifyMove(move, source, target) {
-			if (source.species.id === 'typhlosion') {
+			if (source.species.id === 'typhlosion' || source.species.id === 'breloom') {
 				move.basePower = 85;
 			}
 		},
@@ -2911,5 +2911,329 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "any",
 		type: "Electric",
 		contestType: "Beautiful",
+	},
+	guidance: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "+2 Attack & SpA for the target.",
+		name: "Guidance",
+		pp: 15,
+		priority: 0,
+		flags: {mystery: 1},
+		secondary: null,
+		boosts: {
+			atk: 2,
+			spa: 2,
+		},
+		target: "normal",
+		type: "Psychic",
+	},
+	resistance: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "+2 Defense & SpD for the target.",
+		name: "Resistance",
+		pp: 15,
+		priority: 0,
+		flags: {mystery: 1},
+		secondary: null,
+		boosts: {
+			def: 2,
+			spd: 2,
+		},
+		target: "normal",
+		type: "Psychic",
+	},
+	command: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Protects the user. Disables the foe's last move if hit by contact.",
+		name: "Command",
+		pp: 10,
+		priority: 4,
+		flags: {},
+		stallingMove: true,
+		volatileStatus: 'command',
+		onTryHit(target, source, move) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', target);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
+		},
+		condition: {
+			duration: 1,
+			onStart(target) {
+				this.add('-singleturn', target, 'move: Protect');
+			},
+			onTryHitPriority: 3,
+			onTryHit(target, source, move) {
+				if (!move.flags['protect']) {
+					if (move.isZ || (move.isMax && !move.breaksProtect)) target.getMoveHitData(move).zBrokeProtect = true;
+					return;
+				}
+				if (move.smartTarget) {
+					move.smartTarget = false;
+				} else {
+					this.add('-activate', target, 'move: Protect');
+				}
+				const lockedmove = source.getVolatile('lockedmove');
+				if (lockedmove) {
+					// Outrage counter is reset
+					if (source.volatiles['lockedmove'].duration === 2) {
+						delete source.volatiles['lockedmove'];
+					}
+				}
+				if (move.flags['contact']) {
+					source.addVolatile('disable');
+				}
+				return this.NOT_FAIL;
+			},
+			onHit(target, source, move) {
+				if (move.isZOrMaxPowered && move.flags['contact']) {
+					source.addVolatile('disable');
+				}
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		zMove: {boost: {def: 1}},
+		contestType: "Tough",
+	},
+	bless: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "+2 Attack for the user and allies.",
+		name: "Bless",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Morning Sun", target);
+		},
+		boosts: {
+			atk: 2,
+		},
+		secondary: null,
+		target: "allyTeam",
+		type: "Psychic",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
+	},
+	prehistoricpulse: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		shortDesc: "10% chance to lower the foe's SpD.",
+		name: "Prehistoric Pulse",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, pulse: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ancient Power", target);
+		},
+		secondary: {
+			chance: 10,
+			boosts: {
+				spd: -1,
+			},
+		},
+		target: "normal",
+		type: "Rock",
+		contestType: "Clever",
+	},
+	skyuppercut: {
+		inherit: true,
+		isNonstandard: null,
+		onModifyMove(move, source, target) {
+			if (source.species.id === 'breloom') {
+				move.basePower = 70;
+				move.accuracy = 100;
+			}
+		},
+		onEffectiveness(typeMod, target, type, source) {
+			if (source.species.id === 'breloom') {
+				if (type === 'Flying') return 1;
+			}
+		},
+	},
+	poisondart: {
+		accuracy: true,
+		basePower: 40,
+		category: "Physical",
+    shortDesc: "Usually goes first. 10% chance to poison foe.",
+		isViable: true,
+		name: "Poison Dart",
+		pp: 30,
+		priority: 1,
+		flags: {protect: 1, mirror: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Poison Sting", target);
+		},
+		secondary: {
+			chance: 10,
+			status: 'psn',
+		},
+		target: "normal",
+		type: "Poison",
+		contestType: "Cool",
+	},
+	acidicfists: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+    shortDesc: "Destroys screens, unless the target is immune. 10% poison chance.",
+		isViable: true,
+		name: "Acidic Fists",
+		pp: 10,
+		priority: 0,
+		flags: {punch: 1, contact: 1, protect: 1, mirror: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Poison Jab", target);
+		  this.add('-anim', source, "Corrosive Gas", target);
+		},
+		onTryHit(pokemon) {
+			// will shatter screens through sub, before you hit
+			if (pokemon.runImmunity('Poison')) {
+				pokemon.side.removeSideCondition('reflect');
+				pokemon.side.removeSideCondition('lightscreen');
+				pokemon.side.removeSideCondition('auroraveil');
+			}
+		},
+		secondary: {
+			chance: 10,
+			status: 'psn',
+		},
+		target: "normal",
+		type: "Poison",
+		contestType: "Cool",
+	},
+	rashpowder: {
+		accuracy: 75,
+		basePower: 0,
+		category: "Status",
+    shortDesc: "Burns the target.",
+		isViable: true,
+		name: "Rash Powder",
+		pp: 30,
+		priority: 0,
+		flags: {powder: 1, protect: 1, reflectable: 1, mirror: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Spore", target);
+		},
+		status: 'brn',
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
+	},
+	venoshock: {
+		inherit: true,
+		isNonstandard: null,
+		onBasePower(basePower, pokemon, target) {
+			if (pokemon.species.id === 'breloom' && (target.status || target.hasAbility('comatose'))) {
+				return this.chainModify(2);
+			}
+			else if (target.status === 'psn' || target.status === 'tox') {
+				return this.chainModify(2);
+			}
+		},
+	},
+	armthrust: {
+		inherit: true,
+		onModifyMove(move, source, target) {
+			if (source.species.id === 'breloom') {
+				move.basePower = 25;
+			}
+		},
+	},
+	enchantedpunch: {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		defensiveCategory: "Special",
+    shortDesc: "Damages target based on Sp. Def, not Defense.",
+		name: "Enchanted Punch",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1, punch: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Meteor Mash", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Beautiful",
+	},
+// jolte payback and revenge go here
+
+	takeheart: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+    	shortDesc: "+1 Def, SpA, & SpD. User recharges after.",
+		name: "Take Heart",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, recharge: 1},
+		onAfterMove(pokemon) {
+			pokemon.addVolatile('recharge');
+		},
+		boosts: {
+			def: 1,
+			spa: 1,
+			spd: 1,
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+	petrifyinggaze: {
+		accuracy: 90,
+		basePower: 0,
+		category: "Status",
+    	shortDesc: "-1 priority. Foe flinches on its next turn.",
+		name: "Petrifying Gaze",
+		pp: 20,
+		priority: -1,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		volatileStatus: 'flinch',
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Glare", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+	lightblast: {
+		num: 1013,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		shortDesc: "Uses user's SpD stat as SpA in damage calculation.",
+		name: "Light Blast",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		useSourceDefensiveAsOffensive: true,
+		secondary: undefined,
+		target: "normal",
+		type: "Fairy",
 	},
 };

@@ -186,7 +186,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	aggronmega: {
 		inherit: true,
 		types: ["Steel"],
-		baseStats: {hp: 70, atk: 145, def: 185, spa: 90, spd: 85, spe: 60},
+		baseStats: {hp: 70, atk: 145, def: 185, spa: 85, spd: 85, spe: 60},
 		abilities: {0: "Dauntless Shield"},
 	},	
 	kangaskhanmega: {
