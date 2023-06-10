@@ -48,7 +48,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "DCC OU",
 	},
 	spamton: {
-		tier: "UU",
+		tier: "CC UU",
 		doublesTier: "DCC OU",
 	},
 	spamtonneo: {
@@ -80,7 +80,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		doublesTier: "DCC OU",
 	},
 	susie: {
-		tier: "UU",
+		tier: "CC UU",
 		doublesTier: "DCC OU",
 	},
 	mora: {

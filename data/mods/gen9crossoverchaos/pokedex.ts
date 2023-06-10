@@ -6,7 +6,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 70, atk: 115, def: 71, spa: 68, spd: 94, spe: 117},
 		abilities: {0: "Overgrow", H: "Regenerator"},
 	},
-		kingdedede: {
+	kingdedede: {
 		num: 2,
 		name: "King Dedede",
     	baseForme: "King",
