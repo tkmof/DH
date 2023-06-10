@@ -894,7 +894,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	entei: {
 		inherit: true,
-		abilities: {0: "Pressure", H: "Ignite"},
+		abilities: {0: "Pressure", H: "Searing Touch"},
 	},
 	suicune: {
 		inherit: true,
