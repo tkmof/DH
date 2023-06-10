@@ -1,5 +1,3 @@
-import {toID} from './dex';
-
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
 	teambuilderConfig: {
@@ -363,7 +361,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				// maybe it's a name/species id!
 				slot = -1;
 				for (const [i, mon] of this.pokemon.entries()) {
-					if (slotText!.toLowerCase() === mon.name.toLowerCase() || toID(slotText) === mon.species.id) {
+					if (slotText!.toLowerCase() === mon.name.toLowerCase() || Dex.toID(slotText) === mon.species.id) {
 						slot = i;
 						break;
 					}
@@ -539,7 +537,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				},
 				moves: this.moves.map(move => {
 					if (move === 'hiddenpower') {
-						return move + toID(this.hpType) + (this.battle.gen < 6 ? '' : this.hpPower);
+						return move + Dex.toID(this.hpType) + (this.battle.gen < 6 ? '' : this.hpPower);
 					}
 					if (move === 'frustration' || move === 'return') {
 						const basePowerCallback = this.battle.dex.getMove(move).basePowerCallback as (pokemon: Pokemon) => number;
