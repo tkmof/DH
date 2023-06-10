@@ -1,3 +1,5 @@
+import {toID} from './dex';
+
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
 	teambuilderConfig: {
