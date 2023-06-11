@@ -652,7 +652,7 @@ export const Learnsets = {
 			darkpulse: ["8L1"],
 			flashcannon: ["8L1"],
 			irondefense: ["8L1"],
-			king’sshield: ["8L1"],
+			kingsshield: ["8L1"],
 			ironhead: ["8L1"],
 			metalclaw: ["8L1"],
 			metalsound: ["8L1"],
