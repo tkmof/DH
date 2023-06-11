@@ -19,7 +19,7 @@ export const Learnsets = {
 			grasspledge: ["8L1"],
 			tropkick: ["8L1"],
 			trailblaze: ["8L1"],
-			forest’scurse: ["8L1"],
+			forestscurse: ["8L1"],
 			crosspoison: ["8L1"],
 			gunkshot: ["8L1"],
 			poisonjab: ["8L1"],
