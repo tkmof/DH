@@ -151,12 +151,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	persian: {
 		inherit: true,
-		baseStats: {hp: 65, atk: 80, def: 60, spa: 65, spd: 65, spe: 115},
-		abilities: {0: "Limber", 1: "Technician", H: "Tough Claws"},
+		baseStats: {hp: 55, atk: 110, def: 50, spa: 105, spd: 55, spe: 120},
+		abilities: {0: "Super Luck", 1: "Technician", H: "Tough Claws"},
 	},
 	persianalola: {
 		inherit: true,
-		baseStats: {hp: 65, atk: 60, def: 60, spa: 85, spd: 65, spe: 115},
+		baseStats: {hp: 75, atk: 60, def: 70, spa: 95, spd: 75, spe: 125},
 	},
 	golduck: {
 		inherit: true,
@@ -894,7 +894,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	entei: {
 		inherit: true,
-		abilities: {0: "Pressure", H: "Ignite"},
+		abilities: {0: "Pressure", H: "Searing Touch"},
 	},
 	suicune: {
 		inherit: true,
@@ -2103,7 +2103,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	landorus: {
 		inherit: true,
-		abilities: {0: "Sand Force", H: "Air Lock"},
+		baseStats: {hp: 89, atk: 115, def: 90, spa: 125, spd: 80, spe: 101},
+		abilities: {0: "Wind Rider", H: "Air Lock"},
 	},
 	kyurem: {
 		inherit: true,
@@ -2144,7 +2145,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	genesectchill: {
 		inherit: true,
 		baseStats: {hp: 81, atk: 140, def: 95, spa: 140, spd: 95, spe: 99},
-		abilities: {0: "Refridgerate"},
+		abilities: {0: "Refrigerate"},
 	},
 
 	//gen 6 :
@@ -3116,6 +3117,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		baseStats: {hp: 93, atk: 90, def: 101, spa: 50, spd: 81, spe: 105},
 	},
+	perrserker: {
+		inherit: true,
+		baseStats: {hp: 90, atk: 120, def: 110, spa: 50, spd: 75, spe: 50},
+	},
 	cursola: {
 		inherit: true,
 		baseStats: {hp: 60, atk: 55, def: 90, spa: 145, spd: 130, spe: 30},
@@ -3511,6 +3516,46 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoLevel: 24,
 		eggGroups: ["Bug"],
 	},
+	pawmi: {
+		num: 921,
+		name: "Pawmi",
+		types: ["Electric"],
+		baseStats: {hp: 45, atk: 50, def: 20, spa: 40, spd: 25, spe: 60},
+		abilities: {0: "Static", 1: "Natural Cure", H: "Iron Fist"},
+		heightm: 0.3,
+		weightkg: 2.5,
+		color: "Yellow",
+		evos: ["Pawmo"],
+		eggGroups: ["Field"],
+	},
+	pawmo: {
+		num: 922,
+		name: "Pawmo",
+		types: ["Electric", "Fighting"],
+		baseStats: {hp: 60, atk: 75, def: 40, spa: 50, spd: 40, spe: 85},
+		abilities: {0: "Volt Absorb", 1: "Natural Cure", H: "Iron Fist"},
+		heightm: 0.4,
+		weightkg: 6.5,
+		color: "Yellow",
+		prevo: "Pawmi",
+		evoLevel: 18,
+		evos: ["Pawmot"],
+		eggGroups: ["Field"],
+	},
+	pawmot: {
+		num: 923,
+		name: "Pawmot",
+		types: ["Electric", "Fighting"],
+		baseStats: {hp: 70, atk: 115, def: 70, spa: 70, spd: 60, spe: 105},
+		abilities: {0: "Volt Absorb", 1: "Natural Cure", H: "Iron Fist"},
+		heightm: 0.9,
+		weightkg: 41,
+		color: "Yellow",
+		prevo: "Pawmo",
+		evoType: "other",
+		evoCondition: "walk 1000 steps in Let's Go",
+		eggGroups: ["Field"],
+	},
 	tandemaus: {
 		num: 924,
 		name: "Tandemaus",
@@ -3717,6 +3762,17 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		prevo: "Tinkatuff",
 		evoLevel: 38,
 		eggGroups: ["Fairy"],
+	},
+	cyclizar: {
+		num: 967,
+		name: "Cyclizar",
+		types: ["Dragon", "Normal"],
+		baseStats: {hp: 70, atk: 105, def: 65, spa: 95, spd: 85, spe: 121}, 
+		abilities: {0: "Shed Skin", H: "Regenerator"},
+		heightm: 1.6,
+		weightkg: 63,
+		color: "Green",
+		eggGroups: ["Field"],
 	},
 	annihilape: {
 		num: 979,
@@ -4702,7 +4758,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Leechuption",
 		types: ["Fire", "Ice"],
 		baseStats: {hp: 90, atk: 45, def: 160, spa: 75, spd: 120, spe: 25},
-		abilities: {0: "Snow Warning", H: "Misty Moutain"},
+		abilities: {0: "Snow Warning", H: "Misty Mountain"},
 		heightm: 0.7,
 		weightkg: 122,
 		color: "White",

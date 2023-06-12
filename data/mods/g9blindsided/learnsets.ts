@@ -1135,7 +1135,6 @@ chubee: {learnset: {
 	rocktomb: ["7L1, 8L1, 9L1"],
 	seismictoss: ["7L1, 8L1, 9L1"],
 	shadowclaw: ["7L1, 8L1, 9L1"],
-	slackoff: ["7L1, 8L1, 9L1"],
 	spikes: ["7L1, 8L1, 9L1"],
 	steamroller: ["7L1, 8L1, 9L1"],
 	steelroller: ["7L1, 8L1, 9L1"],
@@ -1812,7 +1811,8 @@ thorbarage: {learnset: {
 flumflare: {learnset: {
 	attract: ["7L1, 8L1, 9L1"],
 	bugbuzz: ["7L1, 8L1, 9L1"],
-	charmhelpinghand: ["7L1, 8L1, 9L1"],
+	charm: ["7L1, 8L1, 9L1"],
+	helpinghand: ["7L1, 8L1, 9L1"],
 	cottonspore: ["7L1, 8L1, 9L1"],
 	dazzlinggleam: ["7L1, 8L1, 9L1"],
 	drainingkiss: ["7L1, 8L1, 9L1"],

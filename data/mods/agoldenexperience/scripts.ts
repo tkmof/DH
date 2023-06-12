@@ -119,6 +119,16 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
         addNewMoves('gallade', ['agility', 'sacredsword']);
 
         addNewMoves('medicham', ['axekick']);
+        addNewMoves('girafarig', ['twinbeam']);
+        addNewMoves('chesnaught', ['bodypress']);
+        addNewMoves('uxie', ['agility', 'mysticalpower']);
+        addNewMoves('azelf', ['agility', 'mysticalpower']);
+        addNewMoves('mesprit', ['agility', 'mysticalpower']);
+        addNewMoves('cresselia', ['agility', 'lunarblessing']);
+        
+        addNewMoves('electivire', ['doubleshock']);
+        addNewMoves('luxray', ['doubleshock']);
+        addNewMoves('landorus', ['nastyplot']);
 
         addNewMoves('tornadus',['bleakwindstorm']);
         addNewMoves('thundurus',['wildboltstorm']);
@@ -181,6 +191,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'poliwrath').learnset.wavecrash = ['8L1'];
     this.modData('Learnsets', 'sharpedo').learnset.wavecrash = ['8L1'];
     this.modData('Learnsets', 'walrein').learnset.wavecrash = ['8L1'];
+    this.modData('Learnsets', 'floatzel').learnset.wavecrash = ['8L1'];
     this.modData('Learnsets', 'carracosta').learnset.wavecrash = ['8L1'];
 
     // mountaingale 
@@ -782,7 +793,12 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'dugtrio').learnset.taunt = ['8L1'];
     this.modData('Learnsets', 'dugtrioalola').learnset.taunt = ['8L1'];
     this.modData('Learnsets', 'persian').learnset.crushclaw = ['8L1'];
-    this.modData('Learnsets', 'persian').learnset.swordsdance = ['8L1'];
+    this.modData('Learnsets', 'persian').learnset.grassknot = ['8L1'];
+    this.modData('Learnsets', 'persian').learnset.drainingkiss = ['8L1'];
+    this.modData('Learnsets', 'persianalola').learnset.slackoff = ['8L1'];
+    this.modData('Learnsets', 'persianalola').learnset.focusblast = ['8L1'];
+    this.modData('Learnsets', 'persianalola').learnset.sludgewave = ['8L1'];
+    this.modData('Learnsets', 'persianalola').learnset.drainingkiss = ['8L1'];
     this.modData('Learnsets', 'golduck').learnset.darkpulse = ['8L1'];
     this.modData('Learnsets', 'golduck').learnset.expandingforce = ['8L1'];
     this.modData('Learnsets', 'golduck').learnset.shadowball = ['8L1'];

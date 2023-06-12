@@ -4572,7 +4572,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		//natDexTier: "RU",
 	},
 	ironbundle: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DOU",
 		//natDexTier: "Uber",
 	},
@@ -4608,6 +4608,22 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	tinkaton: {
+		tier: "UU",
+		doublesTier: "DUU",
+		//natDexTier: "RU",
+	},
+	cyclizar: {
+		tier: "OU",
+		doublesTier: "DUU",
+		//natDexTier: "OU",
+	},
+	pawmi: {
+		tier: "LC",
+	},
+	pawmo: {
+		tier: "NFE",
+	},
+	pawmot: {
 		tier: "UU",
 		doublesTier: "DUU",
 		//natDexTier: "RU",
