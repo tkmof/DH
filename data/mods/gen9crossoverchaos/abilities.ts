@@ -92,7 +92,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				move.category = 'Physical';
 			}
 		},
-		name: "runelord",
+		name: "Runelord",
 		rating: 3,
 		num: -4,
 	},
