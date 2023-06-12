@@ -84,7 +84,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Olympia",
 		types: ["Fighting", "Rock"],
 		baseStats: {hp: 85, atk: 120, def: 99, spa: 55, spd: 76, spe: 100},
-		abilities: {0: "Inner Focus", 1: "Guts", H: "Crystallise"},
+		abilities: {0: "Inner Focus", 1: "Guts", H: "Crystallize"},
 	},
 	gravelordlych: {
 		num: 1012,
