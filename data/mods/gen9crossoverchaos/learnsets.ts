@@ -454,6 +454,7 @@ export const Learnsets = {
 	},
 	funkykong: {
 		learnset: {
+			jumbobarrel: ["9L1"],
 			bounce: ["9L1"],
 			fly: ["9L1"],
 			acrobatics: ["9L1"],
@@ -614,7 +615,6 @@ export const Learnsets = {
 			torment: ["9L1"],
 			toxic: ["9L1"],
 			zenheadbutt: ["9L1"],
-			jumbobarrel: ["9L1"],
 		},
 	},
 	kingkrool: {
