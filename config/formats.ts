@@ -72,7 +72,7 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 8] Banhammers Cycle 2",
+		name: "[Gen 9] Banhammers Cycle 2",
 		desc: `<b>Banhammers</b>: A metagame where players are allowed to ban Pokemon, Moves, Items, and Abilities through earning points in room tournaments.`,
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/banhammers-cycle-2-week-2-second-roomtour-6-17.3711488/">Banhammers on Smogon Forums</a>`,
