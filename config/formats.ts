@@ -79,11 +79,11 @@ export const Formats: FormatList = [
          `&bullet; <a href="https://docs.google.com/spreadsheets/d/1prtFrCj_mdOpFtKPpsCH6S3CsO12tEgTIWaQJOEnUcY/edit?usp=sharing">Spreadsheet</a>`,			
 		],
 		mod: 'banhammers',
+		ruleset: ['Standard', 'Dynamax Clause', 'Data Mod'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail',
 					 'Kingambit', 'Tornadus-Therian', 'Sneasler', 'Ting-Lu', 'Corviknight', 'Ursaluna', 'Gholdengo', 'Enamorus-Base',
 					 'Kleavor', 'Dragapult', 'Rapid Spin', 'Defog', 'Salt Cure', 'Spikes', 'Ceaseless Edge', 'U-Turn', 'Heavy-Duty Boots',
 					 'Booster Energy', 'Choice Scarf', 'Choice Specs', 'Drought', 'Regenerator', 'Levitate', 'Purifying Salt'],
-		ruleset: ['Standard', 'Dynamax Clause', 'Data Mod'],
     },	
 	{
         name: "[Gen 8] Gen 9 Blindsided",
