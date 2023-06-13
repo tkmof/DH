@@ -1053,4 +1053,16 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		num: -1184,
 		gen: 8,
 	},
+	unfathomablehelmet: {
+		name: "Unfamothable Helmet",
+		spritenum: 0, 
+		shortDesc: "Holder's typing cannot be changed by any effect.",
+		ignoreKlutz: true,
+		onHit(pokemon) {
+			pokemon.setType(pokemon.getTypes(true).map(type => type === "Electric" ? "???" : type));
+			this.add('-block', target, 'item: Unfamothable Helmet');
+		},
+		num: -1881,
+		gen: 8,
+	},
 }
