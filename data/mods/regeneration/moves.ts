@@ -163,6 +163,84 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Poison",
 		contestType: "Tough",
 	},
+	slipaway: {
+		num: 575,
+		accuracy: 100,
+		basePower: 50,
+		category: "Physical",
+		name: "Slip Away",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, authentic: 1},
+		onHit(target, source, move) {
+			const success = this.boost({atk: -1}, target, source);
+			if (!success && !target.hasAbility('mirrorarmor')) {
+				delete move.selfSwitch;
+			}
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Aqua Tail", target);
+		},
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		zMove: {effect: 'healreplacement'},
+		contestType: "Cool",
+	},
+	flareout: {
+		num: 575,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Flare Out",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, authentic: 1},
+		onHit(target, source, move) {
+			const success = this.boost({def: -1}, target, source);
+			if (!success && !target.hasAbility('mirrorarmor')) {
+				delete move.selfSwitch;
+			}
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Flame Charge", target);
+		},
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		zMove: {effect: 'healreplacement'},
+		contestType: "Cool",
+	},
+	buzzoff: {
+		num: 575,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Buzz Off",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, authentic: 1},
+		onHit(target, source, move) {
+			const success = this.boost({spe: -1}, target, source);
+			if (!success && !target.hasAbility('mirrorarmor')) {
+				delete move.selfSwitch;
+			}
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Volt Switch", target);
+		},
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Electric",
+		zMove: {effect: 'healreplacement'},
+		contestType: "Cool",
+	},
 // Gen 9 Moves
 	hail: {
 		inherit: true,
