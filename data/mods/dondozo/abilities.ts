@@ -60,7 +60,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if ((sourceEffect as Ability)?.suppressWeather) return;
 			if (!pokemon.hp) return;
 			if (this.field.isWeather(['hail', 'snow']) &&
-				pokemon.species.id === 'eisugirinoice' && !pokemon.transformed) {
+				pokemon.species.id === 'eisugiridondozo' && !pokemon.transformed) {
 				this.add('-activate', pokemon, 'ability: Cold Commander');
 				this.effectData.busted = false;
 				pokemon.formeChange('Eisugiri', this.effect, true);
