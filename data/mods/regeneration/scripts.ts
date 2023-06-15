@@ -258,6 +258,16 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		   this.modData("Learnsets", "seadra").learnset.thunderbolt = ["8L1"];
 		   this.modData("Learnsets", "seadra").learnset.toxicspikes = ["8L1"];
 
+		   this.modData("Learnsets", "vaporeon").learnset.slipaway = ["8L1"];
+
+		   this.modData("Learnsets", "flareon").learnset.crunch = ["8L1"];
+		   this.modData("Learnsets", "flareon").learnset.flareout = ["8L1"];
+		   this.modData("Learnsets", "flareon").learnset.playrough = ["8L1"];
+		   this.modData("Learnsets", "flareon").learnset.psychicfangs = ["8L1"];
+		   this.modData("Learnsets", "flareon").learnset.suckerpunch = ["8L1"];
+
+		   this.modData("Learnsets", "jolteon").learnset.buzzoff = ["8L1"];
+
 			delete this.modData('Learnsets', 'alakazam').learnset.focusblast;	
 			delete this.modData('Learnsets', 'alakazam').learnset.nastyplot;	
 
