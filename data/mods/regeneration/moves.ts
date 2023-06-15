@@ -223,7 +223,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		name: "Buzz Off",
 		pp: 20,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, authentic: 1},
+		flags: {protect: 1, mirror: 1, authentic: 1},
 		onHit(target, source, move) {
 			const success = this.boost({spe: -1}, target, source);
 			if (!success && !target.hasAbility('mirrorarmor')) {
