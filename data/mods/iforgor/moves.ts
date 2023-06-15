@@ -294,8 +294,8 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		    this.attrLastMove('[still]');
 		    this.add('-anim', source, "Fire Lash", target);
 		},
-		onAfterHit(target, source, move) {
-			target.heal(target.maxhp / 8);
+		onAfterHit(target, source) {
+			this.heal(source.maxhp/8, source, target);
 		},
 		secondary: null,
 		target: "normal",
