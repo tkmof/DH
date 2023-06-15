@@ -827,6 +827,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		inherit: true,
 		basePower: 25,
 		shortDesc: "Hits 5 times. 10% chance to lower the target's Defense by 1.",
+		multihit: 5,
 		secondary: {
 			chance: 10,
 			boosts: {
@@ -1029,5 +1030,89 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			return Math.min(200, 50 + 25 * pokemon.m.timesAttacked);
 		},
 		shortDesc: "+25 power for each time user was hit. Max 6 hits.",
+	},
+	slipstream: {
+		num: 3020,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Slipstream",
+		shortDesc: "User heals HP equal to the target's Spe stat. Lowers Spe by 1.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, heal: 1},
+		onPrepareHit: function(target, source, move) {
+		    this.attrLastMove('[still]');
+		    this.add('-anim', source, "Gust", target);
+		},
+		onHit(target, source) {
+			if (target.boosts.spe === -6) return false;
+			const spe = target.getStat('spe', false, true);
+			const success = this.boost({atk: -1}, target, source, null, false, true);
+			return !!(this.heal(spe, source, target) || success);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		zMove: {boost: {spe: 1}},
+		contestType: "Cute",
+	},
+	takersflame: {
+		num: 3021,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Taker's Flame",
+		shortDesc: "User heals 1/8 max HP.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		onPrepareHit: function(target, source, move) {
+		    this.attrLastMove('[still]');
+		    this.add('-anim', source, "Fire Lash", target);
+		},
+		onAfterHit(target, source, move) {
+			target.heal(target.maxhp / 8);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Tough",
+	},
+	tarshot: {
+		inherit: true,
+		basePower: 75,
+		category: "Special",
+		shortDesc: "Target becomes weaker to Fire.",
+		flags: {protect: 1, mirror: 1, bullet: 1},
+		boosts: null,
+		type: "Ground",
+	},
+	thousandwaves: {
+		num: 615,
+		accuracy: 100,
+		basePower: 50,
+		category: "Physical",
+		name: "Thousand Waves",
+		shortDesc: "Hits twice. 100% chance to lower the target's Defense by 1. Ignores changes to the Defense stat.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, nonsky: 1},
+		multihit: 2,
+		ignoreEvasion: true,
+		ignoreDefensive: true,
+		secondary: {
+			chance: 100,
+			boosts: {
+				def: -1,
+			},
+		},
+		target: "allAdjacentFoes",
+		type: "Ground",
+		contestType: "Tough",
+	},
+	tidyup: {
+		inherit: true,
+		pp: 15,
 	},
 };

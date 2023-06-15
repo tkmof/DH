@@ -130,9 +130,21 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	
 	spectralleech: {
-		shortDesc: "(Semi-functional placeholder) This Pokemon heals 1/4 of its max HP when hit by a foe with stat boosts. Eliminates the target's boosts after receiving damage.",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by a foe with stat boosts. Eliminates the target's boosts after receiving damage.",
 		onDamagingHit(damage, target, source, effect) {
-			source.clearBoosts();
+			let activate = false;
+			let i: BoostID;
+			let removeBoosts = {};
+			for (i in source.boosts) {
+				if (source.boosts[i] > 0) {
+					removeBoosts[i] = source.boosts[i] * -1;
+					activate = true;
+				}
+			}
+			if (activate) {
+				this.boost(removeBoosts, source);
+				this.heal(target.maxhp / 4);
+			}
 		},
 		name: "Spectral Leech",
 		rating: 4,
