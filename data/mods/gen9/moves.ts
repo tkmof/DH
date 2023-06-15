@@ -1,4 +1,30 @@
 export const Moves: {[k: string]: ModdedMoveData} = {
+	//Undexit moves
+	hyperspacefury: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	hyperspacehole: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	icehammer: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	judgment: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	relicsong: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	revelationdance: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	
 	hail: {
 		inherit: true,
 		isNonstandard: true,
