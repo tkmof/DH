@@ -451,6 +451,17 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3.5,
 		num: -1025,
 	},
+	railgunner: {
+		shortDesc: "This Pokemon's beam moves lower the target's SpD by 1.",
+		onAfterMove(target, source, move) {
+			if (move?.flags['beam']) {
+				this.boost({spd: -1}, source, target, null, true);
+			}
+		},
+		name: "Railgunner",
+		rating: 3.5,
+		num: -1025,
+	},
 	overripe: {
 		shortDesc: "This Pokemon receives 1/2 damage from supereffective attacks.",
 		onSourceModifyDamage(damage, source, target, move) {

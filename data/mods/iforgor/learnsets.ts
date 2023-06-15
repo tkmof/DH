@@ -4627,6 +4627,8 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	},
 	rockpsychic: {
 		learnset: {
+			aurorabeam: ["9L1"],
+			twinbeam: ["9L1"],
 			cosmicpower: ["9L1"],
 			rockthrow: ["9L1"],
 			rockslide: ["9L1"],
