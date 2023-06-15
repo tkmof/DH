@@ -15,25 +15,26 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onStart(pokemon) {
 			if (this.field.isWeather(['hail', 'snow']) &&
 				pokemon.species.id === 'eisugiridondozo' && !pokemon.transformed) {
-				this.add('-activate', pokemon, 'ability: Ice Face');
+				this.add('-activate', pokemon, 'ability: Cold Commander');
 				this.effectData.busted = false;
 				pokemon.formeChange('Eisugiri', this.effect, true);
 			}
 		},
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
-			if (source.ability !== 'notpayingattentiontodondozoatallsorry' &&
-				effect && effect.effectType === 'Move' && effect.category === 'Physical' &&
-				target.species.id === 'eisugiri' && !target.transformed
+			if (effect && effect.effectType === 'Move' &&
+				effect.category === 'Physical' && target.species.id === 'eisugiri' &&
+				!target.transformed && source.ability !== 'notpayingattentiontodondozoatallsorry'
 			) {
 				this.add('-activate', target, 'ability: Cold Commander');
 				this.effectData.busted = true;
+				target.setAbility('coldcommander');
 				return 0;
 			}
 		},
 		onCriticalHit(target, type, move) {
 			if (!target) return;
-			if (source.ability === 'notpayingattentiontodondozoatallsorry') return;
+			//if (source.ability === 'notpayingattentiontodondozoatallsorry') return;
 			if (move.category !== 'Physical' || target.species.id !== 'eisugiri' || target.transformed) return;
 			if (target.volatiles['substitute'] && !(move.flags['bypasssub'] || move.infiltrates)) return;
 			if (!target.runImmunity(move.type)) return;
@@ -52,15 +53,18 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onUpdate(pokemon) {
 			if (pokemon.species.id === 'eisugiri' && this.effectData.busted) {
-				pokemon.formeChange('Eisugiri-Dondozo', this.effect, true);
+				pokemon.formeChange('Eisugiri-Dondozo');
+				pokemon.setAbility('coldcommander');
 			}
 		},
 		onWeatherChange(pokemon, source, sourceEffect) {
+			console.log("hail up");
+			console.log(pokemon.species.id === 'eisugiridondozo');
 			// snow/hail resuming because Cloud Nine/Air Lock ended does not trigger Ice Face
 			if ((sourceEffect as Ability)?.suppressWeather) return;
 			if (!pokemon.hp) return;
 			if (this.field.isWeather(['hail', 'snow']) &&
-				pokemon.species.id === 'eisugiridondozo' && !pokemon.transformed) {
+				pokemon.species.id === 'eisugiridondozo') {
 				this.add('-activate', pokemon, 'ability: Cold Commander');
 				this.effectData.busted = false;
 				pokemon.formeChange('Eisugiri', this.effect, true);
@@ -115,7 +119,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	commanderguard: {
 		onTryHit(target, source, move) {
 			this.debug('Commander Guard immunity: ' + move.id);
-			if (target !== source && !source.species.dondozo && source.ability !== 'notpayingattentiontodondozoatallsorry') {
+			if (target === source || move.category === 'Status' || move.type === '???' || move.id === 'struggle') return;
+			if (!source.species.dondozo && source.ability !== 'notpayingattentiontodondozoatallsorry') {
 				if (move.smartTarget) {
 					move.smartTarget = false;
 				} else {
