@@ -94,6 +94,7 @@ export const Formats: FormatList = [
         mod: 'g9blindsided',
         ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Z-Move Clause'],
         banlist: [
+			'Chelperela', 'Terrapollo', 'Dualifer',
       	'Shed Tail', 'Last Respects',
 
 			  // i apologize
