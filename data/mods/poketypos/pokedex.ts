@@ -279,4 +279,26 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       baseStats: {hp: 75, atk: 65, def: 60, spa: 120, spd: 120, spe: 85},
       abilities: {0: "Natural Cure", H: "Serene Grace"},
    },
+   dragsire: {
+      num: 37,
+      name: "Dragsire",
+      types: ["Dragon"],
+      baseStats: {hp: 95, atk: 25, def: 85, spa: 105, spd: 95, spe: 25},
+      abilities: {0: "Rough Skin", 1: "Regenerator", H: "Unaware"},
+   },
+   rotox: {
+      num: 38,
+      name: "Rotox",
+      types: ["Poison", "Dark"],
+      baseStats: {hp: 50, atk: 125, def: 92, spa: 55, spd: 92, spe: 106},
+      abilities: {0: "Unburden", H: "Moxie"},
+	   weightkg: 102.5,
+   },
+   condorus: {
+      num: 39,
+      name: "Condorus",
+      types: ["Poison", "Flying"],
+      baseStats: {hp: 84, atk: 125, def: 80, spa: 125, spd: 80, spe: 106},
+      abilities: {0: "Keen Eye", 1: "Unburden", H: "Sand Rush"},
+   },
 };
