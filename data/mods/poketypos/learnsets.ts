@@ -3093,7 +3093,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			uproar: ["9L55", "8M", "8L55", "7T", "7L8", "7S2", "6T", "6L8", "5T", "5L8", "5S0", "4T", "4L8"],
 			willowisp: ["9M", "8M", "7M", "6M", "5M", "4M"],
 		},
-	}
+	},
 	condorus: {
 		learnset: {
 			gunkshot: ["9L1"],
@@ -3180,5 +3180,5 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			uturn: ["9M", "8M", "7M", "6M", "6S3", "5M"],
 			weatherball: ["8M"],
 		},
-	}
+	},
 };
