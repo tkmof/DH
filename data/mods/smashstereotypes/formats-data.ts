@@ -464,4 +464,13 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	nihilego: {
 		tier: "SSS",
 	},
+	laveel: {
+		tier: "SSS",
+	},
+	hyperoach: {
+		tier: "SSS",
+	},
+	golurk: {
+		tier: "SSS",
+	},
 };
