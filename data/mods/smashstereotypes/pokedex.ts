@@ -1598,4 +1598,30 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 112.6,
 		prevo: "shelgon",
 	},
+	lugia: {
+		inherit: true,
+		num: 145,
+		abilities: {0: "Pressure", H: "Berserk"},
+		baseStats: {hp: 86, atk: 70, def: 110, spa: 110, spd: 114, spe: 110},
+	},
+	galldrake: {
+		num: 146,
+		name: "Galldrake",
+		types: ["Dragon", "Fighting"],
+		baseStats: {hp: 120, atk: 130, def: 55, spa: 95, spd: 105, spe: 50},
+		abilities: {0: "Mega Launcher", H: "Water Veil"},
+		weightkg: 453.1,
+	},
+	tyranitar: {
+		inherit: true,
+		num: 147,
+		name: "Tyranitar",
+		baseStats: {hp: 72, atk: 95, def: 67, spa: 103, spd: 71, spe: 122},
+	},
+	tyranitarmega: {
+		inherit: true,
+		num: 147,
+		name: "Tyranitar-Mega",
+		baseStats: {hp: 72, atk: 125, def: 107, spa: 103, spd: 91, spe: 132},
+	},
 };
