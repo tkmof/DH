@@ -485,4 +485,16 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	starietta: {
 		tier: "SSS",
 	},
+	tyranitar: {
+		tier: "SSS",
+	},
+	tyranitarmega: {
+		tier: "SSS",
+	},
+	galldrake: {
+		tier: "SSS",
+	},
+	lugia: {
+		tier: "SSS",
+	},
 };
