@@ -1534,6 +1534,6 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: 140,
 		name: "Golurk",
 		baseStats: {hp: 89, atk: 139, def: 80, spa: 50, spd: 80, spe: 70},
-		abilities: {0: "Iron Fist", 1: "Klutz", H: "No Guard"},
+		abilities: {0: "Iron Fist (ViAbilities)", 1: "Klutz (ViAbilities)", H: "No Guard"},
 	},
 };
