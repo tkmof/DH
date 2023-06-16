@@ -57,7 +57,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				pokemon.setAbility('coldcommander');
 			}
 		},
-		onWeatherChange(pokemon, source, sourceEffect) {
+		onWeatherStart(pokemon, source, sourceEffect) {
 			console.log("hail up");
 			console.log(pokemon.species.id === 'eisugiridondozo');
 			// snow/hail resuming because Cloud Nine/Air Lock ended does not trigger Ice Face
@@ -119,7 +119,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	commanderguard: {
 		onTryHit(target, source, move) {
 			this.debug('Commander Guard immunity: ' + move.id);
-			if (target === source || || move.type === '???' || move.id === 'struggle') return;
+			if (target === source || move.type === '???' || move.id === 'struggle') return;
 			if (!source.species.dondozo && source.species.id !== "shedigiri" && source.ability !== 'notpayingattentiontodondozoatallsorry') {
 				if (move.smartTarget) {
 					move.smartTarget = false;
