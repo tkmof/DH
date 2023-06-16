@@ -473,4 +473,16 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	golurk: {
 		tier: "SSS",
 	},
+	baskiron: {
+		tier: "SSS",
+	},
+	baskironmega: {
+		tier: "SSS",
+	},
+	eelektross: {
+		tier: "SSS",
+	},
+	starietta: {
+		tier: "SSS",
+	},
 };
