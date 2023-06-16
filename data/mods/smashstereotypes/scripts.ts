@@ -229,6 +229,11 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData("Learnsets", "golurk").learnset.swordsdance = ["8L1"];
 		this.modData("Learnsets", "golurk").learnset.shadowsneak = ["8L1"];
 		this.modData("Learnsets", "golurk").learnset.shadowclaw = ["8L1"];
+	
+		this.modData("Learnsets", "eelektross").learnset.gutpunch = ["8L1"];
+		this.modData("Learnsets", "eelektross").learnset.recover = ["8L1"];
+		delete this.modData('Learnsets', 'eelektross').learnset.brickbreak;
+		delete this.modData('Learnsets', 'eelektross').learnset.drainpunch;
 	},
 	
 	teambuilderConfig: {
