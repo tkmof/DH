@@ -119,8 +119,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	commanderguard: {
 		onTryHit(target, source, move) {
 			this.debug('Commander Guard immunity: ' + move.id);
-			if (target === source || move.category === 'Status' || move.type === '???' || move.id === 'struggle') return;
-			if (!source.species.dondozo && source.ability !== 'notpayingattentiontodondozoatallsorry') {
+			if (target === source || || move.type === '???' || move.id === 'struggle') return;
+			if (!source.species.dondozo && source.species.id !== "shedigiri" && source.ability !== 'notpayingattentiontodondozoatallsorry') {
 				if (move.smartTarget) {
 					move.smartTarget = false;
 				} else {
