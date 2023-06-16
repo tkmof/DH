@@ -3,11 +3,11 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	imterrifiedofdondozo: {
 		onDamagingHit(damage, target, source, move) {
 			if (source.species.dondozo) {
-				this.boost({spe: 1});
+				this.boost({atk: 2, def: 2, spa: 2, spd: 2, spe:2},);
 			}
 		},
 		name: "I'm terrified of Dondozo",
-		shortDesc: "When hit by Dondozo, speed is increased by one stage.",
+		shortDesc: "When hit by Dondozo, all stats are raised by two stages.",
 	},
 	coldcommander: {
 		name: "Cold Commander",
@@ -18,6 +18,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				this.add('-activate', pokemon, 'ability: Cold Commander');
 				this.effectData.busted = false;
 				pokemon.formeChange('Eisugiri', this.effect, true);
+				pokemon.setAbility('coldcommander');
 			}
 		},
 		onDamagePriority: 1,
@@ -58,8 +59,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onWeatherStart(pokemon, source, sourceEffect) {
-			console.log("hail up");
-			console.log(pokemon.species.id === 'eisugiridondozo');
 			// snow/hail resuming because Cloud Nine/Air Lock ended does not trigger Ice Face
 			if ((sourceEffect as Ability)?.suppressWeather) return;
 			if (!pokemon.hp) return;
@@ -791,7 +790,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 			return false;
 		},
-		//effect in pokedex.ts
+		//dondozo effect in pokedex.ts
 		name: "Commatose",
 		isPermanent: true,
 		shortDesc: "This Pokemon cannot be statused, and is considered to be Dondozo.",
@@ -799,16 +798,18 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	byeah: {
 		onModifyMovePriority: 1,
 		onModifyMove(move, attacker, defender) {
-			if (attacker.species.baseSpecies !== 'Aegigiri' || attacker.transformed) return;
+			if ((attacker.species.baseSpecies !== 'Aegigiri' && attacker.species.baseSpecies !== 'Aegigiri-Dondozo') || attacker.transformed) return;
 			if (move.category === 'Status' && move.id !== 'kingsshield') return;
 			const targetForme = (move.id === 'kingsshield' ? 'Aegigiri' : 'Aegigiri-Dondozo');
 			if (attacker.species.name !== targetForme) attacker.formeChange(targetForme);
+			attacker.setAbility('byeah');
 		},
 		isPermanent: true,
 		name: "byeah",
 		shortDesc: "This Pokemon changes to Dondozo before it attacks.",
 	},
-	facingfears: {
+	dondophobic: {
+		/*
 		onStart(pokemon) {
 			for (const target of pokemon.foes()) {
 				if (target.species.dondozo) {
@@ -817,8 +818,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					return;	
 				}
 			}
+		},*/
+		onResidual(pokemon) {
+			if (!pokemon.hp) return;
+			for (const target of pokemon.foes()) {
+				if (target.species.dondozo) this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon);
+				else this.heal(pokemon.baseMaxhp / 4);
+			}
 		},
-		name: "Facing Fears",
-		shortDesc: "On switch-in, shudders and gains +2 to all stats if the foe is Dondozo.",
+		name: "Dondophobic",
+		shortDesc: "This Pokemon heals 1/4 max HP against non-Dondozo and damaged 1/8 max HP against Dondozo at the end of each turn.",
 	},
 }

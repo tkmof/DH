@@ -380,7 +380,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Croakigiri",
 		types: ["Dragon", "Fighting"],
 		baseStats: {hp: 75, atk: 80, def: 65, spa: 110, spd: 80, spe: 90},
-		abilities: {0: "Facing Fears"},
+		abilities: {0: "Dondophobic"},
 		weightkg: 26.2,
 	},
 	dondozo: {
