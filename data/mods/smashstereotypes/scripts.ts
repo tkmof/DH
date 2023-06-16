@@ -235,6 +235,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		delete this.modData('Learnsets', 'eelektross').learnset.brickbreak;
 		delete this.modData('Learnsets', 'eelektross').learnset.drainpunch;
 		
+		this.modData("Learnsets", "lugia").learnset.aeroblastubermons = ["8L1"];
 		this.modData("Learnsets", "lugia").learnset.workup = ["8L1"];
 		delete this.modData('Learnsets', 'lugia').learnset.calmmind;
 	},
