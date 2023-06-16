@@ -225,6 +225,10 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData("Learnsets", "nihilego").learnset.strengthsap = ["8L1"];
 		this.modData("Learnsets", "nihilego").learnset.flashcannon = ["8L1"];
 		this.modData("Learnsets", "nihilego").learnset.moonblast = ["8L1"];
+		
+		this.modData("Learnsets", "golurk").learnset.swordsdance = ["8L1"];
+		this.modData("Learnsets", "golurk").learnset.shadowsneak = ["8L1"];
+		this.modData("Learnsets", "golurk").learnset.shadowclaw = ["8L1"];
 	},
 	
 	teambuilderConfig: {
