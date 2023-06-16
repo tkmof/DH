@@ -1530,9 +1530,9 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Undiscovered"],
 	},
 	golurk: {
+		inherit: true,
 		num: 140,
 		name: "Golurk",
-		inherit: true,
 		baseStats: {hp: 89, atk: 139, def: 80, spa: 50, spd: 80, spe: 70},
 		abilities: {0: "Iron Fist", 1: "Klutz", H: "No Guard"},
 	},
