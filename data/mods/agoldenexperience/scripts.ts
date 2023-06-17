@@ -923,6 +923,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'absol').learnset.sacredsword = ['8L1'];
     this.modData('Learnsets', 'absol').learnset.nightdaze = ['8L1'];
     this.modData('Learnsets', 'glalie').learnset.rapidspin = ['8L1'];
+    this.modData('Learnsets', 'glalie').learnset.recover = ['8L1'];
     this.modData('Learnsets', 'walrein').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'walrein').learnset.iciclecrash = ['8L1'];
     this.modData('Learnsets', 'relicanth').learnset.flipturn = ['8L1'];

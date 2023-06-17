@@ -1897,7 +1897,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	glaliemega: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	froslass: {
@@ -4616,6 +4616,14 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 		doublesTier: "DUU",
 		//natDexTier: "OU",
+	},
+	greavard: {
+		tier: "LC",
+	},
+	houndstone: {
+		tier: "OU",
+		doublesTier: "DUU",
+		// natDexTier: "UU",
 	},
 	pawmi: {
 		tier: "LC",
