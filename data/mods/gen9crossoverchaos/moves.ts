@@ -337,7 +337,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Physical",
 		defensiveCategory: "Special",
 		shortDesc: "Damages target based on Sp. Def, not Defense.",
-		name: "rudebuster",
+		name: "Rude Buster",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -349,6 +349,69 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Dark",
 		contestType: "Beautiful",
+	},
+	centipedeassault: {
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		useSourceSpeedAsOffensive: true,
+		shortDesc: "Uses user's Spe stat as Atk in damage calculation.",
+		name: "Centipede Assault",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Flare Blitz", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Cool",
+	},
+	luciolacruciata: {
+		accuracy: true,
+		basePower: 180,
+		category: "Physical",
+		useSourceSpeedAsOffensive: true,
+		shortDesc: "Uses user's Spe stat as Atk in damage calculation.",
+		name: "Luciola Cruciata",
+		pp: 1,
+		priority: 0,
+		flags: {contact: 1},
+ 		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Inferno Overdrive", target);
+		},
+		isZ: "wriggliumz",
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Cool",
+	},
+	icebreak: {
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		shortDesc: "2x power against resists.",
+		name: "Ice Break",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onBasePower(basePower, source, target, move) {
+			if (target.runEffectiveness(move) < 0) {
+				this.debug(`ice break resist buff`);
+				return this.chainModify(2);
+			}
+		},
+ 		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Sheer Cold", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		contestType: "Cool",
 	},
 	
 	// Below are vanilla moves altered by custom interractions

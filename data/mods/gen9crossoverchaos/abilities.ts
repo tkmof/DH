@@ -24,7 +24,6 @@ Ratings and how they work:
 */
 
 export const Abilities: {[abilityid: string]: AbilityData} = {
-	
 	adeptprowess: {
 		shortDesc: "Gains secondary type based on held berry. Psy Blast doesn't consume berry.",
 		onStart(pokemon){
@@ -49,7 +48,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: -1,
 	},
-	
 	puyomastery: {
 		shortDesc: "Boosts Water attacks by 1.5x",
 		onModifyAtkPriority: 5,
@@ -70,7 +68,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: -2,
 	},
-	
 	funkymode: {
 		shortDesc: "This Pokemon does not take damage from hazards.",
 		onDamage(damage, target, source, effect) {
@@ -82,7 +79,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: -3,
 	},
-
 	runelord: {
 		shortDesc: "The Pokémon's special become physical, slicing, and contact.",
 		onModifyMove(move) {
@@ -96,7 +92,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: -4,
 	},
-	
 	torchofmadness: {
 		shortDesc: "This Pokemon's moves have 1.3x power against burned targets.",
 		onBasePower(basePower, attacker, defender, move) {
@@ -106,7 +101,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: -5,
 	},
-	
 	crystallize: {
 		shortDesc: "This Pokemon's Normal-type moves become Rock-type and have 1.2x power.",
 		onModifyTypePriority: -1,
@@ -128,7 +122,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: -6,
 	},
-	
 	spectralleech: {
 		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by a foe with stat boosts. Eliminates the target's boosts after receiving damage.",
 		onDamagingHit(damage, target, source, effect) {
@@ -150,7 +143,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: -7,
 	},
-	
 	relentless: {
 		shortDesc: "Damage of moves used on consecutive turns is increased. Max 2x after 5 turns.",
 		onStart(pokemon) {
@@ -191,7 +183,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: -8,
 	},
-	
 	medicinalbackground: {
 		name: "Medicinal Background",
 		shortDesc: "This Pokemon gains 1.2x HP from draining/Aqua Ring/Ingrain/Leech Seed/Strength Sap; 1.4x at half HP or less.",
@@ -206,7 +197,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: -9,
 	},
-	
 	chameleon: {
 		shortDesc: "This Pokemon's type changes to match the type of the move it is about to use.",
 		onPrepareHit(source, target, move) {
@@ -221,7 +211,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: -10,
 	},
-	
 	callofdarkness: {
 		shortDesc: "At the end of each turn, if this Pokémon’s HP is at half or lower, causes all opposing Pokemon to lose 1/8 of their maximum HP, rounded down.",
 		onResidualOrder: 28,
@@ -237,5 +226,61 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Call of Darkness",
 		rating: 4,
 		num: -11,
+	},
+	colorfilter: {
+		name: "Color Filter",
+		shortDesc: "Limber + Keen Eye",
+		onTryBoost(boost, target, source, effect) {
+			if (source && target === source) return;
+			if (boost.accuracy && boost.accuracy < 0) {
+				delete boost.accuracy;
+				if (!(effect as ActiveMove).secondaries) {
+					this.add("-fail", target, "unboost", "accuracy", "[from] ability: Keen Eye", "[of] " + target);
+				}
+			}
+		},
+		onModifyMove(move) {
+			move.ignoreEvasion = true;
+		},
+		onUpdate(pokemon) {
+			if (pokemon.status === 'par') {
+				this.add('-activate', pokemon, 'ability: Limber');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'par') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Limber');
+			}
+			return false;
+		},
+		isBreakable: true,
+		rating: 2.5,
+		num: -12,
+	},
+	blackoutcurtain: {
+		onDamagingHit(damage, target, source, effect) {
+			this.boost({atk: 1});
+		},
+		name: "Blackout Curtain",
+		shortDesc: "When this Pokemon is damaged by an attack, its Atk is raised by 1.",
+		rating: 4.5,
+		num: -13,
+	},
+	frigidbloodline: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ice') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Frigid Bloodline');
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Frigid Bloodline",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ice moves; Ice immunity.",
+		rating: 3.5,
+		num: -14,
 	},
 };
