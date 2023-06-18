@@ -2230,7 +2230,8 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 89,
 	},
 	slowstart: {
-		shortDesc: "Atk, SpA halved for 5 turns. Boost all stats after 5 turns. Timer does not reset on switch.",
+		// shortDesc: "Atk, SpA halved for 5 turns. Boost all stats after 5 turns. Timer does not reset on switch.",
+		shortDesc: "Atk, SpA halved for 5 turns. Timer does not reset on switch.",
 		onStart(pokemon) {
 			if ( !pokemon.slowStartInit ) {
 				pokemon.slowStartInit = true;
@@ -2260,14 +2261,14 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 			onModifySpA(spa, pokemon) {
 				return this.chainModify(0.5);
 			},
-			onEnd(target) {
-				this.add('-end', target, 'Slow Start');
-				this.boost({atk: 1});
-				this.boost({def: 1});
-				this.boost({spa: 1});
-				this.boost({spd: 1});
-				this.boost({spe: 1});
-			},
+			// onEnd(target) {
+			// 	this.add('-end', target, 'Slow Start');
+			// 	this.boost({atk: 1});
+			// 	this.boost({def: 1});
+			// 	this.boost({spa: 1});
+			// 	this.boost({spd: 1});
+			// 	this.boost({spe: 1});
+			// },
 		},
 		name: "Slow Start",
 		rating: -1,
