@@ -451,40 +451,12 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (randAbil < 1) pokemon.setAbility('unaware');
 			else if (randAbil < 2) pokemon.setAbility('waterveil');
 			else pokemon.setAbility('oblivious');
-			const liquidation = {
-				move: "Liquidation",
-				id: "liquidation",
+			const avalanche = {
+				move: "Avalanche",
+				id: "avalanche",
 				pp: 5,
 				maxpp: 5,
 				target: "normal",
-				disabled: false,
-				used: false,
-			}
-			const curse = {
-				move: "Curse",
-				id: "curse",
-				pp: 5,
-				maxpp: 5,
-				target: "normal",
-				nonGhostTarget: "self",
-				disabled: false,
-				used: false,
-			}
-			const sleeptalk = {
-				move: "Sleep Talk",
-				id: "sleeptalk",
-				pp: 5,
-				maxpp: 5,
-				target: "self",
-				disabled: false,
-				used: false,
-			}
-			const rest = {
-				move: "Rest",
-				id: "rest",
-				pp: 5,
-				maxpp: 5,
-				target: "self",
 				disabled: false,
 				used: false,
 			}
@@ -497,23 +469,51 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				disabled: false,
 				used: false,
 			}
-			pokemon.moveSlots[0] = liquidation;
-			pokemon.baseMoveSlots[0] = liquidation;
+			const earthquake = {
+				move: "Earthquake",
+				id: "earthquake",
+				pp: 5,
+				maxpp: 5,
+				target: "normal",
+				disabled: false,
+				used: false,
+			}
+			const rest = {
+				move: "Rest",
+				id: "rest",
+				pp: 5,
+				maxpp: 5,
+				target: "self",
+				disabled: false,
+				used: false,
+			}
+			const curse = {
+				move: "Curse",
+				id: "curse",
+				pp: 5,
+				maxpp: 5,
+				target: "self",
+				disabled: false,
+				used: false,
+			}
+			pokemon.moveSlots[0] = avalanche;
+			pokemon.baseMoveSlots[0] = avalanche;
 			const randMove = this.random(2);
 			if (randMove < 1) {
-				pokemon.moveSlots[3] = curse;
-				pokemon.baseMoveSlots[3] = curse;
+				pokemon.moveSlots[3] = bodypress;
+				pokemon.baseMoveSlots[3] = bodypress;
 			} else {
-				pokemon.moveSlots[3] = sleeptalk;
-				pokemon.baseMoveSlots[3] = sleeptalk;
+				pokemon.moveSlots[3] = earthquake;
+				pokemon.baseMoveSlots[3] = earthquake;
 			}
 			pokemon.moveSlots[1] = rest;
 			pokemon.baseMoveSlots[1] = rest;
-			pokemon.moveSlots[2] = bodypress;
-			pokemon.baseMoveSlots[2] = bodypress;
+			pokemon.moveSlots[2] = curse;
+			pokemon.baseMoveSlots[2] = curse;
+			this.boost({atk: 2, def: 2, spa: 2, spd: 2, spe:2},);
 		},
 		name: "Emergency Meeting",
-		shortDesc: "On switchin, this Pokemon transforms into Dondozo.",
+		shortDesc: "On switchin, this Pokemon transforms into Dondozo and gains +2 in all stats.",
 	},
 	yeah: {
         onStart(pokemon) {
