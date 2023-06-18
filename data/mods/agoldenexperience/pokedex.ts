@@ -1419,8 +1419,13 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 69, atk: 69, def: 86, spa: 74, spd: 86, spe: 91},
 		abilities: {0: "Swift Swim", 1: "Illuminate", H: "Water Veil"},
 	},
+	abomasnow: {
+		inherit: true,
+		baseStats: {hp: 100, atk: 102, def: 85, spa: 102, spd: 95, spe: 70},
+	},
 	abomasnowmega: {
 		inherit: true,
+		baseStats: {hp: 100, atk: 142, def: 115, spa: 142, spd: 115, spe: 40},
 		abilities: {0: "Everlasting Winter"},
 	},
 	lickilicky: {
@@ -4843,16 +4848,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		weightkg: 92,
 		eggGroups: ["Amorphous"],
 	},
-	straightasani: {
-		num: 2065,
-		name: "Straightasan-i",
-		types: ["Dark", "Flying"],
-		baseStats: {hp: 60, atk: 80, def: 120, spa: 75, spd: 75, spe: 75},
-		abilities: {0: "Intimidate", H: "Keen Eye"},
-		heightm: 0.4,
-		weightkg: 9,
-		eggGroups: ["Flying"],
-	},
+	// straightasani: {
+	// 	num: 2065,
+	// 	name: "Straightasan-i",
+	// 	types: ["Dark", "Flying"],
+	// 	baseStats: {hp: 60, atk: 80, def: 120, spa: 75, spd: 75, spe: 75},
+	// 	abilities: {0: "Intimidate", H: "Keen Eye"},
+	// 	heightm: 0.4,
+	// 	weightkg: 9,
+	// 	eggGroups: ["Flying"],
+	// },
 	nopainnogain: {
 		num: 2066,
 		name: "Nopainnogain",
