@@ -597,7 +597,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "rockpsychic",
 		types: ["Rock", "Psychic"],
 		baseStats: {hp: 77, atk: 77, def: 77, spa: 115, spd: 107, spe: 107},
-		abilities: {0: "Levitate", H: "Magician"},
+		abilities: {0: "Railgunner", H: "Magician"},
 	},
 	rockghost: {
 		num: 1061,
@@ -762,7 +762,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: 1082,
 		name: "waterfairy",
 		types: ["Water", "Fairy"],
-		baseStats: {hp: 80, atk: 69, def: 69, spa: 99, spd: 99, spe: 119},
+		baseStats: {hp: 80, atk: 79, def: 79, spa: 99, spd: 99, spe: 119},
 		abilities: {0: "Marvel Scale", H: "Competitive"},
 	},
 	firesteel: {
@@ -789,7 +789,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "iceelectric",
 		types: ["Ice", "Electric"],
 		baseStats: {hp: 79, atk: 105, def: 94, spa: 105, spd: 94, spe: 123},
-		abilities: {0: "Color Change", H: "Libero"},
+		abilities: {0: "Color Change"},
 	},
 	groundflying: {
 		num: 1085,
