@@ -1289,6 +1289,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 95, atk: 109, def: 105, spa: 75, spd: 90, spe: 56},
 		abilities: {0: "Overgrow", H: "Microclimate"},
 	},
+	infernape: {
+		inherit: true,
+		abilities: {0: "Blaze", H: "Pride"},
+	},
 	bibarel: {
 		inherit: true,
 		baseStats: {hp: 89, atk: 100, def: 70, spa: 55, spd: 70, spe: 86},
@@ -1388,7 +1392,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	lucario: {
 		inherit: true,
-		abilities: {0: "Chakra Surge", 1: "Inner Focus", H: "Justified"},
+		abilities: {0: "Chakra Surge", 1: "Pride", H: "Justified"},
 	},
 	lucariomega: {
 		inherit: true,
@@ -1634,7 +1638,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		types: ["Water", "Fighting"],
 		baseStats: {hp: 85, atk: 120, def: 85, spa: 78, spd: 60, spe: 100},
-		abilities: {0: "Torrent", H: "Sharpness"},
+		abilities: {0: "Torrent", H: "Pride"},
 		otherFormes: ["Samurott-Hisui", "Samurott-Galar"],
 		formeOrder: ["Samurott", "Samurott-Hisui", "Samurott-Galar"],
 	},
@@ -2202,7 +2206,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	pyroar: {
 		inherit: true,
-		abilities: {0: "Rivalry", 1: "Flash Fire", H: "Scrappy"},
+		abilities: {0: "Rivalry", 1: "Scrappy", H: "Pride"},
 	},
 	flabebe: {
 		inherit: true,
@@ -3286,7 +3290,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Ghost"],
 		gender: "M",
 		baseStats: {hp: 120, atk: 112, def: 65, spa: 80, spd: 75, spe: 78},
-		abilities: {0: "Rattled", 1: "Adaptability", H: "Mold Breaker"}, 
+		abilities: {0: "Rattled", 1: "Adaptability", H: "Reckless"}, 
 		heightm: 3,
 		weightkg: 110,
 		color: "Green",
@@ -3305,7 +3309,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Ghost"],
 		gender: "F",
 		baseStats: {hp: 120, atk: 92, def: 65, spa: 100, spd: 75, spe: 78},
-		abilities: {0: "Rattled", 1: "Adaptability", H: "Mold Breaker"},
+		abilities: {0: "Rattled", 1: "Adaptability", H: "Rock Head"},
 		heightm: 3,
 		weightkg: 110,
 		color: "Green",
@@ -4851,7 +4855,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Goldiorno",
 		types: ["Fighting", "Fairy"],
 		baseStats: {hp: 80, atk: 110, def: 80, spa: 85, spd: 80, spe: 115},
-		abilities: {0: "Natural Cure", H: "Grassy Surge"},
+		abilities: {0: "Natural Cure", 1: "Pride", H: "Grassy Surge"},
 		heightm: 1.72,
 		weightkg: 50,
 		color: "Yellow",
