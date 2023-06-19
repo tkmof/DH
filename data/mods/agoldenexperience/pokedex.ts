@@ -916,11 +916,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	sceptilemega: {
 		inherit: true,
 		baseStats: {hp: 70, atk: 135, def: 75, spa: 120, spd: 85, spe: 145},
+		abilities: {0: "Sharpness"},
+	},
+	blaziken: {
+		inherit: true,
+		abilities: {0: "Blaze", H: "Striker"},
 	},
 	blazikenmega: {
 		inherit: true,
-		baseStats: {hp: 80, atk: 160, def: 85, spa: 100, spd: 85, spe: 120},
-		abilities: {0: "Striker"},
+		baseStats: {hp: 80, atk: 130, def: 90, spa: 130, spd: 90, spe: 110},
+		abilities: {0: "Magic Guard"},
 	},
 	mightyena: {
 		inherit: true,
