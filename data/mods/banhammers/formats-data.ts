@@ -3775,7 +3775,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	hydreigon: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DUU",
 		natDexTier: "UU",
 	},
@@ -5829,12 +5829,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "Uber",
 	},
 	walkingwake: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 		natDexTier: "Uber",
 	},
 	ironleaves: {
-		tier: "UUBL",
+		tier: "Uber",
 		doublesTier: "DUU",
 		natDexTier: "RU",
 	},
