@@ -2912,7 +2912,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 	dragsire: {
 		learnset: {
 			outrage: ["8L1"],
-         dragonclaw: ["8L1"],
+			dragonclaw: ["8L1"],
 			dragontail: ["8L1"],
 			dracometeor: ["8L1"],
 			coreenforcer: ["8L1"],
@@ -2925,7 +2925,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			willowisp: ["8L1"],
 			sunnyday: ["8L1"],
 			uturn: ["8L1"],
-			
+        
 			acidspray: ["8M"],
 			afteryou: ["7T", "6T", "5T"],
 			amnesia: ["8M", "8L40", "8M", "8L40", "7L24", "7V", "6L24", "5L24", "4L24", "3L23"],
@@ -2942,6 +2942,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			counter: ["3T"],
 			curse: ["7V"],
 			defensecurl: ["7V", "3T"],
+			dig: ["8M", "8M", "7V", "6M", "5M", "4M", "3M"],
 			doubleedge: ["3T"],
 			doubleteam: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			drainpunch: ["8M"],
@@ -3009,12 +3010,11 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			toxicspikes: ["8M"],
 			trailblaze: ["8M"],
 			yawn: ["8L23", "8L23", "7L31", "6L31", "5L31", "4L31", "3L35"],
-		},
-	},
+  },	
 	rotox: {
 		learnset: {
-         shellsidearm: ["8L1"],
-         poisonjab: ["8L1"],
+			shellsidearm: ["8L1"],
+			poisonjab: ["8L1"],
 			toxicspikes: ["8L1"],
 			corrosivegas: ["8L1"],
 			acid: ["8L1"],
@@ -3035,7 +3035,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			swordsdance: ["8L1"],
 			closecombat: ["8L1"],
 			acrobatics: ["8L1"],
-			
+        
 			allyswitch: ["8M", "7T"],
 			astonish: ["8L1", "8L1", "7L1", "6L1", "6S1", "5L1", "5S0", "4L1"],
 			confide: ["7M", "7S2", "6M"],

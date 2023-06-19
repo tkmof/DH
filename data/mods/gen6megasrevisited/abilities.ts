@@ -512,6 +512,26 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		num: 290,
     	shortDesc: "When an opposing Pokemon has a stat stage raised, this Pokemon copies the effect.",																	
 	},
+	intoxicate: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'technoblast', 'weatherball',
+			];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Poison';
+				move.intoxicateBoosted = true;
+			}
+		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.intoxicateBoosted) return this.chainModify([0x14CD, 0x1000]);
+		},
+		name: "Intoxicate",
+		rating: 4,
+		shortDesc: "This Pokemon's Normal-type moves become Poison type and have 1.3x power.",
+	},	
+	
 /*	
 // ngas is so cringe
 	analytic: {
