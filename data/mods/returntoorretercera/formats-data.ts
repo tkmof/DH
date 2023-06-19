@@ -230,6 +230,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	dragonite: {
+// Dragonite evolves at level 55, which is higher than the level cap of 50
 		tier: "TERCERA",
 		doublesTier: "DOU",
 	},
@@ -1170,7 +1171,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	tyranitar: {
-		tier: "TERCERA",
+// Tyranitar evolves at level 55, which is higher than the level cap of 50
+		tier: "Illegal",
 		doublesTier: "DOU",
 	},
 	tyranitarmega: {
