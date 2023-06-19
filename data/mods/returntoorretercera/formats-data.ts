@@ -231,7 +231,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	dragonite: {
 // Dragonite evolves at level 55, which is higher than the level cap of 50
-		tier: "TERCERA",
+		tier: "Illegal",
 		doublesTier: "DOU",
 	},
 	lairon: {
