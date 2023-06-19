@@ -120,7 +120,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 				if (pokemon.hasType(type)) {
 				   if (!suppressMessages) this.add('-message', `Terastal boosts moves of the ${type} type!`);
 					stabBoost = 2.25;
-			   } else if (pokemon.species.teraBoost? && type !== pokemon.species.teraBoost?) {
+			   } else {
 				    stabBoost = 1.5;
 				}
 			}
