@@ -1689,7 +1689,7 @@ export const Formats: FormatList = [
 		banlist: ['Uber', 'Moody', 'Shadow Tag', 'Baton Pass', 'Kyurem', 'Slowking-Base', 'Slowbro-Base'],
 	},
 	{
-		name: "[Gen 9] VGC by RNG",
+		name: "[Gen 8] VGC by RNG",
 		desc: `VGC by RNG, a solomod inspired by the Gen 8 mod Random Dex, where the dex of legal Pokemon is decided randomly.`,
 		gameType: 'doubles',
 		forcedLevel: 50,
