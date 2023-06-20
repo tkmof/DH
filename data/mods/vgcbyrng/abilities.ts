@@ -869,7 +869,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onImmunity(type, pokemon) {
 			if (type === 'sandstorm') return false;
 		},
-		onWeatherChange(pokemon) {
+		onUpdate(pokemon) {
 			if (pokemon.transformed) return;
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isWeather('sandstorm')) {
@@ -926,7 +926,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onStart(pokemon) {
 			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
 		},
-		onWeatherChange(pokemon) {
+		onUpdate(pokemon) {
 			if (pokemon.transformed) return;
 			// Protosynthesis is not affected by Utility Umbrella
 			if (this.field.isWeather('snow')) {
