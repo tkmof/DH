@@ -1913,7 +1913,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	ceaselessedge: {
 		shortDesc: "Sets Spikes after damage.",
 		num: -1006,
-		accuracy: 90,
+		accuracy: 100,
 		basePower: 65,
 		category: "Physical",
 		name: "Ceaseless Edge",
@@ -2226,7 +2226,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	stoneaxe: {
 		shortDesc: "Sets Stealth Rock after damage.",
 		num: -1014,
-		accuracy: 90,
+		accuracy: 100,
 		basePower: 65,
 		category: "Physical",
 		name: "Stone Axe",
