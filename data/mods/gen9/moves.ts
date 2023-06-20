@@ -799,8 +799,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
-		onModifyMove(move) {
-			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
 				move.accuracy = true;
 			}
 		},
@@ -827,8 +827,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
-		onModifyMove(move) {
-			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
 				move.accuracy = true;
 			}
 		},
@@ -876,8 +876,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
-		onModifyMove(move) {
-			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
 				move.accuracy = true;
 			}
 		},
