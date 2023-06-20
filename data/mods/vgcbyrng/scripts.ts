@@ -611,7 +611,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 				entry.reviving = this.isActive && !!this.side.slotConditions[this.position]['revivalblessing'];
 			}
 			return entry;
-		}
+		},
 		setType(newType: string | string[], enforce = false) { // modded for Terastal
 			// First type of Arceus, Silvally cannot be normally changed
 			if (!enforce) {
