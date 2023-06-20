@@ -680,6 +680,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'zarude').learnset.sneakyassault = ['8L1'];
     this.modData('Learnsets', 'meowscarada').learnset.sneakyassault = ['8L1'];
     this.modData('Learnsets', 'lokix').learnset.sneakyassault = ['8L1'];
+    this.modData('Learnsets', 'maushold').learnset.sneakyassault = ['8L1'];
     this.modData('Learnsets', 'slendawful').learnset.sneakyassault = ['8L1'];
 
     // mercuryshot 
@@ -885,6 +886,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'mantine').learnset.flipturn = ['8L1'];
 
     //gen 3:
+    this.modData('Learnsets', 'blaziken').learnset.roost = ['8L1'];
     this.modData('Learnsets', 'mightyena').learnset.pursuit = ['8L1'];
     this.modData('Learnsets', 'mightyena').learnset.bulkup = ['8L1'];
     this.modData('Learnsets', 'beautifly').learnset.smartstrike = ['8L1'];
@@ -1260,6 +1262,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'regidrago').learnset.flamethrower = ['8L1'];
     this.modData('Learnsets', 'regidrago').learnset.icefang = ['8L1'];
     this.modData('Learnsets', 'regidrago').learnset.thunderbolt = ['8L1'];
+    this.modData('Learnsets', 'regidrago').learnset.earthquake = ['8L1'];
+    this.modData('Learnsets', 'regidrago').learnset.earthpower = ['8L1'];
     this.modData('Learnsets', 'glastrier').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'glastrier').learnset.tripleaxel = ['8L1'];
     delete this.modData('Learnsets', 'spectrier').learnset.nastyplot;
