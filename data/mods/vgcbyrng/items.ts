@@ -16,6 +16,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		// Mold Breaker protection implemented in Battle.suppressingAbility() within sim/battle.ts
 		num: 1881,
 		desc: "Holder's Ability cannot be changed by any effect.",
+		gen: 8,
 	},
 	clearamulet: {
 		name: "Clear Amulet",
@@ -36,6 +37,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		num: 1882,
 		desc: "Prevents other Pokemon from lowering the holder's stat stages.",
+		gen: 8,
 	},
 	mirrorherb: {
 		name: "Mirror Herb",
@@ -61,7 +63,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		num: 1883,
 		desc: "When an opposing Pokemon raises a stat stage, the holder copies it. Single use.",
-		
+		gen: 8,		
 	},
 	punchingglove: {
 		name: "Punching Glove",
@@ -79,7 +81,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		num: 1884,
 		desc: "Holder's punch-based attacks have 1.1x power and do not make contact.",
-		
+		gen: 8,		
 	},
 	covertcloak: {
 		name: "Covert Cloak",
@@ -93,7 +95,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		num: 1885,
 		desc: "Holder is not affected by the secondary effect of another Pokemon's attack.",
-		
+		gen: 8,		
 	},
 	loadeddice: {
 		name: "Loaded Dice",
@@ -106,7 +108,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		num: 1886,
 		desc: "Holder's moves that hit 2-5 times hit 4-5 times; Population Bomb hits 4-10 times.",
-		
+		gen: 8,		
 	},
 	boosterenergy: {
 		name: "Booster Energy",
@@ -128,7 +130,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		num: 1880,
 		desc: "Activates the Protosynthesis or Quark Drive Abilities. Single use.",
-		
+		gen: 8,		
 	},
   laxincense: {
 		name: "Lax Incense",
