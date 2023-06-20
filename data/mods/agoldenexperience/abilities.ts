@@ -2082,14 +2082,14 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		onModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Dragon') {
 				this.debug('Dragon\'s Maw boost');
-				return this.chainModify(1.2);
+				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA(atk, attacker, defender, move) {
 			if (move.type === 'Dragon') {
 				this.debug('Dragon\'s Maw boost');
-				return this.chainModify(1.2);
+				return this.chainModify(1.5);
 			}
 		},
 		onAfterMoveSecondarySelf(pokemon, target, move) {
@@ -2098,7 +2098,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		name: "Dragon's Maw",
-		shortDesc: "This Pokemon gets x1.2 in its attacking stat when using an Dragon move. It also heals 1/8 of the damages dealt when using a Dragon type move.",
+		shortDesc: "This Pokemon gets x1.5 in its attacking stat when using an Dragon move. It also heals 1/8 of the damages dealt when using a Dragon type move.",
 		rating: 3.5,
 		num: 263,
 	},
