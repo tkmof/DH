@@ -35135,7 +35135,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			uturn: ["8L1"],
 			acrobatics: ["8L1"],
 			voltswitch: ["8L1"],
-			electroweb: ["8L1"],
 			electricterrain: ["8L1"],
 			eerieimpulse: ["8L1"],
 			falseswipe: ["8L1"],
