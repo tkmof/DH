@@ -1699,6 +1699,7 @@ export const Formats: FormatList = [
 		},
 		mod: 'vgcbyrng',
 		ruleset: ['Standard GBU', 'VGC Timer', 'Dynamax Clause', 'Mega Data Mod'],
+		banlist: ['Revival Blessing'],
 		validateSet(set, teamHas) { // stolen from SV Speculative
 			const species = this.dex.getSpecies(set.species);
 			const ability = this.dex.getAbility(set.ability);
