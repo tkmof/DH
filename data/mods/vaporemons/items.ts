@@ -233,14 +233,12 @@ export const Items: {[k: string]: ModdedItemData} = {
 			if (pokemon.baseSpecies.baseSpecies === 'Revavroom') {			
 				this.add('-item', pokemon, 'Segin Star Shard');
 				this.add('-anim', pokemon, "Cosmic Power", pokemon);
-				this.add('-start', pokemon, 'typechange', 'Dark');
 				this.add('-message', `${pokemon.name}'s Segin Star Shard changed its type!`);
-				pokemon.setAbility('intimidate', pokemon, true);
 			}
 		},
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
-			if (move && user.baseSpecies.name === 'Revavroom' && (move.type === 'Dark' || move.type === 'Steel' || move.type === 'Poison')) {
+			if (move && user.baseSpecies.num === 966 && (move.type === 'Dark' || move.type === 'Steel' || move.type === 'Poison')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
@@ -250,7 +248,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 				return null;
 			}
 		},
-		itemUser: ["Revavroom"],
+		forcedForme: "Revavroom-Segin",
+		itemUser: ["Revavroom-Segin"],
 		num: -1001,
 		gen: 8,
 		desc: "Revavroom: Becomes Dark-type, Ability: Intimidate, 1.2x Dark/Poison/Steel power.",
@@ -266,14 +265,12 @@ export const Items: {[k: string]: ModdedItemData} = {
 			if (pokemon.baseSpecies.baseSpecies === 'Revavroom') {			
 				this.add('-item', pokemon, 'Schedar Star Shard');
 				this.add('-anim', pokemon, "Cosmic Power", pokemon);
-				this.add('-start', pokemon, 'typechange', 'Fire');
 				this.add('-message', `${pokemon.name}'s Schedar Star Shard changed its type!`);
-				pokemon.setAbility('speedboost', pokemon, true);
 			}
 		},
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
-			if (move && user.baseSpecies.name === 'Revavroom' && (move.type === 'Fire' || move.type === 'Steel' || move.type === 'Poison')) {
+			if (move && user.baseSpecies.num === 966 && (move.type === 'Fire' || move.type === 'Steel' || move.type === 'Poison')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
@@ -283,7 +280,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 				return null;
 			}
 		},
-		itemUser: ["Revavroom"],
+		forcedForme: "Revavroom-Schedar",
+		itemUser: ["Revavroom-Schedar"],
 		num: -1002,
 		gen: 8,
 		desc: "Revavroom: Becomes Fire-type, Ability: Speed Boost, 1.2x Fire/Poison/Steel power.",
@@ -299,14 +297,12 @@ export const Items: {[k: string]: ModdedItemData} = {
 			if (pokemon.baseSpecies.baseSpecies === 'Revavroom') {			
 				this.add('-item', pokemon, 'Navi Star Shard');
 				this.add('-anim', pokemon, "Cosmic Power", pokemon);
-				this.add('-start', pokemon, 'typechange', 'Poison');
 				this.add('-message', `${pokemon.name}'s Navi Star Shard changed its type!`);
-				pokemon.setAbility('toxicdebris', pokemon, true);
 			}
 		},
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
-			if (move && user.baseSpecies.name === 'Revavroom' && (move.type === 'Steel' || move.type === 'Poison')) {
+			if (move && user.baseSpecies.num === 966 && (move.type === 'Steel' || move.type === 'Poison')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
@@ -316,7 +312,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 				return null;
 			}
 		},
-		itemUser: ["Revavroom"],
+		forcedForme: "Revavroom-Navi",
+		itemUser: ["Revavroom-Navi"],
 		num: -1003,
 		gen: 8,
 		desc: "Revavroom: Becomes Poison-type, Ability: Toxic Debris, 1.2x Poison/Steel power.",
@@ -332,14 +329,12 @@ export const Items: {[k: string]: ModdedItemData} = {
 			if (pokemon.baseSpecies.baseSpecies === 'Revavroom') {			
 				this.add('-item', pokemon, 'Ruchbah Star Shard');
 				this.add('-anim', pokemon, "Cosmic Power", pokemon);
-				this.add('-start', pokemon, 'typechange', 'Fairy');
 				this.add('-message', `${pokemon.name}'s Ruchbah Star Shard changed its type!`);
-				pokemon.setAbility('mistysurge', pokemon, true);
 			}
 		},
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
-			if (move && user.baseSpecies.name === 'Revavroom' && (move.type === 'Fairy' || move.type === 'Steel' || move.type === 'Poison')) {
+			if (move && user.baseSpecies.num === 966 && (move.type === 'Fairy' || move.type === 'Steel' || move.type === 'Poison')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
@@ -349,7 +344,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 				return null;
 			}
 		},
-		itemUser: ["Revavroom"],
+		forcedForme: "Revavroom-Ruchbah",
+		itemUser: ["Revavroom-Ruchbah"],
 		num: -1004,
 		gen: 8,
 		desc: "Revavroom: Becomes Fairy-type, Ability: Misty Surge, 1.2x Fairy/Poison/Steel power.",
@@ -365,14 +361,12 @@ export const Items: {[k: string]: ModdedItemData} = {
 			if (pokemon.baseSpecies.baseSpecies === 'Revavroom') {			
 				this.add('-item', pokemon, 'Caph Star Shard');
 				this.add('-anim', pokemon, "Cosmic Power", pokemon);
-				this.add('-start', pokemon, 'typechange', 'Fighting');
 				this.add('-message', `${pokemon.name}'s Caph Star Shard changed its type!`);
-				pokemon.setAbility('stamina', pokemon, true);
 			}
 		},
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
-			if (move && user.baseSpecies.name === 'Revavroom' && (move.type === 'Fighting' || move.type === 'Steel' || move.type === 'Poison')) {
+			if (move && user.baseSpecies.num === 966 && (move.type === 'Fighting' || move.type === 'Steel' || move.type === 'Poison')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
@@ -382,7 +376,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 				return null;
 			}
 		},
-		itemUser: ["Revavroom"],
+		forcedForme: "Revavroom-Caph",
+		itemUser: ["Revavroom-Caph"],
 		num: -1005,
 		gen: 8,
 		desc: "Revavroom: Becomes Fighting-type, Ability: Stamina, 1.2x Fighting/Poison/Steel power.",
