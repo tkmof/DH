@@ -880,4 +880,11 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		baseStats: {hp: 99, atk: 66, def: 77, spa: 110, spd: 77, spe: 121},
 		abilities: {0: "Pressure", H: "Regenerator"},
 	},
+	baseball: {
+		num: 6969,
+		name: "Baseball",
+		types: ["Normal"],
+		baseStats: {hp: 50, atk: 100, def: 80, spa: 100, spd: 50, spe: 200},
+		abilities: {0: "Reckless", 1: "Shadow Tag", H: "Magic Guard"},
+	},
 };
