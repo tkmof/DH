@@ -1756,4 +1756,29 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		tags: ["Paradox"],
 		eggGroups: ["Undiscovered"],
 	},
+
+// new stuff
+	screamtail: {
+		num: 985,
+		name: "Scream Tail",
+		types: ["Fairy", "Dragon"],
+		gender: "N",
+		baseStats: {hp: 115, atk: 65, def: 99, spa: 65, spd: 115, spe: 111},
+		abilities: {0: "Protosynthesis"},
+		heightm: 1.2,
+		weightkg: 8,
+		color: "Pink",
+		tags: ["Paradox"],
+		eggGroups: ["Undiscovered"],
+	},
+	crabominable: {
+		inherit: true,
+		types: ["Fighting", "Water"],
+		abilities: {0: "Fur Coat", 1: "Iron Fist", H: "Anger Point"},
+	},
+	toxapex: {
+		inherit: true,
+		types: ["Dark", "Water"],
+		abilities: {0: "Immunity", 1: "Merciless", H: "Regenerator"},
+	},
 };
