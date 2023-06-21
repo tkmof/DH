@@ -166,9 +166,9 @@ export const Items: {[k: string]: ModdedItemData} = {
 			const type = pokemon.hpType;
 			this.add('-item', pokemon, 'Tera Shard');
 			this.add('-anim', pokemon, "Cosmic Power", pokemon);
-			if (type && type !== '???' && source.getTypes().join() !== type) {
-				if (!source.setType(type)) return;
-				this.add('-start', source, 'typechange', type, '[from] item: Tera Shard');
+			if (type && type !== '???' && pokemon.getTypes().join() !== type) {
+				if (!pokemon.setType(type)) return;
+				this.add('-start', pokemon, 'typechange', type, '[from] item: Tera Shard');
 			}
 			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
 		},
