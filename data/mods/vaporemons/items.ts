@@ -181,15 +181,19 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: -1000,
 		gen: 8,
 		desc: "Holder becomes its Tera Type on switch-in.",
-	},	/*
+	},
 	terashardnormal: {
 		name: "Tera Shard (Normal)",
 		spritenum: 658,
 		onTakeItem: false,
 		onStart(pokemon) {
+			const type = Normal;
 			this.add('-item', pokemon, 'Tera Shard');
 			this.add('-anim', pokemon, "Cosmic Power", pokemon);
-			this.add('-start', pokemon, 'typechange', 'Normal');
+			if (type && type !== '???' && pokemon.getTypes().join() !== type) {
+				if (!pokemon.setType(type)) return;
+				this.add('-start', pokemon, 'typechange', type, '[from] item: Tera Shard');
+			}
 			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
 		},
 		onTryHit(pokemon, target, move) {
@@ -207,9 +211,13 @@ export const Items: {[k: string]: ModdedItemData} = {
 		spritenum: 658,
 		onTakeItem: false,
 		onStart(pokemon) {
+			const type = Fairy;
 			this.add('-item', pokemon, 'Tera Shard');
 			this.add('-anim', pokemon, "Cosmic Power", pokemon);
-			this.add('-start', pokemon, 'typechange', 'Fairy');
+			if (type && type !== '???' && pokemon.getTypes().join() !== type) {
+				if (!pokemon.setType(type)) return;
+				this.add('-start', pokemon, 'typechange', type, '[from] item: Tera Shard');
+			}
 			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
 		},
 		onTryHit(pokemon, target, move) {
@@ -221,7 +229,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: -1008,
 		gen: 8,
 		desc: "Holder becomes its Tera Type on switch-in. (Use this if you want to Tera Fairy)",
-	},	*/
+	},	
 	seginstarshard: {
 		name: "Segin Star Shard",
 		spritenum: 658,
