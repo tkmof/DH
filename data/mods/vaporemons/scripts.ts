@@ -39,6 +39,33 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Moves', 'twister').flags.wind = 1;
 		this.modData('Moves', 'whirlwind').flags.wind = 1;
 		this.modData('Moves', 'wildboltstorm').flags.wind = 1;
+
+		this.modData("Learnsets", "screamtail").learnset.dracometeor = ["8L1"];
+		this.modData("Learnsets", "screamtail").learnset.dragonpulse = ["8L1"];
+		this.modData("Learnsets", "screamtail").learnset.knockoff = ["8L1"];
+		this.modData("Learnsets", "screamtail").learnset.nastyplot = ["8L1"];
+		this.modData("Learnsets", "screamtail").learnset.outrage = ["8L1"];
+		this.modData("Learnsets", "screamtail").learnset.superfang = ["8L1"];
+		this.modData("Learnsets", "crabominable").learnset.jetpunch = ["8L1"];
+		this.modData("Learnsets", "crabominable").learnset.bulletpunch = ["8L1"];
+		this.modData("Learnsets", "crabominable").learnset.machpunch = ["8L1"];
+		this.modData("Learnsets", "crabominable").learnset.hammerarm = ["8L1"];
+		this.modData("Learnsets", "crabominable").learnset.knockoff = ["8L1"];
+		this.modData("Learnsets", "crabominable").learnset.slackoff = ["8L1"];
+		this.modData("Learnsets", "crabominable").learnset.swordsdance = ["8L1"];
+		this.modData("Learnsets", "revavroom").learnset.magicaltorque = ["8L1"];
+		this.modData("Learnsets", "revavroom").learnset.wickedtorque = ["8L1"];
+		this.modData("Learnsets", "revavroom").learnset.blazingtorque = ["8L1"];
+		this.modData("Learnsets", "revavroom").learnset.combattorque = ["8L1"];
+		this.modData("Learnsets", "revavroom").learnset.noxioustorque = ["8L1"];
+		this.modData("Learnsets", "revavroom").learnset.highhorsepower = ["8L1"];
+		this.modData("Learnsets", "toxapex").learnset.bodypress = ["8L1"];
+		this.modData("Learnsets", "toxapex").learnset.darkpulse = ["8L1"];
+		this.modData("Learnsets", "toxapex").learnset.crunch = ["8L1"];
+		this.modData("Learnsets", "toxapex").learnset.knockoff = ["8L1"];
+		this.modData("Learnsets", "toxapex").learnset.nastyplot = ["8L1"];
+		this.modData("Learnsets", "toxapex").learnset.superfang = ["8L1"];
+		this.modData("Learnsets", "toxapex").learnset.taunt = ["8L1"];
 	},
 	// For Loaded Dice and Rage Fist
 	hitStepMoveHitLoop(targets, pokemon, move) { // Temporary name
