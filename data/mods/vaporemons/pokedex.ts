@@ -1764,7 +1764,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Fairy", "Dragon"],
 		gender: "N",
 		baseStats: {hp: 115, atk: 65, def: 99, spa: 65, spd: 115, spe: 111},
-		abilities: {0: "Protosynthesis"},
+		abilities: {0: "Protosynthesis", H: "Cute Charm"},
 		heightm: 1.2,
 		weightkg: 8,
 		color: "Pink",
@@ -1875,5 +1875,77 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		eggGroups: ["Mineral"],
 		requiredItem: "Caph Star Shard",
 		battleOnly: "Revavroom",
+	},
+	donphan: {
+		inherit: true,
+		abilities: {0: "Sturdy", 1: "Overcoat", H: "Sand Veil"},
+	},
+	avalugg: {
+		inherit: true,
+		abilities: {0: "Overcoat", 1: "Ice Body", H: "Sturdy"},
+	},
+	vespiquen: {
+		inherit: true,
+		abilities: {0: "Pressure", 1: "Cute Charm", H: "Unnerve"},
+	},
+	mismagius: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Cute Charm"},
+	},
+	floette: {
+		inherit: true,
+		abilities: {0: "Flower Veil", 1: "Healer", H: "Symbiosis"},
+	},
+	flabebe: {
+		inherit: true,
+		abilities: {0: "Flower Veil", 1: "Healer", H: "Symbiosis"},
+	},
+	florges: {
+		inherit: true,
+		abilities: {0: "Flower Veil", 1: "Healer", H: "Symbiosis"},
+	},
+	oranguru: {
+		inherit: true,
+		abilities: {0: "Inner Focus", 1: "Healer", H: "Symbiosis"},
+	},
+	petilil: {
+		inherit: true,
+		abilities: {0: "Chlorophyll", 1: "Own Tempo", H: "Healer"},
+	},
+	lilligant: {
+		inherit: true,
+		abilities: {0: "Chlorophyll", 1: "Own Tempo", H: "Healer"},
+	},
+	lilliganthisui: {
+		inherit: true,
+		abilities: {0: "Chlorophyll", 1: "Hustle", H: "Healer"},
+	},
+	ralts: {
+		inherit: true,
+		abilities: {0: "Synchronize", 1: "Trace", H: "Healer"},
+	},
+	kirlia: {
+		inherit: true,
+		abilities: {0: "Synchronize", 1: "Trace", H: "Healer"},
+	},
+	gardevoir: {
+		inherit: true,
+		abilities: {0: "Synchronize", 1: "Trace", H: "Healer"},
+	},
+	indeedee: {
+		inherit: true,
+		abilities: {0: "Healer", 1: "Synchronize", H: "Psychic Surge"},
+	},
+	indeedeef: {
+		inherit: true,
+		abilities: {0: "Healer", 1: "Synchronize", H: "Psychic Surge"},
+	},
+	magearna: {
+		inherit: true,
+		abilities: {0: "Soul-Heart", H: "Healer"},
+	},
+	mesprit: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Healer"},
 	},
 };
