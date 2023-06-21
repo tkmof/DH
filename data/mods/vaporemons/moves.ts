@@ -2264,4 +2264,191 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "self",
 		type: "Psychic",
 	},
+
+// new stuff here
+	direclaw: {
+		shortDesc: "Sets a layer of Toxic Spikes.",
+		num: -1005,
+		accuracy: 100,
+		basePower: 65,
+		category: "Physical",
+		name: "Dire Claw",
+		desc: "Sets a layer of Toxic Spikes on the opponent's side of the field.",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Crush Claw", target);
+		},
+		onTryHit(pokemon, target, move) {
+			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
+				delete move.self;
+				return false;
+			}
+		},
+		self: {
+			onHit(source) {
+				for (const side of source.side.foeSidesWithConditions()) {
+					side.addSideCondition('toxicspikes');
+				}
+			},
+		},
+		secondary: {},
+		target: "normal",
+		type: "Poison",
+		contestType: "Clever",
+	},
+	ceaselessedge: {
+		num: 845,
+		accuracy: 100,
+		basePower: 65,
+		category: "Physical",
+		shortDesc: "Sets a layer of Spikes on the opposing side.",
+		name: "Ceaseless Edge",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		onTryHit(pokemon, target, move) {
+			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
+				delete move.self;
+				return false;
+			}
+		},
+		self: {
+			onHit(source) {
+				for (const side of source.side.foeSidesWithConditions()) {
+					side.addSideCondition('spikes');
+				}
+			},
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
+		secondary: {}, // allows sheer force to trigger
+		target: "normal",
+		type: "Dark",
+	},
+	stoneaxe: {
+		num: -1014,
+		accuracy: 100,
+		basePower: 65,
+		category: "Physical",
+		name: "Stone Axe",
+		desc: "If this move is successful, it sets up a hazard on the opposing side of the field, damaging each opposing Pokemon that switches in. Foes lose 1/32, 1/16, 1/8, 1/4, or 1/2 of their maximum HP, rounded down, based on their weakness to the Rock type; 0.25x, 0.5x, neutral, 2x, or 4x, respectively. Can be removed from the opposing side if any opposing Pokemon uses Rapid Spin or Defog successfully, or is hit by Defog.",
+		shortDesc: "Sets Stealth Rock on the target's side.",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stone Edge", target);
+		},
+		onTryHit(pokemon, target, move) {
+			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
+				delete move.self;
+				return false;
+			}
+		},
+		self: {
+			onHit(source) {
+				for (const side of source.side.foeSidesWithConditions()) {
+					side.addSideCondition('stealthrock');
+				}
+			},
+		},
+		secondary: {}, // allows sheer force to trigger
+		target: "adjacentFoe",
+		type: "Rock",
+		contestType: "Tough",
+	},
+	electroweb: {
+		num: 527,
+		accuracy: 95,
+		basePower: 65,
+		category: "Special",
+		shortDesc: "Sets Sticky Web on the target's side.",
+		name: "Electroweb",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryHit(pokemon, target, move) {
+			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
+				delete move.self;
+				return false;
+			}
+		},
+		self: {
+			onHit(source) {
+				for (const side of source.side.foeSidesWithConditions()) {
+					side.addSideCondition('stickyweb');
+				}
+			},
+		},
+		secondary: {}, // allows sheer force to trigger
+		target: "allAdjacentFoes",
+		type: "Electric",
+		contestType: "Beautiful",
+	},
+	skullbash: {
+		num: 130,
+		accuracy: 90,
+		basePower: 120,
+		category: "Physical",
+		shortDesc: "Raises user's Atk by 1 on turn 1. Hits turn 2.",
+		name: "Skull Bash",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, charge: 1, protect: 1, mirror: 1},
+		onTryMove(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name);
+			this.boost({atk: 1}, attacker, attacker, move);
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+		contestType: "Tough",
+	},
+	shelter: {
+		num: 842,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "(Partially bugged) Removes Spikes and Stealth Rock from the field. +1 Def for every type of hazard cleared.",
+		name: "Shelter",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		onHit(pokemon) {
+			let success = false;
+			const removeAll = ['spikes', 'stealthrock'];
+			const sides = [pokemon.side, ...pokemon.side.foeSidesWithConditions()];
+			for (const side of sides) {
+				for (const sideCondition of removeAll) {
+					if (side.removeSideCondition(sideCondition)) {
+						this.add('-sideend', side, this.dex.getEffect(sideCondition).name);
+						success = true;
+					}
+				}
+			}
+			if (success) this.add('-activate', pokemon, 'move: Shelter');
+			return !!this.boost({def: 1}, pokemon, pokemon, null, false, true) || success;
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shell Smash", target);
+		},
+		secondary: null,
+		target: "self",
+		type: "Steel",
+	},
 };
