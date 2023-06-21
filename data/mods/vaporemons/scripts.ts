@@ -107,7 +107,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'hawlucha').learnset.skullbash = ['8L1'];
 		this.modData('Learnsets', 'tauros').learnset.skullbash = ['8L1'];
 		this.modData('Learnsets', 'taurospaldeacombat').learnset.skullbash = ['8L1'];
-		this.modData('Learnsets', 'taurospaldea=blaze').learnset.skullbash = ['8L1'];
+		this.modData('Learnsets', 'taurospaldeablaze').learnset.skullbash = ['8L1'];
 		this.modData('Learnsets', 'taurospaldeaaqua').learnset.skullbash = ['8L1'];
 		this.modData('Learnsets', 'sandaconda').learnset.skullbash = ['8L1'];
 		this.modData('Learnsets', 'bergmite').learnset.skullbash = ['8L1'];
