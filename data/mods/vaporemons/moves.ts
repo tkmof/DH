@@ -2442,19 +2442,19 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			}
 			if (success) this.add('-activate', pokemon, 'move: Shelter');
 			return !!this.boost({def: 1}, pokemon, pokemon, null, false, true) || success;
-			let success = false;
+			let success2 = false;
 			const removeTwo = ['stealthrock'];
 			const sides = [pokemon.side, ...pokemon.side.foeSidesWithConditions()];
 			for (const side of sides) {
 				for (const sideCondition of removeTwo) {
 					if (side.removeSideCondition(sideCondition)) {
 						this.add('-sideend', side, this.dex.getEffect(sideCondition).name);
-						success = true;
+						success2 = true;
 					}
 				}
 			}
 			if (success) this.add('-activate', pokemon, 'move: Shelter');
-			return !!this.boost({def: 1}, pokemon, pokemon, null, false, true) || success;
+			return !!this.boost({def: 1}, pokemon, pokemon, null, false, true) || success2;
 		},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
