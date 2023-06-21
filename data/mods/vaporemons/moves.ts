@@ -2284,6 +2284,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		onTryHit(pokemon, target, move) {
 			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
 				delete move.secondaries;
+				return false;
 			}
 		},
 		secondary: {
@@ -2296,7 +2297,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				},
 			},
 		},
-		secondary: {},
 		target: "normal",
 		type: "Poison",
 		contestType: "Clever",
@@ -2314,6 +2314,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		onTryHit(pokemon, target, move) {
 			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
 				delete move.secondaries;
+				return false;
 			}
 		},
 		onPrepareHit(target, source, move) {
@@ -2351,6 +2352,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		onTryHit(pokemon, target, move) {
 			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
 				delete move.secondaries;
+				return false;
 			}
 		},
 		secondary: {
@@ -2380,6 +2382,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		onTryHit(pokemon, target, move) {
 			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
 				delete move.secondaries;
+				return false;
 			}
 		},
 		secondary: {
