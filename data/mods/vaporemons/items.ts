@@ -166,7 +166,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			const type = pokemon.hpType;
 			this.add('-item', pokemon, 'Tera Shard');
 			this.add('-anim', pokemon, "Cosmic Power", pokemon);
-			if (type && type !== '???' && pokemon.getTypes().join() !== type) {
+			if (type && type !== '???') {
 				if (!pokemon.setType(type)) return;
 				this.add('-start', pokemon, 'typechange', type, '[from] item: Tera Shard');
 			}
@@ -187,12 +187,12 @@ export const Items: {[k: string]: ModdedItemData} = {
 		spritenum: 658,
 		onTakeItem: false,
 		onStart(pokemon) {
-			const type = Normal;
+			const type = pokemon.hpType;
 			this.add('-item', pokemon, 'Tera Shard');
 			this.add('-anim', pokemon, "Cosmic Power", pokemon);
-			if (type && type !== '???' && pokemon.getTypes().join() !== type) {
-				if (!pokemon.setType(type)) return;
-				this.add('-start', pokemon, 'typechange', type, '[from] item: Tera Shard');
+			if (type && type !== '???') {
+				if (!pokemon.setType('Normal')) return;
+				this.add('-start', pokemon, 'typechange', 'Normal', '[from] item: Tera Shard');
 			}
 			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
 		},
@@ -211,12 +211,12 @@ export const Items: {[k: string]: ModdedItemData} = {
 		spritenum: 658,
 		onTakeItem: false,
 		onStart(pokemon) {
-			const type = Fairy;
+			const type = pokemon.hpType;
 			this.add('-item', pokemon, 'Tera Shard');
 			this.add('-anim', pokemon, "Cosmic Power", pokemon);
-			if (type && type !== '???' && pokemon.getTypes().join() !== type) {
-				if (!pokemon.setType(type)) return;
-				this.add('-start', pokemon, 'typechange', type, '[from] item: Tera Shard');
+			if (type && type !== '???') {
+				if (!pokemon.setType('Fairy')) return;
+				this.add('-start', pokemon, 'typechange', 'Fairy', '[from] item: Tera Shard');
 			}
 			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
 		},
