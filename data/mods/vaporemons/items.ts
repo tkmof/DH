@@ -181,7 +181,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: -1000,
 		gen: 8,
 		desc: "Holder becomes its Tera Type on switch-in.",
-	},	
+	},	/*
 	terashardnormal: {
 		name: "Tera Shard (Normal)",
 		spritenum: 658,
@@ -221,7 +221,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: -1008,
 		gen: 8,
 		desc: "Holder becomes its Tera Type on switch-in. (Use this if you want to Tera Fairy)",
-	},	
+	},	*/
 	seginstarshard: {
 		name: "Segin Star Shard",
 		spritenum: 658,
