@@ -27,6 +27,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 	brnheavy: {
 		name: 'brnheavy',
 		effectType: 'Status',
+		start: "[POKEMON] has been heavily burned!",
+		alreadyStarted: "[POKEMON] is already heavily burned!",
+		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
 		statusSlots: 2,
 		onStart(target, source, sourceEffect) {
 			if (target.hasType('Fire')) {
@@ -82,6 +85,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'shk',
 		effectType: 'Status',
 		statusSlots: 2,
+		start: "[POKEMON] has been shocked!",
+		alreadyStarted: "[POKEMON] is already shocked!",
+		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
 		onStart(target, source, sourceEffect) {
 			if (target.hasType('Electric')) {
 				this.add('-immune', target);
@@ -110,6 +116,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'dark',
 		effectType: 'Status',
 		statusSlots: 1,
+		start: "[POKEMON] has been blinded!",
+		alreadyStarted: "[POKEMON] is already blinded!",
+		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
 		onStart(target, source, sourceEffect) {
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
 				this.add('-status', target, 'dark', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
@@ -126,6 +135,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'fear',
 		effectType: 'Status',
 		statusSlots: 1,
+		start: "[POKEMON] has become scared!",
+		alreadyStarted: "[POKEMON] is already scared!",
+		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
 		onStart(target, source, sourceEffect) {
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
 				this.add('-status', target, 'fear', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
@@ -142,6 +154,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'stp',
 		effectType: 'Status',
 		statusSlots: 2,
+		start: "[POKEMON] has been stopped!",
+		alreadyStarted: "[POKEMON] is already stopped!",
+		end: "[POKEMON] can move again!",
+		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
+		cant: "[POKEMON] is stopped!",
 		onStart(target, source, sourceEffect) {
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
 				this.add('-status', target, 'stp', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
@@ -237,6 +254,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'tox',
 		effectType: 'Status',
 		statusSlots: 2,
+		start: "[POKEMON] has been heavily poisoned!",
+		alreadyStarted: "[POKEMON] is already heavily poisoned!",
+		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
 		onStart(target, source, sourceEffect) {
 			if (target.hasType(['Poison', 'Steel'])) {
 				this.add('-immune', target);
@@ -267,6 +287,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'weak',
 		effectType: 'Status',
 		statusSlots: 1,
+		start: "[POKEMON] has been weakened!",
+		alreadyStarted: "[POKEMON] is already weakened!",
+		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
 		stackCondition: 'weakheavy',
 		onStart(target, source, sourceEffect) {
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
@@ -285,6 +308,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'weakheavy',
 		effectType: 'Status',
 		statusSlots: 2,
+		start: "[POKEMON] has been heavily weakened!",
+		alreadyStarted: "[POKEMON] is already heavily weakened!",
+		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
 		onStart(target, source, sourceEffect) {
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
 				this.add('-status', target, 'weakheavy', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
@@ -302,8 +328,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 1;
 		},
 	},
+	
+	//volatiles
 	stancebreak: {
 		name: 'stancebreak',
+		start: "[POKEMON]'s stance broke!",
+		end: "[POKEMON] regained its stance!",
 		duration: 2,
 		onStart(target, source, sourceEffect) {
 			this.add('-start', target, 'stancebreak');
@@ -317,6 +347,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 	},
 	confusion: {
 		inherit: true,
+		cant: "[POKEMON] is too confused to move!",
 		onBeforeMovePriority: 3,
 		onBeforeMove(pokemon) {
 			pokemon.volatiles['confusion'].time--;

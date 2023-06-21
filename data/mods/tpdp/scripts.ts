@@ -6,22 +6,34 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		customTiers: ['TPDP OU', 'TPDP LC'],
 	},
 	pokemon: {
+		getStatusSlots(): number {
+			let statusSlots = 0;
+			for (const st in this.status) {
+				const s = this.battle.dex.getEffect(st);
+				console.log(s);
+				if (s.statusSlots)
+					statusSlots += s.statusSlots;
+			}
+			console.log(statusSlots);
+			return statusSlots;
+		},
 		setStatus(
-		status: string | string[] | Condition | Condition[],
-		source: Pokemon | null = null,
-		sourceEffect: Effect | null = null,
-		ignoreImmunities = false,
-		force = false) {
+			status: string | string[] | Condition | Condition[],
+			source: Pokemon | null = null,
+			sourceEffect: Effect | null = null,
+			ignoreImmunities = false,
+			force = false
+		) {
 			if (Array.isArray(status)) {
 				for (const s of status) {
 					this.setStatus(s);
 				}
 				return;
 			}
-
+			console.log(this.status);
 			if (!this.hp) return false;
 			let statusSlots = this.getStatusSlots();
-			status = this.battle.dex.conditions.get(status);
+			status = this.battle.dex.getEffect(status);
 			if (status.statusSlots && statusSlots + status.statusSlots > 2) {
 				if ((sourceEffect as Move)?.status) {
 					this.battle.add('-fail', source);
@@ -67,17 +79,20 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 				}
 			}
 
-			this.status[status.id] = {id: status.id, target: this};
-			if (source) this.status[status.id].source = source;
-			if (status.duration) this.status[status.id].duration = status.duration;
+			
+			this.status = status.id;
+			this.statusData = {id: status.id, target: this};
+			if (source) this.statusData.source = source;
+			if (status.duration) this.statusData.duration = status.duration;
 			if (status.durationCallback) {
-				this.status[status.id].duration = status.durationCallback.call(this.battle, this, source, sourceEffect);
+				this.statusData.duration = status.durationCallback.call(this.battle, this, source, sourceEffect);
 			}
 
-			if (status.id && !this.battle.singleEvent('Start', status, this.status[status.id], this, source, sourceEffect)) {
+			if (status.id && !this.battle.singleEvent('Start', status, this.statusData, this, source, sourceEffect)) {
 				this.battle.debug('status start [' + status.id + '] interrupted');
 				// cancel the setstatus
 				this.status = prevStatus;
+				this.statusData = prevStatusData;
 				return false;
 			}
 			if (status.id && !this.battle.runEvent('AfterSetStatus', this, source, sourceEffect, status)) {
