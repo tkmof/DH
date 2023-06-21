@@ -2423,17 +2423,30 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "(Partially bugged) Removes Spikes and Stealth Rock from the field. +1 Def for every type of hazard cleared.",
+		shortDesc: "Removes Spikes and Stealth Rock from the field. +1 Def for every type of hazard cleared.",
 		name: "Shelter",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1},
 		onHit(pokemon) {
 			let success = false;
-			const removeAll = ['spikes', 'stealthrock'];
+			const removeOne = ['spikes'];
 			const sides = [pokemon.side, ...pokemon.side.foeSidesWithConditions()];
 			for (const side of sides) {
-				for (const sideCondition of removeAll) {
+				for (const sideCondition of removeOne) {
+					if (side.removeSideCondition(sideCondition)) {
+						this.add('-sideend', side, this.dex.getEffect(sideCondition).name);
+						success = true;
+					}
+				}
+			}
+			if (success) this.add('-activate', pokemon, 'move: Shelter');
+			return !!this.boost({def: 1}, pokemon, pokemon, null, false, true) || success;
+			let success = false;
+			const removeTwo = ['stealthrock'];
+			const sides = [pokemon.side, ...pokemon.side.foeSidesWithConditions()];
+			for (const side of sides) {
+				for (const sideCondition of removeTwo) {
 					if (side.removeSideCondition(sideCondition)) {
 						this.add('-sideend', side, this.dex.getEffect(sideCondition).name);
 						success = true;
