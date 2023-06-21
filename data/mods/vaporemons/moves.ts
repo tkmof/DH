@@ -2283,15 +2283,17 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		onTryHit(pokemon, target, move) {
 			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
-				delete move.self;
-				return false;
+				delete move.secondaries;
 			}
 		},
-		self: {
-			onHit(source) {
-				for (const side of source.side.foeSidesWithConditions()) {
-					side.addSideCondition('toxicspikes');
-				}
+		secondary: {
+			chance: 100,
+			self: {
+				onHit(source) {
+					for (const side of source.side.foeSidesWithConditions()) {
+						side.addSideCondition('toxicspikes');
+					}
+				},
 			},
 		},
 		secondary: {},
@@ -2311,22 +2313,23 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
 		onTryHit(pokemon, target, move) {
 			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
-				delete move.self;
-				return false;
+				delete move.secondaries;
 			}
-		},
-		self: {
-			onHit(source) {
-				for (const side of source.side.foeSidesWithConditions()) {
-					side.addSideCondition('spikes');
-				}
-			},
 		},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Night Slash", target);
 		},
-		secondary: {}, // allows sheer force to trigger
+		secondary: {
+			chance: 100,
+			self: {
+				onHit(source) {
+					for (const side of source.side.foeSidesWithConditions()) {
+						side.addSideCondition('spikes');
+					}
+				},
+			},
+		},
 		target: "normal",
 		type: "Dark",
 	},
@@ -2347,18 +2350,19 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		onTryHit(pokemon, target, move) {
 			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
-				delete move.self;
-				return false;
+				delete move.secondaries;
 			}
 		},
-		self: {
-			onHit(source) {
-				for (const side of source.side.foeSidesWithConditions()) {
-					side.addSideCondition('stealthrock');
-				}
+		secondary: {
+			chance: 100,
+			self: {
+				onHit(source) {
+					for (const side of source.side.foeSidesWithConditions()) {
+						side.addSideCondition('stealthrock');
+					}
+				},
 			},
 		},
-		secondary: {}, // allows sheer force to trigger
 		target: "adjacentFoe",
 		type: "Rock",
 		contestType: "Tough",
@@ -2375,18 +2379,19 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		flags: {protect: 1, mirror: 1},
 		onTryHit(pokemon, target, move) {
 			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
-				delete move.self;
-				return false;
+				delete move.secondaries;
 			}
 		},
-		self: {
-			onHit(source) {
-				for (const side of source.side.foeSidesWithConditions()) {
-					side.addSideCondition('stickyweb');
-				}
+		secondary: {
+			chance: 100,
+			self: {
+				onHit(source) {
+					for (const side of source.side.foeSidesWithConditions()) {
+						side.addSideCondition('stickyweb');
+					}
+				},
 			},
 		},
-		secondary: {}, // allows sheer force to trigger
 		target: "allAdjacentFoes",
 		type: "Electric",
 		contestType: "Beautiful",
