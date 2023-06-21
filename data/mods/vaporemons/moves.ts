@@ -2436,12 +2436,11 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				for (const sideCondition of removeAll) {
 					if (side.removeSideCondition(sideCondition)) {
 						this.add('-sideend', side, this.dex.getEffect(sideCondition).name);
+						this.boost({def: 1}, pokemon);
 						success = true;
 					}
 				}
 			}
-			if (success) this.add('-activate', pokemon, 'move: Shelter');
-			return !!this.boost({def: 1}, pokemon, pokemon, null, false, true) || success;
 		},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
