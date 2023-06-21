@@ -530,7 +530,7 @@ export const Formats: FormatList = [
 			'&bullet; <a href="https://www.smogon.com/forums/threads/return-to-orre-tercera-open-for-submissions.3722389/">RTO: Tercera</a>',
 		],
 		mod: 'returntoorretercera', 
-		ruleset: ['Standard NatDex', 'Flat Rules', '!! Adjust Level = 50', 'VGC Timer'],
+		ruleset: ['Standard NatDex', 'Picked Team Size = 3', '!! Adjust Level = 50', 'VGC Timer'],
 		banlist: [
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		   'Aerodactylite', 'Alakazite', 'Beedrillite', 'Blastoisinite', 'Charizardite X', 'Charizardite Y', 'Gengarite', 
