@@ -70,6 +70,20 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		baseStats: {hp: 80, atk: 100, def: 95, spa: 100, spd: 70, spe: 85},
 		abilities: {0: "Poison Point", 1: "Rain Dish", H: "Merciless"},
 	},
+   vaporeon: {
+      inherit: true,
+      abilities: {0: "Run Away", 1: "Trace", H: "Protean"},
+   },
+   flareon: {
+      inherit: true,
+      baseStats: {hp: 110, atk: 130, def: 60, spa: 65, spd: 65, spe: 95},
+      abilities: {0: "Run Away", 1: "Trace", H: "Protean"},
+   },
+   jolteon: {
+      inherit: true,
+      baseStats: {hp: 65, atk: 65, def: 60, spa: 95, spd: 110, spe: 130},
+      abilities: {0: "Run Away", 1: "Trace", H: "Protean"},
+   },
 // Minor Changes (mostly to prevent unevolved Pokemons in gen 1 to hold Eviolite)
 	golbat: {
 		inherit: true,

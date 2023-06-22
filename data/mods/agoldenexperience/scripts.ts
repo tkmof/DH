@@ -923,6 +923,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'absol').learnset.sacredsword = ['8L1'];
     this.modData('Learnsets', 'absol').learnset.nightdaze = ['8L1'];
     this.modData('Learnsets', 'glalie').learnset.rapidspin = ['8L1'];
+    this.modData('Learnsets', 'glalie').learnset.recover = ['8L1'];
     this.modData('Learnsets', 'walrein').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'walrein').learnset.iciclecrash = ['8L1'];
     this.modData('Learnsets', 'relicanth').learnset.flipturn = ['8L1'];
@@ -1033,6 +1034,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     //gen 5:
     this.modData('Learnsets', 'serperior').learnset.mudshot = ['8L1'];
     this.modData('Learnsets', 'serperior').learnset.hurricane = ['8L1'];
+    this.modData('Learnsets', 'samurott').learnset.workup = ['8L1'];
     this.modData('Learnsets', 'samurotthisui').learnset.flipturn = ['8L1'];
     this.modData('Learnsets', 'watchog').learnset.megakick = ['8L1'];
     this.modData('Learnsets', 'watchog').learnset.glare = ['8L1'];
