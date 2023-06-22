@@ -233,6 +233,10 @@ export const Items: {[k: string]: ModdedItemData} = {
 	seginstarshard: {
 		name: "Segin Star Shard",
 		spritenum: 658,
+		fling: {
+			basePower: 20,
+			status: 'slp',
+		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Revavroom') return false;
 			return true;
@@ -265,6 +269,10 @@ export const Items: {[k: string]: ModdedItemData} = {
 	schedarstarshard: {
 		name: "Schedar Star Shard",
 		spritenum: 658,
+		fling: {
+			basePower: 20,
+			status: 'brn',
+		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Revavroom') return false;
 			return true;
@@ -297,6 +305,10 @@ export const Items: {[k: string]: ModdedItemData} = {
 	navistarshard: {
 		name: "Navi Star Shard",
 		spritenum: 658,
+		fling: {
+			basePower: 20,
+			status: 'psn',
+		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Revavroom') return false;
 			return true;
@@ -329,6 +341,10 @@ export const Items: {[k: string]: ModdedItemData} = {
 	ruchbahstarshard: {
 		name: "Ruchbah Star Shard",
 		spritenum: 658,
+		fling: {
+			basePower: 20,
+			volatilestatus: 'confusion',
+		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Revavroom') return false;
 			return true;
@@ -361,6 +377,10 @@ export const Items: {[k: string]: ModdedItemData} = {
 	caphstarshard: {
 		name: "Caph Star Shard",
 		spritenum: 658,
+		fling: {
+			basePower: 20,
+			status: 'par',
+		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Revavroom') return false;
 			return true;
