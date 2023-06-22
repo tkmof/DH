@@ -2408,10 +2408,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 					if (spikesCleared > 0) {
 						hazardsCleared = 1;
 					}
-					if (rocksCleared > 0 && spikesCleared = 0) {
+					if ((rocksCleared > 0) && (spikesCleared = 0)) {
 						hazardsCleared = 1;
 					}
-					if (rocksCleared > 0 && spikesCleared > 0) {
+					if ((rocksCleared > 0) && (spikesCleared > 0)) {
 						hazardsCleared = 2;
 					}
 					if (hazardsCleared > 0) {
