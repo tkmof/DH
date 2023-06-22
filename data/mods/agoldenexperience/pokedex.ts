@@ -967,6 +967,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	hariyama: {
 		inherit: true,
 		baseStats: {hp: 144, atk: 120, def: 80, spa: 40, spd: 76, spe: 50},
+		abilities: {0: "Thick Fat", 1: "Guts", H: "Sheer Force"}, //Purifying Salt
 	},
 	delcatty: {
 		inherit: true,
@@ -1469,6 +1470,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	glaceon: {
 		inherit: true,
 		abilities: {0: "Snow Cloak", 1: "North Wind", H: "Ice Body"},
+	},
+	mamoswine: {
+		inherit: true,
+		baseStats: {hp: 110, atk: 130, def: 80, spa: 60, spd: 60, spe: 90},
 	},
 	gallade: {//to remove when gen 9
 		inherit: true,
