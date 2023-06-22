@@ -2406,10 +2406,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 						rocksCleared += 1;
 					}
 					if (spikesCleared > 0) {
-						hazardsCleared += 1;
+						hazardsCleared = 1;
 					}
-					if (rocksCleared > 0) {
-						hazardsCleared += 1;
+					if (rocksCleared > 0 && spikesCleared = 0) {
+						hazardsCleared = 1;
+					}
+					if (rocksCleared > 0 && spikesCleared > 0) {
+						hazardsCleared = 2;
 					}
 					if (hazardsCleared > 0) {
 						this.boost({def: hazardsCleared}, pokemon);
