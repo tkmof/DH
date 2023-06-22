@@ -124,6 +124,10 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'slowbro').learnset.shelter = ['8L1'];
 		this.modData('Learnsets', 'slowbrogalar').learnset.shelter = ['8L1'];
 		this.modData('Learnsets', 'sinistea').learnset.shelter = ['8L1'];
+		this.modData('Learnsets', 'kleavor').learnset.stoneaxe = ['8L1'];
+		this.modData('Learnsets', 'klawf').learnset.stoneaxe = ['8L1'];
+		this.modData('Learnsets', 'avalugghisui').learnset.stoneaxe = ['8L1'];
+		this.modData('Learnsets', 'drednaw').learnset.stoneaxe = ['8L1'];
 	},
 	// For Loaded Dice and Rage Fist
 	hitStepMoveHitLoop(targets, pokemon, move) { // Temporary name
