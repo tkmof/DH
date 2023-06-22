@@ -2377,48 +2377,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Steel",
 		contestType: "Tough",
-	}, /* WIP
-	shelter: {
-		num: 842,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		shortDesc: "Removes Spikes and Stealth Rock from the field. +1 Def for every type of hazard cleared.",
-		name: "Shelter",
-		pp: 10,
-		priority: 0,
-		flags: {snatch: 1},
-		onHit(pokemon) {
-			let success = false;
-			let hazardsCleared = 0;
-			const removeAll = ['spikes', 'stealthrock'];
-			const sides = [pokemon.side, ...pokemon.side.foeSidesWithConditions()];
-			for (const side of sides) {
-				for (const sideCondition of removeAll) {
-					if (side.removeSideCondition('spikes')) {
-						this.add('-sideend', side, this.dex.getEffect('spikes'));
-						hazardsCleared += 1;
-						this.boost({def: 1}, pokemon);
-					}
-					if (side.removeSideCondition('stealthrock')) {
-						this.add('-sideend', side, this.dex.getEffect('stealthrock'));
-						hazardsCleared += 1;
-						this.boost({def: 1}, pokemon);
-					}
-					if (hazardsCleared > 0) {
-						success = true;
-					}
-				}
-			}
-		},
-		onPrepareHit(target, source, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Shell Smash", target);
-		},
-		secondary: null,
-		target: "self",
-		type: "Steel",
-	}, */
+	},
 	shelter: {
 		num: 842,
 		accuracy: true,
