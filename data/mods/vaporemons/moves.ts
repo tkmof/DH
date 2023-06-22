@@ -2390,13 +2390,21 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		flags: {snatch: 1},
 		onHit(pokemon) {
 			let success = false;
+			let hazardsCleared = 0;
 			const removeAll = ['spikes', 'stealthrock'];
 			const sides = [pokemon.side, ...pokemon.side.foeSidesWithConditions()];
 			for (const side of sides) {
 				for (const sideCondition of removeAll) {
-					if (side.removeSideCondition(sideCondition)) {
+					if (side.removeSideCondition('spikes')) {
 						this.add('-sideend', side, this.dex.getEffect(sideCondition).name);
-						this.boost({def: 1}, pokemon);
+						hazardsCleared += 1;
+					}
+					if (side.removeSideCondition('stealthrock')) {
+						this.add('-sideend', side, this.dex.getEffect(sideCondition).name);
+						hazardsCleared += 1;
+					}
+					if (hazardsCleared > 0) {
+						this.boost({def: hazardsCleared}, pokemon);
 						success = true;
 					}
 				}
