@@ -2285,7 +2285,7 @@ export const Formats: FormatList = [
 		name: "[Gen 6] TPDP Open",
 		mod: 'tpdp',
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Mega Data Mod'],
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
 		banlist: ['Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
 		],
 		onValidateTeam(team, format) {
@@ -2304,7 +2304,7 @@ export const Formats: FormatList = [
 		name: "[Gen 6] TPDP Netplay",
 		mod: 'tpdp',
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Mega Data Mod', 'Item Clause', '!! Adjust Level = 50'],
+		ruleset: ['Standard GBU', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
 		banlist: ['Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
 		],
 		onValidateTeam(team, format) {
