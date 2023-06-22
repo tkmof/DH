@@ -2203,6 +2203,8 @@ export const Formats: FormatList = [
 		mod: 'tpdp',
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Mega Data Mod'],
+		banlist: ['Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
+		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
