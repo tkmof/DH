@@ -2377,13 +2377,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Steel",
 		contestType: "Tough",
-	},
+	}, /* WIP
 	shelter: {
 		num: 842,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "(Partially bugged) Removes Spikes and Stealth Rock from the field. +1 Def for every type of hazard cleared.",
+		shortDesc: "Removes Spikes and Stealth Rock from the field. +1 Def for every type of hazard cleared.",
 		name: "Shelter",
 		pp: 10,
 		priority: 0,
@@ -2406,6 +2406,38 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 						this.boost({def: 1}, pokemon);
 					}
 					if (hazardsCleared > 0) {
+						success = true;
+					}
+				}
+			}
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shell Smash", target);
+		},
+		secondary: null,
+		target: "self",
+		type: "Steel",
+	}, */
+	shelter: {
+		num: 842,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "(Partially bugged) Removes Spikes and Stealth Rock from the field. +1 Def for every type of hazard cleared.",
+		name: "Shelter",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		onHit(pokemon) {
+			let success = false;
+			const removeAll = ['spikes', 'stealthrock'];
+			const sides = [pokemon.side, ...pokemon.side.foeSidesWithConditions()];
+			for (const side of sides) {
+				for (const sideCondition of removeAll) {
+					if (side.removeSideCondition(sideCondition)) {
+						this.add('-sideend', side, this.dex.getEffect(sideCondition).name);
+						this.boost({def: 1}, pokemon);
 						success = true;
 					}
 				}
