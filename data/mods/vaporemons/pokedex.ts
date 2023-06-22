@@ -1804,7 +1804,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Dark"],
 		gender: "N",
 		baseStats: {hp: 80, atk: 119, def: 90, spa: 54, spd: 67, spe: 90},
-		abilities: {0: "Intmidate"},
+		abilities: {0: "Intimidate"},
 		heightm: 1.8,
 		weightkg: 120,
 		color: "Gray",
