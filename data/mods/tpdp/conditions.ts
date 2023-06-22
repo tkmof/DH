@@ -37,7 +37,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				target.clearStatus('brn');
 				return false;
 			}
-			this.effectState.stage = 0;
+			this.effectData.stage = 0;
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
 				this.add('-status', target, 'brnheavy', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
 			} else {
@@ -45,14 +45,14 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onSwitchIn() {
-			this.effectState.stage = 0;
+			this.effectData.stage = 0;
 		},
 		onResidualOrder: 10,
 		onResidual(pokemon) {
-			if (this.effectState.stage < 15) {
-				this.effectState.stage++;
+			if (this.effectData.stage < 15) {
+				this.effectData.stage++;
 			}
-			this.damage(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectState.stage);
+			this.damage(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectData.stage);
 		},
 	},
 	par: {
@@ -168,16 +168,16 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'stp');
 			}
 			// 1-3 turns
-			this.effectState.startTime = this.random(2, 5);
-			this.effectState.time = this.effectState.startTime;
+			this.effectData.startTime = this.random(2, 5);
+			this.effectData.time = this.effectData.startTime;
 		},
 		onBeforeMovePriority: 10,
 		onBeforeMove(pokemon, target, move) {
 			if (pokemon.hasAbility(['earlybird', 'vigorous'])) {
-				this.effectState.time--;
+				this.statusData.time--;
 			}
-			this.effectState.time--;
-			if (this.effectState.time <= 0) {
+			this.statusData.time--;
+			if (this.statusData.time <= 0) {
 				pokemon.cureStatus('stp');
 				return;
 			}
@@ -263,7 +263,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				target.clearStatus('tox');
 				return false;
 			}
-			this.effectState.stage = 0;
+			this.effectData.stage = 0;
 			if (sourceEffect && sourceEffect.id === 'toxicorb') {
 				this.add('-status', target, 'tox', '[from] item: ' + sourceEffect.name);
 			} else if (sourceEffect && sourceEffect.effectType === 'Ability') {
@@ -273,14 +273,14 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onSwitchIn() {
-			this.effectState.stage = 0;
+			this.effectData.stage = 0;
 		},
 		onResidualOrder: 9,
 		onResidual(pokemon) {
-			if (this.effectState.stage < 15) {
-				this.effectState.stage++;
+			if (this.effectData.stage < 15) {
+				this.effectData.stage++;
 			}
-			this.damage(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectState.stage);
+			this.damage(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectData.stage);
 		},
 	},
 	weak: {
@@ -489,7 +489,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},*/
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
-				if (this.gen <= 5) this.effectState.duration = 0;
+				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Dust Storm', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-weather', 'Dust Storm');
@@ -520,7 +520,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
-				if (this.gen <= 5) this.effectState.duration = 0;
+				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Sunshower', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-weather', 'Sunshower');
@@ -684,7 +684,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
-				if (this.gen <= 5) this.effectState.duration = 0;
+				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'RainDance', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-weather', 'RainDance');
@@ -754,7 +754,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onFieldStart(battle, source, effect) {
 			if (effect?.effectType === 'Ability') {
-				if (this.gen <= 5) this.effectState.duration = 0;
+				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'SunnyDay', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-weather', 'SunnyDay');
@@ -829,7 +829,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
-				if (this.gen <= 5) this.effectState.duration = 0;
+				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Sandstorm', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-weather', 'Sandstorm');
@@ -859,7 +859,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
-				if (this.gen <= 5) this.effectState.duration = 0;
+				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Hail', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-weather', 'Hail');
@@ -895,7 +895,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
-				if (this.gen <= 5) this.effectState.duration = 0;
+				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Snow', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-weather', 'Snow');
@@ -938,7 +938,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'Dynamax',
 		noCopy: true,
 		onStart(pokemon) {
-			this.effectState.turns = 0;
+			this.effectData.turns = 0;
 			pokemon.removeVolatile('minimize');
 			pokemon.removeVolatile('substitute');
 			if (pokemon.volatiles['torment']) {
@@ -977,7 +977,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onResidualPriority: -100,
 		onResidual() {
-			this.effectState.turns++;
+			this.effectData.turns++;
 		},
 		onEnd(pokemon) {
 			this.add('-end', pokemon, 'Dynamax');
