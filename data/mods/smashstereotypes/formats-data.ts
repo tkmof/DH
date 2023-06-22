@@ -464,4 +464,37 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	nihilego: {
 		tier: "SSS",
 	},
+	laveel: {
+		tier: "SSS",
+	},
+	hyperoach: {
+		tier: "SSS",
+	},
+	golurk: {
+		tier: "SSS",
+	},
+	baskiron: {
+		tier: "SSS",
+	},
+	baskironmega: {
+		tier: "SSS",
+	},
+	eelektross: {
+		tier: "SSS",
+	},
+	starietta: {
+		tier: "SSS",
+	},
+	tyranitar: {
+		tier: "SSS",
+	},
+	tyranitarmega: {
+		tier: "SSS",
+	},
+	galldrake: {
+		tier: "SSS",
+	},
+	lugia: {
+		tier: "SSS",
+	},
 };

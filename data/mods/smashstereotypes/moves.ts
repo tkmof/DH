@@ -3236,4 +3236,74 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Fairy",
 	},
+	gutpunch: {
+		num: 100001,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		shortDesc: "For 5 turns, the target is prevented from healing.",
+		name: "Gut Punch",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		onHit(target) {
+			if (target.hp) {
+				target.addVolatile('healblock');
+			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mega Punch", target);
+		},
+		target: "normal",
+		type: "Fighting",
+		contestType: "Clever",
+	},
+	underdog: {
+		num: -18,
+		accuracy: 100,
+		basePower: 60,
+		category: "Physical",
+		name: "Underdog",
+		shortDesc: "BP x2 if target's Atk > user's Atk.",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onBasePower(basePower, source, target, move) {
+			const targetAtk = target.storedStats.atk;
+			const sourceAtk = source.storedStats.atk;
+			if (targetAtk >= sourceAtk) {
+				return this.chainModify(2);
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		zMove: {boost: {spe: 1}},
+		contestType: "Clever",
+	},
+	aeroblastubermons: {
+		num: 177,
+		accuracy: 100,
+		basePower: 120,
+		category: "Special",
+		name: "Aeroblast (Ubermons)",
+		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, distance: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aeroblast", target);
+		},
+		self: {
+			boosts: {
+				def: -1,
+				spd: -1,
+			},
+		},
+		target: "any",
+		type: "Flying",
+		contestType: "Cool",
+	},
 };

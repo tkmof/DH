@@ -10,7 +10,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	venusaurmega: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	venusaurgmax: {
@@ -50,7 +50,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DUU",
 	},
 	blastoisemega: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	blastoisegmax: {
@@ -616,7 +616,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	hypno: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	krabby: {
@@ -643,7 +643,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	electrodehisui: {
 		gen: 8,
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	exeggcute: {
@@ -712,7 +712,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	rhyperior: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	happiny: {
@@ -738,7 +738,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	kangaskhanmega: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	horsea: {
@@ -822,7 +822,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	magmortar: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	pinsir: {
@@ -968,7 +968,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	moltresgalar: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DUU",
 	},
 	dratini: {
@@ -1048,7 +1048,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	furret: {
-		tier: "OU",
+		tier: "NU",
 		doublesTier: "(DUU)",
 	},
 	hoothoot: {
@@ -1635,7 +1635,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	manectricmega: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	plusle: {
@@ -1651,7 +1651,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	volbeatmega: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	illumise: {
@@ -1659,7 +1659,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	illumisemega: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	budew: {
@@ -1897,7 +1897,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	glaliemega: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	froslass: {
@@ -2030,7 +2030,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DUber",
 	},
 	deoxysdefense: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	deoxysspeed: {
@@ -2342,7 +2342,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	regigigas: {
-		tier: "(PU)",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	giratina: {
@@ -2474,7 +2474,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	emboar: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DUU",
 	},
 	emboargalar: {
@@ -3079,7 +3079,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DUber",
 	},
 	landorus: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	landorustherian: {
@@ -3107,7 +3107,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	meloetta: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	meloettapirouette: {
@@ -3155,11 +3155,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	delphox: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	delphoxmega: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	froakie: {
@@ -3236,7 +3236,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	gogoat: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	pancham: {
@@ -3708,7 +3708,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	palossand: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	pyukumuku: {
@@ -3723,11 +3723,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	silvallybug: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	silvallydark: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	silvallydragon: {
@@ -3743,11 +3743,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	silvallyfighting: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	silvallyfire: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	silvallyflying: {
@@ -3759,11 +3759,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	silvallygrass: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	silvallyground: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	silvallyice: {
@@ -3779,7 +3779,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	silvallyrock: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	silvallysteel: {
@@ -3787,7 +3787,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	silvallywater: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	minior: {
@@ -3891,7 +3891,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	buzzwole: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	pheromosa: {
@@ -3958,7 +3958,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	zeraora: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	meltan: {
@@ -4140,7 +4140,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	barraskewda: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	toxel: {
@@ -4395,7 +4395,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	wyrdeer: {
 		gen: 8,
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	kleavor: {
@@ -4468,7 +4468,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	quaquaval: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DUU",
 		//natDexTier: "UU",
 	},
@@ -4547,12 +4547,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		//natDexTier: "Uber",
 	},
 	irontreads: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 		//natDexTier: "UU",
 	},
 	ironmoth: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DUU",
 		//natDexTier: "UU",
 	},
@@ -4616,6 +4616,14 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 		doublesTier: "DUU",
 		//natDexTier: "OU",
+	},
+	greavard: {
+		tier: "LC",
+	},
+	houndstone: {
+		tier: "OU",
+		doublesTier: "DUU",
+		// natDexTier: "UU",
 	},
 	pawmi: {
 		tier: "LC",
@@ -4698,7 +4706,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	admistral: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	magthief: {
@@ -4720,11 +4728,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	jaboraishi: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	mosquitox: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	normear: {
@@ -4756,25 +4764,25 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
         tier: "LC",
     },
 	dauvifar: {
-        tier: "OU",
+        tier: "UU",
         doublesTier: "DOU",
     },
 	girafatak: { 
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	girafataknocturnal: {
 		
 	},
 	sylvardian: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	scarpent: {
 		tier: "LC",
 	},
 	terreptile: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	terreptilemega: {
@@ -4785,7 +4793,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	rockster: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	rockstermega: {
@@ -4796,11 +4804,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	albirat: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	wizamadol: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	mystao: {
@@ -4818,7 +4826,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	dracoalt: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	incinemate: {
@@ -4828,7 +4836,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	drinferno: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	hydrookie: {
@@ -4838,14 +4846,14 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	medidragon: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	houndourgalar: {
 		tier: "LC",
 	},
 	baskiron: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	baskironmega: {
@@ -4868,7 +4876,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	snobawcus: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	noibatsinnoh: {
@@ -4885,15 +4893,15 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	leechuption: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},	
 	delistmas: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	jhex: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	maaltis: {
@@ -4904,23 +4912,23 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	goldiorno: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	slendawful: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	berkslash: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
-	straightasani: {
-		tier: "OU",
-		doublesTier: "DOU",
-	},
+	// straightasani: {
+	// 	tier: "OU",
+	// 	doublesTier: "DOU",
+	// },
 	nopainnogain: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	bubblure: {
@@ -4946,7 +4954,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	magroach: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	parafgufa: {
@@ -4954,7 +4962,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	infarmatem: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	infarmatemmega: {
@@ -4974,7 +4982,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	raticket: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 //unavailable

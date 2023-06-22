@@ -1,4 +1,30 @@
 export const Moves: {[k: string]: ModdedMoveData} = {
+	//Undexit moves
+	hyperspacefury: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	hyperspacehole: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	icehammer: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	judgment: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	relicsong: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	revelationdance: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	
 	hail: {
 		inherit: true,
 		isNonstandard: true,
@@ -773,8 +799,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
-		onModifyMove(move) {
-			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
 				move.accuracy = true;
 			}
 		},
@@ -801,8 +827,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
-		onModifyMove(move) {
-			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
 				move.accuracy = true;
 			}
 		},
@@ -850,8 +876,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, wind: 1},
-		onModifyMove(move) {
-			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
 				move.accuracy = true;
 			}
 		},

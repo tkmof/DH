@@ -1074,4 +1074,41 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3,
 		num: 1003,
 	},
+"ironfistviabilities": {
+  shortDesc: "This Pokemon's punch-based attacks are SE against Fairy-types.",
+  onSourceEffectiveness(move, typeMod, type, pokemon) {
+    if (type == 'Fairy' && move.flags['punch']) {
+      return typeMod > 0 ? typeMod + 1 : 1;
+    } else if (typeMod < 0 && pokemon.hasType('Fairy')) {
+      return 0;
+    }
+  }, 
+  name: "Iron Fist (ViAbilities)",
+  rating: 3,
+  num: 89,     
+},
+	klutzviabilities: {
+		desc: "The user's contact moves will remove the opponent's items, but it will lose its own item upon being hit by any attack.",
+		shortDesc: "Removes Item when making contact, loses Item when receiving contact.",
+		onAfterMoveSecondary(target, source, move) { // inspired to Knock Off
+			if (target !== source && move.flags['contact'] && source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Knock Off', '[of] ' + source);
+				}
+			}
+		},
+		onDamagingHit(damage, target, source, move) { // inspired to Pickpocket
+			if (target !== source && move.flags['contact'] && source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Knock Off', '[of] ' + source);
+				}
+			}
+		},
+		id: "klutzviabilities",
+		name: "Klutz (ViAbilities)",
+		rating: -1,
+		num: 103,
+	},
 };

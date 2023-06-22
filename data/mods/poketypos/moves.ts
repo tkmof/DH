@@ -1827,6 +1827,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Physical",
 		name: "Kowtow Cleave",
 		shortDesc: "This move does not check accuracy.",
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Night Slash", target);
+		},
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},

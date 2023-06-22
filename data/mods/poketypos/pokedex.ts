@@ -7,7 +7,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	  	abilities: {0: "Water Veil", H: "Water Bubble"},
 	  	weightkg: 41,
    },
-   starizard: {
+	starizard: {
       num: 2,
       name: "Starizard",
 		types: ["Psychic", "Dragon"],
@@ -214,7 +214,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Technician", 1: "Rattled", H: "Swift Swim"},
 		weightkg: 5.4,
 	},
-   nabscar: {
+    nabscar: {
       num: 28,
       name: "Nabscar",
       types: ["Steel", "Dark"],
@@ -222,28 +222,28 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       abilities: {0: "White Smoke", H: "Screen Cleaner"},
       weightkg: 350,
    },
-   kabluxie: {
+    kabluxie: {
       num: 29,
       name: "Kabluxie",
       types: ["Fire", "Fighting"],
       baseStats: {hp: 95, atk: 115, def: 120, spa: 65, spd: 120, spe: 65},
       abilities: {0: "Levitate"},
    },
-   deoxin: {
+    deoxin: {
       num: 30,
       name: "Deoxin",
       types: ["Poison"],
       baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
       abilities: {0: "Poison Touch"},
    },
-   mirroar: {
+    mirroar: {
       num: 31,
       name: "Mirroar",
       types: ["Normal", "Ghost"],
       baseStats: {hp: 56, atk: 58, def: 136, spa: 109, spd: 112, spe: 36},
       abilities: {0: "Mirror Armor", 1: "Unnerve", H: "Magic Bounce"},
    },
-   sparkeops: {
+    sparkeops: {
       num: 32,
       name: "Sparkeops",
       types: ["Flying", "Electric"],
@@ -251,32 +251,54 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       abilities: {0: "Volt Absorb", H: "Rocky Payload"},
 	   weightkg: 11,
    },
-   mielmetal: {
+    mielmetal: {
       num: 33,
       name: "Mielmetal",
       types: ["Bug", "Steel"],
       baseStats: {hp: 105, atk: 115, def: 95, spa: 95, spd: 95, spe: 95},
       abilities: {0: "Honey Gather", H: "Honey Fists"},
    },
-   abomarang: {
+    abomarang: {
       num: 34,
       name: "Abomarang",
       types: ["Normal", "Ground"],
       baseStats: {hp: 95, atk: 112, def: 85, spa: 67, spd: 75, spe: 60},
       abilities: {0: "Technician", H: "Sand Stream"},
    },
-   zapoark: {
+    zapoark: {
       num: 35, 
       name: "Zapoark",
       types: ["Electric", "Fighting"],
       baseStats: {hp: 85, atk: 50, def: 70, spa: 120, spd: 95, spe: 90},
       abilities: {0: "Electric Surge"},
    },
-   graceon: {
+    graceon: {
       num: 36,
       name: "Graceon",
       types: ["Psychic", "Fairy"],
       baseStats: {hp: 75, atk: 65, def: 60, spa: 120, spd: 120, spe: 85},
       abilities: {0: "Natural Cure", H: "Serene Grace"},
+   },
+    dragsire: {
+      num: 37,
+      name: "Dragsire",
+      types: ["Dragon"],
+      baseStats: {hp: 95, atk: 25, def: 80, spa: 105, spd: 95, spe: 25},
+      abilities: {0: "Rough Skin", 1: "Regenerator", H: "Unaware"},
+   },
+    rotox: {
+      num: 38,
+      name: "Rotox",
+      types: ["Poison", "Dark"],
+      baseStats: {hp: 50, atk: 125, def: 92, spa: 55, spd: 92, spe: 106},
+      abilities: {0: "Unburden", H: "Moxie"},
+	    weightkg: 102.5,
+   },
+    condorus: {
+      num: 39,
+      name: "Condorus",
+      types: ["Poison", "Flying"],
+      baseStats: {hp: 84, atk: 125, def: 80, spa: 125, spd: 80, spe: 106},
+      abilities: {0: "Keen Eye", 1: "Merciless", H: "Sand Rush"},
    },
 };

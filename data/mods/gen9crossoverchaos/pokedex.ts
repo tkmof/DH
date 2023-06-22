@@ -6,7 +6,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 70, atk: 115, def: 71, spa: 68, spd: 94, spe: 117},
 		abilities: {0: "Overgrow", H: "Regenerator"},
 	},
-		kingdedede: {
+	kingdedede: {
 		num: 2,
 		name: "King Dedede",
     	baseForme: "King",
@@ -84,7 +84,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Olympia",
 		types: ["Fighting", "Rock"],
 		baseStats: {hp: 85, atk: 120, def: 99, spa: 55, spd: 76, spe: 100},
-		abilities: {0: "Inner Focus", 1: "Guts", H: "Crystallise"},
+		abilities: {0: "Inner Focus", 1: "Guts", H: "Crystallize"},
 	},
 	gravelordlych: {
 		num: 1012,
@@ -169,4 +169,28 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 85, atk: 130, def: 100, spa: 65, spd: 65, spe: 75},
 		abilities: {0: "Compound Eyes", H: "Call of Darkness"},
 	},
+	wrigglenightbugaltered: {
+		num: 1001,
+		name: "Wriggle Nightbug-Altered",
+		baseSpecies: "Wriggle Nightbug",
+		forme: "Altered",
+		types: ["Bug", "Fire"],
+		baseStats: {hp: 80, atk: 125, def: 70, spa: 88, spd: 72, spe: 135},
+		abilities: {0: "Color Filter", H: "Blackout Curtain"},
+	},
+	maskedman: {
+		num: 1002,
+		name: "Masked Man",
+		types: ["Electric", "Psychic"],
+		baseStats: {hp: 70, atk: 110, def: 105, spa: 110, spd: 90, spe: 80},
+		abilities: {0: "Sharpness", 1: "Screen Cleaner", H: "Lightning Rod"},
+	},
+	jackfrost: {
+		num: 1003,
+		name: "Jack Frost",
+		types: ["Ice", "Ghost"],
+		baseStats: {hp: 70, atk: 88, def: 54, spa: 112, spd: 75, spe: 105},
+		abilities: {0: "Slush Rush", 1: "Prankster", H: "Frigid Bloodline"},
+	},
+
 };
