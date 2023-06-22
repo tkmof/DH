@@ -47,6 +47,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Haze", target);
+		},
 		onHit(target) {
 			for (const pokemon of this.getAllPokemon()) {
 				pokemon.clearBoosts();
@@ -68,6 +72,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Soak", target);
+		},
 		status: ['psn', 'fear'],
 		// Class: EN
 		// Effect Chance: 100
@@ -84,6 +92,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Seismic Toss", target);
+		},
 		damage: 'level',
 		// Class: BU
 		// Effect Chance: 100
@@ -100,6 +112,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: -6,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Whirlwind", target);
+		},
 		forceSwitch: true,
 		// Class: BU
 		// Effect Chance: 100
@@ -116,6 +132,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psyshock", target);
+		},
 		overrideDefensiveStat: 'def',
 		// Class: 2
 		// Effect Chance: 100
@@ -132,6 +152,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -169,6 +193,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Yawn", target);
+		},
 		volatileStatus: 'amnesia',
 		onTryHit(target) {
 			if (target.hasStatus() || !target.runStatusImmunity('stp')) {
@@ -202,6 +230,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash", target);
+		},
 		secondary: {
 			chance: 20,
 			boosts: {accuracy: -1}
@@ -221,6 +253,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Apple Acid", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -237,6 +273,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Water Spout", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.hp === pokemon.baseMaxhp) {
 				return 150;
@@ -258,6 +298,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aqua Jet", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -273,6 +317,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1, javelin: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Liquidation", target);
+		},
 		secondary: {
 			chance: 20,
 			boosts: {spe: -1}
@@ -292,6 +340,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {recharge: 1, protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hydro Cannon", target);
+		},
 		self: {
 			volatileStatus: 'mustrecharge',
 		},
@@ -310,6 +362,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aqua Jet", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -325,6 +381,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Soak", target);
+		},
 		onHit(target) {
 			if (target.getTypes().join() === 'Water' || !target.setType('Water')) {
 				this.add('-fail', target);
@@ -347,6 +407,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash", target);
+		},
 		self: {
 			boosts: {spa: -2}
 		},
@@ -365,6 +429,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Iron Head", target);
+		},
 		secondary: {
 			chance: 10,
 			volatileStatus: 'flinch'
@@ -384,6 +452,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Eerie Impulse", target);
+		},
 		self: {
 			boosts: {
 				atk: -2
@@ -404,6 +476,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Drain Punch", target);
+		},
 		drain: [1, 2]
 		// Class: 2
 		// Effect Chance: 100
@@ -420,6 +496,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Drain Punch", target);
+		},
 		drain: [1, 2]
 		// Class: BU
 		// Effect Chance: 100
@@ -436,6 +516,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Heat Wave", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -457,6 +541,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Karate Chop", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -472,6 +560,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Baton Pass", target);
+		},
 		onHit(target) {
 			if (!this.canSwitch(target.side)) {
 				this.attrLastMove('[still]');
@@ -500,6 +592,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dark Pulse", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -521,6 +617,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Iron Defense", target);
+		},
 		self: {
 			boosts: {
 				spd: 1,
@@ -538,6 +638,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Swords Dance", target);
+		},
 		boosts: {atk: 1, def: 1, accuracy: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -554,6 +658,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mean Look", target);
+		},
 		status: 'fear'
 		// Class: EN
 		// Effect Chance: 100
@@ -570,6 +678,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Screech", target);
+		},
 		boosts: {spd: -1}
 		// Class: EN
 		// Effect Chance: 100
@@ -586,6 +698,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 70,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spore", target);
+		},
 		status: 'stp',
 		onTryHit(source, target, move) {
 			if (target.hasType('Nature')) {
@@ -608,6 +724,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sticky Web", target);
+		},
 		sideCondition: 'bindtrap',
 		condition: {
 			onSideStart(side) {
@@ -634,6 +754,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dark Void", target);
+		},
 		onHit(target, source, move) {
 			if (target.addVolatile('trapped', source, move, 'trapper')) {
 				source.addVolatile('blackhole');
@@ -662,6 +786,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Throat Chop", target);
+		},
 		secondaries: [
 			{
 				chance: 30,
@@ -683,6 +811,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 50,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fire Lash", target);
+		},
 		status: 'brn'
 		// Class: BU
 		// Effect Chance: 1000
@@ -699,6 +831,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Inferno", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -720,6 +856,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Pursuit", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (this.queue.willMove(target) || target.beingCalledBack || target.switchFlag) {
 				return move.basePower * 2;
@@ -774,6 +914,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hurricane", target);
+		},
 		secondary: {
 			chance: 10,
 			volatileStatus: 'flinch'
@@ -793,6 +937,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Facade", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.hasStatus()) {
 				this.debug('BP doubled from status condition');
@@ -812,6 +960,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -6,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Roar", target);
+		},
 		forceSwitch: true,
 		// Class: EN
 		// Effect Chance: 100
@@ -828,6 +980,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hypnosis", target);
+		},
 		status: 'stp',
 		// Class: EN
 		// Effect Chance: 100
@@ -844,6 +1000,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 		recoil: [1, 3],
 		// Class: BU
 		// Effect Chance: 100
@@ -860,6 +1020,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Focus Blast", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -875,6 +1039,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Clangorous Soul", target);
+		},
 		self: {
 			boosts: {spa: 2}
 		},
@@ -893,6 +1061,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Brick Break", target);
+		},
 		onTryHit(pokemon) {
 			pokemon.side.removeSideCondition('fieldprotect');
 			pokemon.side.removeSideCondition('fieldbarrier');
@@ -909,6 +1081,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fire Punch", target);
+		},
 		critRatio: 1,
 		secondaries: [
 			{
@@ -931,6 +1107,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ingrain", target);
+		},
 		volatileStatus: 'butterflysflit',
 		condition: {
 			onStart(pokemon) {
@@ -956,6 +1136,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Destiny Bond", target);
+		},
 		volatileStatus: 'callofthedead',
 		onPrepareHit(pokemon) {
 			return !pokemon.removeVolatile('callofthedead');
@@ -996,6 +1180,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Camouflage", target);
+		},
 		boosts: {evasion: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -1012,6 +1200,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {recharge: 1, protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fissure", target);
+		},
 		self: {
 			volatileStatus: 'mustrecharge',
 		},
@@ -1030,6 +1222,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Focus Blast", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -1051,6 +1247,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "U-Turn", target);
+		},
 		selfSwitch: true,
 		// Class: BU
 		// Effect Chance: 100
@@ -1067,6 +1267,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Parabolic Charge", target);
+		},
 		drain: [1, 2]
 		// Class: 2
 		// Effect Chance: 100
@@ -1083,6 +1287,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: -6,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Circle Throw", target);
+		},
 		forceSwitch: true,
 		// Class: BU
 		// Effect Chance: 100
@@ -1099,6 +1307,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Shade", target);
+		},
 		damage: 'level',
 		// Class: 2
 		// Effect Chance: 100
@@ -1115,6 +1327,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Helping Hand", target);
+		},
 		boosts: {spd: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -1131,6 +1347,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash Cannon", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -1152,6 +1372,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Disable", target);
+		},
 		volatileStatus: 'claim',
 		condition: {
 			noCopy: true,
@@ -1177,6 +1401,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Meteor Mash", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			switch (target.getWeight()) {
 				case 0:
@@ -1207,6 +1435,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Curse", target);
+		},
 		boosts: {atk: 1, def: 1, spe: -1}
 		// Class: EN
 		// Effect Chance: 100
@@ -1223,6 +1455,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 80,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scald", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -1244,6 +1480,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aura Sphere", target);
+		},
 		secondary: {
 			chance: 20,
 			volatileStatus: 'flinch'
@@ -1263,6 +1503,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bind", target);
+		},
 		status: "par"
 	},
 	conflagration: {
@@ -1276,6 +1520,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flare Blitz", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			let costDiff = pokemon.getWeight() - target.getWeight();
 			switch (costDiff) {
@@ -1305,6 +1553,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poison Gas", target);
+		},
 		status: 'psn'
 		// Class: EN
 		// Effect Chance: 100
@@ -1321,6 +1573,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {heal: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rest", target);
+		},
 		onTry(source) {
 			if (source.hasStatus('stp') || source.hasAbility('comatose'))
 				return false;
@@ -1354,6 +1610,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power-up Punch", target);
+		},
 		secondaries: [
 			{
 				chance: 70,
@@ -1377,6 +1637,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Torment", target);
+		},
 		status: ['psn', 'dark']
 		// Class: EN
 		// Effect Chance: 100
@@ -1393,6 +1657,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Skill Swap", target);
+		},
 		onHit(target, source, move) {
 			let targetAbility = target.ability;
 			let sourceAbility = source.ability;
@@ -1414,6 +1682,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: -5,
 		flags: {protect: 1, contact: 1, counter: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Counter", target);
+		},
 		damageCallback(pokemon) {
 			if (!pokemon.volatiles['counter']) return 0;
 			return pokemon.volatiles['counter'].damage || 1;
@@ -1441,6 +1713,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hammer Arm", target);
+		},
 		self: {
 			boosts: {spe: -1}
 		}
@@ -1459,6 +1735,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spirit Shackle", target);
+		},
 		secondary: {
 			chance: 30,
 			status: 'par'
@@ -1478,6 +1758,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double Hit", target);
+		},
 		multihit: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -1494,6 +1778,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Pain Split", target);
+		},
 		onHit(target, pokemon) {
 			const targetHP = target.getUndynamaxedHP();
 			const averagehp = Math.floor((targetHP + pokemon.hp) / 2) || 1;
@@ -1518,6 +1806,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
+		},
 		secondaries: [
 			{
 				chance: 50,
@@ -1539,6 +1831,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sacred Sword", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -1555,6 +1851,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Silver Wind", target);
+		},
 		secondary: {
 			chance: 10,
 			self: {
@@ -1576,6 +1876,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thrash", target);
+		},
 		self: {
 			volatileStatus: 'lockedmove',
 		},
@@ -1599,6 +1903,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Boomburst", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -1614,6 +1922,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spirit Shackle", target);
+		},
 		multihit: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -1630,6 +1942,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rollout", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -1651,6 +1967,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Feint Attack", target);
+		},
 		multihit: [2, 5]
 		// Class: 2
 		// Effect Chance: 100
@@ -1667,6 +1987,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Nasty Plot", target);
+		},
 		boosts: {atk: 1, def: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -1683,6 +2007,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -1698,6 +2026,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rollout", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (target?.moveSlots) {
 				for (const moveSlot of target?.moveSlots) {
@@ -1739,6 +2071,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dark Pulse", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -1760,6 +2096,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Revelation Dance", target);
+		},
 		self: {
 			volatileStatus: 'lockedmove',
 		},
@@ -1783,6 +2123,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double Team", target);
+		},
 		boosts: {evasion: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -1799,6 +2143,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Reversal", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 		    const bp = [200, 150, 100, 80, 40];
 			if (pokemon.hp === 1)
@@ -1829,6 +2177,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Parting Shot", target);
+		},
 		boosts: {atk: -1, spa: -1},
 		selfSwitch: true
 		// Class: EN
@@ -1846,6 +2198,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {recharge: 1, protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Blast Burn", target);
+		},
 		self: {
 			volatileStatus: 'mustrecharge',
 		},
@@ -1864,6 +2220,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Barrage", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -1879,6 +2239,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Solar Beam", target);
+		},
 		onTryMove(attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
@@ -1910,6 +2274,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge", target);
+		},
 		onHit(target, source, move) {
 			target.clearBoosts();
 		},
@@ -1928,6 +2296,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash", target);
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch'
@@ -1947,6 +2319,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Earth Power", target);
+		},
 		onBasePower(relayVar, source, target, move) {
 			if (this.field.terrain) {
 				return move.basePower * 2;
@@ -1971,6 +2347,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Boomburst", target);
+		},
 		self: {
 			boosts: {atk: -1, def: 1}
 		}
@@ -1989,6 +2369,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Prismatic Laser", target);
+		},
 		secondary: {
 			chance: 20,
 			volatileStatus: 'flinch'
@@ -2008,6 +2392,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: -4,
 		flags: {protect: 1, counter: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Revenge", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.volatiles['counter'].damage)
 				return move.basePower * 2;
@@ -2035,6 +2423,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Reversal", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 		    const bp = [200, 150, 100, 80, 40];
 			if (pokemon.hp === 1)
@@ -2065,6 +2457,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Bomb", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -2086,6 +2482,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Explosion", target);
+		},
 		onHit(target, source, move) {
 			target.damage(source.hp, source, move);
 			source.faint();
@@ -2105,6 +2505,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 50,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunder", target);
+		},
 		status: 'par'
 		// Class: 2
 		// Effect Chance: 1000
@@ -2121,6 +2525,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 1,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Reflect Type", target);
+		},
 		onHit(target, source, move) {
 			source.setType(target.types);
 			this.add('-start', source, 'typechange', source.getTypes().join('/'), '[from] move: Doppelganger');
@@ -2140,6 +2548,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Leech Seed", target);
+		},
 		volatileStatus: 'drainseed',
 		condition: {
 			onStart(target) {
@@ -2175,6 +2587,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Water Sport", target);
+		},
 		status: "weak"
 	},
 	dustbomb: {
@@ -2188,6 +2604,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mud Shot", target);
+		},
 		secondary: {
 			chance: 30,
 			status: 'psn'
@@ -2207,6 +2627,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sand Attack", target);
+		},
 		secondary: {
 			chance: 30,
 			boosts: {accuracy: -1}
@@ -2226,6 +2650,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sand Tomb", target);
+		},
 		volatileStatus: 'partiallytrapped'
 		// Class: BU
 		// Effect Chance: 100
@@ -2242,6 +2670,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -2257,6 +2689,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Earth Power", target);
+		},
 		secondary: {
 			chance: 10,
 			boosts: {accuracy: -1}
@@ -2276,6 +2712,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Terrain Pulse", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (this.field.terrain) {
 				switch (this.field.terrain) {
@@ -2306,6 +2746,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Terrain Pulse", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (this.field.terrain) {
 				switch (this.field.terrain) {
@@ -2336,6 +2780,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Soak", target);
+		},
 		boosts: {spe: -2}
 		// Class: EN
 		// Effect Chance: 100
@@ -2352,6 +2800,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -2367,6 +2819,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Topsy-Turvy", target);
+		},
 		volatileStatus: 'elementreverse',
 		condition: {
 			noCopy: true,
@@ -2392,6 +2848,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Encore", target);
+		},
 		volatileStatus: 'encourage',
 		condition: {
 			duration: 3,
@@ -2455,6 +2915,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Synthesis", target);
+		},
 		drain: [1, 2]
 		// Class: 2
 		// Effect Chance: 100
@@ -2471,6 +2935,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunderbolt", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -2492,6 +2960,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psychic", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -2513,6 +2985,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Reflect", target);
+		},
 		onHit(target, source, move) {
 			target.side.addSideCondition('fieldprotect');
 			target.side.addSideCondition('fieldbarrier');
@@ -2534,6 +3010,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thousand Arrows", target);
+		},
 		secondary: {
 			chance: 10,
 			volatileStatus: 'flinch'
@@ -2553,6 +3033,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flare Blitz", target);
+		},
 		secondaries: [
 			{
 				chance: 30,
@@ -2574,6 +3058,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 50,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dynamic Punch", target);
+		},
 		volatileStatus: 'confusion'
 		// Class: BU
 		// Effect Chance: 1000
@@ -2590,6 +3078,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mean Look", target);
+		},
 		status: ['brn', 'fear']
 		// Class: EN
 		// Effect Chance: 100
@@ -2606,6 +3098,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mean Look", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -2622,6 +3118,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -6,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Teleport", target);
+		},
 		selfSwitch: true,
 		// Class: EN
 		// Effect Chance: 100
@@ -2638,6 +3138,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Quiver Dance", target);
+		},
 		boosts: {spa: 1, spd: 1, spe: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -2654,6 +3158,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thief", target);
+		},
 		onAfterHit(target, source, move) {
 			if (source.item || source.volatiles['gem']) {
 				return;
@@ -2686,6 +3194,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 4,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Endure", target);
+		},
 		volatileStatus: 'falsecourage',
 		onPrepareHit(pokemon) {
 			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
@@ -2721,6 +3233,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -2736,6 +3252,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double Team", target);
+		},
 		boosts: {evasion: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -2752,6 +3272,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Cutter", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -2767,6 +3291,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Light Screen", target);
+		},
 		sideCondition: 'fieldbarrier',
 		condition: {
 			duration: 5,
@@ -2806,6 +3334,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psybeam", target);
+		},
 		onTryHit(pokemon) {
 			pokemon.side.removeSideCondition('fieldprotect');
 			pokemon.side.removeSideCondition('fieldbarrier');
@@ -2825,6 +3357,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Reflect", target);
+		},
 		sideCondition: 'fieldprotect',
 		condition: {
 			duration: 5,
@@ -2864,6 +3400,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 4,
 		flags: {bypasssub: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Court Change", target);
+		},
 		onHit(target, source, move) {
 			const movedConditions = ['fieldprotect', 'fieldbarrier', 'luckyrainbow', 'magicbarrier'];
 			let success: string[][] = [];
@@ -2910,6 +3450,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flamethrower", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -2931,6 +3475,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -2946,6 +3494,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Explosion", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.hasType('Void')) {
 				return move.basePower * 1.5; //TODO - Find the actual multiplier
@@ -2980,6 +3532,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1, javelin: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fire Lash", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -3001,6 +3557,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -3016,6 +3576,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Incinerate", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (target.item) {
 				return move.basePower * 1.5;
@@ -3040,6 +3604,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Magma Storm", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -3061,6 +3629,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 75,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fire Spin", target);
+		},
 		volatileStatus: 'partiallytrapped'
 		// Class: 2
 		// Effect Chance: 100
@@ -3077,6 +3649,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flamethrower", target);
+		},
 		volatileStatus: 'partiallytrapped'
 		// Class: 2
 		// Effect Chance: 100
@@ -3093,6 +3669,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Skull Bash", target);
+		},
 		onTryMove(attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
@@ -3120,6 +3700,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Recover", target);
+		},
 		heal: [1, 2]
 		// Class: EN
 		// Effect Chance: 100
@@ -3136,6 +3720,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flame Wheel", target);
+		},
 		secondaries: [
 			{
 				chance: 20,
@@ -3157,6 +3745,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flame Burst", target);
+		},
 		secondary: {
 			chance: 50,
 			self: {
@@ -3178,6 +3770,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flame Burst", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -3199,6 +3795,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash", target);
+		},
 		volatileStatus: 'confusion'
 		// Class: EN
 		// Effect Chance: 100
@@ -3215,6 +3815,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Waterfall", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -3231,6 +3835,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flamethrower", target);
+		},
 		secondaries: [
 			{
 				chance: 30,
@@ -3252,6 +3860,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Petal Dance", target);
+		},
 		secondaries: [
 			{
 				chance: 30,
@@ -3273,6 +3885,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Brave Bird", target);
+		},
 		secondary: {
 			chance: 10,
 			volatileStatus: 'flinch'
@@ -3292,6 +3908,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bubble Beam", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -3307,6 +3927,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Curse", target);
+		},
 		boosts: {atk: 1, def: 1, spe: -1}
 		// Class: EN
 		// Effect Chance: 100
@@ -3323,6 +3947,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Curse", target);
+		},
 		boosts: {atk: 1, accuracy: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -3339,6 +3967,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Brave Bird", target);
+		},
 		recoil: [1, 3],
 		// Class: BU
 		// Effect Chance: 100
@@ -3355,6 +3987,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 4,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Protect", target);
+		},
 		onTryHit(source, target, move) {
 			if (target.removeVolatile('forceshield')) {
 				this.add('-fail', source);
@@ -3383,6 +4019,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Me First", target);
+		},
 		onTryHit(source, target, move) {
 			let targetAction = this.queue.willMove(target);
 			if (!targetAction || (targetAction && targetAction.move.category === "Status")) {
@@ -3419,6 +4059,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aromatherapy", target);
+		},
 		onHit(target, source, move) {
 			for (const pokemon of target.side.activeTeam()) {
 				pokemon.clearStatus();
@@ -3439,6 +4083,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Storm Throw", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -3455,6 +4103,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aqua Ring", target);
+		},
 		volatileStatus: 'fountainoflife',
 		condition: {
 			onStart(pokemon) {
@@ -3483,6 +4135,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 	},
 	frostedge: {
 		name: "Frost Edge",
@@ -3495,6 +4151,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ice Beam", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -3516,6 +4176,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Blizzard", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -3531,6 +4195,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 80,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Head Smash", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 52
@@ -3546,6 +4214,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Meditate", target);
+		},
 		boosts: {atk: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -3562,6 +4234,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sky Attack", target);
+		},
 		critRatio: 2,
 		onTryMove(attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
@@ -3589,6 +4265,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Steam Eruption", target);
+		},
 		willCrit: true
 		// Class: BU
 		// Effect Chance: 1000
@@ -3605,6 +4285,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Curse", target);
+		},
 		volatileStatus: 'ghostchase',
 		condition: {
 			noCopy: true,
@@ -3633,6 +4317,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Astonish", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'flinch',
@@ -3652,6 +4340,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Ball", target);
+		},
 		secondary: {
 			chance: 30,
 			status: 'fear'
@@ -3671,6 +4363,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Boomburst", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -3692,6 +4388,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 50,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psystrike", target);
+		},
 		volatileStatus: 'confusion'
 		// Class: 2
 		// Effect Chance: 1000
@@ -3708,6 +4408,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bone Rush", target);
+		},
 		multihit: [2, 5]
 		// Class: BU
 		// Effect Chance: 100
@@ -3724,6 +4428,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Acupressure", target);
+		},
 		onHit(target) {
 			const stats: BoostID[] = [];
 			let stat: BoostID;
@@ -3756,6 +4464,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 75,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mean Look", target);
+		},
 		status: 'stp',
 		// Class: EN
 		// Effect Chance: 100
@@ -3772,6 +4484,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Synthesis", target);
+		},
 		heal: [1, 2]
 		// Class: EN
 		// Effect Chance: 100
@@ -3788,6 +4504,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1, javelin: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Grassy Glide", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'weak',
@@ -3807,6 +4527,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wring Out", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (target.hp === target.maxhp) {
 				return 120;
@@ -3828,6 +4552,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunderbolt", target);
+		},
 		secondary: {
 			chance: 20,
 			status: 'par'
@@ -3847,6 +4575,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Twister", target);
+		},
 		volatileStatus: 'partiallytrapped'
 		// Class: 2
 		// Effect Chance: 100
@@ -3863,6 +4595,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Guard Split", target);
+		},
 		onHit(target, source) {
 			const newdef = Math.floor((target.storedStats.def + source.storedStats.def) / 2);
 			target.storedStats.def = newdef;
@@ -3887,6 +4623,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Guard Swap", target);
+		},
 		onHit(target, source) {
 			const targetBoosts: SparseBoostsTable = {};
 			const sourceBoosts: SparseBoostsTable = {};
@@ -3917,6 +4657,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Weather Ball", target);
+		},
 		secondary: {
 			chance: 10,
 			volatileStatus: 'flinch',
@@ -3933,6 +4677,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Laser Focus", target);
+		},
 		volatileStatus: 'hachimansblessing',
 		condition: {
 			onStart(target, source, effect) {
@@ -3957,6 +4705,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Synchronoise", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -3972,6 +4724,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hammer Arm", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -3993,6 +4749,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Magnet Bomb", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -4009,6 +4769,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Haze", target);
+		},
 		boosts: {atk: -1}
 		// Class: EN
 		// Effect Chance: 100
@@ -4025,6 +4789,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Close Combat", target);
+		},
 		self: {
 			boosts: {atk: -1, spa: -1}
 		}
@@ -4043,6 +4811,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Weather Ball", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (this.field.weather) {
 				switch (this.field.weather) {
@@ -4073,6 +4845,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Weather Ball", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (this.field.weather) {
 				switch (this.field.weather) {
@@ -4103,6 +4879,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Whirlpool", target);
+		},
 		volatileStatus: 'partiallytrapped'
 		// Class: 2
 		// Effect Chance: 100
@@ -4119,6 +4899,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Electrify", target);
+		},
 		volatileStatus: 'highmagnetism',
 		condition: {
 			noCopy: true,
@@ -4142,6 +4926,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Crabhammer", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -4157,6 +4945,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Boomburst", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -4194,6 +4986,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Inferno", target);
+		},
 		secondaries: [
 			{
 				chance: 50,
@@ -4215,6 +5011,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psycho Shift", target);
+		},
 		onHit(target, source, move) {
 			if (!source.status) return;
 			for (const id in source.status)
@@ -4236,6 +5036,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bullet Seed", target);
+		},
 		multihit: [2, 5]
 		// Class: BU
 		// Effect Chance: 100
@@ -4252,6 +5056,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Echoed Voice", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -4267,6 +5075,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sheer Cold", target);
+		},
 		secondary: {
 			chance: 10,
 			boosts: {spe: -1}
@@ -4286,6 +5098,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ice Hammer", target);
+		},
 		secondary: {
 			chance: 20,
 			volatileStatus: 'flinch'
@@ -4305,6 +5121,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Icicle Spear", target);
+		},
 		multihit: [2, 5]
 		// Class: BU
 		// Effect Chance: 100
@@ -4321,6 +5141,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mist Ball", target);
+		},
 	},
 	illusionsign: {
 		name: "Illusion Sign",
@@ -4333,6 +5157,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -4348,6 +5176,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mist Ball", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -4369,6 +5201,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power Trick", target);
+		},
 		onHit(target, source, move) {
 			const atk = target.storedStats.atk;
 			const def = target.storedStats.def;
@@ -4391,6 +5227,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gyro Ball", target);
+		},
 		basePowerCallback(pokemon, target) {
 			let power = Math.floor(40 * target.getStat('spe') / pokemon.getStat('spe')) + 1;
 			if (!isFinite(power)) power = 1;
@@ -4412,6 +5252,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Dance", target);
+		},
 		boosts: {atk: 1, spe: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -4428,6 +5272,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Luster Purge", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -4449,6 +5297,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Inferno", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -4470,6 +5322,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dark Void", target);
+		},
 		volatileStatus: 'partiallytrapped'
 		// Class: 2
 		// Effect Chance: 100
@@ -4486,6 +5342,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stored Power", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			const bp = move.basePower + 20 * pokemon.positiveBoosts();
 			return bp;
@@ -4505,6 +5365,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Belly Drum", target);
+		},
 		onHit(target) {
 			if (target.hp <= target.maxhp / 2 || target.boosts.atk >= 6 || target.maxhp === 1) { // Shedinja clause
 				return false;
@@ -4527,6 +5391,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Amnesia", target);
+		},
 		boosts: {def: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -4543,6 +5411,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aura Sphere", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -4558,6 +5430,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Acupressure", target);
+		},
 		onHit(target) {
 			const stats: BoostID[] = [];
 			let stat: BoostID;
@@ -4587,6 +5463,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Iron Defense", target);
+		},
 		boosts: {def: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -4603,6 +5483,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -4,
 		flags: {bypasssub: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psystrike", target);
+		},
 		infiltrates: true,
 		basePowerCallback(pokemon, target, move) {
 			if (!this.queue.willMove(target) && target.lastMove && target.lastMove?.category === "Status") {
@@ -4625,6 +5509,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Diamond Storm", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -4640,6 +5528,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Imprison", target);
+		},
 		volatileStatus: 'jinx',
 		onTryHit(target) {
 			if (!target.lastMove || target.lastMove.isZ || target.lastMove.isMax || target.lastMove.id === 'struggle') {
@@ -4710,6 +5602,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Crunch", target);
+		},
 		willCrit: true,
 		// Class: BU
 		// Effect Chance: 1000
@@ -4726,6 +5622,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rock Slide", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (target.hp <= target.maxhp / 2)
 				return move.basePower * 2;
@@ -4746,6 +5646,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Last Resort", target);
+		},
 		onTryHit(source, target, move) {
 			let usedMoves = 0;
 			for (const slot of source.moveSlots) {
@@ -4772,6 +5676,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Smart Strike", target);
+		},
 		self: {
 			volatileStatus: 'stancebreak'
 		}
@@ -4790,6 +5698,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scald", target);
+		},
 		secondary: {
 			chance: 30,
 			status: 'weak',
@@ -4809,6 +5721,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aura Sphere", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -4824,6 +5740,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1, javelin: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash", target);
+		},
 		secondary: {
 			chance: 10,
 			volatileStatus: 'confusion'
@@ -4843,6 +5763,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -4858,6 +5782,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Photon Geyser", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -4873,6 +5801,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Photon Geyser", target);
+		},
 		critRatio: 2,
 		// Class: 2
 		// Effect Chance: 100
@@ -4889,6 +5821,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Charge", target);
+		},
 		volatileStatus: 'lightningcharge',
 		condition: {
 			onStart(pokemon, source, effect) {
@@ -4944,6 +5880,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wild Charge", target);
+		},
 		secondary: {
 			chance: 10,
 			self: {
@@ -4965,6 +5905,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Volt Switch", target);
+		},
 		selfSwitch: true,
 		// Class: BU
 		// Effect Chance: 100
@@ -4981,6 +5925,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shock Wave", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'par'
@@ -5000,6 +5948,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Haze", target);
+		},
 		onTryHit(source, target, move) {
 			if (!this.field.weather && !this.field.terrain)
 				return false;
@@ -5020,6 +5972,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Throat Chop", target);
+		},
 		onBasePower(relayVar, source, target, move) {
 			if (this.field.terrain) {
 				return move.basePower * 2;
@@ -5044,6 +6000,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hex", target);
+		},
 		onBasePower(relayVar, source, target, move) {
 			if (target.status)
 				return move.basePower * 2;
@@ -5064,6 +6024,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Safeguard", target);
+		},
 		sideCondition: 'luckyrainbow',
 		condition: {
 			duration: 5,
@@ -5103,6 +6067,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 60,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hypnosis", target);
+		},
 		status: 'stp',
 		// Class: EN
 		// Effect Chance: 100
@@ -5119,6 +6087,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 		recoil: [1, 3],
 		// Class: 2
 		// Effect Chance: 100
@@ -5135,6 +6107,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psyshock", target);
+		},
 		overrideDefensiveStat: 'def'
 		// Class: 2
 		// Effect Chance: 100
@@ -5151,6 +6127,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 80,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hurricane", target);
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'confusion'
@@ -5170,6 +6150,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shift Gear", target);
+		},
 		boosts: {atk: 1, spe: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -5186,6 +6170,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Substitute", target);
+		},
 		volatileStatus: 'magicbarrier',
 		onTryHit(source) {
 			if (source.volatiles['magicbarrier']) {
@@ -5261,6 +6249,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Quiver Dance", target);
+		},
 		boosts: {def: 1, spd: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -5277,6 +6269,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Magnet Bomb", target);
+		},
 		secondary: {
 			chance: 20,
 			self: {
@@ -5297,6 +6293,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: -3,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Focus Punch", target);
+		},
 		onTryHit(source, target, move) {
 			if (source.hurtThisTurn) {
 				this.add('-fail', source);
@@ -5318,6 +6318,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Toxic", target);
+		},
 		onModifyMove(move, pokemon, target) {
 			if (pokemon.hasType('Poison'))
 				move.accuracy = true;
@@ -5338,6 +6342,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poltergeist", target);
+		},
 		recoil: [1, 3]
 		// Class: BU
 		// Effect Chance: 100
@@ -5354,6 +6362,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Role Play", target);
+		},
 		onHit(target, source, move) {
 			target.setAbility(source.ability);
 		},
@@ -5372,6 +6384,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spikes", target);
+		},
 		sideCondition: 'minetrap',
 		condition: {
 			// this is a side condition
@@ -5405,6 +6421,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power Trip", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			const bp = move.basePower + 20 * target.positiveBoosts();
 			return bp;
@@ -5424,6 +6444,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 4,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Magic Coat", target);
+		},
 		volatileStatus: 'mirage',
 		condition: {
 			onTryHitPriority: 1,
@@ -5453,6 +6477,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Smart Strike", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -5469,6 +6497,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: -4,
 		flags: {protect: 1, counter: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mirror Coat", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.volatiles['counter'].damage)
 				return move.basePower * 2;
@@ -5496,6 +6528,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Magnet Bomb", target);
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch'
@@ -5515,6 +6551,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Metal Burst", target);
+		},
 		damageCallback(pokemon) {
 			if (!pokemon.volatiles['mirrorsreflection']) return 0;
 			return pokemon.volatiles['mirrorsreflection'].damage || 1;
@@ -5561,6 +6601,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Calm Mind", target);
+		},
 		// Class: BU
 		// Effect Chance: 0
 		// Effect ID: 0
@@ -5576,6 +6620,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mirror Coat", target);
+		},
 		boosts: {spa: 1, spd: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -5592,6 +6640,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: -5,
 		flags: {protect: 1, counter: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spirit Shackle", target);
+		},
 		damageCallback(pokemon) {
 			if (!pokemon.volatiles['counter']) return 0;
 			return pokemon.volatiles['counter'].damage || 1;
@@ -5619,6 +6671,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Cross Chop", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			switch (target.getWeight()) {
 				case 0:
@@ -5649,6 +6705,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mud Shot", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -5664,6 +6724,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 80,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thousand Waves", target);
+		},
 		secondary: {
 			chance: 10,
 			boosts: {accuracy: -1}
@@ -5683,6 +6747,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mystical Fire", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -5698,6 +6766,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scald", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (target.hasStatus(['psn', 'tox']))
 				return move.basePower * 2;
@@ -5718,6 +6790,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psyshock", target);
+		},
 		overrideDefensiveStat: 'def'
 		// Class: 2
 		// Effect Chance: 100
@@ -5734,6 +6810,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Cotton Guard", target);
+		},
 		boosts: {def: 3}
 		// Class: EN
 		// Effect Chance: 100
@@ -5750,6 +6830,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 75,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stun Spore", target);
+		},
 		status: 'par'
 		// Class: EN
 		// Effect Chance: 100
@@ -5766,6 +6850,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Seed Bomb", target);
+		},
 		secondary: {
 			chance: 20,
 			boosts: {atk: -1}
@@ -5785,6 +6873,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -5800,6 +6892,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Copycat", target);
+		},
 		onTryHit(source, target, move) {
 			if (!source.lastMoveUsed || source.lastMoveUsed.id === 'neardeathevent') {
 				this.add('-fail', source);
@@ -5825,6 +6921,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Clear Smog", target);
+		},
 		onHit(target, source, move) {
 			target.clearBoosts();
 		},
@@ -5843,6 +6943,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -5858,6 +6962,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Knock Off", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -5873,6 +6981,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -5888,6 +7000,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Leaf Storm", target);
+		},
 		boosts: {atk: 2, def: -1, spa: 2, spd: -1, spe: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -5904,6 +7020,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Clangorous Soul", target);
+		},
 		self: {
 			boosts: {spa: -2}
 		},
@@ -5922,6 +7042,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dark Pulse", target);
+		},
 		secondaries: [
 			{
 				chance: 10,
@@ -5943,6 +7067,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -5958,6 +7086,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Zap Cannon", target);
+		},
 		boosts: {atk: -2}
 		// Class: 2
 		// Effect Chance: 100
@@ -5974,6 +7106,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Frustration", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -5989,6 +7125,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 		recoil: [1, 3],
 		// Class: 2
 		// Effect Chance: 100
@@ -6005,6 +7145,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bullet Punch", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -6020,6 +7164,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Knock Off", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (target.item) {
 				return move.basePower * 1.5;
@@ -6044,6 +7192,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunder Wave", target);
+		},
 		status: 'par'
 		// Class: EN
 		// Effect Chance: 100
@@ -6060,6 +7212,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mega Drain", target);
+		},
 		drain: [1, 2]
 		// Class: 2
 		// Effect Chance: 100
@@ -6076,6 +7232,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aeroblast", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			return this.field.weather ? move.basePower : move.basePower * 2;
 		},
@@ -6095,6 +7255,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wood Hammer", target);
+		},
 		recoil: [1, 3],
 		// Class: BU
 		// Effect Chance: 100
@@ -6111,6 +7275,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Roost", target);
+		},
 		self: {
 			volatileStatus: 'perch',
 		},
@@ -6136,6 +7304,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 30,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Horn Drill", target);
+		},
 		ohko: true
 		// Class: BU
 		// Effect Chance: 100
@@ -6152,6 +7324,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Petal Dance", target);
+		},
 		self: {
 			volatileStatus: 'lockedmove',
 		},
@@ -6175,6 +7351,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Round", target);
+		},
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -6190,6 +7370,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 1,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Topsy-Turvy", target);
+		},
 		onHit(target, source, move) {
 			const boosts = target.boosts as SparseBoostsTable;
 			let b:BoostID;
@@ -6213,6 +7397,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Eruption", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.hp === pokemon.baseMaxhp) {
 				return 150;
@@ -6234,6 +7422,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Return", target);
+		},
 		beforeTurnCallback(pokemon, target) {
 			pokemon.addVolatile('ignoremodifiers');
 		},
@@ -6252,6 +7444,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Electro Ball", target);
+		},
 		status: 'par'
 		// Class: BU
 		// Effect Chance: 1000
@@ -6268,6 +7464,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Claw", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'fear'
@@ -6287,6 +7487,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Bomb", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'psn'
@@ -6306,6 +7510,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -6321,6 +7529,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Wave", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -6336,6 +7548,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Toxic Spikes", target);
+		},
 		sideCondition: 'poisontrap',
 		condition: {
 			// this is a side condition
@@ -6377,6 +7593,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poison Jab", target);
+		},
 		critRatio: 2,
 		secondary: {
 			chance: 10,
@@ -6397,6 +7617,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Pollen Puff", target);
+		},
 		secondary: {
 			chance: 10,
 			boosts: {spa: -1}
@@ -6416,6 +7640,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poltergeist", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'fear'
@@ -6435,6 +7663,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Role Play", target);
+		},
 		onHit(target, source, move) {
 			source.setAbility(target.ability);
 		},
@@ -6453,6 +7685,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Giga Drain", target);
+		},
 		drain: [1, 2]
 		// Class: 2
 		// Effect Chance: 100
@@ -6469,6 +7705,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power Split", target);
+		},
 		onHit(target, source) {
 			const newatk = Math.floor((target.storedStats.atk + source.storedStats.atk) / 2);
 			target.storedStats.atk = newatk;
@@ -6493,6 +7733,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wish", target);
+		},
 		slotCondition: 'Power Spot',
 		condition: {
 			duration: 2,
@@ -6524,6 +7768,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power Swap", target);
+		},
 		onHit(target, source) {
 			const targetBoosts: SparseBoostsTable = {};
 			const sourceBoosts: SparseBoostsTable = {};
@@ -6554,6 +7802,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Nature's Madness", target);
+		},
 		damageCallback(pokemon, target) {
 			return this.clampIntRange(Math.floor(target.getUndynamaxedHP() / 2), 1);
 		},
@@ -6572,6 +7824,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 1,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Conversion", target);
+		},
 		onHit(target, source, move) {
 			const type = this.dex.moves.get(target.moveSlots[0].id).type;
 			if (target.hasType(type) || !target.setType(type)) return false;
@@ -6592,6 +7848,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
+		},
 		secondaries: [
 			{
 				chance: 50,
@@ -6613,6 +7873,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psych Up", target);
+		},
 		onHit(target, source) {
 			const targetBoosts: SparseBoostsTable = {};
 			const sourceBoosts: SparseBoostsTable = {};
@@ -6643,6 +7907,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {recharge: 1, protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Prismatic Laser", target);
+		},
 		self: {
 			volatileStatus: 'mustrecharge',
 		},
@@ -6661,6 +7929,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Memento", target);
+		},
 		boosts: {atk: -2, spa: -2},
 		onHit(target, source, move) {
 			source.faint();
@@ -6680,6 +7952,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flare Blitz", target);
+		},
 		recoil: [1, 3],
 		secondary: {
 			chance: 10,
@@ -6700,6 +7976,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Charge Beam", target);
+		},
 		secondary: {
 			chance: 70,
 			self: {
@@ -6721,6 +8001,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Smog", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'psn'
@@ -6740,6 +8024,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Pursuit", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			// You can't get here unless the pursuit succeeds
 			if (target.beingCalledBack || target.switchFlag) {
@@ -6796,6 +8084,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Soak", target);
+		},
 		boosts: {spe: -1}
 		// Class: EN
 		// Effect Chance: 100
@@ -6812,6 +8104,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rock Polish", target);
+		},
 		boosts: {spe: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -6828,6 +8124,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 3,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fake Out", target);
+		},
 		onTry(source) {
 			if (source.activeMoveActions > 1) {
 				this.hint("Raid only works on your first turn out.");
@@ -6853,6 +8153,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, charge: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Solar Beam", target);
+		},
 		onTryMove(attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
@@ -6884,6 +8188,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Water Spout", target);
+		},
 		self: {
 			sideCondition: 'veilofwater'
 		}
@@ -6902,6 +8210,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 70,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Darts", target);
+		},
 		secondary: {
 			chance: 70,
 			volatileStatus: 'flinch'
@@ -6921,6 +8233,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rock Throw", target);
+		},
 		multihit: [2, 5]
 		// Class: 2
 		// Effect Chance: 100
@@ -6937,6 +8253,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sunny Day", target);
+		},
 		multihit: [2, 5]
 		// Class: BU
 		// Effect Chance: 100
@@ -6953,6 +8273,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hail", target);
+		},
 		weather: 'sunshower',
 		terrain: 'genbu',
 		// Class: EN
@@ -6970,6 +8294,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sandstorm", target);
+		},
 		weather: 'aurora',
 		terrain: 'byakko',
 		// Class: EN
@@ -6987,6 +8315,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rain Dance", target);
+		},
 		weather: 'duststorm',
 		terrain: 'kohryu',
 		// Class: EN
@@ -7004,6 +8336,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Trick Room", target);
+		},
 		weather: 'heavyfog',
 		terrain: 'suzaku',
 		// Class: EN
@@ -7021,6 +8357,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Worry Seed", target);
+		},
 		weather: 'calm',
 		terrain: 'seiryu',
 		// Class: EN
@@ -7038,6 +8378,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "High Jump Kick", target);
+		},
 		onHit(target, source, move) {
 			target.setAbility('active');
 		},
@@ -7056,6 +8400,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psych Up", target);
+		},
 		onMoveFail(target, source, move) {
 			source.damage(source.hp / 2);
 		},
@@ -7074,6 +8422,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 3,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Endeavor", target);
+		},
 		onHit(target, pokemon) {
 			if (!pokemon.transformInto(target, this.effect, false)) {
 				return false;
@@ -7094,6 +8446,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Revenge", target);
+		},
 		onTryHit(source, target, move) {
 			if (source.hp >= target.hp) {
 				this.add('-fail', source);
@@ -7118,6 +8474,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Recycle", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			let boosted = true;
 			for (const target of this.getAllActive()) {
@@ -7147,6 +8507,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Retaliate", target);
+		},
 		onHit(pokemon) {
 			if (!pokemon.item && !pokemon.lastItem) {
 				pokemon.setItem(pokemon.lastItem);
@@ -7169,6 +8533,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sacred Sword", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.side.faintedLastTurn) {
 				return move.basePower * 2;
@@ -7190,6 +8558,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Splash", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -7205,6 +8577,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: -4,
 		flags: {protect: 1, counter: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Foul Play", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.volatiles['counter'].damage)
 				return move.basePower * 2;
@@ -7232,6 +8608,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flame Charge", target);
+		},
 		overrideOffensivePokemon: 'target'
 		// Class: 2
 		// Effect Chance: 100
@@ -7248,6 +8628,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Roar", target);
+		},
 		self: {
 			boosts: {spe: 1}
 		}
@@ -7266,6 +8650,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Precipice Blades", target);
+		},
 		boosts: {def: -2}
 		// Class: EN
 		// Effect Chance: 100
@@ -7282,6 +8670,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stone Edge", target);
+		},
 		willCrit: true
 		// Class: BU
 		// Effect Chance: 1000
@@ -7298,6 +8690,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power Whip", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -7314,6 +8710,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poison Sting", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -7329,6 +8729,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Earthquake", target);
+		},
 		status: 'psn'
 		// Class: EN
 		// Effect Chance: 100
@@ -7345,6 +8749,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Will-o-Wisp", target);
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch'
@@ -7364,6 +8772,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Perish Song", target);
+		},
 		status: 'brn'
 		// Class: EN
 		// Effect Chance: 100
@@ -7380,6 +8792,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Arm Thrust", target);
+		},
 		onHitField(target, source, move) {
 			let result = false;
 			let message = false;
@@ -7426,6 +8842,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Petal Blizzard", target);
+		},
 		multihit: [2, 5]
 		// Class: BU
 		// Effect Chance: 100
@@ -7442,6 +8862,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'weak',
@@ -7461,6 +8885,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Simple Beam", target);
+		},
 		secondary: {
 			chance: 70,
 			self: {
@@ -7482,6 +8910,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Seed Bomb", target);
+		},
 		critRatio: 2,
 		// Class: 2
 		// Effect Chance: 100
@@ -7498,6 +8930,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spite", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -7513,6 +8949,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Giga Drain", target);
+		},
 		onTryHit(source, target, move) {
 			if (!target.lastMoveUsed) {
 				this.add('-fail', source);
@@ -7538,6 +8978,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sunny Day", target);
+		},
 		weather: 'calm',
 		terrain: 'kohryu'
 		// Class: EN
@@ -7555,6 +8999,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rain Dance", target);
+		},
 		weather: 'heavyfog',
 		terrain: 'byakko',
 		// Class: EN
@@ -7572,6 +9020,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sunny Day", target);
+		},
 		weather: 'sunshower',
 		terrain: 'seiryu',
 		// Class: EN
@@ -7589,6 +9041,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hail", target);
+		},
 		weather: 'aurora',
 		terrain: 'suzaku',
 		// Class: EN
@@ -7606,6 +9062,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sandstorm", target);
+		},
 		weather: 'duststorm',
 		terrain: 'genbu',
 		// Class: EN
@@ -7623,6 +9083,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Petal Dance", target);
+		},
 		secondary: {
 			chance: 10,
 			boosts: {spa: -1}
@@ -7642,6 +9106,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Sneak", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -7657,6 +9125,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1, javelin: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spirit Shackle", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'fear'
@@ -7676,6 +9148,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 2,
 		flags: {contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Sneak", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 170
@@ -7691,6 +9167,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Switcheroo", target);
+		},
 		onTryImmunity(target) {
 			return !target.hasAbility('stickyhold');
 		},
@@ -7739,6 +9219,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Dance", target);
+		},
 		boosts: {spa: 1, spe: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -7755,6 +9239,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 30,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fissure", target);
+		},
 		ohko: true
 		// Class: BU
 		// Effect Chance: 100
@@ -7771,6 +9259,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Harden", target);
+		},
 		boosts: {def: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -7787,6 +9279,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Curse", target);
+		},
 		volatileStatus: 'shinigamiswaltz',
 		onTryHit(target, source, move) {
 			if (move.volatileStatus && target.volatiles['shinigamiswaltz']) {
@@ -7820,6 +9316,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunder Wave", target);
+		},
 		onTryImmunity(target, source, move) {
 			if (target.hasType('Earth'))
 				return false;
@@ -7840,6 +9340,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Vacuum Wave", target);
+		},
 		multihit: [2, 5]
 		// Class: BU
 		// Effect Chance: 100
@@ -7856,6 +9360,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Earthquake", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -7871,6 +9379,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Growl", target);
+		},
 		boosts: {
 			atk: -2
 		}
@@ -7889,6 +9401,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Growl", target);
+		},
 		boosts: {
 			spa: -2
 		}
@@ -7907,6 +9423,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Pay Day", target);
+		},
 		secondary: {
 			chance: 10,
 			self: {
@@ -7928,6 +9448,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Meditate", target);
+		},
 		boosts: {atk: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -7944,6 +9468,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Agility", target);
+		},
 		boosts: {spe: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -7960,6 +9488,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Headbutt", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -7975,6 +9507,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Bomb", target);
+		},
 		secondary: {
 			chance: 20,
 			status: 'tox'
@@ -7994,6 +9530,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Bomb", target);
+		},
 		boosts: {spe: -1}
 		// Class: BU
 		// Effect Chance: 1000
@@ -8010,6 +9550,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sand Attack", target);
+		},
 		boosts: {accuracy: -1}
 		// Class: BU
 		// Effect Chance: 1000
@@ -8026,6 +9570,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rapid Spin", target);
+		},
 		onAfterHit(target, pokemon) {
 			if (pokemon.hp && pokemon.removeVolatile('drainseed')) {
 				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
@@ -8066,6 +9614,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Bomb", target);
+		},
 		secondary: {
 			chance: 30,
 			status: 'psn'
@@ -8085,6 +9637,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sucker Punch", target);
+		},
 		onTry(source, target) {
 			const action = this.queue.willMove(target);
 			const move = action?.choice === 'move' ? action.move : null;
@@ -8107,6 +9663,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Icicle Crash", target);
+		},
 		secondary: {
 			chance: 10,
 			boosts: {spe: -1}
@@ -8126,6 +9686,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 80,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Confuse Ray", target);
+		},
 		status: 'fear',
 		volatileStatus: 'confusion'
 		// Class: EN
@@ -8143,6 +9707,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8158,6 +9726,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
+		},
 		boosts: {spa: -1}
 		// Class: 2
 		// Effect Chance: 1000
@@ -8174,6 +9746,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 80,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mean Look", target);
+		},
 		status: 'dark',
 		volatileStatus: 'confusion'
 		// Class: EN
@@ -8191,6 +9767,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ominous Wind", target);
+		},
 		secondary: {
 			chance: 10,
 			self: {
@@ -8212,6 +9792,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bite", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8227,6 +9811,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Claw", target);
+		},
 		secondary: {
 			chance: 30,
 			status: 'fear'
@@ -8246,6 +9834,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8261,6 +9853,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shock Wave", target);
+		},
 		boosts: {spe: -1}
 		// Class: 2
 		// Effect Chance: 1000
@@ -8277,6 +9873,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1, javelin: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spark", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'par'
@@ -8296,6 +9896,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spark", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'par'
@@ -8315,6 +9919,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Claw", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'weak',
@@ -8334,6 +9942,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Revelation Dance", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'fear'
@@ -8353,6 +9965,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double-Edge", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8368,6 +9984,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rock Tomb", target);
+		},
 		boosts: {spe: -1}
 		// Class: BU
 		// Effect Chance: 1000
@@ -8384,6 +10004,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+		},
 		secondary: {
 			chance: 10,
 			volatileStatus: 'flinch'
@@ -8403,6 +10027,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Vacuum Wave", target);
+		},
 		secondary: {
 			chance: 10,
 			self: {
@@ -8424,6 +10052,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Head Charge", target);
+		},
 		recoil: [1, 4]
 		// Class: 2
 		// Effect Chance: 100
@@ -8440,6 +10072,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Vacuum Wave", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8455,6 +10091,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -6,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Whirlwind", target);
+		},
 		forceSwitch: true
 	},
 	stelmosfire: {
@@ -8468,6 +10108,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Incinerate", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (target.item) {
 				return move.basePower * 1.5;
@@ -8492,6 +10136,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1, contact: 1, charge: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Force", target);
+		},
 		infiltrates: true,
 		onTryMove(attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
@@ -8526,6 +10174,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash", target);
+		},
 		secondary: {
 			chance: 20,
 			boosts: {accuracy: -1}
@@ -8545,6 +10197,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Ball", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8560,6 +10216,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1, contact: 1, bypasssub: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Phantom Force", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 243
@@ -8575,6 +10235,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stealth Rock", target);
+		},
 		sideCondition: 'stealthtrap',
 		condition: {
 			// this is a side condition
@@ -8602,6 +10266,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8617,6 +10285,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ancient Power", target);
+		},
 		secondary: {
 			chance: 10,
 			self: {
@@ -8638,6 +10310,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Harden", target);
+		},
 		boosts: {
 			spd: 1,
 		},
@@ -8656,6 +10332,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rock Slide", target);
+		},
 		secondary: {
 			chance: 20,
 			volatileStatus: 'flinch'
@@ -8675,6 +10355,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bonemerang", target);
+		},
 		multihit: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -8691,6 +10375,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Discharge", target);
+		},
 		secondary: {
 			chance: 30,
 			status: 'par'
@@ -8710,6 +10398,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Swords Dance", target);
+		},
 		boosts: {atk: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -8726,6 +10418,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mach Punch", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8741,6 +10437,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Struggle", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 1023
@@ -8756,6 +10456,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Weather Ball", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			return this.field.weather ? move.basePower : move.basePower * 2;
 		},
@@ -8775,6 +10479,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Growth", target);
+		},
 		onHit(target, source, move) {
 			let boost = 1;
 			if (this.field.isWeather(['calm', 'aurora'])) {
@@ -8797,6 +10505,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 4,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Protect", target);
+		},
 		stallingMove: true,
 		volatileStatus: 'supernaturalborder',
 		onPrepareHit(pokemon) {
@@ -8839,6 +10551,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 2,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Extreme Speed", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8854,6 +10570,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gunk Shot", target);
+		},
 		self: {
 			chance: 10,
 			boosts: {spa: -2}
@@ -8873,6 +10593,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mean Look", target);
+		},
 		status: 'dark'
 		// Class: EN
 		// Effect Chance: 100
@@ -8889,6 +10613,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1, bypasssub: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aeroblast", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 243
@@ -8904,6 +10632,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Leaf Tornado", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -8919,6 +10651,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Foul Play", target);
+		},
 		overrideOffensivePokemon: 'target'
 		// Class: 2
 		// Effect Chance: 100
@@ -8935,6 +10671,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Harden", target);
+		},
 		boosts: {def: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -8951,6 +10691,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Trick Room", target);
+		},
 		terrain: 'byakko'
 		// Class: EN
 		// Effect Chance: 100
@@ -8967,6 +10711,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -7,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Trick Room", target);
+		},
 		terrain: 'genbu'
 		// Class: EN
 		// Effect Chance: 100
@@ -8983,6 +10731,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Magic Room", target);
+		},
 		terrain: 'kohryu'
 		// Class: EN
 		// Effect Chance: 100
@@ -8999,6 +10751,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: -1,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Magic Room", target);
+		},
 		terrain: 'seiryu'
 		// Class: EN
 		// Effect Chance: 100
@@ -9015,6 +10771,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wonder Room", target);
+		},
 		terrain: 'suzaku'
 		// Class: EN
 		// Effect Chance: 100
@@ -9031,6 +10791,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Smart Strike", target);
+		},
 		critRatio: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -9047,6 +10811,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Will-o-Wisp", target);
+		},
 		status: 'brnheavy'
 		// Class: EN
 		// Effect Chance: 100
@@ -9063,6 +10831,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thief", target);
+		},
 		onAfterHit(target, source, move) {
 			if (source.item || source.volatiles['gem']) {
 				return;
@@ -9094,6 +10866,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 4,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunderous Kick", target);
+		},
 		stallingMove: true,
 		volatileStatus: 'thornedivy',
 		onPrepareHit(pokemon) {
@@ -9141,6 +10917,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spiky Shield", target);
+		},
 		recoil: [1, 3],
 		secondary: {
 			chance: 10,
@@ -9161,6 +10941,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wild Charge", target);
+		},
 		willCrit: true
 		// Class: BU
 		// Effect Chance: 1000
@@ -9177,6 +10961,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunderbolt", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'par'
@@ -9196,6 +10984,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 80,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunder Wave", target);
+		},
 		status: 'par',
 		volatileStatus: 'confusion'
 		// Class: EN
@@ -9213,6 +11005,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 3,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fake Out", target);
+		},
 		secondary: {
 			chance: 100,
 			volatileStatus: 'flinch'
@@ -9232,6 +11028,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Zap Cannon", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'par'
@@ -9251,6 +11051,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Quick Attack", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9266,6 +11070,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psychic", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9281,6 +11089,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Smog", target);
+		},
 		secondary: {
 			chance: 20,
 			status: 'tox'
@@ -9300,6 +11112,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Acid Spray", target);
+		},
 		boosts: {spd: -2}
 		// Class: 2
 		// Effect Chance: 1000
@@ -9316,6 +11132,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 1,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Feint", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9331,6 +11151,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tri Attack", target);
+		},
 		secondary: {
 			chance: 20,
 			onHit(target, source) {
@@ -9359,6 +11183,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Grass Knot", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			switch (target.getWeight()) {
 				case 0:
@@ -9386,6 +11214,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Curse", target);
+		},
 		boosts: {spa: 1}
 		// Class: EN
 		// Effect Chance: 100
@@ -9402,6 +11234,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Throat Chop", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9417,6 +11253,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gear Grind", target);
+		},
 		multihit: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -9433,6 +11273,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Cross Chop", target);
+		},
 		multihit: 2,
 		// Class: BU
 		// Effect Chance: 100
@@ -9449,6 +11293,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Twister", target);
+		},
 		multihit: [2, 5]
 		// Class: BU
 		// Effect Chance: 100
@@ -9465,6 +11313,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
+		},
 		secondary: {
 			chance: 10,
 			onHit(target, source, move) {
@@ -9501,6 +11353,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sleep Talk", target);
+		},
 		sleepUsable: true,
 		onTry(source) {
 			return source.hasStatus('stp') || source.hasAbility('comatose');
@@ -9541,6 +11397,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Force Palm", target);
+		},
 		boosts: {spe: -1}
 		// Class: BU
 		// Effect Chance: 1000
@@ -9557,6 +11417,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poltergeist", target);
+		},
 		basePowerCallback(pokemon, target, move) {
 			if (!pokemon.item)
 				return move.basePower * 2;
@@ -9577,6 +11441,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Ball", target);
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'confusion'
@@ -9596,6 +11464,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Earth Power", target);
+		},
 		secondary: {
 			chance: 30,
 			boosts: {accuracy: -1}
@@ -9615,6 +11487,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Taunt", target);
+		},
 		volatileStatus: 'upbeat',
 		condition: {
 			duration: 3,
@@ -9656,6 +11532,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {recharge: 1, protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Meteor Assault", target);
+		},
 		self: {
 			volatileStatus: 'mustrecharge',
 		},
@@ -9674,6 +11554,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Water Sport", target);
+		},
 		sideCondition: 'veilofwater',
 		condition: {
 			duration: 5,
@@ -9717,6 +11601,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poison Fang", target);
+		},
 		secondary: {
 			chance: 30,
 			status: 'psn'
@@ -9736,6 +11624,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gunk Shot", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'psn'
@@ -9755,6 +11647,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Belch", target);
+		},
 		onTry(source, target, move) {
 			if (source.item) {
 				this.add('-fail', source);
@@ -9780,6 +11676,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Mind Reader", target);
+		},
 		volatileStatus: 'stancebreak'
 		// Class: EN
 		// Effect Chance: 100
@@ -9796,6 +11696,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power Whip", target);
+		},
 		secondary: {
 			chance: 10,
 			status: 'weak',
@@ -9815,6 +11719,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Overheat", target);
+		},
 		self: {
 			boosts: {spa: -2}
 		},
@@ -9833,6 +11741,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Swift", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9848,6 +11760,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
+		},
 		secondary: {
 			chance: 10,
 			onHit(target, source, move) {
@@ -9883,6 +11799,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9898,6 +11818,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Waterfall", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9913,6 +11837,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9928,6 +11856,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Waterfall", target);
+		},
 		// Class: BU
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -9943,6 +11875,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thousand Waves", target);
+		},
 		secondary: {
 			chance: 10,
 			boosts: {accuracy: -1}
@@ -9962,6 +11898,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hail", target);
+		},
 		weather: 'aurora'
 		// Class: EN
 		// Effect Chance: 100
@@ -9978,6 +11918,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Trick Room", target);
+		},
 		weather: 'calm'
 		// Class: EN
 		// Effect Chance: 100
@@ -9994,6 +11938,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sandstorm", target);
+		},
 		weather: 'duststorm'
 		// Class: EN
 		// Effect Chance: 100
@@ -10010,6 +11958,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rain Dance", target);
+		},
 		weather: 'heavyfog'
 		// Class: EN
 		// Effect Chance: 100
@@ -10026,6 +11978,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sunny Day", target);
+		},
 		weather: 'sunshower'
 		// Class: EN
 		// Effect Chance: 100
@@ -10042,6 +11998,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Cutter", target);
+		},
 		secondary: {
 			chance: 20,
 			self: {
@@ -10063,6 +12023,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Lunar Dance", target);
+		},
 		onHit(target, source, move) {
 			source.side.addSideCondition('whitelilydance');
 			source.faint();
@@ -10094,6 +12058,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tail Glow", target);
+		},
 		boosts: {spa: 2}
 		// Class: EN
 		// Effect Chance: 100
@@ -10110,6 +12078,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Explosion", target);
+		},
 		onTryHit(source, target, move) {
 			target.addVolatile('wholebeing');
 		},
@@ -10138,6 +12110,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 85,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Will-o-Wisp", target);
+		},
 		status: ['brn', 'dark']
 		// Class: EN
 		// Effect Chance: 100
@@ -10154,6 +12130,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tailwind", target);
+		},
 		sideCondition: 'windgodsgrace',
 		condition: {
 			duration: 4,
@@ -10190,6 +12170,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, contact: 1, javelin: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Drill Peck", target);
+		},
 		secondary: {
 			chance: 10,
 			volatileStatus: 'flinch'
@@ -10209,6 +12193,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1, sign: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hidden Power", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -10224,6 +12212,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Drill Peck", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -10239,6 +12231,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch'
@@ -10258,6 +12254,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Cutter", target);
+		},
 		critRatio: 2,
 		// Class: 2
 		// Effect Chance: 100
@@ -10274,6 +12274,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Disable", target);
+		},
 		volatileStatus: 'wordbreak',
 		condition: {
 			duration: 5,
@@ -10330,6 +12334,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1,},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Simple Beam", target);
+		},
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 0
@@ -10345,5 +12353,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tackle", target);
+		},
 	},
 };
