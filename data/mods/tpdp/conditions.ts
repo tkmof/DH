@@ -569,6 +569,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-message', `The terrain became Seiryu!`);
 			} else {
 				this.add('-fieldstart', 'terrain: Seiryu');
+				this.add('-message', `The terrain became Seiryu!`);
 			}
 		},
 		onEnd() {
