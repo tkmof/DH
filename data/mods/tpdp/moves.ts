@@ -728,17 +728,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Sticky Web", target);
 		},
-		sideCondition: 'bindtrap',
-		condition: {
-			onSideStart(side) {
-				this.add('-sidestart', side, 'move: Bind Trap');
-			},
-			onEntryHazard(pokemon) {
-				if (!pokemon.isGrounded() || pokemon.hasItem(['heavydutyboots', 'tengugeta'])) return;
-				this.add('-activate', pokemon, 'move: Bind Trap');
-				this.boost({spe: -1}, pokemon, this.effectState.source, this.dex.getActiveMove('bindtrap'));
-			},
-		},
+		sideCondition: 'stickyweb',
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 215
@@ -6388,24 +6378,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Spikes", target);
 		},
-		sideCondition: 'minetrap',
-		condition: {
-			// this is a side condition
-			onSideStart(side) {
-				this.add('-sidestart', side, 'Mine Trap');
-				this.effectState.layers = 1;
-			},
-			onSideRestart(side) {
-				if (this.effectState.layers >= 3) return false;
-				this.add('-sidestart', side, 'Mine Trap');
-				this.effectState.layers++;
-			},
-			onEntryHazard(pokemon) {
-				if (!pokemon.isGrounded() || pokemon.hasItem(['heavydutyboots', 'tengugeta'])) return;
-				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
-				this.damage(damageAmounts[this.effectState.layers] * pokemon.maxhp / 24);
-			},
-		},
+		sideCondition: 'spikes',
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 217
@@ -7552,32 +7525,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Toxic Spikes", target);
 		},
-		sideCondition: 'poisontrap',
-		condition: {
-			// this is a side condition
-			onSideStart(side) {
-				this.add('-sidestart', side, 'move: Poison Trap');
-				this.effectState.layers = 1;
-			},
-			onSideRestart(side) {
-				if (this.effectState.layers >= 2) return false;
-				this.add('-sidestart', side, 'move: Poison Trap');
-				this.effectState.layers++;
-			},
-			onEntryHazard(pokemon) {
-				if (!pokemon.isGrounded()) return;
-				if (pokemon.hasType('Poison')) {
-					this.add('-sideend', pokemon.side, 'move: Poison Trap', '[of] ' + pokemon);
-					pokemon.side.removeSideCondition('poisontrap');
-				} else if (pokemon.hasType('Steel') || pokemon.hasItem(['heavydutyboots', 'tengugeta']) || pokemon.hasAbility(['strictdosage'])) {
-					return;
-				} else if (this.effectState.layers >= 2) {
-					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
-				} else {
-					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
-				}
-			},
-		},
+		sideCondition: 'toxicspikes',
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 216
@@ -9578,7 +9526,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (pokemon.hp && pokemon.removeVolatile('drainseed')) {
 				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
 			}
-			const sideConditions = ['bindtrap', 'minetrap', 'poisontrap', 'stealthtrap'];
+			const sideConditions = ['stickyweb', 'spikes', 'toxicspikes', 'gmaxsteelsurge'];
 			for (const condition of sideConditions) {
 				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
 					this.add('-sideend', pokemon.side, this.dex.conditions.get(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
@@ -9592,7 +9540,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (pokemon.hp && pokemon.removeVolatile('drainseed')) {
 				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
 			}
-			const sideConditions = ['bindtrap', 'minetrap', 'poisontrap', 'stealthtrap'];
+			const sideConditions = ['stickyweb', 'spikes', 'toxicspikes', 'gmaxsteelsurge'];
 			for (const condition of sideConditions) {
 				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
 					this.add('-sideend', pokemon.side, this.dex.conditions.get(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
@@ -10239,18 +10187,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stealth Rock", target);
 		},
-		sideCondition: 'stealthtrap',
-		condition: {
-			// this is a side condition
-			onSideStart(side) {
-				this.add('-sidestart', side, 'move: Stealth Trap');
-			},
-			onEntryHazard(pokemon) {
-				if (pokemon.hasItem(['heavydutyboots', 'tengugeta'])) return;
-				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthtrap')), -6, 6);
-				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
-			},
-		},
+		sideCondition: 'gmaxsteelsurge',
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 214
@@ -12027,22 +11964,24 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Lunar Dance", target);
 		},
-		onHit(target, source, move) {
-			source.side.addSideCondition('whitelilydance');
-			source.faint();
+		onTryHit(pokemon, target, move) {
+			if (!this.canSwitch(pokemon.side)) {
+				delete move.selfdestruct;
+				return false;
+			}
 		},
+		selfdestruct: "ifHit",
+		slotCondition: 'healingwish',
 		condition: {
-			onSwitchIn(pokemon) {
-				if (pokemon.hp == pokemon.maxhp && !pokemon.hasStatus()) {
-					this.add('-fail', pokemon, 'move: White Lily Dance');
-					return;
+			onSwap(target) {
+				if (!target.fainted && (target.hp < target.maxhp || target.status)) {
+					target.heal(target.maxhp);
+					target.setStatus('');
+					this.add('-heal', target, target.getHealth, '[from] move: Healing Wish');
+					target.side.removeSlotCondition(target, 'healingwish');
 				}
-				this.add('-activate', pokemon, '[from] move: White Lily Dance')
-				pokemon.hp = pokemon.maxhp;
-				pokemon.clearStatus();
-				pokemon.side.removeSideCondition('whitelilydance');
 			},
-		}
+		},
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 189

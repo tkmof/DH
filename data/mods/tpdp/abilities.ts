@@ -1322,7 +1322,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Infinite Changes",
 		shortDesc: "Changes type to match skill immediately before use.",
 		onPrepareHit(source, target, move) {
-			if (this.effectState.protean) return;
 			if (move.hasBounced || move.isFutureMove || move.sourceEffect === 'snatch') return;
 			const type = move.type;
 			if (type && type !== '???' && source.getTypes().join() !== type) {
@@ -1330,9 +1329,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.effectState.protean = true;
 				this.add('-start', source, 'typechange', type, '[from] ability: Infinite Changes');
 			}
-		},
-		onSwitchIn(pokemon) {
-			delete this.effectState.protean;
 		},
 	},
 	insight: {
@@ -2061,42 +2057,74 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Secret Ceremony",
 		shortDesc: "Changes type based on terrain and weather.",
 		onStart(target) {
-			target.abilityState.weatherType = null;
-			target.abilityState.terrainType = null;
-		},
-		onWeatherChange(target, source, sourceEffect) {
-			switch (this.field.weather) {
-				default:
-					target.abilityState.weatherType = null;
-					break;
-				case 'aurora':
-					target.abilityState.weatherType = 'Light';
-					break;
-				case 'calm':
-					target.abilityState.weatherType = 'Wind';
-					break;
-				case 'duststorm':
-					target.abilityState.weatherType = 'Earth';
-					break;
-				case 'heavyfog':
-					target.abilityState.weatherType = 'Dark';
-					break;
-				case 'sunshower':
-					target.abilityState.weatherType = 'Warped';
-					break;
+			if (this.field.terrain) {
+				pokemon.addVolatile('secretceremony');
+			} else {
+				const types = pokemon.baseSpecies.types;
+				if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+				this.add('-start', pokemon, 'typechange', types.join('/'), '[from] ability: Secret Ceremony');
+				this.hint("Transform Secret Ceremony changes you to your original un-transformed types.");
 			}
-
-			let newTypes:string[] = [];
-			if (target.abilityState.weatherType)
-				newTypes.push(target.abilityState.weatherType);
-			if (target.abilityState.terrainType)
-				newTypes.push(target.abilityState.terrainType);
-
-			if (newTypes.length > 1 && newTypes[1] === newTypes[0]) //Ensure monotype during Dust Storm + Kohryu
-				newTypes.pop();
-
-			target.setType(newTypes, true);
-			this.add('-start', target, 'typechange', newTypes.join('/'), '[from] ability: Secret Ceremony');
+		},
+		onAnyTerrainStart() {
+			const pokemon = this.effectData.target;
+			delete pokemon.volatiles['secretceremony'];
+			pokemon.addVolatile('secretceremony');
+		},
+		condition: {
+			onStart(pokemon) {
+				let weatherType = null;
+				let terrainType = null;
+				switch (pokemon.effectiveWeather()) {
+					case 'aurora':
+						weatherType = 'Light';
+						break;
+					case 'calm':
+						weatherType = 'Wind';
+						break;
+					case 'duststorm':
+						weatherType = 'Earth';
+						break;
+					case 'heavyfog':
+						weatherType = 'Dark';
+						break;
+					case 'sunshower':
+						weatherType = 'Warped';
+						break;
+				}
+				switch (this.field.terrain) {
+					case 'byakko':
+						terrainType = 'Steel';
+						break;
+					case 'genbu':
+						terrainType = 'Water';
+						break;
+					case 'kohryu':
+						terrainType = 'Earth';
+						break;
+					case 'seiryu':
+						terrainType = 'Nature';
+						break;
+					case 'suzaku':
+						terrainType = 'Fire';
+						break;
+				}
+				
+				let newTypes:string[] = [];
+				if(terrainType) newTypes.push(terrainType);
+				if (!newType || pokemon.getTypes().join() === newType || !pokemon.setType(newType)) return;
+				if (newTypes.length > 1 && newTypes[1] === newTypes[0]) newTypes.pop(); //Ensure monotype during Dust Storm + Kohryu
+				this.add('-start', pokemon, 'typechange', newType, '[from] ability: Secret Ceremony');
+			},
+			onUpdate(pokemon) {
+				if (!this.field.terrain) {
+					const types = pokemon.species.types;
+					if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+					this.add('-activate', pokemon, 'ability: Secret Ceremony');
+					this.add('-end', pokemon, 'typechange', '[silent]');
+					pokemon.removeVolatile('secretceremony');
+				}
+			},
 		},
 		onTerrainChange(target, source, sourceEffect) {
 			switch (this.field.terrain) {

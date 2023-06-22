@@ -388,6 +388,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				this.add('-weather', 'Calm', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-message', `The weather became Calm!`);
 			} else {
 				this.add('-weather', 'Calm');
 			}
@@ -395,10 +396,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldResidualOrder: 1,
 		onFieldResidual() {
 			this.add('-weather', 'Calm', '[upkeep]');
-			this.eachEvent('Weather');
+			this.add('-message', `The calmness continues.`);
 		},
 		onFieldEnd() {
 			this.add('-weather', 'none');
+			this.add('-message', `The weather became clear.`);
 		},
 	},
 	aurora: {
@@ -421,6 +423,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				this.add('-weather', 'Aurora', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-message', `An aurora filled the sky!`);
 			} else {
 				this.add('-weather', 'Aurora');
 			}
@@ -429,9 +432,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldResidual() {
 			this.add('-weather', 'Aurora', '[upkeep]');
 			this.eachEvent('Weather');
+			this.add('-message', `The aurora continues.`);
 		},
 		onFieldEnd() {
 			this.add('-weather', 'none');
+			this.add('-message', `The weather became clear.`);
 		},
 	},
 	heavyfog: {
@@ -454,6 +459,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				this.add('-weather', 'Heavy Fog', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-message', `A heavy fog descended!`);
 			} else {
 				this.add('-weather', 'Heavy Fog');
 			}
@@ -462,9 +468,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldResidual() {
 			this.add('-weather', 'Heavy Fog', '[upkeep]');
 			this.eachEvent('Weather');
+			this.add('-message', `The heavy fog continues.`);
 		},
 		onFieldEnd() {
 			this.add('-weather', 'none');
+			this.add('-message', `The weather became clear.`);
 		},
 	},
 	duststorm: {
@@ -491,6 +499,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Dust Storm', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-message', `A dust storm kicked up!`);
 			} else {
 				this.add('-weather', 'Dust Storm');
 			}
@@ -498,6 +507,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldResidualOrder: 1,
 		onFieldResidual() {
 			this.add('-weather', 'Dust Storm', '[upkeep]');
+			this.add('-message', `The dust storm continues.`);
 			if (this.field.isWeather('Dust Storm')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
@@ -506,6 +516,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onFieldEnd() {
 			this.add('-weather', 'none');
+			this.add('-message', `The weather became clear.`);
 		},
 	},
 	sunshower: {
@@ -522,6 +533,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Sunshower', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-message', `A sunshower began to fall!`);
 			} else {
 				this.add('-weather', 'Sunshower');
 			}
@@ -537,10 +549,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldResidualOrder: 1,
 		onFieldResidual() {
 			this.add('-weather', 'Sunshower', '[upkeep]');
+			this.add('-message', `The sunshower continues.`);
 			if (this.field.isWeather('Sunshower')) this.eachEvent('Weather');
 		},
 		onFieldEnd() {
 			this.add('-weather', 'none');
+			this.add('-message', `The weather became clear.`);
 		},
 	},
 
