@@ -1592,7 +1592,7 @@ export const Formats: FormatList = [
 					'Chi-Yu', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Dialga-Origin', 'Dracovish', 'Eternatus', 'Eternatus-Eternamax', 'Flutter Mane', 'Genesect', 'Giratina', 'Giratina-Origin', 'Groudon', 'Red Orb', 'Groudon-Primal', 'Ho-Oh', 'Iron Bundle', 'Kangaskhan-Mega', 'Kangaskhanite', 
 					'Koraidon', 'Kyogre', 'Blue Orb', 'Kyogre-Primal', 'Kyurem-Black', 'Kyurem-White', 'Landorus', 'Lugia', 'Lunala', 'Magearna', 'Metagross-Mega', 'Metagrossite', 'Mewtwo', 'Mewtwonite X', 'Mewtwonite Y', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Necrozma-Ultra', 
 					'Ultranecrozium Z', 'Palkia', 'Palkia-Origin', 'Pheromosa', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Salamencite', 'Solgaleo', 'Urshifu', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base', 'Murkrow + Baton Pass', 'Murkrow + Dark Void',
-					'Murkrow + Grass Whistle', 'Murkrow + Hypnosis', 'Murkrow + Lovely Kiss', 'Murkrow + Shed Tail', 'Murkrow + Sing', 'Murkrow + Sleep Powder', 'Murkrow + Spore', 'Maushold-Four', "Dudunsparce-Three-Segment", "Leppa Berry + Noxious Torque", "Battle Bond",
+					'Murkrow + Grass Whistle', 'Murkrow + Hypnosis', 'Murkrow + Lovely Kiss', 'Murkrow + Shed Tail', 'Murkrow + Sing', 'Murkrow + Sleep Powder', 'Murkrow + Spore', 'Maushold-Four', "Dudunsparce-Three-Segment", "Leppa Berry + Noxious Torque", "Honchkrow + Baton Pass", "Battle Bond",
 					'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z'],
 		teambuilderFormat: 'OU',
 	},
