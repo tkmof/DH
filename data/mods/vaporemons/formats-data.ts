@@ -5534,7 +5534,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "RU",
 		doublesTier: "(DUU)",
 		natDexTier: "RU",
-	}, /*
+	}, 
 	revavroomcaph: {
 		tier: "Illegal",
 		doublesTier: "(DUU)",
@@ -5559,7 +5559,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 		doublesTier: "(DUU)",
 		natDexTier: "RU",
-	}, */
+	}, 
 	orthworm: {
 		tier: "UU",
 		doublesTier: "(DUU)",
