@@ -2281,22 +2281,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Crush Claw", target);
 		},
-		onTryHit(pokemon, target, move) {
-			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
-				delete move.secondaries;
-				return false;
-			}
-		},
-		secondary: {
+	   secondary: {
 			chance: 100,
-			self: {
-				onHit(source) {
-					for (const side of source.side.foeSidesWithConditions()) {
-						side.addSideCondition('toxicspikes');
-					}
-				},
-			},
-		},
+		 	sideCondition: 'toxicspikes',
+	   },
 		target: "normal",
 		type: "Poison",
 		contestType: "Clever",
@@ -2311,26 +2299,14 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
-		onTryHit(pokemon, target, move) {
-			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
-				delete move.secondaries;
-				return false;
-			}
-		},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Night Slash", target);
 		},
-		secondary: {
+	   secondary: {
 			chance: 100,
-			self: {
-				onHit(source) {
-					for (const side of source.side.foeSidesWithConditions()) {
-						side.addSideCondition('spikes');
-					}
-				},
-			},
-		},
+		 	sideCondition: 'spikes',
+	   },
 		target: "normal",
 		type: "Dark",
 	},
@@ -2349,22 +2325,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stone Edge", target);
 		},
-		onTryHit(pokemon, target, move) {
-			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
-				delete move.secondaries;
-				return false;
-			}
-		},
-		secondary: {
+	   secondary: {
 			chance: 100,
-			self: {
-				onHit(source) {
-					for (const side of source.side.foeSidesWithConditions()) {
-						side.addSideCondition('stealthrock');
-					}
-				},
-			},
-		},
+		 	sideCondition: 'stealthrock',
+	   },
 		target: "adjacentFoe",
 		type: "Rock",
 		contestType: "Tough",
@@ -2379,22 +2343,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onTryHit(pokemon, target, move) {
-			if (target.hasItem('covertcloak') || target.hasAbility('shielddust')) {
-				delete move.secondaries;
-				return false;
-			}
-		},
-		secondary: {
+	   secondary: {
 			chance: 100,
-			self: {
-				onHit(source) {
-					for (const side of source.side.foeSidesWithConditions()) {
-						side.addSideCondition('stickyweb');
-					}
-				},
-			},
-		},
+		 	sideCondition: 'stickyweb',
+	   },
 		target: "allAdjacentFoes",
 		type: "Electric",
 		contestType: "Beautiful",
