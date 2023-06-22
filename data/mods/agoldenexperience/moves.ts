@@ -2094,13 +2094,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 					}
 				}
 				if (move.flags['contact']) {
-					target.clearBoosts();
+					// console.log(move);
+					source.clearBoosts(); //why isn't it working
 				}
 				return this.NOT_FAIL;
 			},
 			onHit(target, source, move) {
 				if (move.isZOrMaxPowered && move.flags['contact']) {
-					target.clearBoosts();
+					source.clearBoosts();
+					this.add('-clearboost', source);
 				}
 			},
 		},
@@ -2224,7 +2226,63 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Clever",
 	},
 	stoneaxe: {
-		shortDesc: "Sets Stealth Rock after damage.",
+		shortDesc: "Sets Stealth Rock after damage.",banefulbunker: {
+			num: 661,
+			accuracy: true,
+			basePower: 0,
+			category: "Status",
+			name: "Baneful Bunker",
+			pp: 10,
+			priority: 4,
+			flags: {},
+			stallingMove: true,
+			volatileStatus: 'banefulbunker',
+			onTryHit(target, source, move) {
+				return !!this.queue.willAct() && this.runEvent('StallMove', target);
+			},
+			onHit(pokemon) {
+				pokemon.addVolatile('stall');
+			},
+			condition: {
+				duration: 1,
+				onStart(target) {
+					this.add('-singleturn', target, 'move: Protect');
+				},
+				onTryHitPriority: 3,
+				onTryHit(target, source, move) {
+					if (!move.flags['protect']) {
+						if (move.isZ || (move.isMax && !move.breaksProtect)) target.getMoveHitData(move).zBrokeProtect = true;
+						return;
+					}
+					if (move.smartTarget) {
+						move.smartTarget = false;
+					} else {
+						this.add('-activate', target, 'move: Protect');
+					}
+					const lockedmove = source.getVolatile('lockedmove');
+					if (lockedmove) {
+						// Outrage counter is reset
+						if (source.volatiles['lockedmove'].duration === 2) {
+							delete source.volatiles['lockedmove'];
+						}
+					}
+					if (move.flags['contact']) {
+						source.trySetStatus('psn', target);
+					}
+					return this.NOT_FAIL;
+				},
+				onHit(target, source, move) {
+					if (move.isZOrMaxPowered && move.flags['contact']) {
+						source.trySetStatus('psn', target);
+					}
+				},
+			},
+			secondary: null,
+			target: "self",
+			type: "Poison",
+			zMove: {boost: {def: 1}},
+			contestType: "Tough",
+		},
 		num: -1014,
 		accuracy: 100,
 		basePower: 65,
