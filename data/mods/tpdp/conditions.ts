@@ -385,7 +385,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onModifySecondaries(secondaries) {
 			return secondaries.filter(effect => !!effect.self);
 		},
-		onFieldStart(field, source, effect) {
+		onStart(battle, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				this.add('-weather', 'Calm', '[from] ability: ' + effect.name, '[of] ' + source);
 				this.add('-message', `The weather became Calm!`);
@@ -393,12 +393,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-weather', 'Calm');
 			}
 		},
-		onFieldResidualOrder: 1,
-		onFieldResidual() {
+		onResidual() {
 			this.add('-weather', 'Calm', '[upkeep]');
 			this.add('-message', `The calmness continues.`);
 		},
-		onFieldEnd() {
+		onEnd() {
 			this.add('-weather', 'none');
 			this.add('-message', `The weather became clear.`);
 		},
@@ -420,7 +419,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.chainModify(0.5);
 			}
 		},
-		onFieldStart(field, source, effect) {
+		onStart(battle, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				this.add('-weather', 'Aurora', '[from] ability: ' + effect.name, '[of] ' + source);
 				this.add('-message', `An aurora filled the sky!`);
@@ -428,13 +427,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-weather', 'Aurora');
 			}
 		},
-		onFieldResidualOrder: 1,
-		onFieldResidual() {
+		onResidual() {
 			this.add('-weather', 'Aurora', '[upkeep]');
 			this.eachEvent('Weather');
 			this.add('-message', `The aurora continues.`);
 		},
-		onFieldEnd() {
+		onEnd() {
 			this.add('-weather', 'none');
 			this.add('-message', `The weather became clear.`);
 		},
@@ -456,7 +454,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.chainModify(0.5);
 			}
 		},
-		onFieldStart(field, source, effect) {
+		onStart(battle, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				this.add('-weather', 'Heavy Fog', '[from] ability: ' + effect.name, '[of] ' + source);
 				this.add('-message', `A heavy fog descended!`);
@@ -464,13 +462,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-weather', 'Heavy Fog');
 			}
 		},
-		onFieldResidualOrder: 1,
-		onFieldResidual() {
+		onResidual() {
 			this.add('-weather', 'Heavy Fog', '[upkeep]');
 			this.eachEvent('Weather');
 			this.add('-message', `The heavy fog continues.`);
 		},
-		onFieldEnd() {
+		onEnd() {
 			this.add('-weather', 'none');
 			this.add('-message', `The weather became clear.`);
 		},
@@ -495,7 +492,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return this.modify(spd, 1.5);
 			}
 		},*/
-		onFieldStart(field, source, effect) {
+		onStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Dust Storm', '[from] ability: ' + effect.name, '[of] ' + source);
@@ -504,8 +501,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-weather', 'Dust Storm');
 			}
 		},
-		onFieldResidualOrder: 1,
-		onFieldResidual() {
+		onResidual() {
 			this.add('-weather', 'Dust Storm', '[upkeep]');
 			this.add('-message', `The dust storm continues.`);
 			if (this.field.isWeather('Dust Storm')) this.eachEvent('Weather');
@@ -514,7 +510,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (!target.hasType(['Steel', 'Earth']))
 				this.damage(target.baseMaxhp / 16);
 		},
-		onFieldEnd() {
+		onEnd() {
 			this.add('-weather', 'none');
 			this.add('-message', `The weather became clear.`);
 		},
@@ -529,7 +525,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return 5;
 		},
-		onFieldStart(field, source, effect) {
+		onStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectData.duration = 0;
 				this.add('-weather', 'Sunshower', '[from] ability: ' + effect.name, '[of] ' + source);
@@ -546,13 +542,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onModifyDef(relayVar, target, source, move) {
 			return source.getStat('spd', true);
 		},*/
-		onFieldResidualOrder: 1,
-		onFieldResidual() {
+		onResidual() {
 			this.add('-weather', 'Sunshower', '[upkeep]');
 			this.add('-message', `The sunshower continues.`);
 			if (this.field.isWeather('Sunshower')) this.eachEvent('Weather');
 		},
-		onFieldEnd() {
+		onEnd() {
 			this.add('-weather', 'none');
 			this.add('-message', `The weather became clear.`);
 		},
@@ -568,17 +563,17 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onEffectiveness(typeMod, target, type, move) {
 			return 0;
 		},
-		onFieldStart(field, source, effect) {
+		onStart(battle, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Seiryu', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-message', `The terrain became Seiryu!`);
 			} else {
 				this.add('-fieldstart', 'terrain: Seiryu');
 			}
 		},
-		onFieldResidualOrder: 27,
-		onFieldResidualSubOrder: 7,
-		onFieldEnd() {
+		onEnd() {
 			this.add('-fieldend', 'terrain: Seiryu');
+			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
 	suzaku: {
@@ -593,17 +588,17 @@ export const Conditions: {[k: string]: ConditionData} = {
 			target.damage(relayVar);
 			return false;
 		},
-		onFieldStart(field, source, effect) {
+		onStart(battle, source, effect) {
+			this.add('-message', `The terrain became Suzaku!`);
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Suzaku', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-fieldstart', 'terrain: Suzaku');
 			}
 		},
-		onFieldResidualOrder: 27,
-		onFieldResidualSubOrder: 7,
-		onFieldEnd() {
+		onEnd() {
 			this.add('-fieldend', 'terrain: Suzaku');
+			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
 	byakko: {
@@ -618,17 +613,17 @@ export const Conditions: {[k: string]: ConditionData} = {
 			move.critRatio = 0;
 			move.breaksProtect = true;
 		},
-		onFieldStart(field, source, effect) {
+		onStart(battle, source, effect) {
+			this.add('-message', `The terrain became Byakko!`);
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Byakko', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-fieldstart', 'terrain: Byakko');
 			}
 		},
-		onFieldResidualOrder: 27,
-		onFieldResidualSubOrder: 7,
-		onFieldEnd() {
+		onEnd() {
 			this.add('-fieldend', 'terrain: Byakko');
+			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
 	genbu: {
@@ -638,17 +633,17 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 5;
 		},
 		//Trick Room is implemented in pokemon.ts:Pokemon.getActionSpeed()
-		onFieldStart(field, source, effect) {
+		onStart(battle, source, effect) {
+			this.add('-message', `The terrain became Genbu!`);
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Genbu', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-fieldstart', 'terrain: Genbu');
 			}
 		},
-		onFieldResidualOrder: 27,
-		onFieldResidualSubOrder: 7,
-		onFieldEnd() {
+		onEnd() {
 			this.add('-fieldend', 'terrain: Genbu');
+			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
 	kohryu: {
@@ -660,17 +655,17 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onModifyMove(move, pokemon, target) {
 			move.ignoreAbility = true;
 		},
-		onFieldStart(field, source, effect) {
+		onStart(battle, source, effect) {
+			this.add('-message', `The terrain became Kohryu!`);
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Kohryu', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-fieldstart', 'terrain: Kohryu');
 			}
 		},
-		onFieldResidualOrder: 27,
-		onFieldResidualSubOrder: 7,
-		onFieldEnd() {
+		onEnd() {
 			this.add('-fieldend', 'terrain: Kohryu');
+			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
 };
