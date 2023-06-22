@@ -292,6 +292,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       types: ["Poison", "Dark"],
       baseStats: {hp: 50, atk: 125, def: 92, spa: 55, spd: 92, spe: 106},
       abilities: {0: "Unburden", H: "Moxie"},
+	    weightkg: 102.5,
    },
     condorus: {
       num: 39,
