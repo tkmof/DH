@@ -116,9 +116,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'dark',
 		effectType: 'Status',
 		statusSlots: 1,
-		start: "[POKEMON] has been blinded!",
-		alreadyStarted: "[POKEMON] is already blinded!",
-		endFromItem: "[POKEMON]'s [ITEM] healed its status!",
+		start: "  [Pokemon] was blinded!",
+		alreadyStarted: "  [POKEMON] is already blinded!",
+		end: "  [POKEMON] regained its sight!",
+		endFromItem: "  [POKEMON]'s [ITEM] restored its sight!",
+		endFromMove: "  [POKEMON]'s [MOVE] restored its sight!",
 		onStart(target, source, sourceEffect) {
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
 				this.add('-status', target, 'dark', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
@@ -398,8 +400,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-message', `The calmness continues.`);
 		},
 		onEnd() {
-			this.add('-weather', 'none');
-			this.add('-message', `The weather became clear.`);
+			this.add('-weather', 'none', '[silent]');
+			this.add('-message', `The weather returned to normal!`);
 		},
 	},
 	aurora: {
@@ -433,8 +435,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-message', `The aurora continues.`);
 		},
 		onEnd() {
-			this.add('-weather', 'none');
-			this.add('-message', `The weather became clear.`);
+			this.add('-weather', 'none', '[silent]');
+			this.add('-message', `The weather returned to normal!`);
 		},
 	},
 	heavyfog: {
@@ -468,8 +470,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-message', `The heavy fog continues.`);
 		},
 		onEnd() {
-			this.add('-weather', 'none');
-			this.add('-message', `The weather became clear.`);
+			this.add('-weather', 'none', '[silent]');
+			this.add('-message', `The weather returned to normal!`);
 		},
 	},
 	duststorm: {
@@ -511,8 +513,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.damage(target.baseMaxhp / 16);
 		},
 		onEnd() {
-			this.add('-weather', 'none');
-			this.add('-message', `The weather became clear.`);
+			this.add('-weather', 'none', '[silent]');
+			this.add('-message', `The weather returned to normal!`);
 		},
 	},
 	sunshower: {
@@ -548,8 +550,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (this.field.isWeather('Sunshower')) this.eachEvent('Weather');
 		},
 		onEnd() {
-			this.add('-weather', 'none');
-			this.add('-message', `The weather became clear.`);
+			this.add('-weather', 'none', '[silent]');
+			this.add('-message', `The weather returned to normal!`);
 		},
 	},
 
@@ -573,7 +575,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onEnd() {
-			this.add('-fieldend', 'terrain: Seiryu');
+			this.add('-fieldend', 'terrain: Seiryu', '[silent]');
 			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
@@ -598,7 +600,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onEnd() {
-			this.add('-fieldend', 'terrain: Suzaku');
+			this.add('-fieldend', 'terrain: Suzaku', '[silent]');
 			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
@@ -643,7 +645,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onEnd() {
-			this.add('-fieldend', 'terrain: Genbu');
+			this.add('-fieldend', 'terrain: Genbu', '[silent]');
 			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
@@ -665,7 +667,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onEnd() {
-			this.add('-fieldend', 'terrain: Kohryu');
+			this.add('-fieldend', 'terrain: Kohryu', '[silent]');
 			this.add('-message', `The terrain returned to normal!`);
 		},
 	},

@@ -2126,40 +2126,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
 			},
 		},
-		onTerrainChange(target, source, sourceEffect) {
-			switch (this.field.terrain) {
-				default:
-					target.abilityState.terrainType = null;
-					break;
-				case 'byakko':
-					target.abilityState.terrainType = 'Steel';
-					break;
-				case 'genbu':
-					target.abilityState.terrainType = 'Water';
-					break;
-				case 'kohryu':
-					target.abilityState.terrainType = 'Earth';
-					break;
-				case 'seiryu':
-					target.abilityState.terrainType = 'Nature';
-					break;
-				case 'suzaku':
-					target.abilityState.terrainType = 'Fire';
-					break;
-			}
-
-			let newTypes:string[] = [];
-			if (target.abilityState.weatherType)
-				newTypes.push(target.abilityState.weatherType);
-			if (target.abilityState.terrainType)
-				newTypes.push(target.abilityState.terrainType);
-
-			if (newTypes.length > 1 && newTypes[1] === newTypes[0]) //Ensure monotype during Dust Storm + Kohryu
-				newTypes.pop();
-
-			target.setType(newTypes, true);
-			this.add('-start', target, 'typechange', newTypes.join('/'), '[from] ability: Secret Ceremony');
-		},
 	},
 	seiteiswood: {
 		name: "Seitei's Wood",
