@@ -1360,7 +1360,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Removes the opponent's Ability on entry.",
 		onSwitchIn(pokemon) {
 			for (const foe of pokemon.foes()) {
-				foe.clearAbility();
+				foe.addVolatile('gastroacid');
 			}
 		},
 	},
