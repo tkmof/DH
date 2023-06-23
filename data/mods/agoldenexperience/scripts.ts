@@ -884,6 +884,10 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'octillery').learnset.aurasphere = ['8L1'];
     this.modData('Learnsets', 'octillery').learnset.terrainpulse = ['8L1'];
     this.modData('Learnsets', 'mantine').learnset.flipturn = ['8L1'];
+    this.modData('Learnsets', 'houndour').learnset.houndshowl = ['8L1'];
+    this.modData('Learnsets', 'houndour').learnset.dantesinferno = ['8L1'];
+    this.modData('Learnsets', 'houndoom').learnset.houndshowl = ['8L1'];
+    this.modData('Learnsets', 'houndoom').learnset.dantesinferno = ['8L1'];
 
     //gen 3:
     this.modData('Learnsets', 'blaziken').learnset.roost = ['8L1'];

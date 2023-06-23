@@ -2438,6 +2438,7 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			poltergeist: ["8M"],
 			stealthrock: ["8M"],
 			underdog: ["8M"],
+			houndshowl: ["8M"],
 		},
 	},
 	pawmi: {
@@ -6339,6 +6340,7 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			willowisp: ["7M", "6M", "5M", "4M", "4E", "3E"],
 			shadowclaw: ["8L1"],
 			phantomforce: ["8L1"],
+			houndshowl: ["8L1"],
 		},
 	},
 	baskiron: {
@@ -6425,6 +6427,7 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			punishment: ["8L1"],
 			icefang: ["8L1"],
 			flareblitz: ["8L1"],
+			houndshowl: ["8L1"],
 		},
 	},
 	ameba: {
