@@ -2157,6 +2157,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	meloettapirouette: {
 		inherit: true,
 		abilities: {0: "Dancer"},
+		requiredItem: "Relic Sheet",
 	},
 	genesect: {
 		inherit: true,

@@ -2054,6 +2054,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		isPermanent: true,
 		name: "Zen Mode",
+		shortDesc: "If Darmanitan, changes Mode to Zen.",
 		rating: 0,
 		num: 161,
 	},
