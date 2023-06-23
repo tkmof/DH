@@ -8219,6 +8219,7 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			sneakyassault: ["8M"],
 			flipturn: ["8M"],
 			suckerpunch: ["8M"],
+			slackoff: ["8M"],
 		},
 	},
 	annoyog: {
