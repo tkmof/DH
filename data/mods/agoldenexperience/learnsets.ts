@@ -2604,6 +2604,7 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			voltswitch: ["8M"],
 			wildcharge: ["8M", "8L1"],
 			uturn: ["8M"],
+			stompingtantrum: ["8M"],
 		},
 	},
 	tandemaus: {
