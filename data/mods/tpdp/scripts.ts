@@ -104,13 +104,13 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			if (!type || type === '???') return true;
 			if (!(type in this.battle.dex.data.TypeChart)) {
 				if (
-					//type === 'Void'|| 
+					type === 'Void'|| 
 					type === 'Nature' || 
-					//type === 'Earth' ||
-					//type === 'Wind' ||
+					type === 'Earth' ||
+					type === 'Wind' ||
 					type === 'Light' ||
 					type === 'Nether' ||
-					//type === 'Illusion' ||
+					type === 'Illusion' ||
 					type === 'Sound' ||
 					type === 'Warped' ||
 					type === 'Dream') return true;

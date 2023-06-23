@@ -2542,23 +2542,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Leech Seed", target);
 		},
-		volatileStatus: 'drainseed',
-		condition: {
-			onStart(target) {
-				this.add('-start', target, 'move: Drain Seed');
-			},
-			onResidualOrder: 8,
-			onResidual(pokemon) {
-				const target = this.getAtSlot(pokemon.volatiles['drainseed'].sourceSlot);
-				if (!target || target.fainted || target.hp <= 0) {
-					return;
-				}
-				const damage = this.damage(pokemon.baseMaxhp / 8, pokemon, target);
-				if (damage) {
-					this.heal(damage, target, pokemon);
-				}
-			},
-		},
+		volatileStatus: 'leechseed',
 		onTryImmunity(target) {
 			return !target.hasType('Nature');
 		},
@@ -7141,14 +7125,20 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Knock Off", target);
 		},
-		basePowerCallback(pokemon, target, move) {
-			if (target.item) {
-				return move.basePower * 1.5;
+		onBasePower(basePower, source, target, move) {
+			const item = target.getItem();
+			if (!this.singleEvent('TakeItem', item, target.itemData, target, target, move, item)) return;
+			if (item.id) {
+				return this.chainModify(1.5);
 			}
-			return move.basePower;
 		},
-		onHit(target, source, move) {
-			target.clearItem();
+		onAfterHit(target, source) {
+			if (source.hp) {
+				const item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Panic Call', '[of] ' + source);
+				}
+			}
 		},
 		// Class: 2
 		// Effect Chance: 100
@@ -9500,7 +9490,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Rapid Spin", target);
 		},
 		onAfterHit(target, pokemon) {
-			if (pokemon.hp && pokemon.removeVolatile('drainseed')) {
+			if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
 				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
 			}
 			const sideConditions = ['stickyweb', 'spikes', 'toxicspikes', 'gmaxsteelsurge'];
@@ -10037,14 +10027,20 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Incinerate", target);
 		},
-		basePowerCallback(pokemon, target, move) {
-			if (target.item) {
-				return move.basePower * 1.5;
+		onBasePower(basePower, source, target, move) {
+			const item = target.getItem();
+			if (!this.singleEvent('TakeItem', item, target.itemData, target, target, move, item)) return;
+			if (item.id) {
+				return this.chainModify(1.5);
 			}
-			return move.basePower;
 		},
-		onHit(target, source, move) {
-			target.clearItem();
+		onAfterHit(target, source) {
+			if (source.hp) {
+				const item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: St. Elmo\'s Fire', '[of] ' + source);
+				}
+			}
 		},
 		// Class: BU
 		// Effect Chance: 100
