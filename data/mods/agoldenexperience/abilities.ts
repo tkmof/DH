@@ -1022,12 +1022,18 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: -2011,
 	},
 	blowhole: {
-		desc: "When this Pokemon uses a Water move, it sets Rain Dance.",
-		shortDesc: "Sets Rain Dance when using a Water move.",
+		desc: "When this Pokemon uses a Water move, it sets Rain Dance. Water Spout is always at max BP.",
+		shortDesc: "Sets Rain Dance when using a Water move. Water Spout is at max BP.",
 		onSourceHit(target, source, move) {
 			if (!move || !target) return;
 			if (move.type === 'Water' && this.field.getWeather().id !== 'raindance') {
 				this.field.setWeather('raindance');
+			}
+		},
+		onModifyMovePriority: -1,
+		onModifyMove(move, attacker) {
+			if (move.id === 'waterspout') {
+				move.basePower = 150;
 			}
 		},
 		name: "Blowhole",
@@ -2502,18 +2508,18 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		name: "Sharpness",
 	},
-	dauntlessshield: {
-		onStart(pokemon) {
-			if (this.effectData.shieldBoost) return;
-			if (this.boost({ def: 1 }, pokemon)) {
-				this.effectData.shieldBoost = true;
-			}
-		},
-		name: "Dauntless Shield",
-		shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
-		rating: 3.5,
-		num: 235,
-	},
+	// dauntlessshield: {
+	// 	onStart(pokemon) {
+	// 		if (this.effectData.shieldBoost) return;
+	// 		if (this.boost({ def: 1 }, pokemon)) {
+	// 			this.effectData.shieldBoost = true;
+	// 		}
+	// 	},
+	// 	name: "Dauntless Shield",
+	// 	shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
+	// 	rating: 3.5,
+	// 	num: 235,
+	// },
 	intrepidsword: {
 		onStart(pokemon) {
 			if (this.effectData.swordBoost) return;
