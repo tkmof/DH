@@ -1678,10 +1678,10 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	arenatrap: {
 		onModifyDamage(damage, source, target, move) {
 			if (!(source.activeMoveActions > 1)) {
-				return this.chainModify([0x1400, 0x1000]);
+				return this.chainModify(1.3);
 			}
 		},
-		shortDesc: "This Pokemon's attacks deal x1.2 damages during 1 turn.",
+		shortDesc: "This Pokemon's attacks deal x1.3 damages during 1 turn.",
 		name: "Arena Trap",
 		rating: 5,
 		num: 71,
