@@ -552,6 +552,28 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 9] Set in Stone",
+		desc: [
+			"<b>Set in Stone</b>: A micrometa where Pokemon are customized based on a combination of two player's set ideas.",
+		],
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/set-in-stone-phase-2-slate-2.3722451/post-9648171"> Set in Stone on Smogon Forums</a>`,
+		      ],
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause', 'Data Mod', 'Mega Data Mod'],
+		banlist: [],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}} */
+			let speciesTable = {};
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if ( template.tier !== 'SS') {
+					return [set.species + ' is not usable in Triple Threat.'];
+				}
+			}
+		},
+		mod: 'setinstone',
+	},
+	{
 		name: "[Gen 8] Super Smash Stereotypes",
 		desc: [
 			"<b>Super Smash Stereotypes</b>: A project that aims to create a micrometa containing a Pokemon from other mods for all 171 possible types.",
@@ -595,6 +617,20 @@ export const Formats: FormatList = [
 		},
 		mod: 'triplethreat',
 	},
+	{
+		name: "[Gen 8] VaporeMons",
+		desc: [
+			"<b>VaporeMons</b>: The third in the SylveMons trilogy where Pokemon, items, abilities and moves are redesigned for OU (and new items, abilities and moves are added) without changing base stats.",
+		],
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/vaporemons-slate-1-discussion-phase.3722917/">Thread on the Smogon Forums</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1_5AwZ24dPu3-5m5yOyIO4OTPmW9OwIWXXzZ5IJZkj4c/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'vaporemons',	
+		teambuilderFormat: 'OU',
+		ruleset: ['Standard', 'Dynamax Clause', 'Data Mod'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+    },	
 	{
 		section: "Gen 8 Mods",
 		column: 1,
@@ -1604,7 +1640,7 @@ export const Formats: FormatList = [
 					'Chi-Yu', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Dialga-Origin', 'Dracovish', 'Eternatus', 'Eternatus-Eternamax', 'Flutter Mane', 'Genesect', 'Giratina', 'Giratina-Origin', 'Groudon', 'Red Orb', 'Groudon-Primal', 'Ho-Oh', 'Iron Bundle', 'Kangaskhan-Mega', 'Kangaskhanite', 
 					'Koraidon', 'Kyogre', 'Blue Orb', 'Kyogre-Primal', 'Kyurem-Black', 'Kyurem-White', 'Landorus', 'Lugia', 'Lunala', 'Magearna', 'Metagross-Mega', 'Metagrossite', 'Mewtwo', 'Mewtwonite X', 'Mewtwonite Y', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Necrozma-Ultra', 
 					'Ultranecrozium Z', 'Palkia', 'Palkia-Origin', 'Pheromosa', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Salamencite', 'Solgaleo', 'Urshifu', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base', 'Murkrow + Baton Pass', 'Murkrow + Dark Void',
-					'Murkrow + Grass Whistle', 'Murkrow + Hypnosis', 'Murkrow + Lovely Kiss', 'Murkrow + Shed Tail', 'Murkrow + Sing', 'Murkrow + Sleep Powder', 'Murkrow + Spore', 'Maushold-Four', "Dudunsparce-Three-Segment", "Leppa Berry + Noxious Torque", "Battle Bond",
+					'Murkrow + Grass Whistle', 'Murkrow + Hypnosis', 'Murkrow + Lovely Kiss', 'Murkrow + Shed Tail', 'Murkrow + Sing', 'Murkrow + Sleep Powder', 'Murkrow + Spore', 'Maushold-Four', "Dudunsparce-Three-Segment", "Leppa Berry + Noxious Torque", "Honchkrow + Baton Pass", "Battle Bond",
 					'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z'],
 		teambuilderFormat: 'OU',
 	},
@@ -1617,6 +1653,23 @@ export const Formats: FormatList = [
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['IDK'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return ['you forgor ' + set.species + ' doesnt exist.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] i forgor Ubers",
+		mod: 'iforgor',
+		desc: `i forgor`,
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Mega Data Mod'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['EF', 'IDK'];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
@@ -2276,4 +2329,43 @@ export const Formats: FormatList = [
 		banlist: ['All Pokemon', 'Belly Drum', 'Huge Power'],
 		unbanlist: ['Shadow Tag', 'Pichu', 'Cleffa', 'Igglybuff', 'Togepi', 'Tyrogue', 'Smoochum', 'Elekid', 'Magby', 'Azurill', 'Wynaut', 'Budew', 'Chingling', 'Bonsly', 'Mime Jr.', 'Happiny', 'Munchlax', 'Riolu', 'Mantyke', 'Toxel'],
 	},
+	{
+		name: "[Gen 6] TPDP Open",
+		mod: 'tpdp',
+		desc: `a close approximation of Touhou Puppet Dance Performance`,
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
+		banlist: ['Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
+		],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['TPDP OU', 'TPDP LC'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not allowed.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 6] TPDP Netplay",
+		mod: 'tpdp',
+		forcedLevel: 50,
+		desc: `a close approximation of Touhou Puppet Dance Performance`,
+		ruleset: ['Standard GBU', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
+		banlist: ['Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
+		],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['TPDP OU', 'TPDP LC'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not allowed.'];
+				}
+			}
+		},
+	},	
 ];

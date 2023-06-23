@@ -6417,6 +6417,10 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "RNG FE",
 		doublesTier: "RNG FE",
 	},
+	hitmonchan: {
+		tier: "RNG FE",
+		doublesTier: "RNG FE",
+	},
 	poliwrath: {
 		tier: "RNG FE",
 		doublesTier: "RNG FE",
