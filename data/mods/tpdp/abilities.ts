@@ -604,7 +604,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Lowers the opponent's FoAtk upon switch in.",
 		onStart(pokemon) {
 			let activated = false;
-			for (const target of pokemon.adjacentFoes()) {
+			for (const target of pokemon.side.foe.active) {
 				if (!activated) {
 					this.add('-ability', pokemon, 'Deploy Smoke', 'boost');
 					activated = true;
@@ -2669,7 +2669,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Lowers the opponent's SpAtk upon switch in.",
 		onStart(pokemon) {
 			let activated = false;
-			for (const target of pokemon.adjacentFoes()) {
+			for (const target of pokemon.side.foe.active) {
 				if (!activated) {
 					this.add('-ability', pokemon, 'Warning Shot', 'boost');
 					activated = true;
