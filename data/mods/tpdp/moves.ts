@@ -792,7 +792,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	blazeoftenmei: {
 		name: "Blaze of Tenmei",
-		shortDesc: "100% chance to burn the foe.",
+		shortDesc: "Burns the foe.",
 		target: "normal",
 		type: "Fire",
 		category: "Special",
@@ -803,7 +803,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Fire Lash", target);
+			this.add('-anim', source, "Inferno", target);
 		},
 		status: 'brn'
 		// Class: BU
@@ -812,7 +812,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	blazespear: {
 		name: "Blaze Spear",
-		shortDesc: "Burns the foe.",
+		shortDesc: "10% chance to burn the foe.",
 		target: "normal",
 		type: "Fire",
 		category: "Special",
@@ -823,7 +823,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Inferno", target);
+			this.add('-anim', source, "Searing Shot", target);
 		},
 		secondaries: [
 			{
@@ -3585,7 +3585,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	fireball: {
 		name: "Fireball",
-		shortDesc: "Traps the foe for 4-5 turns.",
+		shortDesc: "10% chance to burn the foe.",
 		target: "normal",
 		type: "Fire",
 		category: "Physical",
@@ -3596,7 +3596,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Magma Storm", target);
+			this.add('-anim', source, "Flamethrower", target);
 		},
 		secondaries: [
 			{
@@ -3621,7 +3621,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Fire Spin", target);
+			this.add('-anim', source, "Magma Storm", target);
 		},
 		volatileStatus: 'partiallytrapped'
 		// Class: 2
@@ -3630,7 +3630,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	firesnakespiral: {
 		name: "Fire-Snake Spiral",
-		shortDesc: "10% chance to burn the foe.",
+		shortDesc: "Traps the foe for 4-5 turns.",
 		target: "normal",
 		type: "Fire",
 		category: "Special",
@@ -3641,7 +3641,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Flamethrower", target);
+			this.add('-anim', source, "Fire Spin", target);
 		},
 		volatileStatus: 'partiallytrapped'
 		// Class: 2
@@ -5744,7 +5744,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	lightoforigin: {
 		name: "Light of Origin",
-		shortDesc: "A normal attack. A puppet can only know one sign skill at a time.",
+		shortDesc: "A normal attack.",
 		target: "normal",
 		type: "Light",
 		category: "Special",
@@ -5755,7 +5755,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Hidden Power", target);
+			this.add('-anim', source, "Photon Geyser", target);
 		},
 		// Class: 2
 		// Effect Chance: 100
@@ -5763,7 +5763,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	lightsign: {
 		name: "Light Sign",
-		shortDesc: "A normal attack that lands critical hits often.",
+		shortDesc: "A normal attack. A puppet can only know one sign skill at a time.",
 		target: "normal",
 		type: "Light",
 		category: "Special",
@@ -5774,7 +5774,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, sign: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Photon Geyser", target);
+			this.add('-anim', source, "Hidden Power", target);
 		},
 		// Class: 2
 		// Effect Chance: 100
@@ -5782,7 +5782,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	lightup: {
 		name: "Light Up",
-		shortDesc: "A normal attack.",
+		shortDesc: "A normal attack that lands critical hits often.",
 		target: "normal",
 		type: "Light",
 		category: "Physical",
@@ -6565,7 +6565,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	moonbow: {
 		name: "Moonbow",
-		shortDesc: "Raises the user's SpAtk and SpDef.",
+		shortDesc: "A normal attack.",
 		target: "normal",
 		type: "Light",
 		category: "Special",
@@ -6576,7 +6576,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Calm Mind", target);
+			this.add('-anim', source, "Spirit Shackle", target);
 		},
 		// Class: BU
 		// Effect Chance: 0
@@ -6584,7 +6584,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	moonsprotection: {
 		name: "Moon's Protection",
-		shortDesc: "Damage is twice the damage taken from the foe's Spread attack on the same turn.",
+		shortDesc: "Raises the user's SpAtk and SpDef.",
 		target: "self",
 		type: "Light",
 		category: "Status",
@@ -6595,7 +6595,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Mirror Coat", target);
+			this.add('-anim', source, "Calm Mind", target);
 		},
 		boosts: {spa: 1, spd: 1}
 		// Class: EN
@@ -6604,7 +6604,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	moonsreflection: {
 		name: "Moon's Reflection",
-		shortDesc: "A normal attack.",
+		shortDesc: "Damage is twice the damage taken from the foe's Spread attack on the same turn.",
 		target: "normal",
 		type: "Illusion",
 		category: "Special",
@@ -6615,7 +6615,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, counter: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Spirit Shackle", target);
+			this.add('-anim', source, "Mirror Coat", target);
 		},
 		damageCallback(pokemon) {
 			if (!pokemon.volatiles['counter']) return 0;
@@ -6964,7 +6964,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	offensivetrance: {
 		name: "Offensive Trance",
-		shortDesc: "Harshly lowers the user's SpAtk.",
+		shortDesc: "Sharply raises the user's FoAtk, SpAtk, and Speed at the cost of FDef and SDef.",
 		target: "self",
 		type: "Void",
 		category: "Status",
@@ -6975,7 +6975,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Leaf Storm", target);
+			this.add('-anim', source, "Clangorous Soul", target);
 		},
 		boosts: {atk: 2, def: -1, spa: 2, spd: -1, spe: 2}
 		// Class: EN
@@ -6984,7 +6984,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	offseasonbloom: {
 		name: "Off-Season Bloom",
-		shortDesc: "Sharply raises the user's FoAtk, SpAtk, and Speed at the cost of FDef and SDef.",
+		shortDesc: "Harshly lowers the user's SpAtk.",
 		target: "normal",
 		type: "Nature",
 		category: "Special",
@@ -6995,7 +6995,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Clangorous Soul", target);
+			this.add('-anim', source, "Leaf Storm", target);
 		},
 		self: {
 			boosts: {spa: -2}
@@ -8147,29 +8147,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		// Effect Chance: 100
 		// Effect ID: 162
 	},
-	rainbowslash: {
-		name: "Rainbow Slash",
-		shortDesc: "Hits two to five times.",
-		target: "normal",
-		type: "Water",
-		category: "Physical",
-		basePower: 130,
-		pp: 10,
-		accuracy: 70,
-		priority: 1,
-		flags: {protect: 1, contact: 1},
-		onPrepareHit: function(target, source, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Dragon Darts", target);
-		},
-		secondary: {
-			chance: 70,
-			volatileStatus: 'flinch'
-		}
-		// Class: BU
-		// Effect Chance: 700
-		// Effect ID: 18
-	},
 	randomshots: {
 		name: "Random Shots",
 		shortDesc: "Hits two to five times.",
@@ -8183,7 +8160,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Rock Throw", target);
+			this.add('-anim', source, "Dragon Darts", target);
 		},
 		multihit: [2, 5]
 		// Class: 2
@@ -8192,7 +8169,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	rapidthrow: {
 		name: "Rapid Throw",
-		shortDesc: "Summons Sunshower weather and Genbu terrain.",
+		shortDesc: "Hits two to five times.",
 		target: "normal",
 		type: "Steel",
 		category: "Special",
@@ -8203,7 +8180,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Sunny Day", target);
+			this.add('-anim', source, "Rock Throw", target);
 		},
 		multihit: [2, 5]
 		// Class: BU
@@ -8212,7 +8189,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	realmblackrain: {
 		name: "Realm [Black Rain]",
-		shortDesc: "Summons Aurora weather and Byakko terrain.",
+		shortDesc: "Summons Sunshower weather and Genbu terrain.",
 		target: "all",
 		type: "Warped",
 		category: "Status",
@@ -8223,7 +8200,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Hail", target);
+			this.add('-anim', source, "Sunny Day", target);
 		},
 		weather: 'sunshower',
 		terrain: 'genbu',
@@ -8233,7 +8210,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	realmcorona: {
 		name: "Realm [Corona]",
-		shortDesc: "Summons Dust Storm weather and Kohryu terrain.",
+		shortDesc: "Summons Aurora weather and Byakko terrain.",
 		target: "all",
 		type: "Light",
 		category: "Status",
@@ -8244,7 +8221,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Sandstorm", target);
+			this.add('-anim', source, "Hail", target);
 		},
 		weather: 'aurora',
 		terrain: 'byakko',
@@ -8254,7 +8231,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	realmgold: {
 		name: "Realm [Gold]",
-		shortDesc: "Summons Heavy Fog weather and Suzaku terrain.",
+		shortDesc: "Summons Dust Storm weather and Kohryu terrain.",
 		target: "all",
 		type: "Earth",
 		category: "Status",
@@ -8265,7 +8242,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Rain Dance", target);
+			this.add('-anim', source, "Sandstorm", target);
 		},
 		weather: 'duststorm',
 		terrain: 'kohryu',
@@ -8275,7 +8252,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	realmscarletmist: {
 		name: "Realm [Scarlet Mist]",
-		shortDesc: "Summons Calm weather and Seiryu Terrain.",
+		shortDesc: "Summons Heavy Fog weather and Suzaku terrain.",
 		target: "all",
 		type: "Dark",
 		category: "Status",
@@ -8286,7 +8263,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Trick Room", target);
+			this.add('-anim', source, "Rain Dance", target);
 		},
 		weather: 'heavyfog',
 		terrain: 'suzaku',
@@ -8296,7 +8273,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	realmserenity: {
 		name: "Realm [Serenity]",
-		shortDesc: "Changes the foe's Ability to Active, removing their old ability and preventing them from being Stopped.",
+		shortDesc: "Summons Calm weather and Seiryu Terrain.",
 		target: "all",
 		type: "Wind",
 		category: "Status",
@@ -8307,7 +8284,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Worry Seed", target);
+			this.add('-anim', source, "Trick Room", target);
 		},
 		weather: 'calm',
 		terrain: 'seiryu',
@@ -8317,7 +8294,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	recallnightmare: {
 		name: "Recall Nightmare",
-		shortDesc: "If the skill fails to inflict damage, the user loses half of their HP.",
+		shortDesc: "Changes the foe's Ability to Active, removing their old ability and preventing them from being Stopped.",
 		target: "normal",
 		type: "Illusion",
 		category: "Status",
@@ -8328,7 +8305,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "High Jump Kick", target);
+			this.add('-anim', source, "Worry Seed", target);
 		},
 		onHit(target, source, move) {
 			target.setAbility('active');
@@ -8339,7 +8316,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	recklessdive: {
 		name: "Reckless Dive",
-		shortDesc: "Copies all of the foe's attributes.",
+		shortDesc: "If the skill fails to inflict damage, the user loses half of their HP.",
 		target: "normal",
 		type: "Fighting",
 		category: "Physical",
@@ -8350,7 +8327,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Psych Up", target);
+			this.add('-anim', source, "High Jump Kick", target);
 		},
 		onMoveFail(target, source, move) {
 			source.damage(source.hp / 2);
@@ -8361,7 +8338,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	recollection: {
 		name: "Recollection",
-		shortDesc: "Lowers the foe's HP to be the same as the user's HP.",
+		shortDesc: "Copies all of the foe's attributes.",
 		target: "self",
 		type: "Void",
 		category: "Status",
@@ -8372,7 +8349,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Endeavor", target);
+			this.add('-anim', source, "Psych Up", target);
 		},
 		onHit(target, pokemon) {
 			if (!pokemon.transformInto(target, this.effect, false)) {
@@ -8385,7 +8362,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	recompensate: {
 		name: "Recompensate",
-		shortDesc: "Power doubles if you take damage from a foe's Skill on the same turn.",
+		shortDesc: "Lowers the foe's HP to be the same as the user's HP.",
 		target: "normal",
 		type: "Void",
 		category: "Physical",
@@ -8396,7 +8373,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Revenge", target);
+			this.add('-anim', source, "Endeavor", target);
 		},
 		onTryHit(source, target, move) {
 			if (source.hp >= target.hp) {
@@ -8413,7 +8390,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	reprimand: {
 		name: "Reprimand",
-		shortDesc: "Recovers a used held item.",
+		shortDesc: "Power doubles if you take damage from a foe's Skill on the same turn.",
 		target: "normal",
 		type: "Illusion",
 		category: "Physical",
@@ -8424,7 +8401,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Recycle", target);
+			this.add('-anim', source, "Revenge", target);
 		},
 		basePowerCallback(pokemon, target, move) {
 			let boosted = true;
@@ -8446,7 +8423,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	resourcefulness: {
 		name: "Resourcefulness",
-		shortDesc: "Power doubles if an ally was defeated last turn.",
+		shortDesc: "Recovers a used held item.",
 		target: "self",
 		type: "Void",
 		category: "Status",
@@ -8457,7 +8434,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Retaliate", target);
+			this.add('-anim', source, "Recycle", target);
 		},
 		onHit(pokemon) {
 			if (!pokemon.item && !pokemon.lastItem) {
@@ -8472,7 +8449,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	retaliation: {
 		name: "Retaliation",
-		shortDesc: "Always hits.",
+		shortDesc: "Power doubles if an ally was defeated last turn.",
 		target: "normal",
 		type: "Void",
 		category: "Physical",
@@ -8483,7 +8460,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Sacred Sword", target);
+			this.add('-anim', source, "Retaliate", target);
 		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.side.faintedLastTurn) {
@@ -8497,7 +8474,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	reversalsword: {
 		name: "Reversal Sword",
-		shortDesc: "Power doubles if the foe attacks the user on the same turn.",
+		shortDesc: "Always hits.",
 		target: "normal",
 		type: "Steel",
 		category: "Physical",
@@ -8508,7 +8485,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Splash", target);
+			this.add('-anim', source, "Sacred Sword", target);
 		},
 		// Class: BU
 		// Effect Chance: 100
@@ -8516,7 +8493,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	reversesplash: {
 		name: "Reverse Splash",
-		shortDesc: "Uses the foe's FoAtk instead of the user's.",
+		shortDesc: "Power doubles if the foe attacks the user on the same turn.",
 		target: "normal",
 		type: "Water",
 		category: "Physical",
@@ -8527,7 +8504,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, counter: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Foul Play", target);
+			this.add('-anim', source, "Splash", target);
 		},
 		basePowerCallback(pokemon, target, move) {
 			if (pokemon.volatiles['counter'].damage)
@@ -8547,7 +8524,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	revolvingillusions: {
 		name: "Revolving Illusions",
-		shortDesc: "Raises the user's Speed.",
+		shortDesc: "Uses the foe's FoAtk instead of the user's.",
 		target: "normal",
 		type: "Illusion",
 		category: "Physical",
@@ -8558,7 +8535,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Flame Charge", target);
+			this.add('-anim', source, "Foul Play", target);
 		},
 		overrideOffensivePokemon: 'target'
 		// Class: 2
@@ -8567,7 +8544,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	risingsun: {
 		name: "Rising Sun",
-		shortDesc: "Sharply lowers the foe's FoDef.",
+		shortDesc: "Raises the user's Speed.",
 		target: "normal",
 		type: "Fire",
 		category: "Physical",
@@ -8578,7 +8555,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Roar", target);
+			this.add('-anim', source, "Flame Charge", target);
 		},
 		self: {
 			boosts: {spe: 1}
@@ -8589,7 +8566,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	roar: {
 		name: "Roar",
-		shortDesc: "A normal attack that always lands critical hits.",
+		shortDesc: "Sharply lowers the foe's FoDef.",
 		target: "normal",
 		type: "Sound",
 		category: "Status",
@@ -8600,7 +8577,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Precipice Blades", target);
+			this.add('-anim', source, "Roar", target);
 		},
 		boosts: {def: -2}
 		// Class: EN
@@ -8609,7 +8586,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	rockdrills: {
 		name: "Rock Drills",
-		shortDesc: "A normal attack that lands critical hits often.",
+		shortDesc: "A normal attack that always lands critical hits.",
 		target: "normal",
 		type: "Earth",
 		category: "Physical",
@@ -8620,7 +8597,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Stone Edge", target);
+			this.add('-anim', source, "Precipice Blades", target);
 		},
 		willCrit: true
 		// Class: BU
@@ -8629,7 +8606,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	rockybarrage: {
 		name: "Rocky Barrage",
-		shortDesc: "A normal attack.",
+		shortDesc: "A normal attack that lands critical hits often.",
 		target: "normal",
 		type: "Earth",
 		category: "Physical",
@@ -8640,7 +8617,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Power Whip", target);
+			this.add('-anim', source, "Stone Edge", target);
 		},
 		critRatio: 2,
 		// Class: BU
@@ -8649,7 +8626,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	rootfrog: {
 		name: "Root Frog",
-		shortDesc: "Poisons the foe.",
+		shortDesc: "A normal attack.",
 		target: "normal",
 		type: "Nature",
 		category: "Physical",
@@ -8660,7 +8637,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Poison Sting", target);
+			this.add('-anim', source, "Power Whip", target);
 		},
 		// Class: 2
 		// Effect Chance: 100
@@ -8668,7 +8645,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	rootinjection: {
 		name: "Root Injection",
-		shortDesc: "30% chance to make the foe flinch.",
+		shortDesc: "Poisons the foe.",
 		target: "normal",
 		type: "Nature",
 		category: "Status",
@@ -8679,7 +8656,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Earthquake", target);
+			this.add('-anim', source, "Poison Sting", target);
 		},
 		status: 'psn'
 		// Class: EN
@@ -8688,7 +8665,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	royalprism: {
 		name: "Royal Prism",
-		shortDesc: "Burns the foe.",
+		shortDesc: "30% chance to make the foe flinch.",
 		target: "normal",
 		type: "Earth",
 		category: "Physical",
@@ -8699,7 +8676,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Will-o-Wisp", target);
+			this.add('-anim', source, "Earthquake", target);
 		},
 		secondary: {
 			chance: 30,
@@ -8711,7 +8688,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	rubburn: {
 		name: "Rub Burn",
-		shortDesc: "Both puppets will faint in 3 turns. Switching out ends the effect.",
+		shortDesc: "Burns the foe.",
 		target: "normal",
 		type: "Fire",
 		category: "Status",
@@ -8722,7 +8699,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Perish Song", target);
+			this.add('-anim', source, "Will-o-Wisp", target);
 		},
 		status: 'brn'
 		// Class: EN
@@ -8731,7 +8708,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	ruinousvoice: {
 		name: "Ruinous Voice",
-		shortDesc: "Hits two to five times.",
+		shortDesc: "Both puppets will faint in 3 turns. Switching out ends the effect.",
 		target: "all",
 		type: "Sound",
 		category: "Status",
@@ -8742,7 +8719,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Arm Thrust", target);
+			this.add('-anim', source, "Perish Song", target);
 		},
 		onHitField(target, source, move) {
 			let result = false;
@@ -8781,7 +8758,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	rushattack: {
 		name: "Rush Attack",
-		shortDesc: "10% chance to weaken the foe.",
+		shortDesc: "Hits two to five times.",
 		target: "normal",
 		type: "Fighting",
 		category: "Special",
@@ -8792,7 +8769,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Petal Blizzard", target);
+			this.add('-anim', source, "Arm Thrust", target);
 		},
 		multihit: [2, 5]
 		// Class: BU
@@ -8801,7 +8778,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	sakurablizzard: {
 		name: "Sakura Blizzard",
-		shortDesc: "10% chance to raise the user's FoAtk.",
+		shortDesc: "10% chance to weaken the foe.",
 		target: "normal",
 		type: "Nature",
 		category: "Special",
@@ -8812,7 +8789,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Night Slash", target);
+			this.add('-anim', source, "Petal Blizzard", target);
 		},
 		secondary: {
 			chance: 10,
@@ -8824,7 +8801,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	samuraiedge: {
 		name: "Samurai Edge",
-		shortDesc: "A normal attack that lands critical hits often.",
+		shortDesc: "10% chance to raise the user's FoAtk.",
 		target: "normal",
 		type: "Steel",
 		category: "Physical",
@@ -8835,7 +8812,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Simple Beam", target);
+			this.add('-anim', source, "Night Slash", target);
 		},
 		secondary: {
 			chance: 70,
@@ -8849,7 +8826,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	scatterbeam: {
 		name: "Scatter Beam",
-		shortDesc: "A normal attack.",
+		shortDesc: "A normal attack that lands critical hits often.",
 		target: "normal",
 		type: "Void",
 		category: "Special",
@@ -8860,7 +8837,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Seed Bomb", target);
+			this.add('-anim', source, "Simple Beam", target);
 		},
 		critRatio: 2,
 		// Class: 2
@@ -8869,7 +8846,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	scatterbeans: {
 		name: "Scatter Beans",
-		shortDesc: "The last skill the foe used loses 4 SP.",
+		shortDesc: "A normal attack.",
 		target: "normal",
 		type: "Nature",
 		category: "Special",
@@ -8880,7 +8857,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Spite", target);
+			this.add('-anim', source, "Seed Bomb", target);
 		},
 		// Class: BU
 		// Effect Chance: 100
@@ -8888,7 +8865,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	scorn: {
 		name: "Scorn",
-		shortDesc: "10% chance to lower the foe's Sp.Atk.",
+		shortDesc: "The last skill the foe used loses 4 SP.",
 		target: "normal",
 		type: "Nether",
 		category: "Status",
@@ -8899,7 +8876,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Giga Drain", target);
+			this.add('-anim', source, "Spite", target);
 		},
 		onTryHit(source, target, move) {
 			if (!target.lastMoveUsed) {
@@ -9022,7 +8999,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	seasonalflowers: {
 		name: "Seasonal Flowers",
-		shortDesc: "10% chance to lower the foe's SpAtk.",
+		shortDesc: "10% chance to lower the foe's Sp.Atk.",
 		target: "normal",
 		type: "Nature",
 		category: "Special",
@@ -9033,7 +9010,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Petal Dance", target);
+			this.add('-anim', source, "Giga Drain", target);
 		},
 		secondary: {
 			chance: 10,
@@ -10794,7 +10771,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	thornedivy: {
 		name: "Thorned Ivy",
-		shortDesc: "The user takes 1/3 of the damage in recoil. 10% chance to paralyze the foe.",
+		shortDesc: "Blocks all damage from the foe's attack and counters strong attacks. May fail if used consecutively.",
 		target: "self",
 		type: "Nature",
 		category: "Status",
@@ -10805,7 +10782,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Thunderous Kick", target);
+			this.add('-anim', source, "Spiky Shield", target);
 		},
 		stallingMove: true,
 		volatileStatus: 'thornedivy',
@@ -10845,7 +10822,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	thorshammer: {
 		name: "Thor's Hammer",
-		shortDesc: "Blocks all damage from the foe's attack and counters strong attacks. May fail if used consecutively.",
+		shortDesc: "The user takes 1/3 of the damage in recoil. 10% chance to paralyze the foe.",
 		target: "normal",
 		type: "Electric",
 		category: "Physical",
@@ -10856,7 +10833,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, contact: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Spiky Shield", target);
+			this.add('-anim', source, "Thunderous Kick", target);
 		},
 		recoil: [1, 3],
 		secondary: {

@@ -2055,7 +2055,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	secretceremony: {
 		name: "Secret Ceremony",
-		shortDesc: "Changes type based on terrain and weather.",
+		shortDesc: "[Semi-functional placeholder] Changes type based on terrain and weather.",
 		onStart(pokemon) {
 			if (this.field.terrain) {
 				pokemon.addVolatile('secretceremony');
