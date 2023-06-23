@@ -2303,6 +2303,7 @@ export const Formats: FormatList = [
 	{
 		name: "[Gen 6] TPDP Netplay",
 		mod: 'tpdp',
+		forcedLevel: 50,
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
 		ruleset: ['Standard GBU', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
 		banlist: ['Camouflage', 'Favorable Wind', 'Dead of Night' //evasion

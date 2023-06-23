@@ -2056,7 +2056,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	secretceremony: {
 		name: "Secret Ceremony",
 		shortDesc: "Changes type based on terrain and weather.",
-		onStart(target) {
+		onStart(pokemon) {
 			if (this.field.terrain) {
 				pokemon.addVolatile('secretceremony');
 			} else {
@@ -2112,9 +2112,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				
 				let newTypes:string[] = [];
 				if(terrainType) newTypes.push(terrainType);
-				if (!newType || pokemon.getTypes().join() === newType || !pokemon.setType(newType)) return;
+				if (!newTypes || pokemon.getTypes().join() === newTypes || !pokemon.setType(newTypes)) return;
 				if (newTypes.length > 1 && newTypes[1] === newTypes[0]) newTypes.pop(); //Ensure monotype during Dust Storm + Kohryu
-				this.add('-start', pokemon, 'typechange', newType, '[from] ability: Secret Ceremony');
+				this.add('-start', pokemon, 'typechange', newTypes, '[from] ability: Secret Ceremony');
 			},
 			onUpdate(pokemon) {
 				if (!this.field.terrain) {
