@@ -3743,7 +3743,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	silvallyfighting: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	silvallyfire: {
