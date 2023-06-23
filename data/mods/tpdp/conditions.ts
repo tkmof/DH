@@ -570,7 +570,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-fieldstart', 'terrain: Seiryu', '[from] ability: ' + effect.name, '[of] ' + source);
 				this.add('-message', `The terrain became Seiryu!`);
 			} else {
-				this.add('-fieldstart', 'terrain: Seiryu');
+				this.add('-fieldstart', 'terrain: Seiryu', '[silent]');
 				this.add('-message', `The terrain became Seiryu!`);
 			}
 		},
@@ -596,7 +596,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Suzaku', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Suzaku');
+				this.add('-fieldstart', 'terrain: Suzaku', '[silent]');
 			}
 		},
 		onEnd() {
@@ -621,11 +621,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Byakko', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Byakko');
+				this.add('-fieldstart', 'terrain: Byakko', '[silent]');
 			}
 		},
 		onEnd() {
-			this.add('-fieldend', 'terrain: Byakko');
+			this.add('-fieldend', 'terrain: Byakko', '[silent]');
 			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
@@ -641,7 +641,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Genbu', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Genbu');
+				this.add('-fieldstart', 'terrain: Genbu', '[silent]');
 			}
 		},
 		onEnd() {
@@ -663,7 +663,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Kohryu', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Kohryu');
+				this.add('-fieldstart', 'terrain: Kohryu', '[silent]');
 			}
 		},
 		onEnd() {

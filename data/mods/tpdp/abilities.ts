@@ -2112,7 +2112,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				
 				let newTypes:string[] = [];
 				if(terrainType) newTypes.push(terrainType);
-				if (!newTypes || pokemon.getTypes().join() === newTypes || !pokemon.setType(newTypes)) return;
+				if (!newTypes.length || pokemon.getTypes().join() === newTypes || !pokemon.setType(newTypes)) return;
 				if (newTypes.length > 1 && newTypes[1] === newTypes[0]) newTypes.pop(); //Ensure monotype during Dust Storm + Kohryu
 				this.add('-start', pokemon, 'typechange', newTypes, '[from] ability: Secret Ceremony');
 			},

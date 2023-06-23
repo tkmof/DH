@@ -792,7 +792,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	blazeoftenmei: {
 		name: "Blaze of Tenmei",
-		shortDesc: "10% chance to burn the foe.",
+		shortDesc: "100% chance to burn the foe.",
 		target: "normal",
 		type: "Fire",
 		category: "Special",

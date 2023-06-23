@@ -101,35 +101,66 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			return true;
 		},
 		runImmunity(type: string, message?: string | boolean) {
-		if (!type || type === '???') return true;
-		if (!(type in this.battle.dex.data.TypeChart)) {
-			if (
-				//type === 'Void'|| 
-				type === 'Nature' || 
-				//type === 'Earth' ||
-				//type === 'Wind' ||
-				type === 'Light' ||
-				type === 'Nether' ||
-				//type === 'Illusion' ||
-				type === 'Sound' ||
-				type === 'Warped' ||
-				type === 'Dream') return true;
-			throw new Error("Use runStatusImmunity for " + type);
-		}
-		if (this.fainted) return false;
+			if (!type || type === '???') return true;
+			if (!(type in this.battle.dex.data.TypeChart)) {
+				if (
+					//type === 'Void'|| 
+					type === 'Nature' || 
+					//type === 'Earth' ||
+					//type === 'Wind' ||
+					type === 'Light' ||
+					type === 'Nether' ||
+					//type === 'Illusion' ||
+					type === 'Sound' ||
+					type === 'Warped' ||
+					type === 'Dream') return true;
+				throw new Error("Use runStatusImmunity for " + type);
+			}
+			if (this.fainted) return false;
 
-		const negateImmunity = !this.battle.runEvent('NegateImmunity', this, type);
-		const notImmune = type === 'Earth' ?
-			this.isGrounded(negateImmunity) :
-			negateImmunity || this.battle.dex.getImmunity(type, this);
-		if (notImmune) return true;
-		if (!message) return false;
-		if (notImmune === null) {
-			this.battle.add('-immune', this, '[from] ability: Air Cushion');
-		} else {
-			this.battle.add('-immune', this);
-		}
-		return false;
-	}
+			const negateImmunity = !this.battle.runEvent('NegateImmunity', this, type);
+			const notImmune = type === 'Earth' ?
+				this.isGrounded(negateImmunity) :
+				negateImmunity || this.battle.dex.getImmunity(type, this);
+			if (notImmune) return true;
+			if (!message) return false;
+			if (notImmune === null) {
+				this.battle.add('-immune', this, '[from] ability: Air Cushion');
+			} else {
+				this.battle.add('-immune', this);
+			}
+			return false;
+		},
+		getActionSpeed() {
+			let speed = this.getStat('spe', false, false);
+			if (this.battle.field.getPseudoWeather('trickroom') || this.battle.field.isTerrain('genbu')) {
+				speed = 10000 - speed;
+			}
+			return this.battle.trunc(speed, 13);
+		},
+		ignoringAbility() {
+			if (this.battle.gen >= 5 && !this.isActive) return true;
+			if (this.getAbility().isPermanent) return false;
+			if (this.volatiles['gastroacid'] || this.battle.field.isTerrain('kohryu')) return true;
+
+			// Check if any active pokemon have the ability Neutralizing Gas
+			if (this.hasItem('Ability Shield') || this.ability === ('neutralizinggas' as ID)) return false;
+			for (const pokemon of this.battle.getAllActive()) {
+				// can't use hasAbility because it would lead to infinite recursion
+				if (pokemon.ability === ('neutralizinggas' as ID) && !pokemon.volatiles['gastroacid'] &&
+					!pokemon.transformed && !pokemon.abilityState.ending) {
+					return true;
+				}
+			}
+			return false;
+		},
+		ignoringItem() {
+			return !!(
+				this.itemState.knockedOff || // Gen 3-4
+				(this.battle.gen >= 5 && !this.isActive) ||
+				(!this.getItem().ignoreKlutz && this.hasAbility(['klutz', 'wasteful'])) || this.hasAbility('bruteforce') ||
+				this.volatiles['embargo'] || this.battle.field.pseudoWeather['magicroom'] || (this.battle.field.isTerrain('kohryu') && !this.hasAbility('centralexpanse'))
+			);
+		},
 	},
 };
