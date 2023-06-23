@@ -2094,8 +2094,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 					}
 				}
 				if (move.flags['contact']) {
-					// console.log(move);
-					source.clearBoosts(); //why isn't it working
+					source.clearBoosts();
+					this.add('-clearboost', source);
 				}
 				return this.NOT_FAIL;
 			},
