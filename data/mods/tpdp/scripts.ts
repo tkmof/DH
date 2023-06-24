@@ -139,28 +139,29 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			return this.battle.trunc(speed, 13);
 		},
 		ignoringAbility() {
-			if (this.battle.gen >= 5 && !this.isActive) return true;
-			if (this.getAbility().isPermanent) return false;
-			if (this.volatiles['gastroacid'] || this.battle.field.isTerrain('kohryu')) return true;
-
 			// Check if any active pokemon have the ability Neutralizing Gas
-			if (this.hasItem('Ability Shield') || this.ability === ('neutralizinggas' as ID)) return false;
+			let neutralizinggas = false;
 			for (const pokemon of this.battle.getAllActive()) {
 				// can't use hasAbility because it would lead to infinite recursion
 				if (pokemon.ability === ('neutralizinggas' as ID) && !pokemon.volatiles['gastroacid'] &&
-					!pokemon.transformed && !pokemon.abilityState.ending) {
-					return true;
+					!pokemon.abilityData.ending) {
+					neutralizinggas = true;
+					break;
 				}
 			}
-			return false;
+
+			return !!(
+				(this.battle.gen >= 5 && !this.isActive) ||
+				((this.volatiles['gastroacid'] || (neutralizinggas && this.ability !== ('neutralizinggas' as ID)) ||
+				this.battle.field.isTerrain('kohryu')) &&
+				!this.getAbility().isPermanent
+				)
+			);
 		},
 		ignoringItem() {
-			return !!(
-				this.itemState.knockedOff || // Gen 3-4
-				(this.battle.gen >= 5 && !this.isActive) ||
-				(!this.getItem().ignoreKlutz && this.hasAbility(['klutz', 'wasteful'])) || this.hasAbility('bruteforce') ||
-				this.volatiles['embargo'] || this.battle.field.pseudoWeather['magicroom'] || (this.battle.field.isTerrain('kohryu') && !this.hasAbility('centralexpanse'))
-			);
+			return !!((this.battle.gen >= 5 && !this.isActive) ||
+			(!this.getItem().ignoreKlutz && this.hasAbility(['klutz', 'wasteful'])) ||
+			(this.battle.field.isTerrain('kohryu') && !this.hasAbility('centralexpanse')));
 		},
 		isGrounded(negateImmunity = false) {
 			if ('perch' in this.volatiles) return true;
@@ -171,7 +172,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			if (item === 'ironball') return true;
 			// If a Fire/Flying type uses Burn Up and Roost, it becomes ???/Flying-type, but it's still grounded.
 			if (!negateImmunity && this.hasType('Flying') && !(this.hasType('???') && 'roost' in this.volatiles)) return false;
-			if (this.hasAbility('levitate') && !this.battle.suppressingAbility(this)) return null;
+			if (this.hasAbility('aircushion') && !this.field.isWeather("duststorm")) return false;
 			if ('magnetrise' in this.volatiles) return false;
 			if ('telekinesis' in this.volatiles) return false;
 			return item !== 'airballoon' && item !== 'floatingstone';

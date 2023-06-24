@@ -171,7 +171,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 						const randomStat = this.sample(stats);
 						const boost: SparseBoostsTable = {};
 						boost[randomStat] = -1;
-						target.boostBy(boost);
+						this.boost(boost);
 					} else {
 						return false;
 					}
@@ -1567,26 +1567,21 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Rest", target);
 		},
-		onTry(source) {
-			if (source.hasStatus('stp') || source.hasAbility('comatose'))
-				return false;
-
-			if (source.hp === source.maxhp) {
-				this.add('-fail', source, 'heal');
+		onTryMove(pokemon) {
+			if (pokemon.hp === pokemon.maxhp) {
+				this.add('-fail', pokemon, 'heal');
 				return null;
 			}
-			if (source.hasAbility(['insomnia', 'vitalspirit'])) {
-				this.add('-fail', source, '[from] ability: ' + source.getAbility().name, '[of] ' + source);
+			if (pokemon.status === 'stp' || pokemon.hasAbility('comatose')) {
+				this.add('-fail', pokemon);
 				return null;
 			}
 		},
 		onHit(target, source, move) {
-			this.heal(target.maxhp);
-			target.clearStatus();
-			const result = target.setStatus('stp', source, move);
-			if (!result) return result;
-			target.status['stp'].time = 3;
-			target.status['stp'].startTime = 3;
+			if (!target.setStatus('stp', source, move)) return false;
+			target.statusData.time = 3;
+			target.statusData.startTime = 3;
+			this.heal(target.maxhp); // Aesthetic only as the healing happens after you fall asleep in-game
 		},
 	},
 	corkscrew: {
@@ -3379,7 +3374,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Court Change", target);
 		},
 		onHit(target, source, move) {
-			const movedConditions = ['fieldprotect', 'fieldbarrier', 'luckyrainbow', 'magicbarrier'];
+			const movedConditions = ['fieldprotect', 'fieldbarrier', 'luckyrainbow', 'substitute'];
 			let success: string[][] = [];
 			for (const cond of movedConditions) {
 				this.debug('Trying to move ' + cond + ' as sideCondition');
@@ -4938,7 +4933,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 						const randomStat = this.sample(stats);
 						const boost: SparseBoostsTable = {};
 						boost[randomStat] = -1;
-						target.boostBy(boost);
+						this.boost(boost);
 					} else {
 						return false;
 					}
@@ -6148,69 +6143,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Substitute", target);
 		},
-		volatileStatus: 'magicbarrier',
-		onTryHit(source) {
-			if (source.volatiles['magicbarrier']) {
-				this.add('-fail', source, 'move: Magic Barrier');
-				return this.NOT_FAIL;
-			}
-			if (source.hp <= source.maxhp / 4) {
-				this.add('-fail', source, 'move: Magic Barrier', '[weak]');
-				return this.NOT_FAIL;
-			}
-		},
-		onHit(target) {
-			this.directDamage(target.maxhp / 4);
-		},
-		condition: {
-			onStart(target) {
-				this.add('-start', target, 'Magic Barrier');
-				this.effectState.hp = Math.floor(target.maxhp / 4);
-				if (target.volatiles['partiallytrapped']) {
-					this.add('-end', target, target.volatiles['partiallytrapped'].sourceEffect, '[partiallytrapped]', '[silent]');
-					delete target.volatiles['partiallytrapped'];
-				}
-			},
-			onTryPrimaryHitPriority: -1,
-			onTryPrimaryHit(target, source, move) {
-				if (target === source || move.flags['bypasssub'] || move.infiltrates) {
-					return;
-				}
-				let damage = this.actions.getDamage(source, target, move);
-				if (!damage && damage !== 0) {
-					this.add('-fail', source);
-					this.attrLastMove('[still]');
-					return null;
-				}
-				damage = this.runEvent('SubDamage', target, source, move, damage);
-				if (!damage) {
-					return damage;
-				}
-				if (damage > target.volatiles['magicbarrier'].hp) {
-					damage = target.volatiles['magicbarrier'].hp as number;
-				}
-				target.volatiles['magicbarrier'].hp -= damage;
-				source.lastDamage = damage;
-				if (target.volatiles['magicbarrier'].hp <= 0) {
-					if (move.ohko) this.add('-ohko');
-					target.removeVolatile('magicbarrier');
-				} else {
-					this.add('-activate', target, 'move: Magic Barrier', '[damage]');
-				}
-				if (move.recoil) {
-					this.damage(this.actions.calcRecoilDamage(damage, move), source, target, 'recoil');
-				}
-				if (move.drain) {
-					this.heal(Math.ceil(damage * move.drain[0] / move.drain[1]), source, target, 'drain');
-				}
-				this.singleEvent('AfterSubDamage', move, null, target, source, move, damage);
-				this.runEvent('AfterSubDamage', target, source, move, damage);
-				return this.HIT_SUBSTITUTE;
-			},
-			onEnd(target) {
-				this.add('-end', target, 'Magic Barrier');
-			},
-		},
+		volatileStatus: 'substitute',
 	},
 	merrydance: {
 		name: "Merry Dance",
@@ -8339,7 +8272,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Psych Up", target);
+			this.add('-anim', source, "Transform", target);
 		},
 		onHit(target, pokemon) {
 			if (!pokemon.transformInto(target, this.effect, false)) {
@@ -9496,7 +9429,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			const sideConditions = ['stickyweb', 'spikes', 'toxicspikes', 'gmaxsteelsurge'];
 			for (const condition of sideConditions) {
 				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.conditions.get(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
+					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
 				}
 			}
 			if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
@@ -9510,7 +9443,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			const sideConditions = ['stickyweb', 'spikes', 'toxicspikes', 'gmaxsteelsurge'];
 			for (const condition of sideConditions) {
 				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.conditions.get(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
+					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
 				}
 			}
 			if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {

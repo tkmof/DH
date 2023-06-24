@@ -100,22 +100,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	aftermove: {
 		name: "After Move",
-		shortDesc: "Attack power is boosted by 30% when moving second.",
+		shortDesc: "Attack power is boosted by 30% if the user's Speed is lower than the target's.",
 		onBasePower(basePower, pokemon, target) {
-			if (target.hasAbility('ascertainment') || this.field.isTerrain('kohryu'))
-				return;
-
-			let boosted = true;
 			for (const target of this.getAllActive()) {
 				if (target === pokemon) continue;
-				if (this.queue.willMove(target)) {
-					boosted = false;
-					break;
+				if (pokemon.getStat('spe') > target.getStat('spe')){
+					this.debug('After Move boost');
+					return this.chainModify(1.3);
 				}
-			}
-			if (boosted) {
-				this.debug('After Move boost');
-				return this.chainModify(1.3);
 			}
 		},
 	},
@@ -309,6 +301,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					pokemon.formeChange('Extra Kosuzu-White', this.effect, true);
 					break;
 			}
+		},
+		onModifyAtk(relayVar, source, target, move) {
+			if (source.forme === "Red") this.chainModify(2);
+		},
+		onModifyDef(relayVar, source, target, move) {
+			if (source.forme === "Blue") this.chainModify(2);
+		},
+		onModifySpA(relayVar, source, target, move) {
+			if (source.forme === "Black") this.chainModify(2);
+		},
+		onModifySpD(relayVar, source, target, move) {
+			if (source.forme === "White") this.chainModify(2);
 		},
 	},
 	boundaryblurrer: {
@@ -2520,6 +2524,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	twoofakind: {
 		name: "Two of a Kind",
 		shortDesc: "The power of skills go down by 40%, but you will do an additional attack.",
+		onBasePowerPriority: 7,
+		onBasePower(basePower, pokemon, target, move) {
+			if(!this.field.isTerrain("kohryu")) return this.chainModify(0.6);
+		},
 		onPrepareHit(source, target, move) {
 			if (move.category === 'Status' || move.selfdestruct) return;
 			if (['dynamaxcannon', 'endeavor', 'fling', 'iceball', 'rollout'].includes(move.id)) return;
@@ -2537,8 +2545,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				else {
 					move.multihit = 2;
 				}
-
-				move.multihitType = 'twoofakind';
 			}
 		},
 		// Damage modifier implemented in BattleActions#modifyDamage()

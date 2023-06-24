@@ -921,7 +921,7 @@ export const Items: {[itemid: string]: ItemData} = {
 				if (move) moveCount++;
 			}
 			if (moveCount === 3)
-				this.chainModify(0.5);
+				this.chainModify(0.9);
 		},
 	},
 	izanagiobject: {

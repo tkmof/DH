@@ -2024,7 +2024,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	extrakosuzured: {
 		num: 114,
 		name: "Extra Kosuzu-Red",
-		types: ["Void"],
+		types: ["Fire"],
 		gender: "F",
 		baseStats: {hp: 90, atk: 100, def: 50, spa: 50, spd: 50, spe: 90},
 		abilities: {0: "Imposing Stance"},
@@ -2038,7 +2038,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	extrakosuzublue: {
 		num: 114,
 		name: "Extra Kosuzu-Blue",
-		types: ["Void"],
+		types: ["Water"],
 		gender: "F",
 		baseStats: {hp: 90, atk: 50, def: 100, spa: 50, spd: 50, spe: 90},
 		abilities: {0: "Known Limits"},
@@ -2052,7 +2052,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	extrakosuzublack: {
 		num: 114,
 		name: "Extra Kosuzu-Black",
-		types: ["Void"],
+		types: ["Dark"],
 		gender: "F",
 		baseStats: {hp: 90, atk: 50, def: 50, spa: 100, spd: 50, spe: 90},
 		abilities: {0: "Unbound"},
@@ -2066,7 +2066,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	extrakosuzuwhite: {
 		num: 114,
 		name: "Extra Kosuzu-White",
-		types: ["Void"],
+		types: ["Light"],
 		gender: "F",
 		baseStats: {hp: 90, atk: 50, def: 50, spa: 50, spd: 100, spe: 90},
 		abilities: {0: "Wariness"},
