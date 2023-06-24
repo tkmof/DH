@@ -1650,7 +1650,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	niche: {
 		name: "Niche",
 		shortDesc: "The power boost from same-type attacks is even higher.",
-		onModifyMove(move, pokemon, target) {
+		onModifyMove(move) {
 			move.stab = 2;
 		},
 	},
@@ -1853,15 +1853,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onBoost(boost, target, source, effect) {
-			if (boost['accuracy']! < 0)
-				delete boost['accuracy'];
-		},
-		onAnyModifyBoost(boosts, pokemon) {
-			const unawareUser = this.effectState.target;
-			if (unawareUser === pokemon) return;
-			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
-				boosts['evasion'] = 0;
+			if (source && target === source) return;
+			if (boost.accuracy && boost.accuracy < 0) {
+				delete boost.accuracy;
+				if (!(effect as ActiveMove).secondaries) {
+					this.add("-fail", target, "unboost", "accuracy", "[from] ability: Precise Aim", "[of] " + target);
+				}
 			}
+		},
+		onModifyMove(move) {
+			move.ignoreEvasion = true;
 		},
 	},
 	pride: {
