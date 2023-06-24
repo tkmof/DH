@@ -300,11 +300,28 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'weak');
 			}
 		},
-		onTryHealPriority: 10,
-		onSourceTryHeal(relayVar: number, target: Pokemon, source: Pokemon, effect: Effect) {
-			if (effect.id !== "breather")
+		onDisableMove(pokemon) {
+			for (const moveSlot of pokemon.moveSlots) {
+				if (this.dex.getMove(moveSlot.id).flags['heal']) {
+					pokemon.disableMove(moveSlot.id);
+				}
+			}
+		},
+		onBeforeMovePriority: 6,
+		onBeforeMove(pokemon, target, move) {
+			if (move.flags['heal'] && !move.isZ && !move.isMax) {
+				this.add('cant', pokemon, 'condition: weak', move);
 				return false;
-		}
+			}
+		},
+		onResidualOrder: 17,
+		onEnd(pokemon) {
+			this.add('-end', pokemon, 'condition: weak');
+		},
+		onTryHeal(damage, target, source, effect) {
+			if ((effect?.id === 'zpower') || this.effectData.isZ) return damage;
+			return false;
+		},
 	},
 	weakheavy: {
 		name: 'weakheavy',
