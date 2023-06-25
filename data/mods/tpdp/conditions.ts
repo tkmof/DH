@@ -319,8 +319,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-end', pokemon, 'condition: weak');
 		},
 		onTryHeal(damage, target, source, effect) {
-			if ((effect?.id === 'zpower') || this.effectData.isZ) return damage;
-			return false;
+			if (effect?.id !== 'breather') return false;
 		},
 	},
 	weakheavy: {
