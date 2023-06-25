@@ -100,22 +100,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	aftermove: {
 		name: "After Move",
-		shortDesc: "Attack power is boosted by 30% when moving second.",
+		shortDesc: "Attack power is boosted by 30% if the user's Speed is lower than the target's.",
 		onBasePower(basePower, pokemon, target) {
-			if (target.hasAbility('ascertainment') || this.field.isTerrain('kohryu'))
-				return;
-
-			let boosted = true;
 			for (const target of this.getAllActive()) {
 				if (target === pokemon) continue;
-				if (this.queue.willMove(target)) {
-					boosted = false;
-					break;
+				if (pokemon.getStat('spe') > target.getStat('spe')){
+					this.debug('After Move boost');
+					return this.chainModify(1.3);
 				}
-			}
-			if (boosted) {
-				this.debug('After Move boost');
-				return this.chainModify(1.3);
 			}
 		},
 	},
@@ -309,6 +301,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					pokemon.formeChange('Extra Kosuzu-White', this.effect, true);
 					break;
 			}
+		},
+		onModifyAtk(relayVar, source, target, move) {
+			if (source.forme === "Red") this.chainModify(2);
+		},
+		onModifyDef(relayVar, source, target, move) {
+			if (source.forme === "Blue") this.chainModify(2);
+		},
+		onModifySpA(relayVar, source, target, move) {
+			if (source.forme === "Black") this.chainModify(2);
+		},
+		onModifySpD(relayVar, source, target, move) {
+			if (source.forme === "White") this.chainModify(2);
 		},
 	},
 	boundaryblurrer: {
@@ -604,7 +608,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Lowers the opponent's FoAtk upon switch in.",
 		onStart(pokemon) {
 			let activated = false;
-			for (const target of pokemon.adjacentFoes()) {
+			for (const target of pokemon.side.foe.active) {
 				if (!activated) {
 					this.add('-ability', pokemon, 'Deploy Smoke', 'boost');
 					activated = true;
@@ -1360,7 +1364,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Removes the opponent's Ability on entry.",
 		onSwitchIn(pokemon) {
 			for (const foe of pokemon.foes()) {
-				foe.clearAbility();
+				foe.addVolatile('gastroacid');
 			}
 		},
 	},
@@ -1650,7 +1654,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	niche: {
 		name: "Niche",
 		shortDesc: "The power boost from same-type attacks is even higher.",
-		onModifyMove(move, pokemon, target) {
+		onModifyMove(move) {
 			move.stab = 2;
 		},
 	},
@@ -1853,15 +1857,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onBoost(boost, target, source, effect) {
-			if (boost['accuracy']! < 0)
-				delete boost['accuracy'];
-		},
-		onAnyModifyBoost(boosts, pokemon) {
-			const unawareUser = this.effectState.target;
-			if (unawareUser === pokemon) return;
-			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
-				boosts['evasion'] = 0;
+			if (source && target === source) return;
+			if (boost.accuracy && boost.accuracy < 0) {
+				delete boost.accuracy;
+				if (!(effect as ActiveMove).secondaries) {
+					this.add("-fail", target, "unboost", "accuracy", "[from] ability: Precise Aim", "[of] " + target);
+				}
 			}
+		},
+		onModifyMove(move) {
+			move.ignoreEvasion = true;
 		},
 	},
 	pride: {
@@ -2055,7 +2060,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	secretceremony: {
 		name: "Secret Ceremony",
-		shortDesc: "Changes type based on terrain and weather.",
+		shortDesc: "[Semi-functional placeholder] Changes type based on terrain and weather.",
 		onStart(pokemon) {
 			if (this.field.terrain) {
 				pokemon.addVolatile('secretceremony');
@@ -2112,7 +2117,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				
 				let newTypes:string[] = [];
 				if(terrainType) newTypes.push(terrainType);
-				if (!newTypes || pokemon.getTypes().join() === newTypes || !pokemon.setType(newTypes)) return;
+				if (!newTypes.length || pokemon.getTypes().join() === newTypes || !pokemon.setType(newTypes)) return;
 				if (newTypes.length > 1 && newTypes[1] === newTypes[0]) newTypes.pop(); //Ensure monotype during Dust Storm + Kohryu
 				this.add('-start', pokemon, 'typechange', newTypes, '[from] ability: Secret Ceremony');
 			},
@@ -2519,6 +2524,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	twoofakind: {
 		name: "Two of a Kind",
 		shortDesc: "The power of skills go down by 40%, but you will do an additional attack.",
+		onBasePowerPriority: 7,
+		onBasePower(basePower, pokemon, target, move) {
+			if(!this.field.isTerrain("kohryu")) return this.chainModify(0.6);
+		},
 		onPrepareHit(source, target, move) {
 			if (move.category === 'Status' || move.selfdestruct) return;
 			if (['dynamaxcannon', 'endeavor', 'fling', 'iceball', 'rollout'].includes(move.id)) return;
@@ -2536,8 +2545,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				else {
 					move.multihit = 2;
 				}
-
-				move.multihitType = 'twoofakind';
 			}
 		},
 		// Damage modifier implemented in BattleActions#modifyDamage()
@@ -2669,7 +2676,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Lowers the opponent's SpAtk upon switch in.",
 		onStart(pokemon) {
 			let activated = false;
-			for (const target of pokemon.adjacentFoes()) {
+			for (const target of pokemon.side.foe.active) {
 				if (!activated) {
 					this.add('-ability', pokemon, 'Warning Shot', 'boost');
 					activated = true;
