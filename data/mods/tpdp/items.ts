@@ -6,6 +6,7 @@
 export const Items: {[itemid: string]: ItemData} = {
 	absorber: {
 		name: "Absorber",
+		shortDesc: "This Puppet heals 18% max HP when hit by a not-very-effective skill.",
 		category: 'great',
 		onDamagingHit(damage, target, source, move) {
 			if (target.getMoveHitData(move).typeMod < 0)
@@ -14,11 +15,13 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	almightygodstone: {
 		name: "Almighty Godstone",
+		shortDesc: "Lengthens duration of any Weather condition when used by the holder.",
 		category: 'good',
 		// Implemented in conditions.ts
 	},
 	amber: {
 		name: "Amber",
+		shortDesc: "Orange jewelry. Raises the power of Fighting skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -30,6 +33,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	amberhairpin: {
 		name: "Amber Hairpin",
+		shortDesc: "When held, the power of Fighting skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -40,6 +44,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	amethyst: {
 		name: "Amethyst",
+		shortDesc: "Purple jewelry. Raises the power of Poison skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -51,6 +56,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	amethysthairpin: {
 		name: "Amethyst Hairpin",
+		shortDesc: "When held, the power of Poison skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -61,14 +67,17 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	ancientcoin: { // Useless
 		name: "Ancient Coin",
+		shortDesc: "You can't continue if you only have one! When held, the chances of successful Puppet sealing is increased.",
 		category: 'bad'
 	},
 	ancientlunarsake: {
 		name: "Ancient Lunar Sake",
+		shortDesc: "Millennium brewed sake. When held by the first Puppet in your party, Puppet encounters will decrease.",
 		category: 'bad'
 	},
 	antiaquacharm: {
 		name: "Anti-Aqua Charm",
+		shortDesc: "When held, damage dealt from Water-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -87,6 +96,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antiboltcharm: {
 		name: "Anti-Bolt Charm",
+		shortDesc: "When held, damage dealt from Electric-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -105,6 +115,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antidarkcharm: {
 		name: "Anti-Dark Charm",
+		shortDesc: "When held, damage dealt from Dark-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -123,6 +134,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antidotecharm: {
 		name: "Antidote Charm",
+		shortDesc: "When held, it can recover from Poison.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -138,6 +150,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antiearthcharm: {
 		name: "Anti-Earth Charm",
+		shortDesc: "When held, damage dealt from Earth-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -156,6 +169,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antifightcharm: {
 		name: "Anti-Fight Charm",
+		shortDesc: "When held, damage dealt from Fighting-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -174,6 +188,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antifirecharm: {
 		name: "Anti-Fire Charm",
+		shortDesc: "When held, damage dealt from Fire-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -192,6 +207,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antifloracharm: {
 		name: "Anti-Flora Charm",
+		shortDesc: "When held, damage dealt from Nature-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -210,6 +226,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antilightcharm: {
 		name: "Anti-Light Charm",
+		shortDesc: "When held, damage dealt from Light-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -228,6 +245,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antinecrocharm: {
 		name: "Anti-Necro Charm",
+		shortDesc: "When held, damage dealt from Nether-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -246,6 +264,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antisoundcharm: {
 		name: "Anti-Sound Charm",
+		shortDesc: "When held, damage dealt from Sound-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -264,6 +283,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antisteelcharm: {
 		name: "Anti-Steel Charm",
+		shortDesc: "When held, damage dealt from Steel-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -282,6 +302,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antitoxincharm: {
 		name: "Anti-Toxin Charm",
+		shortDesc: "When held, damage dealt from Poison-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -300,6 +321,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antiveilcharm: {
 		name: "Anti-Veil Charm",
+		shortDesc: "When held, damage dealt from Illusion-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -318,6 +340,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antiwarpcharm: {
 		name: "Anti-Warp Charm",
+		shortDesc: "When held, damage dealt from Warped-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -336,6 +359,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	antiwindcharm: {
 		name: "Anti-Wind Charm",
+		shortDesc: "When held, damage dealt from Wind-skills will be reduced once.",
 		category: 'good',
 		isBerry: true,
 		onSourceModifyDamage(damage, source, target, move) {
@@ -354,6 +378,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	awakeningcharm: {
 		name: "Awakening Charm",
+		shortDesc: "When held, it can recover from Stop.",
 		category: 'good',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -369,6 +394,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	bandage: {
 		name: "Bandage",
+		shortDesc: "If a Puppet holding this uses an absorption skill the recovered amount will be increased.",
 		category: 'poor',
 		onTryHealPriority: 1,
 		onTryHeal(damage, target, source, effect) {
@@ -380,10 +406,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	bellhairpin: { //Useless
 		name: "Bell Hairpin",
+		shortDesc: "A small, bell-shaped hairpin. When held by the first Puppet in your party, Puppet encounters will increase.",
 		category: 'bad'
 	},
 	binoculars: {
 		name: "Binoculars",
+		shortDesc: "Increases the holder's accuracy.",
 		category: 'good',
 		onModifyAccuracyPriority: 15,
 		onFoeModifyAccuracy(relayVar, target, source, move) {
@@ -392,6 +420,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	blackchoker: {
 		name: "Black Choker",
+		shortDesc: "When held, a Puppet can withstand one skill that would otherwise KO them.",
 		category: 'great',
 		onDamagePriority: -40,
 		onDamage(damage, target, source, effect) {
@@ -405,6 +434,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	blackring: {
 		name: "Black Ring",
+		shortDesc: "A Puppet holding this has a chance to survive a lethal attack that would otherwise KO it.",
 		category: 'poor',
 		onDamagePriority: -40,
 		onDamage(damage, target, source, effect) {
@@ -416,10 +446,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	blindingorb: {
 		name: "Blinding Orb",
+		shortDesc: "A Puppet holding this item will always be able to escape from a wild battle.",
 		category: 'bad',
 	},
 	blitzcharm: {
 		name: "Blitz Charm",
+		shortDesc: "In a pinch, this will raise the Puppet's Critical Hit rate.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -434,6 +466,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	blueearrings: {
 		name: "Blue Earrings",
+		shortDesc: "When held, the power of Sp.Atk skills is raised.",
 		category: 'good',
 		onModifySpAPriority: 1,
 		onModifySpA(spa, pokemon) {
@@ -442,10 +475,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	boundarytrance: { // Illegal
 		name: "Boundary Trance",
+		shortDesc: "A stone with rainbow and transparent blue halves. Special Puppets holding this will have greatly increased stats.",
 		category: 'bad',
 	},
 	bronzemirror: {
 		name: "Bronze Mirror",
+		shortDesc: "When the opposing Puppet's stats are changed the Puppet holding this will reflect the same stat changes.",
 		category: 'poor',
 		onFoeAfterBoost(boost, target, source, effect) {
 			if (effect?.fullname?.endsWith('Bronze Mirror')) return;
@@ -466,6 +501,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	burningstone: {
 		name: "Burning Stone",
+		shortDesc: "Stone that was set ablaze. Puppets holding this will be badly burned.",
 		category: 'good',
 		onResidualOrder: 28,
 		onResidualSubOrder: 3,
@@ -475,12 +511,14 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	capturerope: {
 		name: "Capture Rope",
+		shortDesc: "Inescapable cursed rope. When held, switch out skills are disabled for the foe. Useless with trapping abilities.",
 		onFoeModifyMove(move, pokemon, target) {
 			move.selfSwitch = false;
 		},
 	},
 	championsmedal: {
 		name: "Champion's Medal",
+		shortDesc: "A dignified certificate. When held, skills that connect may cause the opponent to flinch.",
 		category: 'good',
 		onModifyMovePriority: -1,
 		onModifyMove(move) {
@@ -498,6 +536,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	choicebelt: {
 		name: "Choice Belt",
+		shortDesc: "Boosts Speed, but you're locked into using the first skill used.",
 		category: 'great',
 		onStart(pokemon) {
 			if (pokemon.volatiles['choicelock'])
@@ -515,6 +554,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	choiceearrings: {
 		name: "Choice Earrings",
+		shortDesc: "Boosts the power of Spread Attack skills but you're locked into using the first skill used.",
 		category: 'great',
 		onStart(pokemon) {
 			if (pokemon.volatiles['choicelock'])
@@ -532,6 +572,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	choicering: {
 		name: "Choice Ring",
+		shortDesc: "Boosts the power of Focus Attack skills but you're locked into using the first skill used.",
 		category: 'great',
 		onStart(pokemon) {
 			if (pokemon.volatiles['choicelock'])
@@ -549,10 +590,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	circularamulet: { // Unimplemented
 		name: "Circular Amulet",
+		shortDesc: "A round amulet. A Puppet holding this will recover HP if it is attacked by its foe. Unimplemented.",
 		category: 'bad'
 	},
 	claritycharm: {
 		name: "Clarity Charm",
+		shortDesc: "When held, it can recover from confusion.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -566,6 +609,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	clearhairpin: {
 		name: "Clear Hairpin",
+		shortDesc: "When held, the power of Illusion skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -576,6 +620,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	columncharm: {
 		name: "Column Charm",
+		shortDesc: "In a pinch, this will raise the Puppet's FoDef stat.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -590,10 +635,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	combathandbook: { // Useless
 		name: "Combat Handbook",
+		shortDesc: "A fighting manual. When held, it increases EXP gained in battle.",
 		category: 'bad'
 	},
 	counterbit: {
 		name: "Counter Bit",
+		shortDesc: "When held, if you receive damage from a BU-skill, damage will be dealt back to the attacker.",
 		category: 'great',
 		onDamagingHitOrder: 2,
 		onDamagingHit(damage, target, source, move) {
@@ -604,6 +651,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	couragecharm: {
 		name: "Courage Charm",
+		shortDesc: "When held, it can recover from Weakness.",
 		category: 'good',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -619,6 +667,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	crystalmirror: {
 		name: "Crystal Mirror",
+		shortDesc: "This Puppet's skills bypass immunities while Byakko is active.",
 		category: 'good',
 		onFoeImmunity(type, pokemon) {
 			if (this.field.isTerrain("byakko") && this.dex.types.isName(type))
@@ -627,6 +676,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	curingcharm: {
 		name: "Curing Charm",
+		shortDesc: "When held, it can recover from all ailments.",
 		category: 'great',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -641,6 +691,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	curseddoll: {
 		name: "Cursed Doll",
+		shortDesc: "When held skills that wouldn't hit due to type immunity will now work.",
 		category: 'poor',
 		onFoeImmunity(type, pokemon) {
 			if (this.dex.types.get(type))
@@ -649,6 +700,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	deadlysecrets: {
 		name: "Deadly Secrets",
+		shortDesc: "A book detailing the tricks of battle. Skills will deal more damage if it pierces the barrier.",
 		category: 'great',
 		onModifyDamage(damage, source, target, move) {
 			if (move && target.getMoveHitData(move).typeMod > 0) {
@@ -658,6 +710,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	diamond: {
 		name: "Diamond",
+		shortDesc: "Clear jewelry. Raises the power of Void skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -669,6 +722,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	diamondhairpin: {
 		name: "Diamond Hairpin",
+		shortDesc: "When held, the power of Void skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -679,6 +733,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	dispelcharm: {
 		name: "Dispel Charm",
+		shortDesc: "When held, if the user becomes unable to use skills, the status is healed once.",
 		category: 'good',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -696,6 +751,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	dragonamulet: {
 		name: "Dragon Amulet",
+		shortDesc: "A Puppet holding this item is no longer susceptible to critical hits.",
 		category: 'great',
 		onFoeModifyCritRatio(relayVar, source, target, move) {
 			return 0;
@@ -703,10 +759,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	dreamshard: { // Illegal
 		name: "Dream Shard",
+		shortDesc: "Mysterious gem that constantly changes color. A special Puppet holding this will have increased stats.",
 		category: 'bad',
 	},
 	echeloncharm: {
 		name: "Echelon Charm",
+		shortDesc: "In a pinch, this will raise the Puppet's Evasion stat.",
 		category: 'good',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -721,6 +779,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	emerald: {
 		name: "Emerald",
+		shortDesc: "Dark green jewelry. Raises the power of Nature skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -732,6 +791,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	emeraldhairpin: {
 		name: "Emerald Hairpin",
+		shortDesc: "When held, the power of Nature skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -742,6 +802,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	evictionnotice: {
 		name: "Eviction Notice",
+		shortDesc: "The attacker will switch places with another Puppet in their party after the holder has been attacked.",
 		category: 'good',
 		onAfterMoveSecondary(target, source, move) {
 			if (source && source !== target && source.hp && target.hp && move && move.category !== 'Status') {
@@ -759,6 +820,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	floatingstone: {
 		name: "Floating Stone",
+		shortDesc: "Makes the holder immune to Earth skills but will crumble if hit by a Non-Earth skills.",
 		category: 'good',
 		onStart(target) {
 			if (!target.ignoringItem() && !this.field.getPseudoWeather('gravity')) {
@@ -784,11 +846,13 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	fluorite: {
 		name: "Fluorite",
+		shortDesc: "Protection moves used by the holder get their duration increased in battle.",
 		category: 'good',
 		//Implemented in moves.ts
 	},
 	foodrations: {
 		name: "Food Rations",
+		shortDesc: "A stockpile of food. When held by a Puppet it'll recover 1/16th of their max HP per turn during battle.",
 		category: 'great',
 		onResidualOrder: 5,
 		onResidualSubOrder: 4,
@@ -798,6 +862,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	giantbit: {
 		name: "Giant Bit",
+		shortDesc: "When this Puppet is hit by a 100 BP or higher move, the attacker loses 1/8 max HP.",
 		category: 'good',
 		onDamagingHit(damage, target, source, move) {
 			if (move.basePower >= 100)
@@ -806,6 +871,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	goldtalisman: {
 		name: "Gold Talisman",
+		shortDesc: "When held, if the user receives a Fo.Atk, Fo.Def is raised.",
 		category: 'good',
 		onAfterBoost(boost, target, source, effect) {
 			if (boost.atk && target.useItem())
@@ -814,6 +880,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	goldenhairpin: {
 		name: "Golden Hairpin",
+		shortDesc: "The Puppet holding this will have increased FoDef, but it will not be able to use support skills.",
 		category: 'great',
 		onModifyDefPriority: 15,
 		onModifyDef(relayVar, target, source, move) {
@@ -826,14 +893,17 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	hakureiamulet: { // Useless
 		name: "Hakurei Amulet",
+		shortDesc: "Amulet that holds the gracious power of the Hakurei. When held, EXP and PP gained will increase.",
 		category: 'bad',
 	},
 	halogodstone: {
 		name: "Halo Godstone",
+		shortDesc: "Lengthens duration of the Aurora when used by the holder.",
 		category: 'good',
 	},
 	hastecharm: {
 		name: "Haste Charm",
+		shortDesc: "When held, skills that take two turns to use only take one.",
 		category: 'good',
 		isBerry: true,
 		onBeforeMove(source, target, move) {
@@ -845,6 +915,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	healingcharm: {
 		name: "Healing Charm",
+		shortDesc: "When held, it can recover 20 HP.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -861,11 +932,13 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	heavyarmor: {
 		name: "Heavy Armor",
+		shortDesc: "A Puppet holding this always moves last within it's "priority bracket".",
 		category: 'poor',
 		onFractionalPriority: -0.1,
 	},
 	hematite: {
 		name: "Hematite",
+		shortDesc: "Gray jewelry. Raises the power of Steel skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -877,6 +950,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	hematitehairpin: {
 		name: "Hematite Hairpin",
+		shortDesc: "When held, the power of Steel skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -887,6 +961,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	hexagoncharm: {
 		name: "Hexagon Charm",
+		shortDesc: "In a pinch, this will raise the Puppet's SpDef stat.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -901,6 +976,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	hopemask: {
 		name: "Hope Mask",
+		shortDesc: "A mask with a hopeful expression. Cannot be flinched while holding this item. This item cannot be disposed.",
 		category: 'good',
 		onTryAddVolatile(status, pokemon) {
 			if (status.id === 'flinch') return null;
@@ -908,12 +984,14 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	ironclogs: {
 		name: "Iron Clogs",
+		shortDesc: "Heavy clogs made out of Iron. When held by a Puppet its speed will drop.",
 		onModifySpe(spe, pokemon) {
 			this.chainModify(0.5);
 		},
 	},
 	ironwillribbon: {
 		name: "Iron Will Ribbon",
+		shortDesc: "If the Puppet holding this only knows 3 skills, the damage received will be reduced.",
 		category: 'poor',
 		onFoeModifyDamage(relayVar, target, source, move) {
 			var moveCount:number = 0;
@@ -926,6 +1004,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	izanagiobject: {
 		name: "Izanagi Object",
+		shortDesc: "This Puppet has 1.5x speed while Kohryu is active.",
 		category: 'good',
 		onModifySpe(spe, pokemon) {
 			if (this.field.isTerrain("kohryu"))
@@ -934,6 +1013,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	jade: {
 		name: "Jade",
+		shortDesc: "Jade jewelry. Raises the power of Wind skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -945,6 +1025,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	jadehairpin: {
 		name: "Jade Hairpin",
+		shortDesc: "When held, the power of Wind skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -955,6 +1036,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	jarofpoison: {
 		name: "Jar of Poison",
+		shortDesc: "Will heal 1/16th the Puppet's max HP if it's the Poison type. Otherwise the Puppet takes passive damage every turn.",
 		category: 'great',
 		onResidualOrder: 5,
 		onResidualSubOrder: 4,
@@ -968,6 +1050,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	javelinarts: {
 		name: "Javelin Arts",
+		shortDesc: "A book detailing the tricks of battle. When held, the power of Javelin-type skills will be increased.",
 		category: 'good',
 		onBasePower(relayVar, source, target, move) {
 			if (move.flags.javelin)
@@ -976,6 +1059,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	lapishairpin: {
 		name: "Lapis Hairpin",
+		shortDesc: "When held, the power of Warped skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -986,6 +1070,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	lapislazuli: {
 		name: "Lapis Lazuli",
+		shortDesc: "Ultramarine jewelry. Raises the power of Warped skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -997,6 +1082,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	largeshield: {
 		name: "Large Shield",
+		shortDesc: "When held, resisted attacks will deal reduced damage, and barrier piercing attacks will deal more damage.",
 		category: 'poor',
 		onSourceModifyDamage(relayVar, source, target, move) {
 			if (move) {
@@ -1013,10 +1099,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	laylasamulet: { // Useless
 		name: "Layla's Amulet",
+		shortDesc: "Hidden under an old photograph. When held by a Puppet, the item drop rates from battle are doubled.",
 		category: 'bad'
 	},
 	lifecharm: {
 		name: "Life Charm",
+		shortDesc: "When held, a Puppet will restore 25% HP once its health drops below 50% HP.",
 		category: 'good',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1033,6 +1121,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	lightcharm: {
 		name: "Light Charm",
+		shortDesc: "When held, it can recover from Darkness.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1048,6 +1137,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	magicring: {
 		name: "Magic Ring",
+		shortDesc: "A mysterious ring. When held the chance of critical hits is more likely.",
 		category: 'good',
 		onModifyCritRatio(relayVar, source, target, move) {
 			return relayVar + 1;
@@ -1055,6 +1145,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	massagecharm: {
 		name: "Massage Charm",
+		shortDesc: "When held, it can recover from Paralysis.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1070,6 +1161,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	morganite: {
 		name: "Morganite",
+		shortDesc: "Peony-colored jewelry. Raises the power of Illusion skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1081,10 +1173,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	nativegrace: { // Useless
 		name: "Native Grace",
+		shortDesc: "A charm given by Suwako. If held, EXP and PP gain in battle will be doubled.",
 		category: 'bad'
 	},
 	obsidian: {
 		name: "Obsidian",
+		shortDesc: "Black jewelry. Raises the power of Dark skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1096,6 +1190,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	obsidianhairpin: {
 		name: "Obsidian Hairpin",
+		shortDesc: "When held, the power of Dark skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1106,6 +1201,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	ointmentcharm: {
 		name: "Ointment Charm",
+		shortDesc: "When held, it can recover from Burn.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1121,6 +1217,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	onyx: {
 		name: "Onyx",
+		shortDesc: "Striped jewelry. Raises the power of Sound skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1132,6 +1229,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	onyxhairpin: {
 		name: "Onyx Hairpin",
+		shortDesc: "When held, the power of Sound skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1142,6 +1240,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	opal: {
 		name: "Opal",
+		shortDesc: "Rainbow jewelry. Raises the power of Light skills once.",
 		category: 'good',
 		isBerry: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1153,6 +1252,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	opalhairpin: {
 		name: "Opal Hairpin",
+		shortDesc: "When held, the power of Light skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1163,6 +1263,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	outlookglasses: {
 		name: "Outlook Glasses",
+		shortDesc: "When held, the foe's held item will be identified.",
 		category: 'good',
 		onStart(pokemon) {
 			for (const target of pokemon.foes()) {
@@ -1174,6 +1275,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	pinpointcharm: {
 		name: "Pinpoint Charm",
+		shortDesc: "In a pinch, this will raise the Puppet's Accuracy stat.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1188,6 +1290,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	puresand: {
 		name: "Pure Sand",
+		shortDesc: "This Puppet has 1.5x accuracy while Genbu is active.",
 		category: 'good',
 		onFoeModifyAccuracy(relayVar, target, source, move) {
 			if (this.field.isTerrain("genbu"))
@@ -1196,6 +1299,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	purifycharm: {
 		name: "Purify Charm",
+		shortDesc: "When held, if the holder's stats are lowered, the lowered stats will be reverted.",
 		category: 'good',
 		isBerry: true,
 		onAfterBoost(boost, target, source, effect) {
@@ -1212,6 +1316,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	quartzhairpin: {
 		name: "Quartz Hairpin",
+		shortDesc: "When held, the power of Earth skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1222,6 +1327,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	radianthairpin: {
 		name: "Radiant Hairpin",
+		shortDesc: "This Puppet's skills gain 1% more power for each percent above 70%.",
 		category: 'great',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1237,6 +1343,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	rebelliontome: {
 		name: "Rebellion Tome",
+		shortDesc: "When held, if the user receives a barrier-piercing attack, FoAtk and SpAtk sharply raise.",
 		category: 'good',
 		onDamagingHit(damage, target, source, move) {
 			if (target.getMoveHitData(move).typeMod > 0)
@@ -1245,6 +1352,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	redring: {
 		name: "Red Ring",
+		shortDesc: "When held, the power of Fo.Atk skills is raised.",
 		category: 'good',
 		onModifyAtkPriority: 1,
 		onModifyAtk(spa, pokemon) {
@@ -1253,6 +1361,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	reflectbit: {
 		name: "Reflect Bit",
+		shortDesc: "When held, if you receive damage from a EN-skill, damage will be dealt back to the attacker.",
 		category: 'great',
 		onDamagingHitOrder: 2,
 		onDamagingHit(damage, target, source, move) {
@@ -1263,6 +1372,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	reliefcharm: {
 		name: "Relief Charm",
+		shortDesc: "When held, it can recover from Fear.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1278,6 +1388,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	repetitivearts: {
 		name: "Repetitive Arts",
+		shortDesc: "A book detailing the tricks of battle. A skill will deal more damage if it is used in repetition.",
 		category: 'good',
 		onStart(pokemon) {
 			pokemon.addVolatile('repetitivearts');
@@ -1313,6 +1424,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	retreatmanual: {
 		name: "Retreat Manual",
+		shortDesc: "The defender will switch places with another Puppet in their party after the holder has been attacked.",
 		category: 'good',
 		onAfterMoveSecondaryPriority: 2,
 		onAfterMoveSecondary(target, source, move) {
@@ -1333,6 +1445,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	rosary: {
 		name: "Rosary",
+		shortDesc: "When held by a Puppet, it will be less likely to be hit by an opposing Puppet's skills.",
 		category: 'good',
 		onModifyAccuracy(relayVar, target, source, move) {
 			this.chainModify(0.9);
@@ -1340,6 +1453,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	rotationcharm: {
 		name: "Rotation Charm",
+		shortDesc: "In a pinch, this will sharply raise one random stat.",
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1366,6 +1480,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	ruby: {
 		name: "Ruby",
+		shortDesc: "Red jewelry. Raises the power of Fire skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1377,6 +1492,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	rubyhairpin: {
 		name: "Ruby Hairpin",
+		shortDesc: "When held, the power of Fire skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1387,10 +1503,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	sandgodstone: {
 		name: "Sand Godstone",
+		shortDesc: "Lengthens duration of the Dust Storm when used by the holder.",
 		category: 'good',
 	},
 	sapphire: {
 		name: "Sapphire",
+		shortDesc: "Light blue jewelry. Raises the power of Water skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1402,6 +1520,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	sapphirehairpin: {
 		name: "Sapphire Hairpin",
+		shortDesc: "When held, the power of Water skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1412,14 +1531,17 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	sereingodstone: {
 		name: "Serein Godstone",
+		shortDesc: "Lengthens duration of Sunshower when used by the holder.",
 		category: 'good',
 	},
 	silentgodstone: {
 		name: "Silent Godstone",
+		shortDesc: "Lengthens duration of the Calm when used by the holder.",
 		category: 'good',
 	},
 	silverhairpin: {
 		name: "Silver Hairpin",
+		shortDesc: "The Puppet holding this will have increased SpDef, but it will not be able to use support skills.",
 		category: 'great',
 		onModifyDefPriority: 15,
 		onModifySpD(relayVar, target, source, move) {
@@ -1432,6 +1554,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	silvertalisman: {
 		name: "Silver Talisman",
+		shortDesc: "When held, if the user receives a Sp.Atk, Sp.Def is raised.",
 		category: 'good',
 		onAfterBoost(boost, target, source, effect) {
 			if (boost.spa && target.useItem())
@@ -1440,6 +1563,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	skirmishercharm: {
 		name: "Skirmisher Charm",
+		shortDesc: "In a pinch, this will raise the Puppet's Speed stat.",
 		category: 'great',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1454,6 +1578,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	smallbit: {
 		name: "Small Bit",
+		shortDesc: "If the holder is hit with a low-power skill the opponent also takes damage.",
 		category: 'good',
 		onDamagingHit(damage, target, source, move) {
 			if (move.basePower <= 70)
@@ -1462,6 +1587,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	spirittorch: {
 		name: "Spirit Torch",
+		shortDesc: "Opposing puppets lose 1/8 max HP at the end of each turn while Suzaku is active.",
 		category: 'good',
 		onResidualOrder: 5,
 		onResidualSubOrder: 4,
@@ -1475,6 +1601,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	strawdoll: {
 		name: "Straw Doll",
+		shortDesc: "Straw doll that is used for magic. When held a Puppet's skills become stronger.",
 		category: 'great',
 		onModifyDamage(damage, source, target, move) {
 			return this.chainModify(1.3);
@@ -1487,11 +1614,13 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	sturdyrope: {
 		name: "Sturdy Rope",
+		shortDesc: "A sturdy rope that increases the power of binding moves when held.",
 		category: 'poor',
 		//Implemented in conditions.ts
 	},
 	substitutetag: {
 		name: "Substitute Tag",
+		shortDesc: "An amulet with a human carved into it. Allows the holder to switch out even if it would normally be trapped.",
 		category: 'good',
 		onTrapPokemonPriority: -10,
 		onTrapPokemon(pokemon) {
@@ -1500,6 +1629,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	sugilite: {
 		name: "Sugilite",
+		shortDesc: "Dark purple jewelry. Raises the power of Nether skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1511,6 +1641,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	sugilitehairpin: {
 		name: "Sugilite Hairpin",
+		shortDesc: "When held, the power of Nether skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1521,6 +1652,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	telescope: {
 		name: "Telescope",
+		shortDesc: "Increases the holder's accuracy if it moves after the foe.",
 		category: 'good',
 		onFoeModifyAccuracy(relayVar, defender, pokemon, move) {
 			let boosted = true;
@@ -1538,11 +1670,13 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	tengugeta: {
 		name: "Tengu Geta",
+		shortDesc: "When this Puppet is hit by an attack, the attacker loses 1/8 max HP. Single use.",
 		category: 'great',
 		// Implemented in conditions.ts
 	},
 	thorncharm: {
 		name: "Thorn Charm",
+		shortDesc: "When held, if attacked by a foe with a FoAtk, the attacker will lose 1/8th of their max HP.",
 		category: 'good',
 		isBerry: true,
 		onDamagingHit(damage, target, source, move) {
@@ -1553,6 +1687,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	tigereye: {
 		name: "Tiger Eye",
+		shortDesc: "Brown jewelry. Raises the power of Earth skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1564,6 +1699,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	topaz: {
 		name: "Topaz",
+		shortDesc: "Yellow jewelry. Raises the power of Electric skills once.",
 		category: 'good',
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
@@ -1575,6 +1711,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	topazhairpin: {
 		name: "Topaz Hairpin",
+		shortDesc: "When held, the power of Electric skills is boosted.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1585,6 +1722,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	tsuzumidrum: {
 		name: "Tsuzumi Drum",
+		shortDesc: "This puppet's skills have 1.3x power if they lack same-type attacks.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
@@ -1600,10 +1738,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	twilightgodstone: {
 		name: "Twilight Godstone",
+		shortDesc: "Lengthens duration of the Heavy Fog when used by the holder.",
 		category: 'good',
 	},
 	veecharm: {
 		name: "Vee Charm",
+		shortDesc: "In a pinch, this will raise the Puppet's SpAtk stat.",
 		category: 'good',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1618,6 +1758,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	wedgecharm: {
 		name: "Wedge Charm",
+		shortDesc: "In a pinch, this will raise the Puppet's FoAtk stat.",
 		category: 'good',
 		isBerry: true,
 		onUpdate(pokemon) {
@@ -1632,6 +1773,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	wolfsbaneroot: {
 		name: "Wolfsbane Root",
+		shortDesc: "A deadly poisonous root. Puppets holding this will be badly poisoned.",
 		category: 'good',
 		onResidualOrder: 28,
 		onResidualSubOrder: 3,
@@ -1641,10 +1783,12 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	woodensword: { // Useless
 		name: "Wooden Sword",
+		shortDesc: "A wooden sword designed for training. A Puppet holding this will increase the amount of PP it earns from battle.",
 		category: 'bad'
 	},
 	yggdrasilseed: {
 		name: "Yggdrasil Seed",
+		shortDesc: "This Puppet deals and takes 50% more damage while Seiryu is active.",
 		category: 'good',
 		onBasePowerPriority: 15,
 		onBasePower(relayVar, source, target, move) {
@@ -1659,21 +1803,25 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	youmascrollblack: {
 		name: "Youma Scroll: Black",
+		shortDesc: "A scroll with a black hemming written by various youkai. This item cannot be disposed.",
 		category: 'specific'
 		//Handled in Bibliophilia ability
 	},
 	youmascrollblue: {
 		name: "Youma Scroll: Blue",
+		shortDesc: "A scroll with a blue hemming written by various youkai. This item cannot be disposed.",
 		category: 'specific'
 		//Handled in Bibliophilia ability
 	},
 	youmascrollred: {
 		name: "Youma Scroll: Red",
+		shortDesc: "A scroll with a red hemming written by various youkai. This item cannot be disposed.",
 		category: 'specific'
 		//Handled in Bibliophilia ability
 	},
 	youmascrollwhite: {
 		name: "Youma Scroll: White",
+		shortDesc: "A scroll with a white hemming written by various youkai. This item cannot be disposed.",
 		category: 'specific'
 		//Handled in Bibliophilia ability
 	},
