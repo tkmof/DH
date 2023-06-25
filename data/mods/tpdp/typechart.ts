@@ -24,6 +24,8 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	fire: {
 		damageTaken: {
+			brn: 3,
+			hvybrn: 3,
 			Void: 0,
 			Fire: 2,
 			Water: 1,
@@ -93,6 +95,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	earth: {
 		damageTaken: {
+			duststorm: 3,
 			Void: 0,
 			Fire: 2,
 			Water: 1,
@@ -116,6 +119,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	steel: {
 		damageTaken: {
+			duststorm: 3,
+			psn: 3,
+			tox: 3,
 			Void: 0,
 			Fire: 1,
 			Water: 0,
@@ -139,6 +145,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	wind: {
 		damageTaken: {
+			spikes: 3,
 			Void: 0,
 			Fire: 0,
 			Water: 0,
@@ -162,6 +169,8 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	electric: {
 		damageTaken: {
+			par: 3,
+			shk: 3,
 			Void: 0,
 			Fire: 0,
 			Water: 0,
@@ -208,6 +217,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	dark: {
 		damageTaken: {
+			stickyweb: 3,
 			Void: 2,
 			Fire: 0,
 			Water: 0,
@@ -231,6 +241,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	nether: {
 		damageTaken: {
+			trapped: 3,
 			Void: 0,
 			Fire: 0,
 			Water: 0,
@@ -254,6 +265,8 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	poison: {
 		damageTaken: {
+			psn: 3,
+			tox: 3,
 			Void: 0,
 			Fire: 0,
 			Water: 0,
@@ -369,6 +382,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	dream: {
 		damageTaken: {
+			stp: 3,
 			Void: 0,
 			Fire: 0,
 			Water: 0,

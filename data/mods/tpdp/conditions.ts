@@ -52,7 +52,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (this.effectData.stage < 15) {
 				this.effectData.stage++;
 			}
-			this.damage(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectData.stage);
+			this.damage(this.clampIntRange(pokemon.baseMaxhp / 16, 1) * this.effectData.stage);
 		},
 	},
 	par: {
@@ -73,12 +73,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifySpe(spe, pokemon) {
-			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
-			spe = this.finalModify(spe);
-			if (!pokemon.hasAbility(['quickfeet', 'gale'])) {
-				spe = Math.floor(spe * (1/4));
+			if (!pokemon.hasAbility('quickfeet')) {
+				return this.chainModify(0.25);
 			}
-			return spe;
 		},
 	},
 	shk: {
@@ -101,12 +98,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifySpe(spe, pokemon) {
-			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
-			spe = this.finalModify(spe);
-			if (!pokemon.hasAbility(['quickfeet', 'gale'])) {
-				spe = Math.floor(spe * (1/4));
+			if (!pokemon.hasAbility('quickfeet')) {
+				return this.chainModify(0.25);
 			}
-			return spe;
 		},
 		onAccuracy(accuracy, target, source, move) {
 			return true;
@@ -282,7 +276,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (this.effectData.stage < 15) {
 				this.effectData.stage++;
 			}
-			this.damage(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectData.stage);
+			this.damage(this.clampIntRange(pokemon.baseMaxhp / 16, 1) * this.effectData.stage);
 		},
 	},
 	weak: {
