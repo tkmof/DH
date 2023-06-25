@@ -27,6 +27,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		types: ["Illusion", "Nature"],
 		gender: "F",
 		baseStats: {hp: 1, atk: 90, def: 45, spa: 90, spd: 45, spe: 40},
+		maxHP: 1,
 		abilities: {0: "Frail Health", 1: "Curse Return"},
 		weightkg: 0,
 		eggGroups: [],

@@ -1479,9 +1479,9 @@ export const Items: {[itemid: string]: ItemData} = {
 		onModifyDamage(damage, source, target, move) {
 			return this.chainModify(1.3);
 		},
-		onAfterMoveSecondary(source, target, move) {
-			if (source && source !== target && move && move.category !== 'Status' && !source.forceSwitchFlag) {
-				this.damage(source.baseMaxhp / 10, source, source, this.dex.items.get('strawdoll'));
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (source && source !== target && move && move.category !== 'Status') {
+				this.damage(source.baseMaxhp / 10, source, source, this.dex.getItem('strawdoll'));
 			}
 		},
 	},
