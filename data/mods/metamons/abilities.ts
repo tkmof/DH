@@ -317,6 +317,20 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Wise Eye",
 		rating: 3,
 	},
+	dancer: {
+		name: "Dancer",
+		// implemented in runMove in scripts.js
+	   onModifyMove(move) {
+	      if (!move.flags['dance']) return;
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) {
+			  move.category = 'Physical';
+			} else if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) {
+		     move.category = 'Special';
+			}
+		},
+		rating: 1.5,
+		num: 216,
+	},
 // New Abilities
 	battlebond: {
 		onSourceAfterFaint(length, target, source, effect) {
@@ -1107,5 +1121,4 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 278,
 	},
-};
 };
