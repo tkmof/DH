@@ -1496,13 +1496,6 @@ export const Formats: FormatList = [
 				}
 			}
 		},
-		/*
-		onBegin() {
-			if(species.id === 'shedigiri') {
-				pokemon.basemaxhp = 1;
-				pokemon.hp = 1;
-			}
-		}*/
 	},
 	{
 		name: "[Gen 2] GSC Doubles",

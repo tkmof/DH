@@ -152,8 +152,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 
 			return !!(
 				(this.battle.gen >= 5 && !this.isActive) ||
-				((this.volatiles['gastroacid'] || (neutralizinggas && this.ability !== ('neutralizinggas' as ID)) ||
-				this.battle.field.isTerrain('kohryu')) &&
+				((this.volatiles['gastroacid'] || (neutralizinggas && this.ability !== ('neutralizinggas' as ID))) &&
 				!this.getAbility().isPermanent
 				)
 			);

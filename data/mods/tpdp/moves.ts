@@ -1151,7 +1151,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onFaint(target, source, effect) {
 				if (!source || !effect || target.isAlly(source)) return;
 				if (effect.effectType === 'Move' && !effect.isFutureMove) {
-					this.add('-activate', target, 'move: Call of the Dead');
+					this.add('-message', `${source.name} was dragged down by the dead...`);
+					this.add('-activate', target, 'move: Call of the Dead', '[silent]');
 					source.faint();
 				}
 			},
@@ -2547,9 +2548,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Leech Seed", target);
 		},
-		volatileStatus: 'leechseed',
+		volatileStatus: 'drainseed',
 		onTryImmunity(target) {
 			return !target.hasType('Nature');
+		},
+		condition: {
+			onStart(target) {
+				console.log(target);
+				this.add('-message', `${target.name} was seeded!`);
+				this.add('-start', target, 'move: Leech Seed', '[silent]');
+			},
+			onResidualOrder: 8,
+			onResidual(pokemon) {
+				const target = this.effectData.source.side.active[pokemon.volatiles['drainseed'].sourcePosition];
+				if (!target || target.fainted || target.hp <= 0) {
+					this.debug('Nothing to leech into');
+					return;
+				}
+				const damage = this.damage(pokemon.baseMaxhp / 8, pokemon, target);
+				if (damage) {
+					this.heal(damage, target, pokemon);
+				}
+			},
 		},
 		// Class: EN
 		// Effect Chance: 100
@@ -2806,7 +2826,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		condition: {
 			noCopy: true,
 			onStart(target, source, sourceEffect) {
-				this.add('-start', target, 'move: Element Reverse');
+				this.add('-message', `${target.name}'s elemental barrier is reversed!`);
+				this.add('-start', target, 'move: Element Reverse', '[silent]');
 			},
 			onEffectiveness(typeMod, target, type, move) {
 				return typeMod * -1;
@@ -3384,7 +3405,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Court Change", target);
 		},
 		onHit(target, source, move) {
-			const movedConditions = ['fieldprotect', 'fieldbarrier', 'luckyrainbow', 'substitute'];
+			const movedConditions = ['fieldprotect', 'fieldbarrier', 'luckyrainbow', 'magicbarrier'];
 			let success: string[][] = [];
 			for (const cond of movedConditions) {
 				this.debug('Trying to move ' + cond + ' as sideCondition');
@@ -6153,7 +6174,69 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Substitute", target);
 		},
-		volatileStatus: 'substitute',
+		volatileStatus: 'magicbarrier',
+		onTryHit(target) {
+			if (target.volatiles['magicbarrier']) {
+				this.add('-fail', target, 'move: Magic Barrier');
+				return null;
+			}
+			if (target.hp <= target.maxhp / 4 || target.maxhp === 1) { // Shedinja clause
+				this.add('-fail', target, 'move: Magic Barrier', '[weak]');
+				return null;
+			}
+		},
+		onHit(target) {
+			this.directDamage(target.maxhp / 4);
+		},
+		condition: {
+			onStart(target) {
+				this.add('-message', `${target.name} created a Magic Barrier!`);
+				this.add('-start', target, 'Magic Barrier', '[silent]');
+				this.effectData.hp = Math.floor(target.maxhp / 4);
+				if (target.volatiles['partiallytrapped']) {
+					this.add('-end', target, target.volatiles['partiallytrapped'].sourceEffect, '[partiallytrapped]', '[silent]');
+					delete target.volatiles['partiallytrapped'];
+				}
+			},
+			onTryPrimaryHitPriority: -1,
+			onTryPrimaryHit(target, source, move) {
+				if (target === source || move.flags['authentic'] || move.infiltrates) {
+					return;
+				}
+				let damage = this.getDamage(source, target, move);
+				if (!damage && damage !== 0) {
+					this.add('-fail', source);
+					this.attrLastMove('[still]');
+					return null;
+				}
+				damage = this.runEvent('SubDamage', target, source, move, damage);
+				if (!damage) {
+					return damage;
+				}
+				if (damage > target.volatiles['magicbarrier'].hp) {
+					damage = target.volatiles['magicbarrier'].hp as number;
+				}
+				target.volatiles['magicbarrier'].hp -= damage;
+				source.lastDamage = damage;
+				if (target.volatiles['magicbarrier'].hp <= 0) {
+					target.removeVolatile('magicbarrier');
+				} else {
+					this.add('-activate', target, 'move: Magic Barrier', '[damage]');
+				}
+				if (move.recoil) {
+					this.damage(this.calcRecoilDamage(damage, move), source, target, 'recoil');
+				}
+				if (move.drain) {
+					this.heal(Math.ceil(damage * move.drain[0] / move.drain[1]), source, target, 'drain');
+				}
+				this.singleEvent('AfterSubDamage', move, null, target, source, move, damage);
+				this.runEvent('AfterSubDamage', target, source, move, damage);
+				return this.HIT_SUBSTITUTE;
+			},
+			onEnd(target) {
+				this.add('-end', target, 'Magic Barrier');
+			},
+		},
 	},
 	merrydance: {
 		name: "Merry Dance",
@@ -11210,8 +11293,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onHit(target, source, move) {
 				const stats: BoostID[] = [];
 				let stat: BoostID;
-				for (stat in target.boosts) {
-					if (target.boosts[stat] < 6) {
+				for (stat in source.boosts) {
+					if (source.boosts[stat] < 6) {
 						stats.push(stat);
 					}
 				}

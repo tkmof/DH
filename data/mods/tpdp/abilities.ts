@@ -877,7 +877,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	fasttalker: {
 		name: "Fast Talker",
-		shortDesc: "Two-turn skills can be used in one turn.",
+		shortDesc: "Two-turn skills can be used in one turn but have 0.9x power.",
 		onBasePower(relayVar, source, target, move) {
 			if (target.hasAbility('ascertainment') || this.field.isTerrain('kohryu'))
 				return;
@@ -1774,7 +1774,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Placid",
 		shortDesc: "For 5 turns Power Yukari's SpAtk and Speed are cut in half. Ability changes to Serious, afterwards.",
 		onStart(pokemon) {
-			pokemon.addVolatile('pladid');
+			pokemon.addVolatile('placid');
 		},
 		condition: {
 			duration: 5,
@@ -2547,7 +2547,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
 			}
 		},
-		// Damage modifier implemented in BattleActions#modifyDamage()
 		onSourceModifySecondaries(secondaries, target, source, move) {
 			if (move.multihitType === 'twoofakind' && move.hit < 2) {
 				if (move.recoil)

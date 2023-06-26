@@ -512,8 +512,11 @@ export const Items: {[itemid: string]: ItemData} = {
 	capturerope: {
 		name: "Capture Rope",
 		shortDesc: "Inescapable cursed rope. When held, switch out skills are disabled for the foe. Useless with trapping abilities.",
+		onStart(pokemon) {
+			this.add('-message', `${pokemon} has set the sealing thread!`);
+		},
 		onFoeModifyMove(move, pokemon, target) {
-			move.selfSwitch = false;
+			if(!pokemon.ability.includes('shadowstich', 'poisonlabryinth', 'battlemania', 'adversewind')) move.selfSwitch = false;
 		},
 	},
 	championsmedal: {

@@ -666,18 +666,20 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 5;
 		},
 		onModifyMove(move, pokemon, target) {
-			move.ignoreAbility = true;
+			const boostAbils = ['aftermove', 'astronomy', 'auroragrace', 'bibliophilia', 'boundaryblurrer', 'boundarysavior', 'breather', 'brightform', 'brutality', 'byakuteismetal', 'charge', 'cloakofdarkness', 'daredevil', 'desperation', 'disjointedblow', 'easternexpanse', 'empowered', 'finalform', 'firsthit', 'forewarddash', 'fullpower', 'galeform', 'generalsform', 'genteiswater', 'ghostform', 'glamorous', 'inversereaction', 'knownlimits', 'kouteisearth', 'lastdefense', 'midnightform', 'mindlessdance', 'mindseye', 'miraclemallet', 'naturalform', 'ontheedge', 'placid', 'preciseaim', 'pride', 'recalibration', 'reckless', 'sandforce', 'seiteiswood', 'skilledhand', 'slowtempo', 'sniper', 'spiritofyang', 'spiritofyin', 'strangerainbow', 'strategist', 'streamform', 'surprisetactics', 'suteisfire', 'trueadmin', 'uniqueshield', 'unyieldingform', 'visionbonus', 'westernexpanse', 'yatanokagami'];
+			console.log(pokemon);
+			if(pokemon.ability.includes(boostAbils)) move.ignoreAbility = true;
 		},
 		onStart(battle, source, effect) {
 			this.add('-message', `The terrain became Kohryu!`);
 			if (effect?.effectType === 'Ability') {
-				this.add('-fieldstart', 'terrain: Kohryu', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-fieldstart', 'terrain: terrainkohryu', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Kohryu', '[silent]');
+				this.add('-fieldstart', 'terrain: terrainkohryu', '[silent]');
 			}
 		},
 		onEnd() {
-			this.add('-fieldend', 'terrain: Kohryu', '[silent]');
+			this.add('-fieldend', 'terrain: terrainkohryu', '[silent]');
 			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
