@@ -1868,6 +1868,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		eggGroups: ["Field"],
 		requiredItem: "Krookodite",
 	},
+	darmanitan: {
+		inherit: true,
+	},
+	darmanitanzen: {
+		inherit: true,
+	},
+	darmanitangalar: {
+		inherit: true,
+	},
+	darmanitangalarzen: {
+		inherit: true,
+	},
 	maractus: {
 		inherit: true,
 		types: ["Grass", "Ground"],

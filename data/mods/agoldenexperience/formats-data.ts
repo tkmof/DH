@@ -400,7 +400,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	arcaninehisui: {
 		gen: 8,
-		tier: "NU",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	poliwag: {
@@ -2710,7 +2710,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	darmanitanzen: {
 		tier: "OU",
-		doublesTier: "(DUU)",
+		doublesTier: "DUU",
 	},
 	darmanitangalar: {
 		tier: "UU",
@@ -2718,7 +2718,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	darmanitangalarzen: {
 		tier: "OU",
-		doublesTier: "(DUU)",
+		doublesTier: "DOU",
 	},
 	maractus: {
 		tier: "(PU)",
