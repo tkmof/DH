@@ -336,6 +336,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	electrode: {
 		inherit: true,
+		baseStats: {hp: 60, atk: 80, def: 70, spa: 50, spd: 80, spe: 150},
 		abilities: {0: "Soundproof", 1: "Explosive", H: "Aftermath"},
 		otherFormes: ["Electrode-Hisui"],//to remove when gen 9
 		formeOrder: ["Electrode", "Electrode-Hisui"],//to remove when gen 9
@@ -2155,9 +2156,20 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Justified", H: "Sharpness"},
 	},
 	meloettapirouette: {
-		inherit: true,
+		num: 648,
+		name: "Meloetta-Pirouette",
+		baseSpecies: "Meloetta",
+		forme: "Pirouette",
+		types: ["Normal", "Fighting"],
+		gender: "N",
+		baseStats: {hp: 100, atk: 128, def: 90, spa: 77, spd: 77, spe: 128},
 		abilities: {0: "Dancer"},
+		heightm: 0.6,
+		weightkg: 6.5,
+		color: "White",
+		eggGroups: ["Undiscovered"],
 		requiredItem: "Relic Sheet",
+		battleOnly: "Meloetta",
 	},
 	genesect: {
 		inherit: true,
@@ -2489,7 +2501,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		forme: "Hisui",
 		types: ["Grass", "Fighting"],
 		genderRatio: {M: 0.875, F: 0.125},
-		baseStats: {hp: 88, atk: 112, def: 80, spa: 95, spd: 95, spe: 60},
+		baseStats: {hp: 88, atk: 117, def: 95, spa: 70, spd: 100, spe: 60},
 		abilities: {0: "Overgrow", H: "Scrappy"},
 		heightm: 1.6,
 		weightkg: 37,
