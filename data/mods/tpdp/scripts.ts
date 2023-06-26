@@ -175,7 +175,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			if ('magnetrise' in this.volatiles) return false;
 			if ('telekinesis' in this.volatiles) return false;
 			return item !== 'airballoon' && item !== 'floatingstone';
-		}
+		},
 		calculateStat(statName: StatIDExceptHP, boost: number, modifier?: number) {
 			statName = toID(statName) as StatIDExceptHP;
 			// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
@@ -211,7 +211,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 
 			// stat modifier
 			return this.battle.modify(stat, (modifier || 1));
-		}
+		},
 		getStat(statName: StatIDExceptHP, unboosted?: boolean, unmodified?: boolean) {
 			statName = toID(statName) as StatIDExceptHP;
 			// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
