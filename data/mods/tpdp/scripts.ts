@@ -1,3 +1,4 @@
+import {toID} from './dex';
 export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	teambuilderConfig: {
 		// for micrometas to only show custom tiers
@@ -175,7 +176,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			if ('magnetrise' in this.volatiles) return false;
 			if ('telekinesis' in this.volatiles) return false;
 			return item !== 'airballoon' && item !== 'floatingstone';
-		},
+		},		
 		/*
 		calculateStat(statName: StatNameExceptHP, boost: number, modifier?: number) {
 			inherit: true,
@@ -214,7 +215,15 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			return this.battle.modify(stat, (modifier || 1));
 		},
 		getStat(statName: StatNameExceptHP, unboosted?: boolean, unmodified?: boolean) {
-			inherit: true,
+			statName = toID(statName) as StatNameExceptHP;
+			// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
+			if (statName === 'hp') throw new Error("Please read `maxhp` directly");
+
+			// base stat
+			let stat = this.storedStats[statName];
+
+			// Download ignores Wonder Room's effect, but this results in
+			// stat stages being calculated on the opposite defensive stat
 			if (this.battle.field.isWeather('sunshower')) {
 				if (statName === 'def') {
 					statName = 'spd';
@@ -222,5 +231,29 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 					statName = 'def';
 				}
 			}
+
+			// stat boosts
+			if (!unboosted) {
+				const boosts = this.battle.runEvent('ModifyBoost', this, null, null, {...this.boosts});
+				let boost = boosts[statName];
+				const boostTable = [1, 1.5, 2, 2.5, 3, 3.5, 4];
+				if (boost > 6) boost = 6;
+				if (boost < -6) boost = -6;
+				if (boost >= 0) {
+					stat = Math.floor(stat * boostTable[boost]);
+				} else {
+					stat = Math.floor(stat / boostTable[-boost]);
+				}
+			}
+
+			// stat modifier effects
+			if (!unmodified) {
+				const statTable: {[s in StatNameExceptHP]?: string} = {atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe'};
+				stat = this.battle.runEvent('Modify' + statTable[statName], this, null, null, stat);
+			}
+
+			if (statName === 'spe' && stat > 10000) stat = 10000;
+			return stat;
 		},*/
+	},
 };
