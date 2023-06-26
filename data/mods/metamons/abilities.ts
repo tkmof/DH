@@ -252,6 +252,28 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 	},
+	dauntlessshieldgen8: {
+		onStart(pokemon) {
+			this.boost({def: 1}, pokemon);
+		},
+		name: "Dauntless Shield-Gen 8",
+		shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
+		rating: 3.5,
+		num: 235,
+	},
+	proteangen8: {
+		onPrepareHit(source, target, move) {
+			if (move.hasBounced) return;
+			const type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+				this.add('-start', source, 'typechange', type, '[from] ability: Protean');
+			}
+		},
+		name: "Protean-Gen 8",
+		rating: 4.5,
+		num: 168,
+	},
 /*Gen 9 MetaMons*/
 	refrigerate: {
 		shortDesc: "Normal moves become Ice type and 1.2x power. Ice moves 1.5x power.",
