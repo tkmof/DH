@@ -1146,6 +1146,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		condition: {
 			onStart(pokemon) {
+				this.add('-message', `$The dead call upon {source.name}...`);
 				this.add('-singlemove', pokemon, 'Call of the Dead');
 			},
 			onFaint(target, source, effect) {
