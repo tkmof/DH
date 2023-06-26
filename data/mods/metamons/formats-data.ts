@@ -66,7 +66,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	rotomfrost: {
 	   tier: "Gen 7 MetaMons",
 	},
-	salazzle: {
+	salazzlegen7: {
 	   tier: "Gen 7 MetaMons",
 	},
 	scolipede: {
