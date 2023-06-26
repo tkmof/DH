@@ -1913,7 +1913,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	ceaselessedge: {
 		shortDesc: "Sets Spikes after damage.",
 		num: -1006,
-		accuracy: 90,
+		accuracy: 100,
 		basePower: 65,
 		category: "Physical",
 		name: "Ceaseless Edge",
@@ -2094,13 +2094,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 					}
 				}
 				if (move.flags['contact']) {
-					target.clearBoosts();
+					source.clearBoosts();
+					this.add('-clearboost', source);
 				}
 				return this.NOT_FAIL;
 			},
 			onHit(target, source, move) {
 				if (move.isZOrMaxPowered && move.flags['contact']) {
-					target.clearBoosts();
+					source.clearBoosts();
+					this.add('-clearboost', source);
 				}
 			},
 		},
@@ -2224,9 +2226,65 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Clever",
 	},
 	stoneaxe: {
-		shortDesc: "Sets Stealth Rock after damage.",
+		shortDesc: "Sets Stealth Rock after damage.",banefulbunker: {
+			num: 661,
+			accuracy: true,
+			basePower: 0,
+			category: "Status",
+			name: "Baneful Bunker",
+			pp: 10,
+			priority: 4,
+			flags: {},
+			stallingMove: true,
+			volatileStatus: 'banefulbunker',
+			onTryHit(target, source, move) {
+				return !!this.queue.willAct() && this.runEvent('StallMove', target);
+			},
+			onHit(pokemon) {
+				pokemon.addVolatile('stall');
+			},
+			condition: {
+				duration: 1,
+				onStart(target) {
+					this.add('-singleturn', target, 'move: Protect');
+				},
+				onTryHitPriority: 3,
+				onTryHit(target, source, move) {
+					if (!move.flags['protect']) {
+						if (move.isZ || (move.isMax && !move.breaksProtect)) target.getMoveHitData(move).zBrokeProtect = true;
+						return;
+					}
+					if (move.smartTarget) {
+						move.smartTarget = false;
+					} else {
+						this.add('-activate', target, 'move: Protect');
+					}
+					const lockedmove = source.getVolatile('lockedmove');
+					if (lockedmove) {
+						// Outrage counter is reset
+						if (source.volatiles['lockedmove'].duration === 2) {
+							delete source.volatiles['lockedmove'];
+						}
+					}
+					if (move.flags['contact']) {
+						source.trySetStatus('psn', target);
+					}
+					return this.NOT_FAIL;
+				},
+				onHit(target, source, move) {
+					if (move.isZOrMaxPowered && move.flags['contact']) {
+						source.trySetStatus('psn', target);
+					}
+				},
+			},
+			secondary: null,
+			target: "self",
+			type: "Poison",
+			zMove: {boost: {def: 1}},
+			contestType: "Tough",
+		},
 		num: -1014,
-		accuracy: 90,
+		accuracy: 100,
 		basePower: 65,
 		category: "Physical",
 		name: "Stone Axe",
@@ -2369,20 +2427,34 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 150,
 		category: "Special",
 		name: "Sheer Cold",
-		desc: "Sets Hail and Aurora Veil. User faints after use.",
-		shortDesc: "Sets Hail and Aurora Veil. User faints after use.",
-		pp: 10,
+		desc: "Sets Hail. User faints after use.",
+		shortDesc: "Sets Hail. User faints after use.",
+		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		weather: 'hail',
-		self: {
-			sideCondition: 'auroraveil',
-		},
 		secondary: null,
 		selfdestruct: "always",
 		target: "normal",
 		type: "Ice",
 		contestType: "Beautiful",
+	},
+	mistyexplosion: {
+		num: 802,
+		accuracy: 100,
+		basePower: 150,
+		category: "Special",
+		name: "Misty Explosion",
+		desc: "Sets Misty Terrain. User faints after use.",
+		shortDesc: "Sets Misty Terrain. User faints after use.",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		selfdestruct: "always",
+		terrain: 'mistyterrain',
+		secondary: null,
+		target: "allAdjacent",
+		type: "Fairy",
 	},
 	guillotine: {
 		num: 12,
@@ -2963,6 +3035,93 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Grass",
 		contestType: "Cool",
+	},
+	houndshowl: {
+		num: 228,
+		accuracy: 100,
+		basePower: 50,
+		category: "Special",
+		name: "Hound's Howl",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		basePowerCallback(pokemon, target, move) {
+			// You can't get here unless the pursuit succeeds
+			if (target.beingCalledBack) {
+				this.debug('Pursuit damage boost');
+				return move.basePower * 2;
+			}
+			return move.basePower;
+		},
+		beforeTurnCallback(pokemon) {
+			for (const side of this.sides) {
+				if (side === pokemon.side) continue;
+				side.addSideCondition('pursuit', pokemon);
+				const data = side.getSideConditionData('pursuit');
+				if (!data.sources) {
+					data.sources = [];
+				}
+				data.sources.push(pokemon);
+			}
+		},
+		onModifyType(move, pokemon) {
+			let type = pokemon.types[0];
+			if (type === "Bird") type = "???";
+			move.type = type;
+		},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+			if (target?.beingCalledBack) move.accuracy = true;
+		},
+		onTryHit(target, pokemon) {
+			target.side.removeSideCondition('pursuit');
+		},
+		condition: {
+			duration: 1,
+			onBeforeSwitchOut(pokemon) {
+				this.debug('Pursuit start');
+				let alreadyAdded = false;
+				pokemon.removeVolatile('destinybond');
+				for (const source of this.effectData.sources) {
+					if (!this.queue.cancelMove(source) || !source.hp) continue;
+					if (!alreadyAdded) {
+						this.add('-activate', pokemon, 'move: Pursuit');
+						alreadyAdded = true;
+					}
+					// Run through each action in queue to check if the Pursuit user is supposed to Mega Evolve this turn.
+					// If it is, then Mega Evolve before moving.
+					if (source.canMegaEvo || source.canUltraBurst) {
+						for (const [actionIndex, action] of this.queue.entries()) {
+							if (action.pokemon === source && action.choice === 'megaEvo') {
+								this.runMegaEvo(source);
+								this.queue.list.splice(actionIndex, 1);
+								break;
+							}
+						}
+					}
+					this.runMove('pursuit', source, this.getTargetLoc(pokemon, source));
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Clever",
+	},
+	dantesinferno: {
+		num: -1881,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Dante's Inferno",
+		shortDesc: "Starts Sun.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		weather: 'sunnyday',
+		secondary: null,
+		target: "all",
+		type: "Fire",
 	},
 	//Gen 9
 	mysticalpower: {

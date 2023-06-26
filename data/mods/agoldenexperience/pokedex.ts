@@ -916,11 +916,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	sceptilemega: {
 		inherit: true,
 		baseStats: {hp: 70, atk: 135, def: 75, spa: 120, spd: 85, spe: 145},
+		abilities: {0: "Sharpness"},
+	},
+	blaziken: {
+		inherit: true,
+		abilities: {0: "Blaze", H: "Striker"},
 	},
 	blazikenmega: {
 		inherit: true,
-		baseStats: {hp: 80, atk: 160, def: 85, spa: 100, spd: 85, spe: 120},
-		abilities: {0: "Striker"},
+		baseStats: {hp: 80, atk: 130, def: 90, spa: 130, spd: 90, spe: 110},
+		abilities: {0: "Magic Guard"},
 	},
 	mightyena: {
 		inherit: true,
@@ -962,6 +967,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	hariyama: {
 		inherit: true,
 		baseStats: {hp: 144, atk: 120, def: 80, spa: 40, spd: 76, spe: 50},
+		abilities: {0: "Thick Fat", 1: "Guts", H: "Purifying Salt"},
 	},
 	delcatty: {
 		inherit: true,
@@ -1045,6 +1051,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	wailord: {
 		inherit: true,
+		baseStats: {hp: 170, atk: 100, def: 55, spa: 100, spd: 55, spe: 70},
 		abilities: {0: "Blowhole", 1: "Oblivious", H: "Pressure"},
 	},
 	camerupt: {
@@ -1222,6 +1229,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 65, atk: 150, def: 70, spa: 85, spd: 70, spe: 125},
 		abilities: {0: "Angelic Nature"},
 	},
+	glaliemega: {
+		inherit: true,
+		abilities: {0: "Explosive"},
+	},
 	walrein: {
 		inherit: true,
 		baseStats: {hp: 110, atk: 95, def: 90, spa: 80, spd: 90, spe: 65},
@@ -1284,6 +1295,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		baseStats: {hp: 95, atk: 109, def: 105, spa: 75, spd: 90, spe: 56},
 		abilities: {0: "Overgrow", H: "Microclimate"},
+	},
+	infernape: {
+		inherit: true,
+		abilities: {0: "Blaze", H: "Pride"},
 	},
 	bibarel: {
 		inherit: true,
@@ -1384,7 +1399,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	lucario: {
 		inherit: true,
-		abilities: {0: "Chakra Surge", 1: "Inner Focus", H: "Justified"},
+		abilities: {0: "Chakra Surge", 1: "Pride", H: "Justified"},
 	},
 	lucariomega: {
 		inherit: true,
@@ -1456,6 +1471,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	glaceon: {
 		inherit: true,
 		abilities: {0: "Snow Cloak", 1: "North Wind", H: "Ice Body"},
+	},
+	mamoswine: {
+		inherit: true,
+		baseStats: {hp: 110, atk: 130, def: 80, spa: 60, spd: 60, spe: 90},
 	},
 	gallade: {//to remove when gen 9
 		inherit: true,
@@ -1630,7 +1649,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		types: ["Water", "Fighting"],
 		baseStats: {hp: 85, atk: 120, def: 85, spa: 78, spd: 60, spe: 100},
-		abilities: {0: "Torrent", H: "Sharpness"},
+		abilities: {0: "Torrent", H: "Pride"},
 		otherFormes: ["Samurott-Hisui", "Samurott-Galar"],
 		formeOrder: ["Samurott", "Samurott-Hisui", "Samurott-Galar"],
 	},
@@ -2092,7 +2111,19 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	durant: {
 		inherit: true,
-		abilities: {0: "Swarm", 1: "Hustle", H: "Heatproof"},
+		baseStats: {hp: 58, atk: 109, def: 112, spa: 45, spd: 48, spe: 112},
+	},
+	deino: {
+		inherit: true,
+		abilities: {0: "Hustle", H: "Strong Jaw"},
+	},
+	zweilous: {
+		inherit: true,
+		abilities: {0: "Hustle", H: "Strong Jaw"},
+	},
+	hydreigon: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Berserk"},
 	},
 	cobalion: {
 		inherit: true,
@@ -2126,6 +2157,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	meloettapirouette: {
 		inherit: true,
 		abilities: {0: "Dancer"},
+		requiredItem: "Relic Sheet",
 	},
 	genesect: {
 		inherit: true,
@@ -2198,7 +2230,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	pyroar: {
 		inherit: true,
-		abilities: {0: "Rivalry", 1: "Flash Fire", H: "Scrappy"},
+		abilities: {0: "Rivalry", 1: "Scrappy", H: "Pride"},
 	},
 	flabebe: {
 		inherit: true,
@@ -3282,7 +3314,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Ghost"],
 		gender: "M",
 		baseStats: {hp: 120, atk: 112, def: 65, spa: 80, spd: 75, spe: 78},
-		abilities: {0: "Rattled", 1: "Adaptability", H: "Mold Breaker"}, 
+		abilities: {0: "Rattled", 1: "Adaptability", H: "Reckless"}, 
 		heightm: 3,
 		weightkg: 110,
 		color: "Green",
@@ -3301,7 +3333,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Ghost"],
 		gender: "F",
 		baseStats: {hp: 120, atk: 92, def: 65, spa: 100, spd: 75, spe: 78},
-		abilities: {0: "Rattled", 1: "Adaptability", H: "Mold Breaker"},
+		abilities: {0: "Rattled", 1: "Adaptability", H: "Rock Head"},
 		heightm: 3,
 		weightkg: 110,
 		color: "Green",
@@ -3779,6 +3811,32 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		color: "Green",
 		eggGroups: ["Field"],
 	},
+	greavard: {
+		num: 971,
+		name: "Greavard",
+		types: ["Ghost"],
+		baseStats: {hp: 50, atk: 61, def: 60, spa: 30, spd: 55, spe: 34},
+		abilities: {0: "Pickup", H: "Fluffy"},
+		heightm: 0.6,
+		weightkg: 35,
+		color: "White",
+		evos: ["Houndstone"],
+		eggGroups: ["Field"],
+	},
+	houndstone: {
+		num: 972,
+		name: "Houndstone",
+		types: ["Ghost"],
+		baseStats: {hp: 92, atk: 101, def: 100, spa: 30, spd: 97, spe: 68},
+		abilities: {0: "Sand Rush", H: "Fluffy"},
+		heightm: 2,
+		weightkg: 15,
+		color: "White",
+		prevo: "Greavard",
+		evoLevel: 30,
+		evoCondition: "at night",
+		eggGroups: ["Field"],
+	},
 	annihilape: {
 		num: 979,
 		name: "Annihilape",
@@ -4015,7 +4073,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Dark", "Flying"],
 		gender: "N",
 		baseStats: {hp: 94, atk: 80, def: 86, spa: 122, spd: 80, spe: 108},
-		abilities: {0: "Quark Drive", H: "Levitate"},
+		abilities: {0: "Quark Drive", H: "Berserk"},
 		heightm: 1.3,
 		weightkg: 111,
 		color: "Blue",
@@ -4821,7 +4879,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Goldiorno",
 		types: ["Fighting", "Fairy"],
 		baseStats: {hp: 80, atk: 110, def: 80, spa: 85, spd: 80, spe: 115},
-		abilities: {0: "Natural Cure", H: "Grassy Surge"},
+		abilities: {0: "Natural Cure", 1: "Pride", H: "Grassy Surge"},
 		heightm: 1.72,
 		weightkg: 50,
 		color: "Yellow",
@@ -5027,7 +5085,19 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		heightm: 5,
 		weightkg: 999.9,
 		color: "Red",
-		eggGroups: ["Field"],
+		eggGroups: ["Undiscovered"],
+	},
+	whitewhale: {
+		num: 2531,
+		name: "White Whale",
+		types: ["Water", "Dark"],
+		gender: "N",
+		baseStats: {hp: 121, atk: 133, def: 127, spa: 49, spd: 51, spe: 89},
+		abilities: {0: "Protosynthesis", H: "Blowhole"},
+		heightm: 17.5,
+		weightkg: 999.9,
+		color: "White",
+		eggGroups: ["Undiscovered"],
 	},
 	annoyog: {
 		num: 3001,
