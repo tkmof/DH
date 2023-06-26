@@ -320,6 +320,20 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'araquanid').learnset.highwater = ['8T'];
     this.modData('Learnsets', 'grapploct').learnset.highwater = ['8T'];
 
+    // parallelcircuit 
+    this.modData('Learnsets', 'ironhands').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'ironthorns').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'electivire').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'luxray').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'thundurus').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'morpeko').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'zeraora').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'jaboraishi').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'pincurchin').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'zebstrika').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'pikachu').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'pawmi').learnset.parallelcircuit = ['8L1'];
+
     // dissolution 
     this.modData('Learnsets', 'arbok').learnset.dissolution = ['8T'];
     this.modData('Learnsets', 'grimer').learnset.dissolution = ['8T'];
