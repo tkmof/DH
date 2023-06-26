@@ -18,7 +18,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'brn');
 			}
 		},
-		// Damage reduction is handled directly in the sim/battle.js damage function
 		onResidualOrder: 10,
 		onResidual(pokemon) {
 			this.damage(pokemon.baseMaxhp / 8);
@@ -73,7 +72,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifySpe(spe, pokemon) {
-			if (!pokemon.hasAbility('quickfeet')) {
+			if (!pokemon.hasAbility('gale')) {
 				return this.chainModify(0.25);
 			}
 		},
@@ -98,7 +97,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifySpe(spe, pokemon) {
-			if (!pokemon.hasAbility('quickfeet')) {
+			if (!pokemon.hasAbility('gale')) {
 				return this.chainModify(0.25);
 			}
 		},
