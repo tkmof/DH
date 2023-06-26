@@ -300,11 +300,27 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'weak');
 			}
 		},
-		onTryHealPriority: 10,
-		onSourceTryHeal(relayVar: number, target: Pokemon, source: Pokemon, effect: Effect) {
-			if (effect.id !== "breather")
+		onDisableMove(pokemon) {
+			for (const moveSlot of pokemon.moveSlots) {
+				if (this.dex.getMove(moveSlot.id).flags['heal']) {
+					pokemon.disableMove(moveSlot.id);
+				}
+			}
+		},
+		onBeforeMovePriority: 6,
+		onBeforeMove(pokemon, target, move) {
+			if (move.flags['heal'] && !move.isZ && !move.isMax) {
+				this.add('cant', pokemon, 'condition: weak', move);
 				return false;
-		}
+			}
+		},
+		onResidualOrder: 17,
+		onEnd(pokemon) {
+			this.add('-end', pokemon, 'condition: weak');
+		},
+		onTryHeal(damage, target, source, effect) {
+			if (effect?.id !== 'breather') return false;
+		},
 	},
 	weakheavy: {
 		name: 'weakheavy',
@@ -570,7 +586,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-fieldstart', 'terrain: Seiryu', '[from] ability: ' + effect.name, '[of] ' + source);
 				this.add('-message', `The terrain became Seiryu!`);
 			} else {
-				this.add('-fieldstart', 'terrain: Seiryu');
+				this.add('-fieldstart', 'terrain: Seiryu', '[silent]');
 				this.add('-message', `The terrain became Seiryu!`);
 			}
 		},
@@ -596,7 +612,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Suzaku', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Suzaku');
+				this.add('-fieldstart', 'terrain: Suzaku', '[silent]');
 			}
 		},
 		onEnd() {
@@ -621,11 +637,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Byakko', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Byakko');
+				this.add('-fieldstart', 'terrain: Byakko', '[silent]');
 			}
 		},
 		onEnd() {
-			this.add('-fieldend', 'terrain: Byakko');
+			this.add('-fieldend', 'terrain: Byakko', '[silent]');
 			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
@@ -641,7 +657,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Genbu', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Genbu');
+				this.add('-fieldstart', 'terrain: Genbu', '[silent]');
 			}
 		},
 		onEnd() {
@@ -663,7 +679,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (effect?.effectType === 'Ability') {
 				this.add('-fieldstart', 'terrain: Kohryu', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Kohryu');
+				this.add('-fieldstart', 'terrain: Kohryu', '[silent]');
 			}
 		},
 		onEnd() {
