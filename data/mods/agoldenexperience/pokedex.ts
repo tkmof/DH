@@ -916,11 +916,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	sceptilemega: {
 		inherit: true,
 		baseStats: {hp: 70, atk: 135, def: 75, spa: 120, spd: 85, spe: 145},
+		abilities: {0: "Sharpness"},
+	},
+	blaziken: {
+		inherit: true,
+		abilities: {0: "Blaze", H: "Striker"},
 	},
 	blazikenmega: {
 		inherit: true,
-		baseStats: {hp: 80, atk: 160, def: 85, spa: 100, spd: 85, spe: 120},
-		abilities: {0: "Striker"},
+		baseStats: {hp: 80, atk: 130, def: 90, spa: 130, spd: 90, spe: 110},
+		abilities: {0: "Magic Guard"},
 	},
 	mightyena: {
 		inherit: true,
@@ -962,6 +967,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	hariyama: {
 		inherit: true,
 		baseStats: {hp: 144, atk: 120, def: 80, spa: 40, spd: 76, spe: 50},
+		abilities: {0: "Thick Fat", 1: "Guts", H: "Purifying Salt"},
 	},
 	delcatty: {
 		inherit: true,
@@ -1045,6 +1051,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	wailord: {
 		inherit: true,
+		baseStats: {hp: 170, atk: 100, def: 55, spa: 100, spd: 55, spe: 70},
 		abilities: {0: "Blowhole", 1: "Oblivious", H: "Pressure"},
 	},
 	camerupt: {
@@ -1464,6 +1471,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	glaceon: {
 		inherit: true,
 		abilities: {0: "Snow Cloak", 1: "North Wind", H: "Ice Body"},
+	},
+	mamoswine: {
+		inherit: true,
+		baseStats: {hp: 110, atk: 130, def: 80, spa: 60, spd: 60, spe: 90},
 	},
 	gallade: {//to remove when gen 9
 		inherit: true,
@@ -2100,7 +2111,19 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	durant: {
 		inherit: true,
-		abilities: {0: "Swarm", 1: "Hustle", H: "Heatproof"},
+		baseStats: {hp: 58, atk: 109, def: 112, spa: 45, spd: 48, spe: 112},
+	},
+	deino: {
+		inherit: true,
+		abilities: {0: "Hustle", H: "Strong Jaw"},
+	},
+	zweilous: {
+		inherit: true,
+		abilities: {0: "Hustle", H: "Strong Jaw"},
+	},
+	hydreigon: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Berserk"},
 	},
 	cobalion: {
 		inherit: true,
@@ -2134,6 +2157,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	meloettapirouette: {
 		inherit: true,
 		abilities: {0: "Dancer"},
+		requiredItem: "Relic Sheet",
 	},
 	genesect: {
 		inherit: true,
@@ -4049,7 +4073,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Dark", "Flying"],
 		gender: "N",
 		baseStats: {hp: 94, atk: 80, def: 86, spa: 122, spd: 80, spe: 108},
-		abilities: {0: "Quark Drive", H: "Levitate"},
+		abilities: {0: "Quark Drive", H: "Berserk"},
 		heightm: 1.3,
 		weightkg: 111,
 		color: "Blue",
@@ -5061,7 +5085,19 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		heightm: 5,
 		weightkg: 999.9,
 		color: "Red",
-		eggGroups: ["Field"],
+		eggGroups: ["Undiscovered"],
+	},
+	whitewhale: {
+		num: 2531,
+		name: "White Whale",
+		types: ["Water", "Dark"],
+		gender: "N",
+		baseStats: {hp: 121, atk: 133, def: 127, spa: 49, spd: 51, spe: 89},
+		abilities: {0: "Protosynthesis", H: "Blowhole"},
+		heightm: 17.5,
+		weightkg: 999.9,
+		color: "White",
+		eggGroups: ["Undiscovered"],
 	},
 	annoyog: {
 		num: 3001,

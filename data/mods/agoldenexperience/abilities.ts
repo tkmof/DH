@@ -1022,12 +1022,18 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: -2011,
 	},
 	blowhole: {
-		desc: "When this Pokemon uses a Water move, it sets Rain Dance.",
-		shortDesc: "Sets Rain Dance when using a Water move.",
+		desc: "When this Pokemon uses a Water move, it sets Rain Dance. Water Spout is always at max BP.",
+		shortDesc: "Sets Rain Dance when using a Water move. Water Spout is at max BP.",
 		onSourceHit(target, source, move) {
 			if (!move || !target) return;
 			if (move.type === 'Water' && this.field.getWeather().id !== 'raindance') {
 				this.field.setWeather('raindance');
+			}
+		},
+		onModifyMovePriority: -1,
+		onModifyMove(move, attacker) {
+			if (move.id === 'waterspout') {
+				move.basePower = 150;
 			}
 		},
 		name: "Blowhole",
@@ -1672,10 +1678,10 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	arenatrap: {
 		onModifyDamage(damage, source, target, move) {
 			if (!(source.activeMoveActions > 1)) {
-				return this.chainModify([0x1400, 0x1000]);
+				return this.chainModify(1.3);
 			}
 		},
-		shortDesc: "This Pokemon's attacks deal x1.2 damages during 1 turn.",
+		shortDesc: "This Pokemon's attacks deal x1.3 damages during 1 turn.",
 		name: "Arena Trap",
 		rating: 5,
 		num: 71,
@@ -2048,6 +2054,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		isPermanent: true,
 		name: "Zen Mode",
+		shortDesc: "If Darmanitan, changes Mode to Zen.",
 		rating: 0,
 		num: 161,
 	},
@@ -2082,14 +2089,14 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		onModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Dragon') {
 				this.debug('Dragon\'s Maw boost');
-				return this.chainModify(1.2);
+				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA(atk, attacker, defender, move) {
 			if (move.type === 'Dragon') {
 				this.debug('Dragon\'s Maw boost');
-				return this.chainModify(1.2);
+				return this.chainModify(1.5);
 			}
 		},
 		onAfterMoveSecondarySelf(pokemon, target, move) {
@@ -2098,7 +2105,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		name: "Dragon's Maw",
-		shortDesc: "This Pokemon gets x1.2 in its attacking stat when using an Dragon move. It also heals 1/8 of the damages dealt when using a Dragon type move.",
+		shortDesc: "This Pokemon gets x1.5 in its attacking stat when using an Dragon move. It also heals 1/8 of the damages dealt when using a Dragon type move.",
 		rating: 3.5,
 		num: 263,
 	},
@@ -2502,18 +2509,18 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		name: "Sharpness",
 	},
-	dauntlessshield: {
-		onStart(pokemon) {
-			if (this.effectData.shieldBoost) return;
-			if (this.boost({ def: 1 }, pokemon)) {
-				this.effectData.shieldBoost = true;
-			}
-		},
-		name: "Dauntless Shield",
-		shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
-		rating: 3.5,
-		num: 235,
-	},
+	// dauntlessshield: {
+	// 	onStart(pokemon) {
+	// 		if (this.effectData.shieldBoost) return;
+	// 		if (this.boost({ def: 1 }, pokemon)) {
+	// 			this.effectData.shieldBoost = true;
+	// 		}
+	// 	},
+	// 	name: "Dauntless Shield",
+	// 	shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage. Once per battle.",
+	// 	rating: 3.5,
+	// 	num: 235,
+	// },
 	intrepidsword: {
 		onStart(pokemon) {
 			if (this.effectData.swordBoost) return;
