@@ -1271,7 +1271,11 @@ export const Items: {[itemid: string]: ItemData} = {
 		onStart(pokemon) {
 			for (const target of pokemon.foes()) {
 				if (target.item) {
-					this.add('-item', target, target.getItem().name, '[from] item: Outlook Glasses', '[of] ' + pokemon, '[identify]');
+					this.add('-message', `${pokemon.name} can see the foe's ${target.getItem().name} with their Outlook Glasses!`);
+					this.add('-item', target, target.getItem().name, '[from] item: Outlook Glasses', '[of] ' + pokemon, '[identify]', '[silent]');
+				}
+				else {
+					this.add('-message', `${pokemon.name} can see the foe has no item with their Outlook Glasses!`);
 				}
 			}
 		},

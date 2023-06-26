@@ -2289,7 +2289,10 @@ export const Formats: FormatList = [
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
-					return [set.species + ' is not allowed.'];
+					return [set.species + ' is not allowed in TPDP.'];
+				}
+				if (!set.nature.includes('Red', 'Blue', 'Black', 'Green', 'White')) {
+					return [set.nature + ' is not a valid nature in TPDP. Hint: to set Red, Blue, Black, White, or Green nature, use the Import/Export button.'];
 				}
 			}
 		},
@@ -2310,7 +2313,10 @@ export const Formats: FormatList = [
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
-					return [set.species + ' is not allowed.'];
+					return [set.species + ' is not allowed in TPDP.'];
+				}
+				if (!set.nature.includes('Red', 'Blue', 'Black', 'Green', 'White')) {
+					return [set.nature + ' is not a valid nature in TPDP. Hint: to set Red, Blue, Black, White, or Green nature, use the Import/Export button.'];
 				}
 			}
 		},
