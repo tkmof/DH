@@ -3005,7 +3005,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	pheromosa: {
 		inherit: true,
-		baseStats: {hp: 71, atk: 127, def: 53, spa: 127, spd: 53, spe: 139},
+		baseStats: {hp: 71, atk: 127, def: 59, spa: 127, spd: 59, spe: 127},
 	},
 	xurkitree: {
 		inherit: true,
@@ -3773,7 +3773,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 952,
 		name: "Scovillain",
 		types: ["Grass", "Fire"],
-		baseStats: {hp: 65, atk: 108, def: 65, spa: 108, spd: 65, spe: 75},
+		baseStats: {hp: 65, atk: 118, def: 65, spa: 118, spd: 65, spe: 85},
 		abilities: {0: "Chlorophyll", 1: "Insomnia", H: "Moody"},
 		heightm: 0.9,
 		weightkg: 15,
