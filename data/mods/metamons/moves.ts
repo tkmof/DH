@@ -339,6 +339,29 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Ghost",
 		contestType: "Cool",
 	},
+	revelationdance: {
+		num: 686,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		isNonstandard: "Past",
+		name: "Revelation Dance",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, dance: 1},
+		onModifyType(move, pokemon) {
+			let type = pokemon.types[0];
+			if (type === "Bird") type = "???";
+			move.type = type;
+		},
+		onModifyMove(move, pokemon) {
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Beautiful",
+	},
 // PLA
 	hail: {
 		inherit: true,
@@ -793,14 +816,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
-		shortDesc: "If Terastallized: Phys. if Atk > SpA, type = Tera.",
+		shortDesc: "Phys. if Atk > SpA, else Spec.",
 		name: "Tera Blast",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onModifyType(move, pokemon) {
-			if (pokemon.species.teraType) move.type = pokemon.species.teraType;
-		},
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
