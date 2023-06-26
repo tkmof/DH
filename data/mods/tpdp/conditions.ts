@@ -123,7 +123,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onModifyAtk(atk, pokemon) {
 			if (!pokemon.hasAbility('mindseye') && pokemon.moveThisTurn !== 'blowfromcalamity')
-				return Math.floor(this.finalModify(atk) * (1/2));;
+				return this.chainModify(0.5);
 		},
 	},
 	fear: {
@@ -142,7 +142,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onModifySpA(atk, pokemon) {
 			if (!pokemon.hasAbility('pride'))
-				return Math.floor(this.finalModify(atk) * (1/2));;
+				return this.chainModify(0.5);;
 		},
 	},
 	stp: {
