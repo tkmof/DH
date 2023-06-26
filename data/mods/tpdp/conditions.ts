@@ -183,46 +183,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return false;
 		},
 	},
-	frz: {
-		name: 'frz',
-		effectType: 'Status',
-		onStart(target, source, sourceEffect) {
-			if (sourceEffect && sourceEffect.effectType === 'Ability') {
-				this.add('-status', target, 'frz', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
-			} else {
-				this.add('-status', target, 'frz');
-			}
-			if (target.species.name === 'Shaymin-Sky' && target.baseSpecies.baseSpecies === 'Shaymin') {
-				target.formeChange('Shaymin', this.effect, true);
-			}
-		},
-		onBeforeMovePriority: 10,
-		onBeforeMove(pokemon, target, move) {
-			if (move.flags['defrost']) return;
-			if (this.randomChance(1, 5)) {
-				pokemon.cureStatus('frz');
-				return;
-			}
-			this.add('cant', pokemon, 'frz');
-			return false;
-		},
-		onModifyMove(move, pokemon) {
-			if (move.flags['defrost']) {
-				this.add('-curestatus', pokemon, 'frz', '[from] move: ' + move);
-				pokemon.clearStatus();
-			}
-		},
-		onAfterMoveSecondary(target, source, move) {
-			if (move.thawsTarget) {
-				target.cureStatus('frz');
-			}
-		},
-		onDamagingHit(damage, target, source, move) {
-			if (move.type === 'Fire' && move.category !== 'Status') {
-				target.cureStatus('frz');
-			}
-		},
-	},
 	psn: {
 		name: 'psn',
 		effectType: 'Status',
@@ -307,10 +267,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return false;
 			}
 		},
-		onResidualOrder: 17,
-		onEnd(pokemon) {
-			this.add('-end', pokemon, 'condition: weak');
-		},
 		onTryHeal(damage, target, source, effect) {
 			if (effect?.id !== 'breather') return false;
 		},
@@ -329,10 +285,22 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'weakheavy');
 			}
 		},
-		onTryHealPriority: 10,
-		onSourceTryHeal(relayVar: number, target: Pokemon, source: Pokemon, effect: Effect) {
-			if (effect.id !== "breather")
+		onDisableMove(pokemon) {
+			for (const moveSlot of pokemon.moveSlots) {
+				if (this.dex.getMove(moveSlot.id).flags['heal']) {
+					pokemon.disableMove(moveSlot.id);
+				}
+			}
+		},
+		onBeforeMovePriority: 6,
+		onBeforeMove(pokemon, target, move) {
+			if (move.flags['heal'] && !move.isZ && !move.isMax) {
+				this.add('cant', pokemon, 'condition: weak', move);
 				return false;
+			}
+		},
+		onTryHeal(damage, target, source, effect) {
+			if (effect?.id !== 'breather') return false;
 		},
 		onDeductPP(target, source) {
 			if (!target.status['weakheavy']) return;
