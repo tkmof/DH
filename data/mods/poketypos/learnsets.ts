@@ -3010,7 +3010,8 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			toxicspikes: ["8M"],
 			trailblaze: ["8M"],
 			yawn: ["8L23", "8L23", "7L31", "6L31", "5L31", "4L31", "3L35"],
-  },	
+		},
+   },	
 	rotox: {
 		learnset: {
 			shellsidearm: ["8L1"],
