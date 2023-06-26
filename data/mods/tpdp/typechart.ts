@@ -73,11 +73,11 @@ export const TypeChart: {[k: string]: TypeData} = {
 	nature: {
 		damageTaken: {
 			Void: 0,
-			Fire: 2,
-			Water: 1,
-			Nature: 1,
-			Earth: 1,
-			Steel: 2,
+			Fire: 1,
+			Water: 2,
+			Nature: 2,
+			Earth: 2,
+			Steel: 1,
 			Wind: 0,
 			Electric: 2,
 			Light: 2,

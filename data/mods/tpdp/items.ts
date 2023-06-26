@@ -475,7 +475,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	boundarytrance: { // Illegal
 		name: "Boundary Trance",
-		shortDesc: "A stone with rainbow and transparent blue halves. Special Puppets holding this will have greatly increased stats.",
+		shortDesc: "[Unimplemented] A stone with rainbow and transparent blue halves. Special Puppets holding this will have greatly increased stats.",
 		category: 'bad',
 	},
 	bronzemirror: {
@@ -494,7 +494,7 @@ export const Items: {[itemid: string]: ItemData} = {
 				}
 			}
 			if (!statsRaised) return;
-			const pokemon: Pokemon = this.effectState.target;
+			const pokemon: Pokemon = this.effectData.target;
 			pokemon.useItem();
 			this.boost(boostPlus, pokemon);
 		},
@@ -759,7 +759,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	dreamshard: { // Illegal
 		name: "Dream Shard",
-		shortDesc: "Mysterious gem that constantly changes color. A special Puppet holding this will have increased stats.",
+		shortDesc: "[Unimplemented] Mysterious gem that constantly changes color. A special Puppet holding this will have increased stats.",
 		category: 'bad',
 	},
 	echeloncharm: {
@@ -932,7 +932,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	heavyarmor: {
 		name: "Heavy Armor",
-		shortDesc: "A Puppet holding this always moves last within it's "priority bracket".",
+		shortDesc: "A Puppet holding this always moves last within its priority bracket.",
 		category: 'poor',
 		onFractionalPriority: -0.1,
 	},
@@ -1395,8 +1395,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		condition: {
 			onStart(pokemon) {
-				this.effectState.lastMove = '';
-				this.effectState.numConsecutive = 0;
+				this.effectData.lastMove = '';
+				this.effectData.numConsecutive = 0;
 			},
 			onTryMovePriority: -2,
 			onTryMove(pokemon, target, move) {
@@ -1404,21 +1404,21 @@ export const Items: {[itemid: string]: ItemData} = {
 					pokemon.removeVolatile('repetitivearts');
 					return;
 				}
-				if (this.effectState.lastMove === move.id && pokemon.moveLastTurnResult) {
-					this.effectState.numConsecutive++;
+				if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
+					this.effectData.numConsecutive++;
 				} else if (pokemon.volatiles['twoturnmove']) {
-					if (this.effectState.lastMove !== move.id) {
-						this.effectState.numConsecutive = 1;
+					if (this.effectData.lastMove !== move.id) {
+						this.effectData.numConsecutive = 1;
 					} else {
-						this.effectState.numConsecutive++;
+						this.effectData.numConsecutive++;
 					}
 				} else {
-					this.effectState.numConsecutive = 0;
+					this.effectData.numConsecutive = 0;
 				}
-				this.effectState.lastMove = move.id;
+				this.effectData.lastMove = move.id;
 			},
 			onModifyDamage(damage, source, target, move) {
-				return this.chainModify(this.effectState.numConsecutive ? 1.2 : 1);
+				return this.chainModify(this.effectData.numConsecutive ? 1.2 : 1);
 			},
 		},
 	},
