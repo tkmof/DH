@@ -461,16 +461,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return 5;
 		},
-		// This should be applied directly to the stat before any of the other modifiers are chained
-		// So we give it increased priority.
-		
-		//HELP -- TPDP wiki does not list this as being a feature of dust storm, however it does say it's identical to sandstorm
-		/*onModifySpDPriority: 10,
-		onModifySpD(spd, pokemon) {
-			if (pokemon.hasType('Rock') && this.field.isWeather('sandstorm')) {
-				return this.modify(spd, 1.5);
-			}
-		},*/
 		onStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectData.duration = 0;
@@ -513,14 +503,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-weather', 'Sunshower');
 			}
 		},
-		/*onModifySpDPriority: 100,
-		onModifySpD(relayVar, target, source, move) {
-			return source.getStat('def', true);
-		},
-		onModifyDefPriority: 100,
-		onModifyDef(relayVar, target, source, move) {
-			return source.getStat('spd', true);
-		},*/
+		// def switch implemented in scripts.ts
 		onResidual() {
 			this.add('-weather', 'Sunshower', '[upkeep]');
 			this.add('-message', `The sunshower continues.`);
