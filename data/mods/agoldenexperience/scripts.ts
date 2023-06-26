@@ -1040,6 +1040,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'regigigas').learnset.meteormash = ['8L1'];
     this.modData('Learnsets', 'regigigas').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'giratina').learnset.teleport = ['8L1'];
+    this.modData('Learnsets', 'phione').learnset.takeheart = ['8L1'];
+    this.modData('Learnsets', 'manaphy').learnset.takeheart = ['8L1'];
 
     //gen 5:
     this.modData('Learnsets', 'serperior').learnset.mudshot = ['8L1'];
@@ -1163,6 +1165,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'goodra').learnset.purify = ['8L1'];
     this.modData('Learnsets', 'gourgeist').learnset.swordsdance = ['8L1'];
     this.modData('Learnsets', 'gourgeist').learnset.strengthsap = ['8L1'];
+    this.modData('Learnsets', 'avalugg').learnset.liquidation = ['8L1'];
+    this.modData('Learnsets', 'avalugg').learnset.fissure = ['8L1'];
+    this.modData('Learnsets', 'avalugg').learnset.waterfall = ['8L1'];
     this.modData('Learnsets', 'noivern').learnset.snarl = ['8L1'];
 
     //gen 7:

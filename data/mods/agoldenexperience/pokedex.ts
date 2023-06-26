@@ -2415,7 +2415,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	avalugg: {
 		inherit: true,
-		abilities: {0: "Refridgerate", 1: "Ice Body", H: "Sturdy"},
+		types: ["Ice", "Water"],
+		abilities: {0: "Refrigerate", 1: "Ice Body", H: "Sturdy"},
 		otherFormes: ["Avalugg-Hisui"],//to remove when gen 9
 		formeOrder: ["Avalugg", "Avalugg-Hisui"],//to remove when gen 9
 	},
@@ -2426,7 +2427,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		forme: "Hisui",
 		types: ["Ice", "Rock"],
 		baseStats: {hp: 95, atk: 127, def: 134, spa: 34, spd: 56, spe: 68},
-		abilities: {0: "Strong Jaw", 1: "Ice Body", H: "Sturdy"},
+		abilities: {0: "Strong Jaw", 1: "Sheer Force", H: "Sturdy"},
 		heightm: 1.4,
 		weightkg: 262.4,
 		color: "Blue",
