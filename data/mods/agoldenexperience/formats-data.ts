@@ -3946,7 +3946,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	naganadel: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	stakataka: {
