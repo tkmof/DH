@@ -320,6 +320,20 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'araquanid').learnset.highwater = ['8T'];
     this.modData('Learnsets', 'grapploct').learnset.highwater = ['8T'];
 
+    // parallelcircuit 
+    this.modData('Learnsets', 'ironhands').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'ironthorns').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'electivire').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'luxray').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'thundurus').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'morpeko').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'zeraora').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'jaboraishi').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'pincurchin').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'zebstrika').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'pikachu').learnset.parallelcircuit = ['8L1'];
+    this.modData('Learnsets', 'pawmi').learnset.parallelcircuit = ['8L1'];
+
     // dissolution 
     this.modData('Learnsets', 'arbok').learnset.dissolution = ['8T'];
     this.modData('Learnsets', 'grimer').learnset.dissolution = ['8T'];
@@ -1040,6 +1054,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'regigigas').learnset.meteormash = ['8L1'];
     this.modData('Learnsets', 'regigigas').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'giratina').learnset.teleport = ['8L1'];
+    this.modData('Learnsets', 'phione').learnset.takeheart = ['8L1'];
+    this.modData('Learnsets', 'manaphy').learnset.takeheart = ['8L1'];
 
     //gen 5:
     this.modData('Learnsets', 'serperior').learnset.mudshot = ['8L1'];
@@ -1163,6 +1179,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'goodra').learnset.purify = ['8L1'];
     this.modData('Learnsets', 'gourgeist').learnset.swordsdance = ['8L1'];
     this.modData('Learnsets', 'gourgeist').learnset.strengthsap = ['8L1'];
+    this.modData('Learnsets', 'avalugg').learnset.liquidation = ['8L1'];
+    this.modData('Learnsets', 'avalugg').learnset.fissure = ['8L1'];
+    this.modData('Learnsets', 'avalugg').learnset.waterfall = ['8L1'];
     this.modData('Learnsets', 'noivern').learnset.snarl = ['8L1'];
 
     //gen 7:

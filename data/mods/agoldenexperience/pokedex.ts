@@ -336,6 +336,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	electrode: {
 		inherit: true,
+		baseStats: {hp: 60, atk: 80, def: 70, spa: 50, spd: 80, spe: 150},
 		abilities: {0: "Soundproof", 1: "Explosive", H: "Aftermath"},
 		otherFormes: ["Electrode-Hisui"],//to remove when gen 9
 		formeOrder: ["Electrode", "Electrode-Hisui"],//to remove when gen 9
@@ -1867,6 +1868,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		eggGroups: ["Field"],
 		requiredItem: "Krookodite",
 	},
+	darmanitan: {
+		inherit: true,
+	},
+	darmanitanzen: {
+		inherit: true,
+	},
+	darmanitangalar: {
+		inherit: true,
+	},
+	darmanitangalarzen: {
+		inherit: true,
+	},
 	maractus: {
 		inherit: true,
 		types: ["Grass", "Ground"],
@@ -2155,9 +2168,20 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Justified", H: "Sharpness"},
 	},
 	meloettapirouette: {
-		inherit: true,
+		num: 648,
+		name: "Meloetta-Pirouette",
+		baseSpecies: "Meloetta",
+		forme: "Pirouette",
+		types: ["Normal", "Fighting"],
+		gender: "N",
+		baseStats: {hp: 100, atk: 128, def: 90, spa: 77, spd: 77, spe: 128},
 		abilities: {0: "Dancer"},
+		heightm: 0.6,
+		weightkg: 6.5,
+		color: "White",
+		eggGroups: ["Undiscovered"],
 		requiredItem: "Relic Sheet",
+		battleOnly: "Meloetta",
 	},
 	genesect: {
 		inherit: true,
@@ -2403,7 +2427,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	avalugg: {
 		inherit: true,
-		abilities: {0: "Refridgerate", 1: "Ice Body", H: "Sturdy"},
+		types: ["Ice", "Water"],
+		abilities: {0: "Refrigerate", 1: "Ice Body", H: "Sturdy"},
 		otherFormes: ["Avalugg-Hisui"],//to remove when gen 9
 		formeOrder: ["Avalugg", "Avalugg-Hisui"],//to remove when gen 9
 	},
@@ -2414,7 +2439,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		forme: "Hisui",
 		types: ["Ice", "Rock"],
 		baseStats: {hp: 95, atk: 127, def: 134, spa: 34, spd: 56, spe: 68},
-		abilities: {0: "Strong Jaw", 1: "Ice Body", H: "Sturdy"},
+		abilities: {0: "Strong Jaw", 1: "Sheer Force", H: "Sturdy"},
 		heightm: 1.4,
 		weightkg: 262.4,
 		color: "Blue",
@@ -2489,7 +2514,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		forme: "Hisui",
 		types: ["Grass", "Fighting"],
 		genderRatio: {M: 0.875, F: 0.125},
-		baseStats: {hp: 88, atk: 112, def: 80, spa: 95, spd: 95, spe: 60},
+		baseStats: {hp: 88, atk: 117, def: 95, spa: 70, spd: 100, spe: 60},
 		abilities: {0: "Overgrow", H: "Scrappy"},
 		heightm: 1.6,
 		weightkg: 37,
@@ -2980,7 +3005,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	pheromosa: {
 		inherit: true,
-		baseStats: {hp: 71, atk: 127, def: 53, spa: 127, spd: 53, spe: 139},
+		baseStats: {hp: 71, atk: 127, def: 59, spa: 127, spd: 59, spe: 127},
 	},
 	xurkitree: {
 		inherit: true,
@@ -3748,7 +3773,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 952,
 		name: "Scovillain",
 		types: ["Grass", "Fire"],
-		baseStats: {hp: 65, atk: 108, def: 65, spa: 108, spd: 65, spe: 75},
+		baseStats: {hp: 65, atk: 118, def: 65, spa: 118, spd: 65, spe: 85},
 		abilities: {0: "Chlorophyll", 1: "Insomnia", H: "Moody"},
 		heightm: 0.9,
 		weightkg: 15,
