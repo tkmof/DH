@@ -179,7 +179,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		priority: 0,
 		flags: { protect: 1, mirror: 1 },
 		onEffectiveness(typeMod, target, type) {
-			if (type === 'Dark') return 1;
+			if (type === 'Dark') return 1
 		},
 		target: "normal",
 		type: "Psychic",
@@ -668,7 +668,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		condition: {
 			duration: 2,
 			onStart() {
-				this.effectData.hitCount = 1;
+				this.effectData.hitCount = 1
 			},
 			onRestart() {
 				this.effectData.hitCount++;
@@ -778,7 +778,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		priority: 0,
 		flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
 		onEffectiveness(typeMod, target, type) {
-			if (type === 'Grass' || type === 'Bug') return 1;
+			if (type === 'Grass' || type === 'Bug') return 1
 		},
 		secondary: null,
 		target: "normal",
@@ -2305,7 +2305,6 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 			secondary: null,
 			target: "self",
 			type: "Poison",
-			zMove: { boost: { def: 1; } },
 			contestType: "Tough",
 		},
 	stoneaxe: {
@@ -2317,7 +2316,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Stone Axe",
 		pp: 15,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stone Edge", target);
@@ -2337,7 +2336,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 		pp: 5,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		self: {
 			boosts: {
 				def: -1,
@@ -2381,7 +2380,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Has 33% recoil. Usually goes first.",
 		pp: 10,
 		priority: 1,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1},
 		recoil: [1, 3],
 		secondary: null,
 		target: "normal",
@@ -2397,7 +2396,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "50% chance to poison the target.",
 		pp: 16,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1},
 		secondary: {
 			chance: 50,
 			status: 'psn',
@@ -2419,7 +2418,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Has a 30% chance to poison the target. Power doubles if the target is poisonned.",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1},
 		secondary: {
 			chance: 50,
 			status: 'psn',
@@ -2459,7 +2458,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "10% chance to lower the target's Defense by 1.",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, nonsky: 1; },
+		flags: { protect: 1, mirror: 1, nonsky: 1 },
 		secondary: {
 			chance: 10,
 			boosts: {
@@ -2480,7 +2479,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Sets Hail. User faints after use.",
 		pp: 5,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		weather: 'hail',
 		secondary: null,
 		selfdestruct: "always",
@@ -2498,7 +2497,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Sets Misty Terrain. User faints after use.",
 		pp: 5,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		selfdestruct: "always",
 		terrain: 'mistyterrain',
 		secondary: null,
@@ -2515,7 +2514,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Raises user's Attack by 1 if this KOes the target.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		onAfterMoveSecondarySelf(pokemon, target, move) {
 			if (!target || target.fainted || target.hp <= 0) this.boost({ atk: 1 }, pokemon, pokemon, move);
 		},
@@ -2534,7 +2533,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "No additional effect.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		secondary: null,
 		target: "normal",
 		type: "Steel",
@@ -2549,7 +2548,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Varies in type based on the user's IVs. Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyType(move, pokemon) {
 			move.type = pokemon.hpType || 'Dark';
 		},
@@ -2571,7 +2570,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2590,7 +2589,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2609,7 +2608,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2628,7 +2627,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2647,7 +2646,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2666,7 +2665,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2685,7 +2684,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2704,7 +2703,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2723,7 +2722,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2742,7 +2741,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2761,7 +2760,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2780,7 +2779,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2799,7 +2798,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2818,7 +2817,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2837,7 +2836,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2856,7 +2855,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Physical if user's Atk > Sp. Atk.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
@@ -2881,7 +2880,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "More power the faster the user is than the target.",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		secondary: null,
 		target: "normal",
 		type: "Flying",
@@ -2898,7 +2897,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Fails if the user has an item. Raises all stats by 1, and user gets the type of its 3rd move.",
 		pp: 5,
 		priority: 0,
-		flags: { snatch: 1, sound: 1, dance: 1; },
+		flags: { snatch: 1, sound: 1, dance: 1 },
 		onTryHit(pokemon, target, move) {
 			if (pokemon.item) {
 				return false;
@@ -2931,7 +2930,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Raises user's Atk by 1 on turn 1. Hits turn 2.",
 		pp: 10,
 		priority: 0,
-		flags: { charge: 1, protect: 1, mirror: 1; },
+		flags: { charge: 1, protect: 1, mirror: 1 },
 		onTryMove(attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				return;
@@ -2958,7 +2957,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		priority: 0,
 		desc: "Heal this Pokemon for 50% HP, and reveal one of opponent's move.",
 		shortDesc: "Heal 50% HP; reveals random opponent's move.",
-		flags: { snatch: 1, heal: 1; },
+		flags: { snatch: 1, heal: 1 },
 		heal: [1, 2],
 		onHit(pokemon) {
 			for (const target of pokemon.side.foe.active) {
@@ -2998,7 +2997,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "One adjacent ally's move power is 1.5x this turn. Lowers damages this ally receives of 25%.",
 		pp: 10,
 		priority: 0,
-		flags: { authentic: 1; },
+		flags: { authentic: 1 },
 		volatileStatus: 'helpinghand',
 		onTryHit(target) {
 			if (!target.newlySwitched && !this.queue.willMove(target)) return false;
@@ -3035,7 +3034,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Brave Blade",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, slicing: 1; },
+		flags: { protect: 1, mirror: 1, slicing: 1 },
 		onModifyMove(move, pokemon, target) {
 			if (!target) return;
 			const atk = pokemon.getStat('atk', false, true);
@@ -3071,7 +3070,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Has 33% recoil. 50% chance to raise the user's Spe by 1.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		recoil: [1, 3],
 		secondary: {
 			chance: 50,
@@ -3093,7 +3092,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Hound's Howl",
 		pp: 20,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		basePowerCallback(pokemon, target, move) {
 			// You can't get here unless the pursuit succeeds
 			if (target.beingCalledBack) {
@@ -3166,7 +3165,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Starts Sun.",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		weather: 'sunnyday',
 		secondary: null,
 		target: "all",
@@ -3182,7 +3181,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Mystical Power",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		secondary: {
 			chance: 100,
 			self: {
@@ -3208,7 +3207,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Lunar Blessing",
 		pp: 5,
 		priority: 0,
-		flags: { snatch: 1, heal: 1; },
+		flags: { snatch: 1, heal: 1 },
 		onHit(pokemon) {
 			const success = !!this.heal(this.modify(pokemon.maxhp, 0.25));
 			return pokemon.cureStatus() || success;
@@ -3230,7 +3229,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Raises target's Atk by 2 and lowers its Def by 2.",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, reflectable: 1, mirror: 1; },
+		flags: { protect: 1, reflectable: 1, mirror: 1 },
 		boosts: {
 			atk: 2,
 			def: -2,
@@ -3248,7 +3247,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "20% chance to freeze foe(s).",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, wind: 1; },
+		flags: { protect: 1, mirror: 1, wind: 1 },
 		secondary: {
 			chance: 20,
 			status: 'frz',
@@ -3265,7 +3264,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "20% chance to burn foe(s).",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, wind: 1; },
+		flags: { protect: 1, mirror: 1, wind: 1 },
 		secondary: {
 			chance: 20,
 			status: 'brn',
@@ -3282,7 +3281,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "30% chance to lower the foe(s) Attack by 1.",
 		pp: 5,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, wind: 1; },
+		flags: { protect: 1, mirror: 1, wind: 1 },
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -3301,7 +3300,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "20% chance to paralyze foe(s).",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, wind: 1; },
+		flags: { protect: 1, mirror: 1, wind: 1 },
 		secondary: {
 			chance: 20,
 			status: 'par',
@@ -3318,7 +3317,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "30% confusion. User loses 50% max HP if miss.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		hasCrashDamage: true,
 		onMoveFail(target, source, move) {
 			this.damage(source.baseMaxhp / 2, source, source, this.dex.getEffect('High Jump Kick'));
@@ -3339,7 +3338,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Hits 10 times. Each hit can miss.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1, slicing: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
 		multihit: 10,
 		multiaccuracy: true,
 		secondary: null,
@@ -3355,7 +3354,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "This move does not check accuracy.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1, slicing: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
 		secondary: null,
 		target: "normal",
 		type: "Dark",
@@ -3369,7 +3368,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Always results in a critical hit; no accuracy check.",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		willCrit: true,
 		secondary: null,
 		target: "normal",
@@ -3384,7 +3383,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "100% chance to raise the user's Sp. Atk by 1.",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, sound: 1, bypasssub: 1; },
+		flags: { protect: 1, mirror: 1, sound: 1, bypasssub: 1 },
 		secondary: {
 			chance: 100,
 			self: {
@@ -3406,7 +3405,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "100% chance to raise the user's Speed by 1.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1, dance: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1, dance: 1 },
 		secondary: {
 			chance: 100,
 			self: {
@@ -3428,7 +3427,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Destroys screens. Type depends on user's form.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		onTryHit(pokemon) {
 			// will shatter screens through sub, before you hit
 			pokemon.side.removeSideCondition('reflect');
@@ -3461,7 +3460,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Deals 1.3333x damage with supereffective hits.",
 		pp: 5,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		onBasePower(basePower, source, target, move) {
 			if (target.runEffectiveness(move) > 0) {
 				// Placeholder
@@ -3483,7 +3482,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Deals 1.3333x damage with supereffective hits.",
 		pp: 5,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		onBasePower(basePower, source, target, move) {
 			if (target.runEffectiveness(move) > 0) {
 				// Placeholder
@@ -3523,7 +3522,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "100% chance to raise the user's Speed by 1.",
 		pp: 20,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		secondary: {
 			chance: 100,
 			self: {
@@ -3545,7 +3544,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Hits 2 times in one turn.",
 		pp: 10,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		multihit: 2,
 		secondary: null,
 		target: "normal",
@@ -3561,7 +3560,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 		pp: 5,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		self: {
 			boosts: {
 				def: -1,
@@ -3581,7 +3580,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "User recovers 50% of the damage dealt.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, heal: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1, slicing: 1, heal: 1 },
 		drain: [1, 2],
 		secondary: null,
 		target: "normal",
@@ -3596,7 +3595,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Double Shock",
 		pp: 5,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		onTryMove(pokemon, target, move) {
 			if (pokemon.hasType('Electric')) return;
 			this.add('-fail', pokemon, 'move: Double Shock');
@@ -3627,7 +3626,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "High critical hit ratio.",
 		pp: 20,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, slicing: 1; },
+		flags: { protect: 1, mirror: 1, slicing: 1 },
 		critRatio: 2,
 		secondary: null,
 		target: "normal",
@@ -3671,7 +3670,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Bypasses protection without breaking it. 50% chance to lower target's Def by 2 stages.",
 		pp: 5,
 		priority: 0,
-		flags: { contact: 1, mirror: 1; },
+		flags: { contact: 1, mirror: 1 },
 		secondary: {
 			chance: 50,
 			boosts: {
@@ -3694,7 +3693,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "+25 power for each time user was hit. Max 6 hits.",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1, punch: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1, punch: 1 },
 		secondary: null,
 		target: "normal",
 		type: "Ghost",
@@ -3708,7 +3707,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		shortDesc: "Cannot be used twice in a row. Super effective on Steel targets.",
 		pp: 5,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		onEffectiveness(typeMod, target, type) {
 			if (type === 'Steel') return 1;
 		},
@@ -3736,7 +3735,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Hydro Steam",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, defrost: 1; },
+		flags: { protect: 1, mirror: 1, defrost: 1 },
 		onModifyMove(move, pokemon) {
 			if (pokemon.effectiveWeather() === 'sunnyday') {
 				move.basePower = 260;
@@ -3755,7 +3754,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Psyblade",
 		pp: 15,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1, slicing: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1, slicing: 1 },
 		secondary: null,
 		onBasePower(basePower, source) {
 			if (this.field.isTerrain('electricterrain')) {
@@ -3780,7 +3779,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Wake-Up Slap",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: { contact: 1, protect: 1, mirror: 1 },
 		onHit(target) {
 			if (target.status === 'slp') target.cureStatus();
 		},
@@ -3797,7 +3796,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Dream Eater",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1, heal: 1; },
+		flags: { protect: 1, mirror: 1, heal: 1 },
 		drain: [1, 2],
 		onTryImmunity(target, source) {
 			return target.status === 'slp' || target.hasAbility('comatose') || target.hasAbility('endlessdream') || source.hasAbility('endlessdream');
@@ -3815,7 +3814,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Nightmare",
 		pp: 15,
 		priority: 0,
-		flags: { protect: 1, mirror: 1; },
+		flags: { protect: 1, mirror: 1 },
 		volatileStatus: 'nightmare',
 		condition: {
 			noCopy: true,
@@ -3833,7 +3832,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		secondary: null,
 		target: "normal",
 		type: "Ghost",
-		zMove: { boost: { spa: 1; } },
+		zMove: { boost: { spa: 1 } },
 		contestType: "Clever",
 	},
 	ultrasleep: { //this move is only for Endless Dream ability
@@ -3844,7 +3843,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Ultrasleep",
 		pp: 5,
 		priority: -7,
-		flags: { mirror: 1; },
+		flags: { mirror: 1 },
 		pseudoWeather: 'ultrasleep',
 		condition: {
 			duration: 5,
@@ -3873,7 +3872,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		secondary: null,
 		target: "all",
 		type: "Psychic",
-		zMove: { boost: { accuracy: 1; } },
+		zMove: { boost: { accuracy: 1 } },
 		contestType: "Clever",
 	},
 };
