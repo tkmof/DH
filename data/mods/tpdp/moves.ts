@@ -941,12 +941,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Facade", target);
 		},
-		basePowerCallback(pokemon, target, move) {
-			if (pokemon.hasStatus()) {
-				this.debug('BP doubled from status condition');
-				return move.basePower * 2;
+		onBasePower(basePower, pokemon) {
+			if (pokemon.status && pokemon.status !== 'slp') {
+				return this.chainModify(2);
 			}
-			return move.basePower;
 		},
 	},
 	booing: {
@@ -3992,17 +3990,31 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Protect", target);
 		},
-		onTryHit(source, target, move) {
-			if (target.removeVolatile('forceshield')) {
-				this.add('-fail', source);
-				return false;
-			}
+		onTryHit(pokemon) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
 		},
 		volatileStatus: 'forceshield',
 		condition: {
 			noCopy: true,
+			duration: 1,
+			onStart(target) {
+				this.add('-message', `${target.name} activated its Force Shield!`);
+				this.add('-singleturn', target, 'Force Shield', '[silent]');
+			},
 			onEffectiveness(typeMod, target, type, move) {
 				return 0;
+			},
+			onSourceModifyDamage(damage, source, target, move) {
+				if (move.category === 'Special' || move.category === 'Physical') {
+					return this.clampIntRange(target.getUndynamaxedHP() * 0.0625, 1);
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-message', `${pokemon.name} restored their stance!`);
+				this.add('-end', pokemon, 'move: Force Shield', '[silent]');
 			},
 		}
 		// Class: EN
@@ -7265,6 +7277,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		heal: [1, 2],
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Roost", target);
@@ -7274,9 +7287,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		condition: {
 			duration: 1,
-			onResidualOrder: 25,
+			onResidualOrder: 20,
 			onStart(target) {
 				this.add('-singleturn', target, 'move: Perch');
+			},
+			onTypePriority: -1,
+			onType(types, pokemon) {
+				this.effectData.typeWas = types;
+				return types.filter(type => type !== 'Wind');
 			},
 		},
 		// Class: EN

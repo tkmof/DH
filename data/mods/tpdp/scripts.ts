@@ -179,7 +179,6 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		},		
 		/*
 		calculateStat(statName: StatNameExceptHP, boost: number, modifier?: number) {
-			inherit: true,
 			statName = toID(statName) as StatNameExceptHP;
 			// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
 			if (statName === 'hp') throw new Error("Please read `maxhp` directly");

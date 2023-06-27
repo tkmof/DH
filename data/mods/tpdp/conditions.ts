@@ -3,7 +3,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'brn',
 		effectType: 'Status',
 		statusSlots: 1,
-		stackCondition: 'brnheavy',
+		stackCondition: 'hvybrn',
 		onStart(target, source, sourceEffect) {
 			if (target.hasType('Fire')) {
 				this.add('-immune', target);
@@ -23,8 +23,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.damage(pokemon.baseMaxhp / 8);
 		},
 	},
-	brnheavy: {
-		name: 'brnheavy',
+	hvybrn: {
+		name: 'hvybrn',
 		effectType: 'Status',
 		start: "[POKEMON] has been heavily burned!",
 		alreadyStarted: "[POKEMON] is already heavily burned!",
@@ -38,9 +38,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			this.effectData.stage = 0;
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
-				this.add('-status', target, 'brnheavy', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
+				this.add('-status', target, 'hvybrn', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
 			} else {
-				this.add('-status', target, 'brnheavy');
+				this.add('-status', target, 'hvybrn');
 			}
 		},
 		onSwitchIn() {
