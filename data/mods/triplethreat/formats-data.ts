@@ -11,4 +11,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "TT",
 		doublesTier: "DTT",
 	},
+	dondozo: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
+	delphox: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
+	genesectshock: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
 };

@@ -1546,13 +1546,6 @@ export const Formats: FormatList = [
 				}
 			}
 		},
-		/*
-		onBegin() {
-			if(species.id === 'shedigiri') {
-				pokemon.basemaxhp = 1;
-				pokemon.hp = 1;
-			}
-		}*/
 	},
 	{
 		name: "[Gen 2] GSC Doubles",
@@ -2337,16 +2330,20 @@ export const Formats: FormatList = [
 		debug: true,
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
-		banlist: ['Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
+		banlist: ['Boundary Trance', 'Dream Shard', 'Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['TPDP OU', 'TPDP LC'];
+			let natures = ['Red', 'Blue', 'Black', 'Green', 'White']
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
-					return [set.species + ' is not allowed.'];
+					return [set.species + ' is not allowed in TPDP.'];
+				}
+				if (!natures.includes(set.nature)) {
+					return [set.nature + ' is not a valid nature in TPDP. Hint: to set Red, Blue, Black, White, or Green nature, use the Import/Export button.'];
 				}
 			}
 		},
@@ -2358,7 +2355,7 @@ export const Formats: FormatList = [
 		debug: true,
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
 		ruleset: ['Standard GBU', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
-		banlist: ['Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
+		banlist: ['Boundary Trance', 'Dream Shard', 'Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
@@ -2367,7 +2364,10 @@ export const Formats: FormatList = [
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
-					return [set.species + ' is not allowed.'];
+					return [set.species + ' is not allowed in TPDP.'];
+				}
+				if (!set.nature.includes('Red', 'Blue', 'Black', 'Green', 'White')) {
+					return [set.nature + ' is not a valid nature in TPDP. Hint: to set Red, Blue, Black, White, or Green nature, use the Import/Export button.'];
 				}
 			}
 		},

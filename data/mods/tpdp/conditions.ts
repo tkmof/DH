@@ -18,7 +18,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'brn');
 			}
 		},
-		// Damage reduction is handled directly in the sim/battle.js damage function
 		onResidualOrder: 10,
 		onResidual(pokemon) {
 			this.damage(pokemon.baseMaxhp / 8);
@@ -52,7 +51,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (this.effectData.stage < 15) {
 				this.effectData.stage++;
 			}
-			this.damage(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectData.stage);
+			this.damage(this.clampIntRange(pokemon.baseMaxhp / 16, 1) * this.effectData.stage);
 		},
 	},
 	par: {
@@ -73,12 +72,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifySpe(spe, pokemon) {
-			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
-			spe = this.finalModify(spe);
-			if (!pokemon.hasAbility(['quickfeet', 'gale'])) {
-				spe = Math.floor(spe * (1/4));
+			if (!pokemon.hasAbility('gale')) {
+				return this.chainModify(0.25);
 			}
-			return spe;
 		},
 	},
 	shk: {
@@ -101,12 +97,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifySpe(spe, pokemon) {
-			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
-			spe = this.finalModify(spe);
-			if (!pokemon.hasAbility(['quickfeet', 'gale'])) {
-				spe = Math.floor(spe * (1/4));
+			if (!pokemon.hasAbility('gale')) {
+				return this.chainModify(0.25);
 			}
-			return spe;
 		},
 		onAccuracy(accuracy, target, source, move) {
 			return true;
@@ -130,7 +123,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onModifyAtk(atk, pokemon) {
 			if (!pokemon.hasAbility('mindseye') && pokemon.moveThisTurn !== 'blowfromcalamity')
-				return Math.floor(this.finalModify(atk) * (1/2));;
+				return this.chainModify(0.5);
 		},
 	},
 	fear: {
@@ -149,7 +142,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onModifySpA(atk, pokemon) {
 			if (!pokemon.hasAbility('pride'))
-				return Math.floor(this.finalModify(atk) * (1/2));;
+				return this.chainModify(0.5);;
 		},
 	},
 	stp: {
@@ -188,46 +181,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return;
 			}
 			return false;
-		},
-	},
-	frz: {
-		name: 'frz',
-		effectType: 'Status',
-		onStart(target, source, sourceEffect) {
-			if (sourceEffect && sourceEffect.effectType === 'Ability') {
-				this.add('-status', target, 'frz', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
-			} else {
-				this.add('-status', target, 'frz');
-			}
-			if (target.species.name === 'Shaymin-Sky' && target.baseSpecies.baseSpecies === 'Shaymin') {
-				target.formeChange('Shaymin', this.effect, true);
-			}
-		},
-		onBeforeMovePriority: 10,
-		onBeforeMove(pokemon, target, move) {
-			if (move.flags['defrost']) return;
-			if (this.randomChance(1, 5)) {
-				pokemon.cureStatus('frz');
-				return;
-			}
-			this.add('cant', pokemon, 'frz');
-			return false;
-		},
-		onModifyMove(move, pokemon) {
-			if (move.flags['defrost']) {
-				this.add('-curestatus', pokemon, 'frz', '[from] move: ' + move);
-				pokemon.clearStatus();
-			}
-		},
-		onAfterMoveSecondary(target, source, move) {
-			if (move.thawsTarget) {
-				target.cureStatus('frz');
-			}
-		},
-		onDamagingHit(damage, target, source, move) {
-			if (move.type === 'Fire' && move.category !== 'Status') {
-				target.cureStatus('frz');
-			}
 		},
 	},
 	psn: {
@@ -282,7 +235,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (this.effectData.stage < 15) {
 				this.effectData.stage++;
 			}
-			this.damage(this.clampIntRange(pokemon.baseMaxhp / 8, 1) * this.effectData.stage);
+			this.damage(this.clampIntRange(pokemon.baseMaxhp / 16, 1) * this.effectData.stage);
 		},
 	},
 	weak: {
@@ -314,10 +267,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return false;
 			}
 		},
-		onResidualOrder: 17,
-		onEnd(pokemon) {
-			this.add('-end', pokemon, 'condition: weak');
-		},
 		onTryHeal(damage, target, source, effect) {
 			if (effect?.id !== 'breather') return false;
 		},
@@ -336,10 +285,22 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'weakheavy');
 			}
 		},
-		onTryHealPriority: 10,
-		onSourceTryHeal(relayVar: number, target: Pokemon, source: Pokemon, effect: Effect) {
-			if (effect.id !== "breather")
+		onDisableMove(pokemon) {
+			for (const moveSlot of pokemon.moveSlots) {
+				if (this.dex.getMove(moveSlot.id).flags['heal']) {
+					pokemon.disableMove(moveSlot.id);
+				}
+			}
+		},
+		onBeforeMovePriority: 6,
+		onBeforeMove(pokemon, target, move) {
+			if (move.flags['heal'] && !move.isZ && !move.isMax) {
+				this.add('cant', pokemon, 'condition: weak', move);
 				return false;
+			}
+		},
+		onTryHeal(damage, target, source, effect) {
+			if (effect?.id !== 'breather') return false;
 		},
 		onDeductPP(target, source) {
 			if (!target.status['weakheavy']) return;
@@ -500,16 +461,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return 5;
 		},
-		// This should be applied directly to the stat before any of the other modifiers are chained
-		// So we give it increased priority.
-		
-		//HELP -- TPDP wiki does not list this as being a feature of dust storm, however it does say it's identical to sandstorm
-		/*onModifySpDPriority: 10,
-		onModifySpD(spd, pokemon) {
-			if (pokemon.hasType('Rock') && this.field.isWeather('sandstorm')) {
-				return this.modify(spd, 1.5);
-			}
-		},*/
 		onStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectData.duration = 0;
@@ -552,14 +503,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-weather', 'Sunshower');
 			}
 		},
-		/*onModifySpDPriority: 100,
-		onModifySpD(relayVar, target, source, move) {
-			return source.getStat('def', true);
-		},
-		onModifyDefPriority: 100,
-		onModifyDef(relayVar, target, source, move) {
-			return source.getStat('spd', true);
-		},*/
+		// def switch implemented in scripts.ts
 		onResidual() {
 			this.add('-weather', 'Sunshower', '[upkeep]');
 			this.add('-message', `The sunshower continues.`);
@@ -672,18 +616,20 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 5;
 		},
 		onModifyMove(move, pokemon, target) {
-			move.ignoreAbility = true;
+			const boostAbils = ['aftermove', 'astronomy', 'auroragrace', 'bibliophilia', 'boundaryblurrer', 'boundarysavior', 'breather', 'brightform', 'brutality', 'byakuteismetal', 'charge', 'cloakofdarkness', 'daredevil', 'desperation', 'disjointedblow', 'easternexpanse', 'empowered', 'finalform', 'firsthit', 'forewarddash', 'fullpower', 'galeform', 'generalsform', 'genteiswater', 'ghostform', 'glamorous', 'inversereaction', 'knownlimits', 'kouteisearth', 'lastdefense', 'midnightform', 'mindlessdance', 'mindseye', 'miraclemallet', 'naturalform', 'ontheedge', 'placid', 'preciseaim', 'pride', 'recalibration', 'reckless', 'sandforce', 'seiteiswood', 'skilledhand', 'slowtempo', 'sniper', 'spiritofyang', 'spiritofyin', 'strangerainbow', 'strategist', 'streamform', 'surprisetactics', 'suteisfire', 'trueadmin', 'uniqueshield', 'unyieldingform', 'visionbonus', 'westernexpanse', 'yatanokagami'];
+			console.log(pokemon);
+			if(pokemon.ability.includes(boostAbils)) move.ignoreAbility = true;
 		},
 		onStart(battle, source, effect) {
 			this.add('-message', `The terrain became Kohryu!`);
 			if (effect?.effectType === 'Ability') {
-				this.add('-fieldstart', 'terrain: Kohryu', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-fieldstart', 'terrain: terrainkohryu', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-fieldstart', 'terrain: Kohryu', '[silent]');
+				this.add('-fieldstart', 'terrain: terrainkohryu', '[silent]');
 			}
 		},
 		onEnd() {
-			this.add('-fieldend', 'terrain: Kohryu', '[silent]');
+			this.add('-fieldend', 'terrain: terrainkohryu', '[silent]');
 			this.add('-message', `The terrain returned to normal!`);
 		},
 	},
