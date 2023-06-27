@@ -1036,7 +1036,49 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Poison",
 		contestType: "Clever",
 	},
-
+	mountaingale: {
+		num: 836,
+		accuracy: 85,
+		basePower: 100,
+		category: "Physical",
+		shortDesc: "30% chance to make the target flinch.",
+		name: "Mountain Gale",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'flinch',
+		},
+		target: "normal",
+		type: "Ice",
+	},
+	esperwing: {
+		num: 840,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		shortDesc: "100% chance to raise user Speed by 1. High crit.",
+		name: "Esper Wing",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+		},
+		critRatio: 2,
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					spe: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Psychic",
+	},
 	psyshieldbash: {
 		shortDesc: "100% chance to raise the user's Defense by 1.",
 		num: -1013,

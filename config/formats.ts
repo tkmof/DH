@@ -535,7 +535,7 @@ export const Formats: FormatList = [
 			'&bullet; <a href="https://www.smogon.com/forums/threads/return-to-orre-tercera-open-for-submissions.3722389/">RTO: Tercera</a>',
 		],
 		mod: 'returntoorretercera', 
-		ruleset: ['Standard NatDex', 'Flat Rules', '!! Adjust Level = 50', 'VGC Timer'],
+		ruleset: ['Standard NatDex', 'Picked Team Size = 3', '!! Adjust Level = 50', 'VGC Timer'],
 		banlist: [
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		   'Aerodactylite', 'Alakazite', 'Beedrillite', 'Blastoisinite', 'Charizardite X', 'Charizardite Y', 'Gengarite', 
@@ -1121,20 +1121,6 @@ export const Formats: FormatList = [
 		],
 	},
 	*/
-	{
-		name: "[Gen 8] MetaMons",
-		desc: [
-			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
-		],
-		threads: [
-			'&bullet; <a href="https://www.smogon.com/forums/threads/metamons-slate-3-galarian-slowbro-sableye-grapploct.3703361/">MetaMons</a>',
-			'&bullet; <a href="https://docs.google.com/spreadsheets/d/142lxuFtTgQCY56Wz_ZjAGaqlk7HgJj0CVKMChQcei1U/edit#gid=0">Spreadsheet</a>',
-		],
-		mod: 'metamons', 
-		ruleset:['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Z-Move Clause'],
-		banlist: ['All Pokemon', 'Baton Pass', 'Sablenite'],
-		unbanlist: ['Whimsicott', 'Salazzle', 'Kingler', 'Ariados', 'Sandslash', 'Bastiodon', 'Slowbro-Galar', 'Sableye', 'Grapploct', 'Eelektross', 'Arcanine', 'Tauros', 'Tsareena', 'Sylveon', 'Perrserker', 'Mantine', 'Persian-Alola', 'Druddigon', 'Duraludon', 'Houndoom', 'Stunfisk', 'Emolga', 'Espeon', 'Toxicroak', 'Granbull', 'Abomasnow', 'Eldegoss', 'Guzzlord', 'Entei', 'Necrozma', 'Xatu', 'Jellicent', 'Gigalith', 'Florges', 'Sunflora', 'Frogadier', 'Articuno', 'Passimian'],
-	},
 	{
 		name: "[Gen 8] National Dex Balanced Hackmons v3",
 		desc: `<b>More Balanced Hackmons</b>: A National Dex mod of Balanced Hackmons with new pokemon, moves, and abilities, as well as some additional bans.`,

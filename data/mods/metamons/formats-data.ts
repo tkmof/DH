@@ -66,7 +66,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	rotomfrost: {
 	   tier: "Gen 7 MetaMons",
 	},
-	salazzle: {
+	salazzlegen7: {
 	   tier: "Gen 7 MetaMons",
 	},
 	scolipede: {
@@ -245,6 +245,9 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	beedrill: {
 	   tier: "MetaMons",
 	},
+	beedrillmega: {
+	   tier: "Illegal",
+	},
 	liepard: {
 	   tier: "MetaMons",
 	},
@@ -259,5 +262,23 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
    exeggutoralola: {
 	   tier: "MetaMons",
+	},
+	gogoat: {
+		tier: "MetaMons",
+	}, 
+	ironthorns: {
+		tier: "MetaMons",
+	}, 
+	oricorio: {
+		tier: "MetaMons",
+	}, 
+	oricoriopompom: {
+		tier: "MetaMons",
+	}, 
+	oricoriopau: {
+		tier: "MetaMons",
+	}, 
+	oricoriosensu: {
+		tier: "MetaMons",
 	},
 };
