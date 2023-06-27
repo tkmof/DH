@@ -7350,7 +7350,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	phantomensemble: {
 		name: "Phantom Ensemble",
-		shortDesc: "20% chance to lower the target's Atk by 1.",
+		shortDesc: "Lowers the target's Atk by 1.",
 		target: "normal",
 		type: "Sound",
 		category: "Physical",
@@ -7361,10 +7361,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Round", target);
+			this.add('-anim', source, "Snarl", target);
 		},
 		secondary: {
-			chance: 20,
+			chance: 100,
 			boosts: {atk: -1}
 		}
 		// Class: 2
