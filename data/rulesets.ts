@@ -1364,7 +1364,7 @@ export const Formats: {[k: string]: FormatData} = {
 		onModifySpecies(species, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
-			const types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.data.moves.get(move.id).type))];
+			const types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.dex.moves.get(move.id).type))];
 			return {...species, types: types};
 		},
 		onSwitchIn(pokemon) {
