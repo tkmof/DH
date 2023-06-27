@@ -2234,7 +2234,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		name: "Psyshield Bash",
 		pp: 10,
 		priority: 0,
-		flags: { contact: 1, protect: 1, mirror: 1; },
+		flags: {contact: 1, protect: 1, mirror: 1},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Zen Headbutt", target);
@@ -2251,8 +2251,7 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 		type: "Psychic",
 		contestType: "Clever",
 	},
-	stoneaxe: {
-		shortDesc: "Sets Stealth Rock after damage.", banefulbunker: {
+ banefulbunker: {
 			num: 661,
 			accuracy: true,
 			basePower: 0,
@@ -2309,6 +2308,8 @@ export const Moves: { [k: string]: ModdedMoveData; } = {
 			zMove: { boost: { def: 1; } },
 			contestType: "Tough",
 		},
+	stoneaxe: {
+		shortDesc: "Sets Stealth Rock after damage.",
 		num: -1014,
 		accuracy: 100,
 		basePower: 65,
