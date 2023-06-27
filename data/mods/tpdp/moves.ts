@@ -1853,7 +1853,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: 2
@@ -7348,24 +7348,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 		// Effect Chance: 100
 		// Effect ID: 150
 	},
-	phantasmagoria: { // Unused
-		name: "Phantasmagoria",
-		shortDesc: "Lowers the foe's FoAtk.",
+	phantomensemble: {
+		name: "Phantom Ensemble",
+		shortDesc: "20% chance to lower the target's Atk by 1.",
 		target: "normal",
-		type: "Void",
+		type: "Sound",
 		category: "Physical",
-		basePower: 50,
-		pp: 9.375,
-		accuracy: 100,
+		basePower: 55,
+		pp: 15,
+		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Round", target);
 		},
-		// Class: EN
-		// Effect Chance: 100
-		// Effect ID: 0
+		secondary: {
+			chance: 20,
+			boosts: {atk: -1}
+		}
+		// Class: 2
+		// Effect Chance: 1000
+		// Effect ID: 34
 	},
 	phaseinversion: {
 		name: "Phase Inversion",
@@ -7837,7 +7841,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Conversion", target);
 		},
 		onHit(target, source, move) {
-			const type = this.dex.moves.get(target.moveSlots[0].id).type;
+			const type = this.dex.getMove(target.moveSlots[0].id).type;
 			if (target.hasType(type) || !target.setType(type)) return false;
 			this.add('-start', target, 'typechange', type);
 		},
@@ -9770,7 +9774,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: BU
@@ -10283,7 +10287,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: BU
@@ -11359,7 +11363,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			for (const moveSlot of pokemon.moveSlots) {
 				const moveid = moveSlot.id;
 				if (!moveid) continue;
-				const move = this.dex.moves.get(moveid);
+				const move = this.dex.getMove(moveid);
 				if (noSleepTalk.includes(moveid) || move.flags['charge'] || (move.isZ && move.basePower !== 1) || move.isMax) {
 					continue;
 				}
@@ -11496,7 +11500,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onDisableMove(pokemon) {
 				for (const moveSlot of pokemon.moveSlots) {
-					const move = this.dex.moves.get(moveSlot.id);
+					const move = this.dex.getMove(moveSlot.id);
 					if (move.category === 'Status') {
 						pokemon.disableMove(moveSlot.id);
 					}

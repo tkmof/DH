@@ -2316,7 +2316,7 @@ export const Formats: FormatList = [
 				if (!allowedTiers.includes(template.tier)) {
 					return [set.species + ' is not allowed in TPDP.'];
 				}
-				if (!set.nature.includes('Red', 'Blue', 'Black', 'Green', 'White')) {
+				if (!natures.includes(set.nature)) {
 					return [set.nature + ' is not a valid nature in TPDP. Hint: to set Red, Blue, Black, White, or Green nature, use the Import/Export button.'];
 				}
 			}

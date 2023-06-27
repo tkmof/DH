@@ -1,5 +1,5 @@
-export const TypeChart: {[k: string]: TypeData} = {
-	void: {
+export const TypeChart: {[k: string]: ModdedTypeData} = {
+	Void: {
 		damageTaken: {
 			Void: 0,
 			Fire: 0,
@@ -22,7 +22,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	fire: {
+	Fire: {
 		damageTaken: {
 			brn: 3,
 			hvybrn: 3,
@@ -47,7 +47,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	water: {
+	Water: {
 		damageTaken: {
 			Void: 0,
 			Fire: 2,
@@ -70,7 +70,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	nature: {
+	Nature: {
 		damageTaken: {
 			Void: 0,
 			Fire: 1,
@@ -93,7 +93,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	earth: {
+	Earth: {
 		damageTaken: {
 			duststorm: 3,
 			Void: 0,
@@ -117,7 +117,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	steel: {
+	Steel: {
 		damageTaken: {
 			duststorm: 3,
 			psn: 3,
@@ -143,7 +143,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	wind: {
+	Wind: {
 		damageTaken: {
 			spikes: 3,
 			Void: 0,
@@ -167,7 +167,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	electric: {
+	Electric: {
 		damageTaken: {
 			par: 3,
 			shk: 3,
@@ -192,7 +192,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	light: {
+	Light: {
 		damageTaken: {
 			Void: 2,
 			Fire: 0,
@@ -215,7 +215,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	dark: {
+	Dark: {
 		damageTaken: {
 			stickyweb: 3,
 			Void: 2,
@@ -239,7 +239,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	nether: {
+	Nether: {
 		damageTaken: {
 			trapped: 3,
 			Void: 0,
@@ -263,7 +263,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	poison: {
+	Poison: {
 		damageTaken: {
 			psn: 3,
 			tox: 3,
@@ -288,7 +288,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	fighting: {
+	Fighting: {
 		damageTaken: {
 			Void: 0,
 			Fire: 0,
@@ -311,7 +311,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	illusion: {
+	Illusion: {
 		damageTaken: {
 			Void: 3,
 			Fire: 0,
@@ -334,7 +334,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	sound: {
+	Sound: {
 		damageTaken: {
 			Void: 0,
 			Fire: 0,
@@ -357,7 +357,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	warped: {
+	Warped: {
 		damageTaken: {
 			Void: 0,
 			Fire: 0,
@@ -380,7 +380,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {},
 		HPdvs: {}
 	},
-	dream: {
+	Dream: {
 		damageTaken: {
 			stp: 3,
 			Void: 0,
