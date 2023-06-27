@@ -2286,7 +2286,7 @@ export const Formats: FormatList = [
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['TPDP OU', 'TPDP LC'];
-			let natures = ['Red', 'Blue', 'Black', 'Green', 'White']
+			let natures = ['Red', 'Blue', 'Black', 'Green', 'White'];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
@@ -2311,6 +2311,7 @@ export const Formats: FormatList = [
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['TPDP OU', 'TPDP LC'];
+			let natures = ['Red', 'Blue', 'Black', 'Green', 'White'];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
