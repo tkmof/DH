@@ -1,34 +1,6 @@
 import computeSourceMap from "sucrase/dist/types/computeSourceMap";
 
 export const Moves: {[k: string]: ModdedMoveData} = {
-	recover: {
-		inherit: true,
-		pp: 10,
-	},
-	softboiled: {
-		inherit: true,
-		pp: 10,
-	},
-	rest: {
-		inherit: true,
-		pp: 10,
-	},
-	milkdrink: {
-		inherit: true,
-		pp: 10,
-	},
-	slackoff: {
-		inherit: true,
-		pp: 10,
-	},
-	roost: {
-		inherit: true,
-		pp: 10,
-	},
-	shoreup: {
-		inherit: true,
-		pp: 10,
-	},
 	tentacatch: {
 		num: -1,
 		accuracy: 85,
@@ -653,7 +625,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePowerCallback(pokemon, target, move) {
 			let bp = move.basePower;
 			if (pokemon.volatiles['backfire'] && pokemon.volatiles['backfire'].hitCount) {
-				//bp *= Math.pow(2, pokemon.volatiles['backfire'].hitCount);
 				bp += 20*pokemon.volatiles['backfire'].hitCount;
 			}
 			if (pokemon.status !== 'slp') pokemon.addVolatile('backfire');
@@ -706,6 +677,25 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Water",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
+	},
+	parallelcircuit: {
+		num: -2242,
+		accuracy: 95,
+		basePower: 25,
+		category: "Physical",
+		name: "Parallel Circuit",
+		shortDesc: "Hits 2-5 times in one turn.",
+		desc: "Hits 2-5 times in one turn.",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: [2, 5],
+		secondary: null,
+		target: "normal",
+		type: "Electric",
+		zMove: {basePower: 140},
+		maxMove: {basePower: 130},
+		contestType: "Cool",
 	},
 	condensate: {
 		num: -23,
@@ -2113,57 +2103,64 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Tough",
 		shortDesc: "Protects from moves. Contact: resets opponent's stat boosts.",
 	},
-	/*triplearrows: {
+	triplearrows: {
 		num: -1612,
 		accuracy: 100,
 		basePower: 50,
 		category: "Physical",
 		name: "Triple Arrows",
-		desc: "100% chance to raise the user's Speed by 1 stage. Raise crit ratio by 2 stages.",
-		shortDesc: "100% chance to +1 Speed; +2 crit ratio.",
-		pp: 16,
+		desc: "100% chance to raise the user's Speed by 1 stage. Raise crit ratio by 2 stages. Target: 50% -1 Defense.",
+		shortDesc: "100% chance to +1 Speed; +2 crit ratio; -1 Def to target.",
+		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onModifyCritRatio(critRatio) {
 			return critRatio + 2;
 		},
-		secondary: {
-			chance: 100,
-			self: {
-				boosts: {
-					spe: 1,
-				},
-			},
-		},
-		target: "normal",
-		type: "Fighting",
-		contestType: "Tough",
-	},*/
-	triplearrows: {
-		num: 843,
-		accuracy: 100,
-		basePower: 90,
-		category: "Physical",
-		shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
-		name: "Triple Arrows",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		critRatio: 2,
 		secondaries: [
 			{
 				chance: 50,
 				boosts: {
 					def: -1,
 				},
-			}, {
-				chance: 30,
-				volatileStatus: 'flinch',
+			}, { 
+				chance: 100,
+				self: {
+					boosts: {
+						spe: 1,
+					},
+				},
 			},
 		],
 		target: "normal",
 		type: "Fighting",
+		contestType: "Tough",
 	},
+	// triplearrows: {
+	// 	num: 843,
+	// 	accuracy: 100,
+	// 	basePower: 90,
+	// 	category: "Physical",
+	// 	shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
+	// 	name: "Triple Arrows",
+	// 	pp: 10,
+	// 	priority: 0,
+	// 	flags: {protect: 1, mirror: 1},
+	// 	critRatio: 2,
+	// 	secondaries: [
+	// 		{
+	// 			chance: 50,
+	// 			boosts: {
+	// 				def: -1,
+	// 			},
+	// 		}, {
+	// 			chance: 30,
+	// 			volatileStatus: 'flinch',
+	// 		},
+	// 	],
+	// 	target: "normal",
+	// 	type: "Fighting",
+	// },
 	/*psyshieldbash: {
 		num: -1776,
 		accuracy: 100,
@@ -2368,7 +2365,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Physical",
 		name: "Dire Claw",
 		shortDesc: "50% chance to poison the target.",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		secondary: {
@@ -2399,6 +2396,28 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		target: "normal",
 		type: "Poison",
+	},
+	takeheart: {
+		num: 850,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "User cures its status and boosts its SpA & SpD by 1.",
+		name: "Take Heart",
+		pp: 15,
+		priority: 0,
+		flags: {snatch: 1},
+		onHit(pokemon) {
+			const success = !!this.boost({spa: 1, spd: 1});
+			return pokemon.cureStatus() || success;
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Calm Mind", target);
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
 	},
 	fissure: {
 		num: 90,
@@ -3042,6 +3061,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 50,
 		category: "Special",
 		name: "Hound's Howl",
+		shortDesc: "If a foe is switching out, hits it at 2x power. Physical if user's Atk > Sp. Atk. Type varies based on the user's primary type.",
+		desc: "If a foe is switching out, hits it at 2x power. Physical if user's Atk > Sp. Atk. Type varies based on the user's primary type.",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
