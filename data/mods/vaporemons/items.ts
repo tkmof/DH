@@ -585,4 +585,43 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: -1008,
 		gen: 8,
 	}, */
+	boosterenergy: {
+		name: "Booster Energy",
+		spritenum: 0, // TODO
+		onUpdate(pokemon) {
+			if (pokemon.transformed) return;
+			if (this.queue.peek(true)?.choice === 'runSwitch') return;
+			if (pokemon.hasAbility('protosynthesis') && !pokemon.volatiles['protosynthesis'] && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
+				pokemon.addVolatile('protosynthesis');
+			}
+			if (pokemon.hasAbility('protosmosis') && !pokemon.volatiles['protosmosis'] && !this.field.isWeather('raindance') && pokemon.useItem()) {
+				pokemon.addVolatile('protosmosis');
+			}
+			if (pokemon.hasAbility('protocrysalis') && !pokemon.volatiles['protocrysalis'] && !this.field.isWeather('sandstorm') && pokemon.useItem()) {
+				pokemon.addVolatile('protocrysalis');
+			}
+			if (pokemon.hasAbility('protostasis') && !pokemon.volatiles['protostasis'] && !this.field.isWeather('snow') && pokemon.useItem()) {
+				pokemon.addVolatile('protostasis');
+			}
+			if (pokemon.hasAbility('quarkdrive') && !pokemon.volatiles['quarkdrive'] && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+				pokemon.addVolatile('quarkdrive');
+			}
+			if (pokemon.hasAbility('photondrive') && !pokemon.volatiles['photondrive'] && !this.field.isTerrain('grassyterrain') && pokemon.useItem()) {
+				pokemon.addVolatile('photondrive');
+			}
+			if (pokemon.hasAbility('neurondrive') && !pokemon.volatiles['neurondrive'] && !this.field.isTerrain('psychicterrain') && pokemon.useItem()) {
+				pokemon.addVolatile('neurondrive');
+			}
+			if (pokemon.hasAbility('runedrive') && !pokemon.volatiles['runedrive'] && !this.field.isTerrain('mistyterrain') && pokemon.useItem()) {
+				pokemon.addVolatile('runedrive');
+			}
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.tags.includes("Paradox")) return false;
+			return true;
+		},
+		num: 1880,
+		desc: "Activates the Paradox Abilities. Single use.",
+		gen: 8,
+	},
 };
