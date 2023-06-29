@@ -1767,7 +1767,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onModifyMove(move) {
-			if (!move || move.flags['slicing'] || move.target === 'self') return;
+			if (!move || !move.flags['slicing'] || move.target === 'self') return;
 			if (!move.secondaries) {
 				move.secondaries = [];
 			}
