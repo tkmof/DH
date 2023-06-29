@@ -6402,7 +6402,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Spikes", target);
 		},
-		sideCondition: 'spikes',
+		sideCondition: 'minetrap',
+		condition: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'minetrap');
+				this.effectData.layers = 1;
+			},
+			onRestart(side) {
+				if (this.effectData.layers >= 3) return false;
+				this.add('-sidestart', side, 'minetrap');
+				this.effectData.layers++;
+			},
+			onSwitchIn(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasItem('tengugeta')) return;
+				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectData.layers] * pokemon.maxhp / 24);
+			},
+		},
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 217
@@ -9588,7 +9606,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (pokemon.moveThisTurn !== 'smashspin') return;
 				if (pokemon.hp) {
 					if(pokemon.removeVolatile('drainseed')) this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
-					const sideConditions = ['bindtrap', 'spikes', 'poisontrap', 'gmaxsteelsurge'];
+					const sideConditions = ['bindtrap', 'minetrap', 'poisontrap', 'stealthtrap'];
 					for (const condition of sideConditions) {
 						if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
 							this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
@@ -10243,7 +10261,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stealth Rock", target);
 		},
-		sideCondition: 'gmaxsteelsurge',
+		sideCondition: 'stealthtrap',
+		condition: {
+			onStart(side) {
+				this.add('-sidestart', side, 'stealthtrap');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('tengugeta')) return;
+				const steelHazard = this.dex.getActiveMove('Stealth Rock');
+				steelHazard.type = 'Steel';
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 214
