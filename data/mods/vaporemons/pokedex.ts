@@ -1948,4 +1948,38 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Levitate", H: "Healer"},
 	},
+	bellibolt: {
+		num: 939,
+		name: "Bellibolt",
+		types: ["Electric", "Water"],
+		baseStats: {hp: 109, atk: 64, def: 91, spa: 103, spd: 83, spe: 45},
+		abilities: {0: "Electromorphosis", 1: "Static", H: "Damp"},
+		heightm: 1.2,
+		weightkg: 113,
+		color: "Green",
+		prevo: "Tadbulb",
+		evoType: "useItem",
+		evoItem: "Thunder Stone",
+		eggGroups: ["Water 1"],
+	},
+	decidueye: {
+		inherit: true,
+		abilities: {0: "Overgrow", H: "Contrary"},
+	},
+	decidueyehisui: {
+		inherit: true,
+		types: ["Ghost", "Fighting"],
+	},
+	magnemite: {
+		inherit: true,
+		abilities: {0: "Magnet Pull", 1: "Levitate", H: "Analytic"},
+	},
+	magneton: {
+		inherit: true,
+		abilities: {0: "Magnet Pull", 1: "Levitate", H: "Analytic"},
+	},
+	magnezone: {
+		inherit: true,
+		abilities: {0: "Magnet Pull", 1: "Levitate", H: "Analytic"},
+	},
 };
