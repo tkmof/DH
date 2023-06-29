@@ -162,6 +162,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					const stats: BoostID[] = [];
 					let stat: BoostID;
 					for (stat in target.boosts) {
+						if (stat === 'accuracy' || stat === 'evasion') continue;
 						if (target.boosts[stat] > -6) {
 							stats.push(stat);
 						}
@@ -2347,7 +2348,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Boomburst", target);
 		},
 		self: {
-			boosts: {atk: -1, def: 1}
+			boosts: {atk: -1, def: -1}
 		}
 		// Class: 2
 		// Effect Chance: 1000
@@ -7086,7 +7087,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Zap Cannon", target);
 		},
-		boosts: {atk: -2}
+		self: {
+			boosts: {atk: -2}
+		}
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 234
@@ -11311,12 +11314,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hyper Voice", target);
 		},
-		secondary: {
+		self: {
 			chance: 10,
 			onHit(target, source, move) {
 				const stats: BoostID[] = [];
 				let stat: BoostID;
 				for (stat in source.boosts) {
+					if (stat === 'accuracy' || stat === 'evasion') continue;
 					if (source.boosts[stat] < 6) {
 						stats.push(stat);
 					}
@@ -11758,12 +11762,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hyper Voice", target);
 		},
-		secondary: {
+		self: {
 			chance: 10,
 			onHit(target, source, move) {
 				const stats: BoostID[] = [];
 				let stat: BoostID;
 				for (stat in target.boosts) {
+					if (stat === 'accuracy' || stat === 'evasion') continue;
 					if (target.boosts[stat] < 6) {
 						stats.push(stat);
 					}
