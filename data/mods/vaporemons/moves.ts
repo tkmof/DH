@@ -2623,6 +2623,10 @@ stickyweb: {
 		priority: 0,
 		flags: {nonsky: 1, heal: 1},
 		sideCondition: 'healingstones',
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stealth Rock", target);
+		},
 		condition: {
 			// this is a side condition
 			onStart(side) {
@@ -2917,5 +2921,33 @@ stickyweb: {
 		target: "self",
 		type: "Water",
 	},
-
+	shrapnelshot: {
+		accuracy: 90,
+		basePower: 15,
+		category: "Physical",
+		shortDesc: "Hits 2-5 times. First hit lowers the foe's Defense by 1 stage.",
+		name: "Shrapnel Shot",
+		pp: 20,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		multihit: [2, 5],
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Spikes", target);
+		},
+		secondary: {
+			chance: 100,
+			onHit(target, source, move) {
+				if (move.hit < 2) {
+					this.boost({def: -1}, target);
+				}
+				return false;
+			},
+		},
+		target: "normal",
+		type: "Steel",
+		zMove: {basePower: 140},
+		maxMove: {basePower: 130},
+		contestType: "Cool",
+	},
 };
