@@ -548,7 +548,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Holder's contact moves have 1.25x power. Bounces back bullet/ball moves and breaks when it does.",
 		num: -1007,
 		gen: 8,
-	},
+	}, /*
 	walkietalkie: {
 		name: "Walkie-Talkie",
 		spritenum: 713,
@@ -584,5 +584,5 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Before using a sound move, holder switches. Switch-in uses move.",
 		num: -1008,
 		gen: 8,
-	},
+	}, */
 };
