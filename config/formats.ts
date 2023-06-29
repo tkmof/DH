@@ -2295,7 +2295,7 @@ export const Formats: FormatList = [
 		column: 3,
 	},
 	{
-		name: "[Gen 8] Fusion Evolution Gen 9 (Post-PMPL)",
+		name: "[Gen 8] Fusion Evolution Gen 9 Post-PMPL",
 		desc: `Fusion Evolution.`,
 		threads: [
 			`<a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Gen 9 Fusion Evolution</a>`,
