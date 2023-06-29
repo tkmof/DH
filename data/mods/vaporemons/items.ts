@@ -548,24 +548,26 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Holder's contact moves have 1.25x power. Bounces back bullet/ball moves and breaks when it does.",
 		num: -1007,
 		gen: 8,
-	}, /*
+	}, 
 	walkietalkie: {
 		name: "Walkie-Talkie",
 		spritenum: 713,
 		fling: {
 			basePower: 20,
 		},
-		onBeforeMove(target, source, move) {
-			if (!this.canSwitch(source.side) || source.forceSwitchFlag || source.switchFlag) return false;
-			if (source.side.addSlotCondition(source, 'walkietalkie') && move.flags['sound']) {
-				for (const side of this.sides) {
-					for (const active of side.active) {
-						active.switchFlag = false;
-					}
+		onBeforeMovePriority: 0.5,
+		onBeforeMove(attacker, defender, move) {
+			if (!this.canSwitch(attacker.side) || attacker.forceSwitchFlag || attacker.switchFlag || !move.flags['sound']) return;
+			attacker.side.addSlotCondition(attacker, 'walkietalkie');
+			this.effectData.move = this.dex.getMove(moveid);
+			for (const side of this.sides) {
+				for (const active of side.active) {
+					active.switchFlag = false;
 				}
-				source.switchFlag = true;
-				return null;
 			}
+			attacker.switchFlag = true;
+			this.add('-activate', attacker, 'item: Walkie-Talkie');
+			this.add('-message', `${attacker.name} is calling in one of its allies!`);
 		},
 		slotCondition: 'walkietalkie',
 		condition: {
@@ -584,7 +586,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Before using a sound move, holder switches. Switch-in uses move.",
 		num: -1008,
 		gen: 8,
-	}, */
+	}, 
 	boosterenergy: {
 		name: "Booster Energy",
 		spritenum: 0, // TODO
