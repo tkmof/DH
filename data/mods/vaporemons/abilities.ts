@@ -1382,4 +1382,21 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 		num: 282,
 	},
+	damp: {
+		onAnyTryMove(target, source, effect) {
+			if (['explosion', 'mindblown', 'mistyexplosion', 'selfdestruct', 'shrapnelshot'].includes(effect.id)) {
+				this.attrLastMove('[still]');
+				this.add('cant', this.effectData.target, 'ability: Damp', effect, '[of] ' + target);
+				return false;
+			}
+		},
+		onAnyDamage(damage, target, source, effect) {
+			if (effect && effect.id === 'aftermath') {
+				return false;
+			}
+		},
+		name: "Damp",
+		rating: 1,
+		num: 6,
+	},
 };
