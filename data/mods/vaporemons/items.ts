@@ -558,8 +558,6 @@ export const Items: {[k: string]: ModdedItemData} = {
 		onBeforeMovePriority: 0.5,
 		onBeforeMove(attacker, defender, move) {
 			if (!this.canSwitch(attacker.side) || attacker.forceSwitchFlag || attacker.switchFlag || !move.flags['sound']) return;
-			attacker.side.addSlotCondition(attacker, 'walkietalkie');
-			this.effectData.move = this.dex.getMove(move.id);
 			for (const side of this.sides) {
 				for (const active of side.active) {
 					active.switchFlag = false;
@@ -568,6 +566,8 @@ export const Items: {[k: string]: ModdedItemData} = {
 			attacker.switchFlag = true;
 			this.add('-activate', attacker, 'item: Walkie-Talkie');
 			this.add('-message', `${attacker.name} is calling in one of its allies!`);
+			attacker.side.addSlotCondition(attacker, 'walkietalkie');
+			this.effectData.move = this.dex.getMove(move.id);
 		},
 		slotCondition: 'walkietalkie',
 		condition: {
