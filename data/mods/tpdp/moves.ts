@@ -199,7 +199,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		volatileStatus: 'amnesia',
 		onTryHit(target) {
-			if (target.hasStatus() || !target.runStatusImmunity('stp')) {
+			if (target.status || !target.runStatusImmunity('stp')) {
 				return false;
 			}
 		},
@@ -6768,7 +6768,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Scald", target);
 		},
 		basePowerCallback(pokemon, target, move) {
-			if (target.hasStatus(['psn', 'tox']))
+			if (target.status === 'psn' || target.status === 'tox')
 				return move.basePower * 2;
 			return move.basePower;
 		},
@@ -11357,7 +11357,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		sleepUsable: true,
 		onTry(source) {
-			return source.hasStatus('stp') || source.hasAbility('comatose');
+			return source.status === 'stp' || source.hasAbility('comatose');
 		},
 		onHit(pokemon) {
 			const noSleepTalk = [
