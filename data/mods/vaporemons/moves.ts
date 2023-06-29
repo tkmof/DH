@@ -2571,45 +2571,7 @@ stickyweb: {
 		type: "Bug",
 		zMove: {boost: {spe: 1}},
 		contestType: "Tough",
-	}, /*
-	"healingstones": {
-		num: -191,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		desc: "Sets healing stones on the user's side, healing Pokemon that switch in for 1/8th of their max HP.",
-		shortDesc: "Heals grounded allies on switch-in.",
-		id: "healingstones",
-		isViable: true,
-		name: "Healing Stones",
-		pp: 20,
-		priority: 0,
-		flags: {nonsky: 1, heal: 1},
-		sideCondition: 'healingstones',
-		effect: {
-			// this is a side condition
-			onStart: function (side) {
-				this.add('-sidestart', side, 'Healing Stones');
-				this.effectData.layers = 1;
-			},
-			onRestart: function (side) {
-				if (this.effectData.layers >= 1) return false;
-				this.add('-sidestart', side, 'Healing Stones');
-				this.effectData.layers++;
-			},
-			onSwitchIn: function (pokemon) {
-				if (!pokemon.isGrounded()) return;
-				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat')) return;
-				let healAmounts = [0, 3]; // 1/8
-				this.heal(healAmounts[this.effectData.layers] * pokemon.maxhp / 24);
-			},
-		},
-		secondary: null,
-		target: "allySide",
-		type: "Fairy",
-		zMoveBoost: {def: 1},
-		contestType: "Clever",
-	}, */
+	},
 	healingstones: {
 		num: -191,
 		accuracy: true,
