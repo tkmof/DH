@@ -1009,6 +1009,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		name: "Izanagi Object",
 		shortDesc: "This Puppet has 1.5x speed while Kohryu is active.",
 		category: 'good',
+		ignoreKlutz: true,
 		onModifySpe(spe, pokemon) {
 			if (this.field.isTerrain("kohryu"))
 				this.chainModify(1.5);

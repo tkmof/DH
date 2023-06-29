@@ -103,9 +103,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 				}
 				return;
 			}
-			console.log(this.status);
 			if (!this.hp) return false;
 			let statusSlots = this.getStatusSlots();
+			console.log(statusSlots);
 			status = this.battle.dex.getEffect(status);
 			if (status.statusSlots && statusSlots + status.statusSlots > 2) {
 				if ((sourceEffect as Move)?.status) {

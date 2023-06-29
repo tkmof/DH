@@ -73,7 +73,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Soak", target);
+			this.add('-anim', source, "Fake Tears", target);
 		},
 		status: ['psn', 'fear'],
 		// Class: EN
@@ -9573,37 +9573,32 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		beforeTurnCallback(pokemon) {
+			pokemon.addVolatile('smashspin');
+		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Rapid Spin", target);
 		},
-		onAfterHit(target, pokemon) {
-			if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
-				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
-			}
-			const sideConditions = ['bindtrap', 'spikes', 'poisontrap', 'gmaxsteelsurge'];
-			for (const condition of sideConditions) {
-				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
+		condition: {
+			duration: 1,
+			onUpdate (pokemon) {
+				//if (!this.activeMove || this.activeMove.id !== 'smashspin') return;
+				//if (this.activeMove) console.log(this.activeMove.id);
+				if (pokemon.moveThisTurn !== 'smashspin') return;
+				if (pokemon.hp) {
+					if(pokemon.removeVolatile('drainseed')) this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
+					const sideConditions = ['bindtrap', 'spikes', 'poisontrap', 'gmaxsteelsurge'];
+					for (const condition of sideConditions) {
+						if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+							this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
+						}
+					}
+					if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+						pokemon.removeVolatile('partiallytrapped');
+					}
 				}
-			}
-			if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
-				pokemon.removeVolatile('partiallytrapped');
-			}
-		},
-		onAfterSubDamage(damage, target, pokemon) {
-			if (pokemon.hp && pokemon.removeVolatile('drainseed')) {
-				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
-			}
-			const sideConditions = ['bindtrap', 'spikes', 'poisontrap', 'gmaxsteelsurge'];
-			for (const condition of sideConditions) {
-				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
-				}
-			}
-			if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
-				pokemon.removeVolatile('partiallytrapped');
-			}
+			},
 		},
 	},
 	smogshot: {
