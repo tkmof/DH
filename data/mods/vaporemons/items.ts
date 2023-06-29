@@ -149,7 +149,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		onTryHealPriority: 1,
 		onTryHeal(damage, target, source, effect) {
-			const heals = ['leechseed', 'ingrain', 'aquaring', 'strengthsap'];
+			const heals = ['leechseed', 'ingrain', 'aquaring', 'strengthsap', 'healingstones'];
 			if (heals.includes(effect.id)) {
 				return this.chainModify([0x14CC, 0x1000]);
 			}
@@ -547,6 +547,42 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		desc: "Holder's contact moves have 1.25x power. Bounces back bullet/ball moves and breaks when it does.",
 		num: -1007,
+		gen: 8,
+	},
+	walkietalkie: {
+		name: "Walkie-Talkie",
+		spritenum: 713,
+		fling: {
+			basePower: 20,
+		},
+		onBeforeMove(pokemon) {
+			if (!this.canSwitch(pokemon.side) || pokemon.forceSwitchFlag || pokemon.switchFlag) return false;
+			if (pokemon.side.addSlotCondition(pokemon, 'walkietalkie') && move.flags['sound']) {
+				for (const side of this.sides) {
+					for (const active of side.active) {
+						active.switchFlag = false;
+					}
+				}
+				source.switchFlag = true;
+				return null;
+			}
+		},
+		slotCondition: 'walkietalkie',
+		condition: {
+			duration: 1,
+			onFaint(target) {
+				target.side.removeSlotCondition(target, 'walkietalkie');
+			},
+			onSwitchIn(target) {
+				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
+					const move = this.dex.getMove(this.effectData.move);
+					this.useMove(move, target, this.effectData.moveTarget);
+				}
+				target.side.removeSlotCondition(target, 'walkietalkie');
+			},
+		},
+		desc: "Before using a sound move, holder switches. Switch-in uses move.",
+		num: -1008,
 		gen: 8,
 	},
 };
