@@ -555,9 +555,9 @@ export const Items: {[k: string]: ModdedItemData} = {
 		fling: {
 			basePower: 20,
 		},
-		onBeforeMove(pokemon) {
-			if (!this.canSwitch(pokemon.side) || pokemon.forceSwitchFlag || pokemon.switchFlag) return false;
-			if (pokemon.side.addSlotCondition(pokemon, 'walkietalkie') && move.flags['sound']) {
+		onBeforeMove(target, source, move) {
+			if (!this.canSwitch(source.side) || source.forceSwitchFlag || source.switchFlag) return false;
+			if (source.side.addSlotCondition(source, 'walkietalkie') && source.flags['sound']) {
 				for (const side of this.sides) {
 					for (const active of side.active) {
 						active.switchFlag = false;
