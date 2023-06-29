@@ -73,7 +73,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Soak", target);
+			this.add('-anim', source, "Fake Tears", target);
 		},
 		status: ['psn', 'fear'],
 		// Class: EN
@@ -162,6 +162,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					const stats: BoostID[] = [];
 					let stat: BoostID;
 					for (stat in target.boosts) {
+						if (stat === 'accuracy' || stat === 'evasion') continue;
 						if (target.boosts[stat] > -6) {
 							stats.push(stat);
 						}
@@ -198,7 +199,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		volatileStatus: 'amnesia',
 		onTryHit(target) {
-			if (target.hasStatus() || !target.runStatusImmunity('stp')) {
+			if (target.status || !target.runStatusImmunity('stp')) {
 				return false;
 			}
 		},
@@ -2347,7 +2348,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Boomburst", target);
 		},
 		self: {
-			boosts: {atk: -1, def: 1}
+			boosts: {atk: -1, def: -1}
 		}
 		// Class: 2
 		// Effect Chance: 1000
@@ -6401,7 +6402,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Spikes", target);
 		},
-		sideCondition: 'spikes',
+		sideCondition: 'minetrap',
+		condition: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'minetrap');
+				this.effectData.layers = 1;
+			},
+			onRestart(side) {
+				if (this.effectData.layers >= 3) return false;
+				this.add('-sidestart', side, 'minetrap');
+				this.effectData.layers++;
+			},
+			onSwitchIn(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasItem('tengugeta')) return;
+				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectData.layers] * pokemon.maxhp / 24);
+			},
+		},
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 217
@@ -6767,7 +6786,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Scald", target);
 		},
 		basePowerCallback(pokemon, target, move) {
-			if (target.hasStatus(['psn', 'tox']))
+			if (target.status === 'psn' || target.status === 'tox')
 				return move.basePower * 2;
 			return move.basePower;
 		},
@@ -7086,7 +7105,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Zap Cannon", target);
 		},
-		boosts: {atk: -2}
+		self: {
+			boosts: {atk: -2}
+		}
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 234
@@ -9570,37 +9591,32 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		beforeTurnCallback(pokemon) {
+			pokemon.addVolatile('smashspin');
+		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Rapid Spin", target);
 		},
-		onAfterHit(target, pokemon) {
-			if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
-				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
-			}
-			const sideConditions = ['bindtrap', 'spikes', 'poisontrap', 'gmaxsteelsurge'];
-			for (const condition of sideConditions) {
-				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
+		condition: {
+			duration: 1,
+			onUpdate (pokemon) {
+				//if (!this.activeMove || this.activeMove.id !== 'smashspin') return;
+				//if (this.activeMove) console.log(this.activeMove.id);
+				if (pokemon.moveThisTurn !== 'smashspin') return;
+				if (pokemon.hp) {
+					if(pokemon.removeVolatile('drainseed')) this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
+					const sideConditions = ['bindtrap', 'minetrap', 'poisontrap', 'stealthtrap'];
+					for (const condition of sideConditions) {
+						if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+							this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
+						}
+					}
+					if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+						pokemon.removeVolatile('partiallytrapped');
+					}
 				}
-			}
-			if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
-				pokemon.removeVolatile('partiallytrapped');
-			}
-		},
-		onAfterSubDamage(damage, target, pokemon) {
-			if (pokemon.hp && pokemon.removeVolatile('drainseed')) {
-				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
-			}
-			const sideConditions = ['bindtrap', 'spikes', 'poisontrap', 'gmaxsteelsurge'];
-			for (const condition of sideConditions) {
-				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
-				}
-			}
-			if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
-				pokemon.removeVolatile('partiallytrapped');
-			}
+			},
 		},
 	},
 	smogshot: {
@@ -10245,7 +10261,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stealth Rock", target);
 		},
-		sideCondition: 'gmaxsteelsurge',
+		sideCondition: 'stealthtrap',
+		condition: {
+			onStart(side) {
+				this.add('-sidestart', side, 'stealthtrap');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('tengugeta')) return;
+				const steelHazard = this.dex.getActiveMove('Stealth Rock');
+				steelHazard.type = 'Steel';
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 214
@@ -11311,12 +11339,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hyper Voice", target);
 		},
-		secondary: {
+		self: {
 			chance: 10,
 			onHit(target, source, move) {
 				const stats: BoostID[] = [];
 				let stat: BoostID;
 				for (stat in source.boosts) {
+					if (stat === 'accuracy' || stat === 'evasion') continue;
 					if (source.boosts[stat] < 6) {
 						stats.push(stat);
 					}
@@ -11353,7 +11382,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		sleepUsable: true,
 		onTry(source) {
-			return source.hasStatus('stp') || source.hasAbility('comatose');
+			return source.status === 'stp' || source.hasAbility('comatose');
 		},
 		onHit(pokemon) {
 			const noSleepTalk = [
@@ -11758,12 +11787,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hyper Voice", target);
 		},
-		secondary: {
+		self: {
 			chance: 10,
 			onHit(target, source, move) {
 				const stats: BoostID[] = [];
 				let stat: BoostID;
 				for (stat in target.boosts) {
+					if (stat === 'accuracy' || stat === 'evasion') continue;
 					if (target.boosts[stat] < 6) {
 						stats.push(stat);
 					}

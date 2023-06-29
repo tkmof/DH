@@ -103,9 +103,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 				}
 				return;
 			}
-			console.log(this.status);
 			if (!this.hp) return false;
 			let statusSlots = this.getStatusSlots();
+			console.log(statusSlots);
 			status = this.battle.dex.getEffect(status);
 			if (status.statusSlots && statusSlots + status.statusSlots > 2) {
 				if ((sourceEffect as Move)?.status) {
@@ -244,7 +244,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			const item = (this.ignoringItem() ? '' : this.item);
 			if (item === 'ironball') return true;
 			// If a Fire/Flying type uses Burn Up and Roost, it becomes ???/Flying-type, but it's still grounded.
-			if (!negateImmunity && this.hasType('Flying') && !(this.hasType('???') && 'roost' in this.volatiles)) return false;
+			if (!negateImmunity && this.hasType('Wind') && !(this.hasType('???') && 'perch' in this.volatiles)) return false;
 			if (this.hasAbility('aircushion') && !this.field.isWeather("duststorm")) return false;
 			if ('magnetrise' in this.volatiles) return false;
 			if ('telekinesis' in this.volatiles) return false;

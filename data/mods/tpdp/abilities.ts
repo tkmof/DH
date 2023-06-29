@@ -1884,7 +1884,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			// n.b. only affects Hackmons
 			// interaction with No Ability is complicated: https://www.smogon.com/forums/threads/pokemon-sun-moon-battle-mechanics-research.3586701/page-76#post-7790209
-			if (pokemon.adjacentFoes().some(foeActive => foeActive.ability === 'noability')) {
+			if (pokemon.side.foe.active.some(foeActive => foeActive.ability === 'noability')) {
 				this.effectData.gaveUp = true;
 			}
 			// interaction with Ability Shield is similar to No Ability
@@ -1900,7 +1900,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				// Zen Mode included here for compatability with Gen 5-6
 				'noability', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode',
 			];
-			const possibleTargets = pokemon.adjacentFoes().filter(target => (
+			const possibleTargets = pokemon.side.foe.active.filter(target => (
 				!target.getAbility().isPermanent && !additionalBannedAbilities.includes(target.ability)
 			));
 			if (!possibleTargets.length) return;
@@ -2202,8 +2202,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(target) {
 			for (const foe of target.foes()) {
 				for (const move of foe.moves) {
-					if (this.dex.getEffectiveness(this.dex.moves.get(move), target) > 0) {
-						this.add('-move', foe, this.dex.moves.get(move).name, '[from] ability: Sixth Sense', '[of] ' + target, '[identify]');
+					if (this.dex.getEffectiveness(this.dex.getMove(move), target) > 0) {
+						this.add('-move', foe, this.dex.getMove(move).name, '[from] ability: Sixth Sense', '[of] ' + target, '[identify]');
 					}
 				}
 			}
