@@ -128,6 +128,15 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'klawf').learnset.stoneaxe = ['8L1'];
 		this.modData('Learnsets', 'avalugghisui').learnset.stoneaxe = ['8L1'];
 		this.modData('Learnsets', 'drednaw').learnset.stoneaxe = ['8L1'];
+		this.modData("Learnsets", "bellibolt").learnset.surf = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.hydropump = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.liquidation = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.flipturn = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.icebeam = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.earthpower = ["8L1"];
+		this.modData("Learnsets", "decidueye").learnset.poltergeist = ["8L1"];
+		this.modData("Learnsets", "decidueyehisui").learnset.poltergeist = ["8L1"];
+		this.modData("Learnsets", "magnemite").learnset.rapidspin = ["8L1"];
 	},
 	// For Loaded Dice and Rage Fist
 	hitStepMoveHitLoop(targets, pokemon, move) { // Temporary name
