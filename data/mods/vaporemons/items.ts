@@ -557,7 +557,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		onBeforeMove(target, source, move) {
 			if (!this.canSwitch(source.side) || source.forceSwitchFlag || source.switchFlag) return false;
-			if (source.side.addSlotCondition(source, 'walkietalkie') && source.flags['sound']) {
+			if (source.side.addSlotCondition(source, 'walkietalkie') && move.flags['sound']) {
 				for (const side of this.sides) {
 					for (const active of side.active) {
 						active.switchFlag = false;
