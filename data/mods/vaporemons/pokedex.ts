@@ -1998,7 +1998,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	screamtail: {
 		num: 985,
 		name: "Scream Tail",
-		types: ["Fairy", "Psychic"],
+		types: ["Fairy", "Dragon"],
 		gender: "N",
 		baseStats: {hp: 115, atk: 65, def: 99, spa: 65, spd: 115, spe: 111},
 		abilities: {0: "Protosmosis", H: "Cute Charm"},
