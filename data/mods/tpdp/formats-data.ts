@@ -779,16 +779,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	extramerlin: {
 		tier: "TPDP OU"
 	},
-	normalmerry: {
+	normalmaribel: {
 		tier: "TPDP LC"
 	},
-	defensemerry: {
+	defensemaribel: {
 		tier: "TPDP OU"
 	},
-	powermerry: {
+	powermaribel: {
 		tier: "TPDP OU"
 	},
-	extramerry: {
+	extramaribel: {
 		tier: "TPDP OU"
 	},
 	normalmike: {

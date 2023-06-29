@@ -2347,7 +2347,7 @@ export const Formats: FormatList = [
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['TPDP OU', 'TPDP LC'];
-			let natures = ['Red', 'Blue', 'Black', 'Green', 'White']
+			let natures = ['Red', 'Blue', 'Black', 'Green', 'White'];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
@@ -2372,12 +2372,13 @@ export const Formats: FormatList = [
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['TPDP OU', 'TPDP LC'];
+			let natures = ['Red', 'Blue', 'Black', 'Green', 'White'];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
 					return [set.species + ' is not allowed in TPDP.'];
 				}
-				if (!set.nature.includes('Red', 'Blue', 'Black', 'Green', 'White')) {
+				if (!natures.includes(set.nature)) {
 					return [set.nature + ' is not a valid nature in TPDP. Hint: to set Red, Blue, Black, White, or Green nature, use the Import/Export button.'];
 				}
 			}

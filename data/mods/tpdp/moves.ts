@@ -941,12 +941,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Facade", target);
 		},
-		basePowerCallback(pokemon, target, move) {
-			if (pokemon.hasStatus()) {
-				this.debug('BP doubled from status condition');
-				return move.basePower * 2;
+		onBasePower(basePower, pokemon) {
+			if (pokemon.status && pokemon.status !== 'slp') {
+				return this.chainModify(2);
 			}
-			return move.basePower;
 		},
 	},
 	booing: {
@@ -1855,7 +1853,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: 2
@@ -3992,17 +3990,31 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Protect", target);
 		},
-		onTryHit(source, target, move) {
-			if (target.removeVolatile('forceshield')) {
-				this.add('-fail', source);
-				return false;
-			}
+		onTryHit(pokemon) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
 		},
 		volatileStatus: 'forceshield',
 		condition: {
 			noCopy: true,
+			duration: 1,
+			onStart(target) {
+				this.add('-message', `${target.name} activated its Force Shield!`);
+				this.add('-singleturn', target, 'Force Shield', '[silent]');
+			},
 			onEffectiveness(typeMod, target, type, move) {
 				return 0;
+			},
+			onSourceModifyDamage(damage, source, target, move) {
+				if (move.category === 'Special' || move.category === 'Physical') {
+					return this.clampIntRange(target.getUndynamaxedHP() * 0.0625, 1);
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-message', `${pokemon.name} restored their stance!`);
+				this.add('-end', pokemon, 'move: Force Shield', '[silent]');
 			},
 		}
 		// Class: EN
@@ -7265,6 +7277,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		heal: [1, 2],
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Roost", target);
@@ -7274,9 +7287,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		condition: {
 			duration: 1,
-			onResidualOrder: 25,
+			onResidualOrder: 20,
 			onStart(target) {
 				this.add('-singleturn', target, 'move: Perch');
+			},
+			onTypePriority: -1,
+			onType(types, pokemon) {
+				this.effectData.typeWas = types;
+				return types.filter(type => type !== 'Wind');
 			},
 		},
 		// Class: EN
@@ -7330,24 +7348,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 		// Effect Chance: 100
 		// Effect ID: 150
 	},
-	phantasmagoria: { // Unused
-		name: "Phantasmagoria",
-		shortDesc: "Lowers the foe's FoAtk.",
+	phantomensemble: {
+		name: "Phantom Ensemble",
+		shortDesc: "Lowers the target's Atk by 1.",
 		target: "normal",
-		type: "Void",
+		type: "Sound",
 		category: "Physical",
-		basePower: 50,
-		pp: 9.375,
-		accuracy: 100,
+		basePower: 55,
+		pp: 15,
+		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Round", target);
+			this.add('-anim', source, "Snarl", target);
 		},
-		// Class: EN
-		// Effect Chance: 100
-		// Effect ID: 0
+		secondary: {
+			chance: 100,
+			boosts: {atk: -1}
+		}
+		// Class: 2
+		// Effect Chance: 1000
+		// Effect ID: 34
 	},
 	phaseinversion: {
 		name: "Phase Inversion",
@@ -7819,7 +7841,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Conversion", target);
 		},
 		onHit(target, source, move) {
-			const type = this.dex.moves.get(target.moveSlots[0].id).type;
+			const type = this.dex.getMove(target.moveSlots[0].id).type;
 			if (target.hasType(type) || !target.setType(type)) return false;
 			this.add('-start', target, 'typechange', type);
 		},
@@ -9752,7 +9774,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: BU
@@ -10265,7 +10287,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: BU
@@ -11341,7 +11363,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			for (const moveSlot of pokemon.moveSlots) {
 				const moveid = moveSlot.id;
 				if (!moveid) continue;
-				const move = this.dex.moves.get(moveid);
+				const move = this.dex.getMove(moveid);
 				if (noSleepTalk.includes(moveid) || move.flags['charge'] || (move.isZ && move.basePower !== 1) || move.isMax) {
 					continue;
 				}
@@ -11478,7 +11500,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onDisableMove(pokemon) {
 				for (const moveSlot of pokemon.moveSlots) {
-					const move = this.dex.moves.get(moveSlot.id);
+					const move = this.dex.getMove(moveSlot.id);
 					if (move.category === 'Status') {
 						pokemon.disableMove(moveSlot.id);
 					}
