@@ -1678,9 +1678,9 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	tengugeta: {
 		name: "Tengu Geta",
-		shortDesc: "When this Puppet is hit by an attack, the attacker loses 1/8 max HP. Single use.",
+		shortDesc: "Holder is immune to hazards.",
 		category: 'great',
-		// Implemented in conditions.ts
+		// Implemented in moves.ts
 	},
 	thorncharm: {
 		name: "Thorn Charm",
