@@ -589,7 +589,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Before using a sound move, holder switches. Switch-in uses move.",
 		num: -1008,
 		gen: 8,
-	}, 
+	}, /*
 	walkietalkie: {
 		name: "Walkie-Talkie",
 		spritenum: 713,
@@ -626,7 +626,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Before using a sound move, holder switches. Switch-in uses move.",
 		num: -1008,
 		gen: 8,
-	}, 
+	}, */
 	boosterenergy: {
 		name: "Booster Energy",
 		spritenum: 0, // TODO
