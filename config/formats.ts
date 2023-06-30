@@ -2288,33 +2288,7 @@ export const Formats: FormatList = [
 				}
 			}
 		},
-	}, /*
-	{
-		name: "[Gen 8] MetaMons Expanded",
-	   desc: [
-			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
-		],
-		threads: [
-			'&bullet; <a href="https://www.smogon.com/forums/threads/metamons-slate-3-galarian-slowbro-sableye-grapploct.3703361/">MetaMons</a>',
-			'&bullet; <a href="https://docs.google.com/spreadsheets/d/142lxuFtTgQCY56Wz_ZjAGaqlk7HgJj0CVKMChQcei1U/edit#gid=0">Spreadsheet</a>',
-		],
-		mod: 'metamons', 
-		ruleset:['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Z-Move Clause'],
-		banlist: [
-			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
-		],
-		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}} */
-			let speciesTable = {};
-			let allowedTiers = ['Gen 7 MetaMons', 'Gen 8 MetaMons', 'MetaMons'];
-			for (const set of team) {
-				let template = this.dex.getSpecies(set.species);
-				if (template.tier !== 'Gen 7 MetaMons' && template.tier !== 'Gen 8 MetaMons' && template.tier !== 'MetaMons') {
-					return [set.species + ' is not legal in the MetaMons Expanded format.'];
-				}
-			}
-		},
-	 }, */
+	},
 	{
 		section: "Non-Pet Mod Bonus Formats",
 		column: 3,
