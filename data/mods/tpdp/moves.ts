@@ -4083,10 +4083,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Aromatherapy", target);
 		},
-		onHit(target, source, move) {
-			for (const pokemon of target.side.activeTeam()) {
-				pokemon.clearStatus();
+		onHit(pokemon, source, move) {
+			this.add('-activate', source, 'move: Aromatherapy');
+			let success = false;
+			for (const ally of pokemon.side.pokemon) {
+				if (ally.cureStatus()) success = true;
 			}
+			return success;
 		},
 		// Class: EN
 		// Effect Chance: 100
