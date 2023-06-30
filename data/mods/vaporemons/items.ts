@@ -605,6 +605,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			move.basePower = 0;
 			move.accuracy = true;
 			move.selfSwitch = true;
+			move.ignoreImmunity = true;
 			pokemon.side.addSlotCondition(pokemon, 'walkietalkie');
 			this.add('-activate', pokemon, 'item: Walkie-Talkie');
 			this.add('-message', `${pokemon.name} is calling in one of its allies!`);
@@ -615,7 +616,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			onFaint(target) {
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
-			onSwap(target) {
+			onSwitchIn(target) {
 				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
 					this.useMove("Copycat", target, this.effectData.moveTarget);
 				}
