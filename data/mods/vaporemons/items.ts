@@ -636,6 +636,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		onModifyMove(move, pokemon) {
 			if (!this.canSwitch(pokemon.side) || pokemon.forceSwitchFlag || pokemon.switchFlag ||
 				 !move.flags['sound'] || pokemon.side.getSideCondition('walkietalkie')) return;
+			this.effectData.move = this.dex.getMove(move.id);
 			delete move.flags['contact'];
 			delete move.flags['wind'];
 			delete move.flags['bullet'];
