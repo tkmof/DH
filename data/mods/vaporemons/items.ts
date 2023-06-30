@@ -559,7 +559,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		onBeforeMove(attacker, defender, move) {
 			if (!this.canSwitch(attacker.side) || attacker.forceSwitchFlag || attacker.switchFlag || !move.flags['sound']) return;
 			this.effectData.move = this.dex.getMove(move.id);
-			target.deductPP(move.id, 1);
+			attacker.deductPP(move.id, 1);
 			if (attacker.side.addSlotCondition(attacker, 'walkietalkie')) {
 			for (const side of this.sides) {
 				for (const active of side.active) {
@@ -582,6 +582,42 @@ export const Items: {[k: string]: ModdedItemData} = {
 				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
 					const move = this.dex.getMove(this.effectData.move);
 					this.useMove(move, target, this.effectData.moveTarget);
+				}
+				target.side.removeSlotCondition(target, 'walkietalkie');
+			},
+		},
+		desc: "Before using a sound move, holder switches. Switch-in uses move.",
+		num: -1008,
+		gen: 8,
+	}, 
+	walkietalkie: {
+		name: "Walkie-Talkie",
+		spritenum: 713,
+		fling: {
+			basePower: 20,
+		},
+		onModifyMove(move, pokemon) {
+			if (!this.canSwitch(attacker.side) || attacker.forceSwitchFlag || attacker.switchFlag ||
+				 !move.flags['sound'] || pokemon.side.getSideCondition('walkietalkie')) return;
+			delete move.flags['contact'];
+			delete move.flags['wind'];
+			delete move.flags['bullet'];
+			move.basePower = 0;
+			move.accuracy = true;
+			move.selfSwitch = true;
+			pokemon.side.addSlotCondition(attacker, 'walkietalkie');
+			this.add('-activate', pokemon, 'item: Walkie-Talkie');
+			this.add('-message', `${pokemon.name} is calling in one of its allies!`);
+		},
+		slotCondition: 'walkietalkie',
+		condition: {
+			duration: 1,
+			onFaint(target) {
+				target.side.removeSlotCondition(target, 'walkietalkie');
+			},
+			onSwitchIn(target) {
+				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
+					this.useMove("Copycat", target, this.effectData.moveTarget);
 				}
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
