@@ -1968,6 +1968,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	decidueyehisui: {
 		inherit: true,
+		abilities: {0: "Overgrow", H: "Scrappy"},
 		types: ["Ghost", "Fighting"],
 	},
 	magnemite: {
