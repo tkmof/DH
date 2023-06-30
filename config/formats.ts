@@ -2332,7 +2332,11 @@ export const Formats: FormatList = [
 		debug: true,
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
 		ruleset: ['Standard GBU', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
-		banlist: ['Boundary Trance', 'Dream Shard', 'Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
+		banlist: ['Boundary Trance', 'Dream Shard', 
+		'Camouflage', 'Favorable Wind', 'Dead of Night', //evasion
+		'Poison Labyrinth', 'Adverse Wind', //trapping
+		'Moody',
+		'Backup Plan', //baton pass
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/

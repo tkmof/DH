@@ -169,10 +169,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onBeforeMovePriority: 10,
 		onBeforeMove(pokemon, target, move) {
 			if (pokemon.hasAbility(['earlybird', 'vigorous'])) {
-				this.statusData.time--;
+				pokemon.statusData.time--;
 			}
-			this.statusData.time--;
-			if (this.statusData.time <= 0) {
+			pokemon.statusData.time--;
+			if (pokemon.statusData.time <= 0) {
 				pokemon.cureStatus('stp');
 				return;
 			}
