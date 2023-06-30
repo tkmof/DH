@@ -586,7 +586,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
 		},
-		desc: "Before using a sound move, holder switches. Switch-in uses move.",
+		desc: "(Mostly non-functional placeholder) Before using a sound move, holder switches. Switch-in uses move.",
 		num: -1008,
 		gen: 8,
 	}, /*
