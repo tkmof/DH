@@ -627,6 +627,33 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: -1008,
 		gen: 8,
 	}, */
+	walkietalkie: {
+		name: "Walkie-Talkie",
+		spritenum: 713,
+		fling: {
+			basePower: 20,
+		},
+		onBeforeMovePriority: 0.5,
+		onBeforeMove(attacker, defender, move) {
+			if (!this.canSwitch(attacker.side) || attacker.forceSwitchFlag || attacker.switchFlag || !move.flags['sound']) return;
+			this.effectData.move = this.dex.getMove(move.id);
+			attacker.deductPP(move.id, 1);
+			if (attacker.side.addSlotCondition(attacker, 'walkietalkie')) {
+			for (const side of this.sides) {
+				for (const active of side.active) {
+					active.switchFlag = false;
+				}
+			}
+			this.add('-activate', attacker, 'item: Walkie-Talkie');
+			this.add('-message', `${attacker.name} is calling in one of its allies!`);
+			attacker.switchFlag = true;
+			return null;
+			}
+		},
+		desc: "(Mostly non-functional placeholder) Before using a sound move, holder switches. Switch-in uses move.",
+		num: -1008,
+		gen: 8,
+	},
 	boosterenergy: {
 		name: "Booster Energy",
 		spritenum: 0, // TODO
