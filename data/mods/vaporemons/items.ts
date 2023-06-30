@@ -605,7 +605,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			move.basePower = 0;
 			move.accuracy = true;
 			move.selfSwitch = true;
-			pokemon.side.addSlotCondition(attacker, 'walkietalkie');
+			pokemon.side.addSlotCondition(pokemon, 'walkietalkie');
 			this.add('-activate', pokemon, 'item: Walkie-Talkie');
 			this.add('-message', `${pokemon.name} is calling in one of its allies!`);
 		},
