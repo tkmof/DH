@@ -633,22 +633,19 @@ export const Items: {[k: string]: ModdedItemData} = {
 		fling: {
 			basePower: 20,
 		},
-		onBeforeMovePriority: 0.5,
-		onBeforeMove(attacker, defender, move) {
-			if (!this.canSwitch(attacker.side) || attacker.forceSwitchFlag || attacker.switchFlag || !move.flags['sound']) return;
-			this.effectData.move = this.dex.getMove(move.id);
-			attacker.deductPP(move.id, 1);
-			if (attacker.side.addSlotCondition(attacker, 'walkietalkie')) {
-			for (const side of this.sides) {
-				for (const active of side.active) {
-					active.switchFlag = false;
-				}
-			}
-			this.add('-activate', attacker, 'item: Walkie-Talkie');
-			this.add('-message', `${attacker.name} is calling in one of its allies!`);
-			attacker.switchFlag = true;
-			return null;
-			}
+		onModifyMove(move, pokemon) {
+			if (!this.canSwitch(pokemon.side) || pokemon.forceSwitchFlag || pokemon.switchFlag ||
+				 !move.flags['sound'] || pokemon.side.getSideCondition('walkietalkie')) return;
+			delete move.flags['contact'];
+			delete move.flags['wind'];
+			delete move.flags['bullet'];
+			move.basePower = 0;
+			move.accuracy = true;
+			move.selfSwitch = true;
+			move.ignoreImmunity = true;
+			pokemon.side.addSlotCondition(pokemon, 'walkietalkie');
+			this.add('-activate', pokemon, 'item: Walkie-Talkie');
+			this.add('-message', `${pokemon.name} is calling in one of its allies!`);
 		},
 		desc: "(Mostly non-functional placeholder) Before using a sound move, holder switches. Switch-in uses move.",
 		num: -1008,
