@@ -578,10 +578,10 @@ export const Items: {[k: string]: ModdedItemData} = {
 			onFaint(target) {
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
-			onUpdate(target) {
+			onSwap(target) {
 				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
 					const move = this.dex.getMove(this.effectData.move);
-					this.useMove(move, target, this.effectData.moveTarget);
+					this.runMove(move, target, this.getTargetLoc(target.side.foe.active[0], target), null, false, true);
 				}
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
