@@ -2305,7 +2305,7 @@ export const Formats: FormatList = [
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
 		banlist: ['Boundary Trance', 'Dream Shard', 
 		'Camouflage', 'Favorable Wind', 'Dead of Night', //evasion
-		'Poison Labryinth', 'Adverse Wind', //trapping
+		'Poison Labyrinth', 'Adverse Wind', //trapping
 		'Moody',
 		'Backup Plan', //baton pass
 		],
