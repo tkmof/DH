@@ -2934,8 +2934,8 @@ stickyweb: {
 			onSwap(target) {
 				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
 					this.add('-message', `${pokemon.name} was called in!`);
-					const move = this.dex.getMove(this.effectData.move);
-					this.runMove(move, target, this.getTargetLoc(target.side.foe.active[0], target), null, false, true);
+					// const move = this.dex.getMove(this.effectData.move);
+					this.runMove('copycat', target, this.getTargetLoc(target.side.foe.active[0], target), null, false, true);
 				}
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
