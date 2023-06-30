@@ -2288,7 +2288,7 @@ export const Formats: FormatList = [
 				}
 			}
 		},
-	},
+	}, /*
 	{
 		name: "[Gen 8] MetaMons Expanded",
 	   desc: [
@@ -2314,7 +2314,7 @@ export const Formats: FormatList = [
 				}
 			}
 		},
-	 },
+	 }, */
 	{
 		section: "Non-Pet Mod Bonus Formats",
 		column: 3,
