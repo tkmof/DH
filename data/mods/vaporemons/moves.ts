@@ -2912,4 +2912,38 @@ stickyweb: {
 		maxMove: {basePower: 130},
 		contestType: "Cool",
 	},
+	walkietalkiemove: {
+		accuracy: true,
+		basePower: 0,
+		category: "Physical",
+		shortDesc: "Referenced by the Walkie-Talkie item in order for it to work.",
+		name: "Walkie-Talkie Move",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sing", target);
+		},
+		slotCondition: 'walkietalkie',
+		condition: {
+			duration: 1,
+			onFaint(target) {
+				target.side.removeSlotCondition(target, 'walkietalkie');
+			},
+			onSwap(target) {
+				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
+					const move = this.dex.getMove(this.effectData.move);
+					this.runMove(move, target, this.getTargetLoc(target.side.foe.active[0], target), null, false, true);
+				}
+				target.side.removeSlotCondition(target, 'walkietalkie');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		zMove: {basePower: 140},
+		maxMove: {basePower: 130},
+		contestType: "Cool",
+	},
 };
