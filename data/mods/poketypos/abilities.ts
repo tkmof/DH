@@ -196,13 +196,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	lingeringaroma: {
 		onDamagingHit(damage, target, source, move) {
 			const sourceAbility = source.getAbility();
-			if (sourceAbility.isPermanent || sourceAbility.id === 'mummy') {
+			if (sourceAbility.isPermanent || sourceAbility.id === 'lingeringaroma') {
 				return;
 			}
 			if (move.flags['contact']) {
-				const oldAbility = source.setAbility('mummy', target);
+				const oldAbility = source.setAbility('lingeringaroma', target);
 				if (oldAbility) {
-					this.add('-activate', target, 'ability: Mummy', this.dex.getAbility(oldAbility).name, '[of] ' + source);
+					this.add('-activate', target, 'ability: Lingering Aroma', this.dex.getAbility(oldAbility).name, '[of] ' + source);
 				}
 			}
 		},
@@ -212,6 +212,27 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Lingering Aroma",
 		shortDesc: "Making contact with this Pokemon has the attacker's Ability become Lingering Aroma.",
 		rating: 2,
+		num: 268,
+	},
+	rockypayload: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Rock') {
+				this.debug('Rocky Payload boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Rock') {
+				this.debug('Rocky Payload boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Rocky Payload",
+		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Rock-type attack.",
+		rating: 3.5,
+		num: 276,
 	},
 	sharpness: {
 		shortDesc: "This Pokemon's slicing moves have their power multiplied by 1.5.",

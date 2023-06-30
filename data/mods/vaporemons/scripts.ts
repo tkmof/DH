@@ -128,6 +128,126 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'klawf').learnset.stoneaxe = ['8L1'];
 		this.modData('Learnsets', 'avalugghisui').learnset.stoneaxe = ['8L1'];
 		this.modData('Learnsets', 'drednaw').learnset.stoneaxe = ['8L1'];
+		this.modData("Learnsets", "bellibolt").learnset.surf = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.hydropump = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.liquidation = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.flipturn = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.icebeam = ["8L1"];
+		this.modData("Learnsets", "bellibolt").learnset.earthpower = ["8L1"];
+		this.modData("Learnsets", "decidueye").learnset.poltergeist = ["8L1"];
+		this.modData("Learnsets", "decidueyehisui").learnset.poltergeist = ["8L1"];
+		this.modData("Learnsets", "magnemite").learnset.rapidspin = ["8L1"];
+		this.modData('Learnsets', 'azelf').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'mesprit').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'uxie').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'carbink').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'diancie').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'mew').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'dunsparce').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'hatenna').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'gardevoir').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'sylveon').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'espeon').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'bronzor').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'spoink').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'rabsca').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'sableye').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'misdreavus').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'golduck').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'vespiquen').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'stonjourner').learnset.healingstones = ['8L1'];
+		this.modData('Learnsets', 'forretress').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'heatran').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'ironthorns').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'irontreads').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'corviknight').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'glimmora').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'magnezone').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'coalossal').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'klefki').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'heracross').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'shellder').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'scizor').learnset.shrapnelshot = ['8L1'];
+		this.modData('Learnsets', 'finizen').learnset.lifedew = ['8L1'];
+		this.modData('Learnsets', 'vaporeon').learnset.lifedew = ['8L1'];
+		this.modData('Learnsets', 'veluza').learnset.lifedew = ['8L1'];
+		this.modData('Learnsets', 'azurill').learnset.lifedew = ['8L1'];
+		this.modData('Learnsets', 'wochien').learnset.junglehealing = ['8L1'];
+		this.modData('Learnsets', 'tsareena').learnset.junglehealing = ['8L1'];
+		this.modData('Learnsets', 'rillaboom').learnset.junglehealing = ['8L1'];
+		this.modData('Learnsets', 'brutebonnet').learnset.junglehealing = ['8L1'];
+		this.modData('Learnsets', 'lurantis').learnset.junglehealing = ['8L1'];
+		this.modData('Learnsets', 'tropius').learnset.junglehealing = ['8L1'];
+	},
+	hitStepAccuracy(targets, pokemon, move) {
+		const hitResults = [];
+		for (const [i, target] of targets.entries()) {
+			this.activeTarget = target;
+			// calculate true accuracy
+			let accuracy = move.accuracy;
+			if (move.ohko) { // bypasses accuracy modifiers
+				if (!target.isSemiInvulnerable()) {
+					accuracy = 30;
+					if (move.ohko === 'Ice' && this.gen >= 7 && !pokemon.hasType('Ice')) {
+						accuracy = 20;
+					}
+					if (!target.volatiles['dynamax'] && pokemon.level >= target.level &&
+						(move.ohko === true || !target.hasType(move.ohko))) {
+						accuracy += (pokemon.level - target.level);
+					} else {
+						this.add('-immune', target, '[ohko]');
+						hitResults[i] = false;
+						continue;
+					}
+				}
+			} else {
+				const boostTable = [1, 4 / 3, 5 / 3, 2, 7 / 3, 8 / 3, 3];
+
+				let boosts;
+				let boost!: number;
+				if (accuracy !== true) {
+					if (!move.ignoreAccuracy) {
+						boosts = this.runEvent('ModifyBoost', pokemon, null, null, {...pokemon.boosts});
+						boost = this.clampIntRange(boosts['accuracy'], -6, 6);
+						if (boost > 0) {
+							accuracy *= boostTable[boost];
+						} else {
+							accuracy /= boostTable[-boost];
+						}
+					}
+					if (!move.ignoreEvasion) {
+						boosts = this.runEvent('ModifyBoost', target, null, null, {...target.boosts});
+						boost = this.clampIntRange(boosts['evasion'], -6, 6);
+						if (boost > 0) {
+							accuracy /= boostTable[boost];
+						} else if (boost < 0) {
+							accuracy *= boostTable[-boost];
+						}
+					}
+				}
+				accuracy = this.runEvent('ModifyAccuracy', target, pokemon, move, accuracy);
+			}
+			if (move.alwaysHit || (move.id === 'toxic' && this.gen >= 6 && pokemon.hasType('Poison'))) {
+				accuracy = true; // bypasses ohko accuracy modifiers
+			} else {
+				accuracy = this.runEvent('Accuracy', target, pokemon, move, accuracy);
+			}
+			if (accuracy !== true && !this.randomChance(accuracy, 100)) {
+				if (move.smartTarget) {
+					move.smartTarget = false;
+				} else {
+					if (!move.spreadHit) this.attrLastMove('[miss]');
+					this.add('-miss', pokemon, target);
+				}
+				if (!move.ohko && pokemon.hasItem('blunderpolicy') && pokemon.useItem()) {
+					this.boost({accuracy: 1, spe: 2}, pokemon);
+				}
+				hitResults[i] = false;
+				continue;
+			}
+			hitResults[i] = true;
+		}
+		return hitResults;
 	},
 	// For Loaded Dice and Rage Fist
 	hitStepMoveHitLoop(targets, pokemon, move) { // Temporary name
