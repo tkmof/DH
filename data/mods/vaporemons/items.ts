@@ -559,6 +559,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		onBeforeMove(attacker, defender, move) {
 			if (!this.canSwitch(attacker.side) || attacker.forceSwitchFlag || attacker.switchFlag || !move.flags['sound']) return;
 			this.effectData.move = this.dex.getMove(move.id);
+			target.deductPP(move.id, 1);
 			if (attacker.side.addSlotCondition(attacker, 'walkietalkie')) {
 			for (const side of this.sides) {
 				for (const active of side.active) {
