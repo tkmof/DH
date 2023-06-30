@@ -615,7 +615,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			onFaint(target) {
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
-			onSwitchIn(target) {
+			onSwap(target) {
 				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
 					this.useMove("Copycat", target, this.effectData.moveTarget);
 				}
