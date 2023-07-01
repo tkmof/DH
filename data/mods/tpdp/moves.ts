@@ -698,7 +698,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 70,
 		priority: 0,
 		flags: {},
-		onPrepareHit: function(target, source, move) {
+		onPrepareHit: function(source, target, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Spore", target);
 		},
