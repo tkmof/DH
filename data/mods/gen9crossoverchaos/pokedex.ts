@@ -84,7 +84,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		gender: "M",
 		baseStats: {hp: 90, atk: 75, def: 80, spa: 115, spd: 110, spe: 60},
 		abilities: {0: "Torrent", H: "Thick Fat"},
-		weightkg: 175,
+		weightkg: 680,
 	},
 	clownpiece: {
 		num: 9,
