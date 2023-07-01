@@ -99,5 +99,17 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "CC UU",
 		doublesTier: "DCC OU",
 	},
+	ishtar: {
+		tier: "CC OU",
+		doublesTier: "DCC OU",
+	},
+	matka: {
+		tier: "CC OU",
+		doublesTier: "DCC OU",
+	},
+	hecatiatropical: {
+		tier: "CC OU",
+		doublesTier: "DCC OU",
+	},
 
 };
