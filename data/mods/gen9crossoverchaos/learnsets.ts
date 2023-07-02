@@ -1778,6 +1778,7 @@ export const Learnsets = {
 			icepunch: ["8L1"],
 			icywind: ["8L1"],
 			irontail: ["8L1"],
+			lifesoup: ["8L1"],
 			liquidation: ["8L1"],
 			lowkick: ["8L1"],
 			mimic: ["8L1"],
