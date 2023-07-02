@@ -413,6 +413,91 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Ice",
 		contestType: "Cool",
 	},
+	arrowshot: {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Arrow Shot",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Spirit Shackle", target);
+		},
+		critRatio: 2,
+		tracksTarget: true,
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+	},
+	rangeshakingfirewood: {
+		accuracy: true,
+		basePower: 190,
+		category: "Special",
+		name: "Range-Shaking Firewood",
+		shortDesc: "Raises the user's SpA by 1 before attacking.",
+		pp: 1,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMove(attacker, defender, move) {
+			this.add('-prepare', attacker, move.name);
+			this.boost({spa: 1}, attacker, attacker, move);
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Meteor Beam", target);
+		},
+		isZ: "ishtariumz",
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+	},
+	lifesoup: {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Life Soup",
+		shortDesc: "User heals 1/10 max HP.",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+		    this.attrLastMove('[still]');
+		    this.add('-anim', source, "Waterfall", target);
+		},
+		onAfterHit(target, source) {
+			this.heal(source.maxhp / 10, source, target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Tough",
+	},
+	waterplanet: {
+		accuracy: true,
+		basePower: 150,
+		category: "Physical",
+		name: "Water Planet",
+		shortDesc: "100% chance of lowering the target's Def and SpD by 1.",
+		pp: 1,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hydro Vortex", target);
+		},
+		isZ: "hecatiumz",
+		secondary: {
+			chance: 100,
+			boosts: {
+				def: -1,
+				spd: -1,
+			},
+		},
+		target: "normal",
+		type: "Water",
+	},
 	
 	// Below are vanilla moves altered by custom interractions
 	bounce: {
@@ -603,4 +688,21 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Flying",
 		contestType: "Tough",
 	},
+	curse: {
+		inherit: true,
+		onModifyMove(move, source, target) {
+			if (!source.hasType('Ghost') && !source.hasAbility('curseweaver')) {
+				move.target = move.nonGhostTarget as MoveTarget;
+			}
+		},
+		onTryHit(target, source, move) {
+			if (!source.hasType('Ghost') && !source.hasAbility('curseweaver')) {
+				delete move.volatileStatus;
+				delete move.onHit;
+				move.self = {boosts: {spe: -1, atk: 1, def: 1}};
+			} else if (move.volatileStatus && target.volatiles['curse']) {
+				return false;
+			}
+		},
+	}
 };

@@ -170,7 +170,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Compound Eyes", H: "Call of Darkness"},
 	},
 	wrigglenightbugaltered: {
-		num: 1001,
+		num: 1023,
 		name: "Wriggle Nightbug-Altered",
 		baseSpecies: "Wriggle Nightbug",
 		forme: "Altered",
@@ -179,18 +179,40 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Color Filter", H: "Blackout Curtain"},
 	},
 	maskedman: {
-		num: 1002,
+		num: 1024,
 		name: "Masked Man",
 		types: ["Electric", "Psychic"],
 		baseStats: {hp: 70, atk: 110, def: 105, spa: 110, spd: 90, spe: 80},
 		abilities: {0: "Sharpness", 1: "Screen Cleaner", H: "Lightning Rod"},
 	},
 	jackfrost: {
-		num: 1003,
+		num: 1025,
 		name: "Jack Frost",
 		types: ["Ice", "Ghost"],
 		baseStats: {hp: 70, atk: 88, def: 54, spa: 112, spd: 75, spe: 105},
 		abilities: {0: "Slush Rush", 1: "Prankster", H: "Frigid Bloodline"},
 	},
-
+	ishtar: {
+		num: 1026,
+		name: "Ishtar",
+		types: ["Rock", "Electric"],
+		baseStats: {hp: 75, atk: 65, def: 75, spa: 135, spd: 95, spe: 105},
+		abilities: {0: "Levitate", 1: "Dazzling", H: "Long Reach"},
+	},
+	matka: {
+		num: 1027,
+		name: "Matka",
+		types: ["Poison", "Fairy"],
+		baseStats: {hp: 77, atk: 79, def: 81, spa: 133, spd: 119, spe: 41},
+		abilities: {0: "Curse Weaver"},
+	},
+	hecatialapislazulitropical: {
+		num: 1028,
+		name: "Hecatia Lapislazuli-Tropical",
+		baseSpecies: "Hecatia Lapislazuli",
+		forme: "Tropical",
+		types: ["Water", "Ground"],
+		baseStats: {hp: 100, atk: 129, def: 92, spa: 112, spd: 80, spe: 82},
+		abilities: {0: "Jelly Dessert Queen"},
+	},
 };
