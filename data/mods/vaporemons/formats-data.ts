@@ -211,37 +211,37 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	pikachuoriginal: {
-		tier: "OU",
+		tier: "PU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
 	pikachuhoenn: {
-		tier: "OU",
+		tier: "PU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
 	pikachusinnoh: {
-		tier: "OU",
+		tier: "PU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
 	pikachuunova: {
-		tier: "OU",
+		tier: "PU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
 	pikachukalos: {
-		tier: "OU",
+		tier: "PU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
 	pikachualola: {
-		tier: "OU",
+		tier: "PU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
 	pikachupartner: {
-		tier: "OU",
+		tier: "PU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
@@ -254,7 +254,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	pikachuworld: {
-		tier: "OU",
+		tier: "PU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
@@ -3744,7 +3744,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "RU",
 	},
 	braviaryhisui: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
