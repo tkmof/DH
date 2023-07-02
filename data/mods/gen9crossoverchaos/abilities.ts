@@ -283,4 +283,50 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: -14,
 	},
+	frigidbloodline: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Ice') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Frigid Bloodline');
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Frigid Bloodline",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Ice moves; Ice immunity.",
+		rating: 3.5,
+		num: -15,
+	},
+	// Curse Weaver utilizing Ghost-type curse is handled within moves.ts
+	curseweaver: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				this.debug('Curse Weaver boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				this.debug('Curse Weaver Boost boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Curse Weaver",
+		shortDesc: "Attacking stat multiplied by 1.5 while using a Ghost-type attack. Curse becomes Ghost-type version.",
+		rating: 3.5,
+		num: -16,
+	},
+	jellydessertqueen: {
+		onResidual(pokemon) {
+			this.add('-heal', pokemon, pokemon.getHealth, '[from] ability: Jelly Dessert Queen');
+			this.heal(pokemon.baseMaxhp / 16);
+		},
+		name: "Jelly Dessert Queen",
+		shortDesc: "This Pokemon recovers 1/16 max HP at the end of each turn.",
+		rating: 4,
+		num: -17,
+	},
 };
