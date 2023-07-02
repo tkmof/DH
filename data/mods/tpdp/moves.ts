@@ -698,16 +698,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 70,
 		priority: 0,
 		flags: {},
-		onPrepareHit: function(target, source, move) {
+		onPrepareHit: function(source, target, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Spore", target);
 		},
 		status: 'stp',
-		onTryHit(source, target, move) {
-			if (target.hasType('Nature')) {
-				this.add('-immune', target);
-				return null;
-			}
+		onTryImmunity(target) {
+			return !target.hasType('Nature');
 		},
 		// Class: EN
 		// Effect Chance: 100
@@ -2554,7 +2551,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		condition: {
 			onStart(target) {
-				console.log(target);
 				this.add('-message', `${target.name} was seeded!`);
 				this.add('-start', target, 'move: Leech Seed', '[silent]');
 			},
@@ -2720,14 +2716,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 				switch (this.field.terrain) {
 					case "byakko":
 						move.type = "Steel";
+						break;
 					case "genbu":
 						move.type = "Water";
+						break;
 					case "kohryu":
 						move.type = "Earth";
+						break;
 					case "seiryu":
 						move.type = "Nature";
+						break;
 					case "suzaku":
 						move.type = "Fire";
+						break;
 				}
 				return move.basePower * 2;
 			}
@@ -2754,14 +2755,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 				switch (this.field.terrain) {
 					case "byakko":
 						move.type = "Steel";
+						break;
 					case "genbu":
 						move.type = "Water";
+						break;
 					case "kohryu":
 						move.type = "Earth";
+						break;
 					case "seiryu":
 						move.type = "Nature";
+						break;
 					case "suzaku":
 						move.type = "Fire";
+						break;
 				}
 				return move.basePower * 2;
 			}
@@ -4077,10 +4083,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Aromatherapy", target);
 		},
-		onHit(target, source, move) {
-			for (const pokemon of target.side.activeTeam()) {
-				pokemon.clearStatus();
+		onHit(pokemon, source, move) {
+			this.add('-activate', source, 'move: Aromatherapy');
+			let success = false;
+			for (const ally of pokemon.side.pokemon) {
+				if (ally.cureStatus()) success = true;
 			}
+			return success;
 		},
 		// Class: EN
 		// Effect Chance: 100
@@ -4834,14 +4843,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 				switch (this.field.weather) {
 					case "aurora":
 						move.type = "Light";
+						break;
 					case "calm":
 						move.type = "Wind";
+						break;
 					case "duststorm":
 						move.type = "Earth";
+						break;
 					case "heavyfog":
 						move.type = "Dark";
+						break;
 					case "sunshower":
 						move.type = "Warped";
+						break;
 				}
 				return move.basePower * 2;
 			}
@@ -4868,14 +4882,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 				switch (this.field.weather) {
 					case "aurora":
 						move.type = "Light";
+						break;
 					case "calm":
 						move.type = "Wind";
+						break;
 					case "duststorm":
 						move.type = "Earth";
+						break;
 					case "heavyfog":
 						move.type = "Dark";
+						break;
 					case "sunshower":
 						move.type = "Warped";
+						break;
 				}
 				return move.basePower * 2;
 			}
@@ -9601,8 +9620,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		condition: {
 			duration: 1,
 			onUpdate (pokemon) {
-				//if (!this.activeMove || this.activeMove.id !== 'smashspin') return;
-				//if (this.activeMove) console.log(this.activeMove.id);
 				if (pokemon.moveThisTurn !== 'smashspin') return;
 				if (pokemon.hp) {
 					if(pokemon.removeVolatile('drainseed')) this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
@@ -10837,7 +10854,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Will-o-Wisp", target);
 		},
-		status: 'brnheavy'
+		status: 'hvybrn'
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 28

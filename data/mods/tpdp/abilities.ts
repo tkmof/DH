@@ -381,11 +381,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	brutality: {
 		name: "Brutality",
 		shortDesc: "SpAtk is boosted by 50% but accuracy is cut by 20%.",
-		onModifySpA(relayVar, source, target, move) {
-			this.chainModify(1.5);
+		onModifySpAPriority: 5,
+		onModifySpA(spa) {
+			return this.modify(spa, 1.5);
 		},
-		onModifyAccuracy(relayVar, target, source, move) {
-			this.chainModify(0.8);
+		onSourceModifyAccuracyPriority: 7,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (move.category === 'Special' && typeof accuracy === 'number') {
+				return accuracy * 0.8;
+			}
 		},
 	},
 	bruteforce: {
@@ -576,11 +580,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	daredevil: {
 		name: "Daredevil",
 		shortDesc: "FoAtk is boosted by 50% but accuracy is cut by 20%.",
-		onModifyAtk(relayVar, source, target, move) {
-			this.chainModify(1.5);
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk) {
+			return this.modify(atk, 1.5);
 		},
-		onModifyAccuracy(relayVar, target, source, move) {
-			this.chainModify(0.8);
+		onSourceModifyAccuracyPriority: 7,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (move.category === 'Physical' && typeof accuracy === 'number') {
+				return accuracy * 0.8;
+			}
 		},
 	},
 	darkforce: {

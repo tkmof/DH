@@ -20,4 +20,25 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		baseStats: {hp: 70, atk: 110, def: 70, spa: 100, spd: 70, spe: 110},
 		abilities: {0: "Purifying Salt", 1: "Levitate", H: "Flash Fire"},
 	},
+	voltergeist: {
+		num: 4,
+		name: "Voltergeist",
+		types: ["Ghost", "Electric"],
+		baseStats: {hp: 80, atk: 120, def: 65, spa: 65, spd: 120, spe: 80},
+		abilities: {0: "Frisk", 1: "Poison Touch", H: "Comatose"},
+	},
+	calamander: {
+		num: 5,
+		name: "Calamander",
+		types: ["Fire", "Water"],
+		baseStats: {hp: 80, atk: 90, def: 110, spa: 90, spd: 110, spe: 110},
+		abilities: {0: "Rising Sun", 1: "Rough Skin", H: "Own Tempo"},
+	},
+	lavahava: {
+		num: 6,
+		name: "Lavahava",
+		types: ["Fire"],
+		baseStats: {hp: 70, atk: 90, def: 94, spa: 113, spd: 90, spe: 123},
+		abilities: {0: "Sturdy", 1: "Poison Heal", H: "Iron Fist"},
+	},
 };
