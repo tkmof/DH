@@ -415,7 +415,7 @@ export const Learnsets: {["9L1"]: LearnsetData} = {
 			zenheadbutt: ["9M", "9T", "6T"],
 		},
 	},
-	genesect: {
+	genesectshock: {
 		learnset: {
 			wildcharge: ["9L1"],
 			zingzap: ["9L1"],

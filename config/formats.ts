@@ -260,7 +260,7 @@ export const Formats: FormatList = [
 		threads: [
 			`<a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Gen 9 Fusion Evolution</a>`,
 		],
-		mod: 'gen9feou',
+		mod: 'gen9feoupmpl',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', 'Mega Data Mod'],
 		banlist: ['Metagrossite', 'Revival Blessing', 'Shed Tail', 'Last Respects', 'Absolite', 'Gengarite', 'Ampharosite', 'Salamencite', 'Baton Pass'],
 		onValidateTeam(team, format) {
@@ -1685,32 +1685,6 @@ export const Formats: FormatList = [
 		ruleset: ['Standard', 'Data Mod', 'Welcome Message'],
 	},
 	{
-		name: "[Gen 8] MetaMons Expanded",
-	   desc: [
-			"In this Pet Mod, we will aim to create a decently-sized micrometa that will expand in the unique niches of some Pokémon, giving them the spotlight after all the time they have been waiting.",
-		],
-		threads: [
-			'&bullet; <a href="https://www.smogon.com/forums/threads/metamons-slate-3-galarian-slowbro-sableye-grapploct.3703361/">MetaMons</a>',
-			'&bullet; <a href="https://docs.google.com/spreadsheets/d/142lxuFtTgQCY56Wz_ZjAGaqlk7HgJj0CVKMChQcei1U/edit#gid=0">Spreadsheet</a>',
-		],
-		mod: 'metamons', 
-		ruleset:['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Z-Move Clause'],
-		banlist: [
-			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
-		],
-		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}} */
-			let speciesTable = {};
-			let allowedTiers = ['Gen 7 MetaMons', 'Gen 8 MetaMons', 'MetaMons'];
-			for (const set of team) {
-				let template = this.dex.getSpecies(set.species);
-				if (template.tier !== 'Gen 7 MetaMons' && template.tier !== 'Gen 8 MetaMons' && template.tier !== 'MetaMons') {
-					return [set.species + ' is not legal in the MetaMons Expanded format.'];
-				}
-			}
-		},
-	 },
-	{
 		name: "[Gen 8] Patratdex",
 		desc: `<b>Patratdex</b>: Galvantic's Solomod, containing a new regional dex with a bunch of new stuff, notably 151 Fakemon.`,
 		mod: 'patratdex',
@@ -2291,6 +2265,31 @@ export const Formats: FormatList = [
 	},
 	*/
 	{
+		section: "Pet Mod Bonus Formats",
+		column: 3,
+	},
+	{
+		name: "[Gen 8] Fusion Evolution Gen 9 Post-PMPL",
+		desc: `Fusion Evolution.`,
+		threads: [
+			`<a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Gen 9 Fusion Evolution</a>`,
+		],
+		mod: 'gen9feou',
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', 'Mega Data Mod'],
+		banlist: ['Metagrossite', 'Revival Blessing', 'Shed Tail', 'Last Respects', 'Absolite', 'Gengarite', 'Ampharosite', 'Salamencite', 'Baton Pass'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['FEOU', 'FENFE', "FELC"];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Fusion Evolution.'];
+				}
+			}
+		},
+	},
+	{
 		section: "Non-Pet Mod Bonus Formats",
 		column: 3,
 	},
@@ -2311,18 +2310,45 @@ export const Formats: FormatList = [
 		unbanlist: ['Shadow Tag', 'Pichu', 'Cleffa', 'Igglybuff', 'Togepi', 'Tyrogue', 'Smoochum', 'Elekid', 'Magby', 'Azurill', 'Wynaut', 'Budew', 'Chingling', 'Bonsly', 'Mime Jr.', 'Happiny', 'Munchlax', 'Riolu', 'Mantyke', 'Toxel'],
 	},
 	{
+		name: "[Gen 6] TPDP Ubers",
+		mod: 'tpdp',
+		debug: true,
+		desc: `a close approximation of Touhou Puppet Dance Performance`,
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
+		banlist: ['Boundary Trance', 'Dream Shard'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['TPDP OU', 'TPDP LC'];
+			let natures = ['Red', 'Blue', 'Black', 'Green', 'White'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not allowed in TPDP.'];
+				}
+				if (!natures.includes(set.nature)) {
+					return [set.nature + ' is not a valid nature in TPDP. Hint: to set Red, Blue, Black, White, or Green nature, use the Import/Export button.'];
+				}
+			}
+		},
+	},
+	{
 		name: "[Gen 6] TPDP Open",
 		mod: 'tpdp',
 		debug: true,
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
-		banlist: ['Boundary Trance', 'Dream Shard', 'Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
+		banlist: ['Boundary Trance', 'Dream Shard', 
+		'Camouflage', 'Favorable Wind', 'Dead of Night', //evasion
+		'Poison Labyrinth', 'Adverse Wind', //trapping
+		'Moody',
+		'Backup Plan', //baton pass
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['TPDP OU', 'TPDP LC'];
-			let natures = ['Red', 'Blue', 'Black', 'Green', 'White']
+			let natures = ['Red', 'Blue', 'Black', 'Green', 'White'];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
@@ -2341,18 +2367,23 @@ export const Formats: FormatList = [
 		debug: true,
 		desc: `a close approximation of Touhou Puppet Dance Performance`,
 		ruleset: ['Standard GBU', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
-		banlist: ['Boundary Trance', 'Dream Shard', 'Camouflage', 'Favorable Wind', 'Dead of Night' //evasion
+		banlist: ['Boundary Trance', 'Dream Shard', 
+		'Camouflage', 'Favorable Wind', 'Dead of Night', //evasion
+		'Poison Labyrinth', 'Adverse Wind', //trapping
+		'Moody',
+		'Backup Plan', //baton pass
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['TPDP OU', 'TPDP LC'];
+			let natures = ['Red', 'Blue', 'Black', 'Green', 'White'];
 			for (const set of team) {
 				let template = this.dex.getSpecies(set.species);
 				if (!allowedTiers.includes(template.tier)) {
 					return [set.species + ' is not allowed in TPDP.'];
 				}
-				if (!set.nature.includes('Red', 'Blue', 'Black', 'Green', 'White')) {
+				if (!natures.includes(set.nature)) {
 					return [set.nature + ' is not a valid nature in TPDP. Hint: to set Red, Blue, Black, White, or Green nature, use the Import/Export button.'];
 				}
 			}

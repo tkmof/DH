@@ -73,7 +73,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Soak", target);
+			this.add('-anim', source, "Fake Tears", target);
 		},
 		status: ['psn', 'fear'],
 		// Class: EN
@@ -162,6 +162,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					const stats: BoostID[] = [];
 					let stat: BoostID;
 					for (stat in target.boosts) {
+						if (stat === 'accuracy' || stat === 'evasion') continue;
 						if (target.boosts[stat] > -6) {
 							stats.push(stat);
 						}
@@ -198,7 +199,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		volatileStatus: 'amnesia',
 		onTryHit(target) {
-			if (target.hasStatus() || !target.runStatusImmunity('stp')) {
+			if (target.status || !target.runStatusImmunity('stp')) {
 				return false;
 			}
 		},
@@ -697,16 +698,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 70,
 		priority: 0,
 		flags: {},
-		onPrepareHit: function(target, source, move) {
+		onPrepareHit: function(source, target, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Spore", target);
 		},
 		status: 'stp',
-		onTryHit(source, target, move) {
-			if (target.hasType('Nature')) {
-				this.add('-immune', target);
-				return null;
-			}
+		onTryImmunity(target) {
+			return !target.hasType('Nature');
 		},
 		// Class: EN
 		// Effect Chance: 100
@@ -941,12 +939,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Facade", target);
 		},
-		basePowerCallback(pokemon, target, move) {
-			if (pokemon.hasStatus()) {
-				this.debug('BP doubled from status condition');
-				return move.basePower * 2;
+		onBasePower(basePower, pokemon) {
+			if (pokemon.status && pokemon.status !== 'slp') {
+				return this.chainModify(2);
 			}
-			return move.basePower;
 		},
 	},
 	booing: {
@@ -1855,7 +1851,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: 2
@@ -2349,7 +2345,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Boomburst", target);
 		},
 		self: {
-			boosts: {atk: -1, def: 1}
+			boosts: {atk: -1, def: -1}
 		}
 		// Class: 2
 		// Effect Chance: 1000
@@ -2555,7 +2551,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		condition: {
 			onStart(target) {
-				console.log(target);
 				this.add('-message', `${target.name} was seeded!`);
 				this.add('-start', target, 'move: Leech Seed', '[silent]');
 			},
@@ -2721,14 +2716,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 				switch (this.field.terrain) {
 					case "byakko":
 						move.type = "Steel";
+						break;
 					case "genbu":
 						move.type = "Water";
+						break;
 					case "kohryu":
 						move.type = "Earth";
+						break;
 					case "seiryu":
 						move.type = "Nature";
+						break;
 					case "suzaku":
 						move.type = "Fire";
+						break;
 				}
 				return move.basePower * 2;
 			}
@@ -2755,14 +2755,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 				switch (this.field.terrain) {
 					case "byakko":
 						move.type = "Steel";
+						break;
 					case "genbu":
 						move.type = "Water";
+						break;
 					case "kohryu":
 						move.type = "Earth";
+						break;
 					case "seiryu":
 						move.type = "Nature";
+						break;
 					case "suzaku":
 						move.type = "Fire";
+						break;
 				}
 				return move.basePower * 2;
 			}
@@ -3992,17 +3997,31 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Protect", target);
 		},
-		onTryHit(source, target, move) {
-			if (target.removeVolatile('forceshield')) {
-				this.add('-fail', source);
-				return false;
-			}
+		onTryHit(pokemon) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
 		},
 		volatileStatus: 'forceshield',
 		condition: {
 			noCopy: true,
+			duration: 1,
+			onStart(target) {
+				this.add('-message', `${target.name} activated its Force Shield!`);
+				this.add('-singleturn', target, 'Force Shield', '[silent]');
+			},
 			onEffectiveness(typeMod, target, type, move) {
 				return 0;
+			},
+			onSourceModifyDamage(damage, source, target, move) {
+				if (move.category === 'Special' || move.category === 'Physical') {
+					return this.clampIntRange(target.getUndynamaxedHP() * 0.0625, 1);
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-message', `${pokemon.name} restored their stance!`);
+				this.add('-end', pokemon, 'move: Force Shield', '[silent]');
 			},
 		}
 		// Class: EN
@@ -4064,10 +4083,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Aromatherapy", target);
 		},
-		onHit(target, source, move) {
-			for (const pokemon of target.side.activeTeam()) {
-				pokemon.clearStatus();
+		onHit(pokemon, source, move) {
+			this.add('-activate', source, 'move: Aromatherapy');
+			let success = false;
+			for (const ally of pokemon.side.pokemon) {
+				if (ally.cureStatus()) success = true;
 			}
+			return success;
 		},
 		// Class: EN
 		// Effect Chance: 100
@@ -4821,14 +4843,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 				switch (this.field.weather) {
 					case "aurora":
 						move.type = "Light";
+						break;
 					case "calm":
 						move.type = "Wind";
+						break;
 					case "duststorm":
 						move.type = "Earth";
+						break;
 					case "heavyfog":
 						move.type = "Dark";
+						break;
 					case "sunshower":
 						move.type = "Warped";
+						break;
 				}
 				return move.basePower * 2;
 			}
@@ -4855,14 +4882,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 				switch (this.field.weather) {
 					case "aurora":
 						move.type = "Light";
+						break;
 					case "calm":
 						move.type = "Wind";
+						break;
 					case "duststorm":
 						move.type = "Earth";
+						break;
 					case "heavyfog":
 						move.type = "Dark";
+						break;
 					case "sunshower":
 						move.type = "Warped";
+						break;
 				}
 				return move.basePower * 2;
 			}
@@ -6389,7 +6421,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Spikes", target);
 		},
-		sideCondition: 'spikes',
+		sideCondition: 'minetrap',
+		condition: {
+			// this is a side condition
+			onStart(side) {
+				this.add('-sidestart', side, 'minetrap');
+				this.effectData.layers = 1;
+			},
+			onRestart(side) {
+				if (this.effectData.layers >= 3) return false;
+				this.add('-sidestart', side, 'minetrap');
+				this.effectData.layers++;
+			},
+			onSwitchIn(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasItem('tengugeta')) return;
+				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectData.layers] * pokemon.maxhp / 24);
+			},
+		},
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 217
@@ -6755,7 +6805,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Scald", target);
 		},
 		basePowerCallback(pokemon, target, move) {
-			if (target.hasStatus(['psn', 'tox']))
+			if (target.status === 'psn' || target.status === 'tox')
 				return move.basePower * 2;
 			return move.basePower;
 		},
@@ -7074,7 +7124,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Zap Cannon", target);
 		},
-		boosts: {atk: -2}
+		self: {
+			boosts: {atk: -2}
+		}
 		// Class: 2
 		// Effect Chance: 100
 		// Effect ID: 234
@@ -7265,6 +7317,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		priority: 0,
 		flags: {},
+		heal: [1, 2],
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Roost", target);
@@ -7274,9 +7327,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		condition: {
 			duration: 1,
-			onResidualOrder: 25,
+			onResidualOrder: 20,
 			onStart(target) {
 				this.add('-singleturn', target, 'move: Perch');
+			},
+			onTypePriority: -1,
+			onType(types, pokemon) {
+				this.effectData.typeWas = types;
+				return types.filter(type => type !== 'Wind');
 			},
 		},
 		// Class: EN
@@ -7330,24 +7388,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 		// Effect Chance: 100
 		// Effect ID: 150
 	},
-	phantasmagoria: { // Unused
-		name: "Phantasmagoria",
-		shortDesc: "Lowers the foe's FoAtk.",
+	phantomensemble: {
+		name: "Phantom Ensemble",
+		shortDesc: "Lowers the target's Atk by 1.",
 		target: "normal",
-		type: "Void",
+		type: "Sound",
 		category: "Physical",
-		basePower: 50,
-		pp: 9.375,
-		accuracy: 100,
+		basePower: 55,
+		pp: 15,
+		accuracy: 95,
 		priority: 0,
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Round", target);
+			this.add('-anim', source, "Snarl", target);
 		},
-		// Class: EN
-		// Effect Chance: 100
-		// Effect ID: 0
+		secondary: {
+			chance: 100,
+			boosts: {atk: -1}
+		}
+		// Class: 2
+		// Effect Chance: 1000
+		// Effect ID: 34
 	},
 	phaseinversion: {
 		name: "Phase Inversion",
@@ -7819,7 +7881,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Conversion", target);
 		},
 		onHit(target, source, move) {
-			const type = this.dex.moves.get(target.moveSlots[0].id).type;
+			const type = this.dex.getMove(target.moveSlots[0].id).type;
 			if (target.hasType(type) || !target.setType(type)) return false;
 			this.add('-start', target, 'typechange', type);
 		},
@@ -9548,37 +9610,30 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		priority: 0,
 		flags: {protect: 1},
+		beforeTurnCallback(pokemon) {
+			pokemon.addVolatile('smashspin');
+		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Rapid Spin", target);
 		},
-		onAfterHit(target, pokemon) {
-			if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
-				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
-			}
-			const sideConditions = ['bindtrap', 'spikes', 'poisontrap', 'gmaxsteelsurge'];
-			for (const condition of sideConditions) {
-				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
+		condition: {
+			duration: 1,
+			onUpdate (pokemon) {
+				if (pokemon.moveThisTurn !== 'smashspin') return;
+				if (pokemon.hp) {
+					if(pokemon.removeVolatile('drainseed')) this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
+					const sideConditions = ['bindtrap', 'minetrap', 'poisontrap', 'stealthtrap'];
+					for (const condition of sideConditions) {
+						if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+							this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
+						}
+					}
+					if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+						pokemon.removeVolatile('partiallytrapped');
+					}
 				}
-			}
-			if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
-				pokemon.removeVolatile('partiallytrapped');
-			}
-		},
-		onAfterSubDamage(damage, target, pokemon) {
-			if (pokemon.hp && pokemon.removeVolatile('drainseed')) {
-				this.add('-end', pokemon, 'Drain Seed', '[from] move: Smash Spin', '[of] ' + pokemon);
-			}
-			const sideConditions = ['bindtrap', 'spikes', 'poisontrap', 'gmaxsteelsurge'];
-			for (const condition of sideConditions) {
-				if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
-					this.add('-sideend', pokemon.side, this.dex.getEffect(condition).name, '[from] move: Smash Spin', '[of] ' + pokemon);
-				}
-			}
-			if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
-				pokemon.removeVolatile('partiallytrapped');
-			}
+			},
 		},
 	},
 	smogshot: {
@@ -9752,7 +9807,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: BU
@@ -10223,7 +10278,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Stealth Rock", target);
 		},
-		sideCondition: 'gmaxsteelsurge',
+		sideCondition: 'stealthtrap',
+		condition: {
+			onStart(side) {
+				this.add('-sidestart', side, 'stealthtrap');
+			},
+			onSwitchIn(pokemon) {
+				if (pokemon.hasItem('tengugeta')) return;
+				const steelHazard = this.dex.getActiveMove('Stealth Rock');
+				steelHazard.type = 'Steel';
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 214
@@ -10265,7 +10332,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {
 			chance: 10,
 			self: {
-				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}
+				boosts: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}
 			}
 		}
 		// Class: BU
@@ -10787,7 +10854,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Will-o-Wisp", target);
 		},
-		status: 'brnheavy'
+		status: 'hvybrn'
 		// Class: EN
 		// Effect Chance: 100
 		// Effect ID: 28
@@ -11289,12 +11356,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hyper Voice", target);
 		},
-		secondary: {
+		self: {
 			chance: 10,
 			onHit(target, source, move) {
 				const stats: BoostID[] = [];
 				let stat: BoostID;
 				for (stat in source.boosts) {
+					if (stat === 'accuracy' || stat === 'evasion') continue;
 					if (source.boosts[stat] < 6) {
 						stats.push(stat);
 					}
@@ -11331,7 +11399,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		sleepUsable: true,
 		onTry(source) {
-			return source.hasStatus('stp') || source.hasAbility('comatose');
+			return source.status === 'stp' || source.hasAbility('comatose');
 		},
 		onHit(pokemon) {
 			const noSleepTalk = [
@@ -11341,7 +11409,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			for (const moveSlot of pokemon.moveSlots) {
 				const moveid = moveSlot.id;
 				if (!moveid) continue;
-				const move = this.dex.moves.get(moveid);
+				const move = this.dex.getMove(moveid);
 				if (noSleepTalk.includes(moveid) || move.flags['charge'] || (move.isZ && move.basePower !== 1) || move.isMax) {
 					continue;
 				}
@@ -11478,7 +11546,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onDisableMove(pokemon) {
 				for (const moveSlot of pokemon.moveSlots) {
-					const move = this.dex.moves.get(moveSlot.id);
+					const move = this.dex.getMove(moveSlot.id);
 					if (move.category === 'Status') {
 						pokemon.disableMove(moveSlot.id);
 					}
@@ -11736,12 +11804,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hyper Voice", target);
 		},
-		secondary: {
+		self: {
 			chance: 10,
 			onHit(target, source, move) {
 				const stats: BoostID[] = [];
 				let stat: BoostID;
 				for (stat in target.boosts) {
+					if (stat === 'accuracy' || stat === 'evasion') continue;
 					if (target.boosts[stat] < 6) {
 						stats.push(stat);
 					}

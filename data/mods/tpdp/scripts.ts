@@ -6,6 +6,78 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		// only to specify the order of custom tiers
 		customTiers: ['TPDP OU', 'TPDP LC'],
 	},
+	battle: {
+		findPokemonEventHandlers(pokemon: Pokemon, callbackName: string, getKey?: 'duration') {
+			const handlers: EventListener[] = [];
+
+			let callback;
+			for (const id in pokemon.status) {
+				const statusState = pokemon.status[id];
+				const status = this.dex.conditions.getByID(id as ID);
+				// @ts-ignore - dynamic lookup
+				callback = status[callbackName];
+				if (callback !== undefined || (getKey && statusState[getKey])) {
+					handlers.push(this.resolvePriority({
+						effect: status, callback, state: statusState, end: pokemon.clearStatus, effectHolder: pokemon,
+					}, callbackName));
+				}
+			}
+			for (const id in pokemon.volatiles) {
+				const volatileState = pokemon.volatiles[id];
+				const volatile = this.dex.conditions.getByID(id as ID);
+				// @ts-ignore - dynamic lookup
+				callback = volatile[callbackName];
+				if (callback !== undefined || (getKey && volatileState[getKey])) {
+					handlers.push(this.resolvePriority({
+						effect: volatile, callback, state: volatileState, end: pokemon.removeVolatile, effectHolder: pokemon,
+					}, callbackName));
+				}
+			}
+			const ability = pokemon.getAbility();
+			// @ts-ignore - dynamic lookup
+			callback = ability[callbackName];
+			if (callback !== undefined || (getKey && pokemon.abilityState[getKey])) {
+				handlers.push(this.resolvePriority({
+					effect: ability, callback, state: pokemon.abilityState, end: pokemon.clearAbility, effectHolder: pokemon,
+				}, callbackName));
+			}
+			const item = pokemon.getItem();
+			// @ts-ignore - dynamic lookup
+			callback = item[callbackName];
+			if (callback !== undefined || (getKey && pokemon.itemState[getKey])) {
+				handlers.push(this.resolvePriority({
+					effect: item, callback, state: pokemon.itemState, end: pokemon.clearItem, effectHolder: pokemon,
+				}, callbackName));
+			}
+			const species = pokemon.baseSpecies;
+			// @ts-ignore - dynamic lookup
+			callback = species[callbackName];
+			if (callback !== undefined) {
+				handlers.push(this.resolvePriority({
+					effect: species, callback, state: pokemon.speciesState, end() {}, effectHolder: pokemon,
+				}, callbackName));
+			}
+			const side = pokemon.side;
+			for (const conditionid in side.slotConditions[pokemon.position]) {
+				const slotConditionState = side.slotConditions[pokemon.position][conditionid];
+				const slotCondition = this.dex.conditions.getByID(conditionid as ID);
+				// @ts-ignore - dynamic lookup
+				callback = slotCondition[callbackName];
+				if (callback !== undefined || (getKey && slotConditionState[getKey])) {
+					handlers.push(this.resolvePriority({
+						effect: slotCondition,
+						callback,
+						state: slotConditionState,
+						end: side.removeSlotCondition,
+						endCallArgs: [side, pokemon, slotCondition.id],
+						effectHolder: side,
+					}, callbackName));
+				}
+			}
+
+			return handlers;
+		}
+	},
 	pokemon: {
 		getStatusSlots(): number {
 			let statusSlots = 0;
@@ -31,9 +103,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 				}
 				return;
 			}
-			console.log(this.status);
 			if (!this.hp) return false;
 			let statusSlots = this.getStatusSlots();
+			console.log(statusSlots);
 			status = this.battle.dex.getEffect(status);
 			if (status.statusSlots && statusSlots + status.statusSlots > 2) {
 				if ((sourceEffect as Move)?.status) {
@@ -80,9 +152,10 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 				}
 			}
 
-			
+			//where it actually sets status
 			this.status = status.id;
 			this.statusData = {id: status.id, target: this};
+			
 			if (source) this.statusData.source = source;
 			if (status.duration) this.statusData.duration = status.duration;
 			if (status.durationCallback) {
@@ -171,7 +244,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 			const item = (this.ignoringItem() ? '' : this.item);
 			if (item === 'ironball') return true;
 			// If a Fire/Flying type uses Burn Up and Roost, it becomes ???/Flying-type, but it's still grounded.
-			if (!negateImmunity && this.hasType('Flying') && !(this.hasType('???') && 'roost' in this.volatiles)) return false;
+			if (!negateImmunity && this.hasType('Wind') && !(this.hasType('???') && 'perch' in this.volatiles)) return false;
 			if (this.hasAbility('aircushion') && !this.field.isWeather("duststorm")) return false;
 			if ('magnetrise' in this.volatiles) return false;
 			if ('telekinesis' in this.volatiles) return false;
@@ -179,7 +252,6 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		},		
 		/*
 		calculateStat(statName: StatNameExceptHP, boost: number, modifier?: number) {
-			inherit: true,
 			statName = toID(statName) as StatNameExceptHP;
 			// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
 			if (statName === 'hp') throw new Error("Please read `maxhp` directly");

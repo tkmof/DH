@@ -138,13 +138,13 @@ export const Items: {[itemid: string]: ItemData} = {
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
-			if (pokemon.hasStatus(['psn', 'tox'])) {
+			if (ppokemon.status === 'psn' || pokemon.status === 'tox') {
 				pokemon.eatItem();
 			}
 		},
 		onEat(pokemon) {
-			if (pokemon.hasStatus(['psn', 'tox'])) {
-				pokemon.cureStatus(['psn', 'tox']);
+			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
+				pokemon.cureStatus();
 			}
 		},
 	},
@@ -658,13 +658,13 @@ export const Items: {[itemid: string]: ItemData} = {
 		category: 'good',
 		isBerry: true,
 		onUpdate(pokemon) {
-			if (pokemon.hasStatus(['weak', 'weakheavy'])) {
+			if (pokemon.status === 'weak' || pokemon.status === 'weakheavy') {
 				pokemon.eatItem();
 			}
 		},
 		onEat(pokemon) {
-			if (pokemon.hasStatus(['weak', 'weakheavy'])) {
-				pokemon.cureStatus(['weak', 'weakheavy']);
+			if (pokemon.status === 'weak' || pokemon.status === 'weakheavy') {
+				pokemon.cureStatus();
 			}
 		},
 	},
@@ -683,7 +683,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		category: 'great',
 		isBerry: true,
 		onUpdate(pokemon) {
-			if (pokemon.hasStatus() || pokemon.volatiles['confusion']) {
+			if (pokemon.status || pokemon.volatiles['confusion']) {
 				pokemon.eatItem();
 			}
 		},
@@ -1009,6 +1009,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		name: "Izanagi Object",
 		shortDesc: "This Puppet has 1.5x speed while Kohryu is active.",
 		category: 'good',
+		ignoreKlutz: true,
 		onModifySpe(spe, pokemon) {
 			if (this.field.isTerrain("kohryu"))
 				this.chainModify(1.5);
@@ -1152,13 +1153,13 @@ export const Items: {[itemid: string]: ItemData} = {
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
-			if (pokemon.hasStatus(['par', 'shk'])) {
+			if (pokemon.status === 'par' || pokemon.status === 'shk') {
 				pokemon.eatItem();
 			}
 		},
 		onEat(pokemon) {
-			if (pokemon.hasStatus(['par', 'shk'])) {
-				pokemon.cureStatus(['par', 'shk']);
+			if (pokemon.status === 'par' || pokemon.status === 'shk') {
+				pokemon.cureStatus();
 			}
 		},
 	},
@@ -1208,13 +1209,13 @@ export const Items: {[itemid: string]: ItemData} = {
 		category: 'poor',
 		isBerry: true,
 		onUpdate(pokemon) {
-			if (pokemon.hasStatus(['brn', 'brnheavy'])) {
+			if (pokemon.status === 'brn' || pokemon.status === 'hvybrn') {
 				pokemon.eatItem();
 			}
 		},
 		onEat(pokemon) {
-			if (pokemon.hasStatus(['brn', 'brnheavy'])) {
-				pokemon.cureStatus(['brn', 'brnheavy']);
+			if (pokemon.status === 'brn' || pokemon.status === 'hvybrn') {
+				pokemon.cureStatus();
 			}
 		},
 	},
@@ -1677,9 +1678,9 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	tengugeta: {
 		name: "Tengu Geta",
-		shortDesc: "When this Puppet is hit by an attack, the attacker loses 1/8 max HP. Single use.",
+		shortDesc: "Holder is immune to hazards.",
 		category: 'great',
-		// Implemented in conditions.ts
+		// Implemented in moves.ts
 	},
 	thorncharm: {
 		name: "Thorn Charm",
@@ -1734,7 +1735,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
 			for (const moveSlot of user.moveSlots) {
-				var moveData = this.dex.moves.get(moveSlot.move);
+				var moveData = this.dex.getMove(moveSlot.move);
 				if (moveData.category !== 'Status' && user.hasType(moveData.type)) {
 					return;
 				}

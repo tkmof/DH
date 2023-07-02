@@ -306,4 +306,60 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleMoves: ["spore", "synthesis", "heavyslam", "seedbomb"],
 		randomBattleLevel: 75,
 	},
+	celedos: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["thunderbolt", "leafstorm", "voltswitch", "heatwave"],
+		randomBattleLevel: 75,
+	},
+	primeleo: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["morningsun", "stealthrock", "drainpunch", "sunsteelstrike"],
+		randomBattleLevel: 75,
+	},
+	bellikiss: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["discharge", "dazzlinggleam", "slackoff", "nastyplot"],
+		randomBattleLevel: 75,
+	},
+	samuraiaihisui: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["razorshell", "crosspoison", "ceaselessedge", "swordsdance"],
+		randomBattleLevel: 75,
+	},
+	florgerouge: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["lavaplume", "moonblast", "wish", "protect"],
+		randomBattleLevel: 75,
+	},
+	urshiluxerapidstrike: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["closecombat", "icespinner", "iceshard", "uturn"],
+		randomBattleLevel: 75,
+	},
+	cosmonkey: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	tadpi: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	shroowott: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	charbebe: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	vanifu: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
 };
