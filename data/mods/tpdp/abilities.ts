@@ -200,7 +200,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 	},
-	astronomy: { // TODO: Find out if blocked by Ascertainment and Kohryu
+	astronomy: { 
 		name: "Astronomy",
 		shortDesc: "BU skills have 1.2x power.",
 		onBasePower(relayVar, source, target, move) {
@@ -492,21 +492,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Restores HP when hit by a Dark-type skill and takes Damage against Light-type skills.",
 		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Dark' && !this.field.isTerrain('kohryu')) {
-				this.add('-immune', target, '[from] ability: Cloak of Darkness');
-				target.heal(target.baseMaxhp / 4);
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Cloak of Darkness');
+				}
 				return null;
 			}
 		},
-		onFoeBasePower(relayVar, source, target, move) {
+		onFoeBasePower(basePower, attacker, defender, move) {
+			if (this.effectData.target !== defender) return;
 			if (move.type === "Light")
 				this.chainModify(1.25);
 		},
-		onResidual(target, source, effect) {
-			if (this.field.isWeather('heavyfog')) {
-				target.heal(target.baseMaxhp / 4);
-			}
-			else if (this.field.isWeather('aurora')) {
-				target.damage(target.baseMaxhp / 4);
+		onWeather(target, source, effect) {
+			if (effect.id === 'heavyfog') {
+				target.heal(target.baseMaxhp / 8);
+			} else if (effect.id === 'aurora') {
+				target.damage(target.baseMaxhp / 8, target, target);
 			}
 		},
 	},
