@@ -1732,7 +1732,7 @@ export const Learnsets = {
 			wonderroom: ["8L1"],
 			simplebeam: ["8L1"],
 			nastyplot: ["8L1"],
-			forest’scurse: ["8L1"],
+			forestscurse: ["8L1"],
 		},
 	},
 	hecatiatropical: {
