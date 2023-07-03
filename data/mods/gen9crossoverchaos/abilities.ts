@@ -283,36 +283,4 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: -14,
 	},
-	jellydessertqueen: {
-		onResidualOrder: 5,
-		onResidualSubOrder: 4,
-		onResidual(pokemon) {
-			this.heal(pokemon.baseMaxhp / 16);
-		},
-		name: "Jelly Dessert Queen",
-		shortDesc: "This Pokemon heals 1/16 max HP at the end of each turn.",
-		rating: 3.5,
-		num: -15,
-	},
-	curseweaver: {
-		onModifyAtkPriority: 5,
-		onModifyAtk(atk, attacker, defender, move) {
-			if (move.type === 'Ghost') {
-				this.debug('Curse Weaver boost');
-				return this.chainModify(1.5);
-			}
-		},
-		onModifySpAPriority: 5,
-		onModifySpA(atk, attacker, defender, move) {
-			if (move.type === 'Ghost') {
-				this.debug('Curse Weaver boost');
-				return this.chainModify(1.5);
-			}
-		},
-		//curse interaction in moves.ts
-		name: "Curse Weaver",
-		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 when using a Ghost-type move. Curse activates Ghost-type variant.",
-		rating: 3.5,
-		num: -16,
-	},
 };
