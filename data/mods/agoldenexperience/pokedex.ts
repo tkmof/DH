@@ -300,9 +300,17 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Corrosion", 1: "Sticky Hold", H: "Poison Touch"},
 	},
+	gastly: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
+	},
+	haunter: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
+	},
 	gengar: {
 		inherit: true,
-		abilities: {0: "Levitate"},
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
 	},
 	kingler: {
 		inherit: true,
@@ -1294,6 +1302,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	//gen 4 :
 	torterra: {
 		inherit: true,
+		types: ["Grass", "Rock"],
 		baseStats: {hp: 95, atk: 109, def: 105, spa: 75, spd: 90, spe: 56},
 		abilities: {0: "Overgrow", H: "Microclimate"},
 	},
