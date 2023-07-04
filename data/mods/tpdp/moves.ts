@@ -1679,17 +1679,31 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Counter", target);
 		},
-		damageCallback(pokemon) {
-			if (!pokemon.volatiles['counter']) return 0;
-			return pokemon.volatiles['counter'].damage || 1;
-		},
 		beforeTurnCallback(pokemon) {
-			pokemon.addVolatile('counter');
-			pokemon.volatiles['counter'].categories = ['Physical'];
+			pokemon.addVolatile('crosscounter');
 		},
-		onTry(source) {
-			if (!source.volatiles['counter']) return false;
-			if (source.volatiles['counter'].slot === null) return false;
+		onTryHit(target, source, move) {
+			if (!source.volatiles['crosscounter']) return false;
+			if (source.volatiles['crosscounter'].position === null) return false;
+		},
+		condition: {
+			duration: 1,
+			noCopy: true,
+			onStart(target, source, move) {
+				this.effectData.position = null;
+				this.effectData.damage = 0;
+			},
+			onRedirectTargetPriority: -1,
+			onRedirectTarget(target, source, source2) {
+				if (source !== this.effectData.target) return;
+				return source.side.foe.active[this.effectData.position];
+			},
+			onDamagingHit(damage, target, source, move) {
+				if (source.side !== target.side && this.getCategory(move) === 'Physical') {
+					this.effectData.position = source.position;
+					this.effectData.damage = 2 * damage;
+				}
+			},
 		},
 		// Class: BU
 		// Effect Chance: 100
@@ -2711,28 +2725,27 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Terrain Pulse", target);
 		},
-		basePowerCallback(pokemon, target, move) {
-			if (this.field.terrain) {
-				switch (this.field.terrain) {
-					case "byakko":
-						move.type = "Steel";
-						break;
-					case "genbu":
-						move.type = "Water";
-						break;
-					case "kohryu":
-						move.type = "Earth";
-						break;
-					case "seiryu":
-						move.type = "Nature";
-						break;
-					case "suzaku":
-						move.type = "Fire";
-						break;
-				}
-				return move.basePower * 2;
+		onModifyType(move, pokemon) {
+			switch (this.field.terrain) {
+				case "byakko":
+					move.type = "Steel";
+					break;
+				case "genbu":
+					move.type = "Water";
+					break;
+				case "kohryu":
+					move.type = "Earth";
+					break;
+				case "seiryu":
+					move.type = "Nature";
+					break;
+				case "suzaku":
+					move.type = "Fire";
+					break;
 			}
-			return move.basePower;
+		},
+		onModifyMove(move, pokemon) {
+			if (this.field.terrain) move.basePower *= 2;
 		},
 	},
 	earthlyinfluence: {
@@ -2750,28 +2763,27 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Terrain Pulse", target);
 		},
-		basePowerCallback(pokemon, target, move) {
-			if (this.field.terrain) {
-				switch (this.field.terrain) {
-					case "byakko":
-						move.type = "Steel";
-						break;
-					case "genbu":
-						move.type = "Water";
-						break;
-					case "kohryu":
-						move.type = "Earth";
-						break;
-					case "seiryu":
-						move.type = "Nature";
-						break;
-					case "suzaku":
-						move.type = "Fire";
-						break;
-				}
-				return move.basePower * 2;
+		onModifyType(move, pokemon) {
+			switch (this.field.terrain) {
+				case "byakko":
+					move.type = "Steel";
+					break;
+				case "genbu":
+					move.type = "Water";
+					break;
+				case "kohryu":
+					move.type = "Earth";
+					break;
+				case "seiryu":
+					move.type = "Nature";
+					break;
+				case "suzaku":
+					move.type = "Fire";
+					break;
 			}
-			return move.basePower;
+		},
+		onModifyMove(move, pokemon) {
+			if (this.field.terrain) move.basePower *= 2;
 		},
 	},
 	ebbtide: {
@@ -4877,29 +4889,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Weather Ball", target);
 		},
-		basePowerCallback(pokemon, target, move) {
-			if (this.field.weather) {
-				switch (this.field.weather) {
-					case "aurora":
-						move.type = "Light";
-						break;
-					case "calm":
-						move.type = "Wind";
-						break;
-					case "duststorm":
-						move.type = "Earth";
-						break;
-					case "heavyfog":
-						move.type = "Dark";
-						break;
-					case "sunshower":
-						move.type = "Warped";
-						break;
-				}
-				return move.basePower * 2;
+		onModifyType(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+				case "aurora":
+					move.type = "Light";
+					break;
+				case "calm":
+					move.type = "Wind";
+					break;
+				case "duststorm":
+					move.type = "Earth";
+					break;
+				case "heavyfog":
+					move.type = "Dark";
+					break;
+				case "sunshower":
+					move.type = "Warped";
+					break;
 			}
-			return move.basePower;
 		},
+		onModifyMove(move, pokemon) {
+			if (this.field.weather) move.basePower *= 2;
+		}
 	},
 	heavyrain: {
 		name: "Heavy Rain",
@@ -6678,17 +6689,31 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Mirror Coat", target);
 		},
-		damageCallback(pokemon) {
-			if (!pokemon.volatiles['counter']) return 0;
-			return pokemon.volatiles['counter'].damage || 1;
-		},
 		beforeTurnCallback(pokemon) {
-			pokemon.addVolatile('counter');
-			pokemon.volatiles['counter'].categories = ['Special'];
+			pokemon.addVolatile('moonsreflection');
 		},
-		onTry(source) {
-			if (!source.volatiles['counter']) return false;
-			if (source.volatiles['counter'].slot === null) return false;
+		onTryHit(target, source, move) {
+			if (!source.volatiles['moonsreflection']) return false;
+			if (source.volatiles['moonsreflection'].position === null) return false;
+		},
+		condition: {
+			duration: 1,
+			noCopy: true,
+			onStart(target, source, move) {
+				this.effectData.position = null;
+				this.effectData.damage = 0;
+			},
+			onRedirectTargetPriority: -1,
+			onRedirectTarget(target, source, source2) {
+				if (source !== this.effectData.target) return;
+				return source.side.foe.active[this.effectData.position];
+			},
+			onDamagingHit(damage, target, source, move) {
+				if (source.side !== target.side && this.getCategory(move) === 'Special') {
+					this.effectData.position = source.position;
+					this.effectData.damage = 2 * damage;
+				}
+			},
 		},
 		// Class: 2
 		// Effect Chance: 100
@@ -7617,7 +7642,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 				this.effectData.layers++;
 			},
 			onSwitchIn(pokemon) {
-				if (!pokemon.isGrounded()) return;
 				if (pokemon.hasType('Poison')) {
 					this.add('-sideend', pokemon.side, 'move: Poison Trap', '[of] ' + pokemon);
 					pokemon.side.removeSideCondition('poisontrap');
