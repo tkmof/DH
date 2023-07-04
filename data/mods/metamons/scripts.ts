@@ -499,6 +499,33 @@ export const Scripts: ModdedBattleScriptsData = {
 
 			this.modData("Learnsets", "copperajah").learnset.toxic = ["8L1"];
 			this.modData("Learnsets", "copperajah").learnset.swordsdance = ["8L1"];
+
+			this.modData("Learnsets", "gogoat").learnset.axekick = ["8L1"];	
+			this.modData("Learnsets", "gogoat").learnset.headsmash = ["8L1"];			
+			this.modData("Learnsets", "gogoat").learnset.highhorsepower = ["8L1"];			
+			this.modData("Learnsets", "gogoat").learnset.icespinner = ["8L1"];		
+			this.modData("Learnsets", "gogoat").learnset.jumpkick = ["8L1"];		
+			this.modData("Learnsets", "gogoat").learnset.lowkick = ["8L1"];		
+			this.modData("Learnsets", "gogoat").learnset.rocktomb = ["8L1"];		
+			this.modData("Learnsets", "gogoat").learnset.stoneedge = ["8L1"];		
+			this.modData("Learnsets", "gogoat").learnset.superpower = ["8L1"];		
+			this.modData("Learnsets", "gogoat").learnset.woodhammer = ["8L1"];		
+
+			this.modData("Learnsets", "ironthorns").learnset.steelbeam = ["8L1"];		
+			this.modData("Learnsets", "ironthorns").learnset.meteormash = ["8L1"];		
+			this.modData("Learnsets", "ironthorns").learnset.discharge = ["8L1"];	
+			this.modData("Learnsets", "ironthorns").learnset.thunderpunch = ["8L1"];		
+			this.modData("Learnsets", "ironthorns").learnset.outrage = ["8L1"];			
+			this.modData("Learnsets", "ironthorns").learnset.hammerarm = ["8L1"];		
+			this.modData("Learnsets", "ironthorns").learnset.flashcannon = ["8L1"];		
+
+			this.modData("Learnsets", "oricorio").learnset.bravebird = ["8L1"];		
+			this.modData("Learnsets", "oricorio").learnset.snowscape = ["8L1"];		
+			this.modData("Learnsets", "oricorio").learnset.weatherball = ["8L1"];		
+			this.modData("Learnsets", "oricorio").learnset.dragondance = ["8L1"];		
+			this.modData("Learnsets", "oricorio").learnset.lunardance = ["8L1"];		
+			this.modData("Learnsets", "oricorio").learnset.petaldance = ["8L1"];		
+			this.modData("Learnsets", "oricorio").learnset.fierydance = ["8L1"];		
 			
 			delete this.modData('Learnsets', 'bellossom').learnset.sleeppowder;
 			
@@ -520,6 +547,10 @@ export const Scripts: ModdedBattleScriptsData = {
 			delete this.modData('Learnsets', 'exeggutoralola').learnset.flamethrower;
 			delete this.modData('Learnsets', 'exeggutoralola').learnset.hypnosis;
 			delete this.modData('Learnsets', 'exeggutoralola').learnset.sleeppowder;
+
+			delete this.modData('Learnsets', 'ironthorns').learnset.blizzard;
+			delete this.modData('Learnsets', 'ironthorns').learnset.powergem;
+			delete this.modData('Learnsets', 'ironthorns').learnset.rockblast;
 			},
 			
 			

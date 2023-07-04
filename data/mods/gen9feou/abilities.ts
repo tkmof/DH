@@ -1,7 +1,7 @@
 export const Abilities: {[k: string]: ModdedAbilityData} = {
 	/* FEG9 abils */
 	unfiltered: {
-	  shortDesc: "Filter + Contrary",
+	  shortDesc: "Filter + Contrary + NvE Moves deal 4/3x damage.",
 		onSourceModifyDamage(damage, source, target, move) {
 			if (target.getMoveHitData(move).typeMod > 0) {
 				this.debug('Unfiltered neutralize');
@@ -13,6 +13,12 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			let i: BoostName;
 			for (i in boost) {
 				boost[i]! *= -1;
+			}
+		},
+		onModifyDamage(damage, source, target, move) {
+			if (target.getMoveHitData(move).typeMod < 0) {
+				this.debug('Unfiltered boost');
+				return this.chainModify([5461, 4096]);
 			}
 		},
 	  name: "Unfiltered",
@@ -88,14 +94,14 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Electric') {
 				this.debug('Galvanic Relay boost');
-				return this.chainModify(1.5);
+				return this.chainModify(1.3);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA(atk, attacker, defender, move) {
 			if (move.type === 'Electric') {
 				this.debug('Galvanic Relay boost');
-				return this.chainModify(1.5);
+				return this.chainModify(1.3);
 			}
 		},
 		onFractionalPriorityPriority: -1,
@@ -923,7 +929,10 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 	},
 	faultyphoton: {
-	  shortDesc: "Disguise effects. Once the Disguise is broken, it gets a ×1.3 boost to it's highest stat; ×1.5 if Speed.",
+	  shortDesc: "Disguise + Quark Drive",
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
 			if (
@@ -958,8 +967,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				pokemon.formeChange(speciesid, this.effect, true);
 				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
 				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon, this.dex.getSpecies(speciesid));
+			}
+			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['faultyphoton']) {
 				pokemon.addVolatile('faultyphoton');
-				//pokemon.volatiles['faultyphoton'].fromBooster = true;
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+				pokemon.removeVolatile('faultyphoton');
+				pokemon.addVolatile('faultyphoton', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['faultyphoton'].fromBooster = true;
+			} else if (!pokemon.volatiles['faultyphoton']?.fromBooster && !this.field.isTerrain('electricterrain')) {
+				pokemon.removeVolatile('faultyphoton');
 			}
 		},
 		onEnd(pokemon) {
@@ -968,13 +984,13 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		condition: {
 			noCopy: true,
-			onStart(pokemon, source, effect) {/*
+			onStart(pokemon, source, effect) {
 				if (effect?.id === 'boosterenergy') {
 					this.effectData.fromBooster = true;
 					this.add('-activate', pokemon, 'ability: Faulty Photon', '[fromitem]');
 				} else {
 					this.add('-activate', pokemon, 'ability: Faulty Photon');
-				}*/
+				}
 				this.effectData.bestStat = pokemon.getBestStat(false, true);
 				this.add('-start', pokemon, 'faultyphoton' + this.effectData.bestStat);
 			},
@@ -1160,6 +1176,132 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Dyschronometria",
 		rating: 3,
 	},
+	dyschronometria: {
+	  shortDesc: "Quark Drive + This Pokemon ignores other Pokemon's Paradox boosts when taking or doing damage.",
+		onAnyModifyAtkPriority: 6,
+		onAnyModifyAtk(atk, attacker, defender, move) {
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			const dyschronoUser = this.effectData.target;
+			if (defender == dyschronoUser) {
+				if (attacker.getBestStat(false, true) !== 'atk') return;
+				for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+											'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs', 
+											'weightoflife', 'circuitbreaker', 'dyschronometria']) { 
+					if (attacker.volatiles[paradox]) {
+						this.debug('Dyschronometria weaken');
+						return this.chainModify([3151, 4096]);
+					}
+				}
+			} else if (attacker == dyschronoUser) {
+				const bestStat = defender.getBestStat(false,true);
+				if (bestStat !== 'def' && (!move.defensiveCategory || move.defensiveCategory === 'Physical')) return;
+				if (move.defensiveCategory === 'Special' && bestStat !== 'spd') return;
+				for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+											'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs', 
+											'weightoflife', 'circuitbreaker', 'dyschronometria']) { 
+					if (defender.volatiles[paradox]) {
+						this.debug('Dyschronometria nullify');
+						return this.chainModify([5325, 4096]);
+					}
+				}
+			}
+		},
+		onAnyModifySpAPriority: 5,
+		onAnyModifySpA(atk, attacker, defender, move) {
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			const dyschronoUser = this.effectData.target;
+			if (defender == dyschronoUser) {
+				if (attacker.getBestStat(false, true) !== 'spa') return;
+				for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+											'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs', 
+											'weightoflife', 'circuitbreaker', 'dyschronometria']) { 
+					if (attacker.volatiles[paradox]) {
+						this.debug('Dyschronometria weaken');
+						return this.chainModify([3151, 4096]);
+					}
+				}
+			} else if (attacker == dyschronoUser) {
+				const bestStat = defender.getBestStat(false,true);
+				if (bestStat !== 'spd' && (!move.defensiveCategory || move.defensiveCategory === 'Special')) return;
+				if (move.defensiveCategory === 'Physical' && bestStat !== 'def') return;
+				for (const paradox of ['faultyphoton', 'systempurge', 'onceuponatime', 'primitive', 'quarksurge', 
+											'lightdrive', 'openingact', 'protosynthesis', 'quarkdrive', 'nanorepairs', 
+											'weightoflife', 'circuitbreaker', 'dyschronometria']) { 
+					if (defender.volatiles[paradox]) {
+						this.debug('Dyschronometria nullify');
+						return this.chainModify([5325, 4096]);
+					}
+				}
+			}
+		},
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Dyschronometria is not affected by Utility Umbrella
+			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['dyschronometria']) {
+				pokemon.addVolatile('dyschronometria');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+				pokemon.removeVolatile('dyschronometria');
+				pokemon.addVolatile('dyschronometria', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['dyschronometria'].fromBooster = true;
+			} else if (!pokemon.volatiles['dyschronometria']?.fromBooster && !this.field.isTerrain('electricterrain')) {
+				pokemon.removeVolatile('dyschronometria');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['dyschronometria'];
+			this.add('-end', pokemon, 'Dyschronometria', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Dyschronometria', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Dyschronometria');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'dyschronometria' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Dyschronometria atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Dyschronometria def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Dyschronometria spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Dyschronometria spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Dyschronometria spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Dyschronometria');
+			},
+		},
+		name: "Dyschronometria",
+		rating: 3,
+	},
 	nanorepairs: {
 	  shortDesc: "Quark Drive + Regenerator",
 		onSwitchOut(pokemon) {
@@ -1254,7 +1396,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 	},
 	rejuvenate: {
-	  shortDesc: "Regenerator + Natural Cure",
+	  shortDesc: "If statused, heals the status when switching out; else restores 1/3 Max HP when switching out.",
 		onCheckShow(pokemon) {
 			// This is complicated
 			// For the most part, in-game, it's obvious whether or not Natural Cure activated,
@@ -1319,10 +1461,10 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		onSwitchOut(pokemon) {
-			pokemon.heal(pokemon.baseMaxhp / 3);
-			if (!pokemon.status) return;
-			// if pokemon.showCure is undefined, it was skipped because its ability
-			// is known
+			if (!pokemon.status) {
+				pokemon.heal(pokemon.baseMaxhp / 3);
+				return;
+			}
 			if (pokemon.showCure === undefined) pokemon.showCure = true;
 			if (pokemon.showCure) this.add('-curestatus', pokemon, pokemon.status, '[from] ability: Rejuvenate');
 			pokemon.setStatus('');
@@ -1615,6 +1757,297 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 1,
 		num: 135,
 	},
+	rebelsblade: {
+	  shortDesc: "Effects of Sharpness. This Pokemon's slicing moves have a 30% chance of poisoning.",
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['slicing']) {
+				this.debug('Rebels Blade boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyMove(move) {
+			if (!move || !move.flags['slicing'] || move.target === 'self') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			move.secondaries.push({
+				chance: 30,
+				status: 'psn',
+				ability: this.dex.getAbility('rebelsblade'),
+			});
+		},
+		name: "Rebel's Blade",
+		rating: 3,
+	},
+	naturalpressures: {
+	  shortDesc: "Natural Cure + Pressure",
+		onCheckShow(pokemon) {
+			// This is complicated
+			// For the most part, in-game, it's obvious whether or not Natural Pressures activated,
+			// since you can see how many of your opponent's pokemon are statused.
+			// The only ambiguous situation happens in Doubles/Triples, where multiple pokemon
+			// that could have Natural Pressures switch out, but only some of them get cured.
+			if (pokemon.side.active.length === 1) return;
+			if (pokemon.showCure === true || pokemon.showCure === false) return;
+
+			const cureList = [];
+			let noCureCount = 0;
+			for (const curPoke of pokemon.side.active) {
+				// pokemon not statused
+				if (!curPoke || !curPoke.status) {
+					// this.add('-message', "" + curPoke + " skipped: not statused or doesn't exist");
+					continue;
+				}
+				if (curPoke.showCure) {
+					// this.add('-message', "" + curPoke + " skipped: Natural Pressures already known");
+					continue;
+				}
+				const species = curPoke.species;
+				// pokemon can't get Natural Pressures
+				if (!Object.values(species.abilities).includes('Natural Pressures')) {
+					// this.add('-message', "" + curPoke + " skipped: no Natural Pressures");
+					continue;
+				}
+				// pokemon's ability is known to be Natural Pressures
+				if (!species.abilities['1'] && !species.abilities['H']) {
+					// this.add('-message', "" + curPoke + " skipped: only one ability");
+					continue;
+				}
+				// pokemon isn't switching this turn
+				if (curPoke !== pokemon && !this.queue.willSwitch(curPoke)) {
+					// this.add('-message', "" + curPoke + " skipped: not switching");
+					continue;
+				}
+
+				if (curPoke.hasAbility('naturalpressures')) {
+					// this.add('-message', "" + curPoke + " confirmed: could be Natural Pressures (and is)");
+					cureList.push(curPoke);
+				} else {
+					// this.add('-message', "" + curPoke + " confirmed: could be Natural Pressures (but isn't)");
+					noCureCount++;
+				}
+			}
+
+			if (!cureList.length || !noCureCount) {
+				// It's possible to know what pokemon were cured
+				for (const pkmn of cureList) {
+					pkmn.showCure = true;
+				}
+			} else {
+				// It's not possible to know what pokemon were cured
+
+				// Unlike a -hint, this is real information that battlers need, so we use a -message
+				this.add('-message', "(" + cureList.length + " of " + pokemon.side.name + "'s pokemon " + (cureList.length === 1 ? "was" : "were") + " cured by Natural Pressures.)");
+
+				for (const pkmn of cureList) {
+					pkmn.showCure = false;
+				}
+			}
+		},
+		onSwitchOut(pokemon) {
+			if (!pokemon.status) return;
+
+			// if pokemon.showCure is undefined, it was skipped because its ability
+			// is known
+			if (pokemon.showCure === undefined) pokemon.showCure = true;
+
+			if (pokemon.showCure) this.add('-curestatus', pokemon, pokemon.status, '[from] ability: Natural Pressures');
+			pokemon.setStatus('');
+
+			// only reset .showCure if it's false
+			// (once you know a Pokemon has Natural Pressures, its cures are always known)
+			if (!pokemon.showCure) pokemon.showCure = undefined;
+		},
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Natural Pressures');
+		},
+		onDeductPP(target, source) {
+			if (target.side === source.side) return;
+			return 1;
+		},
+		name: "Natural Pressures",
+		rating: 3,
+	},
+	vitalmetalbody: {
+	  shortDesc: "Vital Spirit + Full Metal Body",
+		onUpdate(pokemon) {
+			if (pokemon.status === 'slp') {
+				this.add('-activate', pokemon, 'ability: Vital Metal Body');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'slp') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Vital Metal Body');
+			}
+			return false;
+		},
+		onBoost(boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			let i: BoostName;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !(effect as ActiveMove).secondaries && effect.id !== 'octolock') {
+				this.add("-fail", target, "unboost", "[from] ability: Vital Metal Body", "[of] " + target);
+			}
+		},
+		isUnbreakable: true,
+		name: "Vital Metal Body",
+		rating: 3,
+	},
+	fortunomorphosis: {
+	  shortDesc: "This Pokemon gains the Laser Focus effect when it takes a hit from an attack.",
+	  onDamagingHitOrder: 1,
+	  onDamagingHit(damage, target, source, move) {
+			target.addVolatile('laserfocus');
+		},
+		name: "Fortunomorphosis",
+		rating: 3,
+	},
+	burningpetals: {
+	  shortDesc: "Flash Fire effects. This side's Fire-types can't have stats lowered or status inflicted by other Pokemon.",
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+				move.accuracy = true;
+				if (!target.addVolatile('burningpetals')) {
+					this.add('-immune', target, '[from] ability: Burning Petals');
+				}
+				return null;
+			}
+		},
+		onAllyBoost(boost, target, source, effect) {
+			if ((source && target === source) || !target.hasType('Fire')) return;
+			let showMsg = false;
+			let i: BoostName;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !(effect as ActiveMove).secondaries) {
+				const effectHolder = this.effectData.target;
+				this.add('-block', target, 'ability: Burning Petals', '[of] ' + effectHolder);
+			}
+		},
+		onAllySetStatus(status, target, source, effect) {
+			if (target.hasType('Fire') && source && target !== source && effect && effect.id !== 'yawn') {
+				this.debug('interrupting setStatus with Burning Petals');
+				if (effect.id === 'synchronize' || (effect.effectType === 'Move' && !effect.secondaries)) {
+					const effectHolder = this.effectData.target;
+					this.add('-block', target, 'ability: Burning Petals', '[of] ' + effectHolder);
+				}
+				return null;
+			}
+		},
+		onAllyTryAddVolatile(status, target) {
+			if (target.hasType('Fire') && status.id === 'yawn') {
+				this.debug('Burning Petals blocking yawn');
+				const effectHolder = this.effectData.target;
+				this.add('-block', target, 'ability: Burning Petals', '[of] ' + effectHolder);
+				return null;
+			}
+		},
+		name: "Burning Petals",
+		rating: 3,
+	},
+	snowblind: {
+	  shortDesc: "Snow Warning + Unseen Fist",
+	   onStart(source) {
+			this.field.setWeather('snow');
+		},
+		onModifyMove(move) {
+			if (move.flags['contact']) delete move.flags['protect'];
+		},
+		name: "Snowblind",
+		rating: 3,
+	},
+	unvital: {
+	  shortDesc: "Unaware + Vital Spirit",
+		onAnyModifyBoost(boosts, pokemon) {
+			const unawareUser = this.effectData.target;
+			if (unawareUser === pokemon) return;
+			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (pokemon === this.activePokemon && unawareUser === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['def'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		onUpdate(pokemon) {
+			if (pokemon.status === 'slp') {
+				this.add('-activate', pokemon, 'ability: Unvital');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'slp') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Unvital');
+			}
+			return false;
+		},
+		name: "Unvital",
+		rating: 3,
+	},
+	ownluck: {
+	  shortDesc: "This Pokemon has a +1 crit ratio and is immune to Intimidate.",
+		onModifyCritRatio(critRatio) {
+			return critRatio + 1;
+		},
+		onBoost(boost, target, source, effect) {
+			if (['intimidate','forestfury','shockfactor'].includes(effect.id)) {
+				delete boost.atk;
+				this.add('-immune', target, '[from] ability: Own Luck');
+			}
+		},
+		name: "Own Luck",
+		rating: 3,
+	},
+	armourlock: {
+	  shortDesc: "This Pokemon cannot be struck by a critical hit nor have its item removed.",
+		onTakeItem(item, pokemon, source) {
+			if (this.suppressingAttackEvents(pokemon) || !pokemon.hp || pokemon.item === 'stickybarb') return;
+			if (!this.activeMove) throw new Error("Battle.activeMove is null");
+			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
+				this.add('-activate', pokemon, 'ability: Armour Lock');
+				return false;
+			}
+		},
+		onCriticalHit: false,
+		name: "Armour Lock",
+		rating: 3,
+	},
+	glacialfocus: {
+	  shortDesc: "This Pokemon can't be flinched or have its Evasion lowered.",
+		onBoost(boost, target, source, effect) {
+			if (source && target === source) return;
+			if (boost.evasion && boost.evasion < 0) {
+				delete boost.evasion;
+				if (!(effect as ActiveMove).secondaries) {
+					this.add("-fail", target, "unboost", "accuracy", "[from] ability: Glacial Focus", "[of] " + target);
+				}
+			}
+		},
+		onTryAddVolatile(status, pokemon) {
+			if (status.id === 'flinch') return null;
+		},
+		name: "Glacial Focus",
+		rating: 3,
+	},
+	
 	//Vanilla abilities
 	naturalcure: {
 		onCheckShow(pokemon) {
