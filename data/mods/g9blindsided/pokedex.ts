@@ -915,11 +915,9 @@ alchevul: {
 	jabbark: {
 		num: 1025,
 		name: "Jab-bark",
-		baseSpecies: "Jab",
-		forme: "bark",
 		types: ["Fighting", "Water"],
 		baseStats: {hp: 99, atk: 99, def: 99, spa: 99, spd: 99, spe: 99},
-		abilities: {0: "Mega Launcher", 1: "Long Reach", H: "Grassy Terrain"},
+		abilities: {0: "Mega Launcher", 1: "Long Reach", H: "Grassy Surge"},
 		weightkg: 5,
 	},
 	jamborai: {
@@ -1041,7 +1039,7 @@ alchevul: {
 		name: "Pyrelic",
 		types: ["Fire", "Ground"],
 		baseStats: {hp: 100, atk: 90, def: 100, spa: 90, spd: 100, spe: 60},
-		abilities: {0: "Reckless", 1: "Guts", H: "RockHead"},
+		abilities: {0: "Reckless", 1: "Guts", H: "Rock Head"},
 		weightkg: 5,
 	},
 	pyroccult: {
