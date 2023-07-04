@@ -1993,14 +1993,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (pokemon.side === this.effectData.target.side) return;
 			if (move.selfSwitch && !move.ignoreAbility) {
 				delete move.selfSwitch;
-				target.addVolatile(target, 'restraint');
+				pokemon.addVolatile('restraint');
 			}
 		},
 		condition: {
 			duration: 2,
-			onBeforeSwitchOut(pokemon) {
-				this.add('-fail', pokemon);
-				return false;
+			noCopy: true,
+			onTrapPokemon(pokemon) {
+				pokemon.tryTrap();
+			},
+			onStart(target) {
+				this.add('-activate', target, 'restraint');
 			},
 		},
 	},
@@ -2185,16 +2188,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	sermon: {
 		name: "Sermon",
 		shortDesc: "Opponent has a 30% chance to become weakened from any attack.",
-		onModifyMove(move) {
-			if (!move || move.target === 'self') return;
-			if (!move.secondaries) {
-				move.secondaries = [];
+		onDamagingHit(damage, target, source, move) {
+			if (this.randomChance(3, 10)) {
+				source.trySetStatus('weak', target);
 			}
-			move.secondaries.push({
-				chance: 30,
-				status: 'weak',
-				ability: this.dex.getAbility('sermon'),
-			});
 		},
 	},
 	shadowstitch: {

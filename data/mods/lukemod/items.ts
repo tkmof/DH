@@ -10,8 +10,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		onModifyDef(def, pokemon) {
 			if (pokemon.baseSpecies.nfe || 
 				pokemon.species.id === 'basculinskyship' ||
-				pokemon.species.id === 'mrmimeprance' ||
-				//pokemon.species.id === 'snipsquire'
+				pokemon.species.id === 'mrmimeprance'
+				// || pokemon.species.id === 'snipsquire'
 				) {
 				return this.chainModify(1.5);
 			}
@@ -20,14 +20,14 @@ export const Items: {[itemid: string]: ItemData} = {
 		onModifySpD(spd, pokemon) {
 			if (pokemon.baseSpecies.nfe || 
 				pokemon.species.id === 'basculinskyship' ||
-				pokemon.species.id === 'mrmimeprance' ||
-				//pokemon.species.id === 'snipsquire'
+				pokemon.species.id === 'mrmimeprance'
+				// || pokemon.species.id === 'snipsquire'
 				) {
 				return this.chainModify(1.5);
 			}
 		},
-		itemUser: ["Basculin-Skyship"],
-		shortDesc: "If Basculin-Skyship, its Defense and Sp. Def are 1.5x.",
+		itemUser: ["Basculin-Skyship", "Mr. Mime-Prance"],
+		shortDesc: "If Basculin-Skyship, Mr. Mime-Prance, or Snipsquire, its Defense and Sp. Def are 1.5x.",
 		num: 538,
 		gen: 5,
 	},
