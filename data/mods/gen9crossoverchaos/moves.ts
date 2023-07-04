@@ -332,6 +332,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Cool",
 	},
 	rudebuster: {
+		num: -12,
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
@@ -351,6 +352,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Beautiful",
 	},
 	centipedeassault: {
+		num: -13,
 		accuracy: 100,
 		basePower: 100,
 		category: "Physical",
@@ -370,6 +372,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Cool",
 	},
 	luciolacruciata: {
+		num: -14,
 		accuracy: true,
 		basePower: 180,
 		category: "Physical",
@@ -390,6 +393,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Cool",
 	},
 	icebreak: {
+		num: -15,
 		accuracy: 100,
 		basePower: 70,
 		category: "Special",
@@ -412,6 +416,104 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Ice",
 		contestType: "Cool",
+	},
+	arrowshot: {
+		num: -16,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "High critical hit ratio. Cannot be redirected.",
+		name: "Arrow Shot",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		tracksTarget: true,
+		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Snipe Shot", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		contestType: "Cool",
+	},
+	mountainrangeshakingfirewoodofvenus: {
+		num: -17,
+		accuracy: true,
+		basePower: 190,
+		category: "Special",
+		shortDesc: "Increases user's Special Attack by 1.",
+		name: "Mountain Range-Shaking Firewood of Venus",
+		pp: 1,
+		priority: 0,
+		flags: {},
+ 		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-message', source.name + " is overflowing with space power!");
+			this.add('-anim', source, "Continental Crush", target);
+		},
+		isZ: "maannaniumz",
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					spa: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Rock",
+		contestType: "Tough",
+	},
+	lifesoup: {
+		num: -18,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "On hit: user heals 1/10 max HP.",
+		name: "Life Soup",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, heal: 1},
+		onPrepareHit: function(target, source, move) {
+		  this.attrLastMove('[still]');
+		  this.add('-anim', source, "Whirlpool", target);
+		},
+		onHit(pokemon, source, target) {
+			this.add('-heal', pokemon, pokemon.getHealth, '[from] move: Life Soup');
+			this.heal(pokemon.maxhp / 10, source);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Cute",
+	},
+	waterplanet: {
+		num: -19,
+		accuracy: true,
+		basePower: 150,
+		category: "Physical",
+		shortDesc: "Lowers target's Def and SpD by 1.",
+		name: "Water Planet",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Oceanic Operetta", target);
+		},
+		isZ: "hecatiumz",
+		secondary: {
+			chance: 100,
+			boosts: {
+				def: -1,
+				spd: -1,
+			},
+		},
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
 	},
 	
 	// Below are vanilla moves altered by custom interractions
@@ -601,6 +703,49 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		secondary: null,
 		target: "any",
 		type: "Flying",
+		contestType: "Tough",
+	},
+	curse: {
+		num: 174,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Curse",
+		pp: 10,
+		priority: 0,
+		flags: {authentic: 1},
+		volatileStatus: 'curse',
+		onModifyMove(move, source, target) {
+			if (!source.hasType('Ghost') && !source.hasAbility('curseweaver')) {
+				move.target = move.nonGhostTarget as MoveTarget;
+			}
+		},
+		onTryHit(target, source, move) {
+			if (!source.hasType('Ghost') && !source.hasAbility('curseweaver')) {
+				delete move.volatileStatus;
+				delete move.onHit;
+				move.self = {boosts: {spe: -1, atk: 1, def: 1}};
+			} else if (move.volatileStatus && target.volatiles['curse']) {
+				return false;
+			}
+		},
+		onHit(target, source) {
+			this.directDamage(source.maxhp / 2, source, source);
+		},
+		condition: {
+			onStart(pokemon, source) {
+				this.add('-start', pokemon, 'Curse', '[of] ' + source);
+			},
+			onResidualOrder: 10,
+			onResidual(pokemon) {
+				this.damage(pokemon.baseMaxhp / 4);
+			},
+		},
+		secondary: null,
+		target: "randomNormal",
+		nonGhostTarget: "self",
+		type: "Ghost",
+		zMove: {effect: 'curse'},
 		contestType: "Tough",
 	},
 };

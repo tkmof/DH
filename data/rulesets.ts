@@ -1353,4 +1353,25 @@ export const Formats: {[k: string]: FormatData} = {
 			}
 		},
 	},
+	camomonsmod: {
+		effectType: 'Rule',
+		name: 'Camomons Mod',
+		desc: `Pok&eacute;mon have their types set to match their first two moves.`,
+		onBegin() {
+			this.add('rule', 'Camomons Mod: Pok\u00e9mon have their types set to match their first two moves.');
+		},
+		onModifySpeciesPriority: 2,
+		onModifySpecies(species, target, source, effect) {
+			if (!target) return; // Chat command
+			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
+			const types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.dex.getMove(move.id).type))];
+			return {...species, types: types};
+		},
+		onSwitchIn(pokemon) {
+			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
+		},
+		onAfterMega(pokemon) {
+			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
+		},
+	},
 };

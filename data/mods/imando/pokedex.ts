@@ -244,6 +244,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		baseStats: {hp: 100, atk: 110, def: 90, spa: 110, spd: 90, spe: 100},
 	},
+	kecleon: {
+		inherit: true,
+		baseStats: {hp: 109, atk: 130, def: 90, spa: 150, spd: 90, spe: 101},
+		abilities: {0: "Mimicry", 1: "Prankster", H: "Normal Normalize"},
+	},
 	clamperl: {
 		inherit: true,
 		baseStats: {hp: 45, atk: 94, def: 95, spa: 104, spd: 65, spe: 62},
@@ -695,19 +700,19 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	greattusk: {
 		inherit: true,
-		abilities: {0: "Protosynthesis", H: "Sturdy"},
+		abilities: {0: "Protocrysalis", H: "Sturdy"},
 	},
 	screamtail: {
 		inherit: true,
-		abilities: {0: "Protosynthesis", H: "Rattled"},
+		abilities: {0: "Protostasis", H: "Rattled"},
 	},
 	brutebonnet: {
 		inherit: true,
-		abilities: {0: "Protosynthesis", H: "Poison Heal"},
+		abilities: {0: "Protosmosis", H: "Poison Heal"},
 	},
 	fluttermane: {
 		inherit: true,
-		abilities: {0: "Protosynthesis", H: "Wind Power"},
+		abilities: {0: "Protosmosis", H: "Wind Power"},
 	},
 	slitherwing: {
 		inherit: true,
@@ -715,27 +720,27 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	sandyshocks: {
 		inherit: true,
-		abilities: {0: "Protosynthesis", H: "Steely Spirit"},
+		abilities: {0: "Protocrysalis", H: "Steely Spirit"},
 	},
 	irontreads: {
 		inherit: true,
-		abilities: {0: "Quark Drive", H: "Analytic"},
+		abilities: {0: "Neuron Drive", H: "Analytic"},
 	},
 	ironbundle: {
 		inherit: true,
-		abilities: {0: "Quark Drive", H: "Vital Spirit"},
+		abilities: {0: "Rune Drive", H: "Vital Spirit"},
 	},
 	ironhands: {
 		inherit: true,
-		abilities: {0: "Quark Drive", H: "Iron Fist"},
+		abilities: {0: "Photon Drive", H: "Iron Fist"},
 	},
 	ironjugulis: {
 		inherit: true,
-		abilities: {0: "Quark Drive", H: "No Guard"},
+		abilities: {0: "Neuron Drive", H: "No Guard"},
 	},
 	ironmoth: {
 		inherit: true,
-		abilities: {0: "Quark Drive", H: "Shield Dust"},
+		abilities: {0: "Photon Drive", H: "Shield Dust"},
 	},
 	ironthorns: {
 		inherit: true,
@@ -743,11 +748,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	roaringmoon: {
 		inherit: true,
-		abilities: {0: "Protosynthesis", H: "Overcoat"},
+		abilities: {0: "Protostasis", H: "Overcoat"},
 	},
 	ironvaliant: {
 		inherit: true,
-		abilities: {0: "Quark Drive", H: "Pixilate"},
+		abilities: {0: "Rune Drive", H: "Pixilate"},
 	},
 	walkingwake: {
 		num: 1009,
@@ -1373,7 +1378,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Ursaluna",
 		types: ["Ground", "Normal"],
 		baseStats: {hp: 130, atk: 140, def: 105, spa: 45, spd: 80, spe: 50},
-		abilities: {0: "Guts", 1: "Bulletproof", H: "Unnerve"},
+		abilities: {0: "Grass Pelt", 1: "Bulletproof", H: "Unnerve"},
 		heightm: 2.4,
 		weightkg: 290,
 		color: "Brown",
