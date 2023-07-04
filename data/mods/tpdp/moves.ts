@@ -4829,7 +4829,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Close Combat", target);
 		},
 		self: {
-			boosts: {atk: -1, spa: -1}
+			boosts: {def: -1, spd: -1}
 		}
 		// Class: BU
 		// Effect Chance: 1000
@@ -7451,13 +7451,16 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Topsy-Turvy", target);
 		},
-		onHit(target, source, move) {
-			const boosts = target.boosts as SparseBoostsTable;
-			let b:BoostID;
-			for (b in boosts) {
-				boosts[b]! *= -1;
+		onHit(target) {
+			let success = false;
+			let i: BoostName;
+			for (i in target.boosts) {
+				if (target.boosts[i] === 0) continue;
+				target.boosts[i] = -target.boosts[i];
+				success = true;
 			}
-			target.setBoost(boosts);
+			if (!success) return false;
+			this.add('-invertboost', target, '[from] move: Phase Inversion');
 		},
 		// Class: EN
 		// Effect Chance: 100
@@ -8954,9 +8957,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Night Slash", target);
 		},
 		secondary: {
-			chance: 70,
+			chance: 10,
 			self: {
-				boosts: {spa: 1}
+				boosts: {atk: 1}
 			}
 		}
 		// Class: BU

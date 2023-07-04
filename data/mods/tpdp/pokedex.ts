@@ -1,6 +1,6 @@
 export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	normalakyuu: {
-		num: 76,
+		num: 1,
 		name: "Normal Akyuu",
 		types: ["Void"],
 		gender: "F",
@@ -11,7 +11,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "akyuu",
 	},
 	defenseakyuu: {
-		num: 76,
+		num: 2,
 		name: "Defense Akyuu",
 		types: ["Void"],
 		gender: "F",
@@ -22,7 +22,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "akyuu",
 	},
 	assistakyuu: {
-		num: 76,
+		num: 3,
 		name: "Assist Akyuu",
 		types: ["Illusion", "Nature"],
 		gender: "F",
@@ -34,7 +34,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "akyuu",
 	},
 	extraakyuu: {
-		num: 76,
+		num: 4,
 		name: "Extra Akyuu",
 		types: ["Nether", "Illusion"],
 		gender: "F",
@@ -45,7 +45,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "akyuu",
 	},
 	normalalice: {
-		num: 31,
+		num: 5,
 		name: "Normal Alice",
 		types: ["Steel", "Light"],
 		gender: "F",
@@ -56,7 +56,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "alice",
 	},
 	poweralice: {
-		num: 31,
+		num: 6,
 		name: "Power Alice",
 		types: ["Steel", "Light"],
 		gender: "F",
@@ -67,7 +67,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "alice",
 	},
 	defensealice: {
-		num: 31,
+		num: 7,
 		name: "Defense Alice",
 		types: ["Steel", "Illusion"],
 		gender: "F",
@@ -78,7 +78,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "alice",
 	},
 	extraalice: {
-		num: 31,
+		num: 8,
 		name: "Extra Alice",
 		types: ["Light", "Fire"],
 		gender: "F",
@@ -89,7 +89,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "alice",
 	},
 	normalaunn: {
-		num: 143,
+		num: 9,
 		name: "Normal Aunn",
 		types: ["Light"],
 		gender: "F",
@@ -100,7 +100,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "aunn",
 	},
 	defenseaunn: {
-		num: 143,
+		num: 10,
 		name: "Defense Aunn",
 		types: ["Light", "Illusion"],
 		gender: "F",
@@ -111,7 +111,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "aunn",
 	},
 	poweraunn: {
-		num: 143,
+		num: 11,
 		name: "Power Aunn",
 		types: ["Light", "Fighting"],
 		gender: "F",
@@ -122,7 +122,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "aunn",
 	},
 	extraaunn: {
-		num: 143,
+		num: 12,
 		name: "Extra Aunn",
 		types: ["Light", "Steel"],
 		gender: "F",
@@ -133,7 +133,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "aunn",
 	},
 	normalaya: {
-		num: 73,
+		num: 13,
 		name: "Normal Aya",
 		types: ["Wind"],
 		gender: "F",
@@ -144,7 +144,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "aya",
 	},
 	speedaya: {
-		num: 73,
+		num: 14,
 		name: "Speed Aya",
 		types: ["Wind"],
 		gender: "F",
@@ -155,7 +155,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "aya",
 	},
 	poweraya: {
-		num: 73,
+		num: 15,
 		name: "Power Aya",
 		types: ["Wind", "Fighting"],
 		gender: "F",
@@ -166,7 +166,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "aya",
 	},
 	extraaya: {
-		num: 73,
+		num: 16,
 		name: "Extra Aya",
 		types: ["Wind", "Electric"],
 		gender: "F",
@@ -177,7 +177,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "aya",
 	},
 	normalbenben: {
-		num: 119,
+		num: 17,
 		name: "Normal Benben",
 		types: ["Sound"],
 		gender: "F",
@@ -188,7 +188,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "benben",
 	},
 	powerbenben: {
-		num: 119,
+		num: 18,
 		name: "Power Benben",
 		types: ["Sound", "Void"],
 		gender: "F",
@@ -199,7 +199,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "benben",
 	},
 	defensebenben: {
-		num: 119,
+		num: 19,
 		name: "Defense Benben",
 		types: ["Sound", "Nature"],
 		gender: "F",
@@ -210,7 +210,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "benben",
 	},
 	extrabenben: {
-		num: 119,
+		num: 20,
 		name: "Extra Benben",
 		types: ["Sound", "Earth"],
 		gender: "F",
@@ -221,7 +221,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "benben",
 	},
 	normalchen: {
-		num: 47,
+		num: 21,
 		name: "Normal Chen",
 		types: ["Wind"],
 		gender: "F",
@@ -232,7 +232,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chen",
 	},
 	speedchen: {
-		num: 47,
+		num: 22,
 		name: "Speed Chen",
 		types: ["Wind"],
 		gender: "F",
@@ -243,7 +243,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chen",
 	},
 	assistchen: {
-		num: 47,
+		num: 23,
 		name: "Assist Chen",
 		types: ["Wind", "Earth"],
 		gender: "F",
@@ -254,7 +254,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chen",
 	},
 	extrachen: {
-		num: 47,
+		num: 24,
 		name: "Extra Chen",
 		types: ["Earth", "Void"],
 		gender: "F",
@@ -265,7 +265,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chen",
 	},
 	normalchimata: {
-		num: 162,
+		num: 25,
 		name: "Normal Chimata",
 		types: ["Light", "Steel"],
 		gender: "F",
@@ -276,7 +276,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chimata",
 	},
 	defensechimata: {
-		num: 162,
+		num: 26,
 		name: "Defense Chimata",
 		types: ["Light", "Steel"],
 		gender: "F",
@@ -287,7 +287,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chimata",
 	},
 	powerchimata: {
-		num: 162,
+		num: 27,
 		name: "Power Chimata",
 		types: ["Void"],
 		gender: "F",
@@ -298,7 +298,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chimata",
 	},
 	extrachimata: {
-		num: 162,
+		num: 28,
 		name: "Extra Chimata",
 		types: ["Light"],
 		gender: "F",
@@ -309,7 +309,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chimata",
 	},
 	normalchiyuri: {
-		num: 18,
+		num: 29,
 		name: "Normal Chiyuri",
 		types: ["Electric", "Water"],
 		gender: "F",
@@ -320,7 +320,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chiyuri",
 	},
 	defensechiyuri: {
-		num: 18,
+		num: 30,
 		name: "Defense Chiyuri",
 		types: ["Electric", "Water"],
 		gender: "F",
@@ -331,7 +331,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chiyuri",
 	},
 	speedchiyuri: {
-		num: 18,
+		num: 31,
 		name: "Speed Chiyuri",
 		types: ["Electric", "Light"],
 		gender: "F",
@@ -342,7 +342,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chiyuri",
 	},
 	extrachiyuri: {
-		num: 18,
+		num: 32,
 		name: "Extra Chiyuri",
 		types: ["Water", "Illusion"],
 		gender: "F",
@@ -353,7 +353,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "chiyuri",
 	},
 	normalcirno: {
-		num: 39,
+		num: 33,
 		name: "Normal Cirno",
 		types: ["Water"],
 		gender: "F",
@@ -364,7 +364,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "cirno",
 	},
 	assistcirno: {
-		num: 39,
+		num: 34,
 		name: "Assist Cirno",
 		types: ["Water"],
 		gender: "F",
@@ -375,7 +375,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "cirno",
 	},
 	powercirno: {
-		num: 39,
+		num: 35,
 		name: "Power Cirno",
 		types: ["Water", "Nature"],
 		gender: "F",
@@ -386,7 +386,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "cirno",
 	},
 	extracirno: {
-		num: 39,
+		num: 36,
 		name: "Extra Cirno",
 		types: ["Water", "Fighting"],
 		gender: "F",
@@ -397,7 +397,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "cirno",
 	},
 	normalclownpiece: {
-		num: 129,
+		num: 37,
 		name: "Normal Clownpiece",
 		types: ["Fire"],
 		gender: "F",
@@ -408,7 +408,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "clownpiece",
 	},
 	defenseclownpiece: {
-		num: 129,
+		num: 38,
 		name: "Defense Clownpiece",
 		types: ["Fire", "Light"],
 		gender: "F",
@@ -419,7 +419,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "clownpiece",
 	},
 	speedclownpiece: {
-		num: 129,
+		num: 39,
 		name: "Speed Clownpiece",
 		types: ["Fire", "Illusion"],
 		gender: "F",
@@ -430,7 +430,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "clownpiece",
 	},
 	extraclownpiece: {
-		num: 129,
+		num: 40,
 		name: "Extra Clownpiece",
 		types: ["Fire", "Warped"],
 		gender: "F",
@@ -441,7 +441,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "clownpiece",
 	},
 	normaldaiyousei: {
-		num: 38,
+		num: 41,
 		name: "Normal Daiyousei",
 		types: ["Nature"],
 		gender: "F",
@@ -452,7 +452,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "daiyousei",
 	},
 	defensedaiyousei: {
-		num: 38,
+		num: 42,
 		name: "Defense Daiyousei",
 		types: ["Nature"],
 		gender: "F",
@@ -463,7 +463,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "daiyousei",
 	},
 	speeddaiyousei: {
-		num: 38,
+		num: 43,
 		name: "Speed Daiyousei",
 		types: ["Nature"],
 		gender: "F",
@@ -474,7 +474,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "daiyousei",
 	},
 	extradaiyousei: {
-		num: 38,
+		num: 44,
 		name: "Extra Daiyousei",
 		types: ["Nature", "Warped"],
 		gender: "F",
@@ -485,7 +485,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "daiyousei",
 	},
 	normaldoremy: {
-		num: 127,
+		num: 45,
 		name: "Normal Doremy",
 		types: ["Dream"],
 		gender: "F",
@@ -496,7 +496,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "doremy",
 	},
 	powerdoremy: {
-		num: 127,
+		num: 46,
 		name: "Power Doremy",
 		types: ["Illusion", "Nether"],
 		gender: "F",
@@ -507,7 +507,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "doremy",
 	},
 	defensedoremy: {
-		num: 127,
+		num: 47,
 		name: "Defense Doremy",
 		types: ["Nether", "Nature"],
 		gender: "F",
@@ -518,7 +518,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "doremy",
 	},
 	extradoremy: {
-		num: 127,
+		num: 48,
 		name: "Extra Doremy",
 		types: ["Dream"],
 		gender: "F",
@@ -529,7 +529,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "doremy",
 	},
 	normaleika: {
-		num: 148,
+		num: 49,
 		name: "Normal Eika",
 		types: ["Nether", "Earth"],
 		gender: "F",
@@ -540,7 +540,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eika",
 	},
 	defenseeika: {
-		num: 148,
+		num: 50,
 		name: "Defense Eika",
 		types: ["Nether", "Earth"],
 		gender: "F",
@@ -551,7 +551,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eika",
 	},
 	assisteika: {
-		num: 148,
+		num: 51,
 		name: "Assist Eika",
 		types: ["Void", "Nether"],
 		gender: "F",
@@ -562,7 +562,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eika",
 	},
 	extraeika: {
-		num: 148,
+		num: 52,
 		name: "Extra Eika",
 		types: ["Nether", "Water"],
 		gender: "F",
@@ -573,7 +573,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eika",
 	},
 	normaleiki: {
-		num: 75,
+		num: 53,
 		name: "Normal Eiki",
 		types: ["Light", "Fighting"],
 		gender: "F",
@@ -584,7 +584,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eiki",
 	},
 	powereiki: {
-		num: 75,
+		num: 54,
 		name: "Power Eiki",
 		types: ["Light", "Fighting"],
 		gender: "F",
@@ -595,7 +595,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eiki",
 	},
 	defenseeiki: {
-		num: 75,
+		num: 55,
 		name: "Defense Eiki",
 		types: ["Light", "Nether"],
 		gender: "F",
@@ -606,7 +606,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eiki",
 	},
 	extraeiki: {
-		num: 75,
+		num: 56,
 		name: "Extra Eiki",
 		types: ["Warped", "Void"],
 		gender: "F",
@@ -617,7 +617,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eiki",
 	},
 	normaleirin: {
-		num: 65,
+		num: 57,
 		name: "Normal Eirin",
 		types: ["Poison", "Water"],
 		gender: "F",
@@ -628,7 +628,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eirin",
 	},
 	assisteirin: {
-		num: 65,
+		num: 58,
 		name: "Assist Eirin",
 		types: ["Poison", "Water"],
 		gender: "F",
@@ -639,7 +639,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eirin",
 	},
 	powereirin: {
-		num: 65,
+		num: 59,
 		name: "Power Eirin",
 		types: ["Poison", "Steel"],
 		gender: "F",
@@ -650,7 +650,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eirin",
 	},
 	extraeirin: {
-		num: 65,
+		num: 60,
 		name: "Extra Eirin",
 		types: ["Poison", "Light"],
 		gender: "F",
@@ -661,7 +661,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eirin",
 	},
 	normalelis: {
-		num: 5,
+		num: 61,
 		name: "Normal Elis",
 		types: ["Dark", "Electric"],
 		gender: "F",
@@ -672,7 +672,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "elis",
 	},
 	speedelis: {
-		num: 5,
+		num: 62,
 		name: "Speed Elis",
 		types: ["Dark", "Electric"],
 		gender: "F",
@@ -683,7 +683,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "elis",
 	},
 	powerelis: {
-		num: 5,
+		num: 63,
 		name: "Power Elis",
 		types: ["Dark", "Poison"],
 		gender: "F",
@@ -694,7 +694,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "elis",
 	},
 	extraelis: {
-		num: 5,
+		num: 64,
 		name: "Extra Elis",
 		types: ["Electric", "Poison"],
 		gender: "F",
@@ -705,7 +705,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "elis",
 	},
 	normalellen: {
-		num: 14,
+		num: 65,
 		name: "Normal Ellen",
 		types: ["Illusion"],
 		gender: "F",
@@ -716,7 +716,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ellen",
 	},
 	powerellen: {
-		num: 14,
+		num: 66,
 		name: "Power Ellen",
 		types: ["Illusion"],
 		gender: "F",
@@ -727,7 +727,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ellen",
 	},
 	speedellen: {
-		num: 14,
+		num: 67,
 		name: "Speed Ellen",
 		types: ["Illusion", "Electric"],
 		gender: "F",
@@ -738,7 +738,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ellen",
 	},
 	extraellen: {
-		num: 14,
+		num: 68,
 		name: "Extra Ellen",
 		types: ["Illusion", "Wind"],
 		gender: "F",
@@ -749,7 +749,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ellen",
 	},
 	normalelly: {
-		num: 23,
+		num: 69,
 		name: "Normal Elly",
 		types: ["Steel", "Wind"],
 		gender: "F",
@@ -760,7 +760,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "elly",
 	},
 	powerelly: {
-		num: 23,
+		num: 70,
 		name: "Power Elly",
 		types: ["Steel", "Wind"],
 		gender: "F",
@@ -771,7 +771,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "elly",
 	},
 	defenseelly: {
-		num: 23,
+		num: 71,
 		name: "Defense Elly",
 		types: ["Steel", "Earth"],
 		gender: "F",
@@ -782,7 +782,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "elly",
 	},
 	extraelly: {
-		num: 23,
+		num: 72,
 		name: "Extra Elly",
 		types: ["Earth", "Dark"],
 		gender: "F",
@@ -793,7 +793,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "elly",
 	},
 	normaleternity: {
-		num: 141,
+		num: 73,
 		name: "Normal Eternity",
 		types: ["Nature"],
 		gender: "F",
@@ -804,7 +804,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eternity",
 	},
 	speedeternity: {
-		num: 141,
+		num: 74,
 		name: "Speed Eternity",
 		types: ["Nature", "Fire"],
 		gender: "F",
@@ -815,7 +815,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eternity",
 	},
 	assisteternity: {
-		num: 141,
+		num: 75,
 		name: "Assist Eternity",
 		types: ["Wind", "Light"],
 		gender: "F",
@@ -826,7 +826,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eternity",
 	},
 	extraeternity: {
-		num: 141,
+		num: 76,
 		name: "Extra Eternity",
 		types: ["Nature", "Illusion"],
 		gender: "F",
@@ -837,7 +837,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "eternity",
 	},
 	normalflandre: {
-		num: 45,
+		num: 77,
 		name: "Normal Flandre",
 		types: ["Dark", "Light"],
 		gender: "F",
@@ -848,7 +848,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "flandre",
 	},
 	speedflandre: {
-		num: 45,
+		num: 78,
 		name: "Speed Flandre",
 		types: ["Dark", "Light"],
 		gender: "F",
@@ -859,7 +859,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "flandre",
 	},
 	powerflandre: {
-		num: 45,
+		num: 79,
 		name: "Power Flandre",
 		types: ["Dark", "Fire"],
 		gender: "F",
@@ -870,7 +870,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "flandre",
 	},
 	extraflandre: {
-		num: 45,
+		num: 80,
 		name: "Extra Flandre",
 		types: ["Warped", "Light"],
 		gender: "F",
@@ -881,7 +881,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "flandre",
 	},
 	normalfuto: {
-		num: 111,
+		num: 81,
 		name: "Normal Futo",
 		types: ["Wind", "Water"],
 		gender: "F",
@@ -892,7 +892,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "futo",
 	},
 	speedfuto: {
-		num: 111,
+		num: 82,
 		name: "Speed Futo",
 		types: ["Wind", "Water"],
 		gender: "F",
@@ -903,7 +903,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "futo",
 	},
 	powerfuto: {
-		num: 111,
+		num: 83,
 		name: "Power Futo",
 		types: ["Earth", "Fire"],
 		gender: "F",
@@ -914,7 +914,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "futo",
 	},
 	extrafuto: {
-		num: 111,
+		num: 84,
 		name: "Extra Futo",
 		types: ["Nether", "Fighting"],
 		gender: "F",
@@ -925,7 +925,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "futo",
 	},
 	normalgengetsu: {
-		num: 27,
+		num: 85,
 		name: "Normal Gengetsu",
 		types: ["Illusion", "Light"],
 		gender: "F",
@@ -936,7 +936,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "gengetsu",
 	},
 	powergengetsu: {
-		num: 27,
+		num: 86,
 		name: "Power Gengetsu",
 		types: ["Illusion", "Light"],
 		gender: "F",
@@ -947,7 +947,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "gengetsu",
 	},
 	speedgengetsu: {
-		num: 27,
+		num: 87,
 		name: "Speed Gengetsu",
 		types: ["Illusion", "Electric"],
 		gender: "F",
@@ -958,7 +958,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "gengetsu",
 	},
 	extragengetsu: {
-		num: 27,
+		num: 88,
 		name: "Extra Gengetsu",
 		types: ["Warped", "Dark"],
 		gender: "F",
@@ -969,7 +969,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "gengetsu",
 	},
 	normalhatate: {
-		num: 105,
+		num: 89,
 		name: "Normal Hatate",
 		types: ["Wind"],
 		gender: "F",
@@ -980,7 +980,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hatate",
 	},
 	powerhatate: {
-		num: 105,
+		num: 90,
 		name: "Power Hatate",
 		types: ["Wind", "Void"],
 		gender: "F",
@@ -991,7 +991,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hatate",
 	},
 	assisthatate: {
-		num: 105,
+		num: 91,
 		name: "Assist Hatate",
 		types: ["Wind", "Illusion"],
 		gender: "F",
@@ -1002,7 +1002,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hatate",
 	},
 	extrahatate: {
-		num: 105,
+		num: 92,
 		name: "Extra Hatate",
 		types: ["Wind", "Warped"],
 		gender: "F",
@@ -1013,7 +1013,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hatate",
 	},
 	normalhecatia: {
-		num: 131,
+		num: 93,
 		name: "Normal Hecatia",
 		types: ["Void"],
 		gender: "F",
@@ -1024,7 +1024,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hecatia",
 	},
 	powerhecatia: {
-		num: 131,
+		num: 94,
 		name: "Power Hecatia",
 		types: ["Void"],
 		gender: "F",
@@ -1035,7 +1035,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hecatia",
 	},
 	defensehecatia: {
-		num: 131,
+		num: 95,
 		name: "Defense Hecatia",
 		types: ["Earth", "Dark"],
 		gender: "F",
@@ -1046,7 +1046,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hecatia",
 	},
 	extrahecatia: {
-		num: 131,
+		num: 96,
 		name: "Extra Hecatia",
 		types: ["Warped", "Nether"],
 		gender: "F",
@@ -1058,7 +1058,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		otherFormes: ["Extra Hecatia-Earth", "Extra Hecatia-Moon"]
 	},
 	extrahecatiaearth: {
-		num: 301,
+		num: 97,
 		name: "Extra Hecatia-Earth",
 		types: ["Earth", "Nature"],
 		gender: "F",
@@ -1071,7 +1071,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		forme: "Earth"
 	},
 	extrahecatiamoon: {
-		num: 302,
+		num: 98,
 		name: "Extra Hecatia-Moon",
 		types: ["Light", "Dark"],
 		gender: "F",
@@ -1084,7 +1084,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		forme: "Moon"
 	},
 	normalhijiri: {
-		num: 103,
+		num: 99,
 		name: "Normal Hijiri",
 		types: ["Fighting"],
 		gender: "F",
@@ -1095,7 +1095,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hijiri",
 	},
 	defensehijiri: {
-		num: 103,
+		num: 100,
 		name: "Defense Hijiri",
 		types: ["Fighting", "Light"],
 		gender: "F",
@@ -1106,7 +1106,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hijiri",
 	},
 	speedhijiri: {
-		num: 103,
+		num: 101,
 		name: "Speed Hijiri",
 		types: ["Fighting", "Light"],
 		gender: "F",
@@ -1117,7 +1117,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hijiri",
 	},
 	extrahijiri: {
-		num: 103,
+		num: 102,
 		name: "Extra Hijiri",
 		types: ["Earth", "Electric"],
 		gender: "F",
@@ -1128,7 +1128,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hijiri",
 	},
 	normalhina: {
-		num: 82,
+		num: 103,
 		name: "Normal Hina",
 		types: ["Poison", "Nether"],
 		gender: "F",
@@ -1139,7 +1139,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hina",
 	},
 	defensehina: {
-		num: 82,
+		num: 104,
 		name: "Defense Hina",
 		types: ["Poison"],
 		gender: "F",
@@ -1150,7 +1150,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hina",
 	},
 	assisthina: {
-		num: 82,
+		num: 105,
 		name: "Assist Hina",
 		types: ["Poison", "Dark"],
 		gender: "F",
@@ -1161,7 +1161,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hina",
 	},
 	extrahina: {
-		num: 82,
+		num: 106,
 		name: "Extra Hina",
 		types: ["Poison", "Fire"],
 		gender: "F",
@@ -1172,7 +1172,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "hina",
 	},
 	normalichirin: {
-		num: 100,
+		num: 107,
 		name: "Normal Ichirin",
 		types: ["Fighting"],
 		gender: "F",
@@ -1183,7 +1183,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ichirin",
 	},
 	powerichirin: {
-		num: 100,
+		num: 108,
 		name: "Power Ichirin",
 		types: ["Fighting"],
 		gender: "F",
@@ -1194,7 +1194,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ichirin",
 	},
 	defenseichirin: {
-		num: 100,
+		num: 109,
 		name: "Defense Ichirin",
 		types: ["Fighting", "Electric"],
 		gender: "F",
@@ -1205,7 +1205,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ichirin",
 	},
 	extraichirin: {
-		num: 100,
+		num: 110,
 		name: "Extra Ichirin",
 		types: ["Electric", "Water"],
 		gender: "F",
@@ -1216,7 +1216,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ichirin",
 	},
 	normaliku: {
-		num: 88,
+		num: 111,
 		name: "Normal Iku",
 		types: ["Electric"],
 		gender: "F",
@@ -1227,7 +1227,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "iku",
 	},
 	poweriku: {
-		num: 88,
+		num: 112,
 		name: "Power Iku",
 		types: ["Electric"],
 		gender: "F",
@@ -1238,7 +1238,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "iku",
 	},
 	speediku: {
-		num: 88,
+		num: 113,
 		name: "Speed Iku",
 		types: ["Electric", "Wind"],
 		gender: "F",
@@ -1249,7 +1249,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "iku",
 	},
 	extraiku: {
-		num: 88,
+		num: 114,
 		name: "Extra Iku",
 		types: ["Wind", "Light"],
 		gender: "F",
@@ -1260,7 +1260,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "iku",
 	},
 	normaljunko: {
-		num: 130,
+		num: 115,
 		name: "Normal Junko",
 		types: ["Light", "Warped"],
 		gender: "F",
@@ -1271,7 +1271,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "junko",
 	},
 	powerjunko: {
-		num: 130,
+		num: 116,
 		name: "Power Junko",
 		types: ["Light", "Warped"],
 		gender: "F",
@@ -1282,7 +1282,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "junko",
 	},
 	speedjunko: {
-		num: 130,
+		num: 117,
 		name: "Speed Junko",
 		types: ["Light", "Dark"],
 		gender: "F",
@@ -1293,7 +1293,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "junko",
 	},
 	extrajunko: {
-		num: 130,
+		num: 118,
 		name: "Extra Junko",
 		types: ["Void"],
 		gender: "F",
@@ -1304,7 +1304,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "junko",
 	},
 	normalkagerou: {
-		num: 118,
+		num: 119,
 		name: "Normal Kagerou",
 		types: ["Dark", "Wind"],
 		gender: "F",
@@ -1315,7 +1315,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kagerou",
 	},
 	speedkagerou: {
-		num: 118,
+		num: 120,
 		name: "Speed Kagerou",
 		types: ["Dark", "Wind"],
 		gender: "F",
@@ -1326,7 +1326,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kagerou",
 	},
 	powerkagerou: {
-		num: 118,
+		num: 121,
 		name: "Power Kagerou",
 		types: ["Dark", "Earth"],
 		gender: "F",
@@ -1337,7 +1337,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kagerou",
 	},
 	extrakagerou: {
-		num: 118,
+		num: 122,
 		name: "Extra Kagerou",
 		types: ["Wind", "Poison"],
 		gender: "F",
@@ -1348,7 +1348,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kagerou",
 	},
 	normalkaguya: {
-		num: 66,
+		num: 123,
 		name: "Normal Kaguya",
 		types: ["Light"],
 		gender: "F",
@@ -1359,7 +1359,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kaguya",
 	},
 	defensekaguya: {
-		num: 66,
+		num: 124,
 		name: "Defense Kaguya",
 		types: ["Light"],
 		gender: "F",
@@ -1370,7 +1370,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kaguya",
 	},
 	powerkaguya: {
-		num: 66,
+		num: 125,
 		name: "Power Kaguya",
 		types: ["Light", "Void"],
 		gender: "F",
@@ -1381,7 +1381,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kaguya",
 	},
 	extrakaguya: {
-		num: 66,
+		num: 126,
 		name: "Extra Kaguya",
 		types: ["Fire", "Sound"],
 		gender: "F",
@@ -1392,7 +1392,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kaguya",
 	},
 	normalkana: {
-		num: 16,
+		num: 127,
 		name: "Normal Kana",
 		types: ["Nether", "Sound"],
 		gender: "F",
@@ -1403,7 +1403,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kana",
 	},
 	assistkana: {
-		num: 16,
+		num: 128,
 		name: "Assist Kana",
 		types: ["Nether", "Sound"],
 		gender: "F",
@@ -1414,7 +1414,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kana",
 	},
 	powerkana: {
-		num: 16,
+		num: 129,
 		name: "Power Kana",
 		types: ["Nether", "Illusion"],
 		gender: "F",
@@ -1425,7 +1425,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kana",
 	},
 	extrakana: {
-		num: 16,
+		num: 130,
 		name: "Extra Kana",
 		types: ["Nether", "Void"],
 		gender: "F",
@@ -1436,7 +1436,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kana",
 	},
 	normalkanako: {
-		num: 86,
+		num: 131,
 		name: "Normal Kanako",
 		types: ["Wind", "Earth"],
 		gender: "F",
@@ -1447,7 +1447,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kanako",
 	},
 	defensekanako: {
-		num: 86,
+		num: 132,
 		name: "Defense Kanako",
 		types: ["Wind", "Earth"],
 		gender: "F",
@@ -1458,7 +1458,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kanako",
 	},
 	powerkanako: {
-		num: 86,
+		num: 133,
 		name: "Power Kanako",
 		types: ["Wind", "Nature"],
 		gender: "F",
@@ -1469,7 +1469,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kanako",
 	},
 	extrakanako: {
-		num: 86,
+		num: 134,
 		name: "Extra Kanako",
 		types: ["Wind", "Fighting"],
 		gender: "F",
@@ -1480,7 +1480,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kanako",
 	},
 	normalkasen: {
-		num: 106,
+		num: 135,
 		name: "Normal Kasen",
 		types: ["Fighting", "Illusion"],
 		gender: "F",
@@ -1491,7 +1491,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kasen",
 	},
 	powerkasen: {
-		num: 106,
+		num: 136,
 		name: "Power Kasen",
 		types: ["Fighting", "Illusion"],
 		gender: "F",
@@ -1502,7 +1502,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kasen",
 	},
 	assistkasen: {
-		num: 106,
+		num: 137,
 		name: "Assist Kasen",
 		types: ["Fighting", "Nether"],
 		gender: "F",
@@ -1513,7 +1513,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kasen",
 	},
 	extrakasen: {
-		num: 106,
+		num: 138,
 		name: "Extra Kasen",
 		types: ["Fighting", "Warped"],
 		gender: "F",
@@ -1524,7 +1524,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kasen",
 	},
 	normalkeiki: {
-		num: 153,
+		num: 139,
 		name: "Normal Keiki",
 		types: ["Earth"],
 		gender: "F",
@@ -1535,7 +1535,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "keiki",
 	},
 	powerkeiki: {
-		num: 153,
+		num: 140,
 		name: "Power Keiki",
 		types: ["Earth", "Electric"],
 		gender: "F",
@@ -1546,7 +1546,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "keiki",
 	},
 	assistkeiki: {
-		num: 153,
+		num: 141,
 		name: "Assist Keiki",
 		types: ["Earth", "Water"],
 		gender: "F",
@@ -1557,7 +1557,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "keiki",
 	},
 	extrakeiki: {
-		num: 153,
+		num: 142,
 		name: "Extra Keiki",
 		types: ["Warped", "Electric"],
 		gender: "F",
@@ -1568,7 +1568,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "keiki",
 	},
 	normalkeine: {
-		num: 62,
+		num: 143,
 		name: "Normal Keine",
 		types: ["Steel"],
 		gender: "F",
@@ -1579,7 +1579,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "keine",
 	},
 	defensekeine: {
-		num: 62,
+		num: 144,
 		name: "Defense Keine",
 		types: ["Steel"],
 		gender: "F",
@@ -1591,7 +1591,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		otherFormes: ["Defense Keine-Hakutaku"],
 	},
 	defensekeinehakutaku: {
-		num: 300,
+		num: 145,
 		name: "Defense Keine-Hakutaku",
 		types: ["Steel", "Fighting"],
 		gender: "F",
@@ -1604,7 +1604,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		changesFrom: "Defense Keine"
 	},
 	powerkeine: {
-		num: 62,
+		num: 146,
 		name: "Power Keine",
 		types: ["Steel", "Light"],
 		gender: "F",
@@ -1615,7 +1615,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "keine",
 	},
 	extrakeine: {
-		num: 62,
+		num: 147,
 		name: "Extra Keine",
 		types: ["Earth", "Warped"],
 		gender: "F",
@@ -1626,7 +1626,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "keine",
 	},
 	normalkikuri: {
-		num: 8,
+		num: 148,
 		name: "Normal Kikuri",
 		types: ["Illusion"],
 		gender: "F",
@@ -1637,7 +1637,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kikuri",
 	},
 	defensekikuri: {
-		num: 8,
+		num: 149,
 		name: "Defense Kikuri",
 		types: ["Illusion"],
 		gender: "F",
@@ -1648,7 +1648,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kikuri",
 	},
 	powerkikuri: {
-		num: 8,
+		num: 150,
 		name: "Power Kikuri",
 		types: ["Illusion", "Electric"],
 		gender: "F",
@@ -1659,7 +1659,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kikuri",
 	},
 	extrakikuri: {
-		num: 8,
+		num: 151,
 		name: "Extra Kikuri",
 		types: ["Illusion", "Water"],
 		gender: "F",
@@ -1670,7 +1670,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kikuri",
 	},
 	normalkisume: {
-		num: 90,
+		num: 152,
 		name: "Normal Kisume",
 		types: ["Dark", "Fire"],
 		gender: "F",
@@ -1681,7 +1681,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kisume",
 	},
 	assistkisume: {
-		num: 90,
+		num: 153,
 		name: "Assist Kisume",
 		types: ["Dark", "Fire"],
 		gender: "F",
@@ -1692,7 +1692,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kisume",
 	},
 	defensekisume: {
-		num: 90,
+		num: 154,
 		name: "Defense Kisume",
 		types: ["Dark", "Water"],
 		gender: "F",
@@ -1703,7 +1703,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kisume",
 	},
 	extrakisume: {
-		num: 90,
+		num: 155,
 		name: "Extra Kisume",
 		types: ["Fire", "Nature"],
 		gender: "F",
@@ -1714,7 +1714,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kisume",
 	},
 	normalkoakuma: {
-		num: 41,
+		num: 156,
 		name: "Normal Koakuma",
 		types: ["Dark"],
 		gender: "F",
@@ -1725,7 +1725,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "koakuma",
 	},
 	defensekoakuma: {
-		num: 41,
+		num: 157,
 		name: "Defense Koakuma",
 		types: ["Warped"],
 		gender: "F",
@@ -1736,7 +1736,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "koakuma",
 	},
 	assistkoakuma: {
-		num: 41,
+		num: 158,
 		name: "Assist Koakuma",
 		types: ["Dark"],
 		gender: "F",
@@ -1747,7 +1747,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "koakuma",
 	},
 	extrakoakuma: {
-		num: 41,
+		num: 159,
 		name: "Extra Koakuma",
 		types: ["Dark", "Void"],
 		gender: "F",
@@ -1758,7 +1758,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "koakuma",
 	},
 	normalkogasa: {
-		num: 99,
+		num: 160,
 		name: "Normal Kogasa",
 		types: ["Water", "Wind"],
 		gender: "F",
@@ -1769,7 +1769,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kogasa",
 	},
 	assistkogasa: {
-		num: 99,
+		num: 161,
 		name: "Assist Kogasa",
 		types: ["Water", "Wind"],
 		gender: "F",
@@ -1780,7 +1780,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kogasa",
 	},
 	speedkogasa: {
-		num: 99,
+		num: 162,
 		name: "Speed Kogasa",
 		types: ["Water", "Light"],
 		gender: "F",
@@ -1791,7 +1791,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kogasa",
 	},
 	extrakogasa: {
-		num: 99,
+		num: 163,
 		name: "Extra Kogasa",
 		types: ["Water", "Sound"],
 		gender: "F",
@@ -1802,7 +1802,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kogasa",
 	},
 	normalkoishi: {
-		num: 97,
+		num: 164,
 		name: "Normal Koishi",
 		types: ["Void"],
 		gender: "F",
@@ -1813,7 +1813,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "koishi",
 	},
 	powerkoishi: {
-		num: 97,
+		num: 165,
 		name: "Power Koishi",
 		types: ["Void"],
 		gender: "F",
@@ -1824,7 +1824,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "koishi",
 	},
 	assistkoishi: {
-		num: 97,
+		num: 166,
 		name: "Assist Koishi",
 		types: ["Void", "Illusion"],
 		gender: "F",
@@ -1835,7 +1835,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "koishi",
 	},
 	extrakoishi: {
-		num: 97,
+		num: 167,
 		name: "Extra Koishi",
 		types: ["Warped"],
 		gender: "F",
@@ -1846,7 +1846,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "koishi",
 	},
 	normalkokoro: {
-		num: 115,
+		num: 168,
 		name: "Normal Kokoro",
 		types: ["Void", "Fighting"],
 		gender: "F",
@@ -1857,7 +1857,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kokoro",
 	},
 	defensekokoro: {
-		num: 115,
+		num: 169,
 		name: "Defense Kokoro",
 		types: ["Void", "Fighting"],
 		gender: "F",
@@ -1868,7 +1868,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kokoro",
 	},
 	powerkokoro: {
-		num: 115,
+		num: 170,
 		name: "Power Kokoro",
 		types: ["Void", "Light"],
 		gender: "F",
@@ -1879,7 +1879,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kokoro",
 	},
 	extrakokoro: {
-		num: 115,
+		num: 171,
 		name: "Extra Kokoro",
 		types: ["Sound", "Dark"],
 		gender: "F",
@@ -1890,7 +1890,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kokoro",
 	},
 	normalkomachi: {
-		num: 74,
+		num: 172,
 		name: "Normal Komachi",
 		types: ["Water", "Nether"],
 		gender: "F",
@@ -1901,7 +1901,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "komachi",
 	},
 	assistkomachi: {
-		num: 74,
+		num: 173,
 		name: "Assist Komachi",
 		types: ["Water", "Nether"],
 		gender: "F",
@@ -1912,7 +1912,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "komachi",
 	},
 	powerkomachi: {
-		num: 74,
+		num: 174,
 		name: "Power Komachi",
 		types: ["Water", "Steel"],
 		gender: "F",
@@ -1923,7 +1923,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "komachi",
 	},
 	extrakomachi: {
-		num: 74,
+		num: 175,
 		name: "Extra Komachi",
 		types: ["Water", "Warped"],
 		gender: "F",
@@ -1934,7 +1934,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "komachi",
 	},
 	normalkonngara: {
-		num: 9,
+		num: 176,
 		name: "Normal Konngara",
 		types: ["Steel", "Fighting"],
 		gender: "F",
@@ -1945,7 +1945,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "konngara",
 	},
 	powerkonngara: {
-		num: 9,
+		num: 177,
 		name: "Power Konngara",
 		types: ["Steel", "Fighting"],
 		gender: "F",
@@ -1956,7 +1956,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "konngara",
 	},
 	speedkonngara: {
-		num: 9,
+		num: 178,
 		name: "Speed Konngara",
 		types: ["Steel", "Fire"],
 		gender: "F",
@@ -1967,7 +1967,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "konngara",
 	},
 	extrakonngara: {
-		num: 9,
+		num: 179,
 		name: "Extra Konngara",
 		types: ["Nether", "Fire"],
 		gender: "F",
@@ -1978,7 +1978,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "konngara",
 	},
 	normalkosuzu: {
-		num: 114,
+		num: 180,
 		name: "Normal Kosuzu",
 		types: ["Void"],
 		gender: "F",
@@ -1989,7 +1989,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kosuzu",
 	},
 	defensekosuzu: {
-		num: 114,
+		num: 181,
 		name: "Defense Kosuzu",
 		types: ["Void"],
 		gender: "F",
@@ -2000,7 +2000,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kosuzu",
 	},
 	assistkosuzu: {
-		num: 114,
+		num: 182,
 		name: "Assist Kosuzu",
 		types: ["Void"],
 		gender: "F",
@@ -2011,7 +2011,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kosuzu",
 	},
 	extrakosuzu: {
-		num: 114,
+		num: 183,
 		name: "Extra Kosuzu",
 		types: ["Void"],
 		gender: "F",
@@ -2023,7 +2023,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		otherFormes: ["Extra Kosuzu-Red","Extra Kosuzu-Blue","Extra Kosuzu-Black","Extra Kosuzu-White"]
 	},
 	extrakosuzured: {
-		num: 114,
+		num: 184,
 		name: "Extra Kosuzu-Red",
 		types: ["Fire"],
 		gender: "F",
@@ -2037,7 +2037,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		forme: "Red"
 	},
 	extrakosuzublue: {
-		num: 114,
+		num: 185,
 		name: "Extra Kosuzu-Blue",
 		types: ["Water"],
 		gender: "F",
@@ -2051,7 +2051,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		forme: "Blue"
 	},
 	extrakosuzublack: {
-		num: 114,
+		num: 186,
 		name: "Extra Kosuzu-Black",
 		types: ["Dark"],
 		gender: "F",
@@ -2065,7 +2065,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		forme: "Black"
 	},
 	extrakosuzuwhite: {
-		num: 114,
+		num: 187,
 		name: "Extra Kosuzu-White",
 		types: ["Light"],
 		gender: "F",
@@ -2079,7 +2079,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		forme: "White"
 	},
 	normalkotohime: {
-		num: 15,
+		num: 188,
 		name: "Normal Kotohime",
 		types: ["Void"],
 		gender: "F",
@@ -2090,7 +2090,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kotohime",
 	},
 	assistkotohime: {
-		num: 15,
+		num: 189,
 		name: "Assist Kotohime",
 		types: ["Void"],
 		gender: "F",
@@ -2101,7 +2101,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kotohime",
 	},
 	defensekotohime: {
-		num: 15,
+		num: 190,
 		name: "Defense Kotohime",
 		types: ["Void"],
 		gender: "F",
@@ -2112,7 +2112,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kotohime",
 	},
 	extrakotohime: {
-		num: 15,
+		num: 191,
 		name: "Extra Kotohime",
 		types: ["Void", "Poison"],
 		gender: "F",
@@ -2123,7 +2123,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kotohime",
 	},
 	normalkurumi: {
-		num: 22,
+		num: 192,
 		name: "Normal Kurumi",
 		types: ["Dark"],
 		gender: "F",
@@ -2134,7 +2134,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kurumi",
 	},
 	powerkurumi: {
-		num: 22,
+		num: 193,
 		name: "Power Kurumi",
 		types: ["Dark"],
 		gender: "F",
@@ -2145,7 +2145,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kurumi",
 	},
 	assistkurumi: {
-		num: 22,
+		num: 194,
 		name: "Assist Kurumi",
 		types: ["Dark", "Poison"],
 		gender: "F",
@@ -2156,7 +2156,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kurumi",
 	},
 	extrakurumi: {
-		num: 22,
+		num: 195,
 		name: "Extra Kurumi",
 		types: ["Wind", "Poison"],
 		gender: "F",
@@ -2167,7 +2167,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kurumi",
 	},
 	normalkutaka: {
-		num: 150,
+		num: 196,
 		name: "Normal Kutaka",
 		types: ["Water", "Light"],
 		gender: "F",
@@ -2178,7 +2178,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kutaka",
 	},
 	assistkutaka: {
-		num: 150,
+		num: 197,
 		name: "Assist Kutaka",
 		types: ["Water", "Light"],
 		gender: "F",
@@ -2189,7 +2189,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kutaka",
 	},
 	speedkutaka: {
-		num: 150,
+		num: 198,
 		name: "Speed Kutaka",
 		types: ["Sound", "Warped"],
 		gender: "F",
@@ -2200,7 +2200,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kutaka",
 	},
 	extrakutaka: {
-		num: 150,
+		num: 199,
 		name: "Extra Kutaka",
 		types: ["Nether", "Electric"],
 		gender: "F",
@@ -2211,7 +2211,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kutaka",
 	},
 	normalkyouko: {
-		num: 107,
+		num: 200,
 		name: "Normal Kyouko",
 		types: ["Sound"],
 		gender: "F",
@@ -2222,7 +2222,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kyouko",
 	},
 	powerkyouko: {
-		num: 107,
+		num: 201,
 		name: "Power Kyouko",
 		types: ["Sound"],
 		gender: "F",
@@ -2233,7 +2233,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kyouko",
 	},
 	assistkyouko: {
-		num: 107,
+		num: 202,
 		name: "Assist Kyouko",
 		types: ["Sound", "Earth"],
 		gender: "F",
@@ -2244,7 +2244,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kyouko",
 	},
 	extrakyouko: {
-		num: 107,
+		num: 203,
 		name: "Extra Kyouko",
 		types: ["Sound", "Void"],
 		gender: "F",
@@ -2255,7 +2255,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "kyouko",
 	},
 	normalletty: {
-		num: 46,
+		num: 204,
 		name: "Normal Letty",
 		types: ["Water"],
 		gender: "F",
@@ -2266,7 +2266,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "letty",
 	},
 	powerletty: {
-		num: 46,
+		num: 205,
 		name: "Power Letty",
 		types: ["Water"],
 		gender: "F",
@@ -2277,7 +2277,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "letty",
 	},
 	defenseletty: {
-		num: 46,
+		num: 206,
 		name: "Defense Letty",
 		types: ["Water", "Nature"],
 		gender: "F",
@@ -2288,7 +2288,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "letty",
 	},
 	extraletty: {
-		num: 46,
+		num: 207,
 		name: "Extra Letty",
 		types: ["Water", "Earth"],
 		gender: "F",
@@ -2299,7 +2299,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "letty",
 	},
 	normallily: {
-		num: 48,
+		num: 208,
 		name: "Normal Lily",
 		types: ["Void"],
 		gender: "F",
@@ -2310,7 +2310,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lily",
 	},
 	assistlily: {
-		num: 48,
+		num: 209,
 		name: "Assist Lily",
 		types: ["Void"],
 		gender: "F",
@@ -2321,7 +2321,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lily",
 	},
 	powerlily: {
-		num: 48,
+		num: 210,
 		name: "Power Lily",
 		types: ["Nature", "Void"],
 		gender: "F",
@@ -2332,7 +2332,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lily",
 	},
 	extralily: {
-		num: 48,
+		num: 211,
 		name: "Extra Lily",
 		types: ["Sound", "Dark"],
 		gender: "F",
@@ -2343,7 +2343,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lily",
 	},
 	normallouise: {
-		num: 30,
+		num: 212,
 		name: "Normal Louise",
 		types: ["Wind"],
 		gender: "F",
@@ -2354,7 +2354,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "louise",
 	},
 	defenselouise: {
-		num: 30,
+		num: 213,
 		name: "Defense Louise",
 		types: ["Wind"],
 		gender: "F",
@@ -2365,7 +2365,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "louise",
 	},
 	assistlouise: {
-		num: 30,
+		num: 214,
 		name: "Assist Louise",
 		types: ["Wind"],
 		gender: "F",
@@ -2376,7 +2376,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "louise",
 	},
 	extralouise: {
-		num: 30,
+		num: 215,
 		name: "Extra Louise",
 		types: ["Electric", "Void"],
 		gender: "F",
@@ -2387,7 +2387,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "louise",
 	},
 	normalluna: {
-		num: 70,
+		num: 216,
 		name: "Normal Luna",
 		types: ["Light", "Wind"],
 		gender: "F",
@@ -2398,7 +2398,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "luna",
 	},
 	powerluna: {
-		num: 70,
+		num: 217,
 		name: "Power Luna",
 		types: ["Light", "Wind"],
 		gender: "F",
@@ -2409,7 +2409,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "luna",
 	},
 	speedluna: {
-		num: 70,
+		num: 218,
 		name: "Speed Luna",
 		types: ["Light", "Sound"],
 		gender: "F",
@@ -2420,7 +2420,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "luna",
 	},
 	extraluna: {
-		num: 70,
+		num: 219,
 		name: "Extra Luna",
 		types: ["Sound", "Warped"],
 		gender: "F",
@@ -2431,7 +2431,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "luna",
 	},
 	normallunasa: {
-		num: 51,
+		num: 220,
 		name: "Normal Lunasa",
 		types: ["Sound", "Nether"],
 		gender: "F",
@@ -2442,7 +2442,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lunasa",
 	},
 	assistlunasa: {
-		num: 51,
+		num: 221,
 		name: "Assist Lunasa",
 		types: ["Sound", "Nether"],
 		gender: "F",
@@ -2453,7 +2453,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lunasa",
 	},
 	defenselunasa: {
-		num: 51,
+		num: 222,
 		name: "Defense Lunasa",
 		types: ["Sound", "Poison"],
 		gender: "F",
@@ -2464,7 +2464,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lunasa",
 	},
 	extralunasa: {
-		num: 51,
+		num: 223,
 		name: "Extra Lunasa",
 		types: ["Sound", "Nature"],
 		gender: "F",
@@ -2475,7 +2475,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lunasa",
 	},
 	normallyrica: {
-		num: 49,
+		num: 224,
 		name: "Normal Lyrica",
 		types: ["Sound", "Nether"],
 		gender: "F",
@@ -2486,7 +2486,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lyrica",
 	},
 	speedlyrica: {
-		num: 49,
+		num: 225,
 		name: "Speed Lyrica",
 		types: ["Sound", "Nether"],
 		gender: "F",
@@ -2497,7 +2497,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lyrica",
 	},
 	powerlyrica: {
-		num: 49,
+		num: 226,
 		name: "Power Lyrica",
 		types: ["Sound", "Illusion"],
 		gender: "F",
@@ -2508,7 +2508,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lyrica",
 	},
 	extralyrica: {
-		num: 49,
+		num: 227,
 		name: "Extra Lyrica",
 		types: ["Sound", "Electric"],
 		gender: "F",
@@ -2519,7 +2519,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "lyrica",
 	},
 	normalmagan: {
-		num: 4,
+		num: 228,
 		name: "Normal Magan",
 		types: ["Poison", "Dark"],
 		gender: "N",
@@ -2530,7 +2530,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "magan",
 	},
 	assistmagan: {
-		num: 4,
+		num: 229,
 		name: "Assist Magan",
 		types: ["Poison", "Dark"],
 		gender: "N",
@@ -2541,7 +2541,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "magan",
 	},
 	powermagan: {
-		num: 4,
+		num: 230,
 		name: "Power Magan",
 		types: ["Poison", "Nether"],
 		gender: "N",
@@ -2552,7 +2552,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "magan",
 	},
 	extramagan: {
-		num: 4,
+		num: 231,
 		name: "Extra Magan",
 		types: ["Warped", "Illusion"],
 		gender: "N",
@@ -2563,7 +2563,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "magan",
 	},
 	normalmai: {
-		num: 33,
+		num: 232,
 		name: "Normal Mai",
 		types: ["Water"],
 		gender: "F",
@@ -2574,7 +2574,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mai",
 	},
 	powermai: {
-		num: 33,
+		num: 233,
 		name: "Power Mai",
 		types: ["Water"],
 		gender: "F",
@@ -2585,7 +2585,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mai",
 	},
 	defensemai: {
-		num: 33,
+		num: 234,
 		name: "Defense Mai",
 		types: ["Water", "Fire"],
 		gender: "F",
@@ -2596,7 +2596,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mai",
 	},
 	extramai: {
-		num: 33,
+		num: 235,
 		name: "Extra Mai",
 		types: ["Fire", "Warped"],
 		gender: "F",
@@ -2607,7 +2607,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mai",
 	},
 	normalmamizou: {
-		num: 113,
+		num: 236,
 		name: "Normal Mamizou",
 		types: ["Illusion", "Nature"],
 		gender: "F",
@@ -2618,7 +2618,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mamizou",
 	},
 	defensemamizou: {
-		num: 113,
+		num: 237,
 		name: "Defense Mamizou",
 		types: ["Illusion", "Nature"],
 		gender: "F",
@@ -2629,7 +2629,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mamizou",
 	},
 	powermamizou: {
-		num: 113,
+		num: 238,
 		name: "Power Mamizou",
 		types: ["Illusion", "Earth"],
 		gender: "F",
@@ -2640,7 +2640,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mamizou",
 	},
 	extramamizou: {
-		num: 113,
+		num: 239,
 		name: "Extra Mamizou",
 		types: ["Earth", "Nether"],
 		gender: "F",
@@ -2651,7 +2651,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mamizou",
 	},
 	normalmarisa: {
-		num: 2,
+		num: 240,
 		name: "Normal Marisa",
 		types: ["Light", "Electric"],
 		gender: "F",
@@ -2662,7 +2662,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "marisa",
 	},
 	speedmarisa: {
-		num: 2,
+		num: 241,
 		name: "Speed Marisa",
 		types: ["Light", "Electric"],
 		gender: "F",
@@ -2673,7 +2673,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "marisa",
 	},
 	powermarisa: {
-		num: 2,
+		num: 242,
 		name: "Power Marisa",
 		types: ["Light", "Dark"],
 		gender: "F",
@@ -2684,7 +2684,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "marisa",
 	},
 	extramarisa: {
-		num: 2,
+		num: 243,
 		name: "Extra Marisa",
 		types: ["Warped", "Nature"],
 		gender: "F",
@@ -2695,7 +2695,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "marisa",
 	},
 	normalmayumi: {
-		num: 152,
+		num: 244,
 		name: "Normal Mayumi",
 		types: ["Earth", "Fighting"],
 		gender: "F",
@@ -2706,7 +2706,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mayumi",
 	},
 	defensemayumi: {
-		num: 152,
+		num: 245,
 		name: "Defense Mayumi",
 		types: ["Earth", "Fighting"],
 		gender: "F",
@@ -2717,7 +2717,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mayumi",
 	},
 	speedmayumi: {
-		num: 152,
+		num: 246,
 		name: "Speed Mayumi",
 		types: ["Steel"],
 		gender: "F",
@@ -2728,7 +2728,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mayumi",
 	},
 	extramayumi: {
-		num: 152,
+		num: 247,
 		name: "Extra Mayumi",
 		types: ["Earth", "Warped"],
 		gender: "F",
@@ -2739,7 +2739,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mayumi",
 	},
 	normalmedicine: {
-		num: 72,
+		num: 248,
 		name: "Normal Medicine",
 		types: ["Poison", "Nature"],
 		gender: "F",
@@ -2750,7 +2750,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "medicine",
 	},
 	defensemedicine: {
-		num: 72,
+		num: 249,
 		name: "Defense Medicine",
 		types: ["Poison", "Nature"],
 		gender: "F",
@@ -2761,7 +2761,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "medicine",
 	},
 	powermedicine: {
-		num: 72,
+		num: 250,
 		name: "Power Medicine",
 		types: ["Poison"],
 		gender: "F",
@@ -2772,7 +2772,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "medicine",
 	},
 	extramedicine: {
-		num: 72,
+		num: 251,
 		name: "Extra Medicine",
 		types: ["Poison", "Warped"],
 		gender: "F",
@@ -2783,7 +2783,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "medicine",
 	},
 	normalmegumu: {
-		num: 161,
+		num: 252,
 		name: "Normal Megumu",
 		types: ["Wind", "Light"],
 		gender: "F",
@@ -2794,7 +2794,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "megumu",
 	},
 	speedmegumu: {
-		num: 161,
+		num: 253,
 		name: "Speed Megumu",
 		types: ["Wind", "Light"],
 		gender: "F",
@@ -2805,7 +2805,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "megumu",
 	},
 	powermegumu: {
-		num: 161,
+		num: 254,
 		name: "Power Megumu",
 		types: ["Wind", "Electric"],
 		gender: "F",
@@ -2816,7 +2816,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "megumu",
 	},
 	extramegumu: {
-		num: 161,
+		num: 255,
 		name: "Extra Megumu",
 		types: ["Fighting", "Light"],
 		gender: "F",
@@ -2827,7 +2827,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "megumu",
 	},
 	normalmeiling: {
-		num: 40,
+		num: 256,
 		name: "Normal Meiling",
 		types: ["Fighting"],
 		gender: "F",
@@ -2838,7 +2838,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "meiling",
 	},
 	speedmeiling: {
-		num: 40,
+		num: 257,
 		name: "Speed Meiling",
 		types: ["Fighting"],
 		gender: "F",
@@ -2849,7 +2849,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "meiling",
 	},
 	defensemeiling: {
-		num: 40,
+		num: 258,
 		name: "Defense Meiling",
 		types: ["Fighting", "Earth"],
 		gender: "F",
@@ -2860,7 +2860,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "meiling",
 	},
 	extrameiling: {
-		num: 40,
+		num: 259,
 		name: "Extra Meiling",
 		types: ["Fighting", "Nature"],
 		gender: "F",
@@ -2871,7 +2871,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "meiling",
 	},
 	normalmeira: {
-		num: 12,
+		num: 260,
 		name: "Normal Meira",
 		types: ["Steel", "Dark"],
 		gender: "F",
@@ -2882,7 +2882,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "meira",
 	},
 	powermeira: {
-		num: 12,
+		num: 261,
 		name: "Power Meira",
 		types: ["Fighting", "Electric"],
 		gender: "F",
@@ -2893,7 +2893,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "meira",
 	},
 	speedmeira: {
-		num: 12,
+		num: 262,
 		name: "Speed Meira",
 		types: ["Steel", "Dark"],
 		gender: "F",
@@ -2904,7 +2904,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "meira",
 	},
 	extrameira: {
-		num: 12,
+		num: 263,
 		name: "Extra Meira",
 		types: ["Fighting", "Warped"],
 		gender: "F",
@@ -2915,7 +2915,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "meira",
 	},
 	normalmerlin: {
-		num: 50,
+		num: 264,
 		name: "Normal Merlin",
 		types: ["Sound", "Nether"],
 		gender: "F",
@@ -2926,7 +2926,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "merlin",
 	},
 	assistmerlin: {
-		num: 50,
+		num: 265,
 		name: "Assist Merlin",
 		types: ["Sound", "Nether"],
 		gender: "F",
@@ -2937,7 +2937,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "merlin",
 	},
 	powermerlin: {
-		num: 50,
+		num: 266,
 		name: "Power Merlin",
 		types: ["Sound", "Fighting"],
 		gender: "F",
@@ -2948,7 +2948,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "merlin",
 	},
 	extramerlin: {
-		num: 50,
+		num: 267,
 		name: "Extra Merlin",
 		types: ["Sound", "Steel"],
 		gender: "F",
@@ -2959,7 +2959,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "merlin",
 	},
 	normalmaribel: {
-		num: 57,
+		num: 268,
 		name: "Normal Maribel",
 		types: ["Void"],
 		gender: "F",
@@ -2970,7 +2970,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "maribel",
 	},
 	defensemaribel: {
-		num: 57,
+		num: 269,
 		name: "Defense Maribel",
 		types: ["Void"],
 		gender: "F",
@@ -2981,7 +2981,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "maribel",
 	},
 	powermaribel: {
-		num: 57,
+		num: 270,
 		name: "Power Maribel",
 		types: ["Illusion"],
 		gender: "F",
@@ -2992,7 +2992,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "maribel",
 	},
 	extramaribel: {
-		num: 57,
+		num: 271,
 		name: "Extra Maribel",
 		types: ["Illusion", "Void"],
 		gender: "F",
@@ -3003,7 +3003,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "maribel",
 	},
 	normalmike: {
-		num: 156,
+		num: 272,
 		name: "Normal Mike",
 		types: ["Void"],
 		gender: "F",
@@ -3014,7 +3014,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mike",
 	},
 	speedmike: {
-		num: 156,
+		num: 273,
 		name: "Speed Mike",
 		types: ["Void"],
 		gender: "F",
@@ -3025,7 +3025,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mike",
 	},
 	assistmike: {
-		num: 156,
+		num: 274,
 		name: "Assist Mike",
 		types: ["Steel"],
 		gender: "F",
@@ -3036,7 +3036,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mike",
 	},
 	extramike: {
-		num: 156,
+		num: 275,
 		name: "Extra Mike",
 		types: ["Steel", "Warped"],
 		gender: "F",
@@ -3047,7 +3047,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mike",
 	},
 	normalmiko: {
-		num: 112,
+		num: 276,
 		name: "Normal Miko",
 		types: ["Light", "Sound"],
 		gender: "F",
@@ -3058,7 +3058,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "miko",
 	},
 	speedmiko: {
-		num: 112,
+		num: 277,
 		name: "Speed Miko",
 		types: ["Light", "Sound"],
 		gender: "F",
@@ -3069,7 +3069,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "miko",
 	},
 	powermiko: {
-		num: 112,
+		num: 278,
 		name: "Power Miko",
 		types: ["Light", "Fire"],
 		gender: "F",
@@ -3080,7 +3080,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "miko",
 	},
 	extramiko: {
-		num: 112,
+		num: 279,
 		name: "Extra Miko",
 		types: ["Fire", "Sound"],
 		gender: "F",
@@ -3091,7 +3091,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "miko",
 	},
 	normalmima: {
-		num: 7,
+		num: 280,
 		name: "Normal Mima",
 		types: ["Nether"],
 		gender: "F",
@@ -3102,7 +3102,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mima",
 	},
 	defensemima: {
-		num: 7,
+		num: 281,
 		name: "Defense Mima",
 		types: ["Nether"],
 		gender: "F",
@@ -3113,7 +3113,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mima",
 	},
 	powermima: {
-		num: 7,
+		num: 282,
 		name: "Power Mima",
 		types: ["Nether", "Light"],
 		gender: "F",
@@ -3124,7 +3124,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mima",
 	},
 	extramima: {
-		num: 7,
+		num: 283,
 		name: "Extra Mima",
 		types: ["Nether", "Dark"],
 		gender: "F",
@@ -3135,7 +3135,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mima",
 	},
 	normalminoriko: {
-		num: 81,
+		num: 284,
 		name: "Normal Minoriko",
 		types: ["Nature"],
 		gender: "F",
@@ -3146,7 +3146,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "minoriko",
 	},
 	powerminoriko: {
-		num: 81,
+		num: 285,
 		name: "Power Minoriko",
 		types: ["Nature"],
 		gender: "F",
@@ -3157,7 +3157,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "minoriko",
 	},
 	defenseminoriko: {
-		num: 81,
+		num: 286,
 		name: "Defense Minoriko",
 		types: ["Nature", "Earth"],
 		gender: "F",
@@ -3168,7 +3168,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "minoriko",
 	},
 	extraminoriko: {
-		num: 81,
+		num: 287,
 		name: "Extra Minoriko",
 		types: ["Nature", "Fire"],
 		gender: "F",
@@ -3179,7 +3179,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "minoriko",
 	},
 	normalmisumaru: {
-		num: 159,
+		num: 288,
 		name: "Normal Misumaru",
 		types: ["Illusion", "Earth"],
 		gender: "F",
@@ -3190,7 +3190,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "misumaru",
 	},
 	defensemisumaru: {
-		num: 159,
+		num: 289,
 		name: "Defense Misumaru",
 		types: ["Illusion", "Earth"],
 		gender: "F",
@@ -3201,7 +3201,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "misumaru",
 	},
 	powermisumaru: {
-		num: 159,
+		num: 290,
 		name: "Power Misumaru",
 		types: ["Illusion", "Earth"],
 		gender: "F",
@@ -3212,7 +3212,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "misumaru",
 	},
 	extramisumaru: {
-		num: 159,
+		num: 291,
 		name: "Extra Misumaru",
 		types: ["Light", "Nether"],
 		gender: "F",
@@ -3223,7 +3223,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "misumaru",
 	},
 	normalmiyoi: {
-		num: 155,
+		num: 292,
 		name: "Normal Miyoi",
 		types: ["Water"],
 		gender: "F",
@@ -3234,7 +3234,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "miyoi",
 	},
 	assistmiyoi: {
-		num: 155,
+		num: 293,
 		name: "Assist Miyoi",
 		types: ["Water", "Poison"],
 		gender: "F",
@@ -3245,7 +3245,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "miyoi",
 	},
 	powermiyoi: {
-		num: 155,
+		num: 294,
 		name: "Power Miyoi",
 		types: ["Water", "Illusion"],
 		gender: "F",
@@ -3256,7 +3256,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "miyoi",
 	},
 	extramiyoi: {
-		num: 155,
+		num: 295,
 		name: "Extra Miyoi",
 		types: ["Nature"],
 		gender: "F",
@@ -3267,7 +3267,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "miyoi",
 	},
 	normalmokou: {
-		num: 67,
+		num: 296,
 		name: "Normal Mokou",
 		types: ["Fire"],
 		gender: "F",
@@ -3278,7 +3278,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mokou",
 	},
 	speedmokou: {
-		num: 67,
+		num: 297,
 		name: "Speed Mokou",
 		types: ["Fire"],
 		gender: "F",
@@ -3289,7 +3289,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mokou",
 	},
 	powermokou: {
-		num: 67,
+		num: 298,
 		name: "Power Mokou",
 		types: ["Fire", "Fighting"],
 		gender: "F",
@@ -3300,7 +3300,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mokou",
 	},
 	extramokou: {
-		num: 67,
+		num: 299,
 		name: "Extra Mokou",
 		types: ["Fire", "Wind"],
 		gender: "F",
@@ -3311,7 +3311,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mokou",
 	},
 	normalmomiji: {
-		num: 84,
+		num: 300,
 		name: "Normal Momiji",
 		types: ["Steel"],
 		gender: "F",
@@ -3322,7 +3322,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "momiji",
 	},
 	speedmomiji: {
-		num: 84,
+		num: 301,
 		name: "Speed Momiji",
 		types: ["Steel"],
 		gender: "F",
@@ -3333,7 +3333,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "momiji",
 	},
 	defensemomiji: {
-		num: 84,
+		num: 302,
 		name: "Defense Momiji",
 		types: ["Steel", "Earth"],
 		gender: "F",
@@ -3344,7 +3344,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "momiji",
 	},
 	extramomiji: {
-		num: 84,
+		num: 303,
 		name: "Extra Momiji",
 		types: ["Steel", "Nature"],
 		gender: "F",
@@ -3355,7 +3355,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "momiji",
 	},
 	normalmomoyo: {
-		num: 163,
+		num: 304,
 		name: "Normal Momoyo",
 		types: ["Poison"],
 		gender: "F",
@@ -3366,7 +3366,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "momoyo",
 	},
 	powermomoyo: {
-		num: 163,
+		num: 305,
 		name: "Power Momoyo",
 		types: ["Poison", "Steel"],
 		gender: "F",
@@ -3377,7 +3377,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "momoyo",
 	},
 	speedmomoyo: {
-		num: 163,
+		num: 306,
 		name: "Speed Momoyo",
 		types: ["Poison", "Earth"],
 		gender: "F",
@@ -3388,7 +3388,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "momoyo",
 	},
 	extramomoyo: {
-		num: 163,
+		num: 307,
 		name: "Extra Momoyo",
 		types: ["Dark", "Earth"],
 		gender: "F",
@@ -3399,7 +3399,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "momoyo",
 	},
 	normalmugetsu: {
-		num: 26,
+		num: 308,
 		name: "Normal Mugetsu",
 		types: ["Illusion", "Dark"],
 		gender: "F",
@@ -3410,7 +3410,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mugetsu",
 	},
 	powermugetsu: {
-		num: 26,
+		num: 309,
 		name: "Power Mugetsu",
 		types: ["Illusion", "Dark"],
 		gender: "F",
@@ -3421,7 +3421,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mugetsu",
 	},
 	assistmugetsu: {
-		num: 26,
+		num: 310,
 		name: "Assist Mugetsu",
 		types: ["Illusion", "Void"],
 		gender: "F",
@@ -3432,7 +3432,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mugetsu",
 	},
 	extramugetsu: {
-		num: 26,
+		num: 311,
 		name: "Extra Mugetsu",
 		types: ["Warped", "Light"],
 		gender: "F",
@@ -3443,7 +3443,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mugetsu",
 	},
 	normalmurasa: {
-		num: 101,
+		num: 312,
 		name: "Normal Murasa",
 		types: ["Water"],
 		gender: "F",
@@ -3454,7 +3454,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "murasa",
 	},
 	powermurasa: {
-		num: 101,
+		num: 313,
 		name: "Power Murasa",
 		types: ["Water", "Sound"],
 		gender: "F",
@@ -3465,7 +3465,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "murasa",
 	},
 	defensemurasa: {
-		num: 101,
+		num: 314,
 		name: "Defense Murasa",
 		types: ["Water", "Nether"],
 		gender: "F",
@@ -3476,7 +3476,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "murasa",
 	},
 	extramurasa: {
-		num: 101,
+		num: 315,
 		name: "Extra Murasa",
 		types: ["Nether", "Nature"],
 		gender: "F",
@@ -3487,7 +3487,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "murasa",
 	},
 	normalmystia: {
-		num: 61,
+		num: 316,
 		name: "Normal Mystia",
 		types: ["Sound", "Dark"],
 		gender: "F",
@@ -3498,7 +3498,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mystia",
 	},
 	defensemystia: {
-		num: 61,
+		num: 317,
 		name: "Defense Mystia",
 		types: ["Sound", "Dark"],
 		gender: "F",
@@ -3509,7 +3509,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mystia",
 	},
 	powermystia: {
-		num: 61,
+		num: 318,
 		name: "Power Mystia",
 		types: ["Sound", "Wind"],
 		gender: "F",
@@ -3520,7 +3520,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mystia",
 	},
 	extramystia: {
-		num: 61,
+		num: 319,
 		name: "Extra Mystia",
 		types: ["Wind", "Poison"],
 		gender: "F",
@@ -3531,7 +3531,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "mystia",
 	},
 	normalnarumi: {
-		num: 144,
+		num: 320,
 		name: "Normal Narumi",
 		types: ["Light", "Earth"],
 		gender: "F",
@@ -3542,7 +3542,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "narumi",
 	},
 	defensenarumi: {
-		num: 144,
+		num: 321,
 		name: "Defense Narumi",
 		types: ["Light", "Earth"],
 		gender: "F",
@@ -3553,7 +3553,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "narumi",
 	},
 	powernarumi: {
-		num: 144,
+		num: 322,
 		name: "Power Narumi",
 		types: ["Light", "Fire"],
 		gender: "F",
@@ -3564,7 +3564,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "narumi",
 	},
 	extranarumi: {
-		num: 144,
+		num: 323,
 		name: "Extra Narumi",
 		types: ["Water", "Illusion"],
 		gender: "F",
@@ -3575,7 +3575,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "narumi",
 	},
 	normalnazrin: {
-		num: 98,
+		num: 324,
 		name: "Normal Nazrin",
 		types: ["Earth", "Steel"],
 		gender: "F",
@@ -3586,7 +3586,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nazrin",
 	},
 	speednazrin: {
-		num: 98,
+		num: 325,
 		name: "Speed Nazrin",
 		types: ["Earth", "Steel"],
 		gender: "F",
@@ -3597,7 +3597,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nazrin",
 	},
 	defensenazrin: {
-		num: 98,
+		num: 326,
 		name: "Defense Nazrin",
 		types: ["Earth", "Poison"],
 		gender: "F",
@@ -3608,7 +3608,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nazrin",
 	},
 	extranazrin: {
-		num: 98,
+		num: 327,
 		name: "Extra Nazrin",
 		types: ["Steel", "Sound"],
 		gender: "F",
@@ -3619,7 +3619,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nazrin",
 	},
 	normalnemuno: {
-		num: 142,
+		num: 328,
 		name: "Normal Nemuno",
 		types: ["Steel"],
 		gender: "F",
@@ -3630,7 +3630,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nemuno",
 	},
 	powernemuno: {
-		num: 142,
+		num: 329,
 		name: "Power Nemuno",
 		types: ["Steel", "Water"],
 		gender: "F",
@@ -3641,7 +3641,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nemuno",
 	},
 	defensenemuno: {
-		num: 142,
+		num: 330,
 		name: "Defense Nemuno",
 		types: ["Steel", "Fighting"],
 		gender: "F",
@@ -3652,7 +3652,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nemuno",
 	},
 	extranemuno: {
-		num: 142,
+		num: 331,
 		name: "Extra Nemuno",
 		types: ["Steel", "Wind"],
 		gender: "F",
@@ -3663,7 +3663,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nemuno",
 	},
 	normalnitori: {
-		num: 83,
+		num: 332,
 		name: "Normal Nitori",
 		types: ["Water", "Steel"],
 		gender: "F",
@@ -3674,7 +3674,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nitori",
 	},
 	powernitori: {
-		num: 83,
+		num: 333,
 		name: "Power Nitori",
 		types: ["Water", "Steel"],
 		gender: "F",
@@ -3685,7 +3685,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nitori",
 	},
 	speednitori: {
-		num: 83,
+		num: 334,
 		name: "Speed Nitori",
 		types: ["Water", "Electric"],
 		gender: "F",
@@ -3696,7 +3696,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nitori",
 	},
 	extranitori: {
-		num: 83,
+		num: 335,
 		name: "Extra Nitori",
 		types: ["Electric", "Nature"],
 		gender: "F",
@@ -3707,7 +3707,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nitori",
 	},
 	normalnue: {
-		num: 104,
+		num: 336,
 		name: "Normal Nue",
 		types: ["Illusion", "Electric"],
 		gender: "F",
@@ -3718,7 +3718,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nue",
 	},
 	powernue: {
-		num: 104,
+		num: 337,
 		name: "Power Nue",
 		types: ["Illusion", "Electric"],
 		gender: "F",
@@ -3729,7 +3729,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nue",
 	},
 	defensenue: {
-		num: 104,
+		num: 338,
 		name: "Defense Nue",
 		types: ["Illusion", "Poison"],
 		gender: "F",
@@ -3740,7 +3740,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nue",
 	},
 	extranue: {
-		num: 104,
+		num: 339,
 		name: "Extra Nue",
 		types: ["Wind", "Nether"],
 		gender: "F",
@@ -3751,7 +3751,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "nue",
 	},
 	normalokina: {
-		num: 147,
+		num: 340,
 		name: "Normal Okina",
 		types: ["Void"],
 		gender: "F",
@@ -3762,7 +3762,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "okina",
 	},
 	powerokina: {
-		num: 147,
+		num: 341,
 		name: "Power Okina",
 		types: ["Nature", "Illusion"],
 		gender: "F",
@@ -3773,7 +3773,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "okina",
 	},
 	defenseokina: {
-		num: 147,
+		num: 342,
 		name: "Defense Okina",
 		types: ["Nature"],
 		gender: "F",
@@ -3784,7 +3784,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "okina",
 	},
 	extraokina: {
-		num: 147,
+		num: 343,
 		name: "Extra Okina",
 		types: ["Nature", "Dark"],
 		gender: "F",
@@ -3795,7 +3795,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "okina",
 	},
 	normalorange: {
-		num: 21,
+		num: 344,
 		name: "Normal Orange",
 		types: ["Void"],
 		gender: "F",
@@ -3806,7 +3806,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "orange",
 	},
 	defenseorange: {
-		num: 21,
+		num: 345,
 		name: "Defense Orange",
 		types: ["Void"],
 		gender: "F",
@@ -3817,7 +3817,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "orange",
 	},
 	powerorange: {
-		num: 21,
+		num: 346,
 		name: "Power Orange",
 		types: ["Void"],
 		gender: "F",
@@ -3828,7 +3828,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "orange",
 	},
 	extraorange: {
-		num: 21,
+		num: 347,
 		name: "Extra Orange",
 		types: ["Fighting", "Sound"],
 		gender: "F",
@@ -3839,7 +3839,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "orange",
 	},
 	normalparsee: {
-		num: 92,
+		num: 348,
 		name: "Normal Parsee",
 		types: ["Dark", "Nether"],
 		gender: "F",
@@ -3850,7 +3850,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "parsee",
 	},
 	defenseparsee: {
-		num: 92,
+		num: 349,
 		name: "Defense Parsee",
 		types: ["Dark", "Nether"],
 		gender: "F",
@@ -3861,7 +3861,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "parsee",
 	},
 	assistparsee: {
-		num: 92,
+		num: 350,
 		name: "Assist Parsee",
 		types: ["Dark", "Water"],
 		gender: "F",
@@ -3872,7 +3872,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "parsee",
 	},
 	extraparsee: {
-		num: 92,
+		num: 351,
 		name: "Extra Parsee",
 		types: ["Nether", "Warped"],
 		gender: "F",
@@ -3883,7 +3883,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "parsee",
 	},
 	normalpatchouli: {
-		num: 42,
+		num: 352,
 		name: "Normal Patchouli",
 		types: ["Void"],
 		gender: "F",
@@ -3894,7 +3894,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "patchouli",
 	},
 	powerpatchouli: {
-		num: 42,
+		num: 353,
 		name: "Power Patchouli",
 		types: ["Fire", "Water"],
 		gender: "F",
@@ -3905,7 +3905,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "patchouli",
 	},
 	defensepatchouli: {
-		num: 42,
+		num: 354,
 		name: "Defense Patchouli",
 		types: ["Electric", "Nature"],
 		gender: "F",
@@ -3916,7 +3916,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "patchouli",
 	},
 	extrapatchouli: {
-		num: 42,
+		num: 355,
 		name: "Extra Patchouli",
 		types: ["Wind", "Steel"],
 		gender: "F",
@@ -3927,7 +3927,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "patchouli",
 	},
 	normalraiko: {
-		num: 123,
+		num: 356,
 		name: "Normal Raiko",
 		types: ["Sound", "Electric"],
 		gender: "F",
@@ -3938,7 +3938,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "raiko",
 	},
 	powerraiko: {
-		num: 123,
+		num: 357,
 		name: "Power Raiko",
 		types: ["Sound", "Electric"],
 		gender: "F",
@@ -3949,7 +3949,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "raiko",
 	},
 	assistraiko: {
-		num: 123,
+		num: 358,
 		name: "Assist Raiko",
 		types: ["Sound", "Electric"],
 		gender: "F",
@@ -3960,7 +3960,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "raiko",
 	},
 	extraraiko: {
-		num: 123,
+		num: 359,
 		name: "Extra Raiko",
 		types: ["Sound", "Illusion"],
 		gender: "F",
@@ -3971,7 +3971,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "raiko",
 	},
 	normalran: {
-		num: 54,
+		num: 360,
 		name: "Normal Ran",
 		types: ["Illusion", "Fire"],
 		gender: "F",
@@ -3982,7 +3982,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ran",
 	},
 	powerran: {
-		num: 54,
+		num: 361,
 		name: "Power Ran",
 		types: ["Illusion", "Fire"],
 		gender: "F",
@@ -3993,7 +3993,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ran",
 	},
 	defenseran: {
-		num: 54,
+		num: 362,
 		name: "Defense Ran",
 		types: ["Illusion", "Earth"],
 		gender: "F",
@@ -4004,7 +4004,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ran",
 	},
 	extraran: {
-		num: 54,
+		num: 363,
 		name: "Extra Ran",
 		types: ["Warped", "Earth"],
 		gender: "F",
@@ -4015,7 +4015,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ran",
 	},
 	normalreimu: {
-		num: 1,
+		num: 364,
 		name: "Normal Reimu",
 		types: ["Void", "Illusion"],
 		gender: "F",
@@ -4026,7 +4026,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "reimu"
 	},
 	defensereimu: {
-		num: 1,
+		num: 365,
 		name: "Defense Reimu",
 		types: ["Void", "Illusion"],
 		gender: "F",
@@ -4037,7 +4037,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "reimu",
 	},
 	powerreimu: {
-		num: 1,
+		num: 366,
 		name: "Power Reimu",
 		types: ["Fighting", "Illusion"],
 		gender: "F",
@@ -4048,7 +4048,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "reimu",
 	},
 	extrareimu: {
-		num: 1,
+		num: 367,
 		name: "Extra Reimu",
 		types: ["Wind", "Warped"],
 		gender: "F",
@@ -4059,7 +4059,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "reimu",
 	},
 	normalreisen: {
-		num: 79,
+		num: 368,
 		name: "Normal Rei'sen",
 		types: ["Void"],
 		gender: "F",
@@ -4070,7 +4070,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "reisen",
 	},
 	speedreisen: {
-		num: 79,
+		num: 369,
 		name: "Speed Rei'sen",
 		types: ["Void", "Water"],
 		gender: "F",
@@ -4081,7 +4081,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "reisen",
 	},
 	powerreisen: {
-		num: 79,
+		num: 370,
 		name: "Power Rei'sen",
 		types: ["Void"],
 		gender: "F",
@@ -4092,7 +4092,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "reisen",
 	},
 	extrareisen: {
-		num: 79,
+		num: 371,
 		name: "Extra Rei'sen",
 		types: ["Void", "Fire"],
 		gender: "F",
@@ -4103,7 +4103,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "reisen",
 	},
 	normalremilia: {
-		num: 44,
+		num: 372,
 		name: "Normal Remilia",
 		types: ["Dark", "Wind"],
 		gender: "F",
@@ -4114,7 +4114,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "remilia",
 	},
 	powerremilia: {
-		num: 44,
+		num: 373,
 		name: "Power Remilia",
 		types: ["Dark", "Wind"],
 		gender: "F",
@@ -4125,7 +4125,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "remilia",
 	},
 	speedremilia: {
-		num: 44,
+		num: 374,
 		name: "Speed Remilia",
 		types: ["Dark", "Fighting"],
 		gender: "F",
@@ -4136,7 +4136,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "remilia",
 	},
 	extraremilia: {
-		num: 44,
+		num: 375,
 		name: "Extra Remilia",
 		types: ["Poison", "Water"],
 		gender: "F",
@@ -4147,7 +4147,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "remilia",
 	},
 	normalrenko: {
-		num: 56,
+		num: 376,
 		name: "Normal Renko",
 		types: ["Void"],
 		gender: "F",
@@ -4158,7 +4158,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "renko",
 	},
 	assistrenko: {
-		num: 56,
+		num: 377,
 		name: "Assist Renko",
 		types: ["Void"],
 		gender: "F",
@@ -4169,7 +4169,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "renko",
 	},
 	speedrenko: {
-		num: 56,
+		num: 378,
 		name: "Speed Renko",
 		types: ["Light"],
 		gender: "F",
@@ -4180,7 +4180,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "renko",
 	},
 	extrarenko: {
-		num: 56,
+		num: 379,
 		name: "Extra Renko",
 		types: ["Light", "Void"],
 		gender: "F",
@@ -4191,7 +4191,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "renko",
 	},
 	normalrika: {
-		num: 10,
+		num: 380,
 		name: "Normal Rika",
 		types: ["Fire", "Steel"],
 		gender: "F",
@@ -4202,7 +4202,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rika",
 	},
 	speedrika: {
-		num: 10,
+		num: 381,
 		name: "Speed Rika",
 		types: ["Fire", "Steel"],
 		gender: "F",
@@ -4213,7 +4213,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rika",
 	},
 	powerrika: {
-		num: 10,
+		num: 382,
 		name: "Power Rika",
 		types: ["Electric", "Steel"],
 		gender: "F",
@@ -4224,7 +4224,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rika",
 	},
 	extrarika: {
-		num: 10,
+		num: 383,
 		name: "Extra Rika",
 		types: ["Warped", "Steel"],
 		gender: "F",
@@ -4236,7 +4236,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		otherFormes: ['Extra Rika-Shift']
 	},
 	extrarikashift: {
-		num: 303,
+		num: 384,
 		name: "Extra Rika-Shift",
 		types: ["Warped", "Steel"],
 		gender: "F",
@@ -4249,7 +4249,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		changesFrom: "Extra Rika"
 	},
 	normalrikako: {
-		num: 17,
+		num: 385,
 		name: "Normal Rikako",
 		types: ["Electric", "Steel"],
 		gender: "F",
@@ -4260,7 +4260,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rikako",
 	},
 	powerrikako: {
-		num: 17,
+		num: 386,
 		name: "Power Rikako",
 		types: ["Electric", "Steel"],
 		gender: "F",
@@ -4271,7 +4271,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rikako",
 	},
 	speedrikako: {
-		num: 17,
+		num: 387,
 		name: "Speed Rikako",
 		types: ["Water", "Steel"],
 		gender: "F",
@@ -4282,7 +4282,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rikako",
 	},
 	extrarikako: {
-		num: 17,
+		num: 388,
 		name: "Extra Rikako",
 		types: ["Electric", "Warped"],
 		gender: "F",
@@ -4293,7 +4293,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rikako",
 	},
 	normalrin: {
-		num: 95,
+		num: 389,
 		name: "Normal Rin",
 		types: ["Fire"],
 		gender: "F",
@@ -4304,7 +4304,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rin",
 	},
 	speedrin: {
-		num: 95,
+		num: 390,
 		name: "Speed Rin",
 		types: ["Fire", "Earth"],
 		gender: "F",
@@ -4315,7 +4315,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rin",
 	},
 	powerrin: {
-		num: 95,
+		num: 391,
 		name: "Power Rin",
 		types: ["Fire", "Nether"],
 		gender: "F",
@@ -4326,7 +4326,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rin",
 	},
 	extrarin: {
-		num: 95,
+		num: 392,
 		name: "Extra Rin",
 		types: ["Fire", "Poison"],
 		gender: "F",
@@ -4337,7 +4337,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rin",
 	},
 	normalringo: {
-		num: 126,
+		num: 393,
 		name: "Normal Ringo",
 		types: ["Nature"],
 		gender: "F",
@@ -4348,7 +4348,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ringo",
 	},
 	defenseringo: {
-		num: 126,
+		num: 394,
 		name: "Defense Ringo",
 		types: ["Nature", "Light"],
 		gender: "F",
@@ -4359,7 +4359,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ringo",
 	},
 	powerringo: {
-		num: 126,
+		num: 395,
 		name: "Power Ringo",
 		types: ["Nature", "Illusion"],
 		gender: "F",
@@ -4370,7 +4370,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ringo",
 	},
 	extraringo: {
-		num: 126,
+		num: 396,
 		name: "Extra Ringo",
 		types: ["Nature", "Dark"],
 		gender: "F",
@@ -4381,7 +4381,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ringo",
 	},
 	normalrinnosuke: {
-		num: 58,
+		num: 397,
 		name: "Normal Rinnosuke",
 		types: ["Void"],
 		gender: "M",
@@ -4392,7 +4392,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rinnosuke",
 	},
 	defenserinnosuke: {
-		num: 58,
+		num: 398,
 		name: "Defense Rinnosuke",
 		types: ["Void"],
 		gender: "M",
@@ -4403,7 +4403,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rinnosuke",
 	},
 	powerrinnosuke: {
-		num: 58,
+		num: 399,
 		name: "Power Rinnosuke",
 		types: ["Void", "Steel"],
 		gender: "M",
@@ -4414,7 +4414,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rinnosuke",
 	},
 	extrarinnosuke: {
-		num: 58,
+		num: 400,
 		name: "Extra Rinnosuke",
 		types: ["Dream", "Warped"],
 		gender: "M",
@@ -4425,7 +4425,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rinnosuke",
 	},
 	normalrumia: {
-		num: 37,
+		num: 401,
 		name: "Normal Rumia",
 		types: ["Dark"],
 		gender: "F",
@@ -4436,7 +4436,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rumia",
 	},
 	defenserumia: {
-		num: 37,
+		num: 402,
 		name: "Defense Rumia",
 		types: ["Dark"],
 		gender: "F",
@@ -4447,7 +4447,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rumia",
 	},
 	powerrumia: {
-		num: 37,
+		num: 403,
 		name: "Power Rumia",
 		types: ["Dark", "Fire"],
 		gender: "F",
@@ -4458,7 +4458,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rumia",
 	},
 	extrarumia: {
-		num: 37,
+		num: 404,
 		name: "Extra Rumia",
 		types: ["Dark", "Warped"],
 		gender: "F",
@@ -4469,7 +4469,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "rumia",
 	},
 	normalruukoto: {
-		num: 20,
+		num: 405,
 		name: "Normal Ruukoto",
 		types: ["Steel"],
 		gender: "F",
@@ -4480,7 +4480,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ruukoto",
 	},
 	assistruukoto: {
-		num: 20,
+		num: 406,
 		name: "Assist Ruukoto",
 		types: ["Steel"],
 		gender: "F",
@@ -4491,7 +4491,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ruukoto",
 	},
 	powerruukoto: {
-		num: 20,
+		num: 407,
 		name: "Power Ruukoto",
 		types: ["Fire", "Steel"],
 		gender: "F",
@@ -4502,7 +4502,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ruukoto",
 	},
 	extraruukoto: {
-		num: 20,
+		num: 408,
 		name: "Extra Ruukoto",
 		types: ["Poison", "Steel"],
 		gender: "F",
@@ -4513,7 +4513,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "ruukoto",
 	},
 	normalsagume: {
-		num: 128,
+		num: 409,
 		name: "Normal Sagume",
 		types: ["Poison"],
 		gender: "F",
@@ -4524,7 +4524,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sagume",
 	},
 	powersagume: {
-		num: 128,
+		num: 410,
 		name: "Power Sagume",
 		types: ["Poison", "Sound"],
 		gender: "F",
@@ -4535,7 +4535,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sagume",
 	},
 	defensesagume: {
-		num: 128,
+		num: 411,
 		name: "Defense Sagume",
 		types: ["Poison", "Electric"],
 		gender: "F",
@@ -4546,7 +4546,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sagume",
 	},
 	extrasagume: {
-		num: 128,
+		num: 412,
 		name: "Extra Sagume",
 		types: ["Warped", "Sound"],
 		gender: "F",
@@ -4557,7 +4557,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sagume",
 	},
 	normalsaki: {
-		num: 154,
+		num: 413,
 		name: "Normal Saki",
 		types: ["Wind", "Fighting"],
 		gender: "F",
@@ -4568,7 +4568,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "saki",
 	},
 	speedsaki: {
-		num: 154,
+		num: 414,
 		name: "Speed Saki",
 		types: ["Wind", "Fighting"],
 		gender: "F",
@@ -4579,7 +4579,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "saki",
 	},
 	powersaki: {
-		num: 154,
+		num: 415,
 		name: "Power Saki",
 		types: ["Wind", "Dark"],
 		gender: "F",
@@ -4590,7 +4590,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "saki",
 	},
 	extrasaki: {
-		num: 154,
+		num: 416,
 		name: "Extra Saki",
 		types: ["Electric"],
 		gender: "F",
@@ -4601,7 +4601,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "saki",
 	},
 	normalsakuya: {
-		num: 43,
+		num: 417,
 		name: "Normal Sakuya",
 		types: ["Steel", "Illusion"],
 		gender: "F",
@@ -4612,7 +4612,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sakuya",
 	},
 	speedsakuya: {
-		num: 43,
+		num: 418,
 		name: "Speed Sakuya",
 		types: ["Steel", "Illusion"],
 		gender: "F",
@@ -4623,7 +4623,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sakuya",
 	},
 	powersakuya: {
-		num: 43,
+		num: 419,
 		name: "Power Sakuya",
 		types: ["Steel", "Fighting"],
 		gender: "F",
@@ -4634,7 +4634,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sakuya",
 	},
 	extrasakuya: {
-		num: 43,
+		num: 420,
 		name: "Extra Sakuya",
 		types: ["Steel", "Warped"],
 		gender: "F",
@@ -4645,7 +4645,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sakuya",
 	},
 	normalsanae: {
-		num: 85,
+		num: 421,
 		name: "Normal Sanae",
 		types: ["Wind", "Water"],
 		gender: "F",
@@ -4656,7 +4656,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sanae",
 	},
 	powersanae: {
-		num: 85,
+		num: 422,
 		name: "Power Sanae",
 		types: ["Wind", "Water"],
 		gender: "F",
@@ -4667,7 +4667,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sanae",
 	},
 	speedsanae: {
-		num: 85,
+		num: 423,
 		name: "Speed Sanae",
 		types: ["Wind", "Earth"],
 		gender: "F",
@@ -4678,7 +4678,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sanae",
 	},
 	extrasanae: {
-		num: 85,
+		num: 424,
 		name: "Extra Sanae",
 		types: ["Light", "Void"],
 		gender: "F",
@@ -4689,7 +4689,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sanae",
 	},
 	normalsannyo: {
-		num: 158,
+		num: 425,
 		name: "Normal Sannyo",
 		types: ["Wind", "Poison"],
 		gender: "F",
@@ -4700,7 +4700,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sannyo",
 	},
 	assistsannyo: {
-		num: 158,
+		num: 426,
 		name: "Assist Sannyo",
 		types: ["Wind", "Poison"],
 		gender: "F",
@@ -4711,7 +4711,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sannyo",
 	},
 	powersannyo: {
-		num: 158,
+		num: 427,
 		name: "Power Sannyo",
 		types: ["Wind", "Fire"],
 		gender: "F",
@@ -4722,7 +4722,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sannyo",
 	},
 	extrasannyo: {
-		num: 158,
+		num: 428,
 		name: "Extra Sannyo",
 		types: ["Nature", "Poison"],
 		gender: "F",
@@ -4733,7 +4733,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sannyo",
 	},
 	normalsara: {
-		num: 29,
+		num: 429,
 		name: "Normal Sara",
 		types: ["Earth"],
 		gender: "F",
@@ -4744,7 +4744,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sara",
 	},
 	defensesara: {
-		num: 29,
+		num: 430,
 		name: "Defense Sara",
 		types: ["Earth"],
 		gender: "F",
@@ -4755,7 +4755,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sara",
 	},
 	speedsara: {
-		num: 29,
+		num: 431,
 		name: "Speed Sara",
 		types: ["Earth", "Electric"],
 		gender: "F",
@@ -4766,7 +4766,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sara",
 	},
 	extrasara: {
-		num: 29,
+		num: 432,
 		name: "Extra Sara",
 		types: ["Fighting", "Sound"],
 		gender: "F",
@@ -4777,7 +4777,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sara",
 	},
 	normalsariel: {
-		num: 6,
+		num: 433,
 		name: "Normal Sariel",
 		types: ["Dark"],
 		gender: "F",
@@ -4788,7 +4788,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sariel",
 	},
 	powersariel: {
-		num: 6,
+		num: 434,
 		name: "Power Sariel",
 		types: ["Dark", "Warped"],
 		gender: "F",
@@ -4799,7 +4799,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sariel",
 	},
 	defensesariel: {
-		num: 6,
+		num: 435,
 		name: "Defense Sariel",
 		types: ["Dark", "Light"],
 		gender: "F",
@@ -4810,7 +4810,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sariel",
 	},
 	extrasariel: {
-		num: 6,
+		num: 436,
 		name: "Extra Sariel",
 		types: ["Light", "Nether"],
 		gender: "F",
@@ -4821,7 +4821,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sariel",
 	},
 	normalsatono: {
-		num: 146,
+		num: 437,
 		name: "Normal Satono",
 		types: ["Illusion", "Wind"],
 		gender: "F",
@@ -4832,7 +4832,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "satono",
 	},
 	assistsatono: {
-		num: 146,
+		num: 438,
 		name: "Assist Satono",
 		types: ["Illusion", "Wind"],
 		gender: "F",
@@ -4843,7 +4843,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "satono",
 	},
 	speedsatono: {
-		num: 146,
+		num: 439,
 		name: "Speed Satono",
 		types: ["Nature", "Electric"],
 		gender: "F",
@@ -4854,7 +4854,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "satono",
 	},
 	extrasatono: {
-		num: 146,
+		num: 440,
 		name: "Extra Satono",
 		types: ["Sound", "Poison"],
 		gender: "F",
@@ -4865,7 +4865,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "satono",
 	},
 	normalsatori: {
-		num: 94,
+		num: 441,
 		name: "Normal Satori",
 		types: ["Illusion"],
 		gender: "F",
@@ -4876,7 +4876,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "satori",
 	},
 	defensesatori: {
-		num: 94,
+		num: 442,
 		name: "Defense Satori",
 		types: ["Illusion"],
 		gender: "F",
@@ -4887,7 +4887,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "satori",
 	},
 	assistsatori: {
-		num: 94,
+		num: 443,
 		name: "Assist Satori",
 		types: ["Illusion"],
 		gender: "F",
@@ -4898,7 +4898,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "satori",
 	},
 	extrasatori: {
-		num: 94,
+		num: 444,
 		name: "Extra Satori",
 		types: ["Illusion", "Nether"],
 		gender: "F",
@@ -4909,7 +4909,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "satori",
 	},
 	normalseiga: {
-		num: 109,
+		num: 445,
 		name: "Normal Seiga",
 		types: ["Nether"],
 		gender: "F",
@@ -4920,7 +4920,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seiga",
 	},
 	speedseiga: {
-		num: 109,
+		num: 446,
 		name: "Speed Seiga",
 		types: ["Nether"],
 		gender: "F",
@@ -4931,7 +4931,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seiga",
 	},
 	powerseiga: {
-		num: 109,
+		num: 447,
 		name: "Power Seiga",
 		types: ["Nether", "Poison"],
 		gender: "F",
@@ -4942,7 +4942,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seiga",
 	},
 	extraseiga: {
-		num: 109,
+		num: 448,
 		name: "Extra Seiga",
 		types: ["Poison", "Fighting"],
 		gender: "F",
@@ -4953,7 +4953,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seiga",
 	},
 	normalseija: {
-		num: 121,
+		num: 449,
 		name: "Normal Seija",
 		types: ["Poison"],
 		gender: "F",
@@ -4964,7 +4964,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seija",
 	},
 	speedseija: {
-		num: 121,
+		num: 450,
 		name: "Speed Seija",
 		types: ["Poison"],
 		gender: "F",
@@ -4975,7 +4975,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seija",
 	},
 	defenseseija: {
-		num: 121,
+		num: 451,
 		name: "Defense Seija",
 		types: ["Poison", "Light"],
 		gender: "F",
@@ -4986,7 +4986,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seija",
 	},
 	extraseija: {
-		num: 121,
+		num: 452,
 		name: "Extra Seija",
 		types: ["Warped", "Nether"],
 		gender: "F",
@@ -4997,7 +4997,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seija",
 	},
 	normalseiran: {
-		num: 125,
+		num: 453,
 		name: "Normal Seiran",
 		types: ["Void", "Electric"],
 		gender: "F",
@@ -5008,7 +5008,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seiran",
 	},
 	speedseiran: {
-		num: 125,
+		num: 454,
 		name: "Speed Seiran",
 		types: ["Electric", "Void"],
 		gender: "F",
@@ -5019,7 +5019,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seiran",
 	},
 	defenseseiran: {
-		num: 125,
+		num: 455,
 		name: "Defense Seiran",
 		types: ["Fire", "Illusion"],
 		gender: "F",
@@ -5030,7 +5030,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seiran",
 	},
 	extraseiran: {
-		num: 125,
+		num: 456,
 		name: "Extra Seiran",
 		types: ["Wind", "Fire"],
 		gender: "F",
@@ -5041,7 +5041,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "seiran",
 	},
 	normalsekibanki: {
-		num: 117,
+		num: 457,
 		name: "Normal Sekibanki",
 		types: ["Dark"],
 		gender: "F",
@@ -5052,7 +5052,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sekibanki",
 	},
 	powersekibanki: {
-		num: 117,
+		num: 458,
 		name: "Power Sekibanki",
 		types: ["Dark"],
 		gender: "F",
@@ -5063,7 +5063,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sekibanki",
 	},
 	assistsekibanki: {
-		num: 117,
+		num: 459,
 		name: "Assist Sekibanki",
 		types: ["Dark", "Nether"],
 		gender: "F",
@@ -5074,7 +5074,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sekibanki",
 	},
 	extrasekibanki: {
-		num: 117,
+		num: 460,
 		name: "Extra Sekibanki",
 		types: ["Warped", "Nether"],
 		gender: "F",
@@ -5085,7 +5085,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sekibanki",
 	},
 	normalshingyoku: {
-		num: 3,
+		num: 461,
 		name: "Normal Shingyoku",
 		types: ["Void"],
 		gender: "F",
@@ -5096,7 +5096,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shingyoku",
 	},
 	assistshingyoku: {
-		num: 3,
+		num: 462,
 		name: "Assist Shingyoku",
 		types: ["Void"],
 		gender: "F",
@@ -5107,7 +5107,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shingyoku",
 	},
 	defenseshingyoku: {
-		num: 3,
+		num: 463,
 		name: "Defense Shingyoku",
 		types: ["Void"],
 		gender: "F",
@@ -5118,7 +5118,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shingyoku",
 	},
 	extrashingyoku: {
-		num: 3,
+		num: 464,
 		name: "Extra Shingyoku",
 		types: ["Warped"],
 		gender: "F",
@@ -5129,7 +5129,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shingyoku",
 	},
 	normalshinki: {
-		num: 36,
+		num: 465,
 		name: "Normal Shinki",
 		types: ["Illusion", "Dark"],
 		gender: "F",
@@ -5140,7 +5140,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shinki",
 	},
 	powershinki: {
-		num: 36,
+		num: 466,
 		name: "Power Shinki",
 		types: ["Illusion", "Dark"],
 		gender: "F",
@@ -5151,7 +5151,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shinki",
 	},
 	speedshinki: {
-		num: 36,
+		num: 467,
 		name: "Speed Shinki",
 		types: ["Illusion", "Light"],
 		gender: "F",
@@ -5162,7 +5162,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shinki",
 	},
 	extrashinki: {
-		num: 36,
+		num: 468,
 		name: "Extra Shinki",
 		types: ["Dream"],
 		gender: "F",
@@ -5173,7 +5173,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shinki",
 	},
 	normalshizuha: {
-		num: 80,
+		num: 469,
 		name: "Normal Shizuha",
 		types: ["Nature"],
 		gender: "F",
@@ -5184,7 +5184,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shizuha",
 	},
 	speedshizuha: {
-		num: 80,
+		num: 470,
 		name: "Speed Shizuha",
 		types: ["Nature"],
 		gender: "F",
@@ -5195,7 +5195,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shizuha",
 	},
 	powershizuha: {
-		num: 80,
+		num: 471,
 		name: "Power Shizuha",
 		types: ["Nature", "Wind"],
 		gender: "F",
@@ -5206,7 +5206,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shizuha",
 	},
 	extrashizuha: {
-		num: 80,
+		num: 472,
 		name: "Extra Shizuha",
 		types: ["Nature", "Fire"],
 		gender: "F",
@@ -5217,7 +5217,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shizuha",
 	},
 	normalshou: {
-		num: 102,
+		num: 473,
 		name: "Normal Shou",
 		types: ["Light", "Electric"],
 		gender: "F",
@@ -5228,7 +5228,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shou",
 	},
 	powershou: {
-		num: 102,
+		num: 474,
 		name: "Power Shou",
 		types: ["Light", "Electric"],
 		gender: "F",
@@ -5239,7 +5239,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shou",
 	},
 	speedshou: {
-		num: 102,
+		num: 475,
 		name: "Speed Shou",
 		types: ["Light", "Earth"],
 		gender: "F",
@@ -5250,7 +5250,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shou",
 	},
 	extrashou: {
-		num: 102,
+		num: 476,
 		name: "Extra Shou",
 		types: ["Electric", "Earth"],
 		gender: "F",
@@ -5261,7 +5261,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "shou",
 	},
 	normalstar: {
-		num: 71,
+		num: 477,
 		name: "Normal Star",
 		types: ["Light", "Water"],
 		gender: "F",
@@ -5272,7 +5272,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "star",
 	},
 	powerstar: {
-		num: 71,
+		num: 478,
 		name: "Power Star",
 		types: ["Light", "Water"],
 		gender: "F",
@@ -5283,7 +5283,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "star",
 	},
 	defensestar: {
-		num: 71,
+		num: 479,
 		name: "Defense Star",
 		types: ["Light", "Illusion"],
 		gender: "F",
@@ -5294,7 +5294,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "star",
 	},
 	extrastar: {
-		num: 71,
+		num: 480,
 		name: "Extra Star",
 		types: ["Dark", "Warped"],
 		gender: "F",
@@ -5305,7 +5305,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "star",
 	},
 	normalsuika: {
-		num: 68,
+		num: 481,
 		name: "Normal Suika",
 		types: ["Fighting", "Earth"],
 		gender: "F",
@@ -5316,7 +5316,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "suika",
 	},
 	powersuika: {
-		num: 68,
+		num: 482,
 		name: "Power Suika",
 		types: ["Fighting", "Earth"],
 		gender: "F",
@@ -5327,7 +5327,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "suika",
 	},
 	defensesuika: {
-		num: 68,
+		num: 483,
 		name: "Defense Suika",
 		types: ["Fighting", "Fire"],
 		gender: "F",
@@ -5338,7 +5338,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "suika",
 	},
 	extrasuika: {
-		num: 68,
+		num: 484,
 		name: "Extra Suika",
 		types: ["Fire", "Water"],
 		gender: "F",
@@ -5349,7 +5349,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "suika",
 	},
 	normalsukuna: {
-		num: 122,
+		num: 485,
 		name: "Normal Sukuna",
 		types: ["Steel", "Earth"],
 		gender: "F",
@@ -5360,7 +5360,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sukuna",
 	},
 	defensesukuna: {
-		num: 122,
+		num: 486,
 		name: "Defense Sukuna",
 		types: ["Steel", "Earth"],
 		gender: "F",
@@ -5371,7 +5371,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sukuna",
 	},
 	powersukuna: {
-		num: 122,
+		num: 487,
 		name: "Power Sukuna",
 		types: ["Steel", "Fighting"],
 		gender: "F",
@@ -5382,7 +5382,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sukuna",
 	},
 	extrasukuna: {
-		num: 122,
+		num: 488,
 		name: "Extra Sukuna",
 		types: ["Water", "Earth"],
 		gender: "F",
@@ -5393,7 +5393,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sukuna",
 	},
 	normalsumireko: {
-		num: 124,
+		num: 489,
 		name: "Normal Sumireko",
 		types: ["Warped", "Void"],
 		gender: "F",
@@ -5404,7 +5404,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sumireko",
 	},
 	powersumireko: {
-		num: 124,
+		num: 490,
 		name: "Power Sumireko",
 		types: ["Warped", "Steel"],
 		gender: "F",
@@ -5415,7 +5415,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sumireko",
 	},
 	speedsumireko: {
-		num: 124,
+		num: 491,
 		name: "Speed Sumireko",
 		types: ["Warped", "Void"],
 		gender: "F",
@@ -5426,7 +5426,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sumireko",
 	},
 	extrasumireko: {
-		num: 124,
+		num: 492,
 		name: "Extra Sumireko",
 		types: ["Dream"],
 		gender: "F",
@@ -5437,7 +5437,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sumireko",
 	},
 	normalsunny: {
-		num: 69,
+		num: 493,
 		name: "Normal Sunny",
 		types: ["Light"],
 		gender: "F",
@@ -5448,7 +5448,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sunny",
 	},
 	assistsunny: {
-		num: 69,
+		num: 494,
 		name: "Assist Sunny",
 		types: ["Light"],
 		gender: "F",
@@ -5459,7 +5459,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sunny",
 	},
 	powersunny: {
-		num: 69,
+		num: 495,
 		name: "Power Sunny",
 		types: ["Light", "Fire"],
 		gender: "F",
@@ -5470,7 +5470,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sunny",
 	},
 	extrasunny: {
-		num: 69,
+		num: 496,
 		name: "Extra Sunny",
 		types: ["Light", "Warped"],
 		gender: "F",
@@ -5481,7 +5481,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "sunny",
 	},
 	normalsuwako: {
-		num: 87,
+		num: 497,
 		name: "Normal Suwako",
 		types: ["Earth", "Water"],
 		gender: "F",
@@ -5492,7 +5492,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "suwako",
 	},
 	speedsuwako: {
-		num: 87,
+		num: 498,
 		name: "Speed Suwako",
 		types: ["Earth", "Water"],
 		gender: "F",
@@ -5503,7 +5503,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "suwako",
 	},
 	defensesuwako: {
-		num: 87,
+		num: 499,
 		name: "Defense Suwako",
 		types: ["Earth", "Steel"],
 		gender: "F",
@@ -5514,7 +5514,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "suwako",
 	},
 	extrasuwako: {
-		num: 87,
+		num: 500,
 		name: "Extra Suwako",
 		types: ["Poison", "Warped"],
 		gender: "F",
@@ -5525,7 +5525,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "suwako",
 	},
 	normaltakane: {
-		num: 157,
+		num: 501,
 		name: "Normal Takane",
 		types: ["Nature"],
 		gender: "F",
@@ -5536,7 +5536,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "takane",
 	},
 	powertakane: {
-		num: 157,
+		num: 502,
 		name: "Power Takane",
 		types: ["Nature"],
 		gender: "F",
@@ -5547,7 +5547,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "takane",
 	},
 	speedtakane: {
-		num: 157,
+		num: 503,
 		name: "Speed Takane",
 		types: ["Nature", "Steel"],
 		gender: "F",
@@ -5558,7 +5558,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "takane",
 	},
 	extratakane: {
-		num: 157,
+		num: 504,
 		name: "Extra Takane",
 		types: ["Nature", "Wind"],
 		gender: "F",
@@ -5569,7 +5569,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "takane",
 	},
 	normalteireida: {
-		num: 145,
+		num: 505,
 		name: "Normal Teireida",
 		types: ["Wind", "Illusion"],
 		gender: "F",
@@ -5580,7 +5580,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "teireida",
 	},
 	assistteireida: {
-		num: 145,
+		num: 506,
 		name: "Assist Teireida",
 		types: ["Wind", "Illusion"],
 		gender: "F",
@@ -5591,7 +5591,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "teireida",
 	},
 	speedteireida: {
-		num: 145,
+		num: 507,
 		name: "Speed Teireida",
 		types: ["Nature", "Sound"],
 		gender: "F",
@@ -5602,7 +5602,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "teireida",
 	},
 	extrateireida: {
-		num: 145,
+		num: 508,
 		name: "Extra Teireida",
 		types: ["Dark", "Illusion"],
 		gender: "F",
@@ -5613,7 +5613,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "teireida",
 	},
 	normaltenshi: {
-		num: 89,
+		num: 509,
 		name: "Normal Tenshi",
 		types: ["Earth"],
 		gender: "F",
@@ -5624,7 +5624,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tenshi",
 	},
 	powertenshi: {
-		num: 89,
+		num: 510,
 		name: "Power Tenshi",
 		types: ["Earth"],
 		gender: "F",
@@ -5635,7 +5635,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tenshi",
 	},
 	defensetenshi: {
-		num: 89,
+		num: 511,
 		name: "Defense Tenshi",
 		types: ["Earth", "Light"],
 		gender: "F",
@@ -5646,7 +5646,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tenshi",
 	},
 	extratenshi: {
-		num: 89,
+		num: 512,
 		name: "Extra Tenshi",
 		types: ["Earth", "Fire"],
 		gender: "F",
@@ -5657,7 +5657,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tenshi",
 	},
 	normaltewi: {
-		num: 63,
+		num: 513,
 		name: "Normal Tewi",
 		types: ["Void"],
 		gender: "F",
@@ -5668,7 +5668,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tewi",
 	},
 	assisttewi: {
-		num: 63,
+		num: 514,
 		name: "Assist Tewi",
 		types: ["Void"],
 		gender: "F",
@@ -5679,7 +5679,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tewi",
 	},
 	powertewi: {
-		num: 63,
+		num: 515,
 		name: "Power Tewi",
 		types: ["Illusion"],
 		gender: "F",
@@ -5690,7 +5690,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tewi",
 	},
 	extratewi: {
-		num: 63,
+		num: 516,
 		name: "Extra Tewi",
 		types: ["Poison", "Fighting"],
 		gender: "F",
@@ -5701,7 +5701,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tewi",
 	},
 	normaltojiko: {
-		num: 110,
+		num: 517,
 		name: "Normal Tojiko",
 		types: ["Electric"],
 		gender: "F",
@@ -5712,7 +5712,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tojiko",
 	},
 	speedtojiko: {
-		num: 110,
+		num: 518,
 		name: "Speed Tojiko",
 		types: ["Electric"],
 		gender: "F",
@@ -5723,7 +5723,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tojiko",
 	},
 	defensetojiko: {
-		num: 110,
+		num: 519,
 		name: "Defense Tojiko",
 		types: ["Electric", "Nether"],
 		gender: "F",
@@ -5734,7 +5734,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tojiko",
 	},
 	extratojiko: {
-		num: 110,
+		num: 520,
 		name: "Extra Tojiko",
 		types: ["Electric", "Warped"],
 		gender: "F",
@@ -5745,7 +5745,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tojiko",
 	},
 	normaltokiko: {
-		num: 59,
+		num: 521,
 		name: "Normal Tokiko",
 		types: ["Wind"],
 		gender: "F",
@@ -5756,7 +5756,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tokiko",
 	},
 	powertokiko: {
-		num: 59,
+		num: 522,
 		name: "Power Tokiko",
 		types: ["Wind"],
 		gender: "F",
@@ -5767,7 +5767,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tokiko",
 	},
 	defensetokiko: {
-		num: 59,
+		num: 523,
 		name: "Defense Tokiko",
 		types: ["Wind", "Electric"],
 		gender: "F",
@@ -5778,7 +5778,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tokiko",
 	},
 	extratokiko: {
-		num: 59,
+		num: 524,
 		name: "Extra Tokiko",
 		types: ["Wind", "Warped"],
 		gender: "F",
@@ -5789,7 +5789,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tokiko",
 	},
 	normaltoyohime: {
-		num: 78,
+		num: 525,
 		name: "Normal Toyohime",
 		types: ["Water", "Earth"],
 		gender: "F",
@@ -5800,7 +5800,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "toyohime",
 	},
 	defensetoyohime: {
-		num: 78,
+		num: 526,
 		name: "Defense Toyohime",
 		types: ["Water", "Earth"],
 		gender: "F",
@@ -5811,7 +5811,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "toyohime",
 	},
 	powertoyohime: {
-		num: 78,
+		num: 527,
 		name: "Power Toyohime",
 		types: ["Water", "Wind"],
 		gender: "F",
@@ -5822,7 +5822,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "toyohime",
 	},
 	extratoyohime: {
-		num: 78,
+		num: 528,
 		name: "Extra Toyohime",
 		types: ["Nature", "Light"],
 		gender: "F",
@@ -5833,7 +5833,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "toyohime",
 	},
 	normaltsukasa: {
-		num: 160,
+		num: 529,
 		name: "Normal Tsukasa",
 		types: ["Sound", "Warped"],
 		gender: "F",
@@ -5844,7 +5844,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tsukasa",
 	},
 	speedtsukasa: {
-		num: 160,
+		num: 530,
 		name: "Speed Tsukasa",
 		types: ["Sound", "Warped"],
 		gender: "F",
@@ -5855,7 +5855,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tsukasa",
 	},
 	assisttsukasa: {
-		num: 160,
+		num: 531,
 		name: "Assist Tsukasa",
 		types: ["Sound", "Light"],
 		gender: "F",
@@ -5866,7 +5866,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tsukasa",
 	},
 	extratsukasa: {
-		num: 160,
+		num: 532,
 		name: "Extra Tsukasa",
 		types: ["Sound", "Steel"],
 		gender: "F",
@@ -5877,7 +5877,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "tsukasa",
 	},
 	normaludonge: {
-		num: 64,
+		num: 533,
 		name: "Normal Udonge",
 		types: ["Illusion"],
 		gender: "F",
@@ -5888,7 +5888,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "udonge",
 	},
 	assistudonge: {
-		num: 64,
+		num: 534,
 		name: "Assist Udonge",
 		types: ["Illusion"],
 		gender: "F",
@@ -5899,7 +5899,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "udonge",
 	},
 	powerudonge: {
-		num: 64,
+		num: 535,
 		name: "Power Udonge",
 		types: ["Illusion", "Poison"],
 		gender: "F",
@@ -5910,7 +5910,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "udonge",
 	},
 	extraudonge: {
-		num: 64,
+		num: 536,
 		name: "Extra Udonge",
 		types: ["Illusion", "Warped"],
 		gender: "F",
@@ -5921,7 +5921,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "udonge",
 	},
 	normalurumi: {
-		num: 149,
+		num: 537,
 		name: "Normal Urumi",
 		types: ["Water", "Earth"],
 		gender: "F",
@@ -5932,7 +5932,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "urumi",
 	},
 	powerurumi: {
-		num: 149,
+		num: 538,
 		name: "Power Urumi",
 		types: ["Water", "Earth"],
 		gender: "F",
@@ -5943,7 +5943,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "urumi",
 	},
 	defenseurumi: {
-		num: 149,
+		num: 539,
 		name: "Defense Urumi",
 		types: ["Dark"],
 		gender: "F",
@@ -5954,7 +5954,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "urumi",
 	},
 	extraurumi: {
-		num: 149,
+		num: 540,
 		name: "Extra Urumi",
 		types: ["Dark", "Fighting"],
 		gender: "F",
@@ -5965,7 +5965,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "urumi",
 	},
 	normalutsuho: {
-		num: 96,
+		num: 541,
 		name: "Normal Utsuho",
 		types: ["Fire", "Light"],
 		gender: "F",
@@ -5976,7 +5976,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "utsuho",
 	},
 	powerutsuho: {
-		num: 96,
+		num: 542,
 		name: "Power Utsuho",
 		types: ["Fire", "Light"],
 		gender: "F",
@@ -5987,7 +5987,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "utsuho",
 	},
 	speedutsuho: {
-		num: 96,
+		num: 543,
 		name: "Speed Utsuho",
 		types: ["Fire", "Fighting"],
 		gender: "F",
@@ -5998,7 +5998,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "utsuho",
 	},
 	extrautsuho: {
-		num: 96,
+		num: 544,
 		name: "Extra Utsuho",
 		types: ["Fire", "Wind"],
 		gender: "F",
@@ -6009,7 +6009,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "utsuho",
 	},
 	normalwakasagi: {
-		num: 116,
+		num: 545,
 		name: "Normal Wakasagi",
 		types: ["Water"],
 		gender: "F",
@@ -6020,7 +6020,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "wakasagi",
 	},
 	powerwakasagi: {
-		num: 116,
+		num: 546,
 		name: "Power Wakasagi",
 		types: ["Water"],
 		gender: "F",
@@ -6031,7 +6031,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "wakasagi",
 	},
 	speedwakasagi: {
-		num: 116,
+		num: 547,
 		name: "Speed Wakasagi",
 		types: ["Water", "Sound"],
 		gender: "F",
@@ -6042,7 +6042,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "wakasagi",
 	},
 	extrawakasagi: {
-		num: 116,
+		num: 548,
 		name: "Extra Wakasagi",
 		types: ["Water", "Nature"],
 		gender: "F",
@@ -6053,7 +6053,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "wakasagi",
 	},
 	normalwriggle: {
-		num: 60,
+		num: 549,
 		name: "Normal Wriggle",
 		types: ["Nature", "Dark"],
 		gender: "F",
@@ -6064,7 +6064,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "wriggle",
 	},
 	powerwriggle: {
-		num: 60,
+		num: 550,
 		name: "Power Wriggle",
 		types: ["Nature", "Dark"],
 		gender: "F",
@@ -6075,7 +6075,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "wriggle",
 	},
 	assistwriggle: {
-		num: 60,
+		num: 551,
 		name: "Assist Wriggle",
 		types: ["Nature", "Poison"],
 		gender: "F",
@@ -6086,7 +6086,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "wriggle",
 	},
 	extrawriggle: {
-		num: 60,
+		num: 552,
 		name: "Extra Wriggle",
 		types: ["Dark", "Electric"],
 		gender: "F",
@@ -6097,7 +6097,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "wriggle",
 	},
 	normalyachie: {
-		num: 151,
+		num: 553,
 		name: "Normal Yachie",
 		types: ["Warped", "Fire"],
 		gender: "F",
@@ -6108,7 +6108,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yachie",
 	},
 	poweryachie: {
-		num: 151,
+		num: 554,
 		name: "Power Yachie",
 		types: ["Warped", "Fire"],
 		gender: "F",
@@ -6119,7 +6119,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yachie",
 	},
 	defenseyachie: {
-		num: 151,
+		num: 555,
 		name: "Defense Yachie",
 		types: ["Water", "Nature"],
 		gender: "F",
@@ -6130,7 +6130,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yachie",
 	},
 	extrayachie: {
-		num: 151,
+		num: 556,
 		name: "Extra Yachie",
 		types: ["Warped", "Fighting"],
 		gender: "F",
@@ -6141,7 +6141,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yachie",
 	},
 	normalyamame: {
-		num: 91,
+		num: 557,
 		name: "Normal Yamame",
 		types: ["Poison", "Earth"],
 		gender: "F",
@@ -6152,7 +6152,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yamame",
 	},
 	poweryamame: {
-		num: 91,
+		num: 558,
 		name: "Power Yamame",
 		types: ["Poison", "Earth"],
 		gender: "F",
@@ -6163,7 +6163,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yamame",
 	},
 	assistyamame: {
-		num: 91,
+		num: 559,
 		name: "Assist Yamame",
 		types: ["Poison", "Nature"],
 		gender: "F",
@@ -6174,7 +6174,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yamame",
 	},
 	extrayamame: {
-		num: 91,
+		num: 560,
 		name: "Extra Yamame",
 		types: ["Poison", "Light"],
 		gender: "F",
@@ -6185,7 +6185,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yamame",
 	},
 	normalyatsuhashi: {
-		num: 120,
+		num: 561,
 		name: "Normal Yatsuhashi",
 		types: ["Sound"],
 		gender: "F",
@@ -6196,7 +6196,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yatsuhashi",
 	},
 	speedyatsuhashi: {
-		num: 120,
+		num: 562,
 		name: "Speed Yatsuhashi",
 		types: ["Sound"],
 		gender: "F",
@@ -6207,7 +6207,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yatsuhashi",
 	},
 	defenseyatsuhashi: {
-		num: 120,
+		num: 563,
 		name: "Defense Yatsuhashi",
 		types: ["Sound", "Nature"],
 		gender: "F",
@@ -6218,7 +6218,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yatsuhashi",
 	},
 	extrayatsuhashi: {
-		num: 120,
+		num: 564,
 		name: "Extra Yatsuhashi",
 		types: ["Sound", "Wind"],
 		gender: "F",
@@ -6229,7 +6229,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yatsuhashi",
 	},
 	normalyorigami: {
-		num: 140,
+		num: 565,
 		name: "Normal Yorigami",
 		types: ["Fire", "Fighting"],
 		gender: "F",
@@ -6240,7 +6240,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yorigami",
 	},
 	poweryorigami: {
-		num: 140,
+		num: 566,
 		name: "Power Yorigami",
 		types: ["Fire", "Fighting"],
 		gender: "F",
@@ -6251,7 +6251,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yorigami",
 	},
 	defenseyorigami: {
-		num: 140,
+		num: 567,
 		name: "Defense Yorigami",
 		types: ["Fire", "Nether"],
 		gender: "F",
@@ -6262,7 +6262,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yorigami",
 	},
 	extrayorigami: {
-		num: 140,
+		num: 568,
 		name: "Extra Yorigami",
 		types: ["Steel", "Nether"],
 		gender: "F",
@@ -6273,7 +6273,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yorigami",
 	},
 	normalyorihime: {
-		num: 77,
+		num: 569,
 		name: "Normal Yorihime",
 		types: ["Steel", "Light"],
 		gender: "F",
@@ -6284,7 +6284,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yorihime",
 	},
 	poweryorihime: {
-		num: 77,
+		num: 570,
 		name: "Power Yorihime",
 		types: ["Steel", "Light"],
 		gender: "F",
@@ -6295,7 +6295,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yorihime",
 	},
 	speedyorihime: {
-		num: 77,
+		num: 571,
 		name: "Speed Yorihime",
 		types: ["Steel", "Electric"],
 		gender: "F",
@@ -6306,7 +6306,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yorihime",
 	},
 	extrayorihime: {
-		num: 77,
+		num: 572,
 		name: "Extra Yorihime",
 		types: ["Electric", "Fire"],
 		gender: "F",
@@ -6317,7 +6317,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yorihime",
 	},
 	normalyoshika: {
-		num: 108,
+		num: 573,
 		name: "Normal Yoshika",
 		types: ["Poison"],
 		gender: "F",
@@ -6328,7 +6328,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yoshika",
 	},
 	poweryoshika: {
-		num: 108,
+		num: 574,
 		name: "Power Yoshika",
 		types: ["Poison"],
 		gender: "F",
@@ -6339,7 +6339,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yoshika",
 	},
 	defenseyoshika: {
-		num: 108,
+		num: 575,
 		name: "Defense Yoshika",
 		types: ["Poison", "Nether"],
 		gender: "F",
@@ -6350,7 +6350,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yoshika",
 	},
 	extrayoshika: {
-		num: 108,
+		num: 576,
 		name: "Extra Yoshika",
 		types: ["Nether", "Earth"],
 		gender: "F",
@@ -6361,7 +6361,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yoshika",
 	},
 	normalyoumu: {
-		num: 52,
+		num: 577,
 		name: "Normal Youmu",
 		types: ["Steel", "Nether"],
 		gender: "F",
@@ -6372,7 +6372,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "youmu",
 	},
 	speedyoumu: {
-		num: 52,
+		num: 578,
 		name: "Speed Youmu",
 		types: ["Steel", "Nether"],
 		gender: "F",
@@ -6383,7 +6383,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "youmu",
 	},
 	poweryoumu: {
-		num: 52,
+		num: 579,
 		name: "Power Youmu",
 		types: ["Steel", "Nether"],
 		gender: "F",
@@ -6394,7 +6394,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "youmu",
 	},
 	extrayoumu: {
-		num: 52,
+		num: 580,
 		name: "Extra Youmu",
 		types: ["Steel", "Nature"],
 		gender: "F",
@@ -6405,7 +6405,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "youmu",
 	},
 	normalyukari: {
-		num: 55,
+		num: 581,
 		name: "Normal Yukari",
 		types: ["Illusion", "Void"],
 		gender: "F",
@@ -6416,7 +6416,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yukari",
 	},
 	poweryukari: {
-		num: 55,
+		num: 582,
 		name: "Power Yukari",
 		types: ["Illusion", "Void"],
 		gender: "F",
@@ -6427,7 +6427,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yukari",
 	},
 	defenseyukari: {
-		num: 55,
+		num: 583,
 		name: "Defense Yukari",
 		types: ["Illusion", "Dark"],
 		gender: "F",
@@ -6438,7 +6438,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yukari",
 	},
 	extrayukari: {
-		num: 55,
+		num: 584,
 		name: "Extra Yukari",
 		types: ["Illusion", "Warped"],
 		gender: "F",
@@ -6449,7 +6449,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yukari",
 	},
 	normalyuki: {
-		num: 32,
+		num: 585,
 		name: "Normal Yuki",
 		types: ["Fire"],
 		gender: "F",
@@ -6460,7 +6460,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuki",
 	},
 	speedyuki: {
-		num: 32,
+		num: 586,
 		name: "Speed Yuki",
 		types: ["Fire"],
 		gender: "F",
@@ -6471,7 +6471,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuki",
 	},
 	poweryuki: {
-		num: 32,
+		num: 587,
 		name: "Power Yuki",
 		types: ["Fire", "Water"],
 		gender: "F",
@@ -6482,7 +6482,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuki",
 	},
 	extrayuki: {
-		num: 32,
+		num: 588,
 		name: "Extra Yuki",
 		types: ["Water", "Warped"],
 		gender: "F",
@@ -6493,7 +6493,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuki",
 	},
 	normalyumeko: {
-		num: 35,
+		num: 589,
 		name: "Normal Yumeko",
 		types: ["Steel"],
 		gender: "F",
@@ -6504,7 +6504,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yumeko",
 	},
 	poweryumeko: {
-		num: 35,
+		num: 590,
 		name: "Power Yumeko",
 		types: ["Steel", "Dark"],
 		gender: "F",
@@ -6515,7 +6515,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yumeko",
 	},
 	speedyumeko: {
-		num: 35,
+		num: 591,
 		name: "Speed Yumeko",
 		types: ["Steel"],
 		gender: "F",
@@ -6526,7 +6526,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yumeko",
 	},
 	extrayumeko: {
-		num: 35,
+		num: 592,
 		name: "Extra Yumeko",
 		types: ["Fighting", "Wind"],
 		gender: "F",
@@ -6537,7 +6537,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yumeko",
 	},
 	normalyumemi: {
-		num: 19,
+		num: 593,
 		name: "Normal Yumemi",
 		types: ["Light", "Water"],
 		gender: "F",
@@ -6548,7 +6548,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yumemi",
 	},
 	poweryumemi: {
-		num: 19,
+		num: 594,
 		name: "Power Yumemi",
 		types: ["Light", "Water"],
 		gender: "F",
@@ -6559,7 +6559,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yumemi",
 	},
 	speedyumemi: {
-		num: 19,
+		num: 595,
 		name: "Speed Yumemi",
 		types: ["Fire", "Electric"],
 		gender: "F",
@@ -6570,7 +6570,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yumemi",
 	},
 	extrayumemi: {
-		num: 19,
+		num: 596,
 		name: "Extra Yumemi",
 		types: ["Fire", "Illusion"],
 		gender: "F",
@@ -6581,7 +6581,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yumemi",
 	},
 	normalyuugi: {
-		num: 93,
+		num: 597,
 		name: "Normal Yuugi",
 		types: ["Fighting"],
 		gender: "F",
@@ -6592,7 +6592,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuugi",
 	},
 	poweryuugi: {
-		num: 93,
+		num: 598,
 		name: "Power Yuugi",
 		types: ["Fighting"],
 		gender: "F",
@@ -6603,7 +6603,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuugi",
 	},
 	speedyuugi: {
-		num: 93,
+		num: 599,
 		name: "Speed Yuugi",
 		types: ["Fighting", "Water"],
 		gender: "F",
@@ -6614,7 +6614,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuugi",
 	},
 	extrayuugi: {
-		num: 93,
+		num: 600,
 		name: "Extra Yuugi",
 		types: ["Wind", "Steel"],
 		gender: "F",
@@ -6625,7 +6625,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuugi",
 	},
 	normalyuuka: {
-		num: 25,
+		num: 601,
 		name: "Normal Yuuka",
 		types: ["Nature", "Electric"],
 		gender: "F",
@@ -6636,7 +6636,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuuka",
 	},
 	poweryuuka: {
-		num: 25,
+		num: 602,
 		name: "Power Yuuka",
 		types: ["Nature", "Electric"],
 		gender: "F",
@@ -6647,7 +6647,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuuka",
 	},
 	defenseyuuka: {
-		num: 25,
+		num: 603,
 		name: "Defense Yuuka",
 		types: ["Nature", "Earth"],
 		gender: "F",
@@ -6658,7 +6658,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuuka",
 	},
 	extrayuuka: {
-		num: 25,
+		num: 604,
 		name: "Extra Yuuka",
 		types: ["Nature", "Light"],
 		gender: "F",
@@ -6669,7 +6669,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuuka",
 	},
 	normalyuuma: {
-		num: 164,
+		num: 605,
 		name: "Normal Yuuma",
 		types: ["Dark", "Poison"],
 		gender: "F",
@@ -6680,7 +6680,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuuma",
 	},
 	poweryuuma: {
-		num: 164,
+		num: 606,
 		name: "Power Yuuma",
 		types: ["Dark", "Poison"],
 		gender: "F",
@@ -6691,7 +6691,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuuma",
 	},
 	defenseyuuma: {
-		num: 164,
+		num: 607,
 		name: "Defense Yuuma",
 		types: ["Water", "Poison"],
 		gender: "F",
@@ -6702,7 +6702,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuuma",
 	},
 	extrayuuma: {
-		num: 164,
+		num: 608,
 		name: "Extra Yuuma",
 		types: ["Dark", "Water"],
 		gender: "F",
@@ -6714,7 +6714,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		otherFormes: ["Extra Yuuma-Avarice"]
 	},
 	extrayuumaavarice: {
-		num: 305,
+		num: 609,
 		name: "Extra Yuuma-Avarice",
 		types: ["Dark", "Water"],
 		gender: "F",
@@ -6727,7 +6727,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		changesFrom: "Extra Yuuma"
 	},
 	normalyuyuko: {
-		num: 53,
+		num: 610,
 		name: "Normal Yuyuko",
 		types: ["Nether"],
 		gender: "F",
@@ -6738,7 +6738,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuyuko",
 	},
 	defenseyuyuko: {
-		num: 53,
+		num: 611,
 		name: "Defense Yuyuko",
 		types: ["Nether"],
 		gender: "F",
@@ -6749,7 +6749,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuyuko",
 	},
 	poweryuyuko: {
-		num: 53,
+		num: 612,
 		name: "Power Yuyuko",
 		types: ["Nether", "Nature"],
 		gender: "F",
@@ -6760,7 +6760,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		spriteid: "yuyuko",
 	},
 	extrayuyuko: {
-		num: 53,
+		num: 613,
 		name: "Extra Yuyuko",
 		types: ["Nether", "Wind"],
 		gender: "F",
