@@ -1442,7 +1442,7 @@ export const Formats: FormatList = [
 		mod: 'lukemod',
 		desc: `G-Luke's Solomod, where all his Gen 9 winners exist in one micrometa`,
 		threads: [`&bullet; <a href="https://www.smogon.com/forums/threads/solomods-megathread.3711007/post-9675321">Thread</a>`,
-		},
+		],
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', 'Mega Data Mod'],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
