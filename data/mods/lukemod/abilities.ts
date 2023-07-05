@@ -167,7 +167,97 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		isBreakable: true,
 	  name: "Holy Grail",
     },
-	
+	faultyphoton: {
+	  shortDesc: "Disguise + Quark Drive",
+		onDamagePriority: 1,
+		onDamage(damage, target, source, effect) {
+			if (
+				effect && effect.effectType === 'Move' && target.species.id === 'ironmimic' && !target.transformed
+			) {
+				this.add('-activate', target, 'ability: Faulty Photon');
+				this.effectData.busted = true;
+				return 0;
+			}
+		},
+		onCriticalHit(target, source, move) {
+			if (!target) return;
+			if (target.species.id !== 'ironmimic' || target.transformed) return;
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates/* && this.gen >= 6*/);
+			if (hitSub) return;
 
+			if (!target.runImmunity(move.type)) return;
+			return false;
+		},
+		onEffectiveness(typeMod, target, type, move) {
+			if (!target) return;
+			if (target.species.id !== 'ironmimic' || target.transformed) return;
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates/* && this.gen >= 6*/);
+			if (hitSub) return;
 
+			if (!target.runImmunity(move.type)) return;
+			return 0;
+		},
+		onUpdate(pokemon) {
+			if (pokemon.species.id === 'ironmimic' && this.effectData.busted) {
+				const speciesid = /*pokemon.species.id === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' :*/ 'Iron Mimic-Busted';
+				pokemon.formeChange(speciesid, this.effect, true);
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+				this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon, this.dex.getSpecies(speciesid));
+				pokemon.addVolatile('faultyphoton');
+				//pokemon.volatiles['faultyphoton'].fromBooster = true;
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['faultyphoton'];
+			this.add('-end', pokemon, 'Faulty Photon', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {/*
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Faulty Photon', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Faulty Photon');
+				}*/
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'faultyphoton' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Faulty Photon atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Faulty Photon def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Faulty Photon spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Faulty Photon spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Faulty Photon spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Faulty Photon');
+			},
+		},
+		isPermanent: true,
+		name: "Faulty Photon",
+		rating: 3,
+	},
 };
