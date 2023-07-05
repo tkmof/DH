@@ -567,7 +567,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Reflects the effects of status skills back on the attacker.",
 		onTryHitPriority: 1,
 		onTryHit(target, source, move) {
-			if (target === source || move.hasBounced || !move.flags['reflectable']) {
+			if (target === source || move.hasBounced || !move?.category === 'Status']) {
 				return;
 			}
 			const newMove = this.dex.getActiveMove(move.id);
