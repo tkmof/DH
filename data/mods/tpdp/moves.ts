@@ -11384,8 +11384,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Hyper Voice", target);
 		},
 		self: {
-			chance: 10,
+			//chance: 10,
 			onHit(target, source, move) {
+				if (this.randomChance(9, 10)) return;
 				const stats: BoostID[] = [];
 				let stat: BoostID;
 				for (stat in source.boosts) {
@@ -11832,8 +11833,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			this.add('-anim', source, "Hyper Voice", target);
 		},
 		self: {
-			chance: 10,
+			//chance: 10,
 			onHit(target, source, move) {
+				if (this.randomChance(9, 10)) return;
 				const stats: BoostID[] = [];
 				let stat: BoostID;
 				for (stat in target.boosts) {
