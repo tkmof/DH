@@ -1438,25 +1438,6 @@ export const Formats: FormatList = [
 		teambuilderFormat: 'National Dex Ubers',
 	},	
 	{
-		name: "[Gen 9] Everything Ever Luke'd All At Once",
-		mod: 'lukemod',
-		desc: `G-Luke's Solomod, where all his Gen 9 winners exist in one micrometa`,
-		threads: [`&bullet; <a href="https://www.smogon.com/forums/threads/solomods-megathread.3711007/post-9675321">Thread</a>`,
-		],
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', 'Mega Data Mod'],
-		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}}*/
-			let speciesTable = {};
-			let allowedTiers = ['EELAAO OU','EELAAO LC'];
-			for (const set of team) {
-				let template = this.dex.getSpecies(set.species);
-				if (!allowedTiers.includes(template.tier)) {
-					return [set.species + ' is not a G-Luke winning submission.'];
-				}
-			}
-		},
-	},
-	{
 		name: "[Gen 8] Evolution Project",
 		desc: [
 			`<b>Evolution Project</b>: A small group's creative exercise being given a test run. More details when we go public!`,
