@@ -1226,7 +1226,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "RU",
 	},
 	zapdos: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 		natDexTier: "OU",
 	},
@@ -4279,7 +4279,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "OU",
 	},
 	volcanion: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 		natDexTier: "RU",
 	},
@@ -5563,7 +5563,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	baxcalibur: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DUU",
 		natDexTier: "OU",
 	},
