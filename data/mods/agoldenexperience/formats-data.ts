@@ -837,6 +837,18 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NU",
 		doublesTier: "(DUU)",
 	},
+	taurospaldeacombat: {
+		tier: "NU",
+		doublesTier: "(DUU)",
+	},
+	taurospaldeablaze: {
+		tier: "RU",
+		doublesTier: "(DUU)",
+	},
+	taurospaldeaaqua: {
+		tier: "UU",
+		doublesTier: "(DUU)",
+	},
 	magikarp: {
 		tier: "LC",
 	},
