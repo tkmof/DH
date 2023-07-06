@@ -1712,6 +1712,11 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trailblaze: ["8M"],
 			uturn: ["8M", "8L21"],
 			worryseed: ["8L25"],
+			return: ["8M"],
+			frustration: ["8M"],
+			snore: ["8M"],
+			round: ["8M"],
+			attract: ["8M"],
 		},
 	},
 	floragato: {
@@ -1760,6 +1765,11 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trailblaze: ["8M"],
 			uturn: ["8M", "8L24"],
 			worryseed: ["8L28"],
+			return: ["8M"],
+			frustration: ["8M"],
+			snore: ["8M"],
+			round: ["8M"],
+			attract: ["8M"],
 		},
 	},
 	meowscarada: {
@@ -1828,6 +1838,11 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trickroom: ["8M"],
 			uturn: ["8M", "8L24"],
 			worryseed: ["8L29"],
+			return: ["8M"],
+			frustration: ["8M"],
+			snore: ["8M"],
+			round: ["8M"],
+			attract: ["8M"],
 		},
 	},
 	fuecoco: {
@@ -1875,6 +1890,11 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			willowisp: ["8M"],
 			yawn: ["8L17"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
+			snore: ["8M"],
+			round: ["8M"],
+			attract: ["8M"],
 		},
 	},
 	crocalor: {
@@ -1919,6 +1939,11 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			willowisp: ["8M", "8L42"],
 			yawn: ["8L15"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
+			snore: ["8M"],
+			round: ["8M"],
+			attract: ["8M"],
 		},
 	},
 	skeledirge: {
@@ -1977,6 +2002,10 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			torchsong: ["8L0"],
 			willowisp: ["8M", "8L47"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
+			snore: ["8M"],
+			attract: ["8M"],
 		},
 	},
 	quaxly: {
@@ -2016,6 +2045,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			waterpledge: ["8M"],
 			wingattack: ["8L10"],
 			workup: ["8L7"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	quaxwell: {
@@ -2054,6 +2085,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			waterpulse: ["8M", "8L17"],
 			wingattack: ["8L10"],
 			workup: ["8L7"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	quaquaval: {
@@ -2112,6 +2145,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			wavecrash: ["8L64"],
 			wingattack: ["8L10"],
 			workup: ["8L7"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	nymble: {
@@ -2145,6 +2180,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trailblaze: ["8M"],
 			uturn: ["8M"],
 			xscissor: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	lokix: {
@@ -2192,6 +2229,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trailblaze: ["8M"],
 			uturn: ["8M"],
 			xscissor: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	capsakid: {
@@ -2230,6 +2269,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			thief: ["8M"],
 			trailblaze: ["8M"],
 			worryseed: ["8E"],
+			return: ["8M"],
+			frustration: ["8M"],
 			zenheadbutt: ["8M", "8L28"],
 		},
 	},
@@ -2275,6 +2316,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			willowisp: ["8M"],
 			worryseed: ["8L33"],
 			zenheadbutt: ["8M", "8L28"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	cyclizar: {
@@ -2326,6 +2369,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trailblaze: ["8M"],
 			uturn: ["8M", "8L27"],
 			wildcharge: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	greavard: {
@@ -2378,6 +2423,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trick: ["8M"],
 			yawn: ["8E"],
 			underdog: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	houndstone: {
@@ -2434,6 +2481,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			stealthrock: ["8M"],
 			underdog: ["8M"],
 			houndshowl: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	pawmi: {
@@ -2484,6 +2533,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			voltswitch: ["8M"],
 			wildcharge: ["8M", "8L44"],
 			wish: ["8E"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	pawmo: {
@@ -2534,6 +2585,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			thunderwave: ["8M", "8L27"],
 			voltswitch: ["8M"],
 			wildcharge: ["8M", "8L52"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	pawmot: {
@@ -2600,6 +2653,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			wildcharge: ["8M", "8L1"],
 			uturn: ["8M"],
 			stompingtantrum: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	tandemaus: {
@@ -2651,6 +2706,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			tickle: ["8E"],
 			uturn: ["8M"],
 			waterpulse: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	maushold: {
@@ -2701,6 +2758,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trailblaze: ["8M"],
 			uturn: ["8M"],
 			waterpulse: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	mausholdfour: {
@@ -2751,6 +2810,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trailblaze: ["8M"],
 			uturn: ["8M"],
 			waterpulse: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	squawkabilly: {
@@ -2797,6 +2858,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			torment: ["8L10"],
 			uproar: ["8L24"],
 			uturn: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	greattusk: {
@@ -2850,6 +2913,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			taunt: ["8M", "8L14"],
 			thunderfang: ["8M"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	brutebonnet: {
@@ -2902,6 +2967,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			trailblaze: ["8M"],
 			venoshock: ["8M"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	sandyshocks: {
@@ -2953,6 +3020,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			voltswitch: ["8M"],
 			wildcharge: ["8M"],
 			zapcannon: ["8L84"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	screamtail: {
@@ -3031,6 +3100,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			//additions
 			seismictoss: ["8M"],
 			slackoff: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	fluttermane: {
@@ -3082,6 +3153,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			thunderwave: ["8M"],
 			trickroom: ["8M"],
 			wish: ["8L28", "8S0"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	slitherwing: {
@@ -3136,6 +3209,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			wildcharge: ["8M"],
 			willowisp: ["8M"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	roaringmoon: {
@@ -3203,6 +3278,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			uturn: ["8M"],
 			xscissor: ["8M"],
 			zenheadbutt: ["8M", "8L35", "8S0"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	irontreads: {
@@ -3250,6 +3327,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			voltswitch: ["8M"],
 			wildcharge: ["8M", "8L63"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	ironmoth: {
@@ -3306,6 +3385,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			//additions
 			earthpower: ["8L1"],
 			scorchingsands: ["8L1"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	ironhands: {
@@ -3362,6 +3443,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			voltswitch: ["8M"],
 			whirlwind: ["8L14"],
 			wildcharge: ["8M", "8L56"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	ironjugulis: {
@@ -3417,6 +3500,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			//additions
 			nastyplot: ["8M"],
 			downdraft: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	ironthorns: {
@@ -3489,6 +3574,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			//additions
 			doubleshock: ["8M"],
 			golemstrike: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	ironbundle: {
@@ -3530,6 +3617,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			uturn: ["8M"],
 			waterpulse: ["8M"],
 			whirlpool: ["8L14"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	ironvaliant: {
@@ -3611,6 +3700,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			//additions
 			sacredsword: ["8M"],
 			airslash: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	koraidon: {
@@ -3676,6 +3767,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			uturn: ["8M"],
 			wildcharge: ["8M"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	miraidon: {
@@ -3733,6 +3826,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			voltswitch: ["8M"],
 			wildcharge: ["8M"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	tinkatink: {
@@ -3780,6 +3875,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			swordsdance: ["8M"],
 			thief: ["8M"],
 			thunderwave: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	tinkatuff: {
@@ -3825,6 +3922,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			swordsdance: ["8M"],
 			thief: ["8M"],
 			thunderwave: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	tinkaton: {
@@ -3873,6 +3972,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			swordsdance: ["8M"],
 			thief: ["8M"],
 			thunderwave: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	charcadet: {
@@ -3904,6 +4005,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			sunnyday: ["8M"],
 			takedown: ["8M"],
 			willowisp: ["8M", "8L16"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	armarouge: {
@@ -3961,6 +4064,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			wideguard: ["8L1"],
 			willowisp: ["8M", "8L16"],
 			agility: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	ceruledge: {
@@ -4017,6 +4122,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			willowisp: ["8M", "8L16"],
 			xscissor: ["8M"],
 			agility: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	kingambit: {
@@ -4075,6 +4182,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			torment: ["8L15"],
 			xscissor: ["8M"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	dudunsparce: {
@@ -4150,6 +4259,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			wildcharge: ["8M"],
 			yawn: ["8L28"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	annihilape: {
@@ -4220,6 +4331,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			thunderbolt: ["8M"],
 			thunderpunch: ["8M"],
 			uturn: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	wooperpaldea: {
@@ -4280,6 +4393,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			waterfall: ["8M"],
 			waterpulse: ["8M"],
 			yawn: ["8L21"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	clodsire: {
@@ -4335,6 +4450,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			waterpulse: ["8M"],
 			yawn: ["8L21"],
 			zenheadbutt: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	taurospaldeacombat: {
@@ -4385,6 +4502,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			wildcharge: ["8M"],
 			workup: ["8L5"],
 			zenheadbutt: ["8M", "8L30"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	taurospaldeablaze: {
@@ -4439,6 +4558,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			willowisp: ["8M"],
 			workup: ["8L5"],
 			zenheadbutt: ["8M", "8L30"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	taurospaldeaaqua: {
@@ -4491,6 +4612,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			wildcharge: ["8M"],
 			workup: ["8L5"],
 			zenheadbutt: ["8M", "8L30"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	walkingwake: {
@@ -4539,6 +4662,8 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			twister: ["8L1"],
 			waterfall: ["8M"],
 			waterpulse: ["8M", "8L14"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 	ironleaves: {
@@ -4594,10 +4719,11 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			wildcharge: ["8M"],
 			workup: ["8L1"],
 			xscissor: ["8M"],
+			return: ["8M"],
+			frustration: ["8M"],
 		},
 	},
 
-	//TODO: finish movepools
 	//Fakemons
 	tentarcolh: {
 		learnset: {

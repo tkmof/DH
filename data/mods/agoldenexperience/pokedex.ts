@@ -3056,22 +3056,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoType: "levelMove",
 		evoCondition: "while holding Meltan Candy",
 	},
-	/*cinderace: {//to remove when gen 9
-		inherit: true,
-		baseStats: {hp: 80, atk: 101, def: 80, spa: 80, spd: 80, spe: 109},
-	},*/
-	sobble: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
-	},
-	drizzile: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
-	},
-	inteleon: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
-	},
 	greedent: {
 		inherit: true,
 		baseStats: {hp: 120, atk: 95, def: 95, spa: 45, spd: 95, spe: 20},
@@ -3121,7 +3105,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	sandaconda: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 107, def: 125, spa: 55, spd: 80, spe: 71},
+		baseStats: {hp: 72, atk: 107, def: 125, spa: 55, spd: 80, spe: 71},
 	},
 	cramorant: {
 		inherit: true,
