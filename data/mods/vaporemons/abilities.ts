@@ -34,7 +34,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				source.abilityState.battleBondTriggered = true;
 			}
 		},
-		isNonstandard: "Unobtainable",
+		isNonstandard: null,
 		shortDesc: "After KOing a Pokemon: raises Attack, Sp. Atk, Speed by 1 stage. Once per battle.",
 		isPermanent: true,
 		name: "Battle Bond",

@@ -2443,6 +2443,47 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "self",
 		type: "Steel",
 	},
+	shelter: {
+		num: 842,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Removes Spikes and Stealth Rock from the field. +1 Def for every type of hazard cleared.",
+		name: "Shelter",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		onHit(pokemon) {
+			let success = false;
+			let hazardsCleared = 0;
+			const somesideConditions = ['spikes', 'stealthrock'];
+			const sides = [pokemon.side];
+			for (const side of sides) {
+				for (const sideCondition of somesideConditions) {
+					if (side.removeSideCondition('spikes')) {
+						this.add('-sideend', side, this.dex.getEffect('spikes'));
+						hazardsCleared += 1;
+						this.boost({def: 1}, pokemon);
+					}
+					if (side.removeSideCondition('stealthrock')) {
+						this.add('-sideend', side, this.dex.getEffect('stealthrock'));
+						hazardsCleared += 1;
+						this.boost({def: 1}, pokemon);
+					}
+					if (hazardsCleared > 0) {
+						success = true;
+					}
+				}
+			}
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shell Smash", target);
+		},
+		secondary: null,
+		target: "self",
+		type: "Steel",
+	}, 
 	stealthrock: {
 		num: 446,
 		accuracy: true,
@@ -2908,6 +2949,41 @@ stickyweb: {
 		},
 		target: "normal",
 		type: "Steel",
+		zMove: {basePower: 140},
+		maxMove: {basePower: 130},
+		contestType: "Cool",
+	},
+	walkietalkiemove: {
+		accuracy: true,
+		basePower: 0,
+		category: "Physical",
+		shortDesc: "Referenced by the Walkie-Talkie item in order for it to work.",
+		name: "Walkie-Talkie Move",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sing", target);
+		},
+		slotCondition: 'walkietalkie',
+		condition: {
+			duration: 1,
+			onFaint(target) {
+				target.side.removeSlotCondition(target, 'walkietalkie');
+			},
+			onSwap(target) {
+				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
+					this.add('-message', `${pokemon.name} was called in!`);
+					// const move = this.dex.getMove(this.effectData.move);
+					this.runMove('copycat', target, this.getTargetLoc(target.side.foe.active[0], target), null, false, true);
+				}
+				target.side.removeSlotCondition(target, 'walkietalkie');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
 		zMove: {basePower: 140},
 		maxMove: {basePower: 130},
 		contestType: "Cool",

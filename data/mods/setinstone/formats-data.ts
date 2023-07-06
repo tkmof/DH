@@ -8,4 +8,17 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	cryolith: {
 		tier: "SS",
 	},
+	voltergeist: {
+		tier: "SS",
+		doublesTier: "DOU",
+	},
+	calamander: {
+		tier: "SS",
+		doublesTier: "DOU",
+	},
+	lavahava: {
+		tier: "SS",
+		doublesTier: "DOU",
+	},
+
 };

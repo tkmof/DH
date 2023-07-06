@@ -923,7 +923,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 	},
 	faultyphoton: {
-	  shortDesc: "Disguise effects. Once the Disguise is broken, it gets a ×1.3 boost to it's highest stat; ×1.5 if Speed.",
+	  shortDesc: "Disguise + Quark Drive",
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
 			if (

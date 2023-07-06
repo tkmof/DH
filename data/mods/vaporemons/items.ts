@@ -578,18 +578,18 @@ export const Items: {[k: string]: ModdedItemData} = {
 			onFaint(target) {
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
-			onSwitchIn(target) {
+			onSwap(target) {
 				if (!target.fainted && this.effectData.moveTarget && this.effectData.moveTarget.isActive) {
 					const move = this.dex.getMove(this.effectData.move);
-					this.useMove(move, target, this.effectData.moveTarget);
+					this.runMove(move, target, this.getTargetLoc(target.side.foe.active[0], target), null, false, true);
 				}
 				target.side.removeSlotCondition(target, 'walkietalkie');
 			},
 		},
-		desc: "Before using a sound move, holder switches. Switch-in uses move.",
+		desc: "(Mostly non-functional placeholder) Before using a sound move, holder switches. Switch-in uses move.",
 		num: -1008,
 		gen: 8,
-	}, 
+	}, /*
 	walkietalkie: {
 		name: "Walkie-Talkie",
 		spritenum: 713,
@@ -626,7 +626,32 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Before using a sound move, holder switches. Switch-in uses move.",
 		num: -1008,
 		gen: 8,
-	}, 
+	}, */
+	walkietalkie: {
+		name: "Walkie-Talkie",
+		spritenum: 713,
+		fling: {
+			basePower: 20,
+		},
+		onModifyMove(move, pokemon) {
+			if (!this.canSwitch(pokemon.side) || pokemon.forceSwitchFlag || pokemon.switchFlag ||
+				 !move.flags['sound'] || pokemon.side.getSideCondition('walkietalkie')) return;
+			this.effectData.move = this.dex.getMove(move.id);
+			delete move.flags['contact'];
+			delete move.flags['wind'];
+			delete move.flags['bullet'];
+			move.basePower = 0;
+			move.accuracy = true;
+			move.selfSwitch = true;
+			move.ignoreImmunity = true;
+			pokemon.side.addSlotCondition(pokemon, 'walkietalkie');
+			this.add('-activate', pokemon, 'item: Walkie-Talkie');
+			this.add('-message', `${pokemon.name} is calling in one of its allies!`);
+		},
+		desc: "(Mostly non-functional placeholder) Before using a sound move, holder switches. Switch-in uses move.",
+		num: -1008,
+		gen: 8,
+	},
 	boosterenergy: {
 		name: "Booster Energy",
 		spritenum: 0, // TODO

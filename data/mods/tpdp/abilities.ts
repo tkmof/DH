@@ -200,7 +200,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 	},
-	astronomy: { // TODO: Find out if blocked by Ascertainment and Kohryu
+	astronomy: { 
 		name: "Astronomy",
 		shortDesc: "BU skills have 1.2x power.",
 		onBasePower(relayVar, source, target, move) {
@@ -381,11 +381,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	brutality: {
 		name: "Brutality",
 		shortDesc: "SpAtk is boosted by 50% but accuracy is cut by 20%.",
-		onModifySpA(relayVar, source, target, move) {
-			this.chainModify(1.5);
+		onModifySpAPriority: 5,
+		onModifySpA(spa) {
+			return this.modify(spa, 1.5);
 		},
-		onModifyAccuracy(relayVar, target, source, move) {
-			this.chainModify(0.8);
+		onSourceModifyAccuracyPriority: 7,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (move.category === 'Special' && typeof accuracy === 'number') {
+				return accuracy * 0.8;
+			}
 		},
 	},
 	bruteforce: {
@@ -488,21 +492,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Restores HP when hit by a Dark-type skill and takes Damage against Light-type skills.",
 		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Dark' && !this.field.isTerrain('kohryu')) {
-				this.add('-immune', target, '[from] ability: Cloak of Darkness');
-				target.heal(target.baseMaxhp / 4);
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Cloak of Darkness');
+				}
 				return null;
 			}
 		},
-		onFoeBasePower(relayVar, source, target, move) {
+		onFoeBasePower(basePower, attacker, defender, move) {
+			if (this.effectData.target !== defender) return;
 			if (move.type === "Light")
 				this.chainModify(1.25);
 		},
-		onResidual(target, source, effect) {
-			if (this.field.isWeather('heavyfog')) {
-				target.heal(target.baseMaxhp / 4);
-			}
-			else if (this.field.isWeather('aurora')) {
-				target.damage(target.baseMaxhp / 4);
+		onWeather(target, source, effect) {
+			if (effect.id === 'heavyfog') {
+				target.heal(target.baseMaxhp / 8);
+			} else if (effect.id === 'aurora') {
+				target.damage(target.baseMaxhp / 8, target, target);
 			}
 		},
 	},
@@ -521,9 +526,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	commonsenseless: {
 		name: "Common Senseless",
 		shortDesc: "Ignores type immunities when attacking.",
-		onFoeImmunity(type, pokemon) {
-			if (this.dex.types.isName(type))
-				return false;
+		onModifyMove(move) {
+			move.ignoreImmunity = true;
 		},
 	},
 	composed: {
@@ -576,19 +580,23 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	daredevil: {
 		name: "Daredevil",
 		shortDesc: "FoAtk is boosted by 50% but accuracy is cut by 20%.",
-		onModifyAtk(relayVar, source, target, move) {
-			this.chainModify(1.5);
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk) {
+			return this.modify(atk, 1.5);
 		},
-		onModifyAccuracy(relayVar, target, source, move) {
-			this.chainModify(0.8);
+		onSourceModifyAccuracyPriority: 7,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (move.category === 'Physical' && typeof accuracy === 'number') {
+				return accuracy * 0.8;
+			}
 		},
 	},
 	darkforce: {
 		name: "Dark Force",
-		shortDesc: "Opponent has 10% chance to become blinded from their focus attacks.",
+		shortDesc: "Opponent has 30% chance to become blinded from their focus attacks.",
 		onDamagingHit(damage, target, source, move) {
 			if (move.category === "Physical") {
-				if (this.randomChance(1, 10)) {
+				if (this.randomChance(3, 10)) {
 					source.trySetStatus('dark', target);
 				}
 			}
@@ -1792,10 +1800,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	poisonbody: {
 		name: "Poison Body",
 		shortDesc: "After an attack, the opponent has a 30% chance to become poisoned.",
-		onDamagingHit(damage, target, source, move) {
-			if (this.randomChance(3, 10)) {
-				source.trySetStatus('psn', target);
+		onModifyMove(move) {
+			if (!move || move.target === 'self') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
 			}
+			move.secondaries.push({
+				chance: 30,
+				status: 'psn',
+				ability: this.dex.getAbility('poisonbody'),
+			});
 		},
 	},
 	poisonlabyrinth: {
@@ -1975,15 +1989,21 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	restraint: {
 		name: "Restraint",
 		shortDesc: "If the foe uses a switch-out skill, they are unable to switch for 2 turns.",
-		onFoeAfterMoveSecondary(target, source, move) {
-			if (move.selfSwitch)
-				target.side.addSlotCondition(target, 'restraint');
+		onAnyModifyMove(move, pokemon) {
+			if (pokemon.side === this.effectData.target.side) return;
+			if (move.selfSwitch && !move.ignoreAbility) {
+				delete move.selfSwitch;
+				pokemon.addVolatile('restraint');
+			}
 		},
 		condition: {
 			duration: 2,
-			onBeforeSwitchOut(pokemon) {
-				this.add('-fail', pokemon);
-				return false;
+			noCopy: true,
+			onTrapPokemon(pokemon) {
+				pokemon.tryTrap();
+			},
+			onStart(target) {
+				this.add('-activate', target, 'restraint');
 			},
 		},
 	},
@@ -2395,12 +2415,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	strongsmile: {
 		name: "Strong Smile",
-		shortDesc: "Opponent has a 10% chance to become afraid from their spread attacks.",
-		onDamagingHit(damage, target, source, move) {
-			if (target !== source && move.category === "Special") {
-				if (this.randomChance(1,10)) {
-					source.trySetStatus('fear');
-				}
+		shortDesc: "Opponent has a 30% chance to become afraid from their spread attacks.",
+		onFoeDamagingHit(damage, target, source, move) {
+			if (this.randomChance(3, 10)) {
+				target.trySetStatus('fear', source);
 			}
 		},
 	},

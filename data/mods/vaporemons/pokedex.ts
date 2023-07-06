@@ -1968,6 +1968,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	decidueyehisui: {
 		inherit: true,
+		abilities: {0: "Overgrow", H: "Scrappy"},
 		types: ["Ghost", "Fighting"],
 	},
 	magnemite: {
@@ -2200,5 +2201,16 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	rotomfan: {
 		inherit: true,
 		abilities: {0: "Levitate", H: "Gale Wings"},
+	},
+	bombirdier: {
+		num: 962,
+		name: "Bombirdier",
+		types: ["Flying", "Dark"],
+		baseStats: {hp: 70, atk: 103, def: 85, spa: 60, spd: 85, spe: 82},
+		abilities: {0: "Big Pecks", 1: "Gale Wings", H: "Rocky Payload"},
+		heightm: 1.5,
+		weightkg: 42.9,
+		color: "White",
+		eggGroups: ["Flying"],
 	},
 };

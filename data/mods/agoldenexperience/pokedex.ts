@@ -2332,7 +2332,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	carbink: {
 		inherit: true,
-		abilities: {0: "Clear Body", 1: "Night Light", H: "Sturdy"},
+		abilities: {0: "Clear Body", 1: "Night Light", H: "Huge Power"},
 	},
 	goomy: {
 		inherit: true,
@@ -3545,7 +3545,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Fighting"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 85, atk: 120, def: 80, spa: 85, spd: 75, spe: 85},
-		abilities: {0: "Torrent", H: "Moxie"},
+		abilities: {0: "Torrent", H: "Pride"},
 		heightm: 1.8,
 		weightkg: 61.9,
 		color: "Blue",
