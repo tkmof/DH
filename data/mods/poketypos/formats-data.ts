@@ -155,4 +155,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Poketypos",
 		doublesTier: "Poketypos", 
 	}
+	mrtime: {
+		tier: "Poketypos",
+		doublesTier: "Poketypos", 
+	}
+	bruteboreas: {
+		tier: "Poketypos",
+		doublesTier: "Poketypos", 
+	}
+	ironavian: {
+		tier: "Poketypos",
+		doublesTier: "Poketypos", 
+	}
 };
