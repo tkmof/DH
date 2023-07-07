@@ -2305,6 +2305,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		eggGroups: ["Field"],
 		requiredItem: "Delphite",
 	},
+	greninjaash: {
+		inherit: true,
+		baseStats: {hp: 72, atk: 145, def: 67, spa: 153, spd: 71, spe: 122},
+	},
 	pyroar: {
 		inherit: true,
 		abilities: {0: "Rivalry", 1: "Scrappy", H: "Pride"},
