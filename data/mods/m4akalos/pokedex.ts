@@ -200,6 +200,39 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		megaCreator: "jazzmat",
 	},
 
+	// slate 7
+
+	jumpluff: {
+		inherit: true,
+		mega: "jumpluffmega",
+		megaName: "Jumpluff-Mega",
+		megaAbility: {0: "Regenerator"},
+		megaStats: {hp: 75, atk: 60, def: 100, spa: 70, spd: 125, spe: 135},
+		megaStone: "Jumpluffite",
+		movepoolAdditions: ["wish"],
+		megaCreator: "DrPumpkinz and Paulluxx",
+	},
+
+	rhyperior: {
+		inherit: true,
+		mega: "rhyperiormega",
+		megaName: "Rhyperior-Mega",
+		megaAbility: {0: "Sap Sipper"},
+		megaStats: {hp: 115, atk: 150, def: 160, spa: 65, spd: 85, spe: 60},
+		megaStone: "Rhyperiorite",
+		megaCreator: "BlueRay",
+	},
+
+	florges: {
+		inherit: true,
+		mega: "florgesmega",
+		megaName: "Florges-Mega",
+		megaAbility: {0: "Soul-Heart"},
+		megaStats: {hp: 78, atk: 95, def: 78, spa: 132, spd: 184, spe: 85},
+		megaStone: "Florgesite",
+		megaCreator: "DrPumpkinz",
+	},
+
 	// crossover Megas
 
 	lanturn: {
