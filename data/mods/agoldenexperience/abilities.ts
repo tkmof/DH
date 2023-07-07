@@ -1483,7 +1483,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: -1152,
 	},
 	oldschool: {
-		shortDesc: "This Pokemon's high crit rate moves always crit. This Pokemon's special moves use SpD in calculation.",
+		shortDesc: "This Pokemon's high crit rate moves always crit, and deal damages x2 instead of x1.5. This Pokemon's special moves use SpD in calculation.",
 		name: "Old School",
 		onModifyMove(move, attacker) {
 			if (move.category === 'Special') {
@@ -1492,6 +1492,12 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		onModifyCritRatio(critRatio, source, target) {
 			if (critRatio >= 2) return 5;
+		},
+		onModifyDamage(damage, source, target, move) {
+			if (target.getMoveHitData(move).crit) {
+				this.debug('Old School boost');
+				return this.chainModify(2/1.5);
+			}
 		},
 		rating: 3.5,
 		num: -2148,

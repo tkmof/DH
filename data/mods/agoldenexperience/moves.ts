@@ -2835,6 +2835,23 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Water",
 		contestType: "Clever",
 	},
+	snipeshot: {
+		num: 745,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Snipe Shot",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		willCrit: true,
+		tracksTarget: true,
+		secondary: null,
+		shortDesc: "Always results in a critical hit. Cannot be redirected.",
+		desc: "Always results in a critical hit. Cannot be redirected.",
+		target: "normal",
+		type: "Water",
+	},
 	lightningassault: {
 		num: -486,
 		accuracy: 100,
@@ -3058,11 +3075,11 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	houndshowl: {
 		num: 228,
 		accuracy: 100,
-		basePower: 50,
-		category: "Special",
+		basePower: 55,
+		category: "Physical",
 		name: "Hound's Howl",
-		shortDesc: "If a foe is switching out, hits it at 2x power. Physical if user's Atk > Sp. Atk. Type varies based on the user's primary type.",
-		desc: "If a foe is switching out, hits it at 2x power. Physical if user's Atk > Sp. Atk. Type varies based on the user's primary type.",
+		shortDesc: "If a foe is switching out, hits it at 2x power.",
+		desc: "If a foe is switching out, hits it at 2x power.",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -3085,13 +3102,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				data.sources.push(pokemon);
 			}
 		},
-		onModifyType(move, pokemon) {
-			let type = pokemon.types[0];
-			if (type === "Bird") type = "???";
-			move.type = type;
-		},
 		onModifyMove(move, pokemon) {
-			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 			if (target?.beingCalledBack) move.accuracy = true;
 		},
 		onTryHit(target, pokemon) {
@@ -3126,7 +3137,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		secondary: null,
 		target: "normal",
-		type: "Normal",
+		type: "Ghost",
 		contestType: "Clever",
 	},
 	dantesinferno: {
