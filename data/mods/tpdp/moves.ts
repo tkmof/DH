@@ -11624,9 +11624,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1,},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Water Sport", target);
+			this.add('-anim', source, "Whirlpool", target);
 		},
-		sideCondition: 'veilofwater',
+		self: {
+			sideCondition: 'veilofwater',
+		},
 		condition: {
 			duration: 5,
 			onBoost(boost, target, source, effect) {

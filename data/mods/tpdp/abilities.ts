@@ -754,9 +754,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.chainModify([4,3]);
 			}
 		},
-		onFoeImmunity(type, pokemon) {
-			if (this.field.isTerrain('seiryu') && this.dex.types.isName(type))
-				return false;
+		onModifyMove(move) {
+			if (this.field.isTerrain('seiryu')) move.ignoreImmunity = true;
 		},
 	},
 	economist: {
@@ -1226,25 +1225,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Changes appearance to match that of the last Puppet in the party. Reverts after taking a hit.",
 		onBeforeSwitchIn(pokemon) {
 			pokemon.illusion = null;
-			// yes, you can Illusion an active pokemon but only if it's to your right
-			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
-				const possibleTarget = pokemon.side.pokemon[i];
-				if (!possibleTarget.fainted) {
-					pokemon.illusion = possibleTarget;
-					break;
-				}
+			let i;
+			for (i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				if (!pokemon.side.pokemon[i]) continue;
+				if (!pokemon.side.pokemon[i].fainted) break;
 			}
+			if (!pokemon.side.pokemon[i]) return;
+			if (pokemon === pokemon.side.pokemon[i]) return;
+			pokemon.illusion = pokemon.side.pokemon[i];
 		},
 		onDamagingHit(damage, target, source, move) {
 			if (target.illusion) {
-				this.singleEvent('End', this.dex.abilities.get('Hobgoblin'), target.abilityState, target, source, move);
+				this.singleEvent('End', this.dex.getAbility('Hobgoblin'), target.abilityData, target, source, move);
 			}
 		},
 		onEnd(pokemon) {
 			if (pokemon.illusion) {
 				this.debug('illusion cleared');
 				pokemon.illusion = null;
-				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level);
+				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
+					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
 				this.add('replace', pokemon, details);
 				this.add('-end', pokemon, 'Hobgoblin');
 			}
