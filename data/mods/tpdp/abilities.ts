@@ -567,13 +567,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Reflects the effects of status skills back on the attacker.",
 		onTryHitPriority: 1,
 		onTryHit(target, source, move) {
-			if (target === source || move.hasBounced || !move?.category === 'Status') {
+			if (target === source || move.hasBounced || move?.category !== 'Status') {
 				return;
 			}
 			const newMove = this.dex.getActiveMove(move.id);
 			newMove.hasBounced = true;
 			newMove.pranksterBoosted = false;
-			this.actions.useMove(newMove, target, source);
+			this.useMove(newMove, target, source);
 			return null;
 		},
 	},
