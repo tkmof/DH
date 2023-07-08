@@ -478,7 +478,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	lapras: {
 		inherit: true,
 		baseStats: {hp: 130, atk: 95, def: 80, spa: 65, spd: 95, spe: 70},
-		abilities: {0: "Water Absorb", 1: "Shell Armor", H: "Refridgerate"},
+		abilities: {0: "Water Absorb", 1: "Shell Armor", H: "Refrigerate"},
 	},
 	vaporeon: {
 		inherit: true,
@@ -2304,6 +2304,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		color: "Red",
 		eggGroups: ["Field"],
 		requiredItem: "Delphite",
+	},
+	greninjaash: {
+		inherit: true,
+		baseStats: {hp: 72, atk: 145, def: 67, spa: 153, spd: 71, spe: 122},
 	},
 	pyroar: {
 		inherit: true,
