@@ -7341,7 +7341,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 9.375,
 		accuracy: true,
 		priority: 0,
-		flags: {},
+		flags: {heal: 1},
 		heal: [1, 2],
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
