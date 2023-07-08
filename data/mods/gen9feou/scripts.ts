@@ -20,6 +20,12 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		if (item.name === "Ampharosite" && pokemon.baseSpecies.name === "Amphamence") {
 			return "Amphamence-Mega-Y"; 
 		}
+		if (item.name === "Tyranitarite" && pokemon.baseSpecies.name === "Tyranix") {
+			return "Tyranix-Mega-X"; 
+		}
+		if (item.name === "Steelixite" && pokemon.baseSpecies.name === "Tyranix") {
+			return "Tyranix-Mega-Y"; 
+		}
 		
 		return item.megaStone;
 	},
