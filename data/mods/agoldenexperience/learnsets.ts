@@ -8221,7 +8221,7 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			ironhead: ["8L1"],
 			grassknot: ["8L1"],
 			electroball: ["8L1"],
-			storedpower: ["8L1"],
+			// storedpower: ["8L1"],
 			steelbeam: ["8L1"],
 			steelroller: ["8L1"],
 			confuseray: ["8L1"],

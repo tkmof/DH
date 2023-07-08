@@ -550,20 +550,21 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		self: {
 			chance: 100,
 			boosts: {
-				atk: 1,
+				// atk: 1,
 				spa: 1,
 			},
 		},
 		secondary: {
 			chance: 100,
 			boosts: {
-				atk: -1,
+				// atk: -1,
 				spa: -1,
 			},
 		},
 		target: "normal",
 		type: "Dark",
-		shortDesc: "-1 Atk/SpA for target; +1 Atk/SpA for this Pokemon.",
+		// shortDesc: "-1 Atk/SpA for target; +1 Atk/SpA for this Pokemon.",
+		shortDesc: "-1 SpA for target; +1 SpA for this Pokemon.",
 		contestType: "Cool",
 	},
 	underdog: {
