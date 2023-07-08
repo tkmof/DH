@@ -2352,10 +2352,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	stargazer: {
 		name: "Stargazer",
 		shortDesc: "Weather skills last forever.",
-		onResidual(target, source, effect) {
-			if (this.field.weather && this.field.weatherState && this.field.weatherState.duration > 2)
-				this.field.weatherState.duration = 2;
-		},
+		//effect in conditions.ts
 	},
 	stimulative: {
 		name: "Stimulative",
