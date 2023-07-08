@@ -305,7 +305,7 @@ export const Formats: FormatList = [
 		threads: [
 			`<a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-1-discussion-phase-slate-1-winners-not-open-for-submissions.3717085/">Gen 9 Fusion Evolution</a>`,
 		],
-		mod: 'gen9feoupmpl',
+		mod: 'gen9feou',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', 'Mega Data Mod'],
 		banlist: ['Metagrossite', 'Revival Blessing', 'Shed Tail', 'Last Respects', 'Absolite', 'Gengarite', 'Ampharosite', 'Salamencite', 'Baton Pass'],
 		onValidateTeam(team, format) {
@@ -1483,6 +1483,25 @@ export const Formats: FormatList = [
 		teambuilderFormat: 'National Dex Ubers',
 	},	
 	{
+		name: "[Gen 9] Everything Ever Luke'd All At Once",
+		mod: 'lukemod',
+		desc: `G-Luke's Solomod, where all his Gen 9 winners exist in one micrometa`,
+		threads: [`&bullet; <a href="https://www.smogon.com/forums/threads/solomods-megathread.3711007/post-9675321">Thread</a>`,
+		],
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', 'Mega Data Mod'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['EELAAO OU','EELAAO LC'];
+			for (const set of team) {
+				let template = this.dex.getSpecies(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not a G-Luke winning submission.'];
+				}
+			}
+		},
+	},
+	{
 		name: "[Gen 8] Evolution Project",
 		desc: [
 			`<b>Evolution Project</b>: A small group's creative exercise being given a test run. More details when we go public!`,
@@ -1826,6 +1845,21 @@ export const Formats: FormatList = [
 				}
 			}
 		},
+	},
+	{
+		name: "[Gen 8] Weedmons",
+		desc: `Weedmons is a SoloMod originally led by The Reptile, whose purpose is primarily to make a fun micrometa based on the	completely arbitrary limitations of the theme of Weed!.`,
+		mod: 'weedmons',
+		gen: 9,
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Species Clause', 'Sleep Clause Mod'],
+		banlist: ['All Pokemon', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'King\'s Rock', 'item: Quick Claw' /*Wtf is this validator on? What ability?*/, 'Razor Fang', 
+		'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Altarianite', 'Charizardite X', 'Charizardite Y', 'Blazikenite',],
+		unbanlist: ['Altaria', 'Azumarill', 'Azurill', 'Blaziken', 'Braixen', 'Brionne', 'Blitzle', 'Bouffalant', 'Castform', 'Centiskorch', 'Charizard', 'Charmander', 'Charmeleon', 'Cherubi', 
+		'Chimchar', 'Cinderace', 'Combusken', 'Crocalor', 'Cyndaquil', 'Dartrix', 'Deerling', 'Delphox', 'Dragonair', 'Drampa', 'Drizzile', 'Emboar', 'Farigiraf', 'Fennekin', 'Fuecoco', 'Girafarig', 
+		'Gogoat', 'Golduck', 'Goodra', 'Goodra-Hisui', 'Goomy', 'Hakamo-O', 'Heatmor', 'Incineroar', 'Infernape', 'Lickilicky', 'Lickitung', 'Linoone', 'Linoone-Galar', 'Litten', 'Marill', 'Metang', 
+		'Mightyena', 'Miltank', 'Monferno', 'Oddish', 'Pansear', 'Pignite', 'Poipole', 'Psyduck', 'Quilava', 'Raboot', 'Sawsbuck', 'Scorbunny', 'Shelgon', 'Simisear', 'Sizzlipede', 'Skeledirge', 
+		'Skiddo', 'Sliggoo', 'Sliggoo-Hisui', 'Stantler', 'Swablu', 'Tepig', 'Thwackey', 'Torchic', 'Torkoal', 'Torracat', 'Typhlosion', 'Typhlosion-Hisui', 'Watchog', 'Wyrdeer', 'Zebstrika', 'Zweilous',
+		],
 	},
 	/*
 	// Gen 9
@@ -2312,7 +2346,7 @@ export const Formats: FormatList = [
 	{
 		section: "Pet Mod Bonus Formats",
 		column: 3,
-	},
+	}, /*
 	{
 		name: "[Gen 8] Fusion Evolution Gen 9 Post-PMPL",
 		desc: `Fusion Evolution.`,
@@ -2323,7 +2357,6 @@ export const Formats: FormatList = [
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Z-Move Clause', 'Mega Data Mod'],
 		banlist: ['Metagrossite', 'Revival Blessing', 'Shed Tail', 'Last Respects', 'Absolite', 'Gengarite', 'Ampharosite', 'Salamencite', 'Baton Pass'],
 		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['FEOU', 'FENFE', "FELC"];
 			for (const set of team) {
@@ -2333,7 +2366,7 @@ export const Formats: FormatList = [
 				}
 			}
 		},
-	},
+	}, */
 	{
 		section: "Non-Pet Mod Bonus Formats",
 		column: 3,

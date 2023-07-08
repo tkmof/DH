@@ -567,13 +567,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Reflects the effects of status skills back on the attacker.",
 		onTryHitPriority: 1,
 		onTryHit(target, source, move) {
-			if (target === source || move.hasBounced || !move.flags['reflectable']) {
+			if (target === source || move.hasBounced || move?.category !== 'Status') {
 				return;
 			}
 			const newMove = this.dex.getActiveMove(move.id);
 			newMove.hasBounced = true;
 			newMove.pranksterBoosted = false;
-			this.actions.useMove(newMove, target, source);
+			this.useMove(newMove, target, source);
 			return null;
 		},
 	},
@@ -1353,8 +1353,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	instantwin: {
 		name: "Instant Win",
 		shortDesc: "Your speed is increased by 50% on the first turn after entering the field.",
-		onSwitchIn(pokemon) {
-			this.boost({spe: 1});
+		onStart(pokemon) {
+			this.boost({spe: 1}, pokemon);
+			pokemon.addVolatile('instantwin');
+		},
+		condition: {
+			duration: 1,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Instant Win');
+				this.boost({spe: -1}, pokemon);
+			},
 		},
 	},
 	intuition: {

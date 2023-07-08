@@ -4066,7 +4066,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			let targetAction = this.queue.willMove(target);
 			if (targetAction) {
 				source.addVolatile('foresee');
-				this.actions.useMove(targetAction.move, source, target, move);
+				this.useMove(targetAction.move, source, target, move);
 			}
 		},
 		condition: {
@@ -6503,7 +6503,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				const newMove = this.dex.getActiveMove(move.id);
 				newMove.hasBounced = true;
 				newMove.pranksterBoosted = false;
-				this.actions.useMove(newMove, target, source);
+				this.useMove(newMove, target, source);
 				return null;
 			},
 		}
@@ -6963,7 +6963,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		onHit(target, source, move) {
 			if (source.lastMoveUsed)
-				this.actions.useMove(source.lastMoveUsed, source, target, move);
+				this.useMove(source.lastMoveUsed, source, target, move);
 		},
 		// Class: EN
 		// Effect Chance: 100
@@ -11448,7 +11448,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (!randomMove) {
 				return false;
 			}
-			this.actions.useMove(randomMove, pokemon);
+			this.useMove(randomMove, pokemon);
 		},
 		// Class: EN
 		// Effect Chance: 100

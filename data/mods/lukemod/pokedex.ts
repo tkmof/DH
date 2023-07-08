@@ -212,6 +212,16 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		abilities: {0: "Flame Body", H: "Gale Wings"},
 	},
 	
+	//ff
+	scorpixie: {
+		num: -1,
+		name: "Scorpixie",
+		types: ["Bug", "Fairy"],
+		baseStats: {hp: 67, atk: 83, def: 146, spa: 104, spd: 77, spe: 81},
+		abilities: {0: "Tablets of Ruin", H: "Swarm"},
+		weightkg: 65,
+	},
+	
 	//fesv
 	rotoghold: {
 		// fusion: ['Gholdengo', 'Rotom'],
@@ -405,10 +415,28 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	},
     
 	//prevos
-	
+	snipsquire: {
+		num: -126,
+		name: "Snipsquire",
+		types: ["Bug"],
+		baseStats: {hp: 40, atk: 100, def: 65, spa: 25, spd: 45, spe: 60},
+		abilities: {0: "Klutz", 1: "Mold Breaker", H: "Moxie"},
+		weightkg: 55,
+		evos: ["Pinsir"],
+	},
 	
 	//tt
-	
+	dondozo: {
+		inherit: true,
+		types: ["Dragon", "Water", "Ground"],
+		baseStats: {hp: 130, atk: 100, def: 115, spa: 65, spd: 70, spe: 55},
+		abilities: {0: "Oblivious", 1: "Early Bird", H: "Marvel Scale"},
+	},
 	
 	//vape
+	crabominable: {
+		inherit: true,
+		types: ["Fighting", "Water"],
+		abilities: {0: "Fur Coat", 1: "Iron Fist", H: "Anger Point"},
+	},
 };
