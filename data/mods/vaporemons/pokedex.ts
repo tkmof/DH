@@ -1886,7 +1886,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	vespiquen: {
 		inherit: true,
-		abilities: {0: "Pressure", 1: "Cute Charm", H: "Unnerve"},
+		types: ["Poison", "Flying"],
+		abilities: {0: "Intimidate", 1: "Cute Charm", H: "Supreme Overlord"},
 	},
 	misdreavus: {
 		inherit: true,
@@ -2489,5 +2490,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	palossand: {
 		inherit: true,
 		abilities: {0: "Water Compaction", 1: "Sand Spit", H: "Sand Veil"},
+	},
+	pyroar: {
+		inherit: true,
+		types: ["Fire", "Ground"],
+		abilities: {0: "Sand Rush", 1: "Unnerve", H: "Supreme Overlord"},
 	},
 };
