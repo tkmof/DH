@@ -1907,7 +1907,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onEnd(source) {
 			if (this.field.terrain) {
-				this.add('-message', `${source.name} is no longer suppressing the effects of the terrain!`);
 				const source = this.effectData.target;
 				for (const target of source.side.foe.active) {
 					target.removeVolatile('cloudnine');
