@@ -1207,59 +1207,29 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			},
 			onModifyAtkPriority: 5,
 			onModifyAtk(atk, source, target, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'atk') return;
 				this.debug('Photon Drive atk boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifyDefPriority: 6,
 			onModifyDef(def, target, source, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'def') return;
 				this.debug('Photon Drive def boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpAPriority: 5,
 			onModifySpA(relayVar, source, target, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spa') return;
 				this.debug('Photon Drive spa boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpDPriority: 6,
 			onModifySpD(relayVar, target, source, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spd') return;
 				this.debug('Photon Drive spd boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpe(spe, pokemon) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spe') return;
 				this.debug('Photon Drive spe boost');
 				return this.chainModify(1.5);
@@ -1309,59 +1279,29 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			},
 			onModifyAtkPriority: 5,
 			onModifyAtk(atk, source, target, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'atk') return;
 				this.debug('Neuron Drive atk boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifyDefPriority: 6,
 			onModifyDef(def, target, source, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'def') return;
 				this.debug('Neuron Drive def boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpAPriority: 5,
 			onModifySpA(relayVar, source, target, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spa') return;
 				this.debug('Neuron Drive spa boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpDPriority: 6,
 			onModifySpD(relayVar, target, source, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spd') return;
 				this.debug('Neuron Drive spd boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpe(spe, pokemon) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spe') return;
 				this.debug('Neuron Drive spe boost');
 				return this.chainModify(1.5);
@@ -1411,59 +1351,29 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			},
 			onModifyAtkPriority: 5,
 			onModifyAtk(atk, source, target, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'atk') return;
 				this.debug('Rune Drive atk boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifyDefPriority: 6,
 			onModifyDef(def, target, source, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'def') return;
 				this.debug('Rune Drive def boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpAPriority: 5,
 			onModifySpA(relayVar, source, target, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spa') return;
 				this.debug('Rune Drive spa boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpDPriority: 6,
 			onModifySpD(relayVar, target, source, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spd') return;
 				this.debug('Rune Drive spd boost');
 				return this.chainModify([5325, 4096]);
 			},
 			onModifySpe(spe, pokemon) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
 				if (this.effectData.bestStat !== 'spe') return;
 				this.debug('Rune Drive spe boost');
 				return this.chainModify(1.5);
@@ -1739,108 +1649,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Surge Surfer",
 		rating: 2.5,
 		num: 207,
-	},
-	quarkdrive: {
-		onStart(pokemon) {
-			this.singleEvent('TerrainChange', this.effect, this.effectData, pokemon);
-		},
-		onUpdate(pokemon) {
-			// if (pokemon.transformed) return;
-			// Protosynthesis is not affected by Utility Umbrella
-			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['quarkdrive']) {
-				pokemon.addVolatile('quarkdrive');
-			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
-				pokemon.removeVolatile('quarkdrive');
-				pokemon.addVolatile('quarkdrive', pokemon, Dex.getItem('boosterenergy'));
-				pokemon.volatiles['quarkdrive'].fromBooster = true;
-			} else if (!pokemon.volatiles['quarkdrive']?.fromBooster && !this.field.isTerrain('electricterrain')) {
-				pokemon.removeVolatile('quarkdrive');
-			}
-		},
-		onEnd(pokemon) {
-			delete pokemon.volatiles['quarkdrive'];
-			this.add('-end', pokemon, 'Quark Drive', '[silent]');
-		},
-		condition: {
-			noCopy: true,
-			onStart(pokemon, source, effect) {
-				if (effect?.id === 'boosterenergy') {
-					this.effectData.fromBooster = true;
-					this.add('-activate', pokemon, 'ability: Quark Drive', '[fromitem]');
-				} else {
-					this.add('-activate', pokemon, 'ability: Quark Drive');
-				}
-				this.effectData.bestStat = pokemon.getBestStat(false, true);
-				this.add('-start', pokemon, 'quarkdrive' + this.effectData.bestStat);
-			},
-			onModifyAtkPriority: 5,
-			onModifyAtk(atk, source, target, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
-				if (this.effectData.bestStat !== 'atk') return;
-				this.debug('Quark Drive atk boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifyDefPriority: 6,
-			onModifyDef(def, target, source, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
-				if (this.effectData.bestStat !== 'def') return;
-				this.debug('Quark Drive def boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpAPriority: 5,
-			onModifySpA(relayVar, source, target, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
-				if (this.effectData.bestStat !== 'spa') return;
-				this.debug('Quark Drive spa boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpDPriority: 6,
-			onModifySpD(relayVar, target, source, move) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
-				if (this.effectData.bestStat !== 'spd') return;
-				this.debug('Quark Drive spd boost');
-				return this.chainModify([5325, 4096]);
-			},
-			onModifySpe(spe, pokemon) {
-				for (const target of this.getAllActive()) {
-					if (target.hasAbility('cloudnine')) {
-						this.debug('Cloud Nine prevents stat increase');
-						return;
-					}
-				}
-				if (this.effectData.bestStat !== 'spe') return;
-				this.debug('Quark Drive spe boost');
-				return this.chainModify(1.5);
-			},
-			onEnd(pokemon) {
-				this.add('-end', pokemon, 'Quark Drive');
-			},
-		},
-		isPermanent: true,
-		name: "Quark Drive",
-		shortDesc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
-		rating: 3,
-		num: 282,
 	},
 	deathaura: {
 		id: "deathaura",
