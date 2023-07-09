@@ -3588,6 +3588,7 @@ stickyweb: {
 			case 'psychicterrain':
 				move.type = 'Psychic';
 				break;
+			}
 		},
 		onModifyMove(move, pokemon) {
 			if (this.field.terrain && pokemon.isGrounded()) {
