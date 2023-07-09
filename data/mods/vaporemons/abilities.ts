@@ -1880,7 +1880,10 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	},
 	seedsower: {
 		onDamagingHit(damage, target, source, move) {
-			source.addVolatile('leechseed', this.effectData.target);
+			if (!source.hasType('Grass')) {
+				this.add('-activate', target, 'ability: Seed Sower');
+				source.addVolatile('leechseed', this.effectData.target);
+			}
 		},
 		name: "Seed Sower",
 		shortDesc: "When this Pokemon is hit by an attack, the effect of Leech Seed begins.",
@@ -1889,6 +1892,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	},
 	sandspit: {
 		onDamagingHit(damage, target, source, move) {
+			this.add('-activate', target, 'ability: Sand Spit');
 			source.addVolatile('partiallytrapped', this.effectData.target);
 		},
 		name: "Sand Spit",
