@@ -1536,20 +1536,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					}
 				}
 			}
-			for (const pokemon of this.getAllActive()) {
-				if (pokemon.hasItem('acidicseed')) {
-					if (!pokemon.ignoringItem() && this.field.isTerrain('acidicterrain')) {
-						for (const target of this.getAllActive()) {
-							if (target.hasAbility('cloudnine')) {
-								if (target === source) continue;
-								this.debug('Cloud Nine prevents Seed use');
-								return;
-							}
-						}
-						pokemon.useItem();
-					}
-				}
-			}
 		},
 		suppressWeather: true,
 		name: "Cloud Nine",
