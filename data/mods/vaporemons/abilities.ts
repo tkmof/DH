@@ -1697,6 +1697,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					break;
 				if (!newType || pokemon.getTypes().join() === newType || !pokemon.setType(newType)) return;
 				this.add('-start', pokemon, 'typechange', newType, '[from] ability: Mimicry');
+				}
 			},
 			onUpdate(pokemon) {
 				for (const target of this.getAllActive()) {
