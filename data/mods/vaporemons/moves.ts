@@ -2953,6 +2953,162 @@ stickyweb: {
 		maxMove: {basePower: 130},
 		contestType: "Cool",
 	},
+	stormthrow: {
+		num: 480,
+		accuracy: true,
+		basePower: 70,
+		category: "Physical",
+		name: "Storm Throw",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		willCrit: true,
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Cool",
+	},
+	frostbreath: {
+		num: 524,
+		accuracy: true,
+		basePower: 70,
+		category: "Special",
+		name: "Frost Breath",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		willCrit: true,
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
+	snipeshot: {
+		num: 745,
+		accuracy: true,
+		basePower: 70,
+		category: "Special",
+		shortDesc: "Always critically hits.",
+		name: "Snipe Shot",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, pulse: 1},
+		willCrit: true,
+		tracksTarget: true,
+		secondary: null,
+		target: "normal",
+		type: "Water",
+	},
+	falsesurrender: {
+		num: 793,
+		accuracy: true,
+		basePower: 70,
+		category: "Physical",
+		shortDesc: "Always critically hits.",
+		name: "False Surrender",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		willCrit: true,
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+	},
+	healblock: {
+		num: 377,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		isNonstandard: "Past",
+		name: "Heal Block",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		volatileStatus: 'healblock',
+		condition: {
+			duration: 5,
+			durationCallback(target, source, effect) {
+				if (source?.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					return 7;
+				}
+				return 5;
+			},
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'move: Heal Block');
+			},
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (this.dex.getMove(moveSlot.id).flags['heal'] || move.id === 'bitterblade') {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			onBeforeMovePriority: 6,
+			onBeforeMove(pokemon, target, move) {
+				if ((move.flags['heal'] || move.id === 'bitterblade') && !move.isZ && !move.isMax) {
+					this.add('cant', pokemon, 'move: Heal Block', move);
+					return false;
+				}
+			},
+			onResidualOrder: 17,
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'move: Heal Block');
+			},
+			onTryHeal(damage, target, source, effect) {
+				if ((effect?.id === 'zpower') || this.effectData.isZ) return damage;
+				return false;
+			},
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Psychic",
+		zMove: {boost: {spa: 2}},
+		contestType: "Clever",
+	},
+	choke: {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "Inflicts the Heal Block effect.",
+		name: "Choke",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sky Uppercut", target);
+			this.add('-anim', source, "Hex", target);
+		},
+		secondary: {
+			chance: 100,
+			onHit(target) {
+				target.addVolatile('healblock');
+			},
+		},
+		target: "normal",
+		type: "Ghost",
+		contestType: "Clever",
+	},
+	cuttingremark: {
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		defensiveCategory: "Special",
+		shortDesc: "Usually goes first. Targets the foe's Special Defense.",
+		name: "Cutting Remark",
+		pp: 25,
+		priority: 1,
+		flags: {sound: 1, protect: 1, mirror: 1, authentic: 1, slicing: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psycho Cut", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Cool",
+	},
 	walkietalkiemove: {
 		accuracy: true,
 		basePower: 0,
