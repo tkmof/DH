@@ -576,6 +576,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.useMove(newMove, target, source);
 			return null;
 		},
+		onAllyTryHitSide(target, source, move) {
+			if (target === source || move.hasBounced || move?.category !== 'Status') {
+				return;
+			}
+			const newMove = this.dex.getActiveMove(move.id);
+			newMove.hasBounced = true;
+			newMove.pranksterBoosted = false;
+			this.useMove(newMove, this.effectData.target, source);
+			return null;
+		},
 	},
 	daredevil: {
 		name: "Daredevil",
