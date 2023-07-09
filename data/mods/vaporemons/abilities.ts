@@ -1865,16 +1865,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			this.add('-ability', pokemon, 'Cloud Nine');
 			this.effectData.switchingIn = false;
 			if (this.field.terrain) {
-				this.add('-ability', source, 'Cloud Nine');
-				this.add('-message', `${source.name} suppresses the effects of the terrain!`);
+				this.add('-message', `${pokemon.name} suppresses the effects of the terrain!`);
 				let activated = false;
-				for (const pokemon of source.side.foe.active) {
+				for (const other of pokemon.side.foe.active) {
 					if (!activated) {
-						this.add('-ability', source, 'Cloud Nine');
+						this.add('-ability', pokemon, 'Cloud Nine');
 					}
 					activated = true;
-					if (!pokemon.volatiles['cloudnine']) {
-						pokemon.addVolatile('cloudnine');
+					if (!other.volatiles['cloudnine']) {
+						other.addVolatile('cloudnine');
 					}
 				}
 			}
