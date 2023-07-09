@@ -843,7 +843,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		onStart(pokemon) {
 			if (!pokemon.ignoringItem() && this.field.isTerrain('electricterrain')) {
 				for (const target of this.getAllActive()) {
-					if (target.hasAbility('downtoearth')) {
+					if (target.hasAbility('cloudnine')) {
 						this.debug('Down-to-Earth prevents Seed use');
 						return;
 					}
@@ -855,7 +855,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			const pokemon = this.effectData.target;
 			if (this.field.isTerrain('electricterrain')) {
 				for (const target of this.getAllActive()) {
-					if (target.hasAbility('downtoearth')) {
+					if (target.hasAbility('cloudnine')) {
 						this.debug('Down-to-Earth prevents Seed use');
 						return;
 					}
@@ -879,7 +879,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		onStart(pokemon) {
 			if (!pokemon.ignoringItem() && this.field.isTerrain('psychicterrain')) {
 				for (const target of this.getAllActive()) {
-					if (target.hasAbility('downtoearth')) {
+					if (target.hasAbility('cloudnine')) {
 						this.debug('Down-to-Earth prevents Seed use');
 						return;
 					}
@@ -891,7 +891,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			const pokemon = this.effectData.target;
 			if (this.field.isTerrain('psychicterrain')) {
 				for (const target of this.getAllActive()) {
-					if (target.hasAbility('downtoearth')) {
+					if (target.hasAbility('cloudnine')) {
 						this.debug('Down-to-Earth prevents Seed use');
 						return;
 					}
@@ -915,7 +915,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		onStart(pokemon) {
 			if (!pokemon.ignoringItem() && this.field.isTerrain('mistyterrain')) {
 				for (const target of this.getAllActive()) {
-					if (target.hasAbility('downtoearth')) {
+					if (target.hasAbility('cloudnine')) {
 						this.debug('Down-to-Earth prevents Seed use');
 						return;
 					}
@@ -927,7 +927,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			const pokemon = this.effectData.target;
 			if (this.field.isTerrain('mistyterrain')) {
 				for (const target of this.getAllActive()) {
-					if (target.hasAbility('downtoearth')) {
+					if (target.hasAbility('cloudnine')) {
 						this.debug('Down-to-Earth prevents Seed use');
 						return;
 					}
@@ -951,7 +951,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		onStart(pokemon) {
 			if (!pokemon.ignoringItem() && this.field.isTerrain('grassyterrain')) {
 				for (const target of this.getAllActive()) {
-					if (target.hasAbility('downtoearth')) {
+					if (target.hasAbility('cloudnine')) {
 						this.debug('Down-to-Earth prevents Seed use');
 						return;
 					}
@@ -963,7 +963,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 			const pokemon = this.effectData.target;
 			if (this.field.isTerrain('grassyterrain')) {
 				for (const target of this.getAllActive()) {
-					if (target.hasAbility('downtoearth')) {
+					if (target.hasAbility('cloudnine')) {
 						this.debug('Down-to-Earth prevents Seed use');
 						return;
 					}
