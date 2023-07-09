@@ -1452,6 +1452,54 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				this.add('-message', `${source.name} suppresses the effects of the terrain!`);
 			}
 		},
+		onAnyModifyAtkPriority: 6,
+		onAnyModifyAtk(atk, attacker, defender, move) {
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			const dyschronoUser = this.effectData.target;
+			if (defender == dyschronoUser) {
+				if (attacker.getBestStat(false, true) !== 'atk') return;
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (attacker.volatiles[paradox] && !attacker.volatiles['paradox']?.fromBooster) {
+						this.debug('cloudnine weaken');
+						return this.chainModify([3151, 4096]);
+					}
+				}
+			} else if (attacker == dyschronoUser) {
+				const bestStat = defender.getBestStat(false,true);
+				if (bestStat !== 'def' && (!move.defensiveCategory || move.defensiveCategory === 'Physical')) return;
+				if (move.defensiveCategory === 'Special' && bestStat !== 'spd') return;
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (defender.volatiles[paradox] && !defender.volatiles['paradox']?.fromBooster) {
+						this.debug('cloudnine nullify');
+						return this.chainModify([5325, 4096]);
+					}
+				}
+			}
+		},
+		onAnyModifySpAPriority: 5,
+		onAnyModifySpA(atk, attacker, defender, move) {
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			const dyschronoUser = this.effectData.target;
+			if (defender == dyschronoUser) {
+				if (attacker.getBestStat(false, true) !== 'spa') return;
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (attacker.volatiles[paradox] && !attacker.volatiles['paradox']?.fromBooster) {
+						this.debug('cloudnine weaken');
+						return this.chainModify([3151, 4096]);
+					}
+				}
+			} else if (attacker == dyschronoUser) {
+				const bestStat = defender.getBestStat(false,true);
+				if (bestStat !== 'spd' && (!move.defensiveCategory || move.defensiveCategory === 'Special')) return;
+				if (move.defensiveCategory === 'Physical' && bestStat !== 'def') return;
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (defender.volatiles[paradox] && !defender.volatiles['paradox']?.fromBooster) {
+						this.debug('cloudnine nullify');
+						return this.chainModify([5325, 4096]);
+					}
+				}
+			}
+		},
 		onAnyTerrainStart(target, source, terrain) {
 			const pokemon = this.effectData.target;
 			this.add('-ability', pokemon, 'Cloud Nine');
