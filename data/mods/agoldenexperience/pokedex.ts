@@ -2210,7 +2210,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	kyurem: {
 		inherit: true,
-		baseStats: {hp: 125, atk: 130, def: 90, spa: 130, spd: 90, spe: 60},
+		baseStats: {hp: 125, atk: 130, def: 90, spa: 130, spd: 90, spe: 80},
 	},
 	keldeo: {
 		inherit: true,

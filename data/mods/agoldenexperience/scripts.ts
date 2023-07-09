@@ -1257,6 +1257,9 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'tapubulu').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'tapubulu').learnset.junglehealing = ['8L1'];
     this.modData('Learnsets', 'solgaleo').learnset.swordsdance = ['8L1'];
+    delete this.modData('Learnsets', 'pheromosa').learnset.drillrun;
+    delete this.modData('Learnsets', 'pheromosa').learnset.tripleaxel;
+    delete this.modData('Learnsets', 'pheromosa').learnset.quiverdance;
     this.modData('Learnsets', 'guzzlord').learnset.slackoff = ['8L1'];
     this.modData('Learnsets', 'guzzlord').learnset.partingshot = ['8L1'];
     this.modData('Learnsets', 'guzzlord').learnset.pursuit = ['8L1'];
