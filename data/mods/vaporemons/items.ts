@@ -691,4 +691,147 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Activates the Paradox Abilities. Single use.",
 		gen: 8,
 	},
+	airfreshener: {
+		name: "Air Freshener",
+		spritenum: 383,
+		fling: {
+			basePower: 30,
+		},
+		onHit(pokemon, source, move) {
+			if (move.flags['wind']) {
+				this.add('-activate', source, 'move: Aromatherapy');
+				for (const ally of source.side.pokemon) {
+					if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+						continue;
+					}
+					ally.cureStatus();
+				}
+			}
+		},		
+		desc: "Holder's wind-based attacks heal the party's status.",
+		num: -1009,
+		gen: 8,
+	},
+	dancingshoes: {
+		name: "Dancing Shoes",
+		spritenum: 390,
+		onSwitchIn(pokemon) {
+			if (pokemon.isActive && pokemon.baseSpecies.name === 'Meloetta') {
+				pokemon.formeChange('Meloetta-Pirouette');
+				if (pokemon.hasAbility('trace')) {
+					let oldAbility = pokemon.setAbility('noguard', pokemon, 'noguard', true);
+					if (oldAbility) {
+						this.add('-activate', pokemon, 'ability: No Guard', oldAbility, '[of] ' + pokemon);
+					}
+				}
+			}
+		},
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (target !== source && move.flags['sound']) {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[from] item: Dancing Shoes');
+				}
+				return null;
+			}
+		},
+		onAllyTryHitSide(target, source, move) {
+			if (target === this.effectData.target || target.side !== source.side) return;
+			if (move.flags['sound']) {
+				this.boost({atk: 1}, this.effectData.target);
+			}
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Meloetta') return false;
+			return true;
+		},
+		itemUser: ["Meloetta"],
+		num: -1010,
+		gen: 8,
+		desc: "If held by Meloetta: Pirouette Forme on entry, hazard immunity, Sound immunity, +1 Attack when hit by Sound.",
+	},
+	charizarditeshardx: {
+		name: "Charizardite Shard X",
+		spritenum: 658,
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Charizard') return false;
+			return true;
+		},
+		onSwitchIn(pokemon) {
+			const type = pokemon.hpType;
+			if (pokemon.baseSpecies.baseSpecies === 'Charizard') {			
+				this.add('-item', pokemon, 'Charizardite Shard X');
+				this.add('-anim', pokemon, "Cosmic Power", pokemon);
+				if (type && type !== '???') {
+					if (!pokemon.setType('Dragon')) return;
+					this.add('-start', pokemon, 'typechange', 'Dragon', '[from] item: Charizardite Shard X');
+				}
+				this.add('-message', `${pokemon.name}'s Charizardite Shard X changed its type!`);
+				let oldAbility = pokemon.setAbility('toughclaws', pokemon, 'toughclaws', true);
+				if (oldAbility) {
+					this.add('-activate', pokemon, 'ability: Tough Claws', oldAbility, '[of] ' + pokemon);
+				}
+				this.boost({atk: 1});
+			}
+		},
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move && user.baseSpecies.num === 6 && (move.type === 'Dragon' || move.type === 'Fire')) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Charizardite Shard X');
+				return null;
+			}
+		},
+		forcedForme: "Charizard",
+		itemUser: ["Charizard"],
+		num: -1011,
+		gen: 8,
+		desc: "Charizard: Becomes Dragon-type, Ability: Tough Claws, +1 Atk, 1.2x Dragon/Fire power.",
+	},	
+	charizarditeshardy: {
+		name: "Charizardite Shard Y",
+		spritenum: 658,
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Charizard') return false;
+			return true;
+		},
+		onSwitchIn(pokemon) {
+			const type = pokemon.hpType;
+			if (pokemon.baseSpecies.baseSpecies === 'Charizard') {			
+				this.add('-item', pokemon, 'Charizardite Shard Y');
+				this.add('-anim', pokemon, "Cosmic Power", pokemon);
+				if (type && type !== '???') {
+					if (!pokemon.setType('Fire')) return;
+					this.add('-start', pokemon, 'typechange', 'Fire', '[from] item: Charizardite Shard Y');
+				}
+				this.add('-message', `${pokemon.name}'s Charizardite Shard Y changed its type!`);
+				let oldAbility = pokemon.setAbility('drought', pokemon, 'drought', true);
+				if (oldAbility) {
+					this.add('-activate', pokemon, 'ability: Drought', oldAbility, '[of] ' + pokemon);
+				}
+				this.boost({spa: 1});
+			}
+		},
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move && user.baseSpecies.num === 6 && (move.type === 'Flying' || move.type === 'Fire')) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Charizardite Shard Y');
+				return null;
+			}
+		},
+		forcedForme: "Charizard",
+		itemUser: ["Charizard"],
+		num: -1011,
+		gen: 8,
+		desc: "Charizard: Becomes Fire-type, Ability: Drought, +1 SpA, 1.2x Fire/Flying power.",
+	},	
 };
