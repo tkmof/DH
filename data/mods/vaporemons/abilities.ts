@@ -1510,7 +1510,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Muscle Memory",
 		shortDesc: "Damage of moves used on consecutive turns is increased. Max 2x after 5 turns.",
 		rating: 4,
-	},
+	}, /*
 	cloudnine: {
 		onSwitchIn(pokemon) {
 			this.effectData.switchingIn = true;
@@ -1576,7 +1576,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			const pokemon = this.effectData.target;
 			this.add('-ability', pokemon, 'Cloud Nine');
 			this.add('-message', `${pokemon.name} suppresses the effects of the terrain!`);
-		}, /*
+		}, 
 		onUpdate(pokemon) {
 			let activated = false;
          for (const target of pokemon.side.foe.active) {
@@ -1592,7 +1592,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					}
 				}
 			}
-		}, */
+		}, 
 		onEnd(source) {
 			if (this.field.terrain) {
 				this.add('-message', `${source.name} is no longer suppressing the effects of the terrain!`);
@@ -1678,7 +1678,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		shortDesc: "While this Pokemon is active, the effects of weathers and terrains are disabled.",
 		rating: 2,
 		num: 13,
-	},
+	}, */
 	mimicry: {
 		shortDesc: "This Pokémon's type changes to match the Terrain. Type reverts when Terrain ends.",
 		onStart(pokemon) {
