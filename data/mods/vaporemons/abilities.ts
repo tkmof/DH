@@ -1911,4 +1911,14 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		shortDesc: "This Pokemon's moves deal 1.3x damage in a sandstorm; Sand immunity.",
 		num: 159,
 	},
+	regenerator: {
+		onSwitchOut(pokemon) {
+			if (!pokemon.volatiles['healblock']) {
+				pokemon.heal(pokemon.baseMaxhp / 3);
+			}
+		},
+		name: "Regenerator",
+		rating: 4.5,
+		num: 144,
+	},
 };
