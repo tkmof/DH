@@ -1014,10 +1014,6 @@ export const Items: {[k: string]: ModdedItemData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	mindplate‎: {
-		inherit: true,
-		isNonstandard: null,
-	},
 	pixieplate: {
 		inherit: true,
 		isNonstandard: null,
