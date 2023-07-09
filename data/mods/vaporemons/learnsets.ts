@@ -17810,7 +17810,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			round: ["8L1", "7M", "7L1", "7S3", "6M", "6L1", "5M", "5L1", "5S0", "5S1"],
 			shadowball: ["8M", "7M", "6M", "5M"],
 			shadowclaw: ["8M", "7M", "6M", "5M"],
-			sing: ["8L1", "7L1", "7S2", "7S3", "6L16", "5L16"],
+		//	sing: ["8L1", "7L1", "7S2", "7S3", "6L16", "5L16"],
 			skillswap: ["8M", "7T", "6T", "5T"],
 			sleeptalk: ["8M", "7M", "6M", "5T"],
 			stoneedge: ["8M", "7M", "6M", "5M"],
