@@ -1477,48 +1477,9 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 1,
 		num: 6,
 	},
-	musclememorymetronome: {
-		onStart(pokemon) {
-			pokemon.addVolatile('musclememorymetronome');
-		},
-		condition: {
-			onStart(pokemon) {
-				this.effectData.lastMove = '';
-				this.effectData.numConsecutive = 0;
-			},
-			onTryMovePriority: -2,
-			onTryMove(pokemon, target, move) {
-				if (!pokemon.hasAbility('musclememory') || !pokemon.hasItem('metronome')) {
-					pokemon.removeVolatile('musclememorymetronome');
-					return;
-				}
-				if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
-					this.effectData.numConsecutive++;
-				} else if (pokemon.volatiles['twoturnmove'] && this.effectData.lastMove !== move.id) {
-					this.effectData.numConsecutive = 1;
-				} else {
-					this.effectData.numConsecutive = 0;
-				}
-				this.effectData.lastMove = move.id;
-			},
-			onModifyDamage(damage, source, target, move) {
-				const dmgMod = [0x1000, 0x1666, 0x1CCC, 0x2000];
-				const numConsecutive = this.effectData.numConsecutive > 3 ? 3 : this.effectData.numConsecutive;
-				return this.chainModify([dmgMod[numConsecutive], 0x1000]);
-			},
-		},
-		name: "Muscle Memory",
-		shortDesc: "Damage of moves used on consecutive turns is increased. Max 2x after 5 turns.",
-		rating: 4,
-	},
 	musclememory: {
 		onStart(pokemon) {
-			if (pokemon.hasItem('metronome')) {
-				pokemon.addVolatile('musclememorymetronome');
-			}
-			else {
-				pokemon.addVolatile('musclememory');
-			}
+			pokemon.addVolatile('musclememory');
 		},
 		condition: {
 			onStart(pokemon) {
