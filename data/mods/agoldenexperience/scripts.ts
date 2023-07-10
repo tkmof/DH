@@ -148,6 +148,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		this.modData('Moves', 'cut').flags.slicing = 1;
 		this.modData('Moves', 'furycutter').flags.slicing = 1;
 		this.modData('Moves', 'kowtowcleave').flags.slicing = 1;
+		this.modData('Moves', 'leafblade').flags.slicing = 1;
 		this.modData('Moves', 'nightslash').flags.slicing = 1;
 		this.modData('Moves', 'populationbomb').flags.slicing = 1;
 		this.modData('Moves', 'psychocut').flags.slicing = 1;
@@ -967,6 +968,8 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'wailord').learnset.superpower = ['8L1'];
     this.modData('Learnsets', 'wailord').learnset.focusblast = ['8L1'];
     this.modData('Learnsets', 'grumpig').learnset.slackoff = ['8L1'];
+    delete this.modData('Learnsets', 'vibrava').learnset.sonicboom;; 
+    delete this.modData('Learnsets', 'flygon').learnset.sonicboom; 
     this.modData('Learnsets', 'cacturne').learnset.knockoff = ['8L1'];
     this.modData('Learnsets', 'cacturne').learnset.pursuit = ['8L1'];
     this.modData('Learnsets', 'cacturne').learnset.earthquake = ['8L1'];
@@ -997,6 +1000,7 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
     this.modData('Learnsets', 'torterra').learnset.bodypress = ['8L1'];
     this.modData('Learnsets', 'torterra').learnset.weatherball = ['8L1'];
     this.modData('Learnsets', 'empoleon').learnset.flipturn = ['8T'];
+    this.modData('Learnsets', 'empoleon').learnset.roost = ['8T'];
     this.modData('Learnsets', 'bibarel').learnset.earthquake = ['8L1'];
     this.modData('Learnsets', 'bibarel').learnset.icefang = ['8L1'];
     this.modData('Learnsets', 'luxray').learnset.suckerpunch = ['8L1'];

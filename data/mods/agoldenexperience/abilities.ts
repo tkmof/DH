@@ -1244,11 +1244,16 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	invincible: {
 		onModifyMovePriority: -5,
 		onSetStatus(status, target, source, effect) {
-			if (status) return;
-			if (effect && ((effect as Move).status || effect.id === 'yawn')) {
-				this.add('-activate', target, '[from] ability: Invincible');
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Invincible');
 			}
 			return false;
+		},
+		onTryAddVolatile(status, target) {
+			if (status.id === 'yawn') {
+				this.add('-immune', target, '[from] ability: Invincible');
+				return null;
+			}
 		},
 		onBoost(boost, target, source, effect) {
 			if (effect.id === 'intimidate') {
