@@ -306,4 +306,133 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleMoves: ["spore", "synthesis", "heavyslam", "seedbomb"],
 		randomBattleLevel: 75,
 	},
+	celedos: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["thunderbolt", "leafstorm", "voltswitch", "heatwave"],
+		randomBattleLevel: 75,
+	},
+	primeleo: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["morningsun", "stealthrock", "drainpunch", "sunsteelstrike"],
+		randomBattleLevel: 75,
+	},
+	bellikiss: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["discharge", "dazzlinggleam", "slackoff", "nastyplot"],
+		randomBattleLevel: 75,
+	},
+	samuraiaihisui: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["razorshell", "crosspoison", "ceaselessedge", "swordsdance"],
+		randomBattleLevel: 75,
+	},
+	florgerouge: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["lavaplume", "moonblast", "wish", "protect"],
+		randomBattleLevel: 75,
+	},
+	urshiluxerapidstrike: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["closecombat", "icespinner", "iceshard", "uturn"],
+		randomBattleLevel: 75,
+	},
+	cosmonkey: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	tadpi: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	shroowott: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	charbebe: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	vanifu: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	tinkovish: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["fishiousrend", "gigatonhammer", "stealthrock", "thunderwave"],
+		randomBattleLevel: 75,
+	},
+	tyranix: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["stealthrock", "stoneedge", "earthquake", "thunderwave"],
+		randomBattleLevel: 75,
+	},
+	tyranixmegax: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		requiredItem: "Tyranitarite",
+		randomBattleMoves: ["dragondance", "stoneedge", "earthquake", "icepunch"],
+		randomBattleLevel: 75,
+	},
+	tyranixmegay: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		requiredItem: "Steelixite",
+		randomBattleMoves: ["curse", "stoneedge", "earthquake", "icepunch"],
+		randomBattleLevel: 75,
+	},	
+	gooperthisui: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["stealthrock", "toxic", "dracometeor", "flipturn"],
+		randomBattleLevel: 75,
+	},
+	gooperthisuimega: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		requiredItem: "Swampertite",
+		randomBattleMoves: ["raindance", "liquidation", "outrage", "earthquake"],
+		randomBattleLevel: 75,
+	},
+	baxgeistlarge: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["dragondance", "glaiverush", "poltergeist", "earthquake"],
+		randomBattleLevel: 75,
+	},
+	cresserace: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["uturn", "courtchange", "pyroball", "moonlight"],
+		randomBattleLevel: 75,
+	},
+	zoinkazenta: {
+		tier: "FEOU",
+		doublesTier: "DOU",
+		randomBattleMoves: ["closecombat", "doubleedge", "crunch", "wildcharge"],
+		randomBattleLevel: 75,
+	},
+	larvix: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	goomud: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	frigiboolarge: {
+		tier: "FELC",
+		doublesTier: "DOU",
+	},
+	marshgoohisui: {
+		tier: "FENFE",
+		doublesTier: "DOU",
+	},
 };

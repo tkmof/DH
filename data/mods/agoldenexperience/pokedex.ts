@@ -300,9 +300,17 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Corrosion", 1: "Sticky Hold", H: "Poison Touch"},
 	},
+	gastly: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
+	},
+	haunter: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
+	},
 	gengar: {
 		inherit: true,
-		abilities: {0: "Levitate"},
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
 	},
 	kingler: {
 		inherit: true,
@@ -336,6 +344,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	electrode: {
 		inherit: true,
+		baseStats: {hp: 60, atk: 80, def: 70, spa: 50, spd: 80, spe: 150},
 		abilities: {0: "Soundproof", 1: "Explosive", H: "Aftermath"},
 		otherFormes: ["Electrode-Hisui"],//to remove when gen 9
 		formeOrder: ["Electrode", "Electrode-Hisui"],//to remove when gen 9
@@ -421,11 +430,55 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	tauros: {
 		inherit: true,
 		baseStats: {hp: 75, atk: 120, def: 95, spa: 40, spd: 70, spe: 110},
+		otherFormes: ["Tauros-Paldea-Combat", "Tauros-Paldea-Blaze", "Tauros-Paldea-Aqua"],
+		formeOrder: ["Tauros", "Tauros-Paldea-Combat", "Tauros-Paldea-Blaze", "Tauros-Paldea-Aqua"],
+	},
+	taurospaldeacombat: {
+		num: 128,
+		name: "Tauros-Paldea-Combat",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Combat",
+		types: ["Fighting"],
+		gender: "M",
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 30, spd: 70, spe: 100},
+		abilities: {0: "Intimidate", 1: "Anger Point", H: "Cud Chew"},
+		heightm: 1.4,
+		weightkg: 88.4,
+		color: "Black",
+		eggGroups: ["Field"],
+	},
+	taurospaldeablaze: {
+		num: 128,
+		name: "Tauros-Paldea-Blaze",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Blaze",
+		types: ["Fighting", "Fire"],
+		gender: "M",
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 30, spd: 70, spe: 100},
+		abilities: {0: "Intimidate", 1: "Anger Point", H: "Cud Chew"},
+		heightm: 1.4,
+		weightkg: 88.4,
+		color: "Black",
+		eggGroups: ["Field"],
+	},
+	taurospaldeaaqua: {
+		num: 128,
+		name: "Tauros-Paldea-Aqua",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Aqua",
+		types: ["Fighting", "Water"],
+		gender: "M",
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 30, spd: 70, spe: 100},
+		abilities: {0: "Intimidate", 1: "Anger Point", H: "Cud Chew"},
+		heightm: 1.4,
+		weightkg: 88.4,
+		color: "Black",
+		eggGroups: ["Field"],
 	},
 	lapras: {
 		inherit: true,
 		baseStats: {hp: 130, atk: 95, def: 80, spa: 65, spd: 95, spe: 70},
-		abilities: {0: "Water Absorb", 1: "Shell Armor", H: "Refridgerate"},
+		abilities: {0: "Water Absorb", 1: "Shell Armor", H: "Refrigerate"},
 	},
 	vaporeon: {
 		inherit: true,
@@ -943,10 +996,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	ludicolo: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 60, def: 70, spa: 100, spd: 100, spe: 70},
+		abilities: {0: "Swift Swim", 1: "Rain Dish", H: "Mad Dancer"},
 	},
 	shiftry: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 110, def: 60, spa: 90, spd: 60, spe: 80},
+		abilities: {0: "Chlorophyll", 1: "Early Bird", H: "Cold Wind"},
 	},
 	swellow: {
 		inherit: true,
@@ -1293,6 +1348,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	//gen 4 :
 	torterra: {
 		inherit: true,
+		types: ["Grass", "Rock"],
 		baseStats: {hp: 95, atk: 109, def: 105, spa: 75, spd: 90, spe: 56},
 		abilities: {0: "Overgrow", H: "Microclimate"},
 	},
@@ -1867,6 +1923,18 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		eggGroups: ["Field"],
 		requiredItem: "Krookodite",
 	},
+	darmanitan: {
+		inherit: true,
+	},
+	darmanitanzen: {
+		inherit: true,
+	},
+	darmanitangalar: {
+		inherit: true,
+	},
+	darmanitangalarzen: {
+		inherit: true,
+	},
 	maractus: {
 		inherit: true,
 		types: ["Grass", "Ground"],
@@ -2144,7 +2212,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	kyurem: {
 		inherit: true,
-		baseStats: {hp: 125, atk: 130, def: 90, spa: 130, spd: 90, spe: 60},
+		baseStats: {hp: 125, atk: 130, def: 90, spa: 130, spd: 90, spe: 80},
 	},
 	keldeo: {
 		inherit: true,
@@ -2155,9 +2223,20 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Justified", H: "Sharpness"},
 	},
 	meloettapirouette: {
-		inherit: true,
+		num: 648,
+		name: "Meloetta-Pirouette",
+		baseSpecies: "Meloetta",
+		forme: "Pirouette",
+		types: ["Normal", "Fighting"],
+		gender: "N",
+		baseStats: {hp: 100, atk: 128, def: 90, spa: 77, spd: 77, spe: 128},
 		abilities: {0: "Dancer"},
+		heightm: 0.6,
+		weightkg: 6.5,
+		color: "White",
+		eggGroups: ["Undiscovered"],
 		requiredItem: "Relic Sheet",
+		battleOnly: "Meloetta",
 	},
 	genesect: {
 		inherit: true,
@@ -2227,6 +2306,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		color: "Red",
 		eggGroups: ["Field"],
 		requiredItem: "Delphite",
+	},
+	greninjaash: {
+		inherit: true,
+		baseStats: {hp: 72, atk: 145, def: 67, spa: 153, spd: 71, spe: 122},
 	},
 	pyroar: {
 		inherit: true,
@@ -2308,7 +2391,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	carbink: {
 		inherit: true,
-		abilities: {0: "Clear Body", 1: "Night Light", H: "Sturdy"},
+		abilities: {0: "Clear Body", 1: "Night Light", H: "Huge Power"},
 	},
 	goomy: {
 		inherit: true,
@@ -2403,7 +2486,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	avalugg: {
 		inherit: true,
-		abilities: {0: "Refridgerate", 1: "Ice Body", H: "Sturdy"},
+		types: ["Ice", "Water"],
+		abilities: {0: "Refrigerate", 1: "Ice Body", H: "Sturdy"},
 		otherFormes: ["Avalugg-Hisui"],//to remove when gen 9
 		formeOrder: ["Avalugg", "Avalugg-Hisui"],//to remove when gen 9
 	},
@@ -2414,7 +2498,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		forme: "Hisui",
 		types: ["Ice", "Rock"],
 		baseStats: {hp: 95, atk: 127, def: 134, spa: 34, spd: 56, spe: 68},
-		abilities: {0: "Strong Jaw", 1: "Ice Body", H: "Sturdy"},
+		abilities: {0: "Strong Jaw", 1: "Sheer Force", H: "Sturdy"},
 		heightm: 1.4,
 		weightkg: 262.4,
 		color: "Blue",
@@ -2489,7 +2573,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		forme: "Hisui",
 		types: ["Grass", "Fighting"],
 		genderRatio: {M: 0.875, F: 0.125},
-		baseStats: {hp: 88, atk: 112, def: 80, spa: 95, spd: 95, spe: 60},
+		baseStats: {hp: 88, atk: 117, def: 95, spa: 70, spd: 100, spe: 60},
 		abilities: {0: "Overgrow", H: "Scrappy"},
 		heightm: 1.6,
 		weightkg: 37,
@@ -2980,7 +3064,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	pheromosa: {
 		inherit: true,
-		baseStats: {hp: 71, atk: 127, def: 53, spa: 127, spd: 53, spe: 139},
+		baseStats: {hp: 71, atk: 127, def: 59, spa: 127, spd: 59, spe: 127},
 	},
 	xurkitree: {
 		inherit: true,
@@ -3021,22 +3105,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		prevo: "Meltan",
 		evoType: "levelMove",
 		evoCondition: "while holding Meltan Candy",
-	},
-	/*cinderace: {//to remove when gen 9
-		inherit: true,
-		baseStats: {hp: 80, atk: 101, def: 80, spa: 80, spd: 80, spe: 109},
-	},*/
-	sobble: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
-	},
-	drizzile: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
-	},
-	inteleon: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
 	},
 	greedent: {
 		inherit: true,
@@ -3087,7 +3155,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	sandaconda: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 107, def: 125, spa: 55, spd: 80, spe: 71},
+		baseStats: {hp: 72, atk: 107, def: 125, spa: 55, spd: 80, spe: 71},
 	},
 	cramorant: {
 		inherit: true,
@@ -3520,7 +3588,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Water", "Fighting"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 85, atk: 120, def: 80, spa: 85, spd: 75, spe: 85},
-		abilities: {0: "Torrent", H: "Moxie"},
+		abilities: {0: "Torrent", H: "Pride"},
 		heightm: 1.8,
 		weightkg: 61.9,
 		color: "Blue",
@@ -3748,7 +3816,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: 952,
 		name: "Scovillain",
 		types: ["Grass", "Fire"],
-		baseStats: {hp: 65, atk: 108, def: 65, spa: 108, spd: 65, spe: 75},
+		baseStats: {hp: 65, atk: 118, def: 65, spa: 118, spd: 65, spe: 85},
 		abilities: {0: "Chlorophyll", 1: "Insomnia", H: "Moody"},
 		heightm: 0.9,
 		weightkg: 15,

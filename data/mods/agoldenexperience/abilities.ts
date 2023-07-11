@@ -1,9 +1,9 @@
 import { consoleips } from "../../../config/config-example";
 
-const bladeMoves = ['aerialace', 'airslash', 'aircutter', 'behemothblade', 'crosspoison', 'cut', 'falseswipe', 'furycutter', 'leafblade', 'nightslash', 'psychocut', 'razorshell', 'razorwind', 'sacredsword', 'secretsword', 'slash', 'xscissor', 'solarblade', 'ceaselessedge', 'sneakyassault', 'braveblade', 'bitterblade'];
+// const bladeMoves = ['aerialace', 'airslash', 'aircutter', 'behemothblade', 'crosspoison', 'cut', 'falseswipe', 'furycutter', 'leafblade', 'nightslash', 'psychocut', 'razorshell', 'razorwind', 'sacredsword', 'secretsword', 'slash', 'xscissor', 'solarblade', 'ceaselessedge', 'sneakyassault', 'braveblade', 'bitterblade'];
 const kickMoves = ['jumpkick', 'highjumpkick', 'megakick', 'doublekick', 'blazekick', 'tropkick', 'lowkick', 'lowsweep', 'rollingkick', 'triplekick', 'stomp', 'highhorsepower', 'tripleaxel', 'stompingtantrum', 'thunderouskick', 'axekick'];
 const tailMoves = ['firelash', 'powerwhip', 'tailslap', 'wrap', 'constrict', 'irontail', 'dragontail', 'poisontail', 'aquatail', 'vinewhip', 'wringout',];
-const windMoves = ['aircutter', 'blizzard', 'fairywind', 'gust', 'heatwave', 'hurricane', 'icywind', 'petalblizzard', 'sandstorm', 'tailwind', 'twister', 'whirlwind'];
+// const windMoves = ['aircutter', 'blizzard', 'fairywind', 'gust', 'heatwave', 'hurricane', 'icywind', 'petalblizzard', 'sandstorm', 'tailwind', 'twister', 'whirlwind'];
 
 export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	poisonousradula: {
@@ -332,8 +332,41 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			if (move.refrigerateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
 		name: "Misty Mountain",
+		shortDesc: "This Pokemon's Rock-type moves become Ice-type and have 1.2x power.",
 		rating: 4,
 		num: -17,
+	},
+	coldwind: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Flying' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Ice';
+				move.refrigerateBoosted = true;
+			}
+		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.refrigerateBoosted) return this.chainModify([0x1333, 0x1000]);
+		},
+		name: "Cold Wind",
+		shortDesc: "This Pokemon's Flying-type moves become Ice-type and have 1.2x power.",
+		rating: 4,
+		num: -1757,
+	},
+	maddancer: {
+		shortDesc: "This Pokemon's Dance move boost its Speed by 1 stage upon use.",
+		onBasePowerPriority: 19,
+		onSourceHit(target, source, move) {
+			if (!move || !target) return;
+			if (move.flags['dancer']) {
+				this.boost({spe: 1}, source);
+			}
+		},
+		name: "Mad Dancer",
+		num: -1888,
 	},
 	toymaker: {
 		name: "Toymaker",
@@ -1244,11 +1277,16 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	invincible: {
 		onModifyMovePriority: -5,
 		onSetStatus(status, target, source, effect) {
-			if (status) return;
-			if (effect && ((effect as Move).status || effect.id === 'yawn')) {
-				this.add('-activate', target, '[from] ability: Invincible');
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Invincible');
 			}
 			return false;
+		},
+		onTryAddVolatile(status, target) {
+			if (status.id === 'yawn') {
+				this.add('-immune', target, '[from] ability: Invincible');
+				return null;
+			}
 		},
 		onBoost(boost, target, source, effect) {
 			if (effect.id === 'intimidate') {
@@ -1483,7 +1521,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: -1152,
 	},
 	oldschool: {
-		shortDesc: "This Pokemon's high crit rate moves always crit. This Pokemon's special moves use SpD in calculation.",
+		shortDesc: "This Pokemon's high crit rate moves always crit, and deal damages x2 instead of x1.5. This Pokemon's special moves use SpD in calculation.",
 		name: "Old School",
 		onModifyMove(move, attacker) {
 			if (move.category === 'Special') {
@@ -1492,6 +1530,12 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		onModifyCritRatio(critRatio, source, target) {
 			if (critRatio >= 2) return 5;
+		},
+		onModifyDamage(damage, source, target, move) {
+			if (target.getMoveHitData(move).crit) {
+				this.debug('Old School boost');
+				return this.chainModify(2/1.5);
+			}
 		},
 		rating: 3.5,
 		num: -2148,
@@ -2503,7 +2547,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		shortDesc: "Boosts the power of sword, cut, slash, and blade moves by 1.3x",
 		onBasePowerPriority: 19,
 		onBasePower(basePower, attacker, defender, move) {
-			if (move.flags['slicing'] || bladeMoves.includes(move.id)) {
+			if (move.flags['slicing']) {
 				return this.chainModify(1.3);
 			}
 		},
@@ -2883,7 +2927,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	windpower: {
 		onDamagingHitOrder: 1,
 		onDamagingHit(damage, target, source, move) {
-			if (move.flags['wind'] || windMoves.includes(move.id)) {
+			if (move.flags['wind']) {
 				target.addVolatile('charge');
 			}
 		},
@@ -2905,7 +2949,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		onTryHit(target, source, move) {
-			if (target !== source && (move.flags['wind'] || windMoves.includes(move.id))) {
+			if (target !== source && (move.flags['wind'])) {
 				if (!this.boost({ atk: 1 }, target, target)) {
 					this.add('-immune', target, '[from] ability: Wind Rider');
 				}

@@ -34,7 +34,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				source.abilityState.battleBondTriggered = true;
 			}
 		},
-		isNonstandard: "Unobtainable",
+		isNonstandard: null,
 		shortDesc: "After KOing a Pokemon: raises Attack, Sp. Atk, Speed by 1 stage. Once per battle.",
 		isPermanent: true,
 		name: "Battle Bond",
@@ -922,5 +922,1076 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		rating: 3,
 		shortDesc: "On faint, the next Pokemon sent out heals 33% of its max HP.",
 		num: 131,
+	},
+	galewings: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.type === 'Flying' && pokemon.hp >= pokemon.maxhp / 2) return priority + 1;
+		},
+		name: "Gale Wings",
+		shortDesc: "If this Pokemon has 50% of its max HP or more, its Flying-type moves have their priority increased by 1.",
+		rating: 3,
+		num: 177,
+	},
+	grasspelt: {
+		onStart(pokemon) {
+			if (!this.field.setTerrain('grassyterrain') && this.field.isTerrain('grassyterrain')) {
+				this.add('-activate', pokemon, 'ability: Grass Pelt');
+			}
+		},
+		onModifyDefPriority: 5,
+		onModifyDef(def) {
+			for (const target of this.getAllActive()) {
+				if (target.hasAbility('cloudnine')) {
+					this.debug('Cloud Nine prevents Defense increase');
+					return;
+				}
+			}
+			if (this.field.isTerrain('grassyterrain')) {
+				this.debug('Grass Pelt boost');
+				return this.chainModify([5461, 4096]);
+			}
+		},
+		name: "Grass Pelt",
+		shortDesc: "On switch-in, summons Grassy Terrain. During Grassy Terrain, Def is 1.3333x.",
+		rating: 4.5,
+		num: 179,
+	},
+	protosmosis: {
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosmosis is not affected by Utility Umbrella
+			if (this.field.isWeather('raindance') && !pokemon.volatiles['protosmosis']) {
+				pokemon.addVolatile('protosmosis');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('raindance') && pokemon.useItem()) {
+				pokemon.removeVolatile('protosmosis');
+				pokemon.addVolatile('protosmosis', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['protosmosis'].fromBooster = true;
+			} else if (!pokemon.volatiles['protosmosis']?.fromBooster && !this.field.isWeather('raindance')) {
+				pokemon.removeVolatile('protosmosis');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['protosmosis'];
+			this.add('-end', pokemon, 'Protosmosis', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Protosmosis', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Protosmosis');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'protosmosis' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Protosmosis atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Protosmosis def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Protosmosis spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Protosmosis spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Protosmosis spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Protosmosis');
+			},
+		},
+		isPermanent: true,
+		name: "Protosmosis",
+		shortDesc: "Rain Dance active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 281,
+	},
+	protocrysalis: {
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protocrysalis is not affected by Utility Umbrella
+			if (this.field.isWeather('sandstorm') && !pokemon.volatiles['protocrysalis']) {
+				pokemon.addVolatile('protocrysalis');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('sandstorm') && pokemon.useItem()) {
+				pokemon.removeVolatile('protocrysalis');
+				pokemon.addVolatile('protocrysalis', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['protocrysalis'].fromBooster = true;
+			} else if (!pokemon.volatiles['protocrysalis']?.fromBooster && !this.field.isWeather('sandstorm')) {
+				pokemon.removeVolatile('protocrysalis');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['protocrysalis'];
+			this.add('-end', pokemon, 'Protocrysalis', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Protocrysalis', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Protocrysalis');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'protocrysalis' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Protocrysalis atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Protocrysalis def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Protocrysalis spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Protocrysalis spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Protocrysalis spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Protocrysalis');
+			},
+		},
+		isPermanent: true,
+		name: "Protocrysalis",
+		shortDesc: "Sandstorm active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 281,
+	},
+	protostasis: {
+		onStart(pokemon) {
+			this.singleEvent('WeatherChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protostasis is not affected by Utility Umbrella
+			if (this.field.isWeather('snow') && !pokemon.volatiles['protostasis']) {
+				pokemon.addVolatile('protostasis');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isWeather('snow') && pokemon.useItem()) {
+				pokemon.removeVolatile('protostasis');
+				pokemon.addVolatile('protostasis', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['protostasis'].fromBooster = true;
+			} else if (!pokemon.volatiles['protostasis']?.fromBooster && !this.field.isWeather('snow')) {
+				pokemon.removeVolatile('protostasis');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['protostasis'];
+			this.add('-end', pokemon, 'Protostasis', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Protostasis', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Protostasis');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'protostasis' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk') return;
+				this.debug('Protostasis atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def') return;
+				this.debug('Protostasis def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa') return;
+				this.debug('Protostasis spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd') return;
+				this.debug('Protostasis spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe') return;
+				this.debug('Protostasis spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Protostasis');
+			},
+		},
+		isPermanent: true,
+		name: "Protostasis",
+		shortDesc: "Snow active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 281,
+	},
+	photondrive: {
+		onStart(pokemon) {
+			this.singleEvent('TerrainChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isTerrain('grassyterrain') && !pokemon.volatiles['photondrive']) {
+				pokemon.addVolatile('photondrive');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('grassyterrain') && pokemon.useItem()) {
+				pokemon.removeVolatile('photondrive');
+				pokemon.addVolatile('photondrive', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['photondrive'].fromBooster = true;
+			} else if (!pokemon.volatiles['photondrive']?.fromBooster && !this.field.isTerrain('grassyterrain')) {
+				pokemon.removeVolatile('photondrive');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['photondrive'];
+			this.add('-end', pokemon, 'Photon Drive', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Photon Drive', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Photon Drive');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'photondrive' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk' || source.volatiles['cloudnine']) return;
+				this.debug('Photon Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def' || target.volatiles['cloudnine']) return;
+				this.debug('Photon Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa' || source.volatiles['cloudnine']) return;
+				this.debug('Photon Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd' || target.volatiles['cloudnine']) return;
+				this.debug('Photon Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe' || pokemon.volatiles['cloudnine']) return;
+				this.debug('Photon Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Photon Drive');
+			},
+		},
+		isPermanent: true,
+		name: "Photon Drive",
+		shortDesc: "Grassy Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 282,
+	},
+	neurondrive: {
+		onStart(pokemon) {
+			this.singleEvent('TerrainChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isTerrain('psychicterrain') && !pokemon.volatiles['neurondrive']) {
+				pokemon.addVolatile('neurondrive');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('psychicterrain') && pokemon.useItem()) {
+				pokemon.removeVolatile('neurondrive');
+				pokemon.addVolatile('neurondrive', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['neurondrive'].fromBooster = true;
+			} else if (!pokemon.volatiles['neurondrive']?.fromBooster && !this.field.isTerrain('psychicterrain')) {
+				pokemon.removeVolatile('neurondrive');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['neurondrive'];
+			this.add('-end', pokemon, 'Neuron Drive', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Neuron Drive', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Neuron Drive');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'neurondrive' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk' || source.volatiles['cloudnine']) return;
+				this.debug('Neuron Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def' || target.volatiles['cloudnine']) return;
+				this.debug('Neuron Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa' || source.volatiles['cloudnine']) return;
+				this.debug('Neuron Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd' || target.volatiles['cloudnine']) return;
+				this.debug('Neuron Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe' || pokemon.volatiles['cloudnine']) return;
+				this.debug('Neuron Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Neuron Drive');
+			},
+		},
+		isPermanent: true,
+		name: "Neuron Drive",
+		shortDesc: "Psychic Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 282,
+	},
+	runedrive: {
+		onStart(pokemon) {
+			this.singleEvent('TerrainChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isTerrain('mistyterrain') && !pokemon.volatiles['runedrive']) {
+				pokemon.addVolatile('runedrive');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('mistyterrain') && pokemon.useItem()) {
+				pokemon.removeVolatile('runedrive');
+				pokemon.addVolatile('runedrive', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['runedrive'].fromBooster = true;
+			} else if (!pokemon.volatiles['runedrive']?.fromBooster && !this.field.isTerrain('mistyterrain')) {
+				pokemon.removeVolatile('runedrive');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['runedrive'];
+			this.add('-end', pokemon, 'Rune Drive', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Rune Drive', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Rune Drive');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'runedrive' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk' || source.volatiles['cloudnine']) return;
+				this.debug('Rune Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def' || target.volatiles['cloudnine']) return;
+				this.debug('Rune Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa' || source.volatiles['cloudnine']) return;
+				this.debug('Rune Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd' || target.volatiles['cloudnine']) return;
+				this.debug('Rune Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe' || pokemon.volatiles['cloudnine']) return;
+				this.debug('Rune Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Rune Drive');
+			},
+		},
+		isPermanent: true,
+		name: "Rune Drive",
+		shortDesc: "Misty Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 282,
+	},
+	quarkdrive: {
+		onStart(pokemon) {
+			this.singleEvent('TerrainChange', this.effect, this.effectData, pokemon);
+		},
+		onUpdate(pokemon) {
+			// if (pokemon.transformed) return;
+			// Protosynthesis is not affected by Utility Umbrella
+			if (this.field.isTerrain('electricterrain') && !pokemon.volatiles['quarkdrive']) {
+				pokemon.addVolatile('quarkdrive');
+			} else if (pokemon.hasItem('boosterenergy') && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+				pokemon.removeVolatile('quarkdrive');
+				pokemon.addVolatile('quarkdrive', pokemon, Dex.getItem('boosterenergy'));
+				pokemon.volatiles['quarkdrive'].fromBooster = true;
+			} else if (!pokemon.volatiles['quarkdrive']?.fromBooster && !this.field.isTerrain('electricterrain')) {
+				pokemon.removeVolatile('quarkdrive');
+			}
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['quarkdrive'];
+			this.add('-end', pokemon, 'Quark Drive', '[silent]');
+		},
+		condition: {
+			noCopy: true,
+			onStart(pokemon, source, effect) {
+				if (effect?.id === 'boosterenergy') {
+					this.effectData.fromBooster = true;
+					this.add('-activate', pokemon, 'ability: Quark Drive', '[fromitem]');
+				} else {
+					this.add('-activate', pokemon, 'ability: Quark Drive');
+				}
+				this.effectData.bestStat = pokemon.getBestStat(false, true);
+				this.add('-start', pokemon, 'quarkdrive' + this.effectData.bestStat);
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, source, target, move) {
+				if (this.effectData.bestStat !== 'atk' || source.volatiles['cloudnine']) return;
+				this.debug('Quark Drive atk boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifyDefPriority: 6,
+			onModifyDef(def, target, source, move) {
+				if (this.effectData.bestStat !== 'def' || target.volatiles['cloudnine']) return;
+				this.debug('Quark Drive def boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(relayVar, source, target, move) {
+				if (this.effectData.bestStat !== 'spa' || source.volatiles['cloudnine']) return;
+				this.debug('Quark Drive spa boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpDPriority: 6,
+			onModifySpD(relayVar, target, source, move) {
+				if (this.effectData.bestStat !== 'spd' || target.volatiles['cloudnine']) return;
+				this.debug('Quark Drive spd boost');
+				return this.chainModify([5325, 4096]);
+			},
+			onModifySpe(spe, pokemon) {
+				if (this.effectData.bestStat !== 'spe' || pokemon.volatiles['cloudnine']) return;
+				this.debug('Quark Drive spe boost');
+				return this.chainModify(1.5);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Rune Drive');
+			},
+		},
+		isPermanent: true,
+		name: "Quark Drive",
+		shortDesc: "Electric Terrain active or Booster Energy used: highest stat is 1.3x, or 1.5x if Speed.",
+		rating: 3,
+		num: 282,
+	},
+	damp: {
+		onAnyTryMove(target, source, effect) {
+			if (['explosion', 'mindblown', 'mistyexplosion', 'selfdestruct', 'shrapnelshot'].includes(effect.id)) {
+				this.attrLastMove('[still]');
+				this.add('cant', this.effectData.target, 'ability: Damp', effect, '[of] ' + target);
+				return false;
+			}
+		},
+		onAnyDamage(damage, target, source, effect) {
+			if (effect && effect.id === 'aftermath') {
+				return false;
+			}
+		},
+		name: "Damp",
+		rating: 1,
+		num: 6,
+	},
+	musclememory: {
+		onStart(pokemon) {
+			pokemon.addVolatile('musclememory');
+		},
+		condition: {
+			onStart(pokemon) {
+				this.effectData.lastMove = '';
+				this.effectData.numConsecutive = 0;
+			},
+			onTryMovePriority: -2,
+			onTryMove(pokemon, target, move) {
+				if (!pokemon.hasAbility('musclememory')) {
+					pokemon.removeVolatile('musclememory');
+					return;
+				}
+				if (this.effectData.lastMove === move.id && pokemon.moveLastTurnResult) {
+					this.effectData.numConsecutive++;
+				} else if (pokemon.volatiles['twoturnmove'] && this.effectData.lastMove !== move.id) {
+					this.effectData.numConsecutive = 1;
+				} else {
+					this.effectData.numConsecutive = 0;
+				}
+				this.effectData.lastMove = move.id;
+			},
+			onModifyDamage(damage, source, target, move) {
+				const dmgMod = [0x1000, 0x1333, 0x1666, 0x1999, 0x1CCC, 0x2000];
+				const numConsecutive = this.effectData.numConsecutive > 5 ? 5 : this.effectData.numConsecutive;
+				return this.chainModify([dmgMod[numConsecutive], 0x1000]);
+			},
+		},
+		name: "Muscle Memory",
+		shortDesc: "Damage of moves used on consecutive turns is increased. Max 2x after 5 turns.",
+		rating: 4,
+	}, /*
+	cloudnine: {
+		onSwitchIn(pokemon) {
+			this.effectData.switchingIn = true;
+		},
+		onStart(pokemon) {
+			if (!this.effectData.switchingIn) return;
+			this.add('-ability', pokemon, 'Cloud Nine');
+			this.effectData.switchingIn = false;
+			if (this.field.terrain) {
+				this.add('-ability', source, 'Cloud Nine');
+				this.add('-message', `${source.name} suppresses the effects of the terrain!`);
+			}
+		},
+		onAnyModifyAtkPriority: 6,
+		onAnyModifyAtk(atk, attacker, defender, move) {
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			const dyschronoUser = this.effectData.target;
+			if (defender == dyschronoUser) {
+				if (attacker.getBestStat(false, true) !== 'atk') return;
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (attacker.volatiles[paradox] && !attacker.volatiles['paradox']?.fromBooster) {
+						this.debug('cloudnine weaken');
+						return this.chainModify([3151, 4096]);
+					}
+				}
+			} else if (attacker == dyschronoUser) {
+				const bestStat = defender.getBestStat(false,true);
+				if (bestStat !== 'def' && (!move.defensiveCategory || move.defensiveCategory === 'Physical')) return;
+				if (move.defensiveCategory === 'Special' && bestStat !== 'spd') return;
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (defender.volatiles[paradox] && !defender.volatiles['paradox']?.fromBooster) {
+						this.debug('cloudnine nullify');
+						return this.chainModify([5325, 4096]);
+					}
+				}
+			}
+		},
+		onAnyModifySpAPriority: 5,
+		onAnyModifySpA(atk, attacker, defender, move) {
+			//this.effectData.bestStat = attacker.getBestStat(false, true);
+			const dyschronoUser = this.effectData.target;
+			if (defender == dyschronoUser) {
+				if (attacker.getBestStat(false, true) !== 'spa') return;
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (attacker.volatiles[paradox] && !attacker.volatiles['paradox']?.fromBooster) {
+						this.debug('cloudnine weaken');
+						return this.chainModify([3151, 4096]);
+					}
+				}
+			} else if (attacker == dyschronoUser) {
+				const bestStat = defender.getBestStat(false,true);
+				if (bestStat !== 'spd' && (!move.defensiveCategory || move.defensiveCategory === 'Special')) return;
+				if (move.defensiveCategory === 'Physical' && bestStat !== 'def') return;
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (defender.volatiles[paradox] && !defender.volatiles['paradox']?.fromBooster) {
+						this.debug('cloudnine nullify');
+						return this.chainModify([5325, 4096]);
+					}
+				}
+			}
+		},
+		onAnyTerrainStart(target, source, terrain) {
+			const pokemon = this.effectData.target;
+			this.add('-ability', pokemon, 'Cloud Nine');
+			this.add('-message', `${pokemon.name} suppresses the effects of the terrain!`);
+		}, 
+		onUpdate(pokemon) {
+			let activated = false;
+         for (const target of pokemon.side.foe.active) {
+				this.effectData.bestStat = target.getBestStat(false, true);
+				if (!target) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Cloud Nine', 'boost');
+					activated = true;
+				}
+				for (const paradox of ['photondrive', 'neurondrive', 'runedrive', 'quarkdrive']) { 
+					if (target.volatiles['paradox'] && !target.volatiles['paradox']?.fromBooster && this.effectData.bestStat === 'spe') {
+						this.boost({spe: -1}, target, pokemon, null, true);
+					}
+				}
+			}
+		}, 
+		onEnd(source) {
+			if (this.field.terrain) {
+				this.add('-message', `${source.name} is no longer suppressing the effects of the terrain!`);
+			}
+			source.abilityData.ending = true;
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasAbility('mimicry')) {
+					for (const target of this.getAllActive()) {
+						if (target.hasAbility('cloudnine') && target !== source) {
+							this.debug('Cloud Nine prevents type change');
+							return;
+						}
+					}
+					if (this.field.terrain) {
+						pokemon.addVolatile('mimicry');
+					} else {
+						const types = pokemon.baseSpecies.types;
+						if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+						this.add('-start', pokemon, 'typechange', types.join('/'), '[from] ability: Mimicry');
+						this.hint("Transform Mimicry changes you to your original un-transformed types.");
+					}
+				}
+			}
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasItem('electricseed')) {
+					if (!pokemon.ignoringItem() && this.field.isTerrain('electricterrain')) {
+						for (const target of this.getAllActive()) {
+							if (target.hasAbility('cloudnine')) {
+								if (target === source) continue;
+								this.debug('Cloud Nine prevents Seed use');
+								return;
+							}
+						}
+						pokemon.useItem();
+					}
+				}
+			}
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasItem('psychicseed')) {
+					if (!pokemon.ignoringItem() && this.field.isTerrain('psychicterrain')) {
+						for (const target of this.getAllActive()) {
+							if (target.hasAbility('cloudnine')) {
+								if (target === source) continue;
+								this.debug('Cloud Nine prevents Seed use');
+								return;
+							}
+						}
+						pokemon.useItem();
+					}
+				}
+			}
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasItem('grassyseed')) {
+					if (!pokemon.ignoringItem() && this.field.isTerrain('grassyterrain')) {
+						for (const target of this.getAllActive()) {
+							if (target.hasAbility('cloudnine')) {
+								if (target === source) continue;
+								this.debug('Cloud Nine prevents Seed use');
+								return;
+							}
+						}
+						pokemon.useItem();
+					}
+				}
+			}
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasItem('mistyseed')) {
+					if (!pokemon.ignoringItem() && this.field.isTerrain('mistyterrain')) {
+						for (const target of this.getAllActive()) {
+							if (target.hasAbility('cloudnine')) {
+								if (target === source) continue;
+								this.debug('Cloud Nine prevents Seed use');
+								return;
+							}
+						}
+						pokemon.useItem();
+					}
+				}
+			}
+		},
+		suppressWeather: true,
+		name: "Cloud Nine",
+		shortDesc: "While this Pokemon is active, the effects of weathers and terrains are disabled.",
+		rating: 2,
+		num: 13,
+	}, */
+	mimicry: {
+		shortDesc: "This Pokémon's type changes to match the Terrain. Type reverts when Terrain ends.",
+		onStart(pokemon) {
+			for (const target of this.getAllActive()) {
+				if (target.hasAbility('cloudnine')) {
+					this.debug('Cloud Nine prevents type change');
+					return;
+				}
+			}
+			if (this.field.terrain) {
+				pokemon.addVolatile('mimicry');
+			} else {
+				const types = pokemon.baseSpecies.types;
+				if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+				this.add('-start', pokemon, 'typechange', types.join('/'), '[from] ability: Mimicry');
+				this.hint("Transform Mimicry changes you to your original un-transformed types.");
+			}
+		},
+		onAnyTerrainStart() {
+			for (const target of this.getAllActive()) {
+				if (target.hasAbility('cloudnine')) {
+					this.debug('Cloud Nine prevents type change');
+					return;
+				}
+			}
+			const pokemon = this.effectData.target;
+			delete pokemon.volatiles['mimicry'];
+			pokemon.addVolatile('mimicry');
+		},
+		onEnd(pokemon) {
+			delete pokemon.volatiles['mimicry'];
+		},
+		condition: {
+			onStart(pokemon) {
+				let newType;
+				switch (this.field.terrain) {
+				case 'electricterrain':
+					newType = 'Electric';
+					break;
+				case 'grassyterrain':
+					newType = 'Grass';
+					break;
+				case 'mistyterrain':
+					newType = 'Fairy';
+					break;
+				case 'psychicterrain':
+					newType = 'Psychic';
+					break;
+				if (!newType || pokemon.getTypes().join() === newType || !pokemon.setType(newType)) return;
+				this.add('-start', pokemon, 'typechange', newType, '[from] ability: Mimicry');
+				}
+			},
+			onUpdate(pokemon) {
+				for (const target of this.getAllActive()) {
+					if (target.hasAbility('cloudnine')) {
+						this.debug('Cloud Nine prevents type change');
+						const types = pokemon.species.types;
+						if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+						this.add('-activate', pokemon, 'ability: Mimicry');
+						this.add('-end', pokemon, 'typechange', '[silent]');
+						pokemon.removeVolatile('mimicry');
+					}
+				}
+				if (!this.field.terrain) {
+					const types = pokemon.species.types;
+					if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+					this.add('-activate', pokemon, 'ability: Mimicry');
+					this.add('-end', pokemon, 'typechange', '[silent]');
+					pokemon.removeVolatile('mimicry');
+				}
+			},
+		},
+		name: "Mimicry",
+		rating: 0.5,
+		num: 250,
+	},
+	surgesurfer: {
+		shortDesc: "If Electric Terrain is active, this Pokémon's Speed is doubled.",
+		onModifySpe(spe) {
+			for (const target of this.getAllActive()) {
+				if (target.hasAbility('cloudnine')) {
+					this.debug('Cloud Nine prevents Speed increase');
+					return;
+				}
+			}
+			if (this.field.isTerrain('electricterrain')) {
+				return this.chainModify(2);
+			}
+		},
+		name: "Surge Surfer",
+		rating: 2.5,
+		num: 207,
+	},
+	deathaura: {
+		id: "deathaura",
+		name: "Death Aura",
+		shortDesc: "While this Pokemon is active, no Pokemon can heal or use draining moves.",
+		onStart(source) {
+			let activated = false;
+			for (const pokemon of source.side.foe.active) {
+				if (!activated) {
+					this.add('-ability', source, 'Death Aura');
+				}
+				activated = true;
+				if (!pokemon.volatiles['healblock']) {
+					pokemon.addVolatile('healblock');
+				}
+				if (!source.volatiles['healblock']) {
+					source.addVolatile('healblock');
+				}
+			}
+		},
+		onAnySwitchIn(pokemon) {
+			const source = this.effectData.target;
+			if (pokemon === source) return;
+			for (const target of source.side.foe.active) {
+				if (!target.volatiles['healblock']) {
+					target.addVolatile('healblock');
+				}
+			}
+		},
+		onEnd(pokemon) {
+			const source = this.effectData.target;
+			for (const target of source.side.foe.active) {
+				target.removeVolatile('healblock');
+			}
+		},
+		rating: 4,
+	},
+	seedsower: {
+		onDamagingHit(damage, target, source, move) {
+			if (!source.hasType('Grass')) {
+				this.add('-activate', target, 'ability: Seed Sower');
+				source.addVolatile('leechseed', this.effectData.target);
+			}
+		},
+		name: "Seed Sower",
+		shortDesc: "When this Pokemon is hit by an attack, the effect of Leech Seed begins.",
+		rating: 3,
+		num: 269,
+	},
+	sandspit: {
+		onDamagingHit(damage, target, source, move) {
+			this.add('-activate', target, 'ability: Sand Spit');
+			source.addVolatile('partiallytrapped', this.effectData.target);
+		},
+		name: "Sand Spit",
+		shortDesc: "When this Pokemon is hit by an attack, the effect of Sand Tomb begins.",
+		rating: 4,
+		num: 245,
+	},
+	sandforce: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (this.field.isWeather('sandstorm')) {
+				this.debug('Sand Force boost');
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'sandstorm') return false;
+		},
+		name: "Sand Force",
+		rating: 2,
+		shortDesc: "This Pokemon's moves deal 1.3x damage in a sandstorm; Sand immunity.",
+		num: 159,
+	},
+	regenerator: {
+		onSwitchOut(pokemon) {
+			if (!pokemon.volatiles['healblock']) {
+				pokemon.heal(pokemon.baseMaxhp / 3);
+			}
+		},
+		name: "Regenerator",
+		rating: 4.5,
+		num: 144,
+	},
+	cloudnine: {
+		onSwitchIn(pokemon) {
+			this.effectData.switchingIn = true;
+		},
+		onStart(pokemon) {
+			if (!this.effectData.switchingIn) return;
+			this.add('-ability', pokemon, 'Cloud Nine');
+			this.effectData.switchingIn = false;
+			if (this.field.terrain) {
+				this.add('-message', `${pokemon.name} suppresses the effects of the terrain!`);
+				let activated = false;
+				for (const other of pokemon.side.foe.active) {
+					if (!activated) {
+						this.add('-ability', pokemon, 'Cloud Nine');
+					}
+					activated = true;
+					if (!other.volatiles['cloudnine']) {
+						other.addVolatile('cloudnine');
+					}
+				}
+			}
+		},
+		onAnyTerrainStart(target, source, terrain) {
+			const pokemon = this.effectData.target;
+			this.add('-ability', pokemon, 'Cloud Nine');
+			this.add('-message', `${pokemon.name} suppresses the effects of the terrain!`);
+			if (this.field.terrain) {
+				let activated = false;
+				for (const other of pokemon.side.foe.active) {
+					if (!activated) {
+						this.add('-ability', pokemon, 'Cloud Nine');
+					}
+					activated = true;
+					if (!other.volatiles['cloudnine']) {
+						other.addVolatile('cloudnine');
+					}
+				}
+			}
+		},
+		onAnySwitchIn(pokemon) {
+			const source = this.effectData.target;
+			if (pokemon === source) return;
+			for (const target of source.side.foe.active) {
+				if (!target.volatiles['cloudnine']) {
+					target.addVolatile('cloudnine');
+				}
+			}
+		},
+		onEnd(source) {
+			if (this.field.terrain) {
+				const source = this.effectData.target;
+				for (const target of source.side.foe.active) {
+					target.removeVolatile('cloudnine');
+				}
+			}
+			source.abilityData.ending = true;
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasAbility('mimicry')) {
+					for (const target of this.getAllActive()) {
+						if (target.hasAbility('cloudnine') && target !== source) {
+							this.debug('Cloud Nine prevents type change');
+							return;
+						}
+					}
+					if (this.field.terrain) {
+						pokemon.addVolatile('mimicry');
+					} else {
+						const types = pokemon.baseSpecies.types;
+						if (pokemon.getTypes().join() === types.join() || !pokemon.setType(types)) return;
+						this.add('-start', pokemon, 'typechange', types.join('/'), '[from] ability: Mimicry');
+						this.hint("Transform Mimicry changes you to your original un-transformed types.");
+					}
+				}
+			}
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasItem('electricseed')) {
+					if (!pokemon.ignoringItem() && this.field.isTerrain('electricterrain')) {
+						for (const target of this.getAllActive()) {
+							if (target.hasAbility('cloudnine')) {
+								if (target === source) continue;
+								this.debug('Cloud Nine prevents Seed use');
+								return;
+							}
+						}
+						pokemon.useItem();
+					}
+				}
+			}
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasItem('psychicseed')) {
+					if (!pokemon.ignoringItem() && this.field.isTerrain('psychicterrain')) {
+						for (const target of this.getAllActive()) {
+							if (target.hasAbility('cloudnine')) {
+								if (target === source) continue;
+								this.debug('Cloud Nine prevents Seed use');
+								return;
+							}
+						}
+						pokemon.useItem();
+					}
+				}
+			}
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasItem('grassyseed')) {
+					if (!pokemon.ignoringItem() && this.field.isTerrain('grassyterrain')) {
+						for (const target of this.getAllActive()) {
+							if (target.hasAbility('cloudnine')) {
+								if (target === source) continue;
+								this.debug('Cloud Nine prevents Seed use');
+								return;
+							}
+						}
+						pokemon.useItem();
+					}
+				}
+			}
+			for (const pokemon of this.getAllActive()) {
+				if (pokemon.hasItem('mistyseed')) {
+					if (!pokemon.ignoringItem() && this.field.isTerrain('mistyterrain')) {
+						for (const target of this.getAllActive()) {
+							if (target.hasAbility('cloudnine')) {
+								if (target === source) continue;
+								this.debug('Cloud Nine prevents Seed use');
+								return;
+							}
+						}
+						pokemon.useItem();
+					}
+				}
+			}
+		},
+		condition: {},
+		suppressWeather: true,
+		name: "Cloud Nine",
+		shortDesc: "While this Pokemon is active, the effects of weathers and terrains are disabled.",
+		rating: 2,
+		num: 13,
 	},
 };

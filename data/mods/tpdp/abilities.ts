@@ -71,13 +71,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Only Wind-type opponents can flee.",
 		onFoeTrapPokemon(pokemon) {
 			if (pokemon.hasAbility("aircushion")) return;
-			if (!pokemon.isAdjacent(this.effectState.target)) return;
+			if (!pokemon.isAdjacent(this.effectData.target)) return;
 			if (!pokemon.hasType("Wind")) {
 				pokemon.tryTrap(true);
 			}
 		},
 		onFoeMaybeTrapPokemon(pokemon, source) {
-			if (!source) source = this.effectState.target;
+			if (!source) source = this.effectData.target;
 			if (pokemon.hasAbility("aircushion")) return;
 			if (!source || !pokemon.isAdjacent(source)) return;
 			if (!pokemon.hasType("Wind")) {
@@ -200,7 +200,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 	},
-	astronomy: { // TODO: Find out if blocked by Ascertainment and Kohryu
+	astronomy: { 
 		name: "Astronomy",
 		shortDesc: "BU skills have 1.2x power.",
 		onBasePower(relayVar, source, target, move) {
@@ -381,11 +381,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	brutality: {
 		name: "Brutality",
 		shortDesc: "SpAtk is boosted by 50% but accuracy is cut by 20%.",
-		onModifySpA(relayVar, source, target, move) {
-			this.chainModify(1.5);
+		onModifySpAPriority: 5,
+		onModifySpA(spa) {
+			return this.modify(spa, 1.5);
 		},
-		onModifyAccuracy(relayVar, target, source, move) {
-			this.chainModify(0.8);
+		onSourceModifyAccuracyPriority: 7,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (move.category === 'Special' && typeof accuracy === 'number') {
+				return accuracy * 0.8;
+			}
 		},
 	},
 	bruteforce: {
@@ -424,7 +428,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (!this.field.isTerrain("kohryu"))
 				return;
 
-			const unawareUser = this.effectState.target;
+			const unawareUser = this.effectData.target;
 			if (unawareUser === pokemon) return;
 			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
 				boosts['def'] = 0;
@@ -488,21 +492,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Restores HP when hit by a Dark-type skill and takes Damage against Light-type skills.",
 		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Dark' && !this.field.isTerrain('kohryu')) {
-				this.add('-immune', target, '[from] ability: Cloak of Darkness');
-				target.heal(target.baseMaxhp / 4);
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Cloak of Darkness');
+				}
 				return null;
 			}
 		},
-		onFoeBasePower(relayVar, source, target, move) {
+		onFoeBasePower(basePower, attacker, defender, move) {
+			if (this.effectData.target !== defender) return;
 			if (move.type === "Light")
 				this.chainModify(1.25);
 		},
-		onResidual(target, source, effect) {
-			if (this.field.isWeather('heavyfog')) {
-				target.heal(target.baseMaxhp / 4);
-			}
-			else if (this.field.isWeather('aurora')) {
-				target.damage(target.baseMaxhp / 4);
+		onWeather(target, source, effect) {
+			if (effect.id === 'heavyfog') {
+				target.heal(target.baseMaxhp / 8);
+			} else if (effect.id === 'aurora') {
+				target.damage(target.baseMaxhp / 8, target, target);
 			}
 		},
 	},
@@ -521,9 +526,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	commonsenseless: {
 		name: "Common Senseless",
 		shortDesc: "Ignores type immunities when attacking.",
-		onFoeImmunity(type, pokemon) {
-			if (this.dex.types.isName(type))
-				return false;
+		onModifyMove(move) {
+			move.ignoreImmunity = true;
 		},
 	},
 	composed: {
@@ -533,7 +537,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onTryAddVolatile(status, target, source, effect) {
 			if (['taunt'].includes(status.id)) {
 				if (effect.effectType === 'Move') {
-					const effectHolder = this.effectState.target;
+					const effectHolder = this.effectData.target;
 					this.add('-block', target, 'ability: Composed', '[of] ' + effectHolder);
 				}
 				return null;
@@ -563,32 +567,36 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Reflects the effects of status skills back on the attacker.",
 		onTryHitPriority: 1,
 		onTryHit(target, source, move) {
-			if (target === source || move.hasBounced || !move.flags['reflectable']) {
+			if (target === source || move.hasBounced || move?.category !== 'Status') {
 				return;
 			}
 			const newMove = this.dex.getActiveMove(move.id);
 			newMove.hasBounced = true;
 			newMove.pranksterBoosted = false;
-			this.actions.useMove(newMove, target, source);
+			this.useMove(newMove, target, source);
 			return null;
 		},
 	},
 	daredevil: {
 		name: "Daredevil",
 		shortDesc: "FoAtk is boosted by 50% but accuracy is cut by 20%.",
-		onModifyAtk(relayVar, source, target, move) {
-			this.chainModify(1.5);
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk) {
+			return this.modify(atk, 1.5);
 		},
-		onModifyAccuracy(relayVar, target, source, move) {
-			this.chainModify(0.8);
+		onSourceModifyAccuracyPriority: 7,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (move.category === 'Physical' && typeof accuracy === 'number') {
+				return accuracy * 0.8;
+			}
 		},
 	},
 	darkforce: {
 		name: "Dark Force",
-		shortDesc: "Opponent has 10% chance to become blinded from their focus attacks.",
+		shortDesc: "Opponent has 30% chance to become blinded from their focus attacks.",
 		onDamagingHit(damage, target, source, move) {
 			if (move.category === "Physical") {
-				if (this.randomChance(1, 10)) {
+				if (this.randomChance(3, 10)) {
 					source.trySetStatus('dark', target);
 				}
 			}
@@ -746,9 +754,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.chainModify([4,3]);
 			}
 		},
-		onFoeImmunity(type, pokemon) {
-			if (this.field.isTerrain('seiryu') && this.dex.types.isName(type))
-				return false;
+		onModifyMove(move) {
+			if (this.field.isTerrain('seiryu')) move.ignoreImmunity = true;
 		},
 	},
 	economist: {
@@ -877,7 +884,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	fasttalker: {
 		name: "Fast Talker",
-		shortDesc: "Two-turn skills can be used in one turn.",
+		shortDesc: "Two-turn skills can be used in one turn but have 0.9x power.",
 		onBasePower(relayVar, source, target, move) {
 			if (target.hasAbility('ascertainment') || this.field.isTerrain('kohryu'))
 				return;
@@ -1039,7 +1046,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onAllyTryAddVolatile(status, target, source, effect) {
 			if (['attract', 'disable', 'encore', 'healblock', 'taunt', 'torment'].includes(status.id)) {
 				if (effect.effectType === 'Move') {
-					const effectHolder = this.effectState.target;
+					const effectHolder = this.effectData.target;
 					this.add('-block', target, 'ability: Free Will', '[of] ' + effectHolder);
 				}
 				return null;
@@ -1218,25 +1225,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Changes appearance to match that of the last Puppet in the party. Reverts after taking a hit.",
 		onBeforeSwitchIn(pokemon) {
 			pokemon.illusion = null;
-			// yes, you can Illusion an active pokemon but only if it's to your right
-			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
-				const possibleTarget = pokemon.side.pokemon[i];
-				if (!possibleTarget.fainted) {
-					pokemon.illusion = possibleTarget;
-					break;
-				}
+			let i;
+			for (i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				if (!pokemon.side.pokemon[i]) continue;
+				if (!pokemon.side.pokemon[i].fainted) break;
 			}
+			if (!pokemon.side.pokemon[i]) return;
+			if (pokemon === pokemon.side.pokemon[i]) return;
+			pokemon.illusion = pokemon.side.pokemon[i];
 		},
 		onDamagingHit(damage, target, source, move) {
 			if (target.illusion) {
-				this.singleEvent('End', this.dex.abilities.get('Hobgoblin'), target.abilityState, target, source, move);
+				this.singleEvent('End', this.dex.getAbility('Hobgoblin'), target.abilityData, target, source, move);
 			}
 		},
 		onEnd(pokemon) {
 			if (pokemon.illusion) {
 				this.debug('illusion cleared');
 				pokemon.illusion = null;
-				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level);
+				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
+					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
 				this.add('replace', pokemon, details);
 				this.add('-end', pokemon, 'Hobgoblin');
 			}
@@ -1330,7 +1338,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			const type = move.type;
 			if (type && type !== '???' && source.getTypes().join() !== type) {
 				if (!source.setType(type)) return;
-				this.effectState.protean = true;
+				this.effectData.protean = true;
 				this.add('-start', source, 'typechange', type, '[from] ability: Infinite Changes');
 			}
 		},
@@ -1345,8 +1353,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	instantwin: {
 		name: "Instant Win",
 		shortDesc: "Your speed is increased by 50% on the first turn after entering the field.",
-		onSwitchIn(pokemon) {
-			this.boost({spe: 1});
+		onStart(pokemon) {
+			this.boost({spe: 1}, pokemon);
+			pokemon.addVolatile('instantwin');
+		},
+		condition: {
+			duration: 1,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Instant Win');
+				this.boost({spe: -1}, pokemon);
+			},
 		},
 	},
 	intuition: {
@@ -1662,7 +1678,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Nimble",
 		shortDesc: "When a held charm is lost or consumed speed is doubled.",
 		onAfterUseItem(item, pokemon) {
-			if (pokemon !== this.effectState.target) return;
+			if (pokemon !== this.effectData.target) return;
 			pokemon.addVolatile('nimble');
 		},
 		onTakeItem(item, pokemon) {
@@ -1718,21 +1734,21 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Enemy Puppets cannot use charms.",
 		onPreStart(pokemon) {
 			this.add('-ability', pokemon, 'Overwhelm');
-			this.effectState.unnerved = true;
+			this.effectData.unnerved = true;
 		},
 		onStart(pokemon) {
-			if (this.effectState.unnerved) return;
+			if (this.effectData.unnerved) return;
 			this.add('-ability', pokemon, 'Overwhelm');
-			this.effectState.unnerved = true;
+			this.effectData.unnerved = true;
 		},
 		onEnd() {
-			this.effectState.unnerved = false;
+			this.effectData.unnerved = false;
 		},
 		onFoeTryEatItem() {
-			return !this.effectState.unnerved;
+			return !this.effectData.unnerved;
 		},
 		onTryEatItem() {
-			return !this.effectState.unnerved;
+			return !this.effectData.unnerved;
 		},
 	},
 	peaceful: {
@@ -1774,7 +1790,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Placid",
 		shortDesc: "For 5 turns Power Yukari's SpAtk and Speed are cut in half. Ability changes to Serious, afterwards.",
 		onStart(pokemon) {
-			pokemon.addVolatile('pladid');
+			pokemon.addVolatile('placid');
 		},
 		condition: {
 			duration: 5,
@@ -1792,10 +1808,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	poisonbody: {
 		name: "Poison Body",
 		shortDesc: "After an attack, the opponent has a 30% chance to become poisoned.",
-		onDamagingHit(damage, target, source, move) {
-			if (this.randomChance(3, 10)) {
-				source.trySetStatus('psn', target);
+		onModifyMove(move) {
+			if (!move || move.target === 'self') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
 			}
+			move.secondaries.push({
+				chance: 30,
+				status: 'psn',
+				ability: this.dex.getAbility('poisonbody'),
+			});
 		},
 	},
 	poisonlabyrinth: {
@@ -1884,23 +1906,23 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon) {
 			// n.b. only affects Hackmons
 			// interaction with No Ability is complicated: https://www.smogon.com/forums/threads/pokemon-sun-moon-battle-mechanics-research.3586701/page-76#post-7790209
-			if (pokemon.adjacentFoes().some(foeActive => foeActive.ability === 'noability')) {
-				this.effectState.gaveUp = true;
+			if (pokemon.side.foe.active.some(foeActive => foeActive.ability === 'noability')) {
+				this.effectData.gaveUp = true;
 			}
 			// interaction with Ability Shield is similar to No Ability
 			if (pokemon.hasItem('Ability Shield')) {
 				this.add('-block', pokemon, 'item: Ability Shield');
-				this.effectState.gaveUp = true;
+				this.effectData.gaveUp = true;
 			}
 		},
 		onUpdate(pokemon) {
-			if (!pokemon.isStarted || this.effectState.gaveUp) return;
+			if (!pokemon.isStarted || this.effectData.gaveUp) return;
 
 			const additionalBannedAbilities = [
 				// Zen Mode included here for compatability with Gen 5-6
 				'noability', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode',
 			];
-			const possibleTargets = pokemon.adjacentFoes().filter(target => (
+			const possibleTargets = pokemon.side.foe.active.filter(target => (
 				!target.getAbility().isPermanent && !additionalBannedAbilities.includes(target.ability)
 			));
 			if (!possibleTargets.length) return;
@@ -1975,15 +1997,21 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	restraint: {
 		name: "Restraint",
 		shortDesc: "If the foe uses a switch-out skill, they are unable to switch for 2 turns.",
-		onFoeAfterMoveSecondary(target, source, move) {
-			if (move.selfSwitch)
-				target.side.addSlotCondition(target, 'restraint');
+		onAnyModifyMove(move, pokemon) {
+			if (pokemon.side === this.effectData.target.side) return;
+			if (move.selfSwitch && !move.ignoreAbility) {
+				delete move.selfSwitch;
+				pokemon.addVolatile('restraint');
+			}
 		},
 		condition: {
 			duration: 2,
-			onBeforeSwitchOut(pokemon) {
-				this.add('-fail', pokemon);
-				return false;
+			noCopy: true,
+			onTrapPokemon(pokemon) {
+				pokemon.tryTrap();
+			},
+			onStart(target) {
+				this.add('-activate', target, 'restraint');
 			},
 		},
 	},
@@ -2178,11 +2206,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Shadow Stitch",
 		shortDesc: "The opponent cannot flee or swap Puppets.",
 		onFoeTrapPokemon(pokemon) {
-			if (!pokemon.isAdjacent(this.effectState.target)) return;
+			if (!pokemon.isAdjacent(this.effectData.target)) return;
 			pokemon.tryTrap(true);
 		},
 		onFoeMaybeTrapPokemon(pokemon, source) {
-			if (!source) source = this.effectState.target;
+			if (!source) source = this.effectData.target;
 			if (!source || !pokemon.isAdjacent(source)) return;
 			
 			pokemon.maybeTrapped = true;
@@ -2202,8 +2230,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(target) {
 			for (const foe of target.foes()) {
 				for (const move of foe.moves) {
-					if (this.dex.getEffectiveness(this.dex.moves.get(move), target) > 0) {
-						this.add('-move', foe, this.dex.moves.get(move).name, '[from] ability: Sixth Sense', '[of] ' + target, '[identify]');
+					if (this.dex.getEffectiveness(this.dex.getMove(move), target) > 0) {
+						this.add('-move', foe, this.dex.getMove(move).name, '[from] ability: Sixth Sense', '[of] ' + target, '[identify]');
 					}
 				}
 			}
@@ -2324,10 +2352,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	stargazer: {
 		name: "Stargazer",
 		shortDesc: "Weather skills last forever.",
-		onResidual(target, source, effect) {
-			if (this.field.weather && this.field.weatherState && this.field.weatherState.duration > 2)
-				this.field.weatherState.duration = 2;
-		},
+		//effect in conditions.ts
 	},
 	stimulative: {
 		name: "Stimulative",
@@ -2395,12 +2420,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	strongsmile: {
 		name: "Strong Smile",
-		shortDesc: "Opponent has a 10% chance to become afraid from their spread attacks.",
-		onDamagingHit(damage, target, source, move) {
-			if (target !== source && move.category === "Special") {
-				if (this.randomChance(1,10)) {
-					source.trySetStatus('fear');
-				}
+		shortDesc: "Opponent has a 30% chance to become afraid from their spread attacks.",
+		onFoeDamagingHit(damage, target, source, move) {
+			if (this.randomChance(3, 10)) {
+				target.trySetStatus('fear', source);
 			}
 		},
 	},
@@ -2435,7 +2458,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (source.volatiles['disable']) return;
 			if (!move.isMax && !move.isFutureMove && move.id !== 'struggle') {
 				if (this.randomChance(3, 10)) {
-					source.addVolatile('disable', this.effectState.target);
+					source.addVolatile('disable', this.effectData.target);
 				}
 			}
 		},
@@ -2547,7 +2570,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
 			}
 		},
-		// Damage modifier implemented in BattleActions#modifyDamage()
 		onSourceModifySecondaries(secondaries, target, source, move) {
 			if (move.multihitType === 'twoofakind' && move.hit < 2) {
 				if (move.recoil)
@@ -2700,12 +2722,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Weather Resist",
 		shortDesc: "This Puppet is immune to the effects of weather.",
 		onSwitchIn(pokemon) {
-			this.effectState.switchingIn = true;
+			this.effectData.switchingIn = true;
 		},
 		onStart(pokemon) {
-			if (!this.effectState.switchingIn) {
+			if (!this.effectData.switchingIn) {
 				this.add('-ability', pokemon, 'Weather Resist');
-				this.effectState.switchingIn = false;
+				this.effectData.switchingIn = false;
 			}
 			this.eachEvent('WeatherChange', this.effect);
 		},
@@ -2741,7 +2763,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Wisdom Eye",
 		shortDesc: "Attacks ignore the opponent's stat gains other than speed.",
 		onAnyModifyBoost(boosts, pokemon) {
-			const unawareUser = this.effectState.target;
+			const unawareUser = this.effectData.target;
 			if (unawareUser === pokemon) return;
 			if (unawareUser === this.activePokemon && pokemon === this.activeTarget) {
 				boosts['def'] = 0;

@@ -1,34 +1,6 @@
 import computeSourceMap from "sucrase/dist/types/computeSourceMap";
 
 export const Moves: {[k: string]: ModdedMoveData} = {
-	recover: {
-		inherit: true,
-		pp: 10,
-	},
-	softboiled: {
-		inherit: true,
-		pp: 10,
-	},
-	rest: {
-		inherit: true,
-		pp: 10,
-	},
-	milkdrink: {
-		inherit: true,
-		pp: 10,
-	},
-	slackoff: {
-		inherit: true,
-		pp: 10,
-	},
-	roost: {
-		inherit: true,
-		pp: 10,
-	},
-	shoreup: {
-		inherit: true,
-		pp: 10,
-	},
 	tentacatch: {
 		num: -1,
 		accuracy: 85,
@@ -533,6 +505,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		volatileStatus: 'frostbite',
 		condition: {
 			onStart(target) {
+				if(target.hasType('Fire') || target.hasType('Ice')) {
+					this.hint("Ice and Fire targets are immune to Frostbite.");
+					return;
+				}
 			  this.effectData.stage = 0;
 				this.add('-start', target, 'move: Frostbite');
 			},
@@ -562,33 +538,50 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {boost: {def: 1}},
 		contestType: "Clever",
 	},
+	// aspiravoid: {
+	// 	num: -17,
+	// 	accuracy: 100,
+	// 	basePower: 50,
+	// 	category: "Special",
+	// 	name: "Aspira-Void",
+	// 	pp: 5,
+	// 	priority: 0,
+	// 	flags: {protect: 1, mirror: 1},
+	// 	self: {
+	// 		chance: 100,
+	// 		boosts: {
+	// 			// atk: 1,
+	// 			spa: 1,
+	// 		},
+	// 	},
+	// 	secondary: {
+	// 		chance: 100,
+	// 		boosts: {
+	// 			// atk: -1,
+	// 			spa: -1,
+	// 		},
+	// 	},
+	// 	target: "normal",
+	// 	type: "Dark",
+	// 	// shortDesc: "-1 Atk/SpA for target; +1 Atk/SpA for this Pokemon.",
+	// 	shortDesc: "-1 SpA for target; +1 SpA for this Pokemon.",
+	// 	contestType: "Cool",
+	// },
 	aspiravoid: {
 		num: -17,
 		accuracy: 100,
-		basePower: 50,
+		basePower: 80,
 		category: "Special",
-		name: "Aspira-Void",
-		pp: 5,
+		name: "Aspira Void",
+		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		self: {
-			chance: 100,
-			boosts: {
-				atk: 1,
-				spa: 1,
-			},
-		},
-		secondary: {
-			chance: 100,
-			boosts: {
-				atk: -1,
-				spa: -1,
-			},
-		},
+		flags: {protect: 1, mirror: 1, heal: 1},
+		drain: [1, 2],
+		secondary: null,
 		target: "normal",
+		shortDesc: "Heals 50% of damage dealt.",
 		type: "Dark",
-		shortDesc: "-1 Atk/SpA for target; +1 Atk/SpA for this Pokemon.",
-		contestType: "Cool",
+		contestType: "Clever",
 	},
 	underdog: {
 		num: -18,
@@ -653,7 +646,6 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePowerCallback(pokemon, target, move) {
 			let bp = move.basePower;
 			if (pokemon.volatiles['backfire'] && pokemon.volatiles['backfire'].hitCount) {
-				//bp *= Math.pow(2, pokemon.volatiles['backfire'].hitCount);
 				bp += 20*pokemon.volatiles['backfire'].hitCount;
 			}
 			if (pokemon.status !== 'slp') pokemon.addVolatile('backfire');
@@ -706,6 +698,25 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Water",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
+	},
+	parallelcircuit: {
+		num: -2242,
+		accuracy: 95,
+		basePower: 25,
+		category: "Physical",
+		name: "Parallel Circuit",
+		shortDesc: "Hits 2-5 times in one turn.",
+		desc: "Hits 2-5 times in one turn.",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: [2, 5],
+		secondary: null,
+		target: "normal",
+		type: "Electric",
+		zMove: {basePower: 140},
+		maxMove: {basePower: 130},
+		contestType: "Cool",
 	},
 	condensate: {
 		num: -23,
@@ -2113,57 +2124,64 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		contestType: "Tough",
 		shortDesc: "Protects from moves. Contact: resets opponent's stat boosts.",
 	},
-	/*triplearrows: {
+	triplearrows: {
 		num: -1612,
 		accuracy: 100,
 		basePower: 50,
 		category: "Physical",
 		name: "Triple Arrows",
-		desc: "100% chance to raise the user's Speed by 1 stage. Raise crit ratio by 2 stages.",
-		shortDesc: "100% chance to +1 Speed; +2 crit ratio.",
-		pp: 16,
+		desc: "100% chance to raise the user's Speed by 1 stage. Raise crit ratio by 2 stages. Target: 50% -1 Defense.",
+		shortDesc: "100% chance to +1 Speed; +2 crit ratio; -1 Def to target.",
+		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onModifyCritRatio(critRatio) {
 			return critRatio + 2;
 		},
-		secondary: {
-			chance: 100,
-			self: {
-				boosts: {
-					spe: 1,
-				},
-			},
-		},
-		target: "normal",
-		type: "Fighting",
-		contestType: "Tough",
-	},*/
-	triplearrows: {
-		num: 843,
-		accuracy: 100,
-		basePower: 90,
-		category: "Physical",
-		shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
-		name: "Triple Arrows",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		critRatio: 2,
 		secondaries: [
 			{
 				chance: 50,
 				boosts: {
 					def: -1,
 				},
-			}, {
-				chance: 30,
-				volatileStatus: 'flinch',
+			}, { 
+				chance: 100,
+				self: {
+					boosts: {
+						spe: 1,
+					},
+				},
 			},
 		],
 		target: "normal",
 		type: "Fighting",
+		contestType: "Tough",
 	},
+	// triplearrows: {
+	// 	num: 843,
+	// 	accuracy: 100,
+	// 	basePower: 90,
+	// 	category: "Physical",
+	// 	shortDesc: "High crit. Target: 50% -1 Defense, 30% flinch.",
+	// 	name: "Triple Arrows",
+	// 	pp: 10,
+	// 	priority: 0,
+	// 	flags: {protect: 1, mirror: 1},
+	// 	critRatio: 2,
+	// 	secondaries: [
+	// 		{
+	// 			chance: 50,
+	// 			boosts: {
+	// 				def: -1,
+	// 			},
+	// 		}, {
+	// 			chance: 30,
+	// 			volatileStatus: 'flinch',
+	// 		},
+	// 	],
+	// 	target: "normal",
+	// 	type: "Fighting",
+	// },
 	/*psyshieldbash: {
 		num: -1776,
 		accuracy: 100,
@@ -2368,7 +2386,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Physical",
 		name: "Dire Claw",
 		shortDesc: "50% chance to poison the target.",
-		pp: 16,
+		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		secondary: {
@@ -2399,6 +2417,28 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		target: "normal",
 		type: "Poison",
+	},
+	takeheart: {
+		num: 850,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "User cures its status and boosts its SpA & SpD by 1.",
+		name: "Take Heart",
+		pp: 15,
+		priority: 0,
+		flags: {snatch: 1},
+		onHit(pokemon) {
+			const success = !!this.boost({spa: 1, spd: 1});
+			return pokemon.cureStatus() || success;
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Calm Mind", target);
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
 	},
 	fissure: {
 		num: 90,
@@ -2816,6 +2856,23 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Water",
 		contestType: "Clever",
 	},
+	snipeshot: {
+		num: 745,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Snipe Shot",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		willCrit: true,
+		tracksTarget: true,
+		secondary: null,
+		shortDesc: "Always results in a critical hit. Cannot be redirected.",
+		desc: "Always results in a critical hit. Cannot be redirected.",
+		target: "normal",
+		type: "Water",
+	},
 	lightningassault: {
 		num: -486,
 		accuracy: 100,
@@ -3036,56 +3093,73 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Grass",
 		contestType: "Cool",
 	},
-	houndshowl: {
-		num: 228,
-		accuracy: 100,
-		basePower: 50,
-		category: "Special",
-		name: "Hound's Howl",
-		pp: 20,
+	happydance: {
+		num: -1240,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Happy Dance",
+		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {snatch: 1, dance: 1},
+		boosts: {
+			spa: 1,
+			spe: 1,
+		},
+		weather: 'RainDance',
+		secondary: null,
+		target: "all",
+		type: "Water",
+		shortDesc: "Raises the user's SpA and Spe by 1. Summons Rain Dance.",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Beautiful",
+	},
+	houndshowl: {
+		num: -1228,
+		accuracy: 100,
+		basePower: 55,
+		category: "Physical",
+		name: "Hound's Howl",
+		shortDesc: "If a foe is switching out, hits it at 2x power.",
+		desc: "If a foe is switching out, hits it at 2x power.",
 		basePowerCallback(pokemon, target, move) {
 			// You can't get here unless the pursuit succeeds
 			if (target.beingCalledBack) {
-				this.debug('Pursuit damage boost');
+				this.debug('Hound\'s Howl damage boost');
 				return move.basePower * 2;
 			}
 			return move.basePower;
 		},
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
 		beforeTurnCallback(pokemon) {
 			for (const side of this.sides) {
 				if (side === pokemon.side) continue;
-				side.addSideCondition('pursuit', pokemon);
-				const data = side.getSideConditionData('pursuit');
+				side.addSideCondition('houndshowl', pokemon);
+				const data = side.getSideConditionData('houndshowl');
 				if (!data.sources) {
 					data.sources = [];
 				}
 				data.sources.push(pokemon);
 			}
 		},
-		onModifyType(move, pokemon) {
-			let type = pokemon.types[0];
-			if (type === "Bird") type = "???";
-			move.type = type;
-		},
-		onModifyMove(move, pokemon) {
-			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
+		onModifyMove(move, source, target) {
 			if (target?.beingCalledBack) move.accuracy = true;
 		},
 		onTryHit(target, pokemon) {
-			target.side.removeSideCondition('pursuit');
+			target.side.removeSideCondition('houndshowl');
 		},
 		condition: {
 			duration: 1,
 			onBeforeSwitchOut(pokemon) {
-				this.debug('Pursuit start');
+				this.debug('Hound\'s Howl start');
 				let alreadyAdded = false;
 				pokemon.removeVolatile('destinybond');
 				for (const source of this.effectData.sources) {
 					if (!this.queue.cancelMove(source) || !source.hp) continue;
 					if (!alreadyAdded) {
-						this.add('-activate', pokemon, 'move: Pursuit');
+						this.add('-activate', pokemon, 'move: Hound\'s Howl');
 						alreadyAdded = true;
 					}
 					// Run through each action in queue to check if the Pursuit user is supposed to Mega Evolve this turn.
@@ -3099,13 +3173,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 							}
 						}
 					}
-					this.runMove('pursuit', source, this.getTargetLoc(pokemon, source));
+					this.runMove('houndshowl', source, this.getTargetLoc(pokemon, source));
 				}
 			},
 		},
 		secondary: null,
 		target: "normal",
-		type: "Normal",
+		type: "Ghost",
 		contestType: "Clever",
 	},
 	dantesinferno: {
