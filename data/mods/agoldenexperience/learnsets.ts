@@ -8239,7 +8239,7 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			painsplit: ["8L1"],
 			explosion: ["8L1"],
 			destinybond: ["8L1"],
-			strengthsap: ["8L1"],
+			// strengthsap: ["8L1"],
 		},
 	},
 	truelewoodo: {
