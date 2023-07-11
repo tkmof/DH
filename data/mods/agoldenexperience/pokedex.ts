@@ -996,10 +996,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	ludicolo: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 60, def: 70, spa: 100, spd: 100, spe: 70},
+		abilities: {0: "Swift Swim", 1: "Rain Dish", H: "Mad Dancer"},
 	},
 	shiftry: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 110, def: 60, spa: 90, spd: 60, spe: 80},
+		abilities: {0: "Chlorophyll", 1: "Early Bird", H: "Cold Wind"},
 	},
 	swellow: {
 		inherit: true,
