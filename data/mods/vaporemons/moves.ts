@@ -3032,7 +3032,7 @@ stickyweb: {
 					this.add('-activate', source, 'ability: Persistent', effect);
 					return 7;
 				}
-				if (source?.hasAbility('deathaura')) {
+				if (source?.hasAbility('deathaura') || target?.hasAbility('deathaura')) {
 					return 0;
 				}
 				return 5;
