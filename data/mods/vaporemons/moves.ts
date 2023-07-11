@@ -3032,6 +3032,9 @@ stickyweb: {
 					this.add('-activate', source, 'ability: Persistent', effect);
 					return 7;
 				}
+				if (effect.id === 'deathaura') {
+					return 0;
+				}
 				return 5;
 			},
 			onStart(pokemon) {
