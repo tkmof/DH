@@ -1823,7 +1823,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	sandspit: {
 		onDamagingHit(damage, target, source, move) {
 			this.add('-activate', target, 'ability: Sand Spit');
-			source.addVolatile('partiallytrapped', this.effectData.target);
+         this.useMove("Sand Spit Attack", target);
 		},
 		name: "Sand Spit",
 		shortDesc: "When this Pokemon is hit by an attack, the effect of Sand Tomb begins.",
