@@ -65,8 +65,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			} else {
 				this.add('-status', target, 'slp');
 			}
-			// 1-3 turns
-			this.effectData.startTime = this.random(1, 4);
+			// 2-4 turns
+			this.effectData.startTime = this.random(2, 5);
 			this.effectData.time = this.effectData.startTime;
 		},
 		onBeforeMovePriority: 10,

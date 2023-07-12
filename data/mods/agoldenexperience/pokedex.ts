@@ -300,9 +300,17 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		abilities: {0: "Corrosion", 1: "Sticky Hold", H: "Poison Touch"},
 	},
+	gastly: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
+	},
+	haunter: {
+		inherit: true,
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
+	},
 	gengar: {
 		inherit: true,
-		abilities: {0: "Levitate"},
+		abilities: {0: "Levitate", H: "Neutralizing Gas"},
 	},
 	kingler: {
 		inherit: true,
@@ -422,11 +430,55 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	tauros: {
 		inherit: true,
 		baseStats: {hp: 75, atk: 120, def: 95, spa: 40, spd: 70, spe: 110},
+		otherFormes: ["Tauros-Paldea-Combat", "Tauros-Paldea-Blaze", "Tauros-Paldea-Aqua"],
+		formeOrder: ["Tauros", "Tauros-Paldea-Combat", "Tauros-Paldea-Blaze", "Tauros-Paldea-Aqua"],
+	},
+	taurospaldeacombat: {
+		num: 128,
+		name: "Tauros-Paldea-Combat",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Combat",
+		types: ["Fighting"],
+		gender: "M",
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 30, spd: 70, spe: 100},
+		abilities: {0: "Intimidate", 1: "Anger Point", H: "Cud Chew"},
+		heightm: 1.4,
+		weightkg: 88.4,
+		color: "Black",
+		eggGroups: ["Field"],
+	},
+	taurospaldeablaze: {
+		num: 128,
+		name: "Tauros-Paldea-Blaze",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Blaze",
+		types: ["Fighting", "Fire"],
+		gender: "M",
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 30, spd: 70, spe: 100},
+		abilities: {0: "Intimidate", 1: "Anger Point", H: "Cud Chew"},
+		heightm: 1.4,
+		weightkg: 88.4,
+		color: "Black",
+		eggGroups: ["Field"],
+	},
+	taurospaldeaaqua: {
+		num: 128,
+		name: "Tauros-Paldea-Aqua",
+		baseSpecies: "Tauros",
+		forme: "Paldea-Aqua",
+		types: ["Fighting", "Water"],
+		gender: "M",
+		baseStats: {hp: 75, atk: 110, def: 105, spa: 30, spd: 70, spe: 100},
+		abilities: {0: "Intimidate", 1: "Anger Point", H: "Cud Chew"},
+		heightm: 1.4,
+		weightkg: 88.4,
+		color: "Black",
+		eggGroups: ["Field"],
 	},
 	lapras: {
 		inherit: true,
 		baseStats: {hp: 130, atk: 95, def: 80, spa: 65, spd: 95, spe: 70},
-		abilities: {0: "Water Absorb", 1: "Shell Armor", H: "Refridgerate"},
+		abilities: {0: "Water Absorb", 1: "Shell Armor", H: "Refrigerate"},
 	},
 	vaporeon: {
 		inherit: true,
@@ -944,10 +996,12 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	ludicolo: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 60, def: 70, spa: 100, spd: 100, spe: 70},
+		abilities: {0: "Swift Swim", 1: "Rain Dish", H: "Mad Dancer"},
 	},
 	shiftry: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 110, def: 60, spa: 90, spd: 60, spe: 80},
+		abilities: {0: "Chlorophyll", 1: "Early Bird", H: "Cold Wind"},
 	},
 	swellow: {
 		inherit: true,
@@ -1294,6 +1348,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	//gen 4 :
 	torterra: {
 		inherit: true,
+		types: ["Grass", "Rock"],
 		baseStats: {hp: 95, atk: 109, def: 105, spa: 75, spd: 90, spe: 56},
 		abilities: {0: "Overgrow", H: "Microclimate"},
 	},
@@ -2157,7 +2212,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	kyurem: {
 		inherit: true,
-		baseStats: {hp: 125, atk: 130, def: 90, spa: 130, spd: 90, spe: 60},
+		baseStats: {hp: 125, atk: 130, def: 90, spa: 130, spd: 90, spe: 80},
 	},
 	keldeo: {
 		inherit: true,
@@ -2251,6 +2306,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		color: "Red",
 		eggGroups: ["Field"],
 		requiredItem: "Delphite",
+	},
+	greninjaash: {
+		inherit: true,
+		baseStats: {hp: 72, atk: 145, def: 67, spa: 153, spd: 71, spe: 122},
 	},
 	pyroar: {
 		inherit: true,
@@ -3047,22 +3106,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoType: "levelMove",
 		evoCondition: "while holding Meltan Candy",
 	},
-	/*cinderace: {//to remove when gen 9
-		inherit: true,
-		baseStats: {hp: 80, atk: 101, def: 80, spa: 80, spd: 80, spe: 109},
-	},*/
-	sobble: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
-	},
-	drizzile: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
-	},
-	inteleon: {
-		inherit: true,
-		abilities: {0: "Torrent", H: "Deadly Blasts"},
-	},
 	greedent: {
 		inherit: true,
 		baseStats: {hp: 120, atk: 95, def: 95, spa: 45, spd: 95, spe: 20},
@@ -3112,7 +3155,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	sandaconda: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 107, def: 125, spa: 55, spd: 80, spe: 71},
+		baseStats: {hp: 72, atk: 107, def: 125, spa: 55, spd: 80, spe: 71},
 	},
 	cramorant: {
 		inherit: true,

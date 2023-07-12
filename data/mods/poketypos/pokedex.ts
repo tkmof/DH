@@ -301,4 +301,25 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
       baseStats: {hp: 84, atk: 125, def: 80, spa: 125, spd: 80, spe: 106},
       abilities: {0: "Keen Eye", 1: "Merciless", H: "Sand Rush"},
    },
+   mrtime: {
+      num: 40,
+      name: "Mr. Time",
+      types: ["Fairy", "Steel"],
+      baseStats: {hp: 85, atk: 50, def: 90, spa: 110, spd: 100, spe: 85},
+      abilities: {0: "Misty Surge", 1: "Pressure", H: "Clear Body"},
+   },
+    bruteboreas: {
+      num: 41,
+      name: "Brute Boreas",
+      types: ["Ice", "Water"],
+      baseStats: {hp: 111, atk: 79, def: 99, spa: 127, spd: 99, spe: 55},
+      abilities: {0: "Snow Warning", H: "North Wind"},
+   },
+    ironavian: {
+      num: 42,
+      name: "Iron Avian",
+      types: ["Dark", "Flying"],
+      baseStats: {hp: 84, atk: 114, def: 110, spa: 114, spd: 70, spe: 78},
+      abilities: {0: "Pressure", 1: "Natural Cure", H: "Big Pecks"},
+   },
 };

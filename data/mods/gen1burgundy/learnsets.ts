@@ -426,7 +426,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			thrash: ["1L1"],
 			thunder: ["1L1"],
 			thunderpunch: ["1L1"],
-			thunderwave: ["1L1"],
 			thunderbolt: ["1L1"],
 			toxic: ["1L1"],
 			crunch: ["1L1"],

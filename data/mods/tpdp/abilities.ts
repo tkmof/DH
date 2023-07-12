@@ -567,13 +567,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Reflects the effects of status skills back on the attacker.",
 		onTryHitPriority: 1,
 		onTryHit(target, source, move) {
-			if (target === source || move.hasBounced || !move.flags['reflectable']) {
+			if (target === source || move.hasBounced || move?.category !== 'Status') {
 				return;
 			}
 			const newMove = this.dex.getActiveMove(move.id);
 			newMove.hasBounced = true;
 			newMove.pranksterBoosted = false;
-			this.actions.useMove(newMove, target, source);
+			this.useMove(newMove, target, source);
 			return null;
 		},
 	},
@@ -754,9 +754,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.chainModify([4,3]);
 			}
 		},
-		onFoeImmunity(type, pokemon) {
-			if (this.field.isTerrain('seiryu') && this.dex.types.isName(type))
-				return false;
+		onModifyMove(move) {
+			if (this.field.isTerrain('seiryu')) move.ignoreImmunity = true;
 		},
 	},
 	economist: {
@@ -1226,25 +1225,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "Changes appearance to match that of the last Puppet in the party. Reverts after taking a hit.",
 		onBeforeSwitchIn(pokemon) {
 			pokemon.illusion = null;
-			// yes, you can Illusion an active pokemon but only if it's to your right
-			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
-				const possibleTarget = pokemon.side.pokemon[i];
-				if (!possibleTarget.fainted) {
-					pokemon.illusion = possibleTarget;
-					break;
-				}
+			let i;
+			for (i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				if (!pokemon.side.pokemon[i]) continue;
+				if (!pokemon.side.pokemon[i].fainted) break;
 			}
+			if (!pokemon.side.pokemon[i]) return;
+			if (pokemon === pokemon.side.pokemon[i]) return;
+			pokemon.illusion = pokemon.side.pokemon[i];
 		},
 		onDamagingHit(damage, target, source, move) {
 			if (target.illusion) {
-				this.singleEvent('End', this.dex.abilities.get('Hobgoblin'), target.abilityState, target, source, move);
+				this.singleEvent('End', this.dex.getAbility('Hobgoblin'), target.abilityData, target, source, move);
 			}
 		},
 		onEnd(pokemon) {
 			if (pokemon.illusion) {
 				this.debug('illusion cleared');
 				pokemon.illusion = null;
-				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level);
+				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
+					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
 				this.add('replace', pokemon, details);
 				this.add('-end', pokemon, 'Hobgoblin');
 			}
@@ -1353,8 +1353,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	instantwin: {
 		name: "Instant Win",
 		shortDesc: "Your speed is increased by 50% on the first turn after entering the field.",
-		onSwitchIn(pokemon) {
-			this.boost({spe: 1});
+		onStart(pokemon) {
+			this.boost({spe: 1}, pokemon);
+			pokemon.addVolatile('instantwin');
+		},
+		condition: {
+			duration: 1,
+			onEnd(pokemon) {
+				this.add('-ability', pokemon, 'Instant Win');
+				this.boost({spe: -1}, pokemon);
+			},
 		},
 	},
 	intuition: {
@@ -2344,10 +2352,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	stargazer: {
 		name: "Stargazer",
 		shortDesc: "Weather skills last forever.",
-		onResidual(target, source, effect) {
-			if (this.field.weather && this.field.weatherState && this.field.weatherState.duration > 2)
-				this.field.weatherState.duration = 2;
-		},
+		//effect in conditions.ts
 	},
 	stimulative: {
 		name: "Stimulative",
