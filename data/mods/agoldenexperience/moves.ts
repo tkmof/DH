@@ -153,6 +153,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		onEffectiveness(typeMod, target, type) {
 			if (type === 'Dark') return 1;
 		},
+		onModifyMove(move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Psychic'] = true;
+			}
+		},
 		target: "normal",
 		type: "Psychic",
 		contestType: "Beautiful",
@@ -3056,12 +3062,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				move.category = 'Physical';
 				move.flags.contact = 1;
 			}
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Psychic'] = true;
+			}
 		},
 		onHit(target, source, move) {
 			this.hint(move.category + " Brave Blade");
-		},
-		onEffectiveness(typeMod, target, type) {
-			if (type === 'Dark') return 1;
 		},
 		onAfterSubDamage(damage, target, source, move) {
 			this.hint(move.category + " Brave Blade");
@@ -3104,15 +3111,32 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		flags: {snatch: 1, dance: 1},
 		boosts: {
 			spa: 1,
-			spe: 1,
 		},
 		weather: 'RainDance',
 		secondary: null,
 		target: "all",
 		type: "Water",
-		shortDesc: "Raises the user's SpA and Spe by 1. Summons Rain Dance.",
+		shortDesc: "Raises the user's SpA by 1. Summons Rain Dance.",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
+	},
+	oniwind: {
+		num: 740,
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		shortDesc: "Sets Tailwind.",
+		name: "Oni Wind",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, wind: 1, mirror: 1},
+		self: {
+			sideCondition: 'tailwind',
+		},
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+		contestType: "Clever",
 	},
 	houndshowl: {
 		num: -1228,
