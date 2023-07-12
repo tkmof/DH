@@ -982,7 +982,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
-// new stuff should start numbering at -1027
+// new stuff should start numbering at -1029
 
 // Tera Shards
 	bugterashard: {
@@ -1032,6 +1032,30 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: -1014,
 		gen: 8,
 		desc: "Holder becomes its Tera Type, Dark, on switch-in.",
+	},	
+	dragonterashard: {
+		name: "Dragon Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Fairy')) return;
+				this.add('-start', pokemon, 'typechange', 'Dragon', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1028,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Dragon, on switch-in.",
 	},	
 	electricterashard: {
 		name: "Electric Tera Shard",
