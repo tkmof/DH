@@ -1822,7 +1822,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	},
 	sandspit: {
 		onDamagingHit(damage, target, source, move) {
-			this.add('-activate', target, 'ability: Sand Spit');
          this.useMove("Sand Spit Attack", target);
 		},
 		name: "Sand Spit",
