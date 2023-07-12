@@ -3954,4 +3954,23 @@ stickyweb: {
 			},
 		},
 	},
+	sandspitattack: {
+		accuracy: true,
+		basePower: 0,
+		category: "Physical",
+		name: "Sand Spit Attack",
+		pp: 40,
+		priority: 0,
+		flags: {},
+		volatileStatus: 'partiallytrapped',
+		ignoreImmunity: true,
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sand Tomb", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		contestType: "Clever",
+	},
 };
