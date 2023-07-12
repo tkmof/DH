@@ -1841,15 +1841,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				// G-Max Centiferno and G-Max Sandblast continue even after the user leaves the field
 				const gmaxEffect = ['gmaxcentiferno', 'gmaxsandblast'].includes(this.effectData.sourceEffect.id);
 				if (source && (!source.isActive || source.hp <= 0) && !gmaxEffect) {
-					delete pokemon.volatiles['partiallytrapped'];
-					this.add('-end', pokemon, this.effectData.sourceEffect, '[partiallytrapped]', '[silent]');
+					delete pokemon.volatiles['sandspit'];
+					this.add('-end', pokemon, this.effectData.sourceEffect, '[sandspit]', '[silent]');
 					return;
 				}
 				this.add('-anim', pokemon, "Sand Tomb", pokemon);
 				this.damage(pokemon.baseMaxhp / this.effectData.boundDivisor);
 			},
 			onEnd(pokemon) {
-				this.add('-end', pokemon, this.effectData.sourceEffect, '[partiallytrapped]');
+				this.add('-end', pokemon, this.effectData.sourceEffect, '[sandspit]');
 			},
 			onTrapPokemon(pokemon) {
 				const gmaxEffect = ['gmaxcentiferno', 'gmaxsandblast'].includes(this.effectData.sourceEffect.id);
