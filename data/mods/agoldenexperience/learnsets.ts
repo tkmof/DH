@@ -1284,6 +1284,7 @@ export const Learnsets: { [speciesid: string]: LearnsetData; } = {
 			tearfullook: ["8L1"],
 			thunder: ["8M"],
 			watergun: ["8L1"],
+			steelroller: ["8L1"],
 		},
 	},
 	avalugghisui: {

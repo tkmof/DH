@@ -1760,11 +1760,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	cacturnemegayday: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	cacturnemegaynight: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	swablu: {
@@ -2353,7 +2353,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	regigigas: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	giratina: {
@@ -4057,7 +4057,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	orbeetle: {
-		tier: "UU",
+		tier: "UUBL",
 		doublesTier: "DOU",
 	},
 	orbeetlegmax: {

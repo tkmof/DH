@@ -995,7 +995,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	ludicolo: {
 		inherit: true,
-		baseStats: {hp: 80, atk: 60, def: 70, spa: 100, spd: 100, spe: 70},
+		baseStats: {hp: 80, atk: 80, def: 70, spa: 80, spd: 85, spe: 85}, 
 		abilities: {0: "Swift Swim", 1: "Rain Dish", H: "Mad Dancer"},
 	},
 	shiftry: {
@@ -1026,8 +1026,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	delcatty: {
 		inherit: true,
-		baseStats: {hp: 70, atk: 55, def: 75, spa: 95, spd: 75, spe: 90},
-		abilities: {0: "Unaware", 1: "Normalize", H: "Wonder Skin"},
+		baseStats: {hp: 70, atk: 55, def: 95, spa: 85, spd: 95, spe: 90},
+		abilities: {0: "Unaware", 1: "Normalize", H: "Unimpressed"},
 	},
 	sableye: {
 		inherit: true,
@@ -1290,8 +1290,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	walrein: {
 		inherit: true,
-		baseStats: {hp: 110, atk: 95, def: 90, spa: 80, spd: 90, spe: 65},
-		abilities: {0: "Thick Fat", 1: "Ice Body", H: "Misty Surge"},
+		baseStats: {hp: 120, atk: 105, def: 100, spa: 60, spd: 100, spe: 45},
+		abilities: {0: "Thick Fat", 1: "Ice Body", H: "Icebreaker"},
 	},
 	relicanth: {
 		inherit: true,
@@ -1355,6 +1355,10 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	infernape: {
 		inherit: true,
 		abilities: {0: "Blaze", H: "Pride"},
+	},
+	empoleon: {
+		inherit: true,
+		abilities: {0: "Torrent", H: "Justified"},
 	},
 	bibarel: {
 		inherit: true,
@@ -1532,7 +1536,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		baseStats: {hp: 110, atk: 130, def: 80, spa: 60, spd: 60, spe: 90},
 	},
-	gallade: {//to remove when gen 9
+	gallade: {
 		inherit: true,
 		abilities: {0: "Steadfast", 1: "Sharpness", H: "Justified"},
 	},
@@ -1709,7 +1713,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		otherFormes: ["Samurott-Hisui", "Samurott-Galar"],
 		formeOrder: ["Samurott", "Samurott-Hisui", "Samurott-Galar"],
 	},
-	samurotthisui: {//to remove when gen 9
+	samurotthisui: {
 		num: 503,
 		name: "Samurott-Hisui",
 		baseSpecies: "Samurott",
@@ -1725,10 +1729,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		evoLevel: 36,
 		eggGroups: ["Field"],
 	},
-	/*samurotthisui: {
-		inherit: true,
-		baseStats: {hp: 85, atk: 113, def: 75, spa: 80, spd: 60, spe: 115},
-	},*/
 	samurottgalar: {
 		num: 503,
 		name: "Samurott-Galar",
@@ -1934,6 +1934,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	darmanitangalarzen: {
 		inherit: true,
+		baseStats: {hp: 105, atk: 140, def: 55, spa: 60, spd: 55, spe: 125},
 	},
 	maractus: {
 		inherit: true,
@@ -2408,7 +2409,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Sliggoo-Hisui",
 		baseSpecies: "Sliggoo",
 		forme: "Hisui",
-		types: ["Dragon", "Steel"],
+		types: ["Steel", "Dragon"],
 		baseStats: {hp: 58, atk: 75, def: 83, spa: 83, spd: 113, spe: 40},
 		abilities: {0: "Sap Sipper", 1: "Shell Armor", H: "Gooey"},
 		heightm: 0.7,
@@ -2430,9 +2431,9 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Goodra-Hisui",
 		baseSpecies: "Goodra",
 		forme: "Hisui",
-		types: ["Dragon", "Steel"],
+		types: ["Steel", "Dragon"],
 		baseStats: {hp: 80, atk: 100, def: 100, spa: 110, spd: 150, spe: 60},
-		abilities: {0: "Sap Sipper", 1: "Shell Armor", H: "Gooey"},
+		abilities: {0: "Misty Surge", 1: "Shell Armor", H: "Gooey"},
 		heightm: 1.7,
 		weightkg: 334.1,
 		color: "Purple",
