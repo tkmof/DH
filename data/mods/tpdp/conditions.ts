@@ -356,9 +356,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 		effectType: "Weather",
 		duration: 5,
 		durationCallback(source, effect) {
-			if (source?.hasItem(['almightygodstone', 'silentgodstone'])) {
-				return 8;
-			}
+			if (source?.hasItem(['almightygodstone', 'silentgodstone'])) return 8;
+			if (source.hasAbility('stargazer')) return 0;
 			return 5;
 		},
 		onModifySecondaries(secondaries) {
@@ -386,9 +385,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 		effectType: "Weather",
 		duration: 5,
 		durationCallback(source, effect) {
-			if (source?.hasItem(['almightygodstone', 'halogodstone'])) {
-				return 8;
-			}
+			if (source?.hasItem(['almightygodstone', 'halogodstone'])) return 8;
+			if (source.hasAbility('stargazer')) return 0;
 			return 5;
 		},
 		onModifyDamage(relayVar, source, target, move) {
@@ -421,9 +419,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 		effectType: "Weather",
 		duration: 5,
 		durationCallback(source, effect) {
-			if (source?.hasItem(['almightygodstone', 'twilightgodstone'])) {
-				return 8;
-			}
+			if (source?.hasItem(['almightygodstone', 'twilightgodstone'])) return 8;
+			if (source.hasAbility('stargazer')) return 0;
 			return 5;
 		},
 		onModifyDamage(relayVar, source, target, move) {
@@ -456,9 +453,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 		effectType: 'Weather',
 		duration: 5,
 		durationCallback(source, effect) {
-			if (source?.hasItem(['almightygodstone', 'sandgodstone'])) {
-				return 8;
-			}
+			if (source?.hasItem(['almightygodstone', 'sandgodstone'])) return 8;
+			if (source.hasAbility('stargazer')) return 0;
 			return 5;
 		},
 		onStart(field, source, effect) {
@@ -489,9 +485,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 		effectType: 'Weather',
 		duration: 5,
 		durationCallback(source, effect) {
-			if (source?.hasItem(['almightygodstone', 'sereingodstone'])) {
-				return 8;
-			}
+			if (source?.hasItem(['almightygodstone', 'sereingodstone'])) return 8;
+			if (source.hasAbility('stargazer')) return 0;
 			return 5;
 		},
 		onStart(field, source, effect) {

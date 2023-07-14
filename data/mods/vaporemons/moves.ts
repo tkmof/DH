@@ -2500,7 +2500,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				this.add('-sidestart', side, 'move: Stealth Rock');
 			},
 			onSwitchIn(pokemon) {
-				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat')) return;
+				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat') || pokemon.hasItem('dancingshoes')) return;
 				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
 				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
 			},
@@ -2534,7 +2534,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			},
 			onSwitchIn(pokemon) {
 				if (!pokemon.isGrounded()) return;
-				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat')) return;
+				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat') || pokemon.hasItem('dancingshoes')) return;
 				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
 				this.damage(damageAmounts[this.effectData.layers] * pokemon.maxhp / 24);
 			},
@@ -2571,7 +2571,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				if (pokemon.hasType('Poison')) {
 					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
 					pokemon.side.removeSideCondition('toxicspikes');
-				} else if (pokemon.hasType('Steel') || pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat')) {
+				} else if (pokemon.hasType('Steel') || pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat') || pokemon.hasItem('dancingshoes')) {
 					return;
 				} else if (this.effectData.layers >= 2) {
 					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
@@ -2602,7 +2602,7 @@ stickyweb: {
 			},
 			onSwitchIn(pokemon) {
 				if (!pokemon.isGrounded()) return;
-				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat')) return;
+				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat') || pokemon.hasItem('dancingshoes')) return;
 				this.add('-activate', pokemon, 'move: Sticky Web');
 				this.boost({spe: -1}, pokemon, this.effectData.source, this.dex.getActiveMove('stickyweb'));
 			},
@@ -2642,7 +2642,7 @@ stickyweb: {
 				this.effectData.layers++;
 			},
 			onSwitchIn(pokemon) {
-				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat')) return;
+				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('overcoat') || pokemon.hasItem('dancingshoes')) return;
 				let healAmounts = [0, 3]; // 1/8
 				this.heal(healAmounts[this.effectData.layers] * pokemon.maxhp / 24);
 			},
@@ -2953,6 +2953,165 @@ stickyweb: {
 		maxMove: {basePower: 130},
 		contestType: "Cool",
 	},
+	stormthrow: {
+		num: 480,
+		accuracy: true,
+		basePower: 70,
+		category: "Physical",
+		name: "Storm Throw",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		willCrit: true,
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Cool",
+	},
+	frostbreath: {
+		num: 524,
+		accuracy: true,
+		basePower: 70,
+		category: "Special",
+		name: "Frost Breath",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		willCrit: true,
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
+	snipeshot: {
+		num: 745,
+		accuracy: true,
+		basePower: 70,
+		category: "Special",
+		shortDesc: "Always critically hits.",
+		name: "Snipe Shot",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, pulse: 1},
+		willCrit: true,
+		tracksTarget: true,
+		secondary: null,
+		target: "normal",
+		type: "Water",
+	},
+	falsesurrender: {
+		num: 793,
+		accuracy: true,
+		basePower: 70,
+		category: "Physical",
+		shortDesc: "Always critically hits.",
+		name: "False Surrender",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		willCrit: true,
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+	},
+	healblock: {
+		num: 377,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		isNonstandard: "Past",
+		name: "Heal Block",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		volatileStatus: 'healblock',
+		condition: {
+			duration: 5,
+			durationCallback(target, source, effect) {
+				if (source?.hasAbility('persistent')) {
+					this.add('-activate', source, 'ability: Persistent', effect);
+					return 7;
+				}
+				if (effect.id === 'deathaura') {
+					return 0;
+				}
+				return 5;
+			},
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'move: Heal Block');
+			},
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (this.dex.getMove(moveSlot.id).flags['heal']) {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			onBeforeMovePriority: 6,
+			onBeforeMove(pokemon, target, move) {
+				if ((move.flags['heal'] || move.id === 'bitterblade') && !move.isZ && !move.isMax) {
+					this.add('cant', pokemon, 'move: Heal Block', move);
+					return false;
+				}
+			},
+			onResidualOrder: 17,
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'move: Heal Block');
+			},
+			onTryHeal(damage, target, source, effect) {
+				if ((effect?.id === 'zpower') || this.effectData.isZ) return damage;
+				return false;
+			},
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Psychic",
+		zMove: {boost: {spa: 2}},
+		contestType: "Clever",
+	},
+	choke: {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "Inflicts the Heal Block effect.",
+		name: "Choke",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sky Uppercut", target);
+			this.add('-anim', source, "Hex", target);
+		},
+		secondary: {
+			chance: 100,
+			onHit(target) {
+				target.addVolatile('healblock');
+			},
+		},
+		target: "normal",
+		type: "Ghost",
+		contestType: "Clever",
+	},
+	cuttingremark: {
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		defensiveCategory: "Special",
+		shortDesc: "Usually goes first. Targets the foe's Special Defense.",
+		name: "Cutting Remark",
+		pp: 25,
+		priority: 1,
+		flags: {sound: 1, protect: 1, mirror: 1, authentic: 1, slicing: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psycho Cut", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Cool",
+	},
 	walkietalkiemove: {
 		accuracy: true,
 		basePower: 0,
@@ -2987,5 +3146,831 @@ stickyweb: {
 		zMove: {basePower: 140},
 		maxMove: {basePower: 130},
 		contestType: "Cool",
+	},
+	electricterrain: {
+		inherit: true,
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onSetStatus(status, target, source, effect) {
+				if (status.id === 'slp' && target.isGrounded() && !target.isSemiInvulnerable()) {
+					if (effect.id === 'yawn' || (effect.effectType === 'Move' && !effect.secondaries)) {
+						for (const active of this.getAllActive()) {
+							if (active.hasAbility('cloudnine')) {
+								return;
+							}
+						}
+						this.add('-activate', target, 'move: Electric Terrain');
+					}
+					for (const active of this.getAllActive()) {
+						if (active.hasAbility('cloudnine')) {
+							this.add('-message', `${active.name} suppresses the effects of the terrain!`);
+							return;
+						}
+					}
+					return false;
+				}
+			},
+			onTryAddVolatile(status, target) {
+				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
+				if (status.id === 'yawn') {
+					this.add('-activate', target, 'move: Electric Terrain');
+					for (const active of this.getAllActive()) {
+						if (active.hasAbility('cloudnine')) {
+							this.add('-message', `${active.name} suppresses the effects of the terrain!`);
+							return;
+						}
+					}
+					return null;
+				}
+			},
+			onBasePowerPriority: 6,
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					for (const active of this.getAllActive()) {
+						if (active.hasAbility('cloudnine')) {
+							this.add('-message', `${active.name} suppresses the effects of the terrain!`);
+							return;
+						}
+					}
+					this.debug('electric terrain boost');
+					return this.chainModify([0x14CD, 0x1000]);
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect?.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Electric Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Electric Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd() {
+				this.add('-fieldend', 'move: Electric Terrain');
+			},
+		},
+	},
+	psychicterrain: {
+		inherit: true,
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onTryHitPriority: 4,
+			onTryHit(target, source, effect) {
+				if (effect && (effect.priority <= 0.1 || effect.target === 'self')) {
+					return;
+				}
+				if (target.isSemiInvulnerable() || target.side === source.side) return;
+				if (!target.isGrounded()) {
+					const baseMove = this.dex.getMove(effect.id);
+					if (baseMove.priority > 0) {
+						this.hint("Psychic Terrain doesn't affect Pokémon immune to Ground.");
+					}
+					return;
+				}
+				for (const active of this.getAllActive()) {
+					if (active.hasAbility('cloudnine')) {
+						this.add('-message', `${active.name} suppresses the effects of the terrain!`);
+						return;
+					}
+				}
+				this.add('-activate', target, 'move: Psychic Terrain');
+				return null;
+			},
+			onBasePowerPriority: 6,
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Psychic' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					for (const active of this.getAllActive()) {
+						if (active.hasAbility('cloudnine')) {
+							this.add('-message', `${active.name} suppresses the effects of the terrain!`);
+							return;
+						}
+					}
+					this.debug('psychic terrain boost');
+					return this.chainModify([0x14CD, 0x1000]);
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect?.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Psychic Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Psychic Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd() {
+				this.add('-fieldend', 'move: Psychic Terrain');
+			},
+		},
+	},
+	grassyterrain: {
+		inherit: true,
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onBasePowerPriority: 6,
+			onBasePower(basePower, attacker, defender, move) {
+				const weakenedMoves = ['earthquake', 'bulldoze', 'magnitude'];
+				if (weakenedMoves.includes(move.id)) {
+					for (const target of this.getAllActive()) {
+						if (target.hasAbility('cloudnine')) {
+							this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+							return;
+						}
+					}
+					this.debug('move weakened by grassy terrain');
+					return this.chainModify(0.5);
+				}
+				if (move.type === 'Grass' && attacker.isGrounded()) {
+					for (const target of this.getAllActive()) {
+						if (target.hasAbility('cloudnine')) {
+							this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+							return;
+						}
+					}
+					this.debug('grassy terrain boost');
+					return this.chainModify([0x14CD, 0x1000]);
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect?.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Grassy Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Grassy Terrain');
+				}
+			},
+			onResidualOrder: 5,
+			onResidualSubOrder: 3,
+			onResidual() {
+				for (const target of this.getAllActive()) {
+					if (target.hasAbility('cloudnine')) {
+						this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+						return;
+					}
+				}
+				this.eachEvent('Terrain');
+			},
+			onTerrain(pokemon) {
+				if (pokemon.isGrounded() && !pokemon.isSemiInvulnerable()) {
+					this.debug('Pokemon is grounded, healing through Grassy Terrain.');
+					this.heal(pokemon.baseMaxhp / 16, pokemon, pokemon);
+				}
+			},
+			onEnd() {
+				if (!this.effectData.duration) this.eachEvent('Terrain');
+				this.add('-fieldend', 'move: Grassy Terrain');
+			},
+		},
+	},
+	mistyterrain: {
+		inherit: true,
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onSetStatus(status, target, source, effect) {
+				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
+				if (effect && ((effect as Move).status || effect.id === 'yawn')) {
+					for (const active of this.getAllActive()) {
+						if (active.hasAbility('cloudnine')) {
+							return;
+						}
+					}
+					this.add('-activate', target, 'move: Misty Terrain');
+				}
+				for (const active of this.getAllActive()) {
+					if (active.hasAbility('cloudnine')) {
+						this.add('-message', `${active.name} suppresses the effects of the terrain!`);
+						return;
+					}
+				}
+				return false;
+			},
+			onTryAddVolatile(status, target, source, effect) {
+				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
+				if (status.id === 'confusion') {
+					for (const active of this.getAllActive()) {
+						if (active.hasAbility('cloudnine')) {
+							this.add('-message', `${active.name} suppresses the effects of the terrain!`);
+							return;
+						}
+					}
+					if (effect.effectType === 'Move' && !effect.secondaries) this.add('-activate', target, 'move: Misty Terrain');
+					return null;
+				}
+			},
+			onBasePowerPriority: 6,
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Dragon' && defender.isGrounded() && !defender.isSemiInvulnerable()) {
+					for (const target of this.getAllActive()) {
+						if (target.hasAbility('cloudnine')) {
+							this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+							return;
+						}
+					}
+					this.debug('misty terrain weaken');
+					return this.chainModify(0.5);
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect?.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Misty Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Misty Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd(side) {
+				this.add('-fieldend', 'Misty Terrain');
+			},
+		},
+	},
+	camouflage: {
+		inherit: true,
+		onHit(target) {
+			let newType = 'Normal';
+			if (this.field.isTerrain('electricterrain')) {
+				newType = 'Electric';
+			} else if (this.field.isTerrain('grassyterrain')) {
+				newType = 'Grass';
+			} else if (this.field.isTerrain('mistyterrain')) {
+				newType = 'Fairy';
+			} else if (this.field.isTerrain('psychicterrain')) {
+				newType = 'Psychic';
+			}
+			for (const active of this.getAllActive()) {
+				if (active.hasAbility('cloudnine')) {
+					this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+					newType = 'Normal';
+				}
+			}
+
+			if (target.getTypes().join() === newType || !target.setType(newType)) return false;
+			this.add('-start', target, 'typechange', newType);
+		},
+	},
+	expandingforce: {
+		inherit: true,
+		onBasePower(basePower, source) {
+			if (this.getAllActive().some(x => x.hasAbility('cloudnine'))) return;
+			if (this.field.isTerrain('psychicterrain') && source.isGrounded()) {
+				this.debug('terrain buff');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyMove(move, source, target) {
+			if (this.getAllActive().some(x => x.hasAbility('cloudnine'))) return;
+			if (this.field.isTerrain('psychicterrain') && source.isGrounded()) {
+				move.target = 'allAdjacentFoes';
+			}
+		},
+	},
+	floralhealing: {
+		inherit: true,
+		onHit(target, source) {
+			let success = false;
+			if (this.field.isTerrain('grassyterrain')) {
+				if (this.getAllActive().some(x => x.hasAbility('cloudnine'))) {
+					this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+					return success;
+				}
+				success = !!this.heal(this.modify(target.baseMaxhp, 0.667));
+			} else {
+				success = !!this.heal(Math.ceil(target.baseMaxhp * 0.5));
+			}
+			if (success && target.side !== source.side) {
+				target.staleness = 'external';
+			}
+			return success;
+		},
+	},
+	grassyglide: {
+		inherit: true,
+		onModifyPriority(priority, source, target, move) {
+			if (this.getAllActive().some(x => x.hasAbility('cloudnine'))) return priority;
+			if (this.field.isTerrain('grassyterrain') && source.isGrounded()) {
+				return priority + 1;
+			}
+		},
+	},
+	mistyexplosion: {
+		inherit: true,
+		onBasePower(basePower, source) {
+			if (this.getAllActive().some(x => x.hasAbility('cloudnine'))) return;
+			if (this.field.isTerrain('mistyterrain') && source.isGrounded()) {
+				this.debug('misty terrain boost');
+				return this.chainModify(1.5);
+			}
+		},
+	},
+	naturepower: {
+		inherit: true,
+		onTryHit(target, pokemon) {
+			let move = 'triattack';
+			if (this.field.isTerrain('electricterrain')) {
+				move = 'thunderbolt';
+			} else if (this.field.isTerrain('grassyterrain')) {
+				move = 'energyball';
+			} else if (this.field.isTerrain('mistyterrain')) {
+				move = 'moonblast';
+			} else if (this.field.isTerrain('psychicterrain')) {
+				move = 'psychic';
+			}
+			for (const active of this.getAllActive()) {
+				if (active.hasAbility('cloudnine')) {
+					this.add('-message', `${active.name} suppresses the effects of the terrain!`);
+					move = 'triattack';
+				}
+			}
+			this.useMove(move, pokemon, target);
+			return null;
+		},
+	},
+	risingvoltage: {
+		inherit: true,
+		onBasePower(basePower, pokemon, target) {
+			if (this.getAllActive().some(x => x.hasAbility('cloudnine'))) return;
+			if (this.field.isTerrain('electricterrain') && target.isGrounded()) {
+				this.debug('terrain buff');
+				return this.chainModify(2);
+			}
+		},
+	},
+	secretpower: {
+		inherit: true,
+		onModifyMove(move, pokemon) {
+			if (this.field.isTerrain('')) return;
+			for (const target of this.getAllActive()) {
+				if (target.hasAbility('cloudnine')) {
+					this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+					return;
+				}
+			}
+			move.secondaries = [];
+			if (this.field.isTerrain('electricterrain')) {
+				move.secondaries.push({
+					chance: 30,
+					status: 'par',
+				});
+			} else if (this.field.isTerrain('grassyterrain')) {
+				move.secondaries.push({
+					chance: 30,
+					status: 'slp',
+				});
+			} else if (this.field.isTerrain('mistyterrain')) {
+				move.secondaries.push({
+					chance: 30,
+					boosts: {
+						spa: -1,
+					},
+				});
+			} else if (this.field.isTerrain('psychicterrain')) {
+				move.secondaries.push({
+					chance: 30,
+					boosts: {
+						spe: -1,
+					},
+				});
+			}
+		},
+	},
+	steelroller: {
+		inherit: true,
+		onTryHit() {
+			if (this.field.isTerrain('')) return false;
+			for (const target of this.getAllActive()) {
+				if (target.hasAbility('cloudnine')) {
+					this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+					return false;
+				}
+			}
+		},
+		onHit() {
+			if (this.field.isTerrain('grassyterrain') &&
+				this.getAllActive().some(x => x.hasAbility('arenarock'))) return;
+			this.field.clearTerrain();
+		},
+	},
+	terrainpulse: {
+		inherit: true,
+		onModifyType(move, pokemon) {
+			if (!pokemon.isGrounded()) return;
+			if (this.getAllActive().some(x => x.hasAbility('cloudnine'))) return;
+			switch (this.field.terrain) {
+			case 'electricterrain':
+				move.type = 'Electric';
+				break;
+			case 'grassyterrain':
+				move.type = 'Grass';
+				break;
+			case 'mistyterrain':
+				move.type = 'Fairy';
+				break;
+			case 'psychicterrain':
+				move.type = 'Psychic';
+				break;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			if (this.field.terrain && pokemon.isGrounded()) {
+				for (const target of this.getAllActive()) {
+					if (target.hasAbility('cloudnine')) {
+						this.add('-message', `${target.name} suppresses the effects of the terrain!`);
+						return;
+					}
+				}
+				move.basePower *= 2;
+			}
+		},
+	},
+
+// air freshener stuff, this better work
+	bleakwindstorm: {
+		num: 846,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		shortDesc: "30% chance to lower the foe(s) Speed by 1.",
+		name: "Bleakwind Storm",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+		secondary: {
+			chance: 30,
+			boosts: {
+				spe: -1,
+			},
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hurricane", target);
+		},
+		target: "allAdjacentFoes",
+		type: "Flying",
+	},
+	sandsearstorm: {
+		num: 848,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		shortDesc: "20% chance to burn foe(s).",
+		name: "Sandsear Storm",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+		secondary: {
+			chance: 20,
+			status: 'brn',
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scorching Sands", target);
+		},
+		target: "allAdjacentFoes",
+		type: "Ground",
+	},
+	springtidestorm: {
+		num: 831,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		shortDesc: "30% chance to lower the foe(s) Attack by 1.",
+		name: "Springtide Storm",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+		secondary: {
+			chance: 30,
+			boosts: {
+				atk: -1,
+			},
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fairy Wind", target);
+		},
+		target: "allAdjacentFoes",
+		type: "Fairy",
+	},
+	wildboltstorm: {
+		num: 847,
+		accuracy: 80,
+		basePower: 100,
+		category: "Special",
+		shortDesc: "20% chance to paralyze foe(s).",
+		name: "Wildbolt Storm",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, wind: 1},
+		onModifyMove(move, target) {
+			if (['raindance', 'primordialsea'].includes(target?.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+		secondary: {
+			chance: 20,
+			status: 'par',
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunder", target);
+		},
+		target: "allAdjacentFoes",
+		type: "Electric",
+	},
+	aircutter: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	blizzard: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	fairywind: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	gust: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	heatwave: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	hurricane: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	icywind: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	petalblizzard: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	sandstorm: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	tailwind: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	twister: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	whirlwind: {
+		inherit: true,
+		self: {
+			onHit(pokemon, source, move) {
+				if (source.hasItem('airfreshener')) {
+					this.add('-activate', source, 'move: Aromatherapy');
+					for (const ally of source.side.pokemon) {
+						if (ally !== source && (ally.volatiles['substitute'] && !move.infiltrates)) {
+							continue;
+						}
+						ally.cureStatus();
+					}
+				}
+			},
+		},
+	},
+	sandspitattack: {
+		accuracy: true,
+		basePower: 0,
+		category: "Physical",
+		name: "Sand Spit Attack",
+		pp: 40,
+		priority: 0,
+		flags: {},
+		volatileStatus: 'partiallytrapped',
+		ignoreImmunity: true,
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sand Tomb", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		contestType: "Clever",
 	},
 };

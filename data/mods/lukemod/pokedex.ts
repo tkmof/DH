@@ -169,7 +169,15 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		height: 100,
 		weightkg: 100,
 	},
-
+	croakast: {
+		num: 1014,
+		name: "Croakast",
+		types: ["Poison"],
+		baseStats: {hp: 99, atk: 110, def: 75, spa: 88, spd: 80, spe: 77},
+		abilities: {0: "Levitate"},
+		weightkg: 5,
+	},
+	
 	//boe
 	aureatefin: {
 		num: -7,
@@ -212,6 +220,16 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		abilities: {0: "Flame Body", H: "Gale Wings"},
 	},
 	
+	//ff
+	scorpixie: {
+		num: -1,
+		name: "Scorpixie",
+		types: ["Bug", "Fairy"],
+		baseStats: {hp: 67, atk: 83, def: 146, spa: 104, spd: 77, spe: 81},
+		abilities: {0: "Tablets of Ruin", H: "Swarm"},
+		weightkg: 65,
+	},
+	
 	//fesv
 	rotoghold: {
 		// fusion: ['Gholdengo', 'Rotom'],
@@ -248,6 +266,24 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		requiredAbility: "Faulty Photon",
 		battleOnly: "Iron Mimic",
 		tags: ["Paradox"],
+	},
+	tinkovish: {
+ // fusion: ['Tinkaton', 'Arctovish'],
+		num: 41,
+		name: "Tinkovish",
+		types: ["Water", "Steel"],
+		baseStats: {hp: 90, atk: 85, def: 90, spa: 80, spd: 100, spe: 75}, 
+		abilities: {0: "Slushie"},
+		weightkg: 143.9,
+	},
+	zoinkazenta: {
+ // fusion: ['Oinkologne', 'Zamazenta'],
+		num: 46,
+		name: "Zoinkazenta",
+		types: ["Fighting", "Normal"],
+		baseStats: {hp: 101, atk: 120, def: 95, spa: 69, spd: 97, spe: 108}, 
+		abilities: {0: "Pillage"},
+		weightkg: 165,
 	},
 	
 	//gen x
@@ -405,10 +441,39 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	},
     
 	//prevos
-	
+	snipsquire: {
+		num: -126,
+		name: "Snipsquire",
+		types: ["Bug"],
+		baseStats: {hp: 40, atk: 100, def: 65, spa: 25, spd: 45, spe: 60},
+		abilities: {0: "Klutz", 1: "Mold Breaker", H: "Moxie"},
+		weightkg: 55,
+		evos: ["Pinsir"],
+	},
 	
 	//tt
-	
+	dondozo: {
+		inherit: true,
+		types: ["Dragon", "Water", "Ground"],
+		baseStats: {hp: 130, atk: 100, def: 115, spa: 65, spd: 70, spe: 55},
+		abilities: {0: "Oblivious", 1: "Early Bird", H: "Marvel Scale"},
+	},
+	grafaiai: {
+		inherit: true,
+		types: ["Poison", "Dark", "Flying"],
+		baseStats: {hp: 83, atk: 93, def: 75, spa: 85, spd: 92, spe: 119},
+	},
+	ironjugulis: {
+		inherit: true,
+		types: ["Flying", "Dragon", "Dark"],
+		baseStats: {hp: 104, atk: 80, def: 86, spa: 112, spd: 80, spe: 108},
+		abilities: {0: "Quark Drive", H: "Multiscale"},
+	},
 	
 	//vape
+	crabominable: {
+		inherit: true,
+		types: ["Fighting", "Water"],
+		abilities: {0: "Fur Coat", 1: "Iron Fist", H: "Anger Point"},
+	},
 };

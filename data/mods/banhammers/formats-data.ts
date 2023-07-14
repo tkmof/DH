@@ -1216,7 +1216,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	articuno: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 		natDexTier: "RU",
 	},
@@ -1236,7 +1236,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "UU",
 	},
 	moltres: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 		natDexTier: "UU",
 	},
@@ -5483,7 +5483,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "RU",
 	},
 	dondozo: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "(DUU)",
 		natDexTier: "UU",
 	},

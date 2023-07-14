@@ -59,5 +59,30 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 		delete this.modData('Learnsets', 'darmanitanzen').learnset.megakick;
 		delete this.modData('Learnsets', 'darmanitanzen').learnset.megapunch;
 		
+		//grafaiai
+		this.modData("Learnsets", "grafaiai").learnset.suckerpunch = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.nightslash = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.entrainment = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.beatup = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.toxicspikes = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.aerialace = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.hurricane = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.defog = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.tailwind = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.gust = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.darkpulse = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.airslash = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.bounce = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.skyattack = ["9L1"];
+		
+		//iron jugulis
+		this.modData("Learnsets", "grafaiai").learnset.dracometeor = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.dragonpulse = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.dragondance = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.roost = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.toxic = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.defog = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.nastyplot = ["9L1"];
+		this.modData("Learnsets", "grafaiai").learnset.dragontail = ["9L1"];
 	},
 };

@@ -276,4 +276,37 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "When this Pokemon uses a STAB attack, it heals 1/8 of the damage dealt.",
 		rating: 4,
 	},
+	northwind: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Flying') {
+				this.debug('North Wind boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Flying') {
+				this.debug('North Wind boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Fighting' || move.type === 'Grass' || move.type === 'Bug') {
+				this.debug('North Wind weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Fighting' || move.type === 'Grass' || move.type === 'Bug') {
+				this.debug('North Wind weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		name: "North Wind",
+		shortDesc: "User gains STAB on Flying moves and also gains Flying-type resistances.",
+		rating: 4.5,
+	},
 };

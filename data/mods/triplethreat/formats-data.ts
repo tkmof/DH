@@ -23,4 +23,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "TT",
 		doublesTier: "DTT",
 	},
+	grafaiai: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
+	dhelmise: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
+	ironjugulis: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
 };

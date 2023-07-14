@@ -1,550 +1,201 @@
 export const FormatsData: {[k: string]: SpeciesFormatsData} = {
-	decidueyehermit: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	decidueyeautumn: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	typhlosionexplosive: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	typhlosionwarlock: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	samurottfoamy: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	samurottrogue: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	oricorio: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	oricoriocheerleader: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	oricoriopau: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	horrorcorio: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	pikachukanto: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	pikachuhoenn: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	pikachusinnoh: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	pikachuunova: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	pikachutactic: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	pikachualola: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	pikachuworld: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	ribombee: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	ribombeetotem: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	araquanid: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	araquanidtotem: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	vikavolt: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	vikavolttotem: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
+	//alt ex
 	urshifu: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	urshifuerosion: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	calyrexmythic: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	calyrexglacier: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	calyrexmidnight: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	kommoo: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	rockmoo: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	salazzle: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	salazzleruler: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	lurantis: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	lurantio: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	mrmime: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	mrmimeprance: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	stunfisk: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	stunfisktrap: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	necrozma: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	necrozmalionheart: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	necrozmabatwing: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	necrozmadragon: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	braviarypatriot: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	braviaryhisui: {
-		isNonstandard: null,
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	lilligantbard: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	mistlegant: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	electrodescrewball: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	electroderingo: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	persianbandit: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	persianomen: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	meowsticuntethered: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	meowstictwotales: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	indeedeedevil: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	indeedeeangel: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	polteageist: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	polteageistantique: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	toxtricityrockstar: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	toxtricitylowkey: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	articunomistral: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	articunotsunami: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	zapdos: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	charpados: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	moltres: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	bennutres: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	marowak: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	alolawak: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	marowakalolatotem: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	enamorus: {
-		isNonstandard: null,
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	violentine: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	dialga: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	archronos: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	palkia: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	palkiaorigin: {
-		isNonstandard: null,
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	basculinhotheaded: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	basculectric: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	basculinskyship: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	basculegion: {
 		isNonstandard: null,
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	basculagoon: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	magearna: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	magearnaprototype: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	zarude: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	zarudehero: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	qwilfish: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	aquattack: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	zoroarkjorogumo: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	zoroarkhoarfrost: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	goodratsunade: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	goodrasymbiotic: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	mausholdraider: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	mausholdextended: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	oinkologne: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	oinkolognef: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
 	dudunsparce: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+		tier: "EELAAO OU",
 	},
-	dududunsparce: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//blindsided
+	ferroluna: {
+		tier: "EELAAO OU",
 	},
-	greninja: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	croakoast: {
+		tier: "EELAAO OU",
 	},
-	greninjaronin: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//boe
+	aureatefin: {
+		tier: "EELAAO OU",
 	},
-	imperil: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	tripoddrill: {
+		tier: "EELAAO OU",
 	},
-	hoopaifrit: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//csm2
+	virizion: {
+		tier: "EELAAO OU",
 	},
-	kyurem: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	talonflame: {
+		tier: "EELAAO OU",
 	},
-	kyuremblack: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//ff
+	scorpixie: {
+		tier: "EELAAO OU",
 	},
-	kyuremwhite: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//fesv
+	rotoghold: {
+		tier: "EELAAO OU",
 	},
-	xerneasdormant: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	ironmimic: {
+		tier: "EELAAO OU",
 	},
-	xerneasjustice: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	tinkovish: {
+		tier: "EELAAO OU",
 	},
-	arcaninewaterballoon: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	zoinkazenta: {
+		tier: "EELAAO OU",
 	},
-	arcaninenoble: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//gen x
+	gophragar: {
+		tier: "EELAAO OU",
 	},
-	avaluggprism: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	gopharm: {
+		tier: "EELAAO LC",
 	},
-	avaluggplated: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//megas revisited
+	audino: {
+		tier: "EELAAO OU",
 	},
-	squawkabilly: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	audinomega: {
+		tier: "EELAAO OU",
 	},
-	squawkabiluck: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	houndoom: {
+		tier: "EELAAO OU",
 	},
-	squawkalone: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	houndoommega: {
+		tier: "EELAAO OU",
 	},
-	squawkabillyyellow: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	pinsir: {
+		tier: "EELAAO OU",
 	},
-	squawkabilly: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	pinsirmega: {
+		tier: "EELAAO OU",
 	},
-	wishiwashilonesome: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	sceptile: {
+		tier: "EELAAO OU",
 	},
-	winardin: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	sceptilemega: {
+		tier: "EELAAO OU",
 	},
-	palafin: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	gallade: {
+		tier: "EELAAO OU",
 	},
-	hercuphin: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	gallademega: {
+		tier: "EELAAO OU",
 	},
-	gumshoos: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	aggron: {
+		tier: "EELAAO OU",
 	},
-	gumshoostotem: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	aggronmega: {
+		tier: "EELAAO OU",
 	},
-	togedemaru: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	blaziken: {
+		tier: "EELAAO OU",
 	},
-	totemaru: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	blazikenmega: {
+		tier: "EELAAO OU",
 	},
-	tauros: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	mewtwo: {
+		tier: "EELAAO Uber",
 	},
-	bravatoro: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	mewtwomegay: {
+		tier: "EELAAO Uber",
 	},
-	taurossteam: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//metamons
+	camerupt: {
+		tier: "EELAAO OU",
 	},
-	taurosazul: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	mesprit: {
+		tier: "EELAAO OU",
 	},
-	raichu: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//poketypos
+	arcamine: {
+		tier: "EELAAO OU",
 	},
-	raichusoft: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	eelix: {
+		tier: "EELAAO OU",
 	},
-	rapidash: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	crowhat: {
+		tier: "EELAAO OU",
 	},
-	rapidashgalar: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	kazuumarill: {
+		tier: "EELAAO OU",
 	},
-	golemberserker: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	toedscruel: {
+		tier: "EELAAO OU",
 	},
-	golemalola: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	wugtrio: {
+		tier: "EELAAO OU",
 	},
-	cherrim: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//prevos
+	snipsquire: {
+		tier: "EELAAO LC",
 	},
-	cherrine: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	
+	//tt
+	dondozo: {
+		tier: "EELAAO OU",
 	},
-	minior: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	grafaiai: {
+		tier: "TT",
+		doublesTier: "DTT",
 	},
-	miniormeteor: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+	ironjugulis: {
+		tier: "TT",
+		doublesTier: "DTT",
 	},
-	eevee: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
-	},
-	eeveestarter: {
-		tier: "Alternatium EX",
-		doublesTier: "Alternatium EX",
+
+	//vape
+	crabominable: {
+		tier: "EELAAO OU",
 	},
 };

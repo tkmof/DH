@@ -393,6 +393,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'healreplacement'},
 		contestType: "Cool",
    },
+
+// modified moves
+	doomdesire: {
+		inherit: true,
+		basePower: 120,
+	},
+
 // Others
 	auroraveil: {
 		num: 694,
