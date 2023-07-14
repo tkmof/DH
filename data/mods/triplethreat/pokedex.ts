@@ -43,4 +43,19 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		requiredItem: null,
 		changesFrom: null,
 	},
+	grafaiai: {
+		inherit: true,
+		types: ["Poison", "Dark", "Flying"],
+		baseStats: {hp: 83, atk: 93, def: 75, spa: 85, spd: 92, spe: 119},
+	},
+	dhelmise: {
+		inherit: true,
+		types: ["Ghost", "Grass", "Water"],
+	},
+	ironjugulis: {
+		inherit: true,
+		types: ["Flying", "Dragon", "Dark"],
+		baseStats: {hp: 104, atk: 80, def: 86, spa: 112, spd: 80, spe: 108},
+		abilities: {0: "Quark Drive", H: "Multiscale"},
+	},
 };

@@ -80,6 +80,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	ironmimic: {
 		tier: "EELAAO OU",
 	},
+	tinkovish: {
+		tier: "EELAAO OU",
+	},
+	zoinkazenta: {
+		tier: "EELAAO OU",
+	},
 	
 	//gen x
 	gophragar: {
@@ -176,7 +182,15 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	dondozo: {
 		tier: "EELAAO OU",
 	},
-	
+	grafaiai: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
+	ironjugulis: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
+
 	//vape
 	crabominable: {
 		tier: "EELAAO OU",
