@@ -332,8 +332,41 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			if (move.refrigerateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
 		name: "Misty Mountain",
+		shortDesc: "This Pokemon's Rock-type moves become Ice-type and have 1.2x power.",
 		rating: 4,
 		num: -17,
+	},
+	coldwind: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Flying' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Ice';
+				move.refrigerateBoosted = true;
+			}
+		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.refrigerateBoosted) return this.chainModify([0x1333, 0x1000]);
+		},
+		name: "Cold Wind",
+		shortDesc: "This Pokemon's Flying-type moves become Ice-type and have 1.2x power.",
+		rating: 4,
+		num: -1757,
+	},
+	maddancer: {
+		shortDesc: "This Pokemon's Dance move boost its Speed by 1 stage upon use.",
+		onBasePowerPriority: 19,
+		onSourceHit(target, source, move) {
+			if (!move || !target) return;
+			if (move.flags['dancer']) {
+				this.boost({spe: 1}, source);
+			}
+		},
+		name: "Mad Dancer",
+		num: -1888,
 	},
 	toymaker: {
 		name: "Toymaker",
@@ -906,8 +939,11 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: -1047,
 	},
 	icebreaker: {
-		desc: "This Pokemon's Speed is x1.5 on Hail, and this Pokemon's Atk and SpA is x1.5 on Rain.",
-		shortDesc: "x1.5 Speed on Hail; x1.5 Atk and SpA on Rain.",
+		desc: "This Pokemon's Speed is x1.5 on Hail, and this Pokemon's Atk and SpA is x1.5 on Rain. This Pokemon is immune to Hail.",
+		shortDesc: "x1.5 Speed on Hail; x1.5 Atk and SpA on Rain. Hail immunity.",
+		onImmunity(type, pokemon) {
+			if (type === 'hail') return false;
+		},
 		onModifySpe(spe, pokemon) {
 			if (this.field.isWeather('hail')) {
 				return this.chainModify(1.5);
@@ -992,6 +1028,21 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		name: "Explosive",
 		rating: 4,
 		num: -64,
+	},
+	unimpressed: {
+		shortDesc: "Moves used against this Pokemon don't receive STAB.",
+		onSourceModifyDamage(damage, source, target, move) {
+			if (source.hasType(move.type) && (!source.hasAbility('adaptability'))) {
+				this.debug('Unimpressed weaken');
+				return this.chainModify(0.67);
+			}
+			if (source.hasType(move.type) && (source.hasAbility('adaptability'))) {
+				this.debug('Unimpressed weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Unimpressed",
+		rating: 3.5,
 	},
 	accumulate: {
 		desc: "At the end of each turn, this Pokemon gets 1 Stockpile.",
@@ -1244,11 +1295,16 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	invincible: {
 		onModifyMovePriority: -5,
 		onSetStatus(status, target, source, effect) {
-			if (status) return;
-			if (effect && ((effect as Move).status || effect.id === 'yawn')) {
-				this.add('-activate', target, '[from] ability: Invincible');
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Invincible');
 			}
 			return false;
+		},
+		onTryAddVolatile(status, target) {
+			if (status.id === 'yawn') {
+				this.add('-immune', target, '[from] ability: Invincible');
+				return null;
+			}
 		},
 		onBoost(boost, target, source, effect) {
 			if (effect.id === 'intimidate') {
@@ -1483,7 +1539,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: -1152,
 	},
 	oldschool: {
-		shortDesc: "This Pokemon's high crit rate moves always crit. This Pokemon's special moves use SpD in calculation.",
+		shortDesc: "This Pokemon's high crit rate moves always crit, and deal damages x2 instead of x1.5. This Pokemon's special moves use SpD in calculation.",
 		name: "Old School",
 		onModifyMove(move, attacker) {
 			if (move.category === 'Special') {
@@ -1492,6 +1548,12 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		onModifyCritRatio(critRatio, source, target) {
 			if (critRatio >= 2) return 5;
+		},
+		onModifyDamage(damage, source, target, move) {
+			if (target.getMoveHitData(move).crit) {
+				this.debug('Old School boost');
+				return this.chainModify(2/1.5);
+			}
 		},
 		rating: 3.5,
 		num: -2148,
@@ -1779,8 +1841,8 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: 60,
 	},
 	normalize: {
-		desc: "This Pokemon's moves have the Normal type, and can hit Ghost-type targets.",
-		shortDesc: "Moves have Normal type; bypass Ghost immunity.",
+		desc: "This Pokemon's moves have the Normal type, and BP x1.5",
+		shortDesc: "Moves have Normal type; BP x1.5",
 		onModifyTypePriority: 1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
@@ -1794,12 +1856,6 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		onBasePowerPriority: 23,
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.normalizeBoosted) return this.chainModify(1.5);
-		},
-		onModifyMove(move) {
-			if (!move.ignoreImmunity) move.ignoreImmunity = {};
-			if (move.ignoreImmunity !== true) {
-				move.ignoreImmunity['Normal'] = true;
-			}
 		},
 		name: "Normalize",
 		rating: 0,

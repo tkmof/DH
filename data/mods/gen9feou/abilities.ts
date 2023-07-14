@@ -2047,6 +2047,185 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Glacial Focus",
 		rating: 3,
 	},
+	slushie: {
+	  shortDesc: "Mold Breaker + Slush Rush",
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Slushie');
+			this.add('-message', `${pokemon.name} is drinking a slushie!`);
+		},
+		onModifyMove(move) {
+			move.ignoreAbility = true;
+		},
+		onModifySpe(spe, pokemon) {
+			if (['hail', 'snow'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(2);
+			}
+		},
+		name: "Slushie",
+		rating: 3,
+	},
+	sandwrath: {
+	  shortDesc: "Sand Stream + Sand Force",
+		onStart(source) {
+			this.field.setWeather('sandstorm');
+		},
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (this.field.isWeather('sandstorm')) {
+				if (move.type === 'Rock' || move.type === 'Ground' || move.type === 'Steel') {
+					this.debug('Sand Wrath boost');
+					return this.chainModify([0x14CD, 0x1000]);
+				}
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'sandstorm') return false;
+		},
+		name: "Sand Wrath",
+		rating: 3,
+	},
+	pondweed: {
+	  shortDesc: "Shell Armor + Torrent",
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Pondweed boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Pondweed boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onCriticalHit: false,
+		name: "Pondweed",
+		rating: 3,
+	},
+	wetskin: {
+	  shortDesc: "Hydration + Torrent",
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Wet Skin boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Wet Skin boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onResidualOrder: 5,
+		onResidualSubOrder: 4,
+		onResidual(pokemon) {
+			if (pokemon.status && ['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+				this.debug('wetskin');
+				this.add('-activate', pokemon, 'ability: Wet Skin');
+				pokemon.cureStatus();
+			}
+		},
+		name: "Wet Skin",
+		rating: 3,
+	},
+	friskexchange: {
+	  shortDesc: "Frisk + Thermal Exchange",
+		onStart(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				if (target.item) {
+					this.add('-item', target, target.getItem().name, '[from] ability: Frisk Exchange', '[of] ' + pokemon, '[identify]');
+				}
+			}
+		},
+		onDamagingHit(damage, target, source, move) {
+			if (move.type === 'Fire') {
+				this.boost({atk: 1});
+			}
+		},
+		onUpdate(pokemon) {
+			if (pokemon.status === 'brn') {
+				this.add('-activate', pokemon, 'ability: Frisk Exchange');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Frisk Exchange');
+			}
+			return false;
+		},
+		name: "Frisk Exchange",
+		rating: 3,
+	},
+	freeflight: {
+	  shortDesc: "Libero + Levitate",
+		onPrepareHit(source, target, move) {
+			if (this.effectData.libero) return;
+			if (move.hasBounced || move.isFutureMove || move.sourceEffect === 'snatch') return;
+			const type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+				this.effectData.libero = true;
+				this.add('-start', source, 'typechange', type, '[from] ability: Free Flight');
+			}
+		},
+		onSwitchIn() {
+			delete this.effectData.libero;
+		},
+		name: "Free Flight",
+		rating: 3,
+	},
+	pillage: {
+		id: "pillage",
+		name: "Pillage",
+		shortDesc: "On switch-in, swaps ability with the opponent.",
+		onSwitchIn(pokemon) {
+			this.effectData.switchingIn = true;
+		},
+		onStart(pokemon) {
+			if ((pokemon.side.foe.active.some(
+				foeActive => foeActive && this.isAdjacent(pokemon, foeActive) && foeActive.ability === 'noability'
+			))
+			|| pokemon.species.id !== 'zoinkazenta') {
+				this.effectData.gaveUp = true;
+			}
+		},
+		onUpdate(pokemon) {
+			if (!pokemon.isStarted || this.effectData.gaveUp) return;
+			if (!this.effectData.switchingIn) return;
+			const possibleTargets = pokemon.side.foe.active.filter(foeActive => foeActive && this.isAdjacent(pokemon, foeActive));
+			while (possibleTargets.length) {
+				let rand = 0;
+				if (possibleTargets.length > 1) rand = this.random(possibleTargets.length);
+				const target = possibleTargets[rand];
+				const ability = target.getAbility();
+				const additionalBannedAbilities = [
+					// Zen Mode included here for compatability with Gen 5-6
+					'noability', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'pillage',
+					'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode',
+				];
+				if (target.getAbility().isPermanent || additionalBannedAbilities.includes(target.ability)) {
+					possibleTargets.splice(rand, 1);
+					continue;
+				}
+				target.setAbility('pillage', pokemon);
+				pokemon.setAbility(ability);
+				
+				this.add('-activate', pokemon, 'ability: Pillage');
+				this.add('-activate', pokemon, 'Skill Swap', '', '', '[of] ' + target);
+				this.add('-activate', pokemon, 'ability: ' + ability.name);
+				this.add('-activate', target, 'ability: Pillage');
+				return;
+			}
+		},
+	},
+
 	
 	//Vanilla abilities
 	naturalcure: {

@@ -239,6 +239,48 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		gen: 8,
 		desc: "If held by a Pangoro, this item allows it to Mega Evolve in battle.",
 	},
+	jumpluffite: {
+		name: "Jumpluffite",
+		spritenum: 578,
+		megaStone: "Jumpluff-Mega",
+		megaEvolves: "Jumpluff",
+		itemUser: ["Jumpluff"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1018,
+		gen: 8,
+		desc: "If held by a Jumpluff, this item allows it to Mega Evolve in battle.",
+	},
+	rhyperiorite: {
+		name: "Rhyperiorite",
+		spritenum: 578,
+		megaStone: "Rhyperior-Mega",
+		megaEvolves: "Rhyperior",
+		itemUser: ["Rhyperior"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1019,
+		gen: 8,
+		desc: "If held by a Rhyperior, this item allows it to Mega Evolve in battle.",
+	},
+	florgesite: {
+		name: "Florgesite",
+		spritenum: 578,
+		megaStone: "Florges-Mega",
+		megaEvolves: "Florges",
+		itemUser: ["Florges"],
+		onTakeItem(item, source) {
+			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+			return true;
+		},
+		num: -1020,
+		gen: 8,
+		desc: "If held by a Florges, this item allows it to Mega Evolve in battle.",
+	},
 
 	// crossover Megas
 

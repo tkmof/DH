@@ -3833,7 +3833,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "Uber",
 	},
 	landorus: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DOU",
 		natDexTier: "Uber",
 	},
@@ -3931,7 +3931,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "OU",
 	},
 	greninjaash: {
-		isNonstandard: "Past",
+		isNonstandard: null,
 		tier: "Illegal",
 	},
 	bunnelby: {
