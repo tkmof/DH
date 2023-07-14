@@ -169,7 +169,15 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		height: 100,
 		weightkg: 100,
 	},
-
+	croakast: {
+		num: 1014,
+		name: "Croakast",
+		types: ["Poison"],
+		baseStats: {hp: 99, atk: 110, def: 75, spa: 88, spd: 80, spe: 77},
+		abilities: {0: "Levitate"},
+		weightkg: 5,
+	},
+	
 	//boe
 	aureatefin: {
 		num: -7,

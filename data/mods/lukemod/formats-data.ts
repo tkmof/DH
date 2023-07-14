@@ -51,6 +51,9 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	ferroluna: {
 		tier: "EELAAO OU",
 	},
+	croakoast: {
+		tier: "EELAAO OU",
+	},
 	
 	//boe
 	aureatefin: {
