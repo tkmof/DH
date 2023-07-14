@@ -400,21 +400,25 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 	spore: {
 		inherit: true,
 		pp: 10,
+		desc: "Puts the opponent to sleep for 1 turn",
 	},
 	sleeppowder: {
 		inherit: true,
 		pp: 15,
 		accuracy: 90,
+		desc: "Puts the opponent to sleep for 1 turn",
 	},
 	hypnosis: {
 		inherit: true,
 		pp: 20,
 		accuracy: 85,
+		desc: "Puts the opponent to sleep for 1 turn",
 	},
 	grasswhistle: {
 		inherit: true,
 		pp: 25,
 		accuracy: 80,
+		desc: "Puts the opponent to sleep for 1 turn",
 	},
 	// lodestone: {
 		// num: 393,
@@ -592,7 +596,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 	},
 	crystalcage: {
 		name: "Crystal Cage",
-		accuracy: 80,
+		accuracy: 85,
 		basePower: 85,
 		category: "Special",
 		pp: 10,
