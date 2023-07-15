@@ -464,6 +464,16 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+	  name: "[Gen 8] OU Theorymons",
+     desc: '<b>[Gen 8] OU Theorymons</b>: Fixing niche and unseen Pokemon in the SV OU Metagame with small buffs.',
+	  threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/sv-ou-theorymon.3723892/">OU Theorymon on Smogon Forums</a>`,
+		],
+     mod: 'outheorymons',
+	  ruleset: ['Standard', 'Data Mod'],
+	  banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+	},
+	{
 		name: "[Gen 8] Poketypos",
 		desc: `<b>[Gen 8] Poketypos</b>: A NatDex metagame that alters the names of Pokemon and change said Pokemon to fit their new name.`,
 		threads: [
@@ -1216,20 +1226,6 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 8] OU Theorymon",
-		desc: [
-		   "<b>OU Theorymon</b>: A Sword and Shield OU metagame where low-ranked Pokemon are improved to become more viable.",
-		],
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/ss-ou-theorymon.3695574/">OU Theorymon on Smogon Forums</a>`,
-		],
-		
-		mod: 'outheorymons',
-      ruleset: ['Standard', 'Dynamax Clause', 'Data Mod'],
-		banlist: ['Uber', 'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass'], 
-	},
-
-	{
 		name: "[Gen 8] Paleomons",
 		desc: [
 			"<b>Paleomons</b>: A Sword and Shield metagame that aims to create a micrometa full of ancient Pokemon."
@@ -1732,13 +1728,6 @@ export const Formats: FormatList = [
 	},
 	{
 		
-	  name: "[Gen 8] Gen 9 Dream World Theorymons",
-     desc: '<b>[Gen 8] Gen 9 Dream World Theorymons</b>: A testing ground for the Gen 9 OU Theorymons metagame.',
-     mod: 'gen9outheorymons',
-	  ruleset: ['Standard', 'Data Mod'],
-	  banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Baton Pass', 'Last Respects'],
-	},
-	{
 	name: "[Gen 1] JohtoMons",
 	desc: '<b>[Gen 1] JohtoMons</b>: Adding the Johto mons to RBY',
 	threads: [
