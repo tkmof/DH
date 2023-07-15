@@ -1,7 +1,7 @@
 export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 	teambuilderConfig: {
 		excludeStandardTiers: true,
-		customTiers: ['HOME', 'DreamWorld', 'OU', 'UU', 'RU', 'NU', 'PU', '(PU)'],
+		customTiers: ['OUT', 'OU', 'UU', 'RU', 'NU', 'PU', '(PU)'],
 	},
 // Terastal (taken from SV Speculative)
 
