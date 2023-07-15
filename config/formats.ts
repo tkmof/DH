@@ -464,8 +464,8 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-	  name: "[Gen 8] OU Theorymons",
-     desc: '<b>[Gen 8] OU Theorymons</b>: Fixing niche and unseen Pokemon in the SV OU Metagame with small buffs.',
+	  name: "[Gen 9] OU Theorymons",
+     desc: '<b>[Gen 9] OU Theorymons</b>: Fixing niche and unseen Pokemon in the SV OU Metagame with small buffs.',
 	  threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/sv-ou-theorymon.3723892/">OU Theorymon on Smogon Forums</a>`,
 		],
@@ -590,8 +590,13 @@ export const Formats: FormatList = [
 		threads: [
 			'&bullet; <a href="https://www.smogon.com/forums/threads/return-to-orre-tercera-open-for-submissions.3722389/">RTO: Tercera</a>',
 		],
+		forcedLevel: 50,
+		teamLength: {
+			validate: [3, 6],
+			battle: 3,
+		},
 		mod: 'returntoorretercera', 
-		ruleset: ['Standard NatDex', 'Picked Team Size = 3', '!! Adjust Level = 50', 'VGC Timer'],
+		ruleset: ['Standard GBU', '+Unobtainable', '+Past', 'VGC Timer', 'Dynamax Clause', 'Mega Data Mod'],
 		banlist: [
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		   'Aerodactylite', 'Alakazite', 'Beedrillite', 'Blastoisinite', 'Charizardite X', 'Charizardite Y', 'Gengarite', 
