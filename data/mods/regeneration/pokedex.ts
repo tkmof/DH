@@ -92,6 +92,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		inherit: true,
 		types: ["Normal", "Ground"],
 		baseStats: {hp: 85, atk: 110, def: 105, spa: 30, spd: 70, spe: 110},
+		abilities: {0: "Intimidate", 1: "Bull Spirit", H: "Sheer Force"},
 	},
 	marowak: {
 		inherit: true,
