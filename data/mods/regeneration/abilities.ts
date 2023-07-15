@@ -163,7 +163,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				const checkSlot = this.dex.getMove(moveSlot.move);
 				if (move.id === checkSlot.id) {
 					if (num === 1 && !pokemon.volatiles['bullspirit']) {
-						if (move.type !=== 'Normal') return;
+						if (move.type !== 'Normal') return;
 						pokemon.addVolatile('bullspirit');
 				   	(move as any).bullspiritBoosted = true;
 					}
