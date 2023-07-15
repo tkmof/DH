@@ -1263,7 +1263,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	wochien: {
 		num: 1001,
 		name: "Wo-Chien",
-		types: ["Dark", "Grass"],
+		types: ["Grass", "Ghost"],
 		gender: "N",
 		baseStats: {hp: 85, atk: 90, def: 100, spa: 90, spd: 135, spe: 70},
 		abilities: {0: "Tablets of Ruin"},
