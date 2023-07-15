@@ -84,6 +84,21 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
       baseStats: {hp: 65, atk: 65, def: 60, spa: 95, spd: 110, spe: 130},
       abilities: {0: "Run Away", 1: "Trace", H: "Protean"},
    },
+   lapras: {
+		inherit: true, 
+		abilities: {0: "Storm Drain", 1: "Shell Armor", H: "Hydration"},
+	},
+	tauros: {
+		inherit: true,
+		types: ["Normal", "Ground"],
+		baseStats: {hp: 85, atk: 110, def: 105, spa: 30, spd: 70, spe: 110},
+	},
+	marowak: {
+		inherit: true,
+		types: ["Ground", "Ghost"],
+		baseStats: {hp: 80, atk: 80, def: 105, spa: 50, spd: 95, spe: 100},
+		abilities: {0: "Battle Armor", 1: "Sand Force", H: "Justified"},
+	},
 // Minor Changes (mostly to prevent unevolved Pokemons in gen 1 to hold Eviolite)
 	golbat: {
 		inherit: true,
