@@ -241,6 +241,55 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {effect: 'healreplacement'},
 		contestType: "Cool",
 	},
+	escort: {
+		num: 369,
+		accuracy: 100,
+		basePower: 50,
+		category: "Physical",
+		name: "Escort",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryHit(source) {
+			if (!this.canSwitch(source.side)) {
+				this.attrLastMove('[still]');
+				this.add('-fail', source);
+				return this.NOT_FAIL;
+			}
+		},
+	   slotCondition: 'escort',
+		condition: {
+			onSwap(target) {
+			   if (effect.id === 'spikes' || effect.id === 'toxicspikes' || effect.id === 'stealthrock' || effect.id === 'stickyweb' || effect.id === 'gmaxsteelsurge') {
+					return false;
+			   } 
+		},	
+		selfSwitch: true,
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		contestType: "Cute",
+	},
+	vengefulbone: {
+		num: 514,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Vengeful Bone",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onBasePower(basePower, pokemon) {
+			if (pokemon.side.faintedLastTurn) {
+				this.debug('Boosted for a faint last turn');
+				return this.chainModify(2);
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+		contestType: "Cool",
+	},
 // Gen 9 Moves
 	hail: {
 		inherit: true,
