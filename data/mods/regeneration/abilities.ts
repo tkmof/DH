@@ -66,7 +66,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			for (const sideCondition of ['spikes', 'stealthrock']) {
 				if (pokemon.side.getSideCondition(sideCondition)) {
 					if (!activated) {
-						this.add('-activate', pokemon, 'ability: Screen Cleaner');
+						this.add('-activate', pokemon, 'ability: Excavate');
 		            activated = true;
 					}
 					pokemon.side.removeSideCondition(sideCondition);
