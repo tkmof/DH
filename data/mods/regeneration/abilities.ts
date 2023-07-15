@@ -151,8 +151,34 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			}
 		},
 		name: "Of A Feather",
+		shortDesc: "This Pokemon's Flying-type attacks are boosted by 1.5x",
 		rating: 3.5,
 		num: 263,
+	},
+	bullspirit: {
+		onModifyMove(move, pokemon) {
+			let num = 0;
+			for (const moveSlot of pokemon.moveSlots) {
+				num++;
+				const checkSlot = this.dex.getMove(moveSlot.move);
+				if (move.id === checkSlot.id) {
+					if (num === 1 && !pokemon.volatiles['bullspirit']) {
+						if (move.type !=== 'Normal') return;
+						pokemon.addVolatile('bullspirit');
+				   	(move as any).bullspiritBoosted = true;
+					}
+				}
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if ((move as any).bullspiritBoosted) {
+				return this.chainModify(1);
+			}
+		},
+		name: "Bull Spirit",
+		shortDesc: "After using a Normal move, the next attack is always Special.",
+		rating: 3,
 	},
 // Gen 9 Abilities
 	battlebond: {
