@@ -601,7 +601,7 @@ export const Formats: FormatList = [
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		   'Aerodactylite', 'Alakazite', 'Beedrillite', 'Blastoisinite', 'Charizardite X', 'Charizardite Y', 'Gengarite', 
          'Gyaradosite', 'Kangaskhanite', 'Mewtwonite X', 'Mewtwonite Y', 'Pidgeotite', 'Pinsirite', 'Slowbronite', 'Venusaurite',
-			'Lugia', 'Ho-Oh',
+			'Lugia', 'Ho-Oh', 'All Items'
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
