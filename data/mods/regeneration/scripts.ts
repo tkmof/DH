@@ -268,6 +268,16 @@ export const Scripts: {[k: string]: ModdedBattleScriptsData} = {
 
 		   this.modData("Learnsets", "jolteon").learnset.buzzoff = ["8L1"];
 
+		   this.modData("Learnsets", "lapras").learnset.escort = ["8L1"];
+		   this.modData("Learnsets", "lapras").learnset.wish = ["8L1"];
+
+		   this.modData("Learnsets", "tauros").learnset.escort = ["8L1"];
+		   this.modData("Learnsets", "tauros").learnset.headlongrush = ["8L1"];
+
+		   this.modData("Learnsets", "marowak").learnset.closecombat = ["8L1"];
+		   this.modData("Learnsets", "marowak").learnset.knockoff = ["8L1"];
+		   this.modData("Learnsets", "marowak").learnset.vengefulbone = ["8L1"];
+
 			delete this.modData('Learnsets', 'alakazam').learnset.focusblast;	
 			delete this.modData('Learnsets', 'alakazam').learnset.nastyplot;	
 
