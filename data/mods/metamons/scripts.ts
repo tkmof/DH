@@ -525,7 +525,19 @@ export const Scripts: ModdedBattleScriptsData = {
 			this.modData("Learnsets", "oricorio").learnset.dragondance = ["8L1"];		
 			this.modData("Learnsets", "oricorio").learnset.lunardance = ["8L1"];		
 			this.modData("Learnsets", "oricorio").learnset.petaldance = ["8L1"];		
-			this.modData("Learnsets", "oricorio").learnset.fierydance = ["8L1"];		
+			this.modData("Learnsets", "oricorio").learnset.fierydance = ["8L1"];	
+
+			this.modData("Learnsets", "golbat").learnset.ironhead = ["8L1"];
+			this.modData("Learnsets", "golbat").learnset.flashcannon = ["8L1"];	
+			this.modData("Learnsets", "golbat").learnset.steelbeam = ["8L1"];			
+
+			this.modData("Learnsets", "wochien").learnset.stickyweb = ["8L1"];	
+			this.modData("Learnsets", "wochien").learnset.sappyseed = ["8L1"];	
+			this.modData("Learnsets", "wochien").learnset.infestation = ["8L1"];	
+			this.modData("Learnsets", "wochien").learnset.spikyshield = ["8L1"];	
+			this.modData("Learnsets", "wochien").learnset.nightshade = ["8L1"];	
+
+			this.modData("Learnsets", "mudsdale").learnset.thunderouskick = ["8L1"];	
 			
 			delete this.modData('Learnsets', 'bellossom').learnset.sleeppowder;
 			
