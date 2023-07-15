@@ -281,4 +281,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	oricoriosensu: {
 		tier: "MetaMons",
 	},
+   golbat: {
+		tier: "MetaMons",
+	},
+	wochien: {
+		tier: "MetaMons",
+	},
+	mudsdale: {
+		tier: "MetaMons",
+	},
 };
