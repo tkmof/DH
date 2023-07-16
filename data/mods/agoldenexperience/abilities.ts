@@ -31,6 +31,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		name: "Poisonous Radula",
+		shortDesc: "Non resisted Poison moves lowers the target's corresponding defense by one stage.",
 		rating: 2,
 		num: -1,
 	},
@@ -157,6 +158,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		name: "Web Weaver",
+      shortDesc: "A the end of each turn, lowers by one stage the speed stat of every other grounded Pokemon.",
 		rating: 4.5,
 		num: -7,
 	},
@@ -175,6 +177,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		name: "Reflex",
+		shortDesc: "While this pokemon is active, allies are protected from priority moves.",
 		rating: 2.5,
 		num: -8,
 	},
@@ -193,6 +196,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		name: "Perforating",
+		shortDesc: "Bug & Poison moves deal 2x damage if resisted, can poison Steel types, Poison moves hit Steel types",
 		rating: 3,
 		num: -9,
 	},
@@ -256,6 +260,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		name: "Arcane Mastery",
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Psychic/Dark type attack.",
 		rating: 3.5,
 		num: -12,
 	},
@@ -268,7 +273,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		name: "Strange Body",
 		rating: 4,
-		shortDesc: "This Pokemon will always take neutral damages from super effective damages from physical moves.",
+		shortDesc: "If this Pokemon is hit by a physical super effective move, it takes neutral damage.",
 		num: -13,
 	},
 	//unused due to deleted Fakemons
