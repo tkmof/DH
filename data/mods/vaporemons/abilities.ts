@@ -1822,8 +1822,39 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	},
 	sandspit: {
 		onDamagingHit(damage, target, source, move) {
-			this.add('-activate', target, 'ability: Sand Spit');
-			source.addVolatile('partiallytrapped', this.effectData.target);
+				this.add('-activate', target, 'ability: Sand Spit');
+				source.addVolatile('sandspit', this.effectData.target);
+		},
+		condition: {
+			duration: 5,
+			durationCallback(target, source) {
+				if (source?.hasItem('gripclaw')) return 8;
+				return this.random(5, 7);
+			},
+			onStart(pokemon, source) {
+				this.add('-activate', pokemon, 'move: ' + this.effectData.sourceEffect, '[of] ' + source);
+				this.effectData.boundDivisor = source.hasItem('bindingband') ? 6 : 8;
+			},
+			onResidualOrder: 11,
+			onResidual(pokemon) {
+				const source = this.effectData.source;
+				// G-Max Centiferno and G-Max Sandblast continue even after the user leaves the field
+				const gmaxEffect = ['gmaxcentiferno', 'gmaxsandblast'].includes(this.effectData.sourceEffect.id);
+				if (source && (!source.isActive || source.hp <= 0) && !gmaxEffect) {
+					delete pokemon.volatiles['sandspit'];
+					this.add('-end', pokemon, this.effectData.sourceEffect, '[sandspit]', '[silent]');
+					return;
+				}
+				this.add('-anim', pokemon, "Sand Tomb", pokemon);
+				this.damage(pokemon.baseMaxhp / this.effectData.boundDivisor);
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, this.effectData.sourceEffect, '[sandspit]');
+			},
+			onTrapPokemon(pokemon) {
+				const gmaxEffect = ['gmaxcentiferno', 'gmaxsandblast'].includes(this.effectData.sourceEffect.id);
+				if (this.effectData.source?.isActive || gmaxEffect) pokemon.tryTrap();
+			},
 		},
 		name: "Sand Spit",
 		shortDesc: "When this Pokemon is hit by an attack, the effect of Sand Tomb begins.",

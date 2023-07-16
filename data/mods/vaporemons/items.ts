@@ -157,7 +157,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: 296,
 		desc: "Damaging draining moves deal 30% more damage, status draining moves heal 30% more.",
 		gen: 4,
-	},
+	}, /*
 	terashard: {
 		name: "Tera Shard",
 		spritenum: 658,
@@ -229,7 +229,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: -1008,
 		gen: 8,
 		desc: "Holder becomes its Tera Type on switch-in. (Use this if you want to Tera Fairy)",
-	},	
+	},	*/
 	seginstarshard: {
 		name: "Segin Star Shard",
 		spritenum: 658,
@@ -830,7 +830,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		},
 		forcedForme: "Charizard",
 		itemUser: ["Charizard"],
-		num: -1011,
+		num: -1012,
 		gen: 8,
 		desc: "Charizard: Becomes Fire-type, Ability: Drought, +1 SpA, 1.2x Fire/Flying power.",
 	},	
@@ -981,5 +981,464 @@ export const Items: {[k: string]: ModdedItemData} = {
 	pixieplate: {
 		inherit: true,
 		isNonstandard: null,
+	},
+// new stuff should start numbering at -1029
+
+// Tera Shards
+	bugterashard: {
+		name: "Bug Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Bug')) return;
+				this.add('-start', pokemon, 'typechange', 'Bug', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1013,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Bug, on switch-in.",
+	},	
+	darkterashard: {
+		name: "Dark Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Dark')) return;
+				this.add('-start', pokemon, 'typechange', 'Dark', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1014,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Dark, on switch-in.",
+	},	
+	dragonterashard: {
+		name: "Dragon Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Dragon')) return;
+				this.add('-start', pokemon, 'typechange', 'Dragon', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1028,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Dragon, on switch-in.",
+	},	
+	electricterashard: {
+		name: "Electric Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Electric')) return;
+				this.add('-start', pokemon, 'typechange', 'Electric', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1015,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Electric, on switch-in.",
+	},	
+	fairyterashard: {
+		name: "Fairy Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Fairy')) return;
+				this.add('-start', pokemon, 'typechange', 'Fairy', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1008,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Fairy, on switch-in.",
+	},	
+	fightingterashard: {
+		name: "Fighting Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Fighting')) return;
+				this.add('-start', pokemon, 'typechange', 'Fighting', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1016,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Fighting, on switch-in.",
+	},	
+	fireterashard: {
+		name: "Fire Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Fire')) return;
+				this.add('-start', pokemon, 'typechange', 'Fire', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1017,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Fire, on switch-in.",
+	},	
+	flyingterashard: {
+		name: "Flying Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Flying')) return;
+				this.add('-start', pokemon, 'typechange', 'Flying', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1018,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Flying, on switch-in.",
+	},	
+	ghostterashard: {
+		name: "Ghost Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Ghost')) return;
+				this.add('-start', pokemon, 'typechange', 'Ghost', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1019,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Ghost, on switch-in.",
+	},	
+	grassterashard: {
+		name: "Grass Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Grass')) return;
+				this.add('-start', pokemon, 'typechange', 'Grass', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1020,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Grass, on switch-in.",
+	},	
+	groundterashard: {
+		name: "Ground Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Ground')) return;
+				this.add('-start', pokemon, 'typechange', 'Ground', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1021,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Ground, on switch-in.",
+	},	
+	iceterashard: {
+		name: "Ice Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Ice')) return;
+				this.add('-start', pokemon, 'typechange', 'Ice', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1022,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Ice, on switch-in.",
+	},	
+	normalterashard: {
+		name: "Normal Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Normal')) return;
+				this.add('-start', pokemon, 'typechange', 'Normal', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1007,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Normal, on switch-in.",
+	},	
+	poisonterashard: {
+		name: "Poison Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Poison')) return;
+				this.add('-start', pokemon, 'typechange', 'Poison', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1023,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Poison, on switch-in.",
+	},	
+	psychicterashard: {
+		name: "Psychic Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Psychic')) return;
+				this.add('-start', pokemon, 'typechange', 'Psychic', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1024,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Psychic, on switch-in.",
+	},	
+	rockterashard: {
+		name: "Rock Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Rock')) return;
+				this.add('-start', pokemon, 'typechange', 'Rock', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1025,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Rock, on switch-in.",
+	},	
+	steelterashard: {
+		name: "Steel Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Steel')) return;
+				this.add('-start', pokemon, 'typechange', 'Steel', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1026,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Steel, on switch-in.",
+	},	
+	waterterashard: {
+		name: "Water Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType('Water')) return;
+				this.add('-start', pokemon, 'typechange', 'Water', '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1027,
+		gen: 8,
+		desc: "Holder becomes its Tera Type, Water, on switch-in.",
+	},	
+	terashard: {
+		name: "Tera Shard",
+		spritenum: 658,
+		onTakeItem: false,
+		onStart(pokemon) {
+			const type = pokemon.hpType;
+			this.add('-item', pokemon, 'Tera Shard');
+			this.add('-anim', pokemon, "Cosmic Power", pokemon);
+			if (type && type !== '???') {
+				if (!pokemon.setType(type)) return;
+				this.add('-start', pokemon, 'typechange', type, '[from] item: Tera Shard');
+			}
+			this.add('-message', `${pokemon.name}'s Tera Shard changed its type!`);
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'soak' || move.id === 'magicpowder') {
+				this.add('-immune', pokemon, '[from] item: Tera Shard');
+				return null;
+			}
+		},
+		num: -1000,
+		gen: 8,
+		desc: "Holder becomes its Tera Type (Hidden Power type) on switch-in.",
 	},
 };

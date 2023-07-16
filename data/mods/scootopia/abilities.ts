@@ -72,7 +72,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: 211,
 	},
 	battlebond: {
-		shortDesc: "Change forms after getting a KO.",
+		shortDesc: "Change to a stronger forme after getting a KO.",
 		onSourceAfterFaint(length, target, source, effect) {
 			if (effect?.effectType !== 'Move') {
 				return;

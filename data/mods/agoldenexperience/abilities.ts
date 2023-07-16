@@ -892,8 +892,11 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: -1047,
 	},
 	icebreaker: {
-		desc: "This Pokemon's Speed is x1.5 on Hail, and this Pokemon's Atk and SpA is x1.5 on Rain.",
-		shortDesc: "x1.5 Speed on Hail; x1.5 Atk and SpA on Rain.",
+		desc: "This Pokemon's Speed is x1.5 on Hail, and this Pokemon's Atk and SpA is x1.5 on Rain. This Pokemon is immune to Hail.",
+		shortDesc: "x1.5 Speed on Hail; x1.5 Atk and SpA on Rain. Hail immunity.",
+		onImmunity(type, pokemon) {
+			if (type === 'hail') return false;
+		},
 		onModifySpe(spe, pokemon) {
 			if (this.field.isWeather('hail')) {
 				return this.chainModify(1.5);
@@ -978,6 +981,21 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		name: "Explosive",
 		rating: 4,
 		num: -64,
+	},
+	unimpressed: {
+		shortDesc: "Moves used against this Pokemon don't receive STAB.",
+		onSourceModifyDamage(damage, source, target, move) {
+			if (source.hasType(move.type) && (!source.hasAbility('adaptability'))) {
+				this.debug('Unimpressed weaken');
+				return this.chainModify(0.67);
+			}
+			if (source.hasType(move.type) && (source.hasAbility('adaptability'))) {
+				this.debug('Unimpressed weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		name: "Unimpressed",
+		rating: 3.5,
 	},
 	accumulate: {
 		desc: "At the end of each turn, this Pokemon gets 1 Stockpile.",
@@ -1776,8 +1794,8 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: 60,
 	},
 	normalize: {
-		desc: "This Pokemon's moves have the Normal type, and can hit Ghost-type targets.",
-		shortDesc: "Moves have Normal type; bypass Ghost immunity.",
+		desc: "This Pokemon's moves have the Normal type, and BP x1.5",
+		shortDesc: "Moves have Normal type; BP x1.5",
 		onModifyTypePriority: 1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
@@ -1791,12 +1809,6 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		onBasePowerPriority: 23,
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.normalizeBoosted) return this.chainModify(1.5);
-		},
-		onModifyMove(move) {
-			if (!move.ignoreImmunity) move.ignoreImmunity = {};
-			if (move.ignoreImmunity !== true) {
-				move.ignoreImmunity['Normal'] = true;
-			}
 		},
 		name: "Normalize",
 		rating: 0,

@@ -51,6 +51,9 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	ferroluna: {
 		tier: "EELAAO OU",
 	},
+	croakoast: {
+		tier: "EELAAO OU",
+	},
 	
 	//boe
 	aureatefin: {
@@ -78,6 +81,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "EELAAO OU",
 	},
 	ironmimic: {
+		tier: "EELAAO OU",
+	},
+	tinkovish: {
+		tier: "EELAAO OU",
+	},
+	zoinkazenta: {
 		tier: "EELAAO OU",
 	},
 	
@@ -176,7 +185,15 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	dondozo: {
 		tier: "EELAAO OU",
 	},
-	
+	grafaiai: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
+	ironjugulis: {
+		tier: "TT",
+		doublesTier: "DTT",
+	},
+
 	//vape
 	crabominable: {
 		tier: "EELAAO OU",
