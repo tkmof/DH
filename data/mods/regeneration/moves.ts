@@ -263,6 +263,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			   if (effect.id === 'spikes' || effect.id === 'toxicspikes' || effect.id === 'stealthrock' || effect.id === 'stickyweb' || effect.id === 'gmaxsteelsurge') {
 					return false;
 			   } 
+			},
 		},	
 		selfSwitch: true,
 		secondary: null,
