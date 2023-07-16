@@ -146,6 +146,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 120,
 		category: "Physical",
 		name: "Coral Crash",
+		shortDesc: "33% recoil. 10% chance to poison.",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -169,6 +170,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 50,
 		category: "Physical",
 		name: "Slip Away",
+		shortDesc: "100% chance to lower the target's Attack by 1, switches the user out.",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, authentic: 1},
@@ -195,6 +197,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 70,
 		category: "Physical",
 		name: "Flare Out",
+		shortDesc: "100% chance to lower the target's Defense by 1, switches the user out.",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, authentic: 1},
@@ -221,6 +224,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 60,
 		category: "Special",
 		name: "Buzz Off",
+      shortDesc: "100% chance to lower the target's Speed by 1, switches the user out.",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, authentic: 1},
@@ -247,6 +251,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 50,
 		category: "Physical",
 		name: "Escort",
+		shortDesc: "User switches out. Incoming Pokemon doesn't take damage from entry hazards.",
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -265,6 +270,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			   } 
 			},
 		},	
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Giga Impact", target);
+		},
 		selfSwitch: true,
 		secondary: null,
 		target: "self",
@@ -277,6 +286,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 80,
 		category: "Physical",
 		name: "Vengeful Bone",
+		shortDesc: "Power is doubled when used on the turn after an ally fainted.",
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -285,6 +295,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				this.debug('Boosted for a faint last turn');
 				return this.chainModify(2);
 			}
+		},
+      onPrepareHit: function(target, source, move) {
+         this.attrLastMove('[still]');
+         this.add('-anim', source, "Shadow Bone", target);
 		},
 		secondary: null,
 		target: "normal",
